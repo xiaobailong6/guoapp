@@ -1,0 +1,60 @@
+﻿2026-10-04T05:15:01.9059944Z ##[group]Run python scripts/build_android.py --all-sources
+2026-10-04T05:15:01.9060420Z [36;1mpython scripts/build_android.py --all-sources[0m
+2026-10-04T05:15:01.9123386Z shell: /usr/bin/bash -e {0}
+2026-10-04T05:15:01.9123671Z env:
+2026-10-04T05:15:01.9123924Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-04T05:15:01.9124260Z   GOSUMDB: sum.golang.org
+2026-10-04T05:15:01.9124587Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-04T05:15:01.9125063Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-10-04T05:15:01.9125525Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-04T05:15:01.9125935Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-04T05:15:01.9126350Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-04T05:15:01.9126946Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-10-04T05:15:01.9127414Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T05:15:01.9128362Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T05:15:01.9128900Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
+2026-10-04T05:15:01.9129307Z   PUB_CACHE: /home/runner/.pub-cache
+2026-10-04T05:15:01.9129676Z   ANDROID_NDK_HOME: /usr/local/lib/android/sdk/ndk/28.2.13676358
+2026-10-04T05:15:01.9130031Z ##[endgroup]
+2026-10-04T05:15:02.0716072Z Building android/app/src/main/jniLibs/arm64-v8a/libduanju_core.so
+2026-10-04T05:15:43.9303916Z Building android/app/src/main/jniLibs/armeabi-v7a/libduanju_core.so
+2026-10-04T05:16:20.7618446Z Building android/app/src/main/jniLibs/x86_64/libduanju_core.so
+2026-10-04T05:16:58.6708891Z Resolving dependencies...
+2026-10-04T05:16:58.7896970Z Downloading packages...
+2026-10-04T05:16:58.9264157Z   cross_file 0.3.5+5 (0.4.0 available)
+2026-10-04T05:16:58.9265249Z   ffmpeg_kit_flutter_new_min_gpl 2.6.2 (2.6.4 available)
+2026-10-04T05:16:58.9266171Z   material_color_utilities 0.13.0 (0.13.1 available)
+2026-10-04T05:16:58.9267267Z ! media_kit_libs_windows_video 1.0.11+duanju.1 from path packages/media_kit_libs_windows_video (overridden)
+2026-10-04T05:16:58.9270792Z   test_api 0.7.12 (0.7.14 available)
+2026-10-04T05:16:58.9271737Z Got dependencies!
+2026-10-04T05:16:58.9272557Z 4 packages have newer versions incompatible with dependency constraints.
+2026-10-04T05:16:58.9273548Z Try `flutter pub outdated` for more information.
+2026-10-04T05:20:29.5083489Z Running Gradle task 'assembleRelease'...                        
+2026-10-04T05:20:29.5084886Z Downloading file from: https://github.com/media-kit/libmpv-android-video-build/releases/download/v1.1.7/default-arm64-v8a.jar
+2026-10-04T05:20:29.8979468Z Downloading file from: https://github.com/media-kit/libmpv-android-video-build/releases/download/v1.1.7/default-armeabi-v7a.jar
+2026-10-04T05:20:30.1949870Z Downloading file from: https://github.com/media-kit/libmpv-android-video-build/releases/download/v1.1.7/default-x86_64.jar
+2026-10-04T05:20:30.3970857Z Downloading file from: https://github.com/media-kit/libmpv-android-video-build/releases/download/v1.1.7/default-x86.jar
+2026-10-04T05:21:08.6999303Z WARNING: Your app uses the following plugins that apply Kotlin Gradle Plugin (KGP): ffmpeg_kit_flutter_new_min_gpl, nsd_android
+2026-10-04T05:21:08.7016702Z Future versions of Flutter will fail to build if your app uses plugins that apply KGP.
+2026-10-04T05:21:08.7052419Z 
+2026-10-04T05:21:08.7069954Z Please check the changelogs of these plugins and upgrade to a version that supports Built-in Kotlin.
+2026-10-04T05:21:08.7108716Z If no such version exists, report the issue to the plugin. If necessary, here is a guide on filing
+2026-10-04T05:21:08.7112511Z an issue against a plugin: https://docs.flutter.dev/release/breaking-changes/migrate-to-built-in-kotlin/for-app-developers#report-incompatible-kotlin-gradle-plugin-usage-to-plugin-authors
+2026-10-04T05:21:08.7125166Z 
+2026-10-04T05:21:08.7126619Z If you are a plugin author, please migrate your plugin to Built-in Kotlin using this guide: https://docs.flutter.dev/release/breaking-changes/migrate-to-built-in-kotlin/for-plugin-authors
+2026-10-04T05:22:40.1960119Z Font asset "MaterialIcons-Regular.otf" was tree-shaken, reducing it from 1645184 to 20552 bytes (98.8% reduction). Tree-shaking can be disabled by providing the --no-tree-shake-icons flag when building your app.
+2026-10-04T05:23:04.2948089Z Checking the license for package CMake 3.22.1 in /usr/local/lib/android/sdk/licenses
+2026-10-04T05:23:04.2956112Z License for package CMake 3.22.1 accepted.
+2026-10-04T05:23:04.2959567Z Preparing "Install CMake 3.22.1 v.3.22.1".
+2026-10-04T05:23:05.6948948Z "Install CMake 3.22.1 v.3.22.1" ready.
+2026-10-04T05:23:05.6950237Z Installing CMake 3.22.1 in /usr/local/lib/android/sdk/cmake/3.22.1
+2026-10-04T05:23:05.6951322Z "Install CMake 3.22.1 v.3.22.1" complete.
+2026-10-04T05:23:06.0968711Z "Install CMake 3.22.1 v.3.22.1" finished.
+2026-10-04T05:24:21.9998316Z Caught exception: Already watching path: /home/runner/work/guoapp/guoapp/android
+2026-10-04T05:26:52.1530780Z Running Gradle task 'assembleRelease'...                          592.6s
+2026-10-04T05:26:52.6004980Z ✓ Built build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk (40.4MB)
+2026-10-04T05:26:52.8459402Z ✓ Built build/app/outputs/flutter-apk/app-arm64-v8a-release.apk (31.9MB)
+2026-10-04T05:26:53.1054714Z ✓ Built build/app/outputs/flutter-apk/app-x86_64-release.apk (33.5MB)
+2026-10-04T05:26:53.6421932Z /home/runner/work/guoapp/guoapp/dist/android/zhenguojian-0.2.86+2092-arm64-v8a.apk
+2026-10-04T05:26:53.6430895Z /home/runner/work/guoapp/guoapp/dist/android/zhenguojian-0.2.86+2092-armeabi-v7a.apk
+2026-10-04T05:26:53.6435251Z /home/runner/work/guoapp/guoapp/dist/android/zhenguojian-0.2.86+2092-x86_64.apk

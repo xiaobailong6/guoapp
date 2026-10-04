@@ -1,88 +1,71 @@
-﻿2026-10-04T04:39:59.8811554Z ##[group]Run go test -race ./...
-2026-10-04T04:39:59.8812154Z [36;1mgo test -race ./...[0m
-2026-10-04T04:39:59.8903647Z shell: /usr/bin/bash -e {0}
-2026-10-04T04:39:59.8904076Z env:
-2026-10-04T04:39:59.8904481Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-04T04:39:59.8905310Z   GOSUMDB: sum.golang.org
-2026-10-04T04:39:59.8906227Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
-2026-10-04T04:39:59.8906935Z   PUB_CACHE: /home/runner/.pub-cache
-2026-10-04T04:39:59.8907402Z ##[endgroup]
-2026-10-04T04:39:59.9760012Z go: downloading github.com/bogdanfinn/fhttp v0.6.9
-2026-10-04T04:39:59.9767995Z go: downloading github.com/bogdanfinn/tls-client v1.16.0
-2026-10-04T04:40:00.0695717Z go: downloading github.com/ulikunitz/xz v0.5.17
-2026-10-04T04:40:00.1548602Z go: downloading golang.org/x/net v0.48.0
-2026-10-04T04:40:00.4502293Z go: downloading golang.org/x/sys v0.39.0
-2026-10-04T04:40:00.5018891Z go: downloading golang.org/x/text v0.32.0
-2026-10-04T04:40:01.6681848Z go: downloading github.com/bdandy/go-socks4 v1.2.3
-2026-10-04T04:40:01.6834057Z go: downloading github.com/bogdanfinn/quic-go-utls v1.0.10-utls
-2026-10-04T04:40:01.8075385Z go: downloading github.com/bogdanfinn/utls v1.7.8-barnius
-2026-10-04T04:40:01.9105907Z go: downloading github.com/bogdanfinn/websocket v1.5.6-barnius
-2026-10-04T04:40:01.9107134Z go: downloading github.com/tam7t/hpkp v0.0.0-20160821193359-2b70b4024ed5
-2026-10-04T04:40:01.9318672Z go: downloading github.com/andybalholm/brotli v1.2.0
-2026-10-04T04:40:01.9386074Z go: downloading github.com/klauspost/compress v1.18.2
-2026-10-04T04:40:02.8930730Z go: downloading github.com/bdandy/go-errors v1.2.2
-2026-10-04T04:40:02.9154994Z go: downloading github.com/quic-go/qpack v0.6.0
-2026-10-04T04:40:02.9229624Z go: downloading github.com/cloudflare/circl v1.6.2
-2026-10-04T04:40:04.5882366Z go: downloading golang.org/x/crypto v0.46.0
-2026-10-04T04:40:51.6198792Z ?   	duanjuapp/native/bridge	[no test files]
-2026-10-04T04:41:25.4896116Z --- FAIL: TestNativeHongguoCursorRestartsPerCatalog (0.29s)
-2026-10-04T04:41:25.4914420Z     app_catalog_persistence_test.go:110: total catalog and categories shared or reset their cursors [900 900 900 918 918 918 936 936 936 954 954 954 972 972 972 990 990 990 1008 1008 1008 1026 1026 1026 1044 1044 1044 1062 1062 1062 1080 1080 1080 1098 1098 1098 1116 1116 1116 1134 1134 1134 1152 1152 1152 1170 1170 1170 1188 1188 1188 1206 1206 1206 1224 1224 1224 1242 1242 1242 1260 1260 1260 1278 1278 1278 1296 1296 1296 1314 1314 1314 1332 1332 1332 1350 1350 1350 1368 1368 1368 1386 1386 1386 1404 1404 1404 1422 1422 1422 1440 1440 1440 1458 1458 1458 1476 1476 1476 1494 1494 1494 1512 1512 1512 1530 1530 1530 1548 1548 1548 1566 1566 1566 1584 1584 1584 1602 1602 1602 1620 1620 1620 1638 1638 1638 1656 1656 1656 1674 1674 1674 1692 1692 1692 1710 1710 1710 1728 1728 1728 1746 1746 1746 1764 1764 1764 1782 1782 1782 1800 1818 1836 1854 1872 1890 1908 1926 1944 1962 1980 1998 2016 2034 2052 2070 2088 2106 2124 2142 2160 2178 2196 2214 2232 2250 2268 2286 2304 2322 2340 2358 2376 2394 2412 2430 2448 2466 2484 2502 2520 2538 2556 2574 2592 2610 2628 2646 2664 2682 900 918 936 954 972 990 1008 1026 1044 1062 1080 1098 1116 1134 1152 1170 1188 1206 1224 1242 1260 1278 1296 1314 1332 1350 1368 1386 1404 1422 1440 1458 1476 1494 1512 1530 1548 1566 1584 1602 1620 1638 1656 1674 1692 1710 1728 1746 1764 1782]
-2026-10-04T04:41:25.4923374Z --- FAIL: TestNativeHongguoCursorRecoversSessionsAfterRestart (0.01s)
-2026-10-04T04:41:25.4925169Z     --- FAIL: TestNativeHongguoCursorRecoversSessionsAfterRestart/expired (0.00s)
-2026-10-04T04:41:25.4927433Z         app_catalog_persistence_test.go:146: reused an expired session
-2026-10-04T04:41:25.4929347Z         app_catalog_persistence_test.go:143: session recovery changed the saved offset 36
-2026-10-04T04:41:25.4933318Z         app_catalog_persistence_test.go:146: reused an expired session
-2026-10-04T04:41:25.4935436Z         app_catalog_persistence_test.go:143: session recovery changed the saved offset 36
-2026-10-04T04:41:25.4945112Z         app_catalog_persistence_test.go:159: <nil> AI剧: App 分页未前进，已保留上次位置
-2026-10-04T04:41:25.4946801Z     --- FAIL: TestNativeHongguoCursorRecoversSessionsAfterRestart/rejected (0.00s)
-2026-10-04T04:41:25.4949022Z         app_catalog_persistence_test.go:143: session recovery changed the saved offset 36
-2026-10-04T04:41:25.4951505Z         app_catalog_persistence_test.go:143: session recovery changed the saved offset 36
-2026-10-04T04:41:25.4953391Z         app_catalog_persistence_test.go:159: <nil> AI剧: App 分页未前进，已保留上次位置
-2026-10-04T04:41:25.4955134Z     --- FAIL: TestNativeHongguoCursorRecoversSessionsAfterRestart/repeated-page (0.00s)
-2026-10-04T04:41:25.4960086Z         app_catalog_persistence_test.go:143: session recovery changed the saved offset 36
-2026-10-04T04:41:25.4961733Z         app_catalog_persistence_test.go:143: session recovery changed the saved offset 36
-2026-10-04T04:41:25.4963337Z         app_catalog_persistence_test.go:159: <nil> AI剧: App 分页未前进，已保留上次位置
-2026-10-04T04:41:25.4964431Z --- FAIL: TestNativeHongguoStalledCursorKeepsPartialItems (0.00s)
-2026-10-04T04:41:25.4967007Z     app_catalog_persistence_test.go:211: stalled pagination was accepted or retried indefinitely <nil> AI剧: App 分页未前进，已保留上次位置 [0 18 18 18 18]
-2026-10-04T04:41:25.4968641Z --- FAIL: TestNativeCatalogSaveFailureRetriesWithoutAdvancing (0.05s)
-2026-10-04T04:41:25.4977652Z     app_catalog_persistence_test.go:285: save failure discarded usable memory data
-2026-10-04T04:41:25.4979306Z --- FAIL: TestNativeCatalogMetadataSaveExcludesInFlightCursor (20.00s)
-2026-10-04T04:41:25.4980322Z panic: close of closed channel [recovered]
-2026-10-04T04:41:25.4981067Z 	panic: close of closed channel
-2026-10-04T04:41:25.4981547Z 
-2026-10-04T04:41:25.4981910Z goroutine 930 [running]:
-2026-10-04T04:41:25.4982587Z testing.tRunner.func1.2({0x1179f20, 0x14064b0})
-2026-10-04T04:41:25.4983697Z 	/opt/hostedtoolcache/go/1.24.1/x64/src/testing/testing.go:1734 +0x3eb
-2026-10-04T04:41:25.4984584Z testing.tRunner.func1()
-2026-10-04T04:41:25.4985804Z 	/opt/hostedtoolcache/go/1.24.1/x64/src/testing/testing.go:1737 +0x696
-2026-10-04T04:41:25.4986793Z panic({0x1179f20?, 0x14064b0?})
-2026-10-04T04:41:25.4987718Z 	/opt/hostedtoolcache/go/1.24.1/x64/src/runtime/panic.go:792 +0x132
-2026-10-04T04:41:25.4998574Z duanjuapp/native/core.TestNativeCatalogMetadataSaveExcludesInFlightCursor.func1(0xc000155540)
-2026-10-04T04:41:25.5000176Z 	/home/runner/work/guoapp/guoapp/native/core/app_catalog_persistence_test.go:355 +0x113
-2026-10-04T04:41:25.5001512Z duanjuapp/native/core.sourceFixtureTransport.RoundTrip(0xc000f4e160, 0xc000155540)
-2026-10-04T04:41:25.5002846Z 	/home/runner/work/guoapp/guoapp/native/core/app_sources_test.go:21 +0x34
-2026-10-04T04:41:25.5003974Z net/http.send(0xc000155400, {0x140a100, 0xc000f4e160}, {0x8?, 0x8?, 0x1a4e9c0?})
-2026-10-04T04:41:25.5005562Z 	/opt/hostedtoolcache/go/1.24.1/x64/src/net/http/client.go:259 +0x8cb
-2026-10-04T04:41:25.5006738Z net/http.(*Client).send(0xc0000a9140, 0xc000155400, {0x0?, 0xf?, 0x1a4e9c0?})
-2026-10-04T04:41:25.5007852Z 	/opt/hostedtoolcache/go/1.24.1/x64/src/net/http/client.go:180 +0x14d
-2026-10-04T04:41:25.5008773Z net/http.(*Client).do(0xc0000a9140, 0xc000155400)
-2026-10-04T04:41:25.5009734Z 	/opt/hostedtoolcache/go/1.24.1/x64/src/net/http/client.go:728 +0x1339
-2026-10-04T04:41:25.5010600Z net/http.(*Client).Do(...)
-2026-10-04T04:41:25.5011409Z 	/opt/hostedtoolcache/go/1.24.1/x64/src/net/http/client.go:587
-2026-10-04T04:41:25.5012732Z duanjuapp/native/core.(*Downloader).doPreparedCatalogRequest(0xc0003e8508, 0xc0001552c0, 0x4a817c800, 0xc0003d35c0)
-2026-10-04T04:41:25.5014175Z 	/home/runner/work/guoapp/guoapp/native/core/network_limiter.go:253 +0x3a5
-2026-10-04T04:41:25.5016091Z duanjuapp/native/core.(*Downloader).hongguoAppRequest(0xc0003e8508, {0x14123b0, 0xc0000a9680}, {0x126835c, 0x4}, {0x1297623, 0x2a}, 0x0, {0x1191260, 0xc000360fc0})
-2026-10-04T04:41:25.5017821Z 	/home/runner/work/guoapp/guoapp/native/core/provider_hongguo_app.go:190 +0x1f46
-2026-10-04T04:41:25.5019288Z duanjuapp/native/core.(*Downloader).fetchHongguoAppCatalogCategory(0xc0003e8508, {0x14123b0, 0xc0000a9680}, {0x0, 0x0})
-2026-10-04T04:41:25.5021091Z 	/home/runner/work/guoapp/guoapp/native/core/provider_hongguo_catalog.go:127 +0x2877
-2026-10-04T04:41:25.5022518Z duanjuapp/native/core.(*nativeEngine).nativeCatalog(_, {_, _}, {{0x0, 0x0, 0x0}, 0x0, {{0x0, 0x0}, {0x0, ...}, ...}, ...})
-2026-10-04T04:41:25.5024097Z 	/home/runner/work/guoapp/guoapp/native/core/app_runtime.go:688 +0x289a
-2026-10-04T04:41:25.5025604Z duanjuapp/native/core.TestNativeCatalogMetadataSaveExcludesInFlightCursor(0xc0004da540)
-2026-10-04T04:41:25.5027031Z 	/home/runner/work/guoapp/guoapp/native/core/app_catalog_persistence_test.go:366 +0x232
-2026-10-04T04:41:25.5028046Z testing.tRunner(0xc0004da540, 0x12befc8)
-2026-10-04T04:41:25.5029015Z 	/opt/hostedtoolcache/go/1.24.1/x64/src/testing/testing.go:1792 +0x226
-2026-10-04T04:41:25.5029925Z created by testing.(*T).Run in goroutine 1
-2026-10-04T04:41:25.5030851Z 	/opt/hostedtoolcache/go/1.24.1/x64/src/testing/testing.go:1851 +0x8f3
-2026-10-04T04:41:25.5031745Z FAIL	duanjuapp/native/core	26.740s
-2026-10-04T04:41:25.5032374Z FAIL
-2026-10-04T04:41:25.6890989Z ##[error]Process completed with exit code 1.
+﻿2026-10-04T05:12:56.5777269Z ##[group]Run go test -race ./...
+2026-10-04T05:12:56.5777581Z [36;1mgo test -race ./...[0m
+2026-10-04T05:12:56.5837288Z shell: /usr/bin/bash -e {0}
+2026-10-04T05:12:56.5837475Z env:
+2026-10-04T05:12:56.5837623Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-04T05:12:56.5837800Z   GOSUMDB: sum.golang.org
+2026-10-04T05:12:56.5837997Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
+2026-10-04T05:12:56.5838211Z   PUB_CACHE: /home/runner/.pub-cache
+2026-10-04T05:12:56.5838361Z ##[endgroup]
+2026-10-04T05:12:57.4134375Z ?   	duanjuapp/native/bridge	[no test files]
+2026-10-04T05:13:26.1931621Z --- FAIL: TestNativeHongguoCursorRestartsPerCatalog (0.21s)
+2026-10-04T05:13:26.1936159Z     app_catalog_persistence_test.go:110: total catalog and categories shared or reset their cursors [900 900 900 918 918 918 936 936 936 954 954 954 972 972 972 990 990 990 1008 1008 1008 1026 1026 1026 1044 1044 1044 1062 1062 1062 1080 1080 1080 1098 1098 1098 1116 1116 1116 1134 1134 1134 1152 1152 1152 1170 1170 1170 1188 1188 1188 1206 1206 1206 1224 1224 1224 1242 1242 1242 1260 1260 1260 1278 1278 1278 1296 1296 1296 1314 1314 1314 1332 1332 1332 1350 1350 1350 1368 1368 1368 1386 1386 1386 1404 1404 1404 1422 1422 1422 1440 1440 1440 1458 1458 1458 1476 1476 1476 1494 1494 1494 1512 1512 1512 1530 1530 1530 1548 1548 1548 1566 1566 1566 1584 1584 1584 1602 1602 1602 1620 1620 1620 1638 1638 1638 1656 1656 1656 1674 1674 1674 1692 1692 1692 1710 1710 1710 1728 1728 1728 1746 1746 1746 1764 1764 1764 1782 1782 1782 1800 1818 1836 1854 1872 1890 1908 1926 1944 1962 1980 1998 2016 2034 2052 2070 2088 2106 2124 2142 2160 2178 2196 2214 2232 2250 2268 2286 2304 2322 2340 2358 2376 2394 2412 2430 2448 2466 2484 2502 2520 2538 2556 2574 2592 2610 2628 2646 2664 2682 900 918 936 954 972 990 1008 1026 1044 1062 1080 1098 1116 1134 1152 1170 1188 1206 1224 1242 1260 1278 1296 1314 1332 1350 1368 1386 1404 1422 1440 1458 1476 1494 1512 1530 1548 1566 1584 1602 1620 1638 1656 1674 1692 1710 1728 1746 1764 1782]
+2026-10-04T05:13:26.1939709Z --- FAIL: TestNativeHongguoCursorRecoversSessionsAfterRestart (0.01s)
+2026-10-04T05:13:26.1940274Z     --- FAIL: TestNativeHongguoCursorRecoversSessionsAfterRestart/expired (0.00s)
+2026-10-04T05:13:26.1940861Z         app_catalog_persistence_test.go:146: reused an expired session
+2026-10-04T05:13:26.1941510Z         app_catalog_persistence_test.go:143: session recovery changed the saved offset 36
+2026-10-04T05:13:26.1942653Z         app_catalog_persistence_test.go:146: reused an expired session
+2026-10-04T05:13:26.1943279Z         app_catalog_persistence_test.go:143: session recovery changed the saved offset 36
+2026-10-04T05:13:26.1944335Z         app_catalog_persistence_test.go:159: <nil> AI剧: App 分页未前进，已保留上次位置
+2026-10-04T05:13:26.1944880Z     --- FAIL: TestNativeHongguoCursorRecoversSessionsAfterRestart/rejected (0.00s)
+2026-10-04T05:13:26.1945552Z         app_catalog_persistence_test.go:143: session recovery changed the saved offset 36
+2026-10-04T05:13:26.1946191Z         app_catalog_persistence_test.go:143: session recovery changed the saved offset 36
+2026-10-04T05:13:26.1946850Z         app_catalog_persistence_test.go:159: <nil> AI剧: App 分页未前进，已保留上次位置
+2026-10-04T05:13:26.1947411Z     --- FAIL: TestNativeHongguoCursorRecoversSessionsAfterRestart/repeated-page (0.00s)
+2026-10-04T05:13:26.1948093Z         app_catalog_persistence_test.go:143: session recovery changed the saved offset 36
+2026-10-04T05:13:26.1948731Z         app_catalog_persistence_test.go:143: session recovery changed the saved offset 36
+2026-10-04T05:13:26.1949361Z         app_catalog_persistence_test.go:159: <nil> AI剧: App 分页未前进，已保留上次位置
+2026-10-04T05:13:26.1949796Z --- FAIL: TestNativeHongguoStalledCursorKeepsPartialItems (0.00s)
+2026-10-04T05:13:26.1950690Z     app_catalog_persistence_test.go:211: stalled pagination was accepted or retried indefinitely <nil> AI剧: App 分页未前进，已保留上次位置 [0 18 18 18 18]
+2026-10-04T05:13:26.1951321Z --- FAIL: TestNativeCatalogSaveFailureRetriesWithoutAdvancing (0.05s)
+2026-10-04T05:13:26.1951867Z     app_catalog_persistence_test.go:285: save failure discarded usable memory data
+2026-10-04T05:13:26.1957922Z --- FAIL: TestNativeCatalogMetadataSaveExcludesInFlightCursor (20.00s)
+2026-10-04T05:13:26.1958329Z panic: close of closed channel [recovered]
+2026-10-04T05:13:26.1960148Z 	panic: close of closed channel
+2026-10-04T05:13:26.1960341Z 
+2026-10-04T05:13:26.1960449Z goroutine 930 [running]:
+2026-10-04T05:13:26.1960706Z testing.tRunner.func1.2({0x1179f20, 0x14064b0})
+2026-10-04T05:13:26.1961115Z 	/opt/hostedtoolcache/go/1.24.1/x64/src/testing/testing.go:1734 +0x3eb
+2026-10-04T05:13:26.1961446Z testing.tRunner.func1()
+2026-10-04T05:13:26.1961786Z 	/opt/hostedtoolcache/go/1.24.1/x64/src/testing/testing.go:1737 +0x696
+2026-10-04T05:13:26.1966209Z panic({0x1179f20?, 0x14064b0?})
+2026-10-04T05:13:26.1966597Z 	/opt/hostedtoolcache/go/1.24.1/x64/src/runtime/panic.go:792 +0x132
+2026-10-04T05:13:26.1967128Z duanjuapp/native/core.TestNativeCatalogMetadataSaveExcludesInFlightCursor.func1(0xc00041d400)
+2026-10-04T05:13:26.1967750Z 	/home/runner/work/guoapp/guoapp/native/core/app_catalog_persistence_test.go:355 +0x113
+2026-10-04T05:13:26.1968278Z duanjuapp/native/core.sourceFixtureTransport.RoundTrip(0xc000d30160, 0xc00041d400)
+2026-10-04T05:13:26.1968777Z 	/home/runner/work/guoapp/guoapp/native/core/app_sources_test.go:21 +0x34
+2026-10-04T05:13:26.1969225Z net/http.send(0xc00041d2c0, {0x140a100, 0xc000d30160}, {0x8?, 0x8?, 0x1a4e9c0?})
+2026-10-04T05:13:26.1969663Z 	/opt/hostedtoolcache/go/1.24.1/x64/src/net/http/client.go:259 +0x8cb
+2026-10-04T05:13:26.1970087Z net/http.(*Client).send(0xc000dd3080, 0xc00041d2c0, {0x0?, 0xf?, 0x1a4e9c0?})
+2026-10-04T05:13:26.1970709Z 	/opt/hostedtoolcache/go/1.24.1/x64/src/net/http/client.go:180 +0x14d
+2026-10-04T05:13:26.1971062Z net/http.(*Client).do(0xc000dd3080, 0xc00041d2c0)
+2026-10-04T05:13:26.1971435Z 	/opt/hostedtoolcache/go/1.24.1/x64/src/net/http/client.go:728 +0x1339
+2026-10-04T05:13:26.1971763Z net/http.(*Client).Do(...)
+2026-10-04T05:13:26.1972195Z 	/opt/hostedtoolcache/go/1.24.1/x64/src/net/http/client.go:587
+2026-10-04T05:13:26.1972730Z duanjuapp/native/core.(*Downloader).doPreparedCatalogRequest(0xc000214c88, 0xc00041d180, 0x4a817c800, 0xc00032d5c0)
+2026-10-04T05:13:26.1980151Z 	/home/runner/work/guoapp/guoapp/native/core/network_limiter.go:253 +0x3a5
+2026-10-04T05:13:26.1980863Z duanjuapp/native/core.(*Downloader).hongguoAppRequest(0xc000214c88, {0x14123b0, 0xc000dd3560}, {0x126835c, 0x4}, {0x1297623, 0x2a}, 0x0, {0x1191260, 0xc00054ad20})
+2026-10-04T05:13:26.1981579Z 	/home/runner/work/guoapp/guoapp/native/core/provider_hongguo_app.go:190 +0x1f46
+2026-10-04T05:13:26.1986646Z duanjuapp/native/core.(*Downloader).fetchHongguoAppCatalogCategory(0xc000214c88, {0x14123b0, 0xc000dd3560}, {0x0, 0x0})
+2026-10-04T05:13:26.1987421Z 	/home/runner/work/guoapp/guoapp/native/core/provider_hongguo_catalog.go:127 +0x2877
+2026-10-04T05:13:26.1988010Z duanjuapp/native/core.(*nativeEngine).nativeCatalog(_, {_, _}, {{0x0, 0x0, 0x0}, 0x0, {{0x0, 0x0}, {0x0, ...}, ...}, ...})
+2026-10-04T05:13:26.1988579Z 	/home/runner/work/guoapp/guoapp/native/core/app_runtime.go:688 +0x289a
+2026-10-04T05:13:26.1989087Z duanjuapp/native/core.TestNativeCatalogMetadataSaveExcludesInFlightCursor(0xc0005ec700)
+2026-10-04T05:13:26.1989663Z 	/home/runner/work/guoapp/guoapp/native/core/app_catalog_persistence_test.go:366 +0x232
+2026-10-04T05:13:26.1990059Z testing.tRunner(0xc0005ec700, 0x12befc8)
+2026-10-04T05:13:26.1990628Z 	/opt/hostedtoolcache/go/1.24.1/x64/src/testing/testing.go:1792 +0x226
+2026-10-04T05:13:26.1990982Z created by testing.(*T).Run in goroutine 1
+2026-10-04T05:13:26.1991351Z 	/opt/hostedtoolcache/go/1.24.1/x64/src/testing/testing.go:1851 +0x8f3
+2026-10-04T05:13:26.1991696Z FAIL	duanjuapp/native/core	28.034s
+2026-10-04T05:13:26.1991925Z FAIL
+2026-10-04T05:13:26.2052963Z ##[error]Process completed with exit code 1.

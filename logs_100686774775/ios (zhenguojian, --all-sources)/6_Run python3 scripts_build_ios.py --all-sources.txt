@@ -1,307 +1,59 @@
-﻿2026-10-04T04:43:47.3301550Z ##[group]Run python3 scripts/build_ios.py --all-sources
-2026-10-04T04:43:47.3302070Z [36;1mpython3 scripts/build_ios.py --all-sources[0m
-2026-10-04T04:43:47.3360460Z shell: /bin/bash -e {0}
-2026-10-04T04:43:47.3360770Z env:
-2026-10-04T04:43:47.3361050Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-04T04:43:47.3361450Z   GOSUMDB: sum.golang.org
-2026-10-04T04:43:47.3361710Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-04T04:43:47.3372570Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
-2026-10-04T04:43:47.3372950Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-04T04:43:47.3373290Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-04T04:43:47.3377800Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-04T04:43:47.3378130Z   FLUTTER_ROOT: /Users/runner/hostedtoolcache/flutter/stable-3.47.4-arm64/flutter
-2026-10-04T04:43:47.3378440Z   PUB_CACHE: /Users/runner/.pub-cache
-2026-10-04T04:43:47.3378790Z ##[endgroup]
-2026-10-04T04:43:49.3670870Z go: downloading github.com/bogdanfinn/fhttp v0.6.9
-2026-10-04T04:43:49.3678670Z go: downloading github.com/bogdanfinn/tls-client v1.16.0
-2026-10-04T04:43:49.3691470Z go: downloading github.com/ulikunitz/xz v0.5.17
-2026-10-04T04:43:49.3712420Z go: downloading golang.org/x/net v0.48.0
-2026-10-04T04:43:49.5833920Z go: downloading golang.org/x/sys v0.39.0
-2026-10-04T04:43:49.5842300Z go: downloading golang.org/x/text v0.32.0
-2026-10-04T04:43:49.9636920Z go: downloading github.com/bogdanfinn/utls v1.7.8-barnius
-2026-10-04T04:43:49.9688750Z go: downloading github.com/bdandy/go-socks4 v1.2.3
-2026-10-04T04:43:50.0132330Z go: downloading github.com/bogdanfinn/quic-go-utls v1.0.10-utls
-2026-10-04T04:43:50.0976330Z go: downloading github.com/bogdanfinn/websocket v1.5.6-barnius
-2026-10-04T04:43:50.1519710Z go: downloading github.com/tam7t/hpkp v0.0.0-20160821193359-2b70b4024ed5
-2026-10-04T04:43:50.1597220Z go: downloading github.com/andybalholm/brotli v1.2.0
-2026-10-04T04:43:50.1995170Z go: downloading github.com/klauspost/compress v1.18.2
-2026-10-04T04:43:50.4832130Z go: downloading github.com/bdandy/go-errors v1.2.2
-2026-10-04T04:43:50.4851690Z go: downloading github.com/cloudflare/circl v1.6.2
-2026-10-04T04:43:51.0677790Z go: downloading golang.org/x/crypto v0.46.0
-2026-10-04T04:43:51.0794850Z go: downloading github.com/quic-go/qpack v0.6.0
-2026-10-04T04:44:06.2792520Z xcframework successfully written out to: /Users/runner/work/guoapp/guoapp/ios/DuanjuCore/DuanjuCore.xcframework
-2026-10-04T04:44:10.0032630Z Resolving dependencies...
-2026-10-04T04:44:10.3262380Z Downloading packages...
-2026-10-04T04:44:13.8080830Z   cross_file 0.3.5+5 (0.4.0 available)
-2026-10-04T04:44:13.8081420Z   ffmpeg_kit_flutter_new_min_gpl 2.6.2 (2.6.4 available)
-2026-10-04T04:44:13.8081780Z   material_color_utilities 0.13.0 (0.13.1 available)
-2026-10-04T04:44:13.8082800Z ! media_kit_libs_windows_video 1.0.11+duanju.1 from path packages/media_kit_libs_windows_video (overridden)
-2026-10-04T04:44:13.8083350Z   test_api 0.7.12 (0.7.14 available)
-2026-10-04T04:44:13.8083550Z Got dependencies!
-2026-10-04T04:44:13.8083870Z 4 packages have newer versions incompatible with dependency constraints.
-2026-10-04T04:44:13.8084250Z Try `flutter pub outdated` for more information.
-2026-10-04T04:44:15.8931960Z Analyzing dependencies
-2026-10-04T04:44:16.4922170Z mkdir -p .cache/xcframeworks
-2026-10-04T04:44:16.4965790Z rm -f .cache/xcframeworks/*.tmp .cache/xcframeworks/*-ios-universal.tar.gz
-2026-10-04T04:44:16.5033780Z curl -L \
-2026-10-04T04:44:16.5036380Z 		https://github.com/media-kit/libmpv-darwin-build/releases/download/v0.6.0/libmpv-xcframeworks_v0.6.0_ios-universal-video-default.tar.gz \
-2026-10-04T04:44:16.5039000Z 		-o .cache/xcframeworks/libmpv.tar.gz.tmp
-2026-10-04T04:44:16.5259660Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-2026-10-04T04:44:16.5260890Z                                  Dload  Upload   Total   Spent    Left  Speed
-2026-10-04T04:44:16.5262940Z 
-2026-10-04T04:44:16.7945080Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-2026-10-04T04:44:16.7946120Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-2026-10-04T04:44:16.7949460Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-2026-10-04T04:44:16.9669360Z 
-2026-10-04T04:44:16.9670160Z 100 18.8M  100 18.8M    0     0  42.8M      0 --:--:-- --:--:-- --:--:-- 42.8M
-2026-10-04T04:44:16.9697090Z shasum -a 256 -c <<< 'a95bc18508af26136b8a408341c05b5585d644ec013f00ac07db09d2e28d36ae  .cache/xcframeworks/libmpv.tar.gz.tmp'
-2026-10-04T04:44:17.0868320Z .cache/xcframeworks/libmpv.tar.gz.tmp: OK
-2026-10-04T04:44:17.0875390Z mv .cache/xcframeworks/libmpv.tar.gz.tmp .cache/xcframeworks/libmpv-xcframeworks-v0.6.0-ios-universal.tar.gz
-2026-10-04T04:44:17.0910290Z touch .cache/xcframeworks/libmpv-xcframeworks-v0.6.0-ios-universal.tar.gz
-2026-10-04T04:44:17.0945530Z rm -f .cache/xcframeworks/libmpv-xcframeworks-ios-universal.tar.gz
-2026-10-04T04:44:17.0975170Z ln -s libmpv-xcframeworks-v0.6.0-ios-universal.tar.gz .cache/xcframeworks/libmpv-xcframeworks-ios-universal.tar.gz
-2026-10-04T04:44:17.1012200Z mkdir -p Frameworks
-2026-10-04T04:44:17.1038320Z rm -rf Frameworks/*.xcframework
-2026-10-04T04:44:17.1086400Z tar -xvf .cache/xcframeworks/libmpv-xcframeworks-ios-universal.tar.gz --strip-components 1 -C Frameworks
-2026-10-04T04:44:17.1152850Z x Mbedx509.xcframework/
-2026-10-04T04:44:17.1153110Z x Freetype.xcframework/
-2026-10-04T04:44:17.1153340Z x Avformat.xcframework/
-2026-10-04T04:44:17.1153840Z x Fribidi.xcframework/
-2026-10-04T04:44:17.1154160Z x Mbedtls.xcframework/
-2026-10-04T04:44:17.1154720Z x Uchardet.xcframework/
-2026-10-04T04:44:17.1155070Z x Png16.xcframework/
-2026-10-04T04:44:17.1155520Z x Dav1d.xcframework/
-2026-10-04T04:44:17.1156010Z x Mbedcrypto.xcframework/
-2026-10-04T04:44:17.1157390Z x Harfbuzz.xcframework/
-2026-10-04T04:44:17.1158110Z x Swresample.xcframework/
-2026-10-04T04:44:17.1158810Z x Avfilter.xcframework/
-2026-10-04T04:44:17.1159370Z x Avutil.xcframework/
-2026-10-04T04:44:17.1159830Z x Swscale.xcframework/
-2026-10-04T04:44:17.1160450Z x Xml2.xcframework/
-2026-10-04T04:44:17.1161030Z x Avcodec.xcframework/
-2026-10-04T04:44:17.1161470Z x Ass.xcframework/
-2026-10-04T04:44:17.1162010Z x Mpv.xcframework/
-2026-10-04T04:44:17.1162800Z x Mpv.xcframework/ios-arm64_x86_64-simulator/
-2026-10-04T04:44:17.1163250Z x Mpv.xcframework/ios-arm64/
-2026-10-04T04:44:17.1164870Z x Mpv.xcframework/Info.plist
-2026-10-04T04:44:17.1165700Z x Mpv.xcframework/ios-arm64/Mpv.framework/
-2026-10-04T04:44:17.1198530Z x Mpv.xcframework/ios-arm64/Mpv.framework/Mpv
-2026-10-04T04:44:17.1199660Z x Mpv.xcframework/ios-arm64/Mpv.framework/Info.plist
-2026-10-04T04:44:17.1200110Z x Mpv.xcframework/ios-arm64_x86_64-simulator/Mpv.framework/
-2026-10-04T04:44:17.1268800Z x Mpv.xcframework/ios-arm64_x86_64-simulator/Mpv.framework/Mpv
-2026-10-04T04:44:17.1269870Z x Mpv.xcframework/ios-arm64_x86_64-simulator/Mpv.framework/Info.plist
-2026-10-04T04:44:17.1270600Z x Ass.xcframework/ios-arm64_x86_64-simulator/
-2026-10-04T04:44:17.1271220Z x Ass.xcframework/ios-arm64/
-2026-10-04T04:44:17.1272150Z x Ass.xcframework/Info.plist
-2026-10-04T04:44:17.1272820Z x Ass.xcframework/ios-arm64/Ass.framework/
-2026-10-04T04:44:17.1281040Z x Ass.xcframework/ios-arm64/Ass.framework/Ass
-2026-10-04T04:44:17.1281920Z x Ass.xcframework/ios-arm64/Ass.framework/Info.plist
-2026-10-04T04:44:17.1282580Z x Ass.xcframework/ios-arm64_x86_64-simulator/Ass.framework/
-2026-10-04T04:44:17.1293590Z x Ass.xcframework/ios-arm64_x86_64-simulator/Ass.framework/Ass
-2026-10-04T04:44:17.1294530Z x Ass.xcframework/ios-arm64_x86_64-simulator/Ass.framework/Info.plist
-2026-10-04T04:44:17.1295140Z x Avcodec.xcframework/ios-arm64_x86_64-simulator/
-2026-10-04T04:44:17.1295490Z x Avcodec.xcframework/ios-arm64/
-2026-10-04T04:44:17.1296680Z x Avcodec.xcframework/Info.plist
-2026-10-04T04:44:17.1297390Z x Avcodec.xcframework/ios-arm64/Avcodec.framework/
-2026-10-04T04:44:17.1369900Z x Avcodec.xcframework/ios-arm64/Avcodec.framework/Avcodec
-2026-10-04T04:44:17.1371590Z x Avcodec.xcframework/ios-arm64/Avcodec.framework/Info.plist
-2026-10-04T04:44:17.1372960Z x Avcodec.xcframework/ios-arm64_x86_64-simulator/Avcodec.framework/
-2026-10-04T04:44:17.1523030Z x Avcodec.xcframework/ios-arm64_x86_64-simulator/Avcodec.framework/Avcodec
-2026-10-04T04:44:17.1523970Z x Avcodec.xcframework/ios-arm64_x86_64-simulator/Avcodec.framework/Info.plist
-2026-10-04T04:44:17.1524660Z x Xml2.xcframework/ios-arm64_x86_64-simulator/
-2026-10-04T04:44:17.1525380Z x Xml2.xcframework/ios-arm64/
-2026-10-04T04:44:17.1532550Z x Xml2.xcframework/Info.plist
-2026-10-04T04:44:17.1532820Z x Xml2.xcframework/ios-arm64/Xml2.framework/
-2026-10-04T04:44:17.1556260Z x Xml2.xcframework/ios-arm64/Xml2.framework/Xml2
-2026-10-04T04:44:17.1557250Z x Xml2.xcframework/ios-arm64/Xml2.framework/Info.plist
-2026-10-04T04:44:17.1558000Z x Xml2.xcframework/ios-arm64_x86_64-simulator/Xml2.framework/
-2026-10-04T04:44:17.1612990Z x Xml2.xcframework/ios-arm64_x86_64-simulator/Xml2.framework/Xml2
-2026-10-04T04:44:17.1613630Z x Xml2.xcframework/ios-arm64_x86_64-simulator/Xml2.framework/Info.plist
-2026-10-04T04:44:17.1614450Z x Swscale.xcframework/ios-arm64_x86_64-simulator/
-2026-10-04T04:44:17.1614870Z x Swscale.xcframework/ios-arm64/
-2026-10-04T04:44:17.1615820Z x Swscale.xcframework/Info.plist
-2026-10-04T04:44:17.1616470Z x Swscale.xcframework/ios-arm64/Swscale.framework/
-2026-10-04T04:44:17.1623290Z x Swscale.xcframework/ios-arm64/Swscale.framework/Swscale
-2026-10-04T04:44:17.1623970Z x Swscale.xcframework/ios-arm64/Swscale.framework/Info.plist
-2026-10-04T04:44:17.1624720Z x Swscale.xcframework/ios-arm64_x86_64-simulator/Swscale.framework/
-2026-10-04T04:44:17.1638530Z x Swscale.xcframework/ios-arm64_x86_64-simulator/Swscale.framework/Swscale
-2026-10-04T04:44:17.1639090Z x Swscale.xcframework/ios-arm64_x86_64-simulator/Swscale.framework/Info.plist
-2026-10-04T04:44:17.1639720Z x Avutil.xcframework/ios-arm64_x86_64-simulator/
-2026-10-04T04:44:17.1640080Z x Avutil.xcframework/ios-arm64/
-2026-10-04T04:44:17.1641120Z x Avutil.xcframework/Info.plist
-2026-10-04T04:44:17.1642520Z x Avutil.xcframework/ios-arm64/Avutil.framework/
-2026-10-04T04:44:17.1652780Z x Avutil.xcframework/ios-arm64/Avutil.framework/Avutil
-2026-10-04T04:44:17.1653960Z x Avutil.xcframework/ios-arm64/Avutil.framework/Info.plist
-2026-10-04T04:44:17.1654750Z x Avutil.xcframework/ios-arm64_x86_64-simulator/Avutil.framework/
-2026-10-04T04:44:17.1672670Z x Avutil.xcframework/ios-arm64_x86_64-simulator/Avutil.framework/Avutil
-2026-10-04T04:44:17.1673710Z x Avutil.xcframework/ios-arm64_x86_64-simulator/Avutil.framework/Info.plist
-2026-10-04T04:44:17.1674150Z x Avfilter.xcframework/ios-arm64_x86_64-simulator/
-2026-10-04T04:44:17.1674490Z x Avfilter.xcframework/ios-arm64/
-2026-10-04T04:44:17.1675670Z x Avfilter.xcframework/Info.plist
-2026-10-04T04:44:17.1676300Z x Avfilter.xcframework/ios-arm64/Avfilter.framework/
-2026-10-04T04:44:17.1681200Z x Avfilter.xcframework/ios-arm64/Avfilter.framework/Avfilter
-2026-10-04T04:44:17.1681770Z x Avfilter.xcframework/ios-arm64/Avfilter.framework/Info.plist
-2026-10-04T04:44:17.1682550Z x Avfilter.xcframework/ios-arm64_x86_64-simulator/Avfilter.framework/
-2026-10-04T04:44:17.1690430Z x Avfilter.xcframework/ios-arm64_x86_64-simulator/Avfilter.framework/Avfilter
-2026-10-04T04:44:17.1691440Z x Avfilter.xcframework/ios-arm64_x86_64-simulator/Avfilter.framework/Info.plist
-2026-10-04T04:44:17.1691790Z x Swresample.xcframework/ios-arm64_x86_64-simulator/
-2026-10-04T04:44:17.1692110Z x Swresample.xcframework/ios-arm64/
-2026-10-04T04:44:17.1693210Z x Swresample.xcframework/Info.plist
-2026-10-04T04:44:17.1695020Z x Swresample.xcframework/ios-arm64/Swresample.framework/
-2026-10-04T04:44:17.1699280Z x Swresample.xcframework/ios-arm64/Swresample.framework/Swresample
-2026-10-04T04:44:17.1700270Z x Swresample.xcframework/ios-arm64/Swresample.framework/Info.plist
-2026-10-04T04:44:17.1701240Z x Swresample.xcframework/ios-arm64_x86_64-simulator/Swresample.framework/
-2026-10-04T04:44:17.1706390Z x Swresample.xcframework/ios-arm64_x86_64-simulator/Swresample.framework/Swresample
-2026-10-04T04:44:17.1707350Z x Swresample.xcframework/ios-arm64_x86_64-simulator/Swresample.framework/Info.plist
-2026-10-04T04:44:17.1707750Z x Harfbuzz.xcframework/ios-arm64_x86_64-simulator/
-2026-10-04T04:44:17.1707980Z x Harfbuzz.xcframework/ios-arm64/
-2026-10-04T04:44:17.1708850Z x Harfbuzz.xcframework/Info.plist
-2026-10-04T04:44:17.1709470Z x Harfbuzz.xcframework/ios-arm64/Harfbuzz.framework/
-2026-10-04T04:44:17.1772720Z x Harfbuzz.xcframework/ios-arm64/Harfbuzz.framework/Harfbuzz
-2026-10-04T04:44:17.1773640Z x Harfbuzz.xcframework/ios-arm64/Harfbuzz.framework/Info.plist
-2026-10-04T04:44:17.1774340Z x Harfbuzz.xcframework/ios-arm64_x86_64-simulator/Harfbuzz.framework/
-2026-10-04T04:44:17.1896010Z x Harfbuzz.xcframework/ios-arm64_x86_64-simulator/Harfbuzz.framework/Harfbuzz
-2026-10-04T04:44:17.1897550Z x Harfbuzz.xcframework/ios-arm64_x86_64-simulator/Harfbuzz.framework/Info.plist
-2026-10-04T04:44:17.1898110Z x Mbedcrypto.xcframework/ios-arm64_x86_64-simulator/
-2026-10-04T04:44:17.1898920Z x Mbedcrypto.xcframework/ios-arm64/
-2026-10-04T04:44:17.1899950Z x Mbedcrypto.xcframework/Info.plist
-2026-10-04T04:44:17.1902450Z x Mbedcrypto.xcframework/ios-arm64/Mbedcrypto.framework/
-2026-10-04T04:44:17.1916350Z x Mbedcrypto.xcframework/ios-arm64/Mbedcrypto.framework/Mbedcrypto
-2026-10-04T04:44:17.1917740Z x Mbedcrypto.xcframework/ios-arm64/Mbedcrypto.framework/Info.plist
-2026-10-04T04:44:17.1918180Z x Mbedcrypto.xcframework/ios-arm64_x86_64-simulator/Mbedcrypto.framework/
-2026-10-04T04:44:17.1944440Z x Mbedcrypto.xcframework/ios-arm64_x86_64-simulator/Mbedcrypto.framework/Mbedcrypto
-2026-10-04T04:44:17.1945010Z x Mbedcrypto.xcframework/ios-arm64_x86_64-simulator/Mbedcrypto.framework/Info.plist
-2026-10-04T04:44:17.1945810Z x Dav1d.xcframework/ios-arm64_x86_64-simulator/
-2026-10-04T04:44:17.1946200Z x Dav1d.xcframework/ios-arm64/
-2026-10-04T04:44:17.1946750Z x Dav1d.xcframework/Info.plist
-2026-10-04T04:44:17.1947370Z x Dav1d.xcframework/ios-arm64/Dav1d.framework/
-2026-10-04T04:44:17.1963030Z x Dav1d.xcframework/ios-arm64/Dav1d.framework/Dav1d
-2026-10-04T04:44:17.1963840Z x Dav1d.xcframework/ios-arm64/Dav1d.framework/Info.plist
-2026-10-04T04:44:17.1964550Z x Dav1d.xcframework/ios-arm64_x86_64-simulator/Dav1d.framework/
-2026-10-04T04:44:17.1994990Z x Dav1d.xcframework/ios-arm64_x86_64-simulator/Dav1d.framework/Dav1d
-2026-10-04T04:44:17.1995710Z x Dav1d.xcframework/ios-arm64_x86_64-simulator/Dav1d.framework/Info.plist
-2026-10-04T04:44:17.1996330Z x Png16.xcframework/ios-arm64_x86_64-simulator/
-2026-10-04T04:44:17.1996630Z x Png16.xcframework/ios-arm64/
-2026-10-04T04:44:17.1997570Z x Png16.xcframework/Info.plist
-2026-10-04T04:44:17.1998220Z x Png16.xcframework/ios-arm64/Png16.framework/
-2026-10-04T04:44:17.2006750Z x Png16.xcframework/ios-arm64/Png16.framework/Png16
-2026-10-04T04:44:17.2008080Z x Png16.xcframework/ios-arm64/Png16.framework/Info.plist
-2026-10-04T04:44:17.2008460Z x Png16.xcframework/ios-arm64_x86_64-simulator/Png16.framework/
-2026-10-04T04:44:17.2022290Z x Png16.xcframework/ios-arm64_x86_64-simulator/Png16.framework/Png16
-2026-10-04T04:44:17.2024080Z x Png16.xcframework/ios-arm64_x86_64-simulator/Png16.framework/Info.plist
-2026-10-04T04:44:17.2024500Z x Uchardet.xcframework/ios-arm64_x86_64-simulator/
-2026-10-04T04:44:17.2024980Z x Uchardet.xcframework/ios-arm64/
-2026-10-04T04:44:17.2025790Z x Uchardet.xcframework/Info.plist
-2026-10-04T04:44:17.2026490Z x Uchardet.xcframework/ios-arm64/Uchardet.framework/
-2026-10-04T04:44:17.2031500Z x Uchardet.xcframework/ios-arm64/Uchardet.framework/Uchardet
-2026-10-04T04:44:17.2032100Z x Uchardet.xcframework/ios-arm64/Uchardet.framework/Info.plist
-2026-10-04T04:44:17.2032720Z x Uchardet.xcframework/ios-arm64_x86_64-simulator/Uchardet.framework/
-2026-10-04T04:44:17.2041190Z x Uchardet.xcframework/ios-arm64_x86_64-simulator/Uchardet.framework/Uchardet
-2026-10-04T04:44:17.2041960Z x Uchardet.xcframework/ios-arm64_x86_64-simulator/Uchardet.framework/Info.plist
-2026-10-04T04:44:17.2042430Z x Mbedtls.xcframework/ios-arm64_x86_64-simulator/
-2026-10-04T04:44:17.2043220Z x Mbedtls.xcframework/ios-arm64/
-2026-10-04T04:44:17.2043520Z x Mbedtls.xcframework/Info.plist
-2026-10-04T04:44:17.2044290Z x Mbedtls.xcframework/ios-arm64/Mbedtls.framework/
-2026-10-04T04:44:17.2051280Z x Mbedtls.xcframework/ios-arm64/Mbedtls.framework/Mbedtls
-2026-10-04T04:44:17.2052510Z x Mbedtls.xcframework/ios-arm64/Mbedtls.framework/Info.plist
-2026-10-04T04:44:17.2053000Z x Mbedtls.xcframework/ios-arm64_x86_64-simulator/Mbedtls.framework/
-2026-10-04T04:44:17.2063980Z x Mbedtls.xcframework/ios-arm64_x86_64-simulator/Mbedtls.framework/Mbedtls
-2026-10-04T04:44:17.2064640Z x Mbedtls.xcframework/ios-arm64_x86_64-simulator/Mbedtls.framework/Info.plist
-2026-10-04T04:44:17.2065510Z x Fribidi.xcframework/ios-arm64_x86_64-simulator/
-2026-10-04T04:44:17.2065810Z x Fribidi.xcframework/ios-arm64/
-2026-10-04T04:44:17.2066270Z x Fribidi.xcframework/Info.plist
-2026-10-04T04:44:17.2066630Z x Fribidi.xcframework/ios-arm64/Fribidi.framework/
-2026-10-04T04:44:17.2070800Z x Fribidi.xcframework/ios-arm64/Fribidi.framework/Fribidi
-2026-10-04T04:44:17.2072350Z x Fribidi.xcframework/ios-arm64/Fribidi.framework/Info.plist
-2026-10-04T04:44:17.2072990Z x Fribidi.xcframework/ios-arm64_x86_64-simulator/Fribidi.framework/
-2026-10-04T04:44:17.2078620Z x Fribidi.xcframework/ios-arm64_x86_64-simulator/Fribidi.framework/Fribidi
-2026-10-04T04:44:17.2079350Z x Fribidi.xcframework/ios-arm64_x86_64-simulator/Fribidi.framework/Info.plist
-2026-10-04T04:44:17.2079830Z x Avformat.xcframework/ios-arm64_x86_64-simulator/
-2026-10-04T04:44:17.2080190Z x Avformat.xcframework/ios-arm64/
-2026-10-04T04:44:17.2080730Z x Avformat.xcframework/Info.plist
-2026-10-04T04:44:17.2081390Z x Avformat.xcframework/ios-arm64/Avformat.framework/
-2026-10-04T04:44:17.2101690Z x Avformat.xcframework/ios-arm64/Avformat.framework/Avformat
-2026-10-04T04:44:17.2102450Z x Avformat.xcframework/ios-arm64/Avformat.framework/Info.plist
-2026-10-04T04:44:17.2103110Z x Avformat.xcframework/ios-arm64_x86_64-simulator/Avformat.framework/
-2026-10-04T04:44:17.2142990Z x Avformat.xcframework/ios-arm64_x86_64-simulator/Avformat.framework/Avformat
-2026-10-04T04:44:17.2143690Z x Avformat.xcframework/ios-arm64_x86_64-simulator/Avformat.framework/Info.plist
-2026-10-04T04:44:17.2144160Z x Freetype.xcframework/ios-arm64_x86_64-simulator/
-2026-10-04T04:44:17.2144740Z x Freetype.xcframework/ios-arm64/
-2026-10-04T04:44:17.2145440Z x Freetype.xcframework/Info.plist
-2026-10-04T04:44:17.2146090Z x Freetype.xcframework/ios-arm64/Freetype.framework/
-2026-10-04T04:44:17.2167660Z x Freetype.xcframework/ios-arm64/Freetype.framework/Freetype
-2026-10-04T04:44:17.2168310Z x Freetype.xcframework/ios-arm64/Freetype.framework/Info.plist
-2026-10-04T04:44:17.2168960Z x Freetype.xcframework/ios-arm64_x86_64-simulator/Freetype.framework/
-2026-10-04T04:44:17.2210230Z x Freetype.xcframework/ios-arm64_x86_64-simulator/Freetype.framework/Freetype
-2026-10-04T04:44:17.2210910Z x Freetype.xcframework/ios-arm64_x86_64-simulator/Freetype.framework/Info.plist
-2026-10-04T04:44:17.2211430Z x Mbedx509.xcframework/ios-arm64_x86_64-simulator/
-2026-10-04T04:44:17.2212090Z x Mbedx509.xcframework/ios-arm64/
-2026-10-04T04:44:17.2212820Z x Mbedx509.xcframework/Info.plist
-2026-10-04T04:44:17.2213330Z x Mbedx509.xcframework/ios-arm64/Mbedx509.framework/
-2026-10-04T04:44:17.2216870Z x Mbedx509.xcframework/ios-arm64/Mbedx509.framework/Mbedx509
-2026-10-04T04:44:17.2217480Z x Mbedx509.xcframework/ios-arm64/Mbedx509.framework/Info.plist
-2026-10-04T04:44:17.2224050Z x Mbedx509.xcframework/ios-arm64_x86_64-simulator/Mbedx509.framework/
-2026-10-04T04:44:17.2224540Z x Mbedx509.xcframework/ios-arm64_x86_64-simulator/Mbedx509.framework/Mbedx509
-2026-10-04T04:44:17.2224930Z x Mbedx509.xcframework/ios-arm64_x86_64-simulator/Mbedx509.framework/Info.plist
-2026-10-04T04:44:17.2245280Z touch Frameworks/*.xcframework
-2026-10-04T04:44:17.2305780Z rm -rf Frameworks/.symlinks
-2026-10-04T04:44:17.2338040Z mkdir -p Frameworks/.symlinks/mpv
-2026-10-04T04:44:17.2375810Z sed -i '' 's/\r$//g' create_framework_symlinks.sh # remove CRLF line terminator added by Flutter packaging (https://github.com/media-kit/media-kit/issues/338)
-2026-10-04T04:44:17.2451550Z sh create_framework_symlinks.sh Frameworks/Mpv.xcframework Frameworks/.symlinks/mpv
-2026-10-04T04:44:17.3310980Z mkdir -p .cache/headers
-2026-10-04T04:44:17.3602960Z rm -f .cache/headers/*.tmp .cache/headers/*.tar.gz
-2026-10-04T04:44:17.3704060Z curl -L \
-2026-10-04T04:44:17.3764490Z 		https://github.com/mpv-player/mpv/archive/refs/tags/v0.36.0.tar.gz \
-2026-10-04T04:44:17.3850620Z 		-o .cache/headers/mpv.tar.gz.tmp
-2026-10-04T04:44:17.3989230Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-2026-10-04T04:44:17.3990430Z                                  Dload  Upload   Total   Spent    Left  Speed
-2026-10-04T04:44:17.3991050Z 
-2026-10-04T04:44:17.6441430Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-2026-10-04T04:44:17.6441960Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-2026-10-04T04:44:17.7052510Z 
-2026-10-04T04:44:18.2112440Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-2026-10-04T04:44:18.2113270Z 100 3329k  100 3329k    0     0  4098k      0 --:--:-- --:--:-- --:--:-- 6592k
-2026-10-04T04:44:18.2127640Z shasum -a 256 -c <<< '29abc44f8ebee013bb2f9fe14d80b30db19b534c679056e4851ceadf5a5e8bf6  .cache/headers/mpv.tar.gz.tmp'
-2026-10-04T04:44:18.2436300Z .cache/headers/mpv.tar.gz.tmp: OK
-2026-10-04T04:44:18.2536820Z mv .cache/headers/mpv.tar.gz.tmp .cache/headers/mpv-v0.36.0.tar.gz
-2026-10-04T04:44:18.2737730Z touch .cache/headers/mpv-v0.36.0.tar.gz
-2026-10-04T04:44:18.2943230Z rm -f .cache/headers/mpv.tar.gz
-2026-10-04T04:44:18.2981060Z ln -s mpv-v0.36.0.tar.gz .cache/headers/mpv.tar.gz
-2026-10-04T04:44:18.3016500Z mkdir -p /Users/runner/.pub-cache/hosted/pub.dev/media_kit_video-2.0.1/ios/Headers/mpv
-2026-10-04T04:44:18.3051290Z tar  -xvf .cache/headers/mpv.tar.gz --strip-components 2 -C /Users/runner/.pub-cache/hosted/pub.dev/media_kit_video-2.0.1/ios/Headers/mpv/ 'mpv-*/libmpv/*.h'
-2026-10-04T04:44:18.3233660Z x client.h
-2026-10-04T04:44:18.3238070Z x render.h
-2026-10-04T04:44:18.3238630Z x render_gl.h
-2026-10-04T04:44:18.3239010Z x stream_cb.h
-2026-10-04T04:44:18.3344460Z touch /Users/runner/.pub-cache/hosted/pub.dev/media_kit_video-2.0.1/ios/Headers/mpv/*.h
-2026-10-04T04:44:18.3457090Z media_kit: INFO: package:media_kit_libs_ios_video found
-2026-10-04T04:44:18.7697480Z Adding spec repo `trunk` with CDN `https://cdn.cocoapods.org/`
-2026-10-04T04:44:18.7698000Z Downloading dependencies
-2026-10-04T04:44:18.7698190Z Installing DuanjuCore (0.2.0)
-2026-10-04T04:44:18.7698390Z Installing Flutter (1.0.0)
-2026-10-04T04:44:18.7698620Z Installing ffmpeg_kit_flutter_new_min_gpl (8.1.2)
-2026-10-04T04:44:31.8754550Z 
-2026-10-04T04:44:31.8755000Z Installing file_picker_darwin (1.0.0)
-2026-10-04T04:44:31.8759640Z [!] CocoaPods did not set the base configuration of your project because your project already has a custom config set. In order for CocoaPods integration to work at all, please either set the base configurations of the target `Runner` to `Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig` or include the `Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig` in your build configuration (`Flutter/Release.xcconfig`).
-2026-10-04T04:44:31.8763620Z Installing flutter_foreground_task (0.0.1)
-2026-10-04T04:44:31.8764970Z Installing integration_test (0.0.1)
-2026-10-04T04:44:31.8768070Z Installing media_kit_libs_ios_video (1.0.4)
-2026-10-04T04:44:31.8768390Z Installing media_kit_video (0.0.1)
-2026-10-04T04:44:31.8768640Z Installing nsd_ios (0.0.1)
-2026-10-04T04:44:31.8768820Z Installing package_info_plus (0.4.5)
-2026-10-04T04:44:31.8769070Z Installing shared_preferences_foundation (0.0.1)
-2026-10-04T04:44:31.8769290Z Installing wakelock_plus (0.0.1)
-2026-10-04T04:44:31.8769510Z Generating Pods project
-2026-10-04T04:44:31.8769720Z Integrating client project
-2026-10-04T04:44:31.8770180Z Pod installation complete! There are 12 dependencies from the Podfile and 12 total pods installed.
-2026-10-04T04:44:32.1121050Z Warning: Building for device with codesigning disabled. You will have to manually codesign before deploying to device.
-2026-10-04T04:44:35.6768530Z Building com.duanju.duanjuApp for device (ios-release)...
-2026-10-04T04:44:35.7732320Z The following plugins do not support Swift Package Manager for ios:
-2026-10-04T04:44:35.7732690Z   - media_kit_libs_ios_video
-2026-10-04T04:44:35.7732860Z   - media_kit_video
-2026-10-04T04:44:35.7733280Z This will become an error in a future version of Flutter. Please contact the plugin maintainers to request Swift Package Manager adoption.
-2026-10-04T04:44:40.9674070Z Running pod install...                                           1,161ms
-2026-10-04T04:45:40.0943550Z Running Xcode build...                                          
-2026-10-04T04:45:40.0982850Z Xcode build done.                                           59.1s
-2026-10-04T04:45:41.5170590Z ✓ Built build/ios/iphoneos/Runner.app (79.3MB)
-2026-10-04T04:45:45.2568970Z /Users/runner/work/guoapp/guoapp/dist/ios/zhenguojian-0.2.86+2092-ios-unsigned-app.zip
+﻿2026-10-04T05:14:49.6027840Z ##[group]Run python3 scripts/build_ios.py --all-sources
+2026-10-04T05:14:49.6028280Z [36;1mpython3 scripts/build_ios.py --all-sources[0m
+2026-10-04T05:14:49.6063450Z shell: /bin/bash -e {0}
+2026-10-04T05:14:49.6063640Z env:
+2026-10-04T05:14:49.6063880Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-04T05:14:49.6064170Z   GOSUMDB: sum.golang.org
+2026-10-04T05:14:49.6064420Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-04T05:14:49.6064810Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-10-04T05:14:49.6065650Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-04T05:14:49.6066060Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-04T05:14:49.6066440Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-04T05:14:49.6067020Z   FLUTTER_ROOT: /Users/runner/hostedtoolcache/flutter/stable-3.47.4-arm64/flutter
+2026-10-04T05:14:49.6067430Z   PUB_CACHE: /Users/runner/.pub-cache
+2026-10-04T05:14:49.6068270Z ##[endgroup]
+2026-10-04T05:14:59.5908360Z xcframework successfully written out to: /Users/runner/work/guoapp/guoapp/ios/DuanjuCore/DuanjuCore.xcframework
+2026-10-04T05:15:00.1127090Z Resolving dependencies...
+2026-10-04T05:15:00.2026820Z Downloading packages...
+2026-10-04T05:15:00.3433500Z   cross_file 0.3.5+5 (0.4.0 available)
+2026-10-04T05:15:00.3451480Z   ffmpeg_kit_flutter_new_min_gpl 2.6.2 (2.6.4 available)
+2026-10-04T05:15:00.3452030Z   material_color_utilities 0.13.0 (0.13.1 available)
+2026-10-04T05:15:00.3460210Z ! media_kit_libs_windows_video 1.0.11+duanju.1 from path packages/media_kit_libs_windows_video (overridden)
+2026-10-04T05:15:00.3460790Z   test_api 0.7.12 (0.7.14 available)
+2026-10-04T05:15:00.3461030Z Got dependencies!
+2026-10-04T05:15:00.3461300Z 4 packages have newer versions incompatible with dependency constraints.
+2026-10-04T05:15:00.3461660Z Try `flutter pub outdated` for more information.
+2026-10-04T05:15:02.7854830Z Analyzing dependencies
+2026-10-04T05:15:03.3297540Z make: Nothing to be done for `all'.
+2026-10-04T05:15:03.3592870Z make: Nothing to be done for `all'.
+2026-10-04T05:15:03.3639810Z media_kit: INFO: package:media_kit_libs_ios_video found
+2026-10-04T05:15:03.7528990Z Adding spec repo `trunk` with CDN `https://cdn.cocoapods.org/`
+2026-10-04T05:15:03.7529500Z Downloading dependencies
+2026-10-04T05:15:03.7529790Z Installing DuanjuCore (0.2.0)
+2026-10-04T05:15:03.7530110Z Installing Flutter (1.0.0)
+2026-10-04T05:15:03.7530480Z Installing ffmpeg_kit_flutter_new_min_gpl (8.1.2)
+2026-10-04T05:15:04.5008590Z 
+2026-10-04T05:15:04.5010270Z [!] CocoaPods did not set the base configuration of your project because your project already has a custom config set. In order for CocoaPods integration to work at all, please either set the base configurations of the target `Runner` to `Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig` or include the `Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig` in your build configuration (`Flutter/Release.xcconfig`).
+2026-10-04T05:15:04.5011960Z Installing file_picker_darwin (1.0.0)
+2026-10-04T05:15:04.5012310Z Installing flutter_foreground_task (0.0.1)
+2026-10-04T05:15:04.5012560Z Installing integration_test (0.0.1)
+2026-10-04T05:15:04.5012800Z Installing media_kit_libs_ios_video (1.0.4)
+2026-10-04T05:15:04.5013100Z Installing media_kit_video (0.0.1)
+2026-10-04T05:15:04.5013390Z Installing nsd_ios (0.0.1)
+2026-10-04T05:15:04.5013700Z Installing package_info_plus (0.4.5)
+2026-10-04T05:15:04.5013940Z Installing shared_preferences_foundation (0.0.1)
+2026-10-04T05:15:04.5014220Z Installing wakelock_plus (0.0.1)
+2026-10-04T05:15:04.5014490Z Generating Pods project
+2026-10-04T05:15:04.5014720Z Integrating client project
+2026-10-04T05:15:04.5015100Z Pod installation complete! There are 12 dependencies from the Podfile and 12 total pods installed.
+2026-10-04T05:15:04.6877600Z Warning: Building for device with codesigning disabled. You will have to manually codesign before deploying to device.
+2026-10-04T05:15:08.1782690Z Building com.duanju.duanjuApp for device (ios-release)...
+2026-10-04T05:15:08.3004130Z The following plugins do not support Swift Package Manager for ios:
+2026-10-04T05:15:08.3004590Z   - media_kit_libs_ios_video
+2026-10-04T05:15:08.3004820Z   - media_kit_video
+2026-10-04T05:15:08.3005270Z This will become an error in a future version of Flutter. Please contact the plugin maintainers to request Swift Package Manager adoption.
+2026-10-04T05:15:14.4631920Z Running pod install...                                           1,268ms
+2026-10-04T05:16:21.5538740Z Running Xcode build...                                          
+2026-10-04T05:16:21.5662170Z Xcode build done.                                           67.1s
+2026-10-04T05:16:23.2168910Z ✓ Built build/ios/iphoneos/Runner.app (79.3MB)
+2026-10-04T05:16:26.9966180Z /Users/runner/work/guoapp/guoapp/dist/ios/zhenguojian-0.2.86+2092-ios-unsigned-app.zip

@@ -88,9 +88,11 @@ if(PLUGIN_BUNDLED_LIBRARIES)
 endif()
 
 # Copy the native assets provided by the build.dart from all packages.
+# 该目录仅在依赖声明了 Windows native asset 时存在，缺失时不能中断安装。
 set(NATIVE_ASSETS_DIR "${PROJECT_BUILD_DIR}native_assets/windows/")
 install(DIRECTORY "${NATIVE_ASSETS_DIR}"
    DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
+   OPTIONAL
    COMPONENT Runtime)
 
 # Fully re-copy the assets directory on each build to avoid having stale files

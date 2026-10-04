@@ -1,8 +1,8 @@
-2026-10-04T04:42:25.7680000Z Requested labels: windows-latest
-2026-10-04T04:42:25.7680000Z Job defined at: xiaobailong6/guoapp/.github/workflows/build.yml@refs/heads/main
-2026-10-04T04:42:25.7680000Z Waiting for a runner to pick up this job...
-2026-10-04T04:42:25.7620000Z Evaluating windows.if
-2026-10-04T04:42:25.7620000Z Evaluating: success()
-2026-10-04T04:42:25.7620000Z Result: true
-2026-10-04T04:42:26.2610000Z Job is about to start running on the hosted runner: GitHub Actions 1000003198
-2026-10-04T04:42:26.2620000Z Job is waiting for a hosted runner to come online.
+2026-10-04T05:13:59.2510000Z Evaluating windows.if
+2026-10-04T05:13:59.2510000Z Evaluating: success()
+2026-10-04T05:13:59.2510000Z Result: true
+2026-10-04T05:13:59.2550000Z Requested labels: windows-latest
+2026-10-04T05:13:59.2550000Z Job defined at: xiaobailong6/guoapp/.github/workflows/build.yml@refs/heads/main
+2026-10-04T05:13:59.2550000Z Waiting for a runner to pick up this job...
+2026-10-04T05:13:59.7430000Z Job is about to start running on the hosted runner: GitHub Actions 1000003204
+2026-10-04T05:13:59.7430000Z Job is waiting for a hosted runner to come online.

@@ -1,11 +1,9 @@
-﻿2026-10-04T04:45:47.2420450Z Post job cleanup.
-2026-10-04T04:45:47.2426560Z ##[start-action display=Cache pub dependencies;id=__37d5bebf-a3c4-40a2-8f60-f426a41768c1.cache-pub]
-2026-10-04T04:45:47.6868560Z Post job cleanup.
-2026-10-04T04:45:47.8351890Z [command]/opt/homebrew/bin/gtar --posix -cf cache.tzst --exclude cache.tzst -P -C /Users/runner/work/guoapp/guoapp --files-from manifest.txt --delay-directory-restore --use-compress-program zstdmt
-2026-10-04T04:45:53.8916310Z Failed to save: Unable to reserve cache with key flutter-pub-macos-stable-3.47.4-arm64-9584c6713b324636289d067944a46fd6b49df14b-92ff6c66973c3782994dd6a0ab87d5fada3bb52cb81c3f8bfb62b096ea446000, another job may be creating this cache.
-2026-10-04T04:45:53.8972900Z ##[end-action id=__37d5bebf-a3c4-40a2-8f60-f426a41768c1.cache-pub;outcome=success;conclusion=success;duration_ms=6654]
-2026-10-04T04:45:53.8975270Z ##[start-action display=Cache Flutter;id=__37d5bebf-a3c4-40a2-8f60-f426a41768c1.cache-flutter]
-2026-10-04T04:45:53.9015960Z Post job cleanup.
-2026-10-04T04:45:54.0735360Z [command]/opt/homebrew/bin/gtar --posix -cf cache.tzst --exclude cache.tzst -P -C /Users/runner/work/guoapp/guoapp --files-from manifest.txt --delay-directory-restore --use-compress-program zstdmt
-2026-10-04T04:46:08.5196510Z Failed to save: Unable to reserve cache with key flutter-macos-stable-3.47.4-arm64-9584c6713b324636289d067944a46fd6b49df14b, another job may be creating this cache.
-2026-10-04T04:46:08.5790430Z ##[end-action id=__37d5bebf-a3c4-40a2-8f60-f426a41768c1.cache-flutter;outcome=success;conclusion=success;duration_ms=14681]
+﻿2026-10-04T05:16:28.8478070Z Post job cleanup.
+2026-10-04T05:16:28.8481980Z ##[start-action display=Cache pub dependencies;id=__76619eeb-abfb-4093-b25f-94de2bb84a0e.cache-pub]
+2026-10-04T05:16:29.3148560Z Post job cleanup.
+2026-10-04T05:16:29.4776390Z Cache hit occurred on the primary key flutter-pub-macos-stable-3.47.4-arm64-9584c6713b324636289d067944a46fd6b49df14b-92ff6c66973c3782994dd6a0ab87d5fada3bb52cb81c3f8bfb62b096ea446000, not saving cache.
+2026-10-04T05:16:29.4810110Z ##[end-action id=__76619eeb-abfb-4093-b25f-94de2bb84a0e.cache-pub;outcome=success;conclusion=success;duration_ms=632]
+2026-10-04T05:16:29.4812490Z ##[start-action display=Cache Flutter;id=__76619eeb-abfb-4093-b25f-94de2bb84a0e.cache-flutter]
+2026-10-04T05:16:29.4861860Z Post job cleanup.
+2026-10-04T05:16:29.6251060Z Cache hit occurred on the primary key flutter-macos-stable-3.47.4-arm64-9584c6713b324636289d067944a46fd6b49df14b, not saving cache.
+2026-10-04T05:16:29.6278470Z ##[end-action id=__76619eeb-abfb-4093-b25f-94de2bb84a0e.cache-flutter;outcome=success;conclusion=success;duration_ms=146]

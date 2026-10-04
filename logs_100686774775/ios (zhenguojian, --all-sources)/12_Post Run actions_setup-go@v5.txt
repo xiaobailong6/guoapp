@@ -1,9 +1,8 @@
-﻿2026-10-04T04:46:08.5879770Z Post job cleanup.
-2026-10-04T04:46:08.7458050Z (node:30220) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
-2026-10-04T04:46:08.7459040Z (Use `node --trace-deprecation ...` to show where the warning was created)
-2026-10-04T04:46:08.7520840Z [command]/Users/runner/hostedtoolcache/go/1.24.1/arm64/bin/go env GOMODCACHE
-2026-10-04T04:46:08.7535990Z [command]/Users/runner/hostedtoolcache/go/1.24.1/arm64/bin/go env GOCACHE
-2026-10-04T04:46:08.8027230Z /Users/runner/go/pkg/mod
-2026-10-04T04:46:08.8028430Z /Users/runner/Library/Caches/go-build
-2026-10-04T04:46:08.8213580Z [command]/opt/homebrew/bin/gtar --posix -cf cache.tzst --exclude cache.tzst -P -C /Users/runner/work/guoapp/guoapp --files-from manifest.txt --delay-directory-restore --use-compress-program zstdmt
-2026-10-04T04:46:10.8998570Z Failed to save: Unable to reserve cache with key setup-go-macOS-arm64-go-1.24.1-08fd0a1e03bd5f8f8408fc5c86ca527da129df47f98b180c77a3204f069032d3, another job may be creating this cache.
+﻿2026-10-04T05:16:29.6382980Z Post job cleanup.
+2026-10-04T05:16:29.7837000Z (node:8134) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-04T05:16:29.7839860Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-04T05:16:29.7916410Z [command]/Users/runner/hostedtoolcache/go/1.24.1/arm64/bin/go env GOMODCACHE
+2026-10-04T05:16:29.7944490Z [command]/Users/runner/hostedtoolcache/go/1.24.1/arm64/bin/go env GOCACHE
+2026-10-04T05:16:29.8696530Z /Users/runner/go/pkg/mod
+2026-10-04T05:16:29.8698750Z /Users/runner/Library/Caches/go-build
+2026-10-04T05:16:29.8711490Z Cache hit occurred on the primary key setup-go-macOS-arm64-go-1.24.1-08fd0a1e03bd5f8f8408fc5c86ca527da129df47f98b180c77a3204f069032d3, not saving cache.

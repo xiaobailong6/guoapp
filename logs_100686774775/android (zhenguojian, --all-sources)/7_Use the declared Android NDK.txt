@@ -1,0 +1,31 @@
+﻿2026-10-04T05:15:01.7717599Z ##[group]Run sdk_root="${ANDROID_SDK_ROOT:-$ANDROID_HOME}"
+2026-10-04T05:15:01.7718497Z [36;1msdk_root="${ANDROID_SDK_ROOT:-$ANDROID_HOME}"[0m
+2026-10-04T05:15:01.7718856Z [36;1mndk="$sdk_root/ndk/28.2.13676358"[0m
+2026-10-04T05:15:01.7719156Z [36;1mif [ ! -d "$ndk" ]; then[0m
+2026-10-04T05:15:01.7719639Z [36;1m  sdkmanager=$(find "$sdk_root" -maxdepth 4 -name sdkmanager -type f 2>/dev/null | head -n 1)[0m
+2026-10-04T05:15:01.7720142Z [36;1m  if [ -n "$sdkmanager" ]; then[0m
+2026-10-04T05:15:01.7720477Z [36;1m    yes | "$sdkmanager" "ndk;28.2.13676358"[0m
+2026-10-04T05:15:01.7720776Z [36;1m  fi[0m
+2026-10-04T05:15:01.7720989Z [36;1mfi[0m
+2026-10-04T05:15:01.7721198Z [36;1mif [ -d "$ndk" ]; then[0m
+2026-10-04T05:15:01.7721511Z [36;1m  echo "ANDROID_NDK_HOME=$ndk" >> "$GITHUB_ENV"[0m
+2026-10-04T05:15:01.7722025Z [36;1m  exit 0[0m
+2026-10-04T05:15:01.7722239Z [36;1mfi[0m
+2026-10-04T05:15:01.7722452Z [36;1mls "$sdk_root/ndk" || true[0m
+2026-10-04T05:15:01.7722763Z [36;1mecho "缺少 Android NDK 28.2.13676358：$ndk" >&2[0m
+2026-10-04T05:15:01.7723100Z [36;1mexit 1[0m
+2026-10-04T05:15:01.7789219Z shell: /usr/bin/bash -e {0}
+2026-10-04T05:15:01.7789503Z env:
+2026-10-04T05:15:01.7789761Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-04T05:15:01.7790092Z   GOSUMDB: sum.golang.org
+2026-10-04T05:15:01.7790416Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-04T05:15:01.7790869Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-10-04T05:15:01.7791322Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-04T05:15:01.7791722Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-04T05:15:01.7792118Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-04T05:15:01.7792539Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-10-04T05:15:01.7792991Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T05:15:01.7793498Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T05:15:01.7794009Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
+2026-10-04T05:15:01.7794404Z   PUB_CACHE: /home/runner/.pub-cache
+2026-10-04T05:15:01.7794680Z ##[endgroup]

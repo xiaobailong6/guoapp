@@ -1,63 +1,63 @@
-﻿2026-10-04T04:42:30.1693209Z ##[group]Run actions/checkout@v4
-2026-10-04T04:42:30.1694964Z with:
-2026-10-04T04:42:30.1695792Z   repository: xiaobailong6/guoapp
-2026-10-04T04:42:30.1703174Z   token: ***
-2026-10-04T04:42:30.1703914Z   ssh-strict: true
-2026-10-04T04:42:30.1704677Z   ssh-user: git
-2026-10-04T04:42:30.1705482Z   persist-credentials: true
-2026-10-04T04:42:30.1706582Z   clean: true
-2026-10-04T04:42:30.1707363Z   sparse-checkout-cone-mode: true
-2026-10-04T04:42:30.1708286Z   fetch-depth: 1
-2026-10-04T04:42:30.1709038Z   fetch-tags: false
-2026-10-04T04:42:30.1709805Z   show-progress: true
-2026-10-04T04:42:30.1710580Z   lfs: false
-2026-10-04T04:42:30.1711297Z   submodules: false
-2026-10-04T04:42:30.1712076Z   set-safe-directory: true
-2026-10-04T04:42:30.1712954Z   allow-unsafe-pr-checkout: false
-2026-10-04T04:42:30.1714353Z env:
-2026-10-04T04:42:30.1715203Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-04T04:42:30.1716239Z   GOSUMDB: sum.golang.org
-2026-10-04T04:42:30.1717062Z ##[endgroup]
-2026-10-04T04:42:30.8095617Z Syncing repository: xiaobailong6/guoapp
-2026-10-04T04:42:30.8097788Z ##[group]Getting Git version info
-2026-10-04T04:42:30.8098531Z Working directory is 'D:\a\guoapp\guoapp'
-2026-10-04T04:42:30.8099574Z [command]"C:\Program Files\Git\bin\git.exe" version
-2026-10-04T04:42:30.9227236Z git version 2.55.0.windows.5
-2026-10-04T04:42:31.8092048Z ##[endgroup]
-2026-10-04T04:42:31.8098573Z Temporarily overriding HOME='D:\a\_temp\b6f11ab6-9de0-4942-9997-7a913adb2daa' before making global git config changes
-2026-10-04T04:42:31.8099761Z Adding repository directory to the temporary git global config as a safe directory
-2026-10-04T04:42:31.8100863Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\guoapp\guoapp
-2026-10-04T04:42:31.8102903Z Deleting the contents of 'D:\a\guoapp\guoapp'
-2026-10-04T04:42:31.8104021Z ##[group]Initializing the repository
-2026-10-04T04:42:31.8104844Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\guoapp\guoapp
-2026-10-04T04:42:31.8105786Z Initialized empty Git repository in D:/a/guoapp/guoapp/.git/
-2026-10-04T04:42:31.8108102Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/xiaobailong6/guoapp
-2026-10-04T04:42:31.8110201Z ##[endgroup]
-2026-10-04T04:42:31.8110677Z ##[group]Disabling automatic garbage collection
-2026-10-04T04:42:31.8111512Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
-2026-10-04T04:42:31.8113647Z ##[endgroup]
-2026-10-04T04:42:31.8114659Z ##[group]Setting up auth
-2026-10-04T04:42:31.8115777Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
-2026-10-04T04:42:31.8118606Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
-2026-10-04T04:42:32.9147981Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
-2026-10-04T04:42:32.9513470Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
-2026-10-04T04:42:33.5568662Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
-2026-10-04T04:42:33.5950607Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
-2026-10-04T04:42:34.2068392Z [command]"C:\Program Files\Git\bin\git.exe" config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
-2026-10-04T04:42:34.2458124Z ##[endgroup]
-2026-10-04T04:42:34.2459188Z ##[group]Fetching the repository
-2026-10-04T04:42:34.2475095Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +e12df8c0980d031cdd3ff8e4585287e7f2946d2c:refs/remotes/origin/main
-2026-10-04T04:42:35.4199859Z From https://github.com/xiaobailong6/guoapp
-2026-10-04T04:42:35.4201364Z  * [new ref]         e12df8c0980d031cdd3ff8e4585287e7f2946d2c -> origin/main
-2026-10-04T04:42:35.4309766Z ##[endgroup]
-2026-10-04T04:42:35.4332312Z ##[group]Determining the checkout info
-2026-10-04T04:42:35.4333577Z ##[endgroup]
-2026-10-04T04:42:35.4336272Z [command]"C:\Program Files\Git\bin\git.exe" sparse-checkout disable
-2026-10-04T04:42:35.4918487Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all extensions.worktreeConfig
-2026-10-04T04:42:35.5419436Z ##[group]Checking out the ref
-2026-10-04T04:42:35.5421256Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force -B main refs/remotes/origin/main
-2026-10-04T04:42:35.8220499Z Switched to a new branch 'main'
-2026-10-04T04:42:35.8289401Z branch 'main' set up to track 'origin/main'.
-2026-10-04T04:42:35.8404867Z ##[endgroup]
-2026-10-04T04:42:35.9150325Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
-2026-10-04T04:42:35.9392139Z e12df8c0980d031cdd3ff8e4585287e7f2946d2c
+﻿2026-10-04T05:14:04.2135159Z ##[group]Run actions/checkout@v4
+2026-10-04T05:14:04.2136582Z with:
+2026-10-04T05:14:04.2137352Z   repository: xiaobailong6/guoapp
+2026-10-04T05:14:04.2144516Z   token: ***
+2026-10-04T05:14:04.2145315Z   ssh-strict: true
+2026-10-04T05:14:04.2146055Z   ssh-user: git
+2026-10-04T05:14:04.2146825Z   persist-credentials: true
+2026-10-04T05:14:04.2147647Z   clean: true
+2026-10-04T05:14:04.2148460Z   sparse-checkout-cone-mode: true
+2026-10-04T05:14:04.2149339Z   fetch-depth: 1
+2026-10-04T05:14:04.2150100Z   fetch-tags: false
+2026-10-04T05:14:04.2150847Z   show-progress: true
+2026-10-04T05:14:04.2151602Z   lfs: false
+2026-10-04T05:14:04.2152311Z   submodules: false
+2026-10-04T05:14:04.2153078Z   set-safe-directory: true
+2026-10-04T05:14:04.2154331Z   allow-unsafe-pr-checkout: false
+2026-10-04T05:14:04.2155459Z env:
+2026-10-04T05:14:04.2156246Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-04T05:14:04.2157207Z   GOSUMDB: sum.golang.org
+2026-10-04T05:14:04.2157994Z ##[endgroup]
+2026-10-04T05:14:06.0909544Z Syncing repository: xiaobailong6/guoapp
+2026-10-04T05:14:06.0914315Z ##[group]Getting Git version info
+2026-10-04T05:14:06.0915182Z Working directory is 'D:\a\guoapp\guoapp'
+2026-10-04T05:14:06.0916150Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-04T05:14:06.0916844Z git version 2.55.0.windows.5
+2026-10-04T05:14:06.0920140Z ##[endgroup]
+2026-10-04T05:14:06.0927912Z Temporarily overriding HOME='D:\a\_temp\5bb76dbf-42d2-437a-a3ea-9c8ce9978523' before making global git config changes
+2026-10-04T05:14:06.0929009Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-04T05:14:06.0930024Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\guoapp\guoapp
+2026-10-04T05:14:06.0931566Z Deleting the contents of 'D:\a\guoapp\guoapp'
+2026-10-04T05:14:06.0932102Z ##[group]Initializing the repository
+2026-10-04T05:14:06.0932659Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\guoapp\guoapp
+2026-10-04T05:14:06.0933128Z Initialized empty Git repository in D:/a/guoapp/guoapp/.git/
+2026-10-04T05:14:06.0934062Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/xiaobailong6/guoapp
+2026-10-04T05:14:06.0934936Z ##[endgroup]
+2026-10-04T05:14:06.0935320Z ##[group]Disabling automatic garbage collection
+2026-10-04T05:14:06.0935691Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+2026-10-04T05:14:06.0937332Z ##[endgroup]
+2026-10-04T05:14:06.0938051Z ##[group]Setting up auth
+2026-10-04T05:14:06.0938843Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-04T05:14:06.0941046Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-04T05:14:06.8662803Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-04T05:14:06.9093477Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-04T05:14:07.5152342Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-04T05:14:07.5494926Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-04T05:14:08.1445795Z [command]"C:\Program Files\Git\bin\git.exe" config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2026-10-04T05:14:08.1784645Z ##[endgroup]
+2026-10-04T05:14:08.1785807Z ##[group]Fetching the repository
+2026-10-04T05:14:08.1801529Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +5f29673acc3bb72ee586c24e1b5c4672e3a297d0:refs/remotes/origin/main
+2026-10-04T05:14:09.3550362Z From https://github.com/xiaobailong6/guoapp
+2026-10-04T05:14:09.3551595Z  * [new ref]         5f29673acc3bb72ee586c24e1b5c4672e3a297d0 -> origin/main
+2026-10-04T05:14:09.3600099Z ##[endgroup]
+2026-10-04T05:14:09.3600966Z ##[group]Determining the checkout info
+2026-10-04T05:14:09.3602889Z ##[endgroup]
+2026-10-04T05:14:09.3613529Z [command]"C:\Program Files\Git\bin\git.exe" sparse-checkout disable
+2026-10-04T05:14:09.4295043Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all extensions.worktreeConfig
+2026-10-04T05:14:09.4725209Z ##[group]Checking out the ref
+2026-10-04T05:14:09.4735246Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force -B main refs/remotes/origin/main
+2026-10-04T05:14:09.6936804Z Switched to a new branch 'main'
+2026-10-04T05:14:09.7000937Z branch 'main' set up to track 'origin/main'.
+2026-10-04T05:14:09.7058381Z ##[endgroup]
+2026-10-04T05:14:09.7734695Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+2026-10-04T05:14:09.8023740Z 5f29673acc3bb72ee586c24e1b5c4672e3a297d0
