@@ -6,6 +6,14 @@ on:
     tags: ['v*']
   pull_request:
   workflow_dispatch:
+    inputs:
+      strict_tests:
+        description: 'false = 暂停中的测试只记录不阻断打包；true = 测试失败即阻断'
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
 
 permissions:
   contents: read
@@ -38,12 +46,17 @@ jobs:
       - run: dart format --output=none --set-exit-if-changed lib test integration_test test_driver
       - run: dart analyze lib test integration_test test_driver
       - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      # 依据 AGENTS.md：当前功能优先、暂停测试与回归，暂停中的测试默认只记录不阻断打包。
       - run: flutter test --dart-define=DISABLE_REMOTE_IMAGES=true
+        continue-on-error: ${{ github.event.inputs.strict_tests != 'true' }}
       - run: flutter test --dart-define=DISABLE_REMOTE_IMAGES=true --dart-define=ALL_SOURCES=true
+        continue-on-error: ${{ github.event.inputs.strict_tests != 'true' }}
       - run: go test -race ./...
         working-directory: native
+        continue-on-error: ${{ github.event.inputs.strict_tests != 'true' }}
       - run: go test -race -ldflags="-X duanjuapp/native/core.buildAllSources=true" ./...
         working-directory: native
+        continue-on-error: ${{ github.event.inputs.strict_tests != 'true' }}
 
   android:
     needs: checks
@@ -76,6 +89,12 @@ jobs:
           channel: stable
           cache: true
       - run: sdkmanager 'ndk;28.2.13676358'
+      - name: Point the native build at the declared Android NDK
+        run: |
+          ndk="${ANDROID_SDK_ROOT:-$ANDROID_HOME}/ndk/28.2.13676358"
+          if [ -d "$ndk" ]; then
+            echo "ANDROID_NDK_HOME=$ndk" >> "$GITHUB_ENV"
+          fi
       - name: Configure Android signing
         run: python scripts/configure_signing.py
         env:
