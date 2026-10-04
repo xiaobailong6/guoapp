@@ -1,5 +1,20 @@
-﻿2026-10-04T03:30:15.1478595Z Post job cleanup.
-2026-10-04T03:30:15.1482273Z ##[start-action display=Cache pub dependencies;id=__e0050e0a-6ae4-45fb-871e-abdc1cce0574.cache-pub]
-2026-10-04T03:30:15.1484310Z ##[end-action id=__e0050e0a-6ae4-45fb-871e-abdc1cce0574.cache-pub;outcome=skipped;conclusion=skipped;duration_ms=0]
-2026-10-04T03:30:15.1486173Z ##[start-action display=Cache Flutter;id=__e0050e0a-6ae4-45fb-871e-abdc1cce0574.cache-flutter]
-2026-10-04T03:30:15.1488291Z ##[end-action id=__e0050e0a-6ae4-45fb-871e-abdc1cce0574.cache-flutter;outcome=skipped;conclusion=skipped;duration_ms=0]
+﻿2026-10-04T04:41:53.8292907Z Post job cleanup.
+2026-10-04T04:41:53.8296817Z ##[start-action display=Cache pub dependencies;id=__87c38857-9b54-4d7e-92cc-f78063f52f42.cache-pub]
+2026-10-04T04:41:54.0622149Z Post job cleanup.
+2026-10-04T04:41:54.2322192Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/guoapp/guoapp --files-from manifest.txt --use-compress-program zstdmt
+2026-10-04T04:41:56.9833200Z Sent 23855104 of 58822000 (40.6%), 22.7 MBs/sec
+2026-10-04T04:41:57.7471667Z Sent 58822000 of 58822000 (100.0%), 31.8 MBs/sec
+2026-10-04T04:41:58.0111603Z Cache saved with key: flutter-pub-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b-92ff6c66973c3782994dd6a0ab87d5fada3bb52cb81c3f8bfb62b096ea446000
+2026-10-04T04:41:58.0201814Z ##[end-action id=__87c38857-9b54-4d7e-92cc-f78063f52f42.cache-pub;outcome=success;conclusion=success;duration_ms=4190]
+2026-10-04T04:41:58.0204464Z ##[start-action display=Cache Flutter;id=__87c38857-9b54-4d7e-92cc-f78063f52f42.cache-flutter]
+2026-10-04T04:41:58.0245051Z Post job cleanup.
+2026-10-04T04:41:58.1985964Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/guoapp/guoapp --files-from manifest.txt --use-compress-program zstdmt
+2026-10-04T04:42:10.4712556Z Sent 0 of 1720618134 (0.0%), 0.0 MBs/sec
+2026-10-04T04:42:11.4726595Z Sent 0 of 1720618134 (0.0%), 0.0 MBs/sec
+2026-10-04T04:42:12.4773130Z Sent 536870912 of 1720618134 (31.2%), 170.3 MBs/sec
+2026-10-04T04:42:13.4811041Z Sent 1073741824 of 1720618134 (62.4%), 255.3 MBs/sec
+2026-10-04T04:42:14.4856442Z Sent 1073741824 of 1720618134 (62.4%), 204.3 MBs/sec
+2026-10-04T04:42:15.4845838Z Sent 1610612736 of 1720618134 (93.6%), 255.4 MBs/sec
+2026-10-04T04:42:16.0480874Z Sent 1720618134 of 1720618134 (100.0%), 249.5 MBs/sec
+2026-10-04T04:42:16.4060800Z Cache saved with key: flutter-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
+2026-10-04T04:42:16.4181703Z ##[end-action id=__87c38857-9b54-4d7e-92cc-f78063f52f42.cache-flutter;outcome=success;conclusion=success;duration_ms=18397]

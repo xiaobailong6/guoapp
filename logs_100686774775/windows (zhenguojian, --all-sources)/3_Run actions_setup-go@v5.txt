@@ -1,0 +1,82 @@
+﻿2026-10-04T04:42:35.9907857Z ##[group]Run actions/setup-go@v5
+2026-10-04T04:42:35.9908205Z with:
+2026-10-04T04:42:35.9909419Z   go-version-file: native/go.mod
+2026-10-04T04:42:35.9909698Z   cache-dependency-path: native/go.sum
+2026-10-04T04:42:35.9909979Z   check-latest: false
+2026-10-04T04:42:35.9912619Z   token: ***
+2026-10-04T04:42:35.9912796Z   cache: true
+2026-10-04T04:42:35.9912961Z env:
+2026-10-04T04:42:35.9913163Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-04T04:42:35.9913439Z   GOSUMDB: sum.golang.org
+2026-10-04T04:42:35.9913638Z ##[endgroup]
+2026-10-04T04:42:36.1885944Z Setup go version spec 1.24.1
+2026-10-04T04:42:36.1982450Z Attempting to download 1.24.1...
+2026-10-04T04:42:36.2158862Z (node:6460) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-04T04:42:36.2213957Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-04T04:42:36.6012572Z matching 1.24.1...
+2026-10-04T04:42:36.6176660Z Acquiring 1.24.1 from https://github.com/actions/go-versions/releases/download/1.24.1-13667719799/go-1.24.1-win32-x64.zip
+2026-10-04T04:42:37.4772676Z Extracting Go...
+2026-10-04T04:42:37.5959929Z [command]"C:\Program Files\PowerShell\7\pwsh.exe" -NoLogo -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -Command "$ErrorActionPreference = 'Stop' ; try { Add-Type -AssemblyName System.IO.Compression.ZipFile } catch { } ; try { [System.IO.Compression.ZipFile]::ExtractToDirectory('D:\a\_temp\go-1.24.1-win32-x64.zip', 'D:\a\_temp\eeb8c8eb-6790-471b-81e3-04191fb13798', $true) } catch { if (($_.Exception.GetType().FullName -eq 'System.Management.Automation.MethodException') -or ($_.Exception.GetType().FullName -eq 'System.Management.Automation.RuntimeException') ){ Expand-Archive -LiteralPath 'D:\a\_temp\go-1.24.1-win32-x64.zip' -DestinationPath 'D:\a\_temp\eeb8c8eb-6790-471b-81e3-04191fb13798' -Force } else { throw $_ } } ;"
+2026-10-04T04:42:42.6911877Z Successfully extracted go to D:\a\_temp\eeb8c8eb-6790-471b-81e3-04191fb13798
+2026-10-04T04:42:42.6913146Z Adding to the cache ...
+2026-10-04T04:42:55.9024879Z Created link C:\hostedtoolcache\windows\go\1.24.1\x64 => D:\hostedtoolcache\windows\go\1.24.1\x64
+2026-10-04T04:42:55.9049770Z Created link C:\hostedtoolcache\windows\go\1.24.1\x64.complete => D:\hostedtoolcache\windows\go\1.24.1\x64.complete
+2026-10-04T04:42:55.9076715Z Successfully cached go to C:\hostedtoolcache\windows\go\1.24.1\x64
+2026-10-04T04:42:55.9112367Z Added go to the path
+2026-10-04T04:42:55.9114153Z Successfully set up Go version 1.24.1
+2026-10-04T04:42:56.5019358Z [command]C:\hostedtoolcache\windows\go\1.24.1\x64\bin\go.exe env GOCACHE
+2026-10-04T04:42:56.5092366Z [command]C:\hostedtoolcache\windows\go\1.24.1\x64\bin\go.exe env GOMODCACHE
+2026-10-04T04:42:56.5570193Z C:\Users\runneradmin\AppData\Local\go-build
+2026-10-04T04:42:56.5943544Z C:\Users\runneradmin\go\pkg\mod
+2026-10-04T04:42:56.8479353Z Cache is not found
+2026-10-04T04:42:56.8501598Z go version go1.24.1 windows/amd64
+2026-10-04T04:42:56.8548817Z 
+2026-10-04T04:42:56.8550771Z ##[group]go env
+2026-10-04T04:42:59.9686490Z set AR=ar
+2026-10-04T04:42:59.9687265Z set CC=gcc
+2026-10-04T04:42:59.9687944Z set CGO_CFLAGS=-O2 -g
+2026-10-04T04:42:59.9699005Z set CGO_CPPFLAGS=
+2026-10-04T04:42:59.9699722Z set CGO_CXXFLAGS=-O2 -g
+2026-10-04T04:42:59.9702508Z set CGO_ENABLED=1
+2026-10-04T04:42:59.9703065Z set CGO_FFLAGS=-O2 -g
+2026-10-04T04:42:59.9703580Z set CGO_LDFLAGS=-O2 -g
+2026-10-04T04:42:59.9704035Z set CXX=g++
+2026-10-04T04:42:59.9704428Z set GCCGO=gccgo
+2026-10-04T04:42:59.9704816Z set GO111MODULE=
+2026-10-04T04:42:59.9705242Z set GOAMD64=v1
+2026-10-04T04:42:59.9705672Z set GOARCH=amd64
+2026-10-04T04:42:59.9706227Z set GOAUTH=netrc
+2026-10-04T04:42:59.9727390Z set GOBIN=
+2026-10-04T04:42:59.9728107Z set GOCACHE=C:\Users\runneradmin\AppData\Local\go-build
+2026-10-04T04:42:59.9728794Z set GOCACHEPROG=
+2026-10-04T04:42:59.9729253Z set GODEBUG=
+2026-10-04T04:42:59.9729801Z set GOENV=C:\Users\runneradmin\AppData\Roaming\go\env
+2026-10-04T04:42:59.9733997Z set GOEXE=.exe
+2026-10-04T04:42:59.9734754Z set GOEXPERIMENT=
+2026-10-04T04:42:59.9735245Z set GOFIPS140=off
+2026-10-04T04:42:59.9735683Z set GOFLAGS=
+2026-10-04T04:42:59.9737059Z set GOGCCFLAGS=-m64 -mthreads -Wl,--no-gc-sections -fmessage-length=0 -ffile-prefix-map=C:\Users\RUNNER~1\AppData\Local\Temp\go-build1428981845=/tmp/go-build -gno-record-gcc-switches
+2026-10-04T04:42:59.9738493Z set GOHOSTARCH=amd64
+2026-10-04T04:42:59.9738979Z set GOHOSTOS=windows
+2026-10-04T04:42:59.9739448Z set GOINSECURE=
+2026-10-04T04:42:59.9739996Z set GOMOD=NUL
+2026-10-04T04:42:59.9740520Z set GOMODCACHE=C:\Users\runneradmin\go\pkg\mod
+2026-10-04T04:42:59.9741145Z set GONOPROXY=
+2026-10-04T04:42:59.9741981Z set GONOSUMDB=
+2026-10-04T04:42:59.9742432Z set GOOS=windows
+2026-10-04T04:42:59.9743089Z set GOPATH=C:\Users\runneradmin\go
+2026-10-04T04:42:59.9743762Z set GOPRIVATE=
+2026-10-04T04:42:59.9744369Z set GOPROXY=https://proxy.golang.org,direct
+2026-10-04T04:42:59.9745085Z set GOROOT=C:\hostedtoolcache\windows\go\1.24.1\x64
+2026-10-04T04:42:59.9745765Z set GOSUMDB=sum.golang.org
+2026-10-04T04:42:59.9746279Z set GOTELEMETRY=local
+2026-10-04T04:42:59.9746936Z set GOTELEMETRYDIR=C:\Users\runneradmin\AppData\Roaming\go\telemetry
+2026-10-04T04:42:59.9747655Z set GOTMPDIR=
+2026-10-04T04:42:59.9748095Z set GOTOOLCHAIN=auto
+2026-10-04T04:42:59.9748802Z set GOTOOLDIR=C:\hostedtoolcache\windows\go\1.24.1\x64\pkg\tool\windows_amd64
+2026-10-04T04:42:59.9749570Z set GOVCS=
+2026-10-04T04:42:59.9749990Z set GOVERSION=go1.24.1
+2026-10-04T04:42:59.9750454Z set GOWORK=
+2026-10-04T04:42:59.9750948Z set PKG_CONFIG=pkg-config
+2026-10-04T04:42:59.9751327Z 
+2026-10-04T04:42:59.9752025Z ##[endgroup]

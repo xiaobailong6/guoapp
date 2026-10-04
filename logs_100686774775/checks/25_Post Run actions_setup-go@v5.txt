@@ -1,0 +1,13 @@
+﻿2026-10-04T04:42:16.4237191Z Post job cleanup.
+2026-10-04T04:42:16.5569571Z (node:9053) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-04T04:42:16.5571320Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-04T04:42:16.5738703Z [command]/opt/hostedtoolcache/go/1.24.1/x64/bin/go env GOMODCACHE
+2026-10-04T04:42:16.5791512Z [command]/opt/hostedtoolcache/go/1.24.1/x64/bin/go env GOCACHE
+2026-10-04T04:42:16.5857166Z /home/runner/go/pkg/mod
+2026-10-04T04:42:16.5885675Z /home/runner/.cache/go-build
+2026-10-04T04:42:16.6266238Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/guoapp/guoapp --files-from manifest.txt --use-compress-program zstdmt
+2026-10-04T04:42:18.7724014Z (node:9053) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-04T04:42:19.7629740Z Sent 0 of 266581795 (0.0%), 0.0 MBs/sec
+2026-10-04T04:42:20.7623823Z Sent 67108864 of 266581795 (25.2%), 32.0 MBs/sec
+2026-10-04T04:42:20.8697865Z Sent 266581795 of 266581795 (100.0%), 120.4 MBs/sec
+2026-10-04T04:42:21.1597454Z Cache saved with the key: setup-go-Linux-x64-ubuntu24-go-1.24.1-08fd0a1e03bd5f8f8408fc5c86ca527da129df47f98b180c77a3204f069032d3

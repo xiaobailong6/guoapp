@@ -1,105 +1,105 @@
-﻿2026-10-04T03:27:35.6548627Z ##[group]Run dart analyze lib test integration_test test_driver
-2026-10-04T03:27:35.6549140Z [36;1mdart analyze lib test integration_test test_driver[0m
-2026-10-04T03:27:35.6612184Z shell: /usr/bin/bash -e {0}
-2026-10-04T03:27:35.6612458Z env:
-2026-10-04T03:27:35.6612699Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-04T03:27:35.6613011Z   GOSUMDB: sum.golang.org
-2026-10-04T03:27:35.6613363Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
-2026-10-04T03:27:35.6613757Z   PUB_CACHE: /home/runner/.pub-cache
-2026-10-04T03:27:35.6614017Z ##[endgroup]
-2026-10-04T03:27:35.6862932Z Analyzing lib, test, integration_test, test_driver...
-2026-10-04T03:27:55.6517892Z 
-2026-10-04T03:27:55.6526543Z    info - lib/app_orientation.dart:11:7 - Use an initializing formal to assign a parameter to a field. Try using an initialing formal ('this._television') to initialize the field. - prefer_initializing_formals
-2026-10-04T03:27:55.6544730Z    info - lib/lan_controller.dart:88:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6547783Z    info - lib/lan_controller.dart:151:9 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
-2026-10-04T03:27:55.6550737Z    info - lib/lan_controller.dart:335:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6555890Z    info - lib/lan_controller.dart:360:17 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
-2026-10-04T03:27:55.6558881Z    info - lib/lan_controller.dart:432:19 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
-2026-10-04T03:27:55.6561589Z    info - lib/lan_controller.dart:433:19 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
-2026-10-04T03:27:55.6564055Z    info - lib/lan_controller.dart:510:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6566300Z    info - lib/lan_controller.dart:542:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6568984Z    info - lib/lan_controller.dart:558:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6571362Z    info - lib/lan_controller.dart:578:13 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6573733Z    info - lib/lan_controller.dart:582:13 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6576073Z    info - lib/lan_controller.dart:647:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6578645Z    info - lib/lan_controller.dart:658:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6580957Z    info - lib/lan_controller.dart:682:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6583295Z    info - lib/lan_controller.dart:789:17 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6585634Z    info - lib/lan_controller.dart:877:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6588675Z    info - lib/lan_controller.dart:883:23 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
-2026-10-04T03:27:55.6591228Z    info - lib/lan_controller.dart:909:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6593531Z    info - lib/lan_playback.dart:80:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6595828Z    info - lib/lan_playback.dart:94:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6598248Z    info - lib/lan_playback.dart:98:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6600624Z    info - lib/lan_playback.dart:104:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6603133Z    info - lib/lan_playback.dart:112:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6605436Z    info - lib/lan_playback.dart:153:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6607996Z    info - lib/lan_playback.dart:177:11 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6610355Z    info - lib/lan_playback.dart:206:11 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6612697Z    info - lib/lan_playback.dart:212:11 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6615070Z    info - lib/lan_playback.dart:216:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6617516Z    info - lib/lan_playback.dart:278:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6619847Z    info - lib/lan_playback.dart:311:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6622305Z    info - lib/lan_playback.dart:355:21 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
-2026-10-04T03:27:55.6625046Z    info - lib/lan_screen.dart:228:40 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
-2026-10-04T03:27:55.6627781Z    info - lib/lan_screen.dart:257:33 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
-2026-10-04T03:27:55.6630451Z    info - lib/lan_screen.dart:326:35 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
-2026-10-04T03:27:55.6633105Z    info - lib/lan_screen.dart:336:35 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
-2026-10-04T03:27:55.6635973Z    info - lib/lan_screen.dart:341:35 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
-2026-10-04T03:27:55.6638784Z    info - lib/lan_screen.dart:346:35 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
-2026-10-04T03:27:55.6641090Z    info - lib/lan_screen.dart:516:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6643322Z    info - lib/lan_screen.dart:519:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6645581Z    info - lib/lan_screen.dart:525:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6648096Z    info - lib/lan_screen.dart:562:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6650637Z    info - lib/lan_screen.dart:758:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6653162Z    info - lib/lan_screen.dart:847:34 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
-2026-10-04T03:27:55.6655808Z    info - lib/lan_screen.dart:850:34 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
-2026-10-04T03:27:55.6658667Z    info - lib/lan_screen.dart:856:35 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
-2026-10-04T03:27:55.6661336Z    info - lib/lan_screen.dart:866:41 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
-2026-10-04T03:27:55.6663994Z    info - lib/lan_screen.dart:870:41 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
-2026-10-04T03:27:55.6666648Z    info - lib/lan_screen.dart:934:12 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
-2026-10-04T03:27:55.6669482Z    info - lib/lan_screen.dart:936:9 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
-2026-10-04T03:27:55.6672150Z    info - lib/lan_screen.dart:1036:15 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
-2026-10-04T03:27:55.6674826Z    info - lib/lan_screen.dart:1171:21 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
-2026-10-04T03:27:55.6677268Z    info - lib/lan_sync.dart:105:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6679701Z    info - lib/lan_sync.dart:121:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6681969Z    info - lib/lan_sync.dart:170:11 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6684202Z    info - lib/lan_sync.dart:202:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6686825Z    info - lib/lan_sync.dart:323:15 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
-2026-10-04T03:27:55.6689728Z    info - lib/lan_sync.dart:325:15 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
-2026-10-04T03:27:55.6692206Z    info - lib/lan_sync.dart:340:13 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6694458Z    info - lib/lan_sync.dart:348:13 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6696670Z    info - lib/lan_sync.dart:399:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6699318Z    info - lib/lan_sync.dart:399:26 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
-2026-10-04T03:27:55.6703669Z    info - lib/lan_sync.dart:423:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6705995Z    info - lib/lan_sync.dart:431:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6708483Z    info - lib/lan_sync.dart:446:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6710860Z    info - lib/lan_sync.dart:459:11 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6713109Z    info - lib/lan_sync.dart:471:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6715357Z    info - lib/lan_sync.dart:486:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6718004Z    info - lib/lan_sync.dart:556:11 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
-2026-10-04T03:27:55.6720657Z    info - lib/lan_sync.dart:558:11 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
-2026-10-04T03:27:55.6723090Z    info - lib/lan_sync.dart:585:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6725371Z    info - lib/lan_sync.dart:600:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6727938Z    info - lib/local_store_sync.dart:25:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6730350Z    info - lib/player_screen.dart:405:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6733270Z    info - lib/player_screen.dart:665:13 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
-2026-10-04T03:27:55.6736068Z    info - lib/player_screen.dart:667:13 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
-2026-10-04T03:27:55.6739306Z    info - lib/player_screen.dart:686:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6741682Z    info - lib/player_screen.dart:699:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6744705Z    info - lib/player_screen.dart:710:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6747118Z    info - lib/player_screen.dart:728:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6749661Z    info - lib/player_screen.dart:1328:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6752557Z    info - lib/video_enhancement.dart:4:8 - The import of 'dart:ui' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/services.dart'. Try removing the import directive. - unnecessary_import
-2026-10-04T03:27:55.6755833Z    info - lib/video_enhancement.dart:24:8 - Use an initializing formal to assign a parameter to a field. Try using an initialing formal ('this._preferences') to initialize the field. - prefer_initializing_formals
-2026-10-04T03:27:55.6758646Z    info - lib/video_enhancement.dart:381:11 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6761068Z    info - lib/video_enhancement.dart:491:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6763474Z    info - lib/video_enhancement.dart:504:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6765865Z    info - lib/video_enhancement.dart:583:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6768515Z    info - lib/video_enhancement.dart:599:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6770939Z    info - lib/video_enhancement.dart:607:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6773315Z    info - lib/video_enhancement.dart:709:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6775740Z    info - lib/video_enhancement.dart:758:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
-2026-10-04T03:27:55.6778853Z    info - lib/video_output_size.dart:3:8 - The import of 'dart:ui' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/services.dart'. Try removing the import directive. - unnecessary_import
-2026-10-04T03:27:55.6780467Z 
-2026-10-04T03:27:55.6780795Z 92 issues found.
+﻿2026-10-04T04:35:17.9471102Z ##[group]Run dart analyze lib test integration_test test_driver
+2026-10-04T04:35:17.9471642Z [36;1mdart analyze lib test integration_test test_driver[0m
+2026-10-04T04:35:17.9538052Z shell: /usr/bin/bash -e {0}
+2026-10-04T04:35:17.9538328Z env:
+2026-10-04T04:35:17.9538571Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-04T04:35:17.9538876Z   GOSUMDB: sum.golang.org
+2026-10-04T04:35:17.9539227Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
+2026-10-04T04:35:17.9539626Z   PUB_CACHE: /home/runner/.pub-cache
+2026-10-04T04:35:17.9539907Z ##[endgroup]
+2026-10-04T04:35:17.9798022Z Analyzing lib, test, integration_test, test_driver...
+2026-10-04T04:35:39.6215470Z 
+2026-10-04T04:35:39.6217700Z    info - lib/app_orientation.dart:11:7 - Use an initializing formal to assign a parameter to a field. Try using an initialing formal ('this._television') to initialize the field. - prefer_initializing_formals
+2026-10-04T04:35:39.6220362Z    info - lib/lan_controller.dart:88:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6222973Z    info - lib/lan_controller.dart:151:9 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-04T04:35:39.6225903Z    info - lib/lan_controller.dart:335:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6228873Z    info - lib/lan_controller.dart:360:17 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-04T04:35:39.6231617Z    info - lib/lan_controller.dart:432:19 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-04T04:35:39.6234424Z    info - lib/lan_controller.dart:433:19 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-04T04:35:39.6237719Z    info - lib/lan_controller.dart:510:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6240052Z    info - lib/lan_controller.dart:542:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6242380Z    info - lib/lan_controller.dart:558:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6244626Z    info - lib/lan_controller.dart:578:13 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6247229Z    info - lib/lan_controller.dart:582:13 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6249610Z    info - lib/lan_controller.dart:647:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6252035Z    info - lib/lan_controller.dart:658:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6254439Z    info - lib/lan_controller.dart:682:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6257152Z    info - lib/lan_controller.dart:789:17 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6259643Z    info - lib/lan_controller.dart:877:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6262671Z    info - lib/lan_controller.dart:883:23 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-04T04:35:39.6265492Z    info - lib/lan_controller.dart:909:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6267712Z    info - lib/lan_playback.dart:80:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6270037Z    info - lib/lan_playback.dart:94:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6272317Z    info - lib/lan_playback.dart:98:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6275019Z    info - lib/lan_playback.dart:104:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6277398Z    info - lib/lan_playback.dart:112:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6279859Z    info - lib/lan_playback.dart:153:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6282157Z    info - lib/lan_playback.dart:177:11 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6284442Z    info - lib/lan_playback.dart:206:11 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6287043Z    info - lib/lan_playback.dart:212:11 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6289298Z    info - lib/lan_playback.dart:216:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6291599Z    info - lib/lan_playback.dart:278:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6293838Z    info - lib/lan_playback.dart:311:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6296481Z    info - lib/lan_playback.dart:355:21 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-04T04:35:39.6299328Z    info - lib/lan_screen.dart:228:40 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-04T04:35:39.6302210Z    info - lib/lan_screen.dart:257:33 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-04T04:35:39.6305175Z    info - lib/lan_screen.dart:326:35 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-04T04:35:39.6307878Z    info - lib/lan_screen.dart:336:35 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-04T04:35:39.6310771Z    info - lib/lan_screen.dart:341:35 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-04T04:35:39.6313397Z    info - lib/lan_screen.dart:346:35 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-04T04:35:39.6315964Z    info - lib/lan_screen.dart:516:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6318274Z    info - lib/lan_screen.dart:519:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6320515Z    info - lib/lan_screen.dart:525:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6322760Z    info - lib/lan_screen.dart:562:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6325165Z    info - lib/lan_screen.dart:758:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6327582Z    info - lib/lan_screen.dart:847:34 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-04T04:35:39.6330433Z    info - lib/lan_screen.dart:850:34 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-04T04:35:39.6333142Z    info - lib/lan_screen.dart:856:35 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-04T04:35:39.6335959Z    info - lib/lan_screen.dart:866:41 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-04T04:35:39.6338663Z    info - lib/lan_screen.dart:870:41 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-04T04:35:39.6341267Z    info - lib/lan_screen.dart:934:12 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-04T04:35:39.6343836Z    info - lib/lan_screen.dart:936:9 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-04T04:35:39.6346642Z    info - lib/lan_screen.dart:1036:15 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-04T04:35:39.6349292Z    info - lib/lan_screen.dart:1171:21 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-04T04:35:39.6351658Z    info - lib/lan_sync.dart:105:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6353862Z    info - lib/lan_sync.dart:121:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6356230Z    info - lib/lan_sync.dart:170:11 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6358533Z    info - lib/lan_sync.dart:202:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6361325Z    info - lib/lan_sync.dart:323:15 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-04T04:35:39.6363969Z    info - lib/lan_sync.dart:325:15 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-04T04:35:39.6366569Z    info - lib/lan_sync.dart:340:13 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6368919Z    info - lib/lan_sync.dart:348:13 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6371105Z    info - lib/lan_sync.dart:399:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6373576Z    info - lib/lan_sync.dart:399:26 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-04T04:35:39.6376055Z    info - lib/lan_sync.dart:423:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6378621Z    info - lib/lan_sync.dart:431:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6380701Z    info - lib/lan_sync.dart:446:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6383518Z    info - lib/lan_sync.dart:459:11 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6405935Z    info - lib/lan_sync.dart:471:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6408073Z    info - lib/lan_sync.dart:486:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6410406Z    info - lib/lan_sync.dart:556:11 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-04T04:35:39.6412897Z    info - lib/lan_sync.dart:558:11 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-04T04:35:39.6417567Z    info - lib/lan_sync.dart:585:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6418895Z    info - lib/lan_sync.dart:600:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6420095Z    info - lib/local_store_sync.dart:25:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6421301Z    info - lib/player_screen.dart:405:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6422643Z    info - lib/player_screen.dart:665:13 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-04T04:35:39.6424073Z    info - lib/player_screen.dart:667:13 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-04T04:35:39.6427448Z    info - lib/player_screen.dart:686:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6429688Z    info - lib/player_screen.dart:699:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6431897Z    info - lib/player_screen.dart:710:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6434077Z    info - lib/player_screen.dart:728:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6436559Z    info - lib/player_screen.dart:1328:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6439316Z    info - lib/video_enhancement.dart:4:8 - The import of 'dart:ui' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/services.dart'. Try removing the import directive. - unnecessary_import
+2026-10-04T04:35:39.6442286Z    info - lib/video_enhancement.dart:24:8 - Use an initializing formal to assign a parameter to a field. Try using an initialing formal ('this._preferences') to initialize the field. - prefer_initializing_formals
+2026-10-04T04:35:39.6445257Z    info - lib/video_enhancement.dart:381:11 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6447516Z    info - lib/video_enhancement.dart:491:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6449795Z    info - lib/video_enhancement.dart:504:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6452059Z    info - lib/video_enhancement.dart:583:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6454297Z    info - lib/video_enhancement.dart:599:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6457181Z    info - lib/video_enhancement.dart:607:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6459483Z    info - lib/video_enhancement.dart:709:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6461784Z    info - lib/video_enhancement.dart:758:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-04T04:35:39.6464480Z    info - lib/video_output_size.dart:3:8 - The import of 'dart:ui' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/services.dart'. Try removing the import directive. - unnecessary_import
+2026-10-04T04:35:39.6466114Z 
+2026-10-04T04:35:39.6466277Z 92 issues found.

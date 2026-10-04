@@ -1,0 +1,25 @@
+﻿2026-10-04T04:45:34.6406640Z Post job cleanup.
+2026-10-04T04:45:34.6472270Z ##[start-action display=Cache pub dependencies;id=__ee1f1576-8ed7-4daf-b4a6-296d25df4fda.cache-pub]
+2026-10-04T04:45:34.9725990Z Post job cleanup.
+2026-10-04T04:45:35.0861370Z [command]/opt/homebrew/bin/gtar --posix -cf cache.tzst --exclude cache.tzst -P -C /Users/runner/work/guoapp/guoapp --files-from manifest.txt --delay-directory-restore --use-compress-program zstdmt
+2026-10-04T04:45:39.9265910Z Sent 52690944 of 124978207 (42.2%), 50.3 MBs/sec
+2026-10-04T04:45:40.9284830Z Sent 124978207 of 124978207 (100.0%), 59.5 MBs/sec
+2026-10-04T04:45:41.4255960Z Cache saved with key: flutter-pub-macos-stable-3.47.4-arm64-9584c6713b324636289d067944a46fd6b49df14b-92ff6c66973c3782994dd6a0ab87d5fada3bb52cb81c3f8bfb62b096ea446000
+2026-10-04T04:45:41.4371420Z ##[end-action id=__ee1f1576-8ed7-4daf-b4a6-296d25df4fda.cache-pub;outcome=success;conclusion=success;duration_ms=6789]
+2026-10-04T04:45:41.4378590Z ##[start-action display=Cache Flutter;id=__ee1f1576-8ed7-4daf-b4a6-296d25df4fda.cache-flutter]
+2026-10-04T04:45:41.4453260Z Post job cleanup.
+2026-10-04T04:45:41.5568690Z [command]/opt/homebrew/bin/gtar --posix -cf cache.tzst --exclude cache.tzst -P -C /Users/runner/work/guoapp/guoapp --files-from manifest.txt --delay-directory-restore --use-compress-program zstdmt
+2026-10-04T04:45:52.4825800Z Sent 0 of 2220559952 (0.0%), 0.0 MBs/sec
+2026-10-04T04:45:53.4826500Z Sent 67108864 of 2220559952 (3.0%), 32.0 MBs/sec
+2026-10-04T04:45:54.4837960Z Sent 335544320 of 2220559952 (15.1%), 106.6 MBs/sec
+2026-10-04T04:45:55.4832940Z Sent 671088640 of 2220559952 (30.2%), 159.9 MBs/sec
+2026-10-04T04:45:56.4823000Z Sent 872415232 of 2220559952 (39.3%), 166.3 MBs/sec
+2026-10-04T04:45:57.4826440Z Sent 1140850688 of 2220559952 (51.4%), 181.3 MBs/sec
+2026-10-04T04:45:58.4822190Z Sent 1409286144 of 2220559952 (63.5%), 192.0 MBs/sec
+2026-10-04T04:45:59.4836390Z Sent 1677721600 of 2220559952 (75.6%), 200.0 MBs/sec
+2026-10-04T04:46:00.4819850Z Sent 1885015632 of 2220559952 (84.9%), 199.7 MBs/sec
+2026-10-04T04:46:01.4827840Z Sent 2153451088 of 2220559952 (97.0%), 205.3 MBs/sec
+2026-10-04T04:46:02.4836170Z Sent 2153451088 of 2220559952 (97.0%), 186.6 MBs/sec
+2026-10-04T04:46:03.0807070Z Sent 2220559952 of 2220559952 (100.0%), 182.6 MBs/sec
+2026-10-04T04:46:03.2641840Z Cache saved with key: flutter-macos-stable-3.47.4-arm64-9584c6713b324636289d067944a46fd6b49df14b
+2026-10-04T04:46:03.3330300Z ##[end-action id=__ee1f1576-8ed7-4daf-b4a6-296d25df4fda.cache-flutter;outcome=success;conclusion=success;duration_ms=21894]
