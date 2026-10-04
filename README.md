@@ -942,25 +942,15 @@ SR-1、SR-2 与 SR-4 已接入源码，小型动漫 CNN 也包含在本轮；SR-
 
 将 `guoapp` 源码发布到仓库根目录，保留 `.github`、锁文件、`native` 和平台工程；不用上传 SDK、依赖目录、SO、DLL 或缓存。
 
-推送 `main` / `master` 或提交 PR 只运行检查、不编译，避免在仓库里直接消耗额度。编译只由 `v*` 标签或手动运行 **Build app packages** 触发：
-
-| 触发方式 | 执行内容 |
-| --- | --- |
-| 推送 `v*` 标签 | 编译 Android 与 Windows 的两版包 |
-| 手动运行 | 按界面勾选执行，默认值见下 |
-| 推送 `main` / `master`、提交 PR | 只跑 `checks`，不编译 |
-
-手动运行的默认值与代价：Android 与 Windows 默认勾选，iOS 默认不勾选（macOS runner 在私有仓库按 10 倍折算额度，且 iOS 路径尚未在本机验证过）；版本默认只构建真果鉴全站源版，可选红果鉴或两版；Android 架构默认 `arm64-v8a`，可选 `armeabi-v7a`、`x86_64` 或 `all`（三种架构各出一个 APK）；检查默认开启，只想先出包时可取消勾选。
-
-`checks` 包含 Python 单元测试、`dart format --set-exit-if-changed`、`dart analyze`、两遍 `flutter test` 和两遍 `go test -race`。`checks` 失败会跳过编译；需要先出包时在手动运行里取消勾选检查。
+推送 `main` / `master`、`v*` 标签、提交 PR，或手动运行 **Build app packages**，会先检查再构建：
 
 | 红果版 Artifact | 全站源版 Artifact | 内容 |
 | --- | --- | --- |
-| `hongguojian-android` | `zhenguojian-android` | 选定架构的 APK 和 SHA256 |
+| `hongguojian-android` | `zhenguojian-android` | 三种架构 APK 和 SHA256 |
 | `hongguojian-windows` | `zhenguojian-windows` | 完整 ZIP 和 SHA256；从解压包检查原生核心、FFprobe、换封装及播放器启动 |
 | `hongguojian-ios-unsigned` | `zhenguojian-ios-unsigned` | 未签名 `.app` ZIP 和 SHA256，不能直接当已签名 IPA 安装 |
 
-Actions 分别传入默认参数与 `--all-sources` 构建两版，Flutter 和 Go 回归也覆盖两种编译配置。私有仓库额度按 runner 系统折算，ubuntu 1 倍、Windows 2 倍、macOS 10 倍。产物保留 14 天，不自动创建 GitHub Release。首次平台构建结果以实际 Actions 输出为准。
+Actions 分别传入默认参数与 `--all-sources` 构建两版，Flutter 和 Go 回归也覆盖两种编译配置。产物保留 14 天，不自动创建 GitHub Release。首次平台构建结果以实际 Actions 输出为准。
 
 Android 正式发布持续使用同一签名并递增构建号，在仓库 Secrets 配置：
 
