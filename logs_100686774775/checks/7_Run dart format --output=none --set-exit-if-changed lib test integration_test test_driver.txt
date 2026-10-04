@@ -1,0 +1,36 @@
+﻿2026-10-04T03:13:53.0518659Z ##[group]Run dart format --output=none --set-exit-if-changed lib test integration_test test_driver
+2026-10-04T03:13:53.0519050Z [36;1mdart format --output=none --set-exit-if-changed lib test integration_test test_driver[0m
+2026-10-04T03:13:53.0569906Z shell: /usr/bin/bash -e {0}
+2026-10-04T03:13:53.0570044Z env:
+2026-10-04T03:13:53.0570179Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-04T03:13:53.0570335Z   GOSUMDB: sum.golang.org
+2026-10-04T03:13:53.0570510Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
+2026-10-04T03:13:53.0570711Z   PUB_CACHE: /home/runner/.pub-cache
+2026-10-04T03:13:53.0570847Z ##[endgroup]
+2026-10-04T03:13:53.1784210Z Changed lib/catalog_filters.dart
+2026-10-04T03:13:53.1811546Z Changed lib/catalog_sort.dart
+2026-10-04T03:13:53.1973278Z Changed lib/danmaku_models.dart
+2026-10-04T03:13:53.2035636Z Changed lib/danmaku_overlay.dart
+2026-10-04T03:13:53.2649795Z Changed lib/feeds_screen.dart
+2026-10-04T03:13:53.2946379Z Changed lib/home_screen.dart
+2026-10-04T03:13:53.3743046Z Changed lib/main.dart
+2026-10-04T03:13:53.4041834Z Changed lib/nostr_crypto.dart
+2026-10-04T03:13:53.4057655Z Changed lib/nostr_relay.dart
+2026-10-04T03:13:53.4644482Z Changed lib/ranking_models.dart
+2026-10-04T03:13:53.4725880Z Changed lib/recommendation_models.dart
+2026-10-04T03:13:53.4756383Z Changed lib/recommendation_service.dart
+2026-10-04T03:13:53.4778709Z Changed lib/recommendation_store.dart
+2026-10-04T03:13:53.4833987Z Changed lib/recommendations_screen.dart
+2026-10-04T03:13:53.4930481Z Changed lib/remote_widgets.dart
+2026-10-04T03:13:53.5190679Z Changed lib/settings_screen.dart
+2026-10-04T03:13:53.5376311Z Changed lib/television_controls.dart
+2026-10-04T03:13:53.5772505Z Changed test/feeds_screen_test.dart
+2026-10-04T03:13:53.5970421Z Changed test/nostr_crypto_test.dart
+2026-10-04T03:13:53.6071538Z Changed test/recommendation_models_test.dart
+2026-10-04T03:13:53.6108334Z Changed test/recommendation_service_test.dart
+2026-10-04T03:13:53.6127922Z Changed test/search_cache_test.dart
+2026-10-04T03:13:53.6146169Z Changed test/sources_screen_test.dart
+2026-10-04T03:13:53.6254416Z Changed test/theme_test.dart
+2026-10-04T03:13:53.6428504Z Changed integration_test/surface_lifecycle_test.dart
+2026-10-04T03:13:53.6453529Z Formatted 144 files (25 changed) in 0.53 seconds.
+2026-10-04T03:13:53.6512502Z ##[error]Process completed with exit code 1.

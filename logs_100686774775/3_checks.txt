@@ -1,453 +1,379 @@
-﻿2026-10-04T02:43:03.0585012Z Current runner version: '2.337.0'
-2026-10-04T02:43:03.0623345Z ##[group]Runner Image Provisioner
-2026-10-04T02:43:03.0624927Z Hosted Compute Agent
-2026-10-04T02:43:03.0625976Z Version: 20260901.588
-2026-10-04T02:43:03.0627066Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
-2026-10-04T02:43:03.0628430Z Build Date: 2026-09-01T19:56:44Z
-2026-10-04T02:43:03.0629664Z Worker ID: {c6bef762-c243-4f52-b45b-71cf34d6b8d8}
-2026-10-04T02:43:03.0631032Z Azure Region: westus3
-2026-10-04T02:43:03.0632085Z ##[endgroup]
-2026-10-04T02:43:03.0634734Z ##[group]Operating System
-2026-10-04T02:43:03.0635916Z Ubuntu
-2026-10-04T02:43:03.0636906Z 24.04.5
-2026-10-04T02:43:03.0637836Z LTS
-2026-10-04T02:43:03.0638840Z ##[endgroup]
-2026-10-04T02:43:03.0639702Z ##[group]Runner Image
-2026-10-04T02:43:03.0640728Z Image: ubuntu-24.04
-2026-10-04T02:43:03.0641761Z Version: 20260927.320.1
-2026-10-04T02:43:03.0644219Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260927.320/images/ubuntu/Ubuntu2404-Readme.md
-2026-10-04T02:43:03.0646835Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260927.320
-2026-10-04T02:43:03.0648990Z ##[endgroup]
-2026-10-04T02:43:03.0650750Z ##[group]GITHUB_TOKEN Permissions
-2026-10-04T02:43:03.0654140Z Contents: read
-2026-10-04T02:43:03.0655171Z Metadata: read
-2026-10-04T02:43:03.0656095Z ##[endgroup]
-2026-10-04T02:43:03.0659619Z Secret source: Actions
-2026-10-04T02:43:03.0661215Z Cache mode: write
-2026-10-04T02:43:03.0663270Z Prepare workflow directory
-2026-10-04T02:43:03.1328462Z Prepare all required actions
-2026-10-04T02:43:03.1482820Z Getting action download info
-2026-10-04T02:43:03.5253005Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
-2026-10-04T02:43:03.6346064Z Download action repository 'actions/setup-go@v5' (SHA:40f1582b2485089dde7abd97c1529aa768e1baff)
-2026-10-04T02:43:04.4710047Z Download action repository 'subosito/flutter-action@v2' (SHA:1a449444c387b1966244ae4d4f8c696479add0b2)
-2026-10-04T02:43:04.9869300Z Getting action download info
-2026-10-04T02:43:05.1130537Z Download action repository 'actions/cache@v5' (SHA:caa296126883cff596d87d8935842f9db880ef25)
-2026-10-04T02:43:05.2828775Z Complete job name: checks
-2026-10-04T02:43:05.3719835Z ##[group]Run actions/checkout@v4
-2026-10-04T02:43:05.3720750Z with:
-2026-10-04T02:43:05.3721212Z   repository: xiaobailong6/guoapp
-2026-10-04T02:43:05.3724254Z   token: ***
-2026-10-04T02:43:05.3724533Z   ssh-strict: true
-2026-10-04T02:43:05.3724797Z   ssh-user: git
-2026-10-04T02:43:05.3725062Z   persist-credentials: true
-2026-10-04T02:43:05.3725365Z   clean: true
-2026-10-04T02:43:05.3725633Z   sparse-checkout-cone-mode: true
-2026-10-04T02:43:05.3725951Z   fetch-depth: 1
-2026-10-04T02:43:05.3726204Z   fetch-tags: false
-2026-10-04T02:43:05.3726470Z   show-progress: true
-2026-10-04T02:43:05.3726723Z   lfs: false
-2026-10-04T02:43:05.3726959Z   submodules: false
-2026-10-04T02:43:05.3727218Z   set-safe-directory: true
-2026-10-04T02:43:05.3727513Z   allow-unsafe-pr-checkout: false
-2026-10-04T02:43:05.3728168Z env:
-2026-10-04T02:43:05.3728459Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-04T02:43:05.3728800Z   GOSUMDB: sum.golang.org
-2026-10-04T02:43:05.3729067Z ##[endgroup]
-2026-10-04T02:43:05.5036308Z Syncing repository: xiaobailong6/guoapp
-2026-10-04T02:43:05.5039050Z ##[group]Getting Git version info
-2026-10-04T02:43:05.5040548Z Working directory is '/home/runner/work/guoapp/guoapp'
-2026-10-04T02:43:05.5044185Z [command]/usr/bin/git version
-2026-10-04T02:43:05.5168701Z git version 2.55.0
-2026-10-04T02:43:05.5174567Z ##[endgroup]
-2026-10-04T02:43:05.5316549Z Temporarily overriding HOME='/home/runner/work/_temp/e483cc26-566f-4027-945f-aa0820c3a04a' before making global git config changes
-2026-10-04T02:43:05.5318668Z Adding repository directory to the temporary git global config as a safe directory
-2026-10-04T02:43:05.5320104Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/guoapp/guoapp
-2026-10-04T02:43:05.5324003Z Deleting the contents of '/home/runner/work/guoapp/guoapp'
-2026-10-04T02:43:05.5326282Z ##[group]Initializing the repository
-2026-10-04T02:43:05.5331423Z [command]/usr/bin/git init /home/runner/work/guoapp/guoapp
-2026-10-04T02:43:05.5513138Z hint: Using 'master' as the name for the initial branch. This default branch name
-2026-10-04T02:43:05.5517220Z hint: will change to "main" in Git 3.0. To configure the initial branch name
-2026-10-04T02:43:05.5518924Z hint: to use in all of your new repositories, which will suppress this warning,
-2026-10-04T02:43:05.5520026Z hint: call:
-2026-10-04T02:43:05.5520951Z hint:
-2026-10-04T02:43:05.5521819Z hint: 	git config --global init.defaultBranch <name>
-2026-10-04T02:43:05.5523431Z hint:
-2026-10-04T02:43:05.5524452Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
-2026-10-04T02:43:05.5526068Z hint: 'development'. The just-created branch can be renamed via this command:
-2026-10-04T02:43:05.5527097Z hint:
-2026-10-04T02:43:05.5528040Z hint: 	git branch -m <name>
-2026-10-04T02:43:05.5530739Z hint:
-2026-10-04T02:43:05.5531379Z hint: Disable this message with "git config set advice.defaultBranchName false"
-2026-10-04T02:43:05.5532345Z Initialized empty Git repository in /home/runner/work/guoapp/guoapp/.git/
-2026-10-04T02:43:05.5534453Z [command]/usr/bin/git remote add origin https://github.com/xiaobailong6/guoapp
-2026-10-04T02:43:05.5713582Z ##[endgroup]
-2026-10-04T02:43:05.5715198Z ##[group]Disabling automatic garbage collection
-2026-10-04T02:43:05.5720527Z [command]/usr/bin/git config --local gc.auto 0
-2026-10-04T02:43:05.5729704Z ##[endgroup]
-2026-10-04T02:43:05.5730483Z ##[group]Setting up auth
-2026-10-04T02:43:05.5737128Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
-2026-10-04T02:43:05.5739578Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
-2026-10-04T02:43:05.6185225Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
-2026-10-04T02:43:05.6400925Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
-2026-10-04T02:43:05.6579986Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
-2026-10-04T02:43:05.6621330Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
-2026-10-04T02:43:05.6866974Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
-2026-10-04T02:43:05.6909697Z ##[endgroup]
-2026-10-04T02:43:05.6911223Z ##[group]Fetching the repository
-2026-10-04T02:43:05.6920910Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +16427b67992c53c3ab3d66506f7cec163d7a746b:refs/remotes/origin/main
-2026-10-04T02:43:06.8389097Z From https://github.com/xiaobailong6/guoapp
-2026-10-04T02:43:06.8403553Z  * [new ref]         16427b67992c53c3ab3d66506f7cec163d7a746b -> origin/main
-2026-10-04T02:43:06.8415709Z ##[endgroup]
-2026-10-04T02:43:06.8416669Z ##[group]Determining the checkout info
-2026-10-04T02:43:06.8417632Z ##[endgroup]
-2026-10-04T02:43:06.8418306Z [command]/usr/bin/git sparse-checkout disable
-2026-10-04T02:43:06.8481209Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
-2026-10-04T02:43:06.8514114Z ##[group]Checking out the ref
-2026-10-04T02:43:06.8515899Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
-2026-10-04T02:43:06.9121748Z Switched to a new branch 'main'
-2026-10-04T02:43:06.9133949Z branch 'main' set up to track 'origin/main'.
-2026-10-04T02:43:06.9138867Z ##[endgroup]
-2026-10-04T02:43:06.9193345Z [command]/usr/bin/git log -1 --format=%H
-2026-10-04T02:43:06.9225799Z 16427b67992c53c3ab3d66506f7cec163d7a746b
-2026-10-04T02:43:06.9451563Z ##[group]Run python3 -m unittest discover -s scripts -p 'test_*.py'
-2026-10-04T02:43:06.9452333Z [36;1mpython3 -m unittest discover -s scripts -p 'test_*.py'[0m
-2026-10-04T02:43:06.9739817Z shell: /usr/bin/bash -e {0}
-2026-10-04T02:43:06.9740165Z env:
-2026-10-04T02:43:06.9740474Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-04T02:43:06.9740841Z   GOSUMDB: sum.golang.org
-2026-10-04T02:43:06.9741119Z ##[endgroup]
-2026-10-04T02:43:07.7470999Z ..................
-2026-10-04T02:43:07.7472005Z ----------------------------------------------------------------------
-2026-10-04T02:43:07.7473378Z Ran 18 tests in 0.647s
-2026-10-04T02:43:07.7492985Z 
-2026-10-04T02:43:07.7513072Z OK
-2026-10-04T02:43:07.7770860Z ##[group]Run actions/setup-go@v5
-2026-10-04T02:43:07.7771148Z with:
-2026-10-04T02:43:07.7771355Z   go-version-file: native/go.mod
-2026-10-04T02:43:07.7771658Z   cache-dependency-path: native/go.sum
-2026-10-04T02:43:07.7771937Z   check-latest: false
-2026-10-04T02:43:07.7774767Z   token: ***
-2026-10-04T02:43:07.7774997Z   cache: true
-2026-10-04T02:43:07.7775193Z env:
-2026-10-04T02:43:07.7775419Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-04T02:43:07.7775743Z   GOSUMDB: sum.golang.org
-2026-10-04T02:43:07.7775969Z ##[endgroup]
-2026-10-04T02:43:07.9173759Z Setup go version spec 1.24.1
-2026-10-04T02:43:07.9177012Z Attempting to download 1.24.1...
-2026-10-04T02:43:07.9294851Z (node:2082) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
-2026-10-04T02:43:07.9298554Z (Use `node --trace-deprecation ...` to show where the warning was created)
-2026-10-04T02:43:09.2035223Z matching 1.24.1...
-2026-10-04T02:43:09.2265264Z Acquiring 1.24.1 from https://github.com/actions/go-versions/releases/download/1.24.1-13667719799/go-1.24.1-linux-x64.tar.gz
-2026-10-04T02:43:09.9234280Z Extracting Go...
-2026-10-04T02:43:09.9369952Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/be1870b5-3c7a-402b-a19f-dba6c9b6485d -f /home/runner/work/_temp/487029c2-cac4-4c9a-8065-531d742cde83
-2026-10-04T02:43:12.0197256Z Successfully extracted go to /home/runner/work/_temp/be1870b5-3c7a-402b-a19f-dba6c9b6485d
-2026-10-04T02:43:12.0198423Z Adding to the cache ...
-2026-10-04T02:43:20.6188415Z Successfully cached go to /opt/hostedtoolcache/go/1.24.1/x64
-2026-10-04T02:43:20.6193239Z Added go to the path
-2026-10-04T02:43:20.6194918Z Successfully set up Go version 1.24.1
-2026-10-04T02:43:20.6451714Z [command]/opt/hostedtoolcache/go/1.24.1/x64/bin/go env GOMODCACHE
-2026-10-04T02:43:20.6496740Z [command]/opt/hostedtoolcache/go/1.24.1/x64/bin/go env GOCACHE
-2026-10-04T02:43:20.6549716Z /home/runner/go/pkg/mod
-2026-10-04T02:43:20.6564931Z /home/runner/.cache/go-build
-2026-10-04T02:43:20.8576526Z Cache is not found
-2026-10-04T02:43:20.8601097Z go version go1.24.1 linux/amd64
-2026-10-04T02:43:20.8601548Z 
-2026-10-04T02:43:20.8602059Z ##[group]go env
-2026-10-04T02:43:21.0051830Z AR='ar'
-2026-10-04T02:43:21.0052355Z CC='gcc'
-2026-10-04T02:43:21.0053110Z CGO_CFLAGS='-O2 -g'
-2026-10-04T02:43:21.0053614Z CGO_CPPFLAGS=''
-2026-10-04T02:43:21.0054099Z CGO_CXXFLAGS='-O2 -g'
-2026-10-04T02:43:21.0054560Z CGO_ENABLED='1'
-2026-10-04T02:43:21.0055014Z CGO_FFLAGS='-O2 -g'
-2026-10-04T02:43:21.0055504Z CGO_LDFLAGS='-O2 -g'
-2026-10-04T02:43:21.0056030Z CXX='g++'
-2026-10-04T02:43:21.0056502Z GCCGO='gccgo'
-2026-10-04T02:43:21.0056986Z GO111MODULE=''
-2026-10-04T02:43:21.0057451Z GOAMD64='v1'
-2026-10-04T02:43:21.0057894Z GOARCH='amd64'
-2026-10-04T02:43:21.0058329Z GOAUTH='netrc'
-2026-10-04T02:43:21.0058737Z GOBIN=''
-2026-10-04T02:43:21.0059166Z GOCACHE='/home/runner/.cache/go-build'
-2026-10-04T02:43:21.0059733Z GOCACHEPROG=''
-2026-10-04T02:43:21.0060170Z GODEBUG=''
-2026-10-04T02:43:21.0060637Z GOENV='/home/runner/.config/go/env'
-2026-10-04T02:43:21.0061148Z GOEXE=''
-2026-10-04T02:43:21.0061657Z GOEXPERIMENT=''
-2026-10-04T02:43:21.0062116Z GOFIPS140='off'
-2026-10-04T02:43:21.0062821Z GOFLAGS=''
-2026-10-04T02:43:21.0064056Z GOGCCFLAGS='-fPIC -m64 -pthread -Wl,--no-gc-sections -fmessage-length=0 -ffile-prefix-map=/tmp/go-build486989426=/tmp/go-build -gno-record-gcc-switches'
-2026-10-04T02:43:21.0065553Z GOHOSTARCH='amd64'
-2026-10-04T02:43:21.0065999Z GOHOSTOS='linux'
-2026-10-04T02:43:21.0066425Z GOINSECURE=''
-2026-10-04T02:43:21.0066846Z GOMOD='/dev/null'
-2026-10-04T02:43:21.0067318Z GOMODCACHE='/home/runner/go/pkg/mod'
-2026-10-04T02:43:21.0067846Z GONOPROXY=''
-2026-10-04T02:43:21.0068254Z GONOSUMDB=''
-2026-10-04T02:43:21.0068669Z GOOS='linux'
-2026-10-04T02:43:21.0069105Z GOPATH='/home/runner/go'
-2026-10-04T02:43:21.0069567Z GOPRIVATE=''
-2026-10-04T02:43:21.0070102Z GOPROXY='https://proxy.golang.org,direct'
-2026-10-04T02:43:21.0071029Z GOROOT='/opt/hostedtoolcache/go/1.24.1/x64'
-2026-10-04T02:43:21.0071671Z GOSUMDB='sum.golang.org'
-2026-10-04T02:43:21.0072156Z GOTELEMETRY='local'
-2026-10-04T02:43:21.0073022Z GOTELEMETRYDIR='/home/runner/.config/go/telemetry'
-2026-10-04T02:43:21.0073645Z GOTMPDIR=''
-2026-10-04T02:43:21.0074071Z GOTOOLCHAIN='auto'
-2026-10-04T02:43:21.0074699Z GOTOOLDIR='/opt/hostedtoolcache/go/1.24.1/x64/pkg/tool/linux_amd64'
-2026-10-04T02:43:21.0075402Z GOVCS=''
-2026-10-04T02:43:21.0075817Z GOVERSION='go1.24.1'
-2026-10-04T02:43:21.0076265Z GOWORK=''
-2026-10-04T02:43:21.0076689Z PKG_CONFIG='pkg-config'
-2026-10-04T02:43:21.0077026Z 
-2026-10-04T02:43:21.0077643Z ##[endgroup]
-2026-10-04T02:43:21.0374275Z ##[group]Run subosito/flutter-action@v2
-2026-10-04T02:43:21.0374588Z with:
-2026-10-04T02:43:21.0374801Z   flutter-version: 3.47.4
-2026-10-04T02:43:21.0375036Z   channel: stable
-2026-10-04T02:43:21.0375233Z   cache: true
-2026-10-04T02:43:21.0375431Z   architecture: X64
-2026-10-04T02:43:21.0375646Z   pub-cache-path: default
-2026-10-04T02:43:21.0375874Z   dry-run: false
-2026-10-04T02:43:21.0376132Z   git-source: https://github.com/flutter/flutter.git
-2026-10-04T02:43:21.0376439Z env:
-2026-10-04T02:43:21.0376655Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-04T02:43:21.0376943Z   GOSUMDB: sum.golang.org
-2026-10-04T02:43:21.0377166Z ##[endgroup]
-2026-10-04T02:43:21.0436347Z ##[start-action display=Make yq tool available on Windows runners;id=__subosito_flutter-action.__run]
-2026-10-04T02:43:21.0447489Z ##[end-action id=__subosito_flutter-action.__run;outcome=skipped;conclusion=skipped;duration_ms=0]
-2026-10-04T02:43:21.0449596Z ##[start-action display=Make setup script executable;id=__subosito_flutter-action.__run_2]
-2026-10-04T02:43:21.0472831Z ##[group]Run chmod +x "$GITHUB_ACTION_PATH/setup.sh"
-2026-10-04T02:43:21.0473213Z [36;1mchmod +x "$GITHUB_ACTION_PATH/setup.sh"[0m
-2026-10-04T02:43:21.0537912Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
-2026-10-04T02:43:21.0538290Z env:
-2026-10-04T02:43:21.0538529Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-04T02:43:21.0538827Z   GOSUMDB: sum.golang.org
-2026-10-04T02:43:21.0539049Z ##[endgroup]
-2026-10-04T02:43:21.0687394Z ##[end-action id=__subosito_flutter-action.__run_2;outcome=success;conclusion=success;duration_ms=23]
-2026-10-04T02:43:21.0689897Z ##[start-action display=Set action inputs;id=__subosito_flutter-action.flutter-action]
-2026-10-04T02:43:21.0727693Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh -p \
-2026-10-04T02:43:21.0728083Z [36;1m$GITHUB_ACTION_PATH/setup.sh -p \[0m
-2026-10-04T02:43:21.0728390Z [36;1m  -n '3.47.4' \[0m
-2026-10-04T02:43:21.0728616Z [36;1m  -f '' \[0m
-2026-10-04T02:43:21.0728835Z [36;1m  -a 'X64' \[0m
-2026-10-04T02:43:21.0729041Z [36;1m  -k '' \[0m
-2026-10-04T02:43:21.0729236Z [36;1m  -c '' \[0m
-2026-10-04T02:43:21.0729427Z [36;1m  -l '' \[0m
-2026-10-04T02:43:21.0729638Z [36;1m  -d 'default' \[0m
-2026-10-04T02:43:21.0729933Z [36;1m  -g 'https://github.com/flutter/flutter.git' \[0m
-2026-10-04T02:43:21.0730260Z [36;1m  stable[0m
-2026-10-04T02:43:21.0791505Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
-2026-10-04T02:43:21.0791853Z env:
-2026-10-04T02:43:21.0792084Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-04T02:43:21.0792648Z   GOSUMDB: sum.golang.org
-2026-10-04T02:43:21.0792896Z ##[endgroup]
-2026-10-04T02:43:21.3300314Z ##[end-action id=__subosito_flutter-action.flutter-action;outcome=success;conclusion=success;duration_ms=260]
-2026-10-04T02:43:21.3306388Z ##[start-action display=Cache Flutter;id=__subosito_flutter-action.cache-flutter]
-2026-10-04T02:43:21.3351683Z ##[group]Run actions/cache@v5
-2026-10-04T02:43:21.3351934Z with:
-2026-10-04T02:43:21.3352202Z   path: /opt/hostedtoolcache/flutter/stable-3.47.4-x64
-2026-10-04T02:43:21.3352997Z   key: flutter-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
-2026-10-04T02:43:21.3353428Z   enableCrossOsArchive: false
-2026-10-04T02:43:21.3353685Z   fail-on-cache-miss: false
-2026-10-04T02:43:21.3353920Z   lookup-only: false
-2026-10-04T02:43:21.3354139Z   save-always: false
-2026-10-04T02:43:21.3354330Z env:
-2026-10-04T02:43:21.3354553Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-04T02:43:21.3354865Z   GOSUMDB: sum.golang.org
-2026-10-04T02:43:21.3355085Z ##[endgroup]
-2026-10-04T02:43:21.6909788Z Cache not found for input keys: flutter-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
-2026-10-04T02:43:21.7013040Z ##[end-action id=__subosito_flutter-action.cache-flutter;outcome=success;conclusion=success;duration_ms=370]
-2026-10-04T02:43:21.7016335Z ##[start-action display=Cache pub dependencies;id=__subosito_flutter-action.cache-pub]
-2026-10-04T02:43:21.8332311Z ##[group]Run actions/cache@v5
-2026-10-04T02:43:21.8333057Z with:
-2026-10-04T02:43:21.8333279Z   path: /home/runner/.pub-cache
-2026-10-04T02:43:21.8333987Z   key: flutter-pub-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b-0cae16690ce4835119bf00df8296d31dbd399e16fcf4089ace851e31868d0aac
-2026-10-04T02:43:21.8334718Z   enableCrossOsArchive: false
-2026-10-04T02:43:21.8334972Z   fail-on-cache-miss: false
-2026-10-04T02:43:21.8335205Z   lookup-only: false
-2026-10-04T02:43:21.8335414Z   save-always: false
-2026-10-04T02:43:21.8335609Z env:
-2026-10-04T02:43:21.8335831Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-04T02:43:21.8336129Z   GOSUMDB: sum.golang.org
-2026-10-04T02:43:21.8336358Z ##[endgroup]
-2026-10-04T02:43:22.1891546Z Cache not found for input keys: flutter-pub-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b-0cae16690ce4835119bf00df8296d31dbd399e16fcf4089ace851e31868d0aac
-2026-10-04T02:43:22.1970620Z ##[end-action id=__subosito_flutter-action.cache-pub;outcome=success;conclusion=success;duration_ms=495]
-2026-10-04T02:43:22.1975176Z ##[start-action display=Run setup script;id=__subosito_flutter-action.__run_3]
-2026-10-04T02:43:22.2010356Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh \
-2026-10-04T02:43:22.2010698Z [36;1m$GITHUB_ACTION_PATH/setup.sh \[0m
-2026-10-04T02:43:22.2010973Z [36;1m  -n '3.47.4' \[0m
-2026-10-04T02:43:22.2011198Z [36;1m  -a 'x64' \[0m
-2026-10-04T02:43:22.2011498Z [36;1m  -c '/opt/hostedtoolcache/flutter/stable-3.47.4-x64' \[0m
-2026-10-04T02:43:22.2011857Z [36;1m  -d '/home/runner/.pub-cache' \[0m
-2026-10-04T02:43:22.2012126Z [36;1m  stable[0m
-2026-10-04T02:43:22.2074218Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
-2026-10-04T02:43:22.2074565Z env:
-2026-10-04T02:43:22.2074817Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-04T02:43:22.2075120Z   GOSUMDB: sum.golang.org
-2026-10-04T02:43:22.2075345Z ##[endgroup]
-2026-10-04T02:43:22.3754359Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-2026-10-04T02:43:22.3759280Z                                  Dload  Upload   Total   Spent    Left  Speed
-2026-10-04T02:43:22.3759888Z 
-2026-10-04T02:43:23.3734466Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-2026-10-04T02:43:24.3883912Z  18 1503M   18  285M    0     0   285M      0  0:00:05 --:--:--  0:00:05  285M
-2026-10-04T02:43:25.3653589Z  44 1503M   44  664M    0     0   329M      0  0:00:04  0:00:02  0:00:02  330M
-2026-10-04T02:43:26.3650892Z  69 1503M   69 1042M    0     0   348M      0  0:00:04  0:00:02  0:00:02  348M
-2026-10-04T02:43:26.6294039Z  95 1503M   95 1432M    0     0   358M      0  0:00:04  0:00:03  0:00:01  358M
-2026-10-04T02:43:26.6295293Z 100 1503M  100 1503M    0     0   353M      0  0:00:04  0:00:04 --:--:--  353M
-2026-10-04T02:44:21.3379591Z ##[end-action id=__subosito_flutter-action.__run_3;outcome=success;conclusion=success;duration_ms=59140]
-2026-10-04T02:44:21.3435338Z ##[group]Run flutter pub get --enforce-lockfile
-2026-10-04T02:44:21.3435741Z [36;1mflutter pub get --enforce-lockfile[0m
-2026-10-04T02:44:21.3532037Z shell: /usr/bin/bash -e {0}
-2026-10-04T02:44:21.3532305Z env:
-2026-10-04T02:44:21.3532696Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-04T02:44:21.3533021Z   GOSUMDB: sum.golang.org
-2026-10-04T02:44:21.3533386Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
-2026-10-04T02:44:21.3533801Z   PUB_CACHE: /home/runner/.pub-cache
-2026-10-04T02:44:21.3534092Z ##[endgroup]
-2026-10-04T02:44:26.5636997Z Resolving dependencies...
-2026-10-04T02:44:26.9958170Z Downloading packages...
-2026-10-04T02:44:32.3606153Z * android_file_picker 2.0.0 (was 2.0.0)
-2026-10-04T02:44:32.3606905Z * archive 4.3.0 (was 4.3.0)
-2026-10-04T02:44:32.3607554Z * args 2.7.0 (was 2.7.0)
-2026-10-04T02:44:32.3608176Z * async 2.13.1 (was 2.13.1)
-2026-10-04T02:44:32.3608838Z * boolean_selector 2.1.2 (was 2.1.2)
-2026-10-04T02:44:32.3609558Z * characters 1.4.1 (was 1.4.1)
-2026-10-04T02:44:32.3610165Z * clock 1.1.3 (was 1.1.3)
-2026-10-04T02:44:32.3610801Z * code_assets 2.1.0 (was 2.1.0)
-2026-10-04T02:44:32.3611469Z * collection 1.19.1 (was 1.19.1)
-2026-10-04T02:44:32.3612209Z * cross_file 0.3.5+5 (was 0.3.5+5) (0.4.0 available)
-2026-10-04T02:44:32.3613246Z * crypto 3.0.7 (was 3.0.7)
-2026-10-04T02:44:32.3613890Z * dbus 0.8.0 (was 0.7.15)
-2026-10-04T02:44:32.3614511Z * fake_async 1.3.3 (was 1.3.3)
-2026-10-04T02:44:32.3615156Z * ffi 2.2.0 (was 2.2.0)
-2026-10-04T02:44:32.3615767Z * ffi_leak_tracker 0.1.2 (was 0.1.2)
-2026-10-04T02:44:32.3616565Z * ffmpeg_kit_flutter_new_min_gpl 2.6.2 (was 2.6.2) (2.6.4 available)
-2026-10-04T02:44:32.3617946Z Unable to satisfy `pubspec.yaml` using `pubspec.lock`.
-2026-10-04T02:44:32.3618627Z * ffmpeg_kit_flutter_platform_interface 0.2.1 (was 0.2.1)
-2026-10-04T02:44:32.3619431Z 
-2026-10-04T02:44:32.3619604Z * file 7.0.1 (was 7.0.1)
-2026-10-04T02:44:32.3637929Z To update `pubspec.lock` run `flutter pub get` without
-2026-10-04T02:44:32.3638537Z * file_picker 13.1.0 (was 13.1.0)
-2026-10-04T02:44:32.3640652Z `--enforce-lockfile`.
-2026-10-04T02:44:32.3641105Z * file_picker_darwin 2.1.2 (was 2.1.2)
-2026-10-04T02:44:32.3643245Z * file_picker_linux 2.0.1 (was 2.0.0)
-2026-10-04T02:44:32.3643976Z * file_picker_platform_interface 4.0.0 (was 4.0.0)
-2026-10-04T02:44:32.3644428Z * file_picker_web 4.0.0 (was 4.0.0)
-2026-10-04T02:44:32.3644701Z * fixnum 1.1.1 (was 1.1.1)
-2026-10-04T02:44:32.3644959Z * flutter_foreground_task 11.0.3 (was 11.0.3)
-2026-10-04T02:44:32.3645253Z * flutter_lints 6.0.0 (was 6.0.0)
-2026-10-04T02:44:32.3645499Z * hooks 2.2.0 (was 2.2.0)
-2026-10-04T02:44:32.3645723Z * http 1.6.0 (was 1.6.0)
-2026-10-04T02:44:32.3645951Z * http_parser 4.1.2 (was 4.1.2)
-2026-10-04T02:44:32.3646190Z * image 4.10.1 (was 4.10.1)
-2026-10-04T02:44:32.3646414Z * intl 0.20.3 (was 0.20.3)
-2026-10-04T02:44:32.3646641Z * jni 1.1.0 (was 1.0.3)
-2026-10-04T02:44:32.3646858Z * jni_flutter 1.0.3 (was 1.0.3)
-2026-10-04T02:44:32.3647133Z * jni_util 1.0.0 (was 1.0.0)
-2026-10-04T02:44:32.3647381Z * json_annotation 4.12.0 (was 4.12.0)
-2026-10-04T02:44:32.3647640Z * leak_tracker 11.0.2 (was 11.0.2)
-2026-10-04T02:44:32.3647921Z * leak_tracker_flutter_testing 3.0.10 (was 3.0.10)
-2026-10-04T02:44:32.3648241Z * leak_tracker_testing 3.0.2 (was 3.0.2)
-2026-10-04T02:44:32.3648510Z * lints 6.1.0 (was 6.1.0)
-2026-10-04T02:44:32.3648734Z * logging 1.3.0 (was 1.3.0)
-2026-10-04T02:44:32.3648962Z * matcher 0.12.20 (was 0.12.20)
-2026-10-04T02:44:32.3649274Z * material_color_utilities 0.13.0 (was 0.13.0) (0.13.1 available)
-2026-10-04T02:44:32.3649622Z * media_kit 1.2.6 (was 1.2.6)
-2026-10-04T02:44:32.3649894Z * media_kit_libs_android_video 1.3.8 (was 1.3.8)
-2026-10-04T02:44:32.3650206Z * media_kit_libs_ios_video 1.1.4 (was 1.1.4)
-2026-10-04T02:44:32.3650492Z * media_kit_libs_linux 1.2.1 (was 1.2.1)
-2026-10-04T02:44:32.3651096Z * media_kit_libs_macos_video 1.1.4 (was 1.1.4)
-2026-10-04T02:44:32.3651387Z * media_kit_libs_video 1.0.7 (was 1.0.7)
-2026-10-04T02:44:32.3652067Z ! media_kit_libs_windows_video 1.0.11+duanju.1 from path packages/media_kit_libs_windows_video (overridden)
-2026-10-04T02:44:32.3652989Z * media_kit_video 2.0.1 (was 2.0.1)
-2026-10-04T02:44:32.3653434Z * meta 1.19.0 (was 1.19.0)
-2026-10-04T02:44:32.3653793Z * nested 1.0.0 (was 1.0.0)
-2026-10-04T02:44:32.3654145Z * nsd 5.0.1 (was 5.0.1)
-2026-10-04T02:44:32.3654497Z * nsd_android 2.2.0 (was 2.2.0)
-2026-10-04T02:44:32.3654869Z * nsd_ios 3.0.1 (was 3.0.1)
-2026-10-04T02:44:32.3655229Z * nsd_macos 3.0.1 (was 3.0.1)
-2026-10-04T02:44:32.3656713Z * nsd_platform_interface 2.2.0 (was 2.2.0)
-2026-10-04T02:44:32.3657382Z * nsd_windows 3.0.1 (was 3.0.1)
-2026-10-04T02:44:32.3657798Z * objective_c 9.6.2 (was 9.6.1)
-2026-10-04T02:44:32.3658496Z * package_config 3.0.0 (was 3.0.0)
-2026-10-04T02:44:32.3659183Z * package_info_plus 10.2.2 (was 10.2.1)
-2026-10-04T02:44:32.3659715Z * package_info_plus_platform_interface 4.1.0 (was 4.1.0)
-2026-10-04T02:44:32.3660512Z * path 1.9.1 (was 1.9.1)
-2026-10-04T02:44:32.3660924Z * path_provider 2.1.6 (was 2.1.6)
-2026-10-04T02:44:32.3661402Z * path_provider_android 2.3.1 (was 2.3.1)
-2026-10-04T02:44:32.3661912Z * path_provider_foundation 2.6.0 (was 2.6.0)
-2026-10-04T02:44:32.3663315Z * path_provider_linux 2.2.2 (was 2.2.2)
-2026-10-04T02:44:32.3663898Z * path_provider_platform_interface 2.1.3 (was 2.1.3)
-2026-10-04T02:44:32.3664726Z * path_provider_windows 2.3.0 (was 2.3.0)
-2026-10-04T02:44:32.3665365Z * petitparser 7.1.0 (was 7.1.0)
-2026-10-04T02:44:32.3666211Z * platform 3.2.0 (was 3.2.0)
-2026-10-04T02:44:32.3666766Z * plugin_platform_interface 2.1.8 (was 2.1.8)
-2026-10-04T02:44:32.3667581Z * posix 6.5.2 (was 6.5.2)
-2026-10-04T02:44:32.3668138Z * process 5.0.6 (was 5.0.6)
-2026-10-04T02:44:32.3669083Z * provider 6.1.5+1 (was 6.1.5+1)
-2026-10-04T02:44:32.3669656Z * pub_semver 2.2.1 (was 2.2.1)
-2026-10-04T02:44:32.3670151Z * record_use 1.1.1 (was 1.1.1)
-2026-10-04T02:44:32.3670860Z * safe_local_storage 2.0.6 (was 2.0.6)
-2026-10-04T02:44:32.3671408Z * screen_retriever 0.2.2 (was 0.2.2)
-2026-10-04T02:44:32.3672066Z * screen_retriever_linux 0.2.2 (was 0.2.2)
-2026-10-04T02:44:32.3673198Z * screen_retriever_macos 0.2.2 (was 0.2.2)
-2026-10-04T02:44:32.3673983Z * screen_retriever_platform_interface 0.2.2 (was 0.2.2)
-2026-10-04T02:44:32.3674805Z * screen_retriever_windows 0.2.2 (was 0.2.2)
-2026-10-04T02:44:32.3675452Z * shared_preferences 2.5.5 (was 2.5.5)
-2026-10-04T02:44:32.3676134Z * shared_preferences_android 2.4.28 (was 2.4.28)
-2026-10-04T02:44:32.3693328Z * shared_preferences_foundation 2.5.7 (was 2.5.7)
-2026-10-04T02:44:32.3693927Z * shared_preferences_linux 2.4.1 (was 2.4.1)
-2026-10-04T02:44:32.3694533Z * shared_preferences_platform_interface 2.4.2 (was 2.4.2)
-2026-10-04T02:44:32.3695094Z * shared_preferences_web 2.4.3 (was 2.4.3)
-2026-10-04T02:44:32.3695589Z * shared_preferences_windows 2.4.1 (was 2.4.1)
-2026-10-04T02:44:32.3696069Z * source_span 1.10.2 (was 1.10.2)
-2026-10-04T02:44:32.3696502Z * stack_trace 1.12.2 (was 1.12.2)
-2026-10-04T02:44:32.3696937Z * stream_channel 2.1.4 (was 2.1.4)
-2026-10-04T02:44:32.3697377Z * string_scanner 1.4.1 (was 1.4.1)
-2026-10-04T02:44:32.3697871Z * sync_http 0.3.1 (was 0.3.1)
-2026-10-04T02:44:32.3698328Z * synchronized 3.4.2 (was 3.4.2)
-2026-10-04T02:44:32.3698747Z * term_glyph 1.2.2 (was 1.2.2)
-2026-10-04T02:44:32.3699242Z * test_api 0.7.12 (was 0.7.12) (0.7.14 available)
-2026-10-04T02:44:32.3699764Z * typed_data 1.4.0 (was 1.4.0)
-2026-10-04T02:44:32.3700215Z * universal_platform 1.1.0 (was 1.1.0)
-2026-10-04T02:44:32.3700700Z * uri_parser 3.0.2 (was 3.0.2)
-2026-10-04T02:44:32.3701118Z * uuid 4.6.0 (was 4.6.0)
-2026-10-04T02:44:32.3701513Z * vector_math 2.4.3 (was 2.4.3)
-2026-10-04T02:44:32.3701960Z * vm_service 15.3.0 (was 15.3.0)
-2026-10-04T02:44:32.3703283Z * wakelock_plus 1.8.1 (was 1.8.0)
-2026-10-04T02:44:32.3703887Z * wakelock_plus_platform_interface 1.7.0 (was 1.7.0)
-2026-10-04T02:44:32.3704449Z * web 1.1.1 (was 1.1.1)
-2026-10-04T02:44:32.3705130Z * webdriver 3.2.0 (was 3.2.0)
-2026-10-04T02:44:32.3705536Z * win32 6.4.0 (was 6.4.0)
-2026-10-04T02:44:32.3706137Z * window_manager 0.5.2 (was 0.5.2)
-2026-10-04T02:44:32.3706639Z * windows_file_picker 2.0.0 (was 2.0.0)
-2026-10-04T02:44:32.3707149Z * xdg_directories 1.1.0 (was 1.1.0)
-2026-10-04T02:44:32.3707605Z * xml 7.1.0 (was 7.1.0)
-2026-10-04T02:44:32.3708006Z * yaml 3.1.4 (was 3.1.4)
-2026-10-04T02:44:32.3708429Z Would change 113 dependencies.
-2026-10-04T02:44:32.3709099Z 4 packages have newer versions incompatible with dependency constraints.
-2026-10-04T02:44:32.3709852Z Try `flutter pub outdated` for more information.
-2026-10-04T02:44:32.3909994Z Failed to update packages.
-2026-10-04T02:44:32.3961023Z ##[error]Process completed with exit code 65.
-2026-10-04T02:44:32.4159263Z Post job cleanup.
-2026-10-04T02:44:32.4163169Z ##[start-action display=Cache pub dependencies;id=__c4988165-8ebf-451f-9b5a-406da837c06f.cache-pub]
-2026-10-04T02:44:32.4165306Z ##[end-action id=__c4988165-8ebf-451f-9b5a-406da837c06f.cache-pub;outcome=skipped;conclusion=skipped;duration_ms=0]
-2026-10-04T02:44:32.4167152Z ##[start-action display=Cache Flutter;id=__c4988165-8ebf-451f-9b5a-406da837c06f.cache-flutter]
-2026-10-04T02:44:32.4169000Z ##[end-action id=__c4988165-8ebf-451f-9b5a-406da837c06f.cache-flutter;outcome=skipped;conclusion=skipped;duration_ms=0]
-2026-10-04T02:44:32.4237568Z Post job cleanup.
-2026-10-04T02:44:32.5249480Z [command]/usr/bin/git version
-2026-10-04T02:44:32.5342827Z git version 2.55.0
-2026-10-04T02:44:32.5348494Z Temporarily overriding HOME='/home/runner/work/_temp/231e1cbb-6c59-456c-a4f9-5c183a4a0dd6' before making global git config changes
-2026-10-04T02:44:32.5350288Z Adding repository directory to the temporary git global config as a safe directory
-2026-10-04T02:44:32.5351570Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/guoapp/guoapp
-2026-10-04T02:44:32.5405620Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
-2026-10-04T02:44:32.5456112Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
-2026-10-04T02:44:32.5860314Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
-2026-10-04T02:44:32.5888819Z http.https://github.com/.extraheader
-2026-10-04T02:44:32.5891156Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
-2026-10-04T02:44:32.5941345Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
-2026-10-04T02:44:32.6437481Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
-2026-10-04T02:44:32.6440833Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
-2026-10-04T02:44:32.6983241Z Cleaning up orphan processes
-2026-10-04T02:44:32.7254802Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-go@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+﻿2026-10-04T03:12:39.5274564Z Current runner version: '2.337.0'
+2026-10-04T03:12:39.5289521Z ##[group]Runner Image Provisioner
+2026-10-04T03:12:39.5290005Z Hosted Compute Agent
+2026-10-04T03:12:39.5290329Z Version: 20260901.588
+2026-10-04T03:12:39.5290826Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+2026-10-04T03:12:39.5291232Z Build Date: 2026-09-01T19:56:44Z
+2026-10-04T03:12:39.5291677Z Worker ID: {4e3d6b70-2d7a-4ef6-92aa-4a19b3153a42}
+2026-10-04T03:12:39.5292081Z Azure Region: westus2
+2026-10-04T03:12:39.5292395Z ##[endgroup]
+2026-10-04T03:12:39.5293110Z ##[group]Operating System
+2026-10-04T03:12:39.5293482Z Ubuntu
+2026-10-04T03:12:39.5294026Z 24.04.5
+2026-10-04T03:12:39.5294336Z LTS
+2026-10-04T03:12:39.5294633Z ##[endgroup]
+2026-10-04T03:12:39.5295034Z ##[group]Runner Image
+2026-10-04T03:12:39.5295371Z Image: ubuntu-24.04
+2026-10-04T03:12:39.5295959Z Version: 20260927.320.1
+2026-10-04T03:12:39.5296671Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260927.320/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-04T03:12:39.5297555Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260927.320
+2026-10-04T03:12:39.5298084Z ##[endgroup]
+2026-10-04T03:12:39.5298738Z ##[group]GITHUB_TOKEN Permissions
+2026-10-04T03:12:39.5299861Z Contents: read
+2026-10-04T03:12:39.5300220Z Metadata: read
+2026-10-04T03:12:39.5300578Z ##[endgroup]
+2026-10-04T03:12:39.5301781Z Secret source: Actions
+2026-10-04T03:12:39.5302348Z Cache mode: write
+2026-10-04T03:12:39.5302727Z Prepare workflow directory
+2026-10-04T03:12:39.5520712Z Prepare all required actions
+2026-10-04T03:12:39.5549530Z Getting action download info
+2026-10-04T03:12:39.9095646Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-04T03:12:40.0949472Z Download action repository 'actions/setup-go@v5' (SHA:40f1582b2485089dde7abd97c1529aa768e1baff)
+2026-10-04T03:12:40.4270504Z Download action repository 'subosito/flutter-action@v2' (SHA:1a449444c387b1966244ae4d4f8c696479add0b2)
+2026-10-04T03:12:40.6725758Z Getting action download info
+2026-10-04T03:12:40.8084362Z Download action repository 'actions/cache@v5' (SHA:caa296126883cff596d87d8935842f9db880ef25)
+2026-10-04T03:12:41.1438441Z Complete job name: checks
+2026-10-04T03:12:41.1864887Z ##[group]Run actions/checkout@v4
+2026-10-04T03:12:41.1865272Z with:
+2026-10-04T03:12:41.1865500Z   repository: xiaobailong6/guoapp
+2026-10-04T03:12:41.1867435Z   token: ***
+2026-10-04T03:12:41.1867656Z   ssh-strict: true
+2026-10-04T03:12:41.1867880Z   ssh-user: git
+2026-10-04T03:12:41.1868114Z   persist-credentials: true
+2026-10-04T03:12:41.1868365Z   clean: true
+2026-10-04T03:12:41.1868598Z   sparse-checkout-cone-mode: true
+2026-10-04T03:12:41.1868872Z   fetch-depth: 1
+2026-10-04T03:12:41.1869099Z   fetch-tags: false
+2026-10-04T03:12:41.1869340Z   show-progress: true
+2026-10-04T03:12:41.1869572Z   lfs: false
+2026-10-04T03:12:41.1869789Z   submodules: false
+2026-10-04T03:12:41.1870020Z   set-safe-directory: true
+2026-10-04T03:12:41.1870282Z   allow-unsafe-pr-checkout: false
+2026-10-04T03:12:41.1870621Z env:
+2026-10-04T03:12:41.1870857Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-04T03:12:41.1871158Z   GOSUMDB: sum.golang.org
+2026-10-04T03:12:41.1871399Z ##[endgroup]
+2026-10-04T03:12:41.2608912Z Syncing repository: xiaobailong6/guoapp
+2026-10-04T03:12:41.2610696Z ##[group]Getting Git version info
+2026-10-04T03:12:41.2611691Z Working directory is '/home/runner/work/guoapp/guoapp'
+2026-10-04T03:12:41.2613011Z [command]/usr/bin/git version
+2026-10-04T03:12:41.3779495Z git version 2.55.0
+2026-10-04T03:12:41.3785147Z ##[endgroup]
+2026-10-04T03:12:41.3795896Z Temporarily overriding HOME='/home/runner/work/_temp/bc65c8ea-3b43-48c8-9848-1456a4547a66' before making global git config changes
+2026-10-04T03:12:41.3861877Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-04T03:12:41.3862459Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/guoapp/guoapp
+2026-10-04T03:12:41.4130337Z Deleting the contents of '/home/runner/work/guoapp/guoapp'
+2026-10-04T03:12:41.4131413Z ##[group]Initializing the repository
+2026-10-04T03:12:41.4131934Z [command]/usr/bin/git init /home/runner/work/guoapp/guoapp
+2026-10-04T03:12:41.4223098Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-04T03:12:41.4224219Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-04T03:12:41.4225015Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-04T03:12:41.4226818Z hint: call:
+2026-10-04T03:12:41.4227639Z hint:
+2026-10-04T03:12:41.4239768Z hint: 	git config --global init.defaultBranch <name>
+2026-10-04T03:12:41.4240764Z hint:
+2026-10-04T03:12:41.4241428Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-04T03:12:41.4242514Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-04T03:12:41.4243301Z hint:
+2026-10-04T03:12:41.4244188Z hint: 	git branch -m <name>
+2026-10-04T03:12:41.4244753Z hint:
+2026-10-04T03:12:41.4245614Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-04T03:12:41.4246676Z Initialized empty Git repository in /home/runner/work/guoapp/guoapp/.git/
+2026-10-04T03:12:41.4251084Z [command]/usr/bin/git remote add origin https://github.com/xiaobailong6/guoapp
+2026-10-04T03:12:41.4278918Z ##[endgroup]
+2026-10-04T03:12:41.4279489Z ##[group]Disabling automatic garbage collection
+2026-10-04T03:12:41.4283233Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-04T03:12:41.4311252Z ##[endgroup]
+2026-10-04T03:12:41.4313433Z ##[group]Setting up auth
+2026-10-04T03:12:41.4315741Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-04T03:12:41.4343313Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-04T03:12:41.5058767Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-04T03:12:41.5176571Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-04T03:12:41.5288683Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-04T03:12:41.5317939Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-04T03:12:41.5489493Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-04T03:12:41.5524759Z ##[endgroup]
+2026-10-04T03:12:41.5525716Z ##[group]Fetching the repository
+2026-10-04T03:12:41.5529088Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +fc928edd7f6e0344d124e5a2321c2baee4c79050:refs/remotes/origin/main
+2026-10-04T03:12:42.2454808Z From https://github.com/xiaobailong6/guoapp
+2026-10-04T03:12:42.2461649Z  * [new ref]         fc928edd7f6e0344d124e5a2321c2baee4c79050 -> origin/main
+2026-10-04T03:12:42.2476860Z ##[endgroup]
+2026-10-04T03:12:42.2478160Z ##[group]Determining the checkout info
+2026-10-04T03:12:42.2479564Z ##[endgroup]
+2026-10-04T03:12:42.2480451Z [command]/usr/bin/git sparse-checkout disable
+2026-10-04T03:12:42.2545925Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-04T03:12:42.2615403Z ##[group]Checking out the ref
+2026-10-04T03:12:42.2623178Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-10-04T03:12:42.3036346Z Switched to a new branch 'main'
+2026-10-04T03:12:42.3042132Z branch 'main' set up to track 'origin/main'.
+2026-10-04T03:12:42.3055040Z ##[endgroup]
+2026-10-04T03:12:42.3091207Z [command]/usr/bin/git log -1 --format=%H
+2026-10-04T03:12:42.3113939Z fc928edd7f6e0344d124e5a2321c2baee4c79050
+2026-10-04T03:12:42.3306854Z ##[group]Run python3 -m unittest discover -s scripts -p 'test_*.py'
+2026-10-04T03:12:42.3308296Z [36;1mpython3 -m unittest discover -s scripts -p 'test_*.py'[0m
+2026-10-04T03:12:42.3522770Z shell: /usr/bin/bash -e {0}
+2026-10-04T03:12:42.3523461Z env:
+2026-10-04T03:12:42.3524280Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-04T03:12:42.3525101Z   GOSUMDB: sum.golang.org
+2026-10-04T03:12:42.3525737Z ##[endgroup]
+2026-10-04T03:12:43.3266305Z ..................
+2026-10-04T03:12:43.3284304Z ----------------------------------------------------------------------
+2026-10-04T03:12:43.3290660Z Ran 18 tests in 0.781s
+2026-10-04T03:12:43.3314009Z 
+2026-10-04T03:12:43.3314376Z OK
+2026-10-04T03:12:43.3437239Z ##[group]Run actions/setup-go@v5
+2026-10-04T03:12:43.3437445Z with:
+2026-10-04T03:12:43.3437615Z   go-version-file: native/go.mod
+2026-10-04T03:12:43.3437864Z   cache-dependency-path: native/go.sum
+2026-10-04T03:12:43.3438048Z   check-latest: false
+2026-10-04T03:12:43.3439316Z   token: ***
+2026-10-04T03:12:43.3439438Z   cache: true
+2026-10-04T03:12:43.3439545Z env:
+2026-10-04T03:12:43.3439683Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-04T03:12:43.3439865Z   GOSUMDB: sum.golang.org
+2026-10-04T03:12:43.3439990Z ##[endgroup]
+2026-10-04T03:12:43.4254833Z Setup go version spec 1.24.1
+2026-10-04T03:12:43.4256770Z Attempting to download 1.24.1...
+2026-10-04T03:12:43.4324523Z (node:1997) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-04T03:12:43.4325512Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-04T03:12:43.8694488Z matching 1.24.1...
+2026-10-04T03:12:43.8727064Z Acquiring 1.24.1 from https://github.com/actions/go-versions/releases/download/1.24.1-13667719799/go-1.24.1-linux-x64.tar.gz
+2026-10-04T03:12:44.5649784Z Extracting Go...
+2026-10-04T03:12:44.5746459Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/6459df10-70d8-491b-9a6a-215d5ba9e985 -f /home/runner/work/_temp/26dc90f0-afde-4378-87c4-28f44bd84634
+2026-10-04T03:12:45.9785155Z Successfully extracted go to /home/runner/work/_temp/6459df10-70d8-491b-9a6a-215d5ba9e985
+2026-10-04T03:12:45.9790251Z Adding to the cache ...
+2026-10-04T03:12:53.0993073Z Successfully cached go to /opt/hostedtoolcache/go/1.24.1/x64
+2026-10-04T03:12:53.0998980Z Added go to the path
+2026-10-04T03:12:53.0999609Z Successfully set up Go version 1.24.1
+2026-10-04T03:12:53.1153254Z [command]/opt/hostedtoolcache/go/1.24.1/x64/bin/go env GOMODCACHE
+2026-10-04T03:12:53.1191355Z [command]/opt/hostedtoolcache/go/1.24.1/x64/bin/go env GOCACHE
+2026-10-04T03:12:53.1226983Z /home/runner/go/pkg/mod
+2026-10-04T03:12:53.1245533Z /home/runner/.cache/go-build
+2026-10-04T03:12:53.5084638Z Cache is not found
+2026-10-04T03:12:53.5101769Z go version go1.24.1 linux/amd64
+2026-10-04T03:12:53.5101883Z 
+2026-10-04T03:12:53.5102049Z ##[group]go env
+2026-10-04T03:12:53.7732872Z AR='ar'
+2026-10-04T03:12:53.7733412Z CC='gcc'
+2026-10-04T03:12:53.7734011Z CGO_CFLAGS='-O2 -g'
+2026-10-04T03:12:53.7734358Z CGO_CPPFLAGS=''
+2026-10-04T03:12:53.7734657Z CGO_CXXFLAGS='-O2 -g'
+2026-10-04T03:12:53.7734954Z CGO_ENABLED='1'
+2026-10-04T03:12:53.7735242Z CGO_FFLAGS='-O2 -g'
+2026-10-04T03:12:53.7735531Z CGO_LDFLAGS='-O2 -g'
+2026-10-04T03:12:53.7735818Z CXX='g++'
+2026-10-04T03:12:53.7736097Z GCCGO='gccgo'
+2026-10-04T03:12:53.7736387Z GO111MODULE=''
+2026-10-04T03:12:53.7736674Z GOAMD64='v1'
+2026-10-04T03:12:53.7736967Z GOARCH='amd64'
+2026-10-04T03:12:53.7737250Z GOAUTH='netrc'
+2026-10-04T03:12:53.7737527Z GOBIN=''
+2026-10-04T03:12:53.7737838Z GOCACHE='/home/runner/.cache/go-build'
+2026-10-04T03:12:53.7738209Z GOCACHEPROG=''
+2026-10-04T03:12:53.7738509Z GODEBUG=''
+2026-10-04T03:12:53.7738839Z GOENV='/home/runner/.config/go/env'
+2026-10-04T03:12:53.7739161Z GOEXE=''
+2026-10-04T03:12:53.7739443Z GOEXPERIMENT=''
+2026-10-04T03:12:53.7739733Z GOFIPS140='off'
+2026-10-04T03:12:53.7740039Z GOFLAGS=''
+2026-10-04T03:12:53.7740719Z GOGCCFLAGS='-fPIC -m64 -pthread -Wl,--no-gc-sections -fmessage-length=0 -ffile-prefix-map=/tmp/go-build3229430746=/tmp/go-build -gno-record-gcc-switches'
+2026-10-04T03:12:53.7741611Z GOHOSTARCH='amd64'
+2026-10-04T03:12:53.7741894Z GOHOSTOS='linux'
+2026-10-04T03:12:53.7742178Z GOINSECURE=''
+2026-10-04T03:12:53.7742454Z GOMOD='/dev/null'
+2026-10-04T03:12:53.7742762Z GOMODCACHE='/home/runner/go/pkg/mod'
+2026-10-04T03:12:53.7743088Z GONOPROXY=''
+2026-10-04T03:12:53.7743364Z GONOSUMDB=''
+2026-10-04T03:12:53.7743815Z GOOS='linux'
+2026-10-04T03:12:53.7744197Z GOPATH='/home/runner/go'
+2026-10-04T03:12:53.7744538Z GOPRIVATE=''
+2026-10-04T03:12:53.7744760Z GOPROXY='https://proxy.golang.org,direct'
+2026-10-04T03:12:53.7745235Z GOROOT='/opt/hostedtoolcache/go/1.24.1/x64'
+2026-10-04T03:12:53.7745484Z GOSUMDB='sum.golang.org'
+2026-10-04T03:12:53.7745677Z GOTELEMETRY='local'
+2026-10-04T03:12:53.7745901Z GOTELEMETRYDIR='/home/runner/.config/go/telemetry'
+2026-10-04T03:12:53.7746149Z GOTMPDIR=''
+2026-10-04T03:12:53.7746316Z GOTOOLCHAIN='auto'
+2026-10-04T03:12:53.7746583Z GOTOOLDIR='/opt/hostedtoolcache/go/1.24.1/x64/pkg/tool/linux_amd64'
+2026-10-04T03:12:53.7746876Z GOVCS=''
+2026-10-04T03:12:53.7747037Z GOVERSION='go1.24.1'
+2026-10-04T03:12:53.7747212Z GOWORK=''
+2026-10-04T03:12:53.7747383Z PKG_CONFIG='pkg-config'
+2026-10-04T03:12:53.7747505Z 
+2026-10-04T03:12:53.7747766Z ##[endgroup]
+2026-10-04T03:12:53.7986110Z ##[group]Run subosito/flutter-action@v2
+2026-10-04T03:12:53.7986276Z with:
+2026-10-04T03:12:53.7986394Z   flutter-version: 3.47.4
+2026-10-04T03:12:53.7986520Z   channel: stable
+2026-10-04T03:12:53.7986626Z   cache: true
+2026-10-04T03:12:53.7986735Z   architecture: X64
+2026-10-04T03:12:53.7986853Z   pub-cache-path: default
+2026-10-04T03:12:53.7986976Z   dry-run: false
+2026-10-04T03:12:53.7987116Z   git-source: https://github.com/flutter/flutter.git
+2026-10-04T03:12:53.7987276Z env:
+2026-10-04T03:12:53.7987400Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-04T03:12:53.7987554Z   GOSUMDB: sum.golang.org
+2026-10-04T03:12:53.7987677Z ##[endgroup]
+2026-10-04T03:12:53.8024533Z ##[start-action display=Make yq tool available on Windows runners;id=__subosito_flutter-action.__run]
+2026-10-04T03:12:53.8030024Z ##[end-action id=__subosito_flutter-action.__run;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-10-04T03:12:53.8031170Z ##[start-action display=Make setup script executable;id=__subosito_flutter-action.__run_2]
+2026-10-04T03:12:53.8046820Z ##[group]Run chmod +x "$GITHUB_ACTION_PATH/setup.sh"
+2026-10-04T03:12:53.8047024Z [36;1mchmod +x "$GITHUB_ACTION_PATH/setup.sh"[0m
+2026-10-04T03:12:53.8100984Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-04T03:12:53.8101205Z env:
+2026-10-04T03:12:53.8101346Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-04T03:12:53.8101509Z   GOSUMDB: sum.golang.org
+2026-10-04T03:12:53.8101635Z ##[endgroup]
+2026-10-04T03:12:53.8183577Z ##[end-action id=__subosito_flutter-action.__run_2;outcome=success;conclusion=success;duration_ms=15]
+2026-10-04T03:12:53.8202344Z ##[start-action display=Set action inputs;id=__subosito_flutter-action.flutter-action]
+2026-10-04T03:12:53.8228343Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh -p \
+2026-10-04T03:12:53.8228568Z [36;1m$GITHUB_ACTION_PATH/setup.sh -p \[0m
+2026-10-04T03:12:53.8228731Z [36;1m  -n '3.47.4' \[0m
+2026-10-04T03:12:53.8228854Z [36;1m  -f '' \[0m
+2026-10-04T03:12:53.8228973Z [36;1m  -a 'X64' \[0m
+2026-10-04T03:12:53.8229087Z [36;1m  -k '' \[0m
+2026-10-04T03:12:53.8229198Z [36;1m  -c '' \[0m
+2026-10-04T03:12:53.8229304Z [36;1m  -l '' \[0m
+2026-10-04T03:12:53.8229421Z [36;1m  -d 'default' \[0m
+2026-10-04T03:12:53.8229590Z [36;1m  -g 'https://github.com/flutter/flutter.git' \[0m
+2026-10-04T03:12:53.8229766Z [36;1m  stable[0m
+2026-10-04T03:12:53.8274090Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-04T03:12:53.8274272Z env:
+2026-10-04T03:12:53.8274402Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-04T03:12:53.8274561Z   GOSUMDB: sum.golang.org
+2026-10-04T03:12:53.8274689Z ##[endgroup]
+2026-10-04T03:12:54.0337015Z ##[end-action id=__subosito_flutter-action.flutter-action;outcome=success;conclusion=success;duration_ms=213]
+2026-10-04T03:12:54.0341608Z ##[start-action display=Cache Flutter;id=__subosito_flutter-action.cache-flutter]
+2026-10-04T03:12:54.0371214Z ##[group]Run actions/cache@v5
+2026-10-04T03:12:54.0371354Z with:
+2026-10-04T03:12:54.0371509Z   path: /opt/hostedtoolcache/flutter/stable-3.47.4-x64
+2026-10-04T03:12:54.0371765Z   key: flutter-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
+2026-10-04T03:12:54.0372000Z   enableCrossOsArchive: false
+2026-10-04T03:12:54.0372145Z   fail-on-cache-miss: false
+2026-10-04T03:12:54.0372280Z   lookup-only: false
+2026-10-04T03:12:54.0372403Z   save-always: false
+2026-10-04T03:12:54.0372518Z env:
+2026-10-04T03:12:54.0372653Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-04T03:12:54.0372818Z   GOSUMDB: sum.golang.org
+2026-10-04T03:12:54.0372944Z ##[endgroup]
+2026-10-04T03:12:54.3544485Z Cache not found for input keys: flutter-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
+2026-10-04T03:12:54.3562599Z ##[end-action id=__subosito_flutter-action.cache-flutter;outcome=success;conclusion=success;duration_ms=322]
+2026-10-04T03:12:54.3565493Z ##[start-action display=Cache pub dependencies;id=__subosito_flutter-action.cache-pub]
+2026-10-04T03:12:54.4265754Z ##[group]Run actions/cache@v5
+2026-10-04T03:12:54.4265909Z with:
+2026-10-04T03:12:54.4266035Z   path: /home/runner/.pub-cache
+2026-10-04T03:12:54.4266424Z   key: flutter-pub-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b-92ff6c66973c3782994dd6a0ab87d5fada3bb52cb81c3f8bfb62b096ea446000
+2026-10-04T03:12:54.4266816Z   enableCrossOsArchive: false
+2026-10-04T03:12:54.4266959Z   fail-on-cache-miss: false
+2026-10-04T03:12:54.4267093Z   lookup-only: false
+2026-10-04T03:12:54.4267210Z   save-always: false
+2026-10-04T03:12:54.4267321Z env:
+2026-10-04T03:12:54.4267462Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-04T03:12:54.4267625Z   GOSUMDB: sum.golang.org
+2026-10-04T03:12:54.4267752Z ##[endgroup]
+2026-10-04T03:12:54.7541335Z Cache not found for input keys: flutter-pub-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b-92ff6c66973c3782994dd6a0ab87d5fada3bb52cb81c3f8bfb62b096ea446000
+2026-10-04T03:12:54.7593907Z ##[end-action id=__subosito_flutter-action.cache-pub;outcome=success;conclusion=success;duration_ms=402]
+2026-10-04T03:12:54.7595824Z ##[start-action display=Run setup script;id=__subosito_flutter-action.__run_3]
+2026-10-04T03:12:54.7624892Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh \
+2026-10-04T03:12:54.7625085Z [36;1m$GITHUB_ACTION_PATH/setup.sh \[0m
+2026-10-04T03:12:54.7625229Z [36;1m  -n '3.47.4' \[0m
+2026-10-04T03:12:54.7625350Z [36;1m  -a 'x64' \[0m
+2026-10-04T03:12:54.7625508Z [36;1m  -c '/opt/hostedtoolcache/flutter/stable-3.47.4-x64' \[0m
+2026-10-04T03:12:54.7625697Z [36;1m  -d '/home/runner/.pub-cache' \[0m
+2026-10-04T03:12:54.7625836Z [36;1m  stable[0m
+2026-10-04T03:12:54.7675817Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-04T03:12:54.7675993Z env:
+2026-10-04T03:12:54.7676137Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-04T03:12:54.7676294Z   GOSUMDB: sum.golang.org
+2026-10-04T03:12:54.7676417Z ##[endgroup]
+2026-10-04T03:12:54.9221127Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+2026-10-04T03:12:54.9236985Z                                  Dload  Upload   Total   Spent    Left  Speed
+2026-10-04T03:12:54.9237286Z 
+2026-10-04T03:12:55.6874971Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-10-04T03:12:56.6868924Z  12 1503M   12  194M    0     0   253M      0  0:00:05 --:--:--  0:00:05  253M
+2026-10-04T03:12:57.7203568Z  36 1503M   36  555M    0     0   314M      0  0:00:04  0:00:01  0:00:03  314M
+2026-10-04T03:12:58.7414912Z  58 1503M   58  873M    0     0   312M      0  0:00:04  0:00:02  0:00:02  312M
+2026-10-04T03:12:59.7464832Z  66 1503M   66 1001M    0     0   262M      0  0:00:05  0:00:03  0:00:02  262M
+2026-10-04T03:13:00.7406524Z  73 1503M   73 1108M    0     0   229M      0  0:00:06  0:00:04  0:00:02  229M
+2026-10-04T03:13:01.7075577Z  80 1503M   80 1206M    0     0   207M      0  0:00:07  0:00:05  0:00:02  200M
+2026-10-04T03:13:02.7031560Z  86 1503M   86 1303M    0     0   192M      0  0:00:07  0:00:06  0:00:01  149M
+2026-10-04T03:13:03.6987265Z  93 1503M   93 1401M    0     0   180M      0  0:00:08  0:00:07  0:00:01  105M
+2026-10-04T03:13:03.7386806Z  99 1503M   99 1499M    0     0   170M      0  0:00:08  0:00:08 --:--:--  100M
+2026-10-04T03:13:03.7387355Z 100 1503M  100 1503M    0     0   170M      0  0:00:08  0:00:08 --:--:-- 98.7M
+2026-10-04T03:13:45.5833196Z ##[end-action id=__subosito_flutter-action.__run_3;outcome=success;conclusion=success;duration_ms=50823]
+2026-10-04T03:13:45.5870507Z ##[group]Run flutter pub get --enforce-lockfile
+2026-10-04T03:13:45.5870709Z [36;1mflutter pub get --enforce-lockfile[0m
+2026-10-04T03:13:45.5995170Z shell: /usr/bin/bash -e {0}
+2026-10-04T03:13:45.5995304Z env:
+2026-10-04T03:13:45.5995441Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-04T03:13:45.5995610Z   GOSUMDB: sum.golang.org
+2026-10-04T03:13:45.5995789Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
+2026-10-04T03:13:45.5995985Z   PUB_CACHE: /home/runner/.pub-cache
+2026-10-04T03:13:45.5996127Z ##[endgroup]
+2026-10-04T03:13:49.1060799Z Resolving dependencies...
+2026-10-04T03:13:50.1251528Z Downloading packages...
+2026-10-04T03:13:52.6410289Z   cross_file 0.3.5+5 (0.4.0 available)
+2026-10-04T03:13:52.6410992Z   ffmpeg_kit_flutter_new_min_gpl 2.6.2 (2.6.4 available)
+2026-10-04T03:13:52.6411453Z   material_color_utilities 0.13.0 (0.13.1 available)
+2026-10-04T03:13:52.6412127Z ! media_kit_libs_windows_video 1.0.11+duanju.1 from path packages/media_kit_libs_windows_video (overridden)
+2026-10-04T03:13:52.6412665Z   test_api 0.7.12 (0.7.14 available)
+2026-10-04T03:13:52.6413063Z Got dependencies!
+2026-10-04T03:13:52.6414602Z 4 packages have newer versions incompatible with dependency constraints.
+2026-10-04T03:13:52.6443891Z Try `flutter pub outdated` for more information.
+2026-10-04T03:13:53.0518673Z ##[group]Run dart format --output=none --set-exit-if-changed lib test integration_test test_driver
+2026-10-04T03:13:53.0519052Z [36;1mdart format --output=none --set-exit-if-changed lib test integration_test test_driver[0m
+2026-10-04T03:13:53.0569910Z shell: /usr/bin/bash -e {0}
+2026-10-04T03:13:53.0570046Z env:
+2026-10-04T03:13:53.0570181Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-04T03:13:53.0570337Z   GOSUMDB: sum.golang.org
+2026-10-04T03:13:53.0570512Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
+2026-10-04T03:13:53.0570713Z   PUB_CACHE: /home/runner/.pub-cache
+2026-10-04T03:13:53.0570848Z ##[endgroup]
+2026-10-04T03:13:53.1784262Z Changed lib/catalog_filters.dart
+2026-10-04T03:13:53.1811575Z Changed lib/catalog_sort.dart
+2026-10-04T03:13:53.1973315Z Changed lib/danmaku_models.dart
+2026-10-04T03:13:53.2035657Z Changed lib/danmaku_overlay.dart
+2026-10-04T03:13:53.2649843Z Changed lib/feeds_screen.dart
+2026-10-04T03:13:53.2946697Z Changed lib/home_screen.dart
+2026-10-04T03:13:53.3743095Z Changed lib/main.dart
+2026-10-04T03:13:53.4041886Z Changed lib/nostr_crypto.dart
+2026-10-04T03:13:53.4057673Z Changed lib/nostr_relay.dart
+2026-10-04T03:13:53.4644532Z Changed lib/ranking_models.dart
+2026-10-04T03:13:53.4725905Z Changed lib/recommendation_models.dart
+2026-10-04T03:13:53.4756402Z Changed lib/recommendation_service.dart
+2026-10-04T03:13:53.4778724Z Changed lib/recommendation_store.dart
+2026-10-04T03:13:53.4834006Z Changed lib/recommendations_screen.dart
+2026-10-04T03:13:53.4930497Z Changed lib/remote_widgets.dart
+2026-10-04T03:13:53.5190714Z Changed lib/settings_screen.dart
+2026-10-04T03:13:53.5376337Z Changed lib/television_controls.dart
+2026-10-04T03:13:53.5772548Z Changed test/feeds_screen_test.dart
+2026-10-04T03:13:53.5970468Z Changed test/nostr_crypto_test.dart
+2026-10-04T03:13:53.6071600Z Changed test/recommendation_models_test.dart
+2026-10-04T03:13:53.6108354Z Changed test/recommendation_service_test.dart
+2026-10-04T03:13:53.6127980Z Changed test/search_cache_test.dart
+2026-10-04T03:13:53.6146188Z Changed test/sources_screen_test.dart
+2026-10-04T03:13:53.6254443Z Changed test/theme_test.dart
+2026-10-04T03:13:53.6428538Z Changed integration_test/surface_lifecycle_test.dart
+2026-10-04T03:13:53.6453543Z Formatted 144 files (25 changed) in 0.53 seconds.
+2026-10-04T03:13:53.6512513Z ##[error]Process completed with exit code 1.
+2026-10-04T03:13:53.7302027Z Post job cleanup.
+2026-10-04T03:13:53.7304592Z ##[start-action display=Cache pub dependencies;id=__fc0a95e8-1e11-4fac-9c51-a79472a8bc17.cache-pub]
+2026-10-04T03:13:53.7305757Z ##[end-action id=__fc0a95e8-1e11-4fac-9c51-a79472a8bc17.cache-pub;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-10-04T03:13:53.7306658Z ##[start-action display=Cache Flutter;id=__fc0a95e8-1e11-4fac-9c51-a79472a8bc17.cache-flutter]
+2026-10-04T03:13:53.7307523Z ##[end-action id=__fc0a95e8-1e11-4fac-9c51-a79472a8bc17.cache-flutter;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-10-04T03:13:53.7344868Z Post job cleanup.
+2026-10-04T03:13:53.8160950Z [command]/usr/bin/git version
+2026-10-04T03:13:53.8162667Z git version 2.55.0
+2026-10-04T03:13:53.8166722Z Temporarily overriding HOME='/home/runner/work/_temp/6582ae19-b8dd-404f-b7ad-e55979904313' before making global git config changes
+2026-10-04T03:13:53.8168850Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-04T03:13:53.8171281Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/guoapp/guoapp
+2026-10-04T03:13:53.9284523Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-04T03:13:53.9304948Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-04T03:13:53.9596829Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-04T03:13:54.1312467Z http.https://github.com/.extraheader
+2026-10-04T03:13:54.1324481Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-04T03:13:54.1590448Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-04T03:13:54.1796728Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-04T03:13:54.1831719Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-04T03:13:54.2139516Z Cleaning up orphan processes
+2026-10-04T03:13:54.2320317Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-go@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
