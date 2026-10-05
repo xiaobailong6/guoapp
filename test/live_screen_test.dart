@@ -27,6 +27,7 @@ class _FakeRepository extends LiveRepository {
       const LivePlatform(id: 'satellite', name: '卫视IPV4', count: 2),
     ];
   }
+
   @override
   Future<List<LiveChannel>> channels(
     LiveSource source,
