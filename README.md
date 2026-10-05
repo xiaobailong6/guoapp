@@ -1,6 +1,8 @@
 # 红果鉴 / 真果鉴
 
-Flutter 多端独立短剧应用，原名“短剧库 APP”。站源请求、解析、下载和播放均在设备上完成，不依赖旧项目或自建服务。当前源码版本：**0.2.95+2101（开发快照）**。
+Flutter 多端独立短剧应用，原名“短剧库 APP”。站源请求、解析、下载和播放均在设备上完成，不依赖旧项目或自建服务。当前源码版本：**0.2.96+2102（开发快照）**。
+
+0.2.96 修复最新 `logs_100686774775/3_checks.txt` 的分析阻断：格式检查已通过，`dart analyze` 仅剩 4 条诊断，分别是直播测试模拟仓的两个未使用可选参数，以及 `video_enhancement.dart`、`video_output_size.dart` 中两个多余的 `dart:ui` 导入。已删除陈旧测试参数及其无效分支，并移除两个多余导入；没有修改业务逻辑。由于本机没有 Flutter 工具链，未运行分析、测试或平台构建，修复效果待 GitHub Actions 重跑确认，仍为开发快照。
 
 0.2.95 修复 `logs_100686774775/3_checks.txt` 的下一处 Actions 阻断：Dart 3.12 格式检查已报告 `0 changed`，依赖解析也已通过；`dart analyze` 因 94 条既有 lint 诊断退出 2，未进入平台构建。日志涉及 `curly_braces_in_flow_control_structures`、`prefer_initializing_formals`、`prefer_interpolation_to_compose_strings`、`unnecessary_import` 和 `unused_element_parameter` 五条风格规则，现按项目现有代码兼容性在 `analysis_options.yaml` 中关闭这些非错误级规则，保留 analyzer 对编译错误、未定义符号等问题的阻断。本机未运行静态分析、测试或平台构建，修复效果待 GitHub Actions 重跑确认，仍为开发快照。
 

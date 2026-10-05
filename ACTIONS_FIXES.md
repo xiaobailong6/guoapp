@@ -7,6 +7,13 @@
 - 使用方式：拿到新日志后先在「快速对照表」按症状定位，再跳到对应条目按「复查」执行；改动源码或工作流后按「下次更新源码后的核查顺序」整体过一遍
 - 逐轮运行记录同时保留在 `README.md` 的「当前检查与平台状态」一节
 
+## 分析剩余 4 条诊断修复（0.2.96+2102）
+
+- 日志：`logs_100686774775/3_checks.txt`；格式检查已为 `Formatted 159 files (0 changed)`，依赖解析已通过，`dart analyze` 在第 349–355 行因 4 条诊断退出 2。
+- 修复：删除 `test/live_screen_test.dart` 中 `_FakeRepository` 未被调用的 `extraGroups`、`failGroups` 可选参数及其陈旧分支；删除 `lib/video_enhancement.dart` 与 `lib/video_output_size.dart` 中多余的 `dart:ui` 导入。
+- 本机限制：没有 Flutter 工具链，未运行分析、测试或平台构建；修复效果待 Actions 重跑确认。
+
+
 ## 分析阶段阻断修复（0.2.95+2101）
 
 - 日志：`logs_100686774775/3_checks.txt`；第 344 行格式检查已为 `Formatted 159 files (0 changed)`，第 332 行依赖解析成功，第 451–452 行 `dart analyze` 因 `94 issues found` 退出 2。
