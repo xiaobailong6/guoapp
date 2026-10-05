@@ -1,0 +1,39 @@
+﻿2026-10-05T10:39:16.6699364Z ##[group]Run actions/setup-java@v4
+2026-10-05T10:39:16.6699599Z with:
+2026-10-05T10:39:16.6699765Z   distribution: temurin
+2026-10-05T10:39:16.6699993Z   java-version: 17
+2026-10-05T10:39:16.6700168Z   java-package: jdk
+2026-10-05T10:39:16.6700294Z   check-latest: false
+2026-10-05T10:39:16.6700422Z   server-id: github
+2026-10-05T10:39:16.6700552Z   server-username: GITHUB_ACTOR
+2026-10-05T10:39:16.6700800Z   server-password: GITHUB_TOKEN
+2026-10-05T10:39:16.6701037Z   overwrite-settings: true
+2026-10-05T10:39:16.6701253Z   job-status: success
+2026-10-05T10:39:16.6702863Z   token: ***
+2026-10-05T10:39:16.6703000Z env:
+2026-10-05T10:39:16.6703137Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-05T10:39:16.6703314Z   GOSUMDB: sum.golang.org
+2026-10-05T10:39:16.6703495Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-05T10:39:16.6703776Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-10-05T10:39:16.6704183Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-05T10:39:16.6704465Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-05T10:39:16.6704690Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-05T10:39:16.6704915Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-10-05T10:39:16.6705106Z ##[endgroup]
+2026-10-05T10:39:16.7845856Z ##[warning]setup-java v4 is deprecated and will no longer receive updates. Please migrate to actions/setup-java@v5.
+2026-10-05T10:39:16.7851264Z ##[group]Installed distributions
+2026-10-05T10:39:16.7906167Z Resolved Java 17.0.20+1 from tool-cache
+2026-10-05T10:39:16.7906530Z Setting Java 17.0.20+1 as the default
+2026-10-05T10:39:16.7913049Z (node:2162) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-05T10:39:16.7941596Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-05T10:39:16.7942206Z Creating toolchains.xml for JDK version 17 from temurin
+2026-10-05T10:39:16.7966455Z Writing to /home/runner/.m2/toolchains.xml
+2026-10-05T10:39:16.7966737Z 
+2026-10-05T10:39:16.7966840Z Java configuration:
+2026-10-05T10:39:16.7967062Z   Distribution: temurin
+2026-10-05T10:39:16.7967281Z   Version: 17.0.20+1
+2026-10-05T10:39:16.7967579Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-05T10:39:16.7967847Z 
+2026-10-05T10:39:16.7968129Z ##[endgroup]
+2026-10-05T10:39:16.7979456Z Creating settings.xml with server-id: github
+2026-10-05T10:39:16.8004482Z Writing to /home/runner/.m2/settings.xml

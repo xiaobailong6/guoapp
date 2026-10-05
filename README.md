@@ -1,6 +1,8 @@
 # 红果鉴 / 真果鉴
 
-Flutter 多端独立短剧应用，原名“短剧库 APP”。站源请求、解析、下载和播放均在设备上完成，不依赖旧项目或自建服务。当前源码版本：**0.2.97+2103（开发快照）**。
+Flutter 多端独立短剧应用，原名“短剧库 APP”。站源请求、解析、下载和播放均在设备上完成，不依赖旧项目或自建服务。当前源码版本：**0.2.98+2104（开发快照）**。
+
+0.2.98 修复 Windows Actions 安装阶段失败：编译、插件 DLL 安装和 Flutter 资源安装均已完成，但 CMake 在 `cmake_install.cmake:510` 试图创建包含字面 `$<TARGET_FILE_DIR:zhenguojian>` 的路径。原因是把生成器表达式用于配置期的 `CMAKE_INSTALL_PREFIX`。现改用 `${PROJECT_BUILD_DIR}/runner` 作为安装前缀，让 Windows 多配置安装按 Release 自动写入 `runner/Release`；未改动业务代码。本机没有 Windows Flutter / MSVC 环境，未编译或验证，Windows Actions 需重跑确认，仍为开发快照。
 
 0.2.97 修复最新 `logs_100686774775/3_checks.txt` 的格式阻断：依赖解析已通过，Dart 格式检查报告 `test/live_screen_test.dart` 仍有 1 个文件被重排并退出 1。原因是上轮清理测试陈旧参数后，方法覆盖标记前缺少格式要求的空行；现已补回该空行，未放宽格式检查，也未修改业务逻辑。本机没有 Flutter 工具链，未运行格式检查、分析、测试或平台构建，结果待 GitHub Actions 重跑确认，仍为开发快照。
 

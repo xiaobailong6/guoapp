@@ -7,6 +7,14 @@
 - 使用方式：拿到新日志后先在「快速对照表」按症状定位，再跳到对应条目按「复查」执行；改动源码或工作流后按「下次更新源码后的核查顺序」整体过一遍
 - 逐轮运行记录同时保留在 `README.md` 的「当前检查与平台状态」一节
 
+## Windows CMake 安装前缀修复（0.2.98+2104）
+
+- 日志：`logs_101019754389/2_windows (zhenguojian, --all-sources).txt`；C++ 编译、插件 DLL 和 Flutter 资源均安装成功，第 1407–1421 行在 `cmake_install.cmake:510` 失败，目标路径含字面 `$<TARGET_FILE_DIR:zhenguojian>/..`。
+- 根因：`windows/CMakeLists.txt` 把 `$<TARGET_FILE_DIR:${BINARY_NAME}>` 生成器表达式用于配置期的 `CMAKE_INSTALL_PREFIX`，CMake 安装脚本没有在该变量中求值生成器表达式。
+- 修法：将 `BUILD_BUNDLE_DIR` 改为 `${PROJECT_BUILD_DIR}/runner`。Windows 多配置生成器会把 Release 安装到 `build/windows/x64/runner/Release`，与 Flutter 输出目录一致；不再生成非法路径。
+- 本机限制：没有 Windows Flutter / MSVC 环境，未编译或验证；修复效果待 Windows Actions 重跑确认。
+
+
 ## 格式再次阻断修复（0.2.97+2103）
 
 - 日志：`logs_100686774775/3_checks.txt`；第 333 行依赖解析成功，第 345–347 行 `dart format` 发现 `test/live_screen_test.dart` 1 个文件被修改并退出 1，分析步骤尚未执行。

@@ -1,0 +1,19 @@
+﻿2026-10-05T10:34:48.5560651Z ##[group]Run flutter pub get --enforce-lockfile
+2026-10-05T10:34:48.5561070Z [36;1mflutter pub get --enforce-lockfile[0m
+2026-10-05T10:34:48.5623698Z shell: /usr/bin/bash -e {0}
+2026-10-05T10:34:48.5623996Z env:
+2026-10-05T10:34:48.5624290Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-05T10:34:48.5624644Z   GOSUMDB: sum.golang.org
+2026-10-05T10:34:48.5625038Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
+2026-10-05T10:34:48.5625480Z   PUB_CACHE: /home/runner/.pub-cache
+2026-10-05T10:34:48.5625784Z ##[endgroup]
+2026-10-05T10:34:53.1800240Z Resolving dependencies...
+2026-10-05T10:34:53.5942254Z Downloading packages...
+2026-10-05T10:34:58.3164013Z   cross_file 0.3.5+5 (0.4.0 available)
+2026-10-05T10:34:58.3164839Z   ffmpeg_kit_flutter_new_min_gpl 2.6.2 (2.6.4 available)
+2026-10-05T10:34:58.3165460Z   material_color_utilities 0.13.0 (0.13.1 available)
+2026-10-05T10:34:58.3166292Z ! media_kit_libs_windows_video 1.0.11+duanju.1 from path packages/media_kit_libs_windows_video (overridden)
+2026-10-05T10:34:58.3167163Z   test_api 0.7.12 (0.7.14 available)
+2026-10-05T10:34:58.3167604Z Got dependencies!
+2026-10-05T10:34:58.3170813Z 4 packages have newer versions incompatible with dependency constraints.
+2026-10-05T10:34:58.3171754Z Try `flutter pub outdated` for more information.

@@ -1,0 +1,1184 @@
+﻿2026-10-05T10:42:35.8773295Z ##[group]Run python scripts/build_windows.py 
+2026-10-05T10:42:35.8773858Z [36;1mpython scripts/build_windows.py [0m
+2026-10-05T10:42:35.8859389Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-05T10:42:35.8859878Z env:
+2026-10-05T10:42:35.8860215Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-05T10:42:35.8860648Z   GOSUMDB: sum.golang.org
+2026-10-05T10:42:35.8861101Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-05T10:42:35.8861755Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-05T10:42:35.8862400Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-05T10:42:35.8863003Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-05T10:42:35.8863606Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-05T10:42:35.8864229Z   FLUTTER_ROOT: C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64/flutter
+2026-10-05T10:42:35.8864839Z   PUB_CACHE: C:\Users\runneradmin\AppData\Local\Pub\Cache
+2026-10-05T10:42:35.8865939Z ##[endgroup]
+2026-10-05T10:42:37.7729755Z Building windows\runner\duanju_core.dll
+2026-10-05T10:42:37.8809985Z go: downloading github.com/bogdanfinn/fhttp v0.6.9
+2026-10-05T10:42:37.8828152Z go: downloading github.com/bogdanfinn/tls-client v1.16.0
+2026-10-05T10:42:37.8836760Z go: downloading github.com/ulikunitz/xz v0.5.17
+2026-10-05T10:42:38.0840449Z go: downloading golang.org/x/sys v0.39.0
+2026-10-05T10:42:38.0858924Z go: downloading golang.org/x/net v0.48.0
+2026-10-05T10:42:38.4546286Z go: downloading golang.org/x/text v0.32.0
+2026-10-05T10:42:40.5929415Z go: downloading github.com/bdandy/go-socks4 v1.2.3
+2026-10-05T10:42:40.6084568Z go: downloading github.com/bogdanfinn/quic-go-utls v1.0.10-utls
+2026-10-05T10:42:40.8239413Z go: downloading github.com/bogdanfinn/utls v1.7.8-barnius
+2026-10-05T10:42:41.3115548Z go: downloading github.com/bogdanfinn/websocket v1.5.6-barnius
+2026-10-05T10:42:41.3184793Z go: downloading github.com/tam7t/hpkp v0.0.0-20160821193359-2b70b4024ed5
+2026-10-05T10:42:41.3210177Z go: downloading github.com/andybalholm/brotli v1.2.0
+2026-10-05T10:42:41.3582554Z go: downloading github.com/klauspost/compress v1.18.2
+2026-10-05T10:42:43.9889741Z go: downloading github.com/bdandy/go-errors v1.2.2
+2026-10-05T10:42:44.0144588Z go: downloading github.com/quic-go/qpack v0.6.0
+2026-10-05T10:42:44.0739509Z go: downloading github.com/cloudflare/circl v1.6.2
+2026-10-05T10:42:46.4738803Z go: downloading golang.org/x/crypto v0.46.0
+2026-10-05T10:43:17.8017674Z Building flutter tool... 
+2026-10-05T10:43:17.8056359Z Running pub upgrade... 
+2026-10-05T10:43:17.8420868Z Resolving dependencies...
+2026-10-05T10:43:18.3660177Z Downloading packages...
+2026-10-05T10:43:32.5168083Z Got dependencies.
+2026-10-05T10:43:51.2569803Z Resolving dependencies...
+2026-10-05T10:43:51.7211475Z Downloading packages...
+2026-10-05T10:44:08.2355970Z   cross_file 0.3.5+5 (0.4.0 available)
+2026-10-05T10:44:08.2357199Z   ffmpeg_kit_flutter_new_min_gpl 2.6.2 (2.6.4 available)
+2026-10-05T10:44:08.2358146Z   material_color_utilities 0.13.0 (0.13.1 available)
+2026-10-05T10:44:08.2359435Z ! media_kit_libs_windows_video 1.0.11+duanju.1 from path packages\media_kit_libs_windows_video (overridden)
+2026-10-05T10:44:08.2361418Z   test_api 0.7.12 (0.7.14 available)
+2026-10-05T10:44:08.2362124Z Got dependencies!
+2026-10-05T10:44:08.2363221Z 4 packages have newer versions incompatible with dependency constraints.
+2026-10-05T10:44:08.2364609Z Try `flutter pub outdated` for more information.
+2026-10-05T10:44:09.3411458Z [  +19 ms] Artifact Instance of 'MaterialFonts' is not required, skipping update.
+2026-10-05T10:44:09.3413515Z [   +5 ms] Artifact Instance of 'GradleWrapper' is not required, skipping update.
+2026-10-05T10:44:09.3415729Z [        ] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.3417528Z [        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.3422819Z [        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.3423797Z [        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+2026-10-05T10:44:09.3517263Z [        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+2026-10-05T10:44:09.3518272Z [        ] Artifact Instance of 'FlutterSdk' is not required, skipping update.
+2026-10-05T10:44:09.3519328Z [        ] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.3520296Z [        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.3521244Z [        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.3522303Z [        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.3523455Z [        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.3524681Z [        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.3525908Z [        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+2026-10-05T10:44:09.3526992Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.3527962Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.3528853Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.3529527Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.3531400Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.3531997Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.3532590Z [        ] Artifact Instance of 'FontSubsetArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.3533210Z [        ] Artifact Instance of 'PubDependencies' is not required, skipping update.
+2026-10-05T10:44:09.3595283Z [  +13 ms] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.3596986Z [        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.3598072Z [        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.3599007Z [        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+2026-10-05T10:44:09.3600812Z [        ] Artifact Instance of 'FlutterEngineStamp' is not required, skipping update.
+2026-10-05T10:44:09.3601642Z [        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+2026-10-05T10:44:09.3621848Z [   +1 ms] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.3622978Z [        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.3624275Z [        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.3625626Z [        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.3627456Z [        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.3629089Z [        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.3630749Z [        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+2026-10-05T10:44:09.4065099Z [  +43 ms] Artifact Instance of 'MaterialFonts' is not required, skipping update.
+2026-10-05T10:44:09.4066418Z [        ] Artifact Instance of 'GradleWrapper' is not required, skipping update.
+2026-10-05T10:44:09.4068026Z [        ] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.4070485Z [        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.4071698Z [        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.4072735Z [        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+2026-10-05T10:44:09.4073862Z [        ] Artifact Instance of 'FlutterEngineStamp' is not required, skipping update.
+2026-10-05T10:44:09.4075040Z [        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+2026-10-05T10:44:09.4076001Z [        ] Artifact Instance of 'FlutterSdk' is not required, skipping update.
+2026-10-05T10:44:09.4090752Z [   +1 ms] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.4092008Z [        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.4093102Z [        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.4094897Z [        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.4096048Z [        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.4097324Z [        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+2026-10-05T10:44:09.4098493Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.4100246Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.4101691Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.4102729Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.4103802Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.4104841Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.4105845Z [        ] Artifact Instance of 'FontSubsetArtifacts' is not required, skipping update.
+2026-10-05T10:44:09.4107329Z [        ] Artifact Instance of 'PubDependencies' is not required, skipping update.
+2026-10-05T10:44:09.4630073Z [  +52 ms] executing: C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe -format json -products * -utf8 -latest -version 16 -requires Microsoft.VisualStudio.Workload.NativeDesktop Microsoft.VisualStudio.Component.VC.Tools.x86.x64 Microsoft.VisualStudio.Component.VC.CMake.Project
+2026-10-05T10:44:09.7682015Z [ +304 ms] Exit code 0 from: C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe -format json -products * -utf8 -latest -version 16 -requires Microsoft.VisualStudio.Workload.NativeDesktop Microsoft.VisualStudio.Component.VC.Tools.x86.x64 Microsoft.VisualStudio.Component.VC.CMake.Project
+2026-10-05T10:44:09.7712564Z [        ] [
+2026-10-05T10:44:09.7713007Z              {
+2026-10-05T10:44:09.7713559Z                "instanceId": "b61ad8f0",
+2026-10-05T10:44:09.7714323Z                "installDate": "2026-09-25T22:21:59Z",
+2026-10-05T10:44:09.7715267Z                "installationName": "VisualStudio/18.10.2+12217.157",
+2026-10-05T10:44:09.7717910Z                "installationPath": "C:\\Program Files\\Microsoft Visual Studio\\18\\Enterprise",
+2026-10-05T10:44:09.7719077Z                "installationVersion": "18.10.12217.157",
+2026-10-05T10:44:09.7720373Z                "productId": "Microsoft.VisualStudio.Product.Enterprise",
+2026-10-05T10:44:09.7721443Z                "productPath": "C:\\Program Files\\Microsoft Visual Studio\\18\\Enterprise\\Common7\\IDE\\devenv.exe",
+2026-10-05T10:44:09.7722110Z                "state": 4294967295,
+2026-10-05T10:44:09.7722751Z                "isComplete": true,
+2026-10-05T10:44:09.7723409Z                "isLaunchable": true,
+2026-10-05T10:44:09.7724481Z                "isPrerelease": false,
+2026-10-05T10:44:09.7725197Z                "isRebootRequired": false,
+2026-10-05T10:44:09.7726079Z                "displayName": "Visual Studio Enterprise 2026",
+2026-10-05T10:44:09.7728086Z                "description": "Built for scale, security, and speed – the IDE for complex, high-impact development.",
+2026-10-05T10:44:09.7728812Z                "channelId": "VisualStudio.18.Release",
+2026-10-05T10:44:09.7729383Z                "channelUri": "https://aka.ms/vs/18/stable/channel",
+2026-10-05T10:44:09.7730565Z                "enginePath": "C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\resources\\app\\ServiceHub\\Services\\Microsoft.VisualStudio.Setup.Service",
+2026-10-05T10:44:09.7731453Z                "expirationDate": "2027-03-16T17:00:00+00:00",
+2026-10-05T10:44:09.7732036Z                "installChannelUri": "https://aka.ms/vs/18/stable/channel",
+2026-10-05T10:44:09.7732616Z                "installedChannelId": "VisualStudio.18.Release",
+2026-10-05T10:44:09.7733246Z                "installedChannelUri": "https://aka.ms/vs/18/stable/channel",
+2026-10-05T10:44:09.7734164Z                "releaseNotes": "https://docs.microsoft.com/en-us/visualstudio/releases/18/release-notes-v18.10#18.10.2",
+2026-10-05T10:44:09.7735143Z                "resolvedInstallationPath": "C:\\Program Files\\Microsoft Visual Studio\\18\\Enterprise",
+2026-10-05T10:44:09.7735954Z                "thirdPartyNotices": "https://go.microsoft.com/fwlink/?LinkId=661480",
+2026-10-05T10:44:09.7736545Z                "updateDate": "2026-09-25T22:21:59.0228986Z",
+2026-10-05T10:44:09.7736911Z                "catalog": {
+2026-10-05T10:44:09.7737865Z                  "buildBranch": "stable",
+2026-10-05T10:44:09.7738335Z                  "buildVersion": "18.10.12217.157",
+2026-10-05T10:44:09.7738795Z                  "featureReleaseMonth": "09",
+2026-10-05T10:44:09.7739220Z                  "featureReleaseYear": "2026",
+2026-10-05T10:44:09.7739682Z                  "id": "VisualStudio/18.10.2+12217.157",
+2026-10-05T10:44:09.7740234Z                  "includeBuildVersionInDisplayVersion": "False",
+2026-10-05T10:44:09.7740699Z                  "localBuild": "build-lab",
+2026-10-05T10:44:09.7741119Z                  "manifestName": "VisualStudio",
+2026-10-05T10:44:09.7741541Z                  "manifestType": "installer",
+2026-10-05T10:44:09.7741974Z                  "productDisplayVersion": "18.10.2",
+2026-10-05T10:44:09.7742371Z                  "productLine": "Dev18",
+2026-10-05T10:44:09.7742778Z                  "productLineVersion": "18",
+2026-10-05T10:44:09.7743178Z                  "productMilestone": "RTW",
+2026-10-05T10:44:09.7743651Z                  "productMilestoneIsPreRelease": "False",
+2026-10-05T10:44:09.7744091Z                  "productName": "Visual Studio",
+2026-10-05T10:44:09.7744501Z                  "productPatchVersion": "2",
+2026-10-05T10:44:09.7744975Z                  "productPreReleaseMilestoneSuffix": "1.0",
+2026-10-05T10:44:09.7745414Z                  "productRelease": "RTW",
+2026-10-05T10:44:09.7745898Z                  "productSemanticVersion": "18.10.2+12217.157",
+2026-10-05T10:44:09.7746411Z                  "requiredEngineVersion": "4.10.30.62513"
+2026-10-05T10:44:09.7746744Z                },
+2026-10-05T10:44:09.7747037Z                "properties": {
+2026-10-05T10:44:09.7747403Z                  "campaignId": "",
+2026-10-05T10:44:09.7747982Z                  "channelManifestId": "VisualStudio.18.Release/18.10.2+12217.157",
+2026-10-05T10:44:09.7748498Z                  "includeRecommended": "1",
+2026-10-05T10:44:09.7748865Z                  "nickname": "",
+2026-10-05T10:44:09.7749615Z                  "setupEngineFilePath": "C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\setup.exe"
+2026-10-05T10:44:09.7750132Z                }
+2026-10-05T10:44:09.7750396Z              }
+2026-10-05T10:44:09.7750623Z            ]
+2026-10-05T10:44:09.7850646Z [  +16 ms] Building Windows application...
+2026-10-05T10:44:09.7908196Z [   +5 ms] executing: C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe -S D:\a\guoapp\guoapp\windows -B D:\a\guoapp\guoapp\build\windows\x64 -G Visual Studio 18 2026 -A x64 -DFLUTTER_TARGET_PLATFORM=windows-x64
+2026-10-05T10:44:20.5220450Z [+10731 ms] -- The CXX compiler identification is MSVC 19.51.36260.0
+2026-10-05T10:44:20.6987008Z [ +176 ms] -- Detecting CXX compiler ABI info
+2026-10-05T10:44:21.7555403Z [+1056 ms] -- Detecting CXX compiler ABI info - done
+2026-10-05T10:44:21.7845252Z [  +29 ms] -- Check for working CXX compiler: C:/Program Files/Microsoft Visual Studio/18/Enterprise/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/cl.exe - skipped
+2026-10-05T10:44:21.7860429Z [   +1 ms] -- Detecting CXX compile features
+2026-10-05T10:44:21.7913346Z [   +5 ms] -- Detecting CXX compile features - done
+2026-10-05T10:44:21.8612110Z [  +69 ms] -- FFmpegKit prebuilt dir: D:/a/guoapp/guoapp/build/windows/x64/plugins/ffmpeg_kit_flutter_new_min_gpl/ffmpeg-kit (arch: x86_64)
+2026-10-05T10:44:21.8618931Z [        ] -- FFmpegKit: downloading min-gpl from https://github.com/sk3llo/ffmpeg_kit_flutter/releases/download/8.1.2-min-gpl/ffmpeg-kit-windows-x86_64-min-gpl-8.1.2.zip
+2026-10-05T10:44:22.1118314Z [ +249 ms] -- [download 0% complete]
+2026-10-05T10:44:22.1134141Z [   +1 ms] -- [download 1% complete]
+2026-10-05T10:44:22.1145523Z [   +1 ms] -- [download 2% complete]
+2026-10-05T10:44:22.1152228Z [        ] -- [download 3% complete]
+2026-10-05T10:44:22.1160242Z [        ] -- [download 4% complete]
+2026-10-05T10:44:22.1167319Z [        ] -- [download 5% complete]
+2026-10-05T10:44:22.1172885Z [        ] -- [download 6% complete]
+2026-10-05T10:44:22.1179242Z [        ] -- [download 7% complete]
+2026-10-05T10:44:22.1187793Z [        ] -- [download 8% complete]
+2026-10-05T10:44:22.1194144Z [        ] -- [download 9% complete]
+2026-10-05T10:44:22.1202990Z [        ] -- [download 10% complete]
+2026-10-05T10:44:22.1211597Z [        ] -- [download 11% complete]
+2026-10-05T10:44:22.1216957Z [        ] -- [download 12% complete]
+2026-10-05T10:44:22.1222522Z [        ] -- [download 13% complete]
+2026-10-05T10:44:22.1229473Z [        ] -- [download 14% complete]
+2026-10-05T10:44:22.1236786Z [        ] -- [download 15% complete]
+2026-10-05T10:44:22.1242865Z [        ] -- [download 16% complete]
+2026-10-05T10:44:22.1250708Z [        ] -- [download 17% complete]
+2026-10-05T10:44:22.1257944Z [        ] -- [download 18% complete]
+2026-10-05T10:44:22.1262603Z [        ] -- [download 19% complete]
+2026-10-05T10:44:22.1267257Z [        ] -- [download 20% complete]
+2026-10-05T10:44:22.1272222Z [        ] -- [download 21% complete]
+2026-10-05T10:44:22.1277755Z [        ] -- [download 22% complete]
+2026-10-05T10:44:22.1284986Z [        ] -- [download 23% complete]
+2026-10-05T10:44:22.1292422Z [        ] -- [download 24% complete]
+2026-10-05T10:44:22.1298104Z [        ] -- [download 25% complete]
+2026-10-05T10:44:22.1304982Z [        ] -- [download 26% complete]
+2026-10-05T10:44:22.1311062Z [        ] -- [download 27% complete]
+2026-10-05T10:44:22.1316169Z [        ] -- [download 28% complete]
+2026-10-05T10:44:22.1323387Z [        ] -- [download 29% complete]
+2026-10-05T10:44:22.1328793Z [        ] -- [download 30% complete]
+2026-10-05T10:44:22.1334065Z [        ] -- [download 31% complete]
+2026-10-05T10:44:22.1338209Z [        ] -- [download 32% complete]
+2026-10-05T10:44:22.1343255Z [        ] -- [download 33% complete]
+2026-10-05T10:44:22.1349852Z [        ] -- [download 34% complete]
+2026-10-05T10:44:22.1357179Z [        ] -- [download 35% complete]
+2026-10-05T10:44:22.1364269Z [        ] -- [download 36% complete]
+2026-10-05T10:44:22.1370687Z [        ] -- [download 37% complete]
+2026-10-05T10:44:22.1377552Z [        ] -- [download 38% complete]
+2026-10-05T10:44:22.1382641Z [        ] -- [download 39% complete]
+2026-10-05T10:44:22.1387348Z [        ] -- [download 40% complete]
+2026-10-05T10:44:22.1392112Z [        ] -- [download 41% complete]
+2026-10-05T10:44:22.1397075Z [        ] -- [download 42% complete]
+2026-10-05T10:44:22.1401755Z [        ] -- [download 43% complete]
+2026-10-05T10:44:22.1408082Z [        ] -- [download 44% complete]
+2026-10-05T10:44:22.1413370Z [        ] -- [download 45% complete]
+2026-10-05T10:44:22.1419350Z [        ] -- [download 46% complete]
+2026-10-05T10:44:22.1425272Z [        ] -- [download 47% complete]
+2026-10-05T10:44:22.1432528Z [        ] -- [download 48% complete]
+2026-10-05T10:44:22.1441801Z [        ] -- [download 49% complete]
+2026-10-05T10:44:22.1445755Z [        ] -- [download 50% complete]
+2026-10-05T10:44:22.1450852Z [        ] -- [download 51% complete]
+2026-10-05T10:44:22.1456328Z [        ] -- [download 52% complete]
+2026-10-05T10:44:22.1465765Z [        ] -- [download 53% complete]
+2026-10-05T10:44:22.1474362Z [        ] -- [download 54% complete]
+2026-10-05T10:44:22.1482088Z [        ] -- [download 55% complete]
+2026-10-05T10:44:22.1488500Z [        ] -- [download 56% complete]
+2026-10-05T10:44:22.1494978Z [        ] -- [download 57% complete]
+2026-10-05T10:44:22.1503451Z [        ] -- [download 58% complete]
+2026-10-05T10:44:22.1510470Z [        ] -- [download 59% complete]
+2026-10-05T10:44:22.1517990Z [        ] -- [download 60% complete]
+2026-10-05T10:44:22.1527185Z [        ] -- [download 61% complete]
+2026-10-05T10:44:22.1533582Z [        ] -- [download 62% complete]
+2026-10-05T10:44:22.1539244Z [        ] -- [download 63% complete]
+2026-10-05T10:44:22.1545183Z [        ] -- [download 64% complete]
+2026-10-05T10:44:22.1550231Z [        ] -- [download 65% complete]
+2026-10-05T10:44:22.1557694Z [        ] -- [download 66% complete]
+2026-10-05T10:44:22.1564514Z [        ] -- [download 67% complete]
+2026-10-05T10:44:22.1573741Z [        ] -- [download 68% complete]
+2026-10-05T10:44:22.1582185Z [        ] -- [download 69% complete]
+2026-10-05T10:44:22.1587735Z [        ] -- [download 70% complete]
+2026-10-05T10:44:22.1593613Z [        ] -- [download 71% complete]
+2026-10-05T10:44:22.1599051Z [        ] -- [download 72% complete]
+2026-10-05T10:44:22.1605358Z [        ] -- [download 73% complete]
+2026-10-05T10:44:22.1610966Z [        ] -- [download 74% complete]
+2026-10-05T10:44:22.1618257Z [        ] -- [download 75% complete]
+2026-10-05T10:44:22.1624129Z [        ] -- [download 76% complete]
+2026-10-05T10:44:22.1629881Z [        ] -- [download 77% complete]
+2026-10-05T10:44:22.1636670Z [        ] -- [download 78% complete]
+2026-10-05T10:44:22.1643053Z [        ] -- [download 79% complete]
+2026-10-05T10:44:22.1648202Z [        ] -- [download 80% complete]
+2026-10-05T10:44:22.1654987Z [        ] -- [download 81% complete]
+2026-10-05T10:44:22.1661550Z [        ] -- [download 82% complete]
+2026-10-05T10:44:22.1667036Z [        ] -- [download 83% complete]
+2026-10-05T10:44:22.1672919Z [        ] -- [download 84% complete]
+2026-10-05T10:44:22.1678715Z [        ] -- [download 85% complete]
+2026-10-05T10:44:22.1686996Z [        ] -- [download 86% complete]
+2026-10-05T10:44:22.1692004Z [        ] -- [download 87% complete]
+2026-10-05T10:44:22.1696795Z [        ] -- [download 88% complete]
+2026-10-05T10:44:22.1702206Z [        ] -- [download 89% complete]
+2026-10-05T10:44:22.1708012Z [        ] -- [download 90% complete]
+2026-10-05T10:44:22.1713986Z [        ] -- [download 91% complete]
+2026-10-05T10:44:22.1719949Z [        ] -- [download 92% complete]
+2026-10-05T10:44:22.1725994Z [        ] -- [download 93% complete]
+2026-10-05T10:44:22.1733031Z [        ] -- [download 94% complete]
+2026-10-05T10:44:22.1739862Z [        ] -- [download 95% complete]
+2026-10-05T10:44:22.1746267Z [        ] -- [download 96% complete]
+2026-10-05T10:44:22.1750891Z [        ] -- [download 97% complete]
+2026-10-05T10:44:22.1756235Z [        ] -- [download 98% complete]
+2026-10-05T10:44:22.1761274Z [        ] -- [download 99% complete]
+2026-10-05T10:44:22.1765932Z [        ] -- [download 100% complete]
+2026-10-05T10:44:22.6429287Z [ +466 ms] -- FFmpegKit 8.1.2-min-gpl ready
+2026-10-05T10:44:26.9874637Z [+4344 ms] -- The C compiler identification is MSVC 19.51.36260.0
+2026-10-05T10:44:27.0070950Z [  +19 ms] -- Detecting C compiler ABI info
+2026-10-05T10:44:27.7010482Z [ +693 ms] -- Detecting C compiler ABI info - done
+2026-10-05T10:44:27.7193582Z [  +18 ms] -- Check for working C compiler: C:/Program Files/Microsoft Visual Studio/18/Enterprise/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/cl.exe - skipped
+2026-10-05T10:44:27.7198369Z [        ] -- Detecting C compile features
+2026-10-05T10:44:27.7207078Z [        ] -- Detecting C compile features - done
+2026-10-05T10:44:28.5826021Z [ +861 ms] -- Found JNI: D:/a/guoapp/guoapp/windows/flutter/ephemeral/.plugin_symlinks/jni/src/../third_party  found components: JVM
+2026-10-05T10:44:28.6721375Z [  +89 ms] -- Configuring done (18.3s)
+2026-10-05T10:44:28.8586422Z [ +186 ms] -- Generating done (0.2s)
+2026-10-05T10:44:28.8597592Z [   +1 ms] -- Build files have been written to: D:/a/guoapp/guoapp/build/windows/x64
+2026-10-05T10:44:28.8776724Z [  +17 ms] executing: C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe --build D:\a\guoapp\guoapp\build\windows\x64 --config Release --target INSTALL --verbose
+2026-10-05T10:44:28.9330467Z [  +55 ms] Change Dir: 'D:/a/guoapp/guoapp/build/windows/x64'
+2026-10-05T10:44:28.9335028Z [        ] Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Enterprise/MSBuild/Current/Bin/amd64/MSBuild.exe" INSTALL.vcxproj /p:Configuration=Release /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
+2026-10-05T10:44:29.0086998Z [  +75 ms] MSBuild version 18.10.1-1.26427.6+3cd27c13e for .NET Framework
+2026-10-05T10:44:29.0410689Z [  +32 ms] Build started 10/5/2026 10:44:29 AM.
+2026-10-05T10:44:29.2122162Z [ +170 ms] Project "D:\a\guoapp\guoapp\build\windows\x64\INSTALL.vcxproj" on node 1 (default targets).
+2026-10-05T10:44:29.2124440Z [        ] Project "D:\a\guoapp\guoapp\build\windows\x64\INSTALL.vcxproj" (1) is building "D:\a\guoapp\guoapp\build\windows\x64\ZERO_CHECK.vcxproj" (2) on node 1 (default targets).
+2026-10-05T10:44:29.2126079Z [        ] PrepareForBuild:
+2026-10-05T10:44:29.2126581Z [        ]   Creating directory "x64\Release\ZERO_CHECK\".
+2026-10-05T10:44:29.2174546Z [   +4 ms]   Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+2026-10-05T10:44:29.2176201Z [        ]   Creating directory "x64\Release\ZERO_CHECK\ZERO_CHECK.tlog\".
+2026-10-05T10:44:29.2204196Z [   +2 ms] InitializeBuildStatus:
+2026-10-05T10:44:29.2206845Z [        ]   Creating "x64\Release\ZERO_CHECK\ZERO_CHECK.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+2026-10-05T10:44:29.2208669Z [        ]   Touching "x64\Release\ZERO_CHECK\ZERO_CHECK.tlog\unsuccessfulbuild".
+2026-10-05T10:44:29.3257997Z [ +104 ms] CustomBuild:
+2026-10-05T10:44:29.3259347Z [        ]   1>Checking Build System
+2026-10-05T10:44:29.3994955Z [  +73 ms] FinalizeBuildStatus:
+2026-10-05T10:44:29.3995838Z [        ]   Deleting file "x64\Release\ZERO_CHECK\ZERO_CHECK.tlog\unsuccessfulbuild".
+2026-10-05T10:44:29.3998309Z [        ]   Touching "x64\Release\ZERO_CHECK\ZERO_CHECK.tlog\ZERO_CHECK.lastbuildstate".
+2026-10-05T10:44:29.4017481Z [   +1 ms] Done Building Project "D:\a\guoapp\guoapp\build\windows\x64\ZERO_CHECK.vcxproj" (default targets).
+2026-10-05T10:44:29.5092881Z [ +107 ms] Project "D:\a\guoapp\guoapp\build\windows\x64\INSTALL.vcxproj" (1) is building "D:\a\guoapp\guoapp\build\windows\x64\ALL_BUILD.vcxproj" (3) on node 1 (default targets).
+2026-10-05T10:44:29.5095612Z [        ] Project "D:\a\guoapp\guoapp\build\windows\x64\ALL_BUILD.vcxproj" (3) is building "D:\a\guoapp\guoapp\build\windows\x64\plugins\ffmpeg_kit_flutter_new_min_gpl\ffmpeg_kit_flutter_new_min_gpl_plugin.vcxproj" (4) on node 1 (default targets).
+2026-10-05T10:44:29.5099227Z [        ] Project "D:\a\guoapp\guoapp\build\windows\x64\plugins\ffmpeg_kit_flutter_new_min_gpl\ffmpeg_kit_flutter_new_min_gpl_plugin.vcxproj" (4) is building "D:\a\guoapp\guoapp\build\windows\x64\flutter\flutter_assemble.vcxproj" (5) on node 1 (default targets).
+2026-10-05T10:44:29.5100680Z [        ] PrepareForBuild:
+2026-10-05T10:44:29.5100995Z [        ]   Creating directory "x64\Release\flutter_assemble\".
+2026-10-05T10:44:29.5109343Z [   +1 ms]   Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+2026-10-05T10:44:29.5110933Z [        ]   Creating directory "x64\Release\flutter_assemble\flutter_assemble.tlog\".
+2026-10-05T10:44:29.5128283Z [   +1 ms] InitializeBuildStatus:
+2026-10-05T10:44:29.5130792Z [        ]   Creating "x64\Release\flutter_assemble\flutter_assemble.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+2026-10-05T10:44:29.5132077Z [        ]   Touching "x64\Release\flutter_assemble\flutter_assemble.tlog\unsuccessfulbuild".
+2026-10-05T10:44:29.5137257Z [        ] ComputeCustomBuildOutput:
+2026-10-05T10:44:29.5139134Z [        ]   Creating directory "D:\a\guoapp\guoapp\windows\flutter\ephemeral\cpp_client_wrapper\".
+2026-10-05T10:44:29.5148626Z [        ] CustomBuild:
+2026-10-05T10:44:29.5151916Z [        ]   "The build of 'D:\a\guoapp\guoapp\build\windows\x64\CMakeFiles\fd63c531af6f99a6f96e73b5e783e30f\flutter_assemble.rule' depends on 'D:\A\GUOAPP\GUOAPP\WINDOWS\FLUTTER\EPHEMERAL\FLUTTER_WINDOWS.DLL' which is produced by the build of 'D:\a\guoapp\guoapp\build\windows\x64\CMakeFiles\3ba1e3ef00f2a3efe96fe903c6f0a9bb\flutter_windows.dll.rule'. The items cannot be built in parallel."
+2026-10-05T10:44:29.5413691Z [  +25 ms]   Generating D:/a/guoapp/guoapp/windows/flutter/ephemeral/flutter_windows.dll, D:/a/guoapp/guoapp/windows/flutter/ephemeral/flutter_export.h, D:/a/guoapp/guoapp/windows/flutter/ephemeral/flutter_windows.h, D:/a/guoapp/guoapp/windows/flutter/ephemeral/flutter_messenger.h, D:/a/guoapp/guoapp/windows/flutter/ephemeral/flutter_plugin_registrar.h, D:/a/guoapp/guoapp/windows/flutter/ephemeral/flutter_texture_registrar.h, D:/a/guoapp/guoapp/windows/flutter/ephemeral/cpp_client_wrapper/core_implementations.cc, D:/a/guoapp/guoapp/windows/flutter/ephemeral/cpp_client_wrapper/standard_codec.cc, D:/a/guoapp/guoapp/windows/flutter/ephemeral/cpp_client_wrapper/plugin_registrar.cc, D:/a/guoapp/guoapp/windows/flutter/ephemeral/cpp_client_wrapper/flutter_engine.cc, D:/a/guoapp/guoapp/windows/flutter/ephemeral/cpp_client_wrapper/flutter_view_controller.cc, _phony_
+2026-10-05T10:44:31.0087603Z [+1466 ms]   [  +20 ms] Artifact Instance of 'MaterialFonts' is not required, skipping update.
+2026-10-05T10:44:31.0090286Z [        ]   [   +5 ms] Artifact Instance of 'GradleWrapper' is not required, skipping update.
+2026-10-05T10:44:31.0091548Z [        ]   [        ] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0092742Z [        ]   [        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0093941Z [        ]   [        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0094982Z [        ]   [        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+2026-10-05T10:44:31.0096084Z [        ]   [        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+2026-10-05T10:44:31.0097107Z [        ]   [        ] Artifact Instance of 'FlutterSdk' is not required, skipping update.
+2026-10-05T10:44:31.0098139Z [        ]   [        ] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0099211Z [        ]   [        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0100170Z [        ]   [        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0101236Z [        ]   [        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0102678Z [        ]   [        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0103790Z [        ]   [   +1 ms] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0104957Z [        ]   [        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+2026-10-05T10:44:31.0106018Z [        ]   [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0107003Z [        ]   [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0108360Z [        ]   [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0109405Z [        ]   [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0110391Z [        ]   [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0111390Z [        ]   [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0112416Z [        ]   [        ] Artifact Instance of 'FontSubsetArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0113448Z [        ]   [        ] Artifact Instance of 'PubDependencies' is not required, skipping update.
+2026-10-05T10:44:31.0175055Z [   +6 ms]   [  +14 ms] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0176815Z [        ]   [        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0178723Z [        ]   [        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0180297Z [        ]   [        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+2026-10-05T10:44:31.0181350Z [        ]   [        ] Artifact Instance of 'FlutterEngineStamp' is not required, skipping update.
+2026-10-05T10:44:31.0182418Z [        ]   [        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+2026-10-05T10:44:31.0204001Z [   +2 ms]   [   +2 ms] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0207436Z [        ]   [        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0210564Z [        ]   [        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0211735Z [        ]   [        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0212933Z [        ]   [        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0215045Z [        ]   [        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0216079Z [        ]   [        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+2026-10-05T10:44:31.0848838Z [  +62 ms]   [  +62 ms] Artifact Instance of 'MaterialFonts' is not required, skipping update.
+2026-10-05T10:44:31.0849930Z [        ]   [        ] Artifact Instance of 'GradleWrapper' is not required, skipping update.
+2026-10-05T10:44:31.0852465Z [        ]   [        ] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0853936Z [        ]   [        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0855424Z [        ]   [        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0856954Z [        ]   [        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+2026-10-05T10:44:31.0858740Z [        ]   [        ] Artifact Instance of 'FlutterEngineStamp' is not required, skipping update.
+2026-10-05T10:44:31.0861239Z [        ]   [        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+2026-10-05T10:44:31.0862633Z [        ]   [        ] Artifact Instance of 'FlutterSdk' is not required, skipping update.
+2026-10-05T10:44:31.0875867Z [   +1 ms]   [   +2 ms] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0877936Z [        ]   [        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0879506Z [        ]   [        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0881378Z [        ]   [        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0884436Z [        ]   [        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0886861Z [        ]   [        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+2026-10-05T10:44:31.0888980Z [        ]   [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0893520Z [        ]   [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0895395Z [        ]   [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0899222Z [        ]   [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0900779Z [        ]   [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0906875Z [        ]   [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0908029Z [        ]   [        ] Artifact Instance of 'FontSubsetArtifacts' is not required, skipping update.
+2026-10-05T10:44:31.0909346Z [        ]   [        ] Artifact Instance of 'PubDependencies' is not required, skipping update.
+2026-10-05T10:44:31.1040997Z [  +13 ms]   [  +13 ms] Initializing file store
+2026-10-05T10:44:31.1421983Z [  +38 ms]   [  +37 ms] build_hooks: Starting due to {}
+2026-10-05T10:44:31.1440572Z [   +1 ms]   [   +2 ms] Skipping target: gen_localizations
+2026-10-05T10:44:31.1483873Z [   +4 ms]   [   +4 ms] gen_dart_plugin_registrant: Starting due to {InvalidatedReasonKind.inputChanged: The following inputs have updated contents: D:\a\guoapp\guoapp\.dart_tool\package_config.json}
+2026-10-05T10:44:31.1514705Z [   +3 ms]   [   +3 ms] unpack_windows: Starting due to {}
+2026-10-05T10:44:31.3043394Z [ +152 ms]   [ +152 ms] unpack_windows: Complete
+2026-10-05T10:44:33.9800041Z [+2675 ms]   [+2675 ms] Found plugin integration_test at C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64\flutter\packages\integration_test\
+2026-10-05T10:44:34.0125924Z [  +32 ms]   [  +33 ms] executing: C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe -format json -products * -utf8 -latest -version 16 -requires Microsoft.VisualStudio.Workload.NativeDesktop Microsoft.VisualStudio.Component.VC.Tools.x86.x64 Microsoft.VisualStudio.Component.VC.CMake.Project
+2026-10-05T10:44:34.0636834Z [  +50 ms]   [  +50 ms] Exit code 0 from: C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe -format json -products * -utf8 -latest -version 16 -requires Microsoft.VisualStudio.Workload.NativeDesktop Microsoft.VisualStudio.Component.VC.Tools.x86.x64 Microsoft.VisualStudio.Component.VC.CMake.Project
+2026-10-05T10:44:34.0688780Z [   +4 ms]   [        ] [
+2026-10-05T10:44:34.0743357Z [        ]                {
+2026-10-05T10:44:34.0749413Z [        ]                  "instanceId": "b61ad8f0",
+2026-10-05T10:44:34.0750376Z [        ]                  "installDate": "2026-09-25T22:21:59Z",
+2026-10-05T10:44:34.0752288Z [        ]                  "installationName": "VisualStudio/18.10.2+12217.157",
+2026-10-05T10:44:34.0753273Z [        ]                  "installationPath": "C:\\Program Files\\Microsoft Visual Studio\\18\\Enterprise",
+2026-10-05T10:44:34.0754547Z [        ]                  "installationVersion": "18.10.12217.157",
+2026-10-05T10:44:34.0756170Z [        ]                  "productId": "Microsoft.VisualStudio.Product.Enterprise",
+2026-10-05T10:44:34.0757692Z [        ]                  "productPath": "C:\\Program Files\\Microsoft Visual Studio\\18\\Enterprise\\Common7\\IDE\\devenv.exe",
+2026-10-05T10:44:34.0758656Z [        ]                  "state": 4294967295,
+2026-10-05T10:44:34.0759519Z [        ]                  "isComplete": true,
+2026-10-05T10:44:34.0760346Z [        ]                  "isLaunchable": true,
+2026-10-05T10:44:34.0760897Z [        ]                  "isPrerelease": false,
+2026-10-05T10:44:34.0761714Z [        ]                  "isRebootRequired": false,
+2026-10-05T10:44:34.0762336Z [        ]                  "displayName": "Visual Studio Enterprise 2026",
+2026-10-05T10:44:34.0764266Z [        ]                  "description": "Built for scale, security, and speed – the IDE for complex, high-impact development.",
+2026-10-05T10:44:34.0765621Z [        ]                  "channelId": "VisualStudio.18.Release",
+2026-10-05T10:44:34.0766331Z [        ]                  "channelUri": "https://aka.ms/vs/18/stable/channel",
+2026-10-05T10:44:34.0768031Z [        ]                  "enginePath": "C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\resources\\app\\ServiceHub\\Services\\Microsoft.VisualStudio.Setup.Service",
+2026-10-05T10:44:34.0769345Z [        ]                  "expirationDate": "2027-03-16T17:00:00+00:00",
+2026-10-05T10:44:34.0770419Z [        ]                  "installChannelUri": "https://aka.ms/vs/18/stable/channel",
+2026-10-05T10:44:34.0771179Z [        ]                  "installedChannelId": "VisualStudio.18.Release",
+2026-10-05T10:44:34.0771962Z [        ]                  "installedChannelUri": "https://aka.ms/vs/18/stable/channel",
+2026-10-05T10:44:34.0773139Z [        ]                  "releaseNotes": "https://docs.microsoft.com/en-us/visualstudio/releases/18/release-notes-v18.10#18.10.2",
+2026-10-05T10:44:34.0774505Z [        ]                  "resolvedInstallationPath": "C:\\Program Files\\Microsoft Visual Studio\\18\\Enterprise",
+2026-10-05T10:44:34.0775957Z [        ]                  "thirdPartyNotices": "https://go.microsoft.com/fwlink/?LinkId=661480",
+2026-10-05T10:44:34.0776817Z [        ]                  "updateDate": "2026-09-25T22:21:59.0228986Z",
+2026-10-05T10:44:34.0777372Z [        ]                  "catalog": {
+2026-10-05T10:44:34.0777850Z [        ]                    "buildBranch": "stable",
+2026-10-05T10:44:34.0778402Z [        ]                    "buildVersion": "18.10.12217.157",
+2026-10-05T10:44:34.0778965Z [        ]                    "featureReleaseMonth": "09",
+2026-10-05T10:44:34.0779523Z [        ]                    "featureReleaseYear": "2026",
+2026-10-05T10:44:34.0780096Z [        ]                    "id": "VisualStudio/18.10.2+12217.157",
+2026-10-05T10:44:34.0780788Z [        ]                    "includeBuildVersionInDisplayVersion": "False",
+2026-10-05T10:44:34.0781447Z [        ]                    "localBuild": "build-lab",
+2026-10-05T10:44:34.0782074Z [        ]                    "manifestName": "VisualStudio",
+2026-10-05T10:44:34.0782644Z [        ]                    "manifestType": "installer",
+2026-10-05T10:44:34.0783237Z [        ]                    "productDisplayVersion": "18.10.2",
+2026-10-05T10:44:34.0783820Z [        ]                    "productLine": "Dev18",
+2026-10-05T10:44:34.0784357Z [        ]                    "productLineVersion": "18",
+2026-10-05T10:44:34.0784940Z [        ]                    "productMilestone": "RTW",
+2026-10-05T10:44:34.0785533Z [        ]                    "productMilestoneIsPreRelease": "False",
+2026-10-05T10:44:34.0786149Z [        ]                    "productName": "Visual Studio",
+2026-10-05T10:44:34.0786722Z [        ]                    "productPatchVersion": "2",
+2026-10-05T10:44:34.0787659Z [        ]                    "productPreReleaseMilestoneSuffix": "1.0",
+2026-10-05T10:44:34.0788299Z [        ]                    "productRelease": "RTW",
+2026-10-05T10:44:34.0788886Z [        ]                    "productSemanticVersion": "18.10.2+12217.157",
+2026-10-05T10:44:34.0789525Z [        ]                    "requiredEngineVersion": "4.10.30.62513"
+2026-10-05T10:44:34.0790047Z [        ]                  },
+2026-10-05T10:44:34.0790433Z [        ]                  "properties": {
+2026-10-05T10:44:34.0790897Z [        ]                    "campaignId": "",
+2026-10-05T10:44:34.0791604Z [        ]                    "channelManifestId": "VisualStudio.18.Release/18.10.2+12217.157",
+2026-10-05T10:44:34.0792362Z [        ]                    "includeRecommended": "1",
+2026-10-05T10:44:34.0792899Z [        ]                    "nickname": "",
+2026-10-05T10:44:34.0793785Z [        ]                    "setupEngineFilePath": "C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\setup.exe"
+2026-10-05T10:44:34.0794648Z [        ]                  }
+2026-10-05T10:44:34.0795031Z [        ]                }
+2026-10-05T10:44:34.0795368Z [        ]              ]
+2026-10-05T10:44:34.0795750Z [        ]   [  +11 ms] Running build hooks for windows_x64.
+2026-10-05T10:44:34.1421171Z [  +64 ms]   [  +66 ms] Running `C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64\flutter\bin\cache\dart-sdk\bin\dart compile kernel --packages=D:\a\guoapp\guoapp\.dart_tool\package_config.json --output=D:\a\guoapp\guoapp\.dart_tool\hooks_runner\objective_c\7b01651218\hook.dill --depfile=D:\a\guoapp\guoapp\.dart_tool\hooks_runner\objective_c\7b01651218\hook.dill.d C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\objective_c-9.6.2\hook\build.dart`.
+2026-10-05T10:44:34.1523985Z [  +10 ms]   [  +10 ms] Found plugin window_manager at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\window_manager-0.5.2\
+2026-10-05T10:44:34.1566758Z [   +4 ms]   [   +4 ms] Found plugin screen_retriever at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\screen_retriever-0.2.2\
+2026-10-05T10:44:34.1585512Z [   +1 ms]   [   +2 ms] Found plugin screen_retriever_windows at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\screen_retriever_windows-0.2.2\
+2026-10-05T10:44:34.1630238Z [   +4 ms]   [   +4 ms] Found plugin screen_retriever_macos at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\screen_retriever_macos-0.2.2\
+2026-10-05T10:44:34.1647349Z [   +1 ms]   [   +1 ms] Found plugin screen_retriever_linux at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\screen_retriever_linux-0.2.2\
+2026-10-05T10:44:34.1670300Z [   +2 ms]   [   +2 ms] Found plugin wakelock_plus at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\wakelock_plus-1.8.1\
+2026-10-05T10:44:34.1762545Z [   +9 ms]   [   +8 ms] Found plugin package_info_plus at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\package_info_plus-10.2.2\
+2026-10-05T10:44:34.1902324Z [  +13 ms]   [  +13 ms] Found plugin shared_preferences at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences-2.5.5\
+2026-10-05T10:44:34.1916485Z [   +1 ms]   [   +1 ms] Found plugin shared_preferences_windows at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences_windows-2.4.1\
+2026-10-05T10:44:34.1943086Z [   +1 ms]   [   +1 ms] Found plugin path_provider_windows at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_windows-2.3.0\
+2026-10-05T10:44:34.1981244Z [   +4 ms]   [   +4 ms] Found plugin shared_preferences_web at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences_web-2.4.3\
+2026-10-05T10:44:34.2002998Z [   +2 ms]   [   +2 ms] Found plugin shared_preferences_linux at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences_linux-2.4.1\
+2026-10-05T10:44:34.2060170Z [   +5 ms]   [   +6 ms] Found plugin path_provider_linux at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_linux-2.2.2\
+2026-10-05T10:44:34.2091028Z [   +3 ms]   [   +3 ms] Found plugin shared_preferences_foundation at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences_foundation-2.5.7\
+2026-10-05T10:44:34.2107195Z [   +1 ms]   [   +1 ms] Found plugin shared_preferences_android at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences_android-2.4.28\
+2026-10-05T10:44:34.2125482Z [   +1 ms]   [   +1 ms] Found plugin path_provider at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider-2.1.6\
+2026-10-05T10:44:34.2140273Z [   +1 ms]   [   +1 ms] Found plugin path_provider_foundation at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_foundation-2.6.0\
+2026-10-05T10:44:34.2337103Z [  +11 ms]   [  +10 ms] Found plugin path_provider_android at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_android-2.3.1\
+2026-10-05T10:44:34.2355206Z [   +1 ms]   [   +1 ms] Found plugin jni_flutter at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\jni_flutter-1.0.3\
+2026-10-05T10:44:34.2365126Z [   +1 ms]   [   +2 ms] Found plugin jni at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\jni-1.1.0\
+2026-10-05T10:44:34.2367273Z [   +4 ms]   [   +4 ms] Found plugin nsd at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\nsd-5.0.1\
+2026-10-05T10:44:34.2369698Z [   +1 ms]   [   +1 ms] Found plugin nsd_windows at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\nsd_windows-3.0.1\
+2026-10-05T10:44:34.2412991Z [   +6 ms]   [   +6 ms] Found plugin nsd_macos at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\nsd_macos-3.0.1\
+2026-10-05T10:44:34.2425135Z [   +1 ms]   [   +1 ms] Found plugin nsd_ios at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\nsd_ios-3.0.1\
+2026-10-05T10:44:34.2437948Z [   +1 ms]   [   +1 ms] Found plugin nsd_android at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\nsd_android-2.2.0\
+2026-10-05T10:44:34.2451750Z [   +1 ms]   [   +1 ms] Found plugin media_kit_video at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\media_kit_video-2.0.1\
+2026-10-05T10:44:34.2562700Z [  +10 ms]   [  +10 ms] Found plugin media_kit_libs_windows_video at D:\a\guoapp\guoapp\packages\media_kit_libs_windows_video\
+2026-10-05T10:44:34.2573896Z [   +1 ms]   [   +1 ms] Found plugin media_kit_libs_macos_video at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\media_kit_libs_macos_video-1.1.4\
+2026-10-05T10:44:34.2585240Z [   +1 ms]   [   +1 ms] Found plugin media_kit_libs_linux at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\media_kit_libs_linux-1.2.1\
+2026-10-05T10:44:34.2602724Z [   +1 ms]   [   +1 ms] Found plugin media_kit_libs_ios_video at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\media_kit_libs_ios_video-1.1.4\
+2026-10-05T10:44:34.2616653Z [   +1 ms]   [   +1 ms] Found plugin media_kit_libs_android_video at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\media_kit_libs_android_video-1.3.8\
+2026-10-05T10:44:34.2654866Z [   +3 ms]   [   +3 ms] Found plugin flutter_foreground_task at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_foreground_task-11.0.3\
+2026-10-05T10:44:34.2674759Z [   +2 ms]   [   +2 ms] Found plugin file_picker at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\file_picker-13.1.0\
+2026-10-05T10:44:34.2688303Z [   +1 ms]   [   +1 ms] Found plugin windows_file_picker at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\windows_file_picker-2.0.0\
+2026-10-05T10:44:34.2722640Z [   +3 ms]   [   +3 ms] Found plugin file_picker_web at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\file_picker_web-4.0.0\
+2026-10-05T10:44:34.2736382Z [   +1 ms]   [   +1 ms] Found plugin file_picker_linux at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\file_picker_linux-2.0.1\
+2026-10-05T10:44:34.2755328Z [   +1 ms]   [   +1 ms] Found plugin file_picker_darwin at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\file_picker_darwin-2.1.2\
+2026-10-05T10:44:34.2769041Z [   +1 ms]   [   +1 ms] Found plugin android_file_picker at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\android_file_picker-2.0.0\
+2026-10-05T10:44:34.2782413Z [   +1 ms]   [   +1 ms] Found plugin ffmpeg_kit_flutter_new_min_gpl at C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\ffmpeg_kit_flutter_new_min_gpl-2.6.2\
+2026-10-05T10:44:34.3026420Z [  +24 ms]   [  +24 ms] gen_dart_plugin_registrant: Complete
+2026-10-05T10:44:34.3048061Z [   +2 ms]   [   +2 ms] kernel_snapshot_program: Starting due to {}
+2026-10-05T10:44:34.3192194Z [  +13 ms]   [  +12 ms] C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64\flutter\bin\cache\dart-sdk\bin\dartaotruntime.exe C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64\flutter\bin\cache\dart-sdk\bin\snapshots\frontend_server_aot.dart.snapshot --sdk-root C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64\flutter\bin\cache\artifacts\engine\common\flutter_patched_sdk_product/ --target=flutter --no-print-incremental-dependencies -DALL_SOURCES=false -DFLUTTER_BUILD_NAME=0.2.97 -DFLUTTER_BUILD_NUMBER=2103 -DFLUTTER_VERSION=3.47.4 -DFLUTTER_CHANNEL=stable -DFLUTTER_GIT_URL=https://github.com/flutter/flutter.git -DFLUTTER_FRAMEWORK_REVISION=9584c6713b -DFLUTTER_ENGINE_REVISION=06a2e2a110 -DFLUTTER_DART_VERSION=3.13.3 -Ddart.vm.profile=false -Ddart.vm.product=true --delete-tostring-package-uri=dart:ui --delete-tostring-package-uri=package:flutter --aot --tfa --target-os windows --packages D:\a\guoapp\guoapp\.dart_tool\package_config.json --output-dill D:\a\guoapp\guoapp\.dart_tool\flutter_build\502a464d462895ebe0e6012bc1399418\app.dill --depfile D:\a\guoapp\guoapp\.dart_tool\flutter_build\502a464d462895ebe0e6012bc1399418\kernel_snapshot_program.d --source file:///D:/a/guoapp/guoapp/.dart_tool/flutter_build/dart_plugin_registrant.dart --source package:flutter/src/dart_plugin_registrant.dart -Dflutter.dart_plugin_registrant=file:///D:/a/guoapp/guoapp/.dart_tool/flutter_build/dart_plugin_registrant.dart --verbosity=error --recorded-uses=D:\a\guoapp\guoapp\.dart_tool\flutter_build\502a464d462895ebe0e6012bc1399418\recorded_uses.json package:duanju_app/main.dart
+2026-10-05T10:44:35.2213847Z [ +902 ms]   [ +901 ms] input.json contents:
+2026-10-05T10:44:35.2214924Z [        ]              {
+2026-10-05T10:44:35.2215721Z [        ]                "assets": {},
+2026-10-05T10:44:35.2216536Z [        ]                "config": {
+2026-10-05T10:44:35.2217221Z [        ]                  "build_asset_types": [
+2026-10-05T10:44:35.2217998Z [        ]                    "code_assets/code"
+2026-10-05T10:44:35.2218736Z [        ]                  ],
+2026-10-05T10:44:35.2220906Z [        ]                  "extensions": {
+2026-10-05T10:44:35.2221667Z [        ]                    "code_assets": {
+2026-10-05T10:44:35.2222280Z [        ]                      "c_compiler": {
+2026-10-05T10:44:35.2223310Z [        ]                        "ar": "C:\\Program Files\\Microsoft Visual Studio\\18\\Enterprise\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64\\lib.exe",
+2026-10-05T10:44:35.2225849Z [        ]                        "cc": "C:\\Program Files\\Microsoft Visual Studio\\18\\Enterprise\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64\\cl.exe",
+2026-10-05T10:44:35.2228068Z [        ]                        "ld": "C:\\Program Files\\Microsoft Visual Studio\\18\\Enterprise\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64\\link.exe",
+2026-10-05T10:44:35.2229965Z [        ]                        "windows": {
+2026-10-05T10:44:35.2230763Z [        ]                          "developer_command_prompt": {
+2026-10-05T10:44:35.2232247Z [        ]                            "arguments": [],
+2026-10-05T10:44:35.2233783Z [        ]                            "script": "C:\\Program Files\\Microsoft Visual Studio\\18\\Enterprise\\VC\\Auxiliary\\Build\\vcvars64.bat"
+2026-10-05T10:44:35.2236024Z [        ]                          }
+2026-10-05T10:44:35.2236725Z [        ]                        }
+2026-10-05T10:44:35.2237852Z [        ]                      },
+2026-10-05T10:44:35.2238530Z [        ]                      "link_mode_preference": "dynamic",
+2026-10-05T10:44:35.2239316Z [        ]                      "target_architecture": "x64",
+2026-10-05T10:44:35.2240052Z [        ]                      "target_os": "windows"
+2026-10-05T10:44:35.2240734Z [        ]                    }
+2026-10-05T10:44:35.2241349Z [        ]                  },
+2026-10-05T10:44:35.2241997Z [        ]                  "linking_enabled": true
+2026-10-05T10:44:35.2242673Z [        ]                },
+2026-10-05T10:44:35.2243360Z [        ]                "out_dir_shared": "D:\\a\\guoapp\\guoapp\\.dart_tool\\hooks_runner\\shared\\objective_c\\build\\",
+2026-10-05T10:44:35.2244355Z [        ]                "out_file": "D:\\a\\guoapp\\guoapp\\.dart_tool\\hooks_runner\\objective_c\\7b01651218\\output.json",
+2026-10-05T10:44:35.2245063Z [        ]                "package_name": "objective_c",
+2026-10-05T10:44:35.2245842Z [        ]                "package_root": "C:\\Users\\runneradmin\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\objective_c-9.6.2\\",
+2026-10-05T10:44:35.2246571Z [        ]                "user_defines": {}
+2026-10-05T10:44:35.2246925Z [        ]              }
+2026-10-05T10:44:35.2298135Z [   +1 ms]   [   +5 ms] Running `(cd C:\Users\runneradmin\AppData\Local\Pub\Cache\hosted\pub.dev\objective_c-9.6.2\; ANDROID_HOME=C:\Android\android-sdk ANDROID_NDK=C:\Android\android-sdk\ndk\27.3.13750724 ANDROID_NDK_HOME=C:\Android\android-sdk\ndk\27.3.13750724 ANDROID_NDK_LATEST_HOME=C:\Android\android-sdk\ndk\29.0.14206865 ANDROID_NDK_ROOT=C:\Android\android-sdk\ndk\27.3.13750724 APPDATA=C:\Users\runneradmin\AppData\Roaming DOTNET_MULTILEVEL_LOOKUP=0 DOTNET_NOLOGO=1 DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1 LOCALAPPDATA=C:\Users\runneradmin\AppData\Local PATH=C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64;C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\x64;;C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8.1 Tools\x64;C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\x86;;C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8.1 Tools;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\tools;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\ide;C:\Program Files (x86)\HTML Help Workshop;;C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Current\Bin\amd64;C:\Windows\Microsoft.NET\Framework64\v4.0.30319\;C:\Windows\Microsoft.NET\Framework\v4.0.30319\;C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Current\Bin;C:\Windows\Microsoft.NET\Framework\v4.0.30319\;;C:\Program Files\PowerShell\7;C:\ProgramData\mingw64\mingw64\bin;C:\Users\runneradmin\AppData\Local\Pub\Cache/bin;C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64/flutter/bin/cache/dart-sdk/bin;C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64/flutter/bin;C:\Users\runneradmin\AppData\Roaming\Python\Python312\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64;C:\Users\runneradmin\go\bin;C:\hostedtoolcache\windows\go\1.24.1\x64\bin;C:\Program Files\MongoDB\Server\7.0\bin;C:\vcpkg;C:\tools\zstd;C:\hostedtoolcache\windows\stack\3.11.1\x64;C:\cabal\bin;C:\\ghcup\bin;C:\mingw64\bin;C:\Program Files\dotnet;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Program Files\R\R-4.6.1\bin\x64;C:\SeleniumWebDrivers\GeckoDriver;C:\SeleniumWebDrivers\EdgeDriver\;C:\SeleniumWebDrivers\ChromeDriver;C:\Program Files (x86)\sbt\bin;C:\Program Files (x86)\GitHub CLI;C:\Program Files\Git\bin;C:\Program Files (x86)\pipx_bin;C:\npm\prefix;C:\hostedtoolcache\windows\go\1.24.13\x64\bin;C:\hostedtoolcache\windows\Python\3.12.10\x64\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64;C:\hostedtoolcache\windows\Ruby\3.3.12\x64\bin;C:\Program Files\OpenSSL\bin;C:\tools\kotlinc\bin;C:\hostedtoolcache\windows\Java_Temurin-Hotspot_jdk\17.0.20-101\x64\bin;C:\Program Files\ImageMagick-7.1.2-Q16-HDRI;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\ProgramData\kind;C:\ProgramData\Chocolatey\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\PowerShell\7\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\Microsoft SQL Server\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\WiX Toolset v3.14\bin;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files\Microsoft SQL Server\170\DTS\Binn\;C:\ProgramData\chocolatey\lib\pulumi\tools\Pulumi\bin;C:\Program Files\CMake\bin;C:\Strawberry\c\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\perl\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.16\bin;C:\Program Files\Microsoft Service Fabric\bin\Fabric\Fabric.Code;C:\Program Files\Microsoft SDKs\Service Fabric\Tools\ServiceFabricLocalClusterManager;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\GitHub CLI\;c:\tools\php;C:\Program Files (x86)\sbt\bin;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Amazon\SessionManagerPlugin\bin\;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\mongosh\;C:\Program Files\LLVM\bin;C:\Program Files (x86)\LLVM\bin;C:\Users\runneradmin\.dotnet\tools;C:\Users\runneradmin\.cargo\bin;C:\Users\runneradmin\AppData\Local\Microsoft\WindowsApps;C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64\flutter\bin\mingit\cmd;;C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64\flutter\bin\mingit\cmd PROCESSOR_ARCHITECTURE=AMD64 PROGRAMDATA=C:\ProgramData SYSTEMDRIVE=C: SYSTEMROOT=C:\Windows TEMP=C:\Users\RUNNER~1\AppData\Local\Temp TMP=C:\Users\RUNNER~1\AppData\Local\Temp USERPROFILE=C:\Users\runneradmin WINDIR=C:\Windows C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64\flutter\bin\cache\dart-sdk\bin\dart --packages=D:\a\guoapp\guoapp\.dart_tool\package_config.json D:\a\guoapp\guoapp\.dart_tool\hooks_runner\objective_c\7b01651218\hook.dill --config=D:\a\guoapp\guoapp\.dart_tool\hooks_runner\objective_c\7b01651218\input.json )`.
+2026-10-05T10:44:35.4921609Z [ +265 ms]   [ +265 ms] output.json contents:
+2026-10-05T10:44:35.4923748Z [        ]              {
+2026-10-05T10:44:35.4925313Z [        ]                "assets_for_linking": {},
+2026-10-05T10:44:35.4926774Z [        ]                "status": "success",
+2026-10-05T10:44:35.4928249Z [        ]                "timestamp": "2026-10-05 10:44:35.000"
+2026-10-05T10:44:35.4929508Z [        ]              }
+2026-10-05T10:44:35.5301157Z [  +36 ms]   [  +38 ms] Running build hooks for windows_x64 done.
+2026-10-05T10:44:35.5315814Z [   +1 ms]   [   +2 ms] build_hooks: Complete
+2026-10-05T10:44:58.8861463Z [+23354 ms]   [+23353 ms] kernel_snapshot_program: Complete
+2026-10-05T10:44:59.9421523Z [+1055 ms]   [+1056 ms] link_hooks: Starting due to {}
+2026-10-05T10:44:59.9439565Z [   +1 ms]   [   +1 ms] aot_elf_release: Starting due to {InvalidatedReasonKind.inputChanged: The following inputs have updated contents: C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64\flutter\packages\flutter_tools\lib\src\build_system\targets\common.dart,D:\a\guoapp\guoapp\.dart_tool\flutter_build\502a464d462895ebe0e6012bc1399418\app.dill,C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64\flutter\bin\cache\engine.stamp,C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64\flutter\bin\cache\engine.stamp,C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64\flutter\bin\cache\engine.stamp, InvalidatedReasonKind.outputSetAddition: The following outputs were added to the output set: D:\a\guoapp\guoapp\.dart_tool\flutter_build\502a464d462895ebe0e6012bc1399418\app.so}
+2026-10-05T10:44:59.9464356Z [   +2 ms]   [   +2 ms] targetingApplePlatform = false
+2026-10-05T10:44:59.9466085Z [        ]   [        ] extractAppleDebugSymbols = true
+2026-10-05T10:44:59.9467429Z [        ]   [        ] targetingAndroidPlatform = false
+2026-10-05T10:44:59.9469363Z [        ]   [        ] Will strip AOT snapshot during build.
+2026-10-05T10:44:59.9484577Z [   +1 ms]   [   +1 ms] executing: C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64\flutter\bin\cache\artifacts\engine\windows-x64-release\gen_snapshot --deterministic --snapshot_kind=app-aot-elf --elf=D:\a\guoapp\guoapp\.dart_tool\flutter_build\502a464d462895ebe0e6012bc1399418\app.so --strip D:\a\guoapp\guoapp\.dart_tool\flutter_build\502a464d462895ebe0e6012bc1399418\app.dill
+2026-10-05T10:44:59.9534660Z [   +4 ms]   [   +4 ms] executing: C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe -format json -products * -utf8 -latest -version 16 -requires Microsoft.VisualStudio.Workload.NativeDesktop Microsoft.VisualStudio.Component.VC.Tools.x86.x64 Microsoft.VisualStudio.Component.VC.CMake.Project
+2026-10-05T10:45:00.0045489Z [  +50 ms]   [  +49 ms] Exit code 0 from: C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe -format json -products * -utf8 -latest -version 16 -requires Microsoft.VisualStudio.Workload.NativeDesktop Microsoft.VisualStudio.Component.VC.Tools.x86.x64 Microsoft.VisualStudio.Component.VC.CMake.Project
+2026-10-05T10:45:00.0068527Z [        ]   [        ] [
+2026-10-05T10:45:00.0070473Z [        ]                {
+2026-10-05T10:45:00.0198832Z [        ]                  "instanceId": "b61ad8f0",
+2026-10-05T10:45:00.0205410Z [        ]                  "installDate": "2026-09-25T22:21:59Z",
+2026-10-05T10:45:00.0209733Z [        ]                  "installationName": "VisualStudio/18.10.2+12217.157",
+2026-10-05T10:45:00.0236942Z [        ]                  "installationPath": "C:\\Program Files\\Microsoft Visual Studio\\18\\Enterprise",
+2026-10-05T10:45:00.0238134Z [        ]                  "installationVersion": "18.10.12217.157",
+2026-10-05T10:45:00.0239121Z [        ]                  "productId": "Microsoft.VisualStudio.Product.Enterprise",
+2026-10-05T10:45:00.0240459Z [        ]                  "productPath": "C:\\Program Files\\Microsoft Visual Studio\\18\\Enterprise\\Common7\\IDE\\devenv.exe",
+2026-10-05T10:45:00.0241910Z [        ]                  "state": 4294967295,
+2026-10-05T10:45:00.0242704Z [        ]                  "isComplete": true,
+2026-10-05T10:45:00.0243420Z [        ]                  "isLaunchable": true,
+2026-10-05T10:45:00.0244079Z [        ]                  "isPrerelease": false,
+2026-10-05T10:45:00.0244817Z [        ]                  "isRebootRequired": false,
+2026-10-05T10:45:00.0245615Z [        ]                  "displayName": "Visual Studio Enterprise 2026",
+2026-10-05T10:45:00.0247133Z [        ]                  "description": "Built for scale, security, and speed – the IDE for complex, high-impact development.",
+2026-10-05T10:45:00.0248255Z [        ]                  "channelId": "VisualStudio.18.Release",
+2026-10-05T10:45:00.0249442Z [        ]                  "channelUri": "https://aka.ms/vs/18/stable/channel",
+2026-10-05T10:45:00.0251006Z [        ]                  "enginePath": "C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\resources\\app\\ServiceHub\\Services\\Microsoft.VisualStudio.Setup.Service",
+2026-10-05T10:45:00.0258726Z [        ]                  "expirationDate": "2027-03-16T17:00:00+00:00",
+2026-10-05T10:45:00.0259699Z [        ]                  "installChannelUri": "https://aka.ms/vs/18/stable/channel",
+2026-10-05T10:45:00.0260697Z [        ]                  "installedChannelId": "VisualStudio.18.Release",
+2026-10-05T10:45:00.0261709Z [        ]                  "installedChannelUri": "https://aka.ms/vs/18/stable/channel",
+2026-10-05T10:45:00.0263062Z [        ]                  "releaseNotes": "https://docs.microsoft.com/en-us/visualstudio/releases/18/release-notes-v18.10#18.10.2",
+2026-10-05T10:45:00.0264571Z [        ]                  "resolvedInstallationPath": "C:\\Program Files\\Microsoft Visual Studio\\18\\Enterprise",
+2026-10-05T10:45:00.0269033Z [        ]                  "thirdPartyNotices": "https://go.microsoft.com/fwlink/?LinkId=661480",
+2026-10-05T10:45:00.0270128Z [        ]                  "updateDate": "2026-09-25T22:21:59.0228986Z",
+2026-10-05T10:45:00.0271391Z [        ]                  "catalog": {
+2026-10-05T10:45:00.0271991Z [        ]                    "buildBranch": "stable",
+2026-10-05T10:45:00.0275940Z [        ]                    "buildVersion": "18.10.12217.157",
+2026-10-05T10:45:00.0294985Z [        ]                    "featureReleaseMonth": "09",
+2026-10-05T10:45:00.0309783Z [        ]                    "featureReleaseYear": "2026",
+2026-10-05T10:45:00.0313356Z [        ]                    "id": "VisualStudio/18.10.2+12217.157",
+2026-10-05T10:45:00.0314635Z [        ]                    "includeBuildVersionInDisplayVersion": "False",
+2026-10-05T10:45:00.0316106Z [        ]                    "localBuild": "build-lab",
+2026-10-05T10:45:00.0317086Z [   +7 ms]                    "manifestName": "VisualStudio",
+2026-10-05T10:45:00.0318808Z [        ]                    "manifestType": "installer",
+2026-10-05T10:45:00.0320009Z [        ]                    "productDisplayVersion": "18.10.2",
+2026-10-05T10:45:00.0321164Z [        ]                    "productLine": "Dev18",
+2026-10-05T10:45:00.0322903Z [        ]                    "productLineVersion": "18",
+2026-10-05T10:45:00.0323788Z [        ]                    "productMilestone": "RTW",
+2026-10-05T10:45:00.0325333Z [        ]                    "productMilestoneIsPreRelease": "False",
+2026-10-05T10:45:00.0328022Z [        ]                    "productName": "Visual Studio",
+2026-10-05T10:45:00.0329645Z [        ]                    "productPatchVersion": "2",
+2026-10-05T10:45:00.0331205Z [        ]                    "productPreReleaseMilestoneSuffix": "1.0",
+2026-10-05T10:45:00.0332971Z [        ]                    "productRelease": "RTW",
+2026-10-05T10:45:00.0334136Z [        ]                    "productSemanticVersion": "18.10.2+12217.157",
+2026-10-05T10:45:00.0335551Z [        ]                    "requiredEngineVersion": "4.10.30.62513"
+2026-10-05T10:45:00.0336597Z [        ]                  },
+2026-10-05T10:45:00.0338066Z [        ]                  "properties": {
+2026-10-05T10:45:00.0338859Z [        ]                    "campaignId": "",
+2026-10-05T10:45:00.0340347Z [        ]                    "channelManifestId": "VisualStudio.18.Release/18.10.2+12217.157",
+2026-10-05T10:45:00.0341712Z [        ]                    "includeRecommended": "1",
+2026-10-05T10:45:00.0342746Z [        ]                    "nickname": "",
+2026-10-05T10:45:00.0344394Z [        ]                    "setupEngineFilePath": "C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\setup.exe"
+2026-10-05T10:45:00.0345962Z [        ]                  }
+2026-10-05T10:45:00.0346830Z [        ]                }
+2026-10-05T10:45:00.0347404Z [        ]              ]
+2026-10-05T10:45:00.0348950Z [        ]   [   +1 ms] Running link hooks for windows_x64.
+2026-10-05T10:45:00.0558267Z [  +35 ms]   [  +49 ms] Running link hooks for windows_x64 done.
+2026-10-05T10:45:00.0591360Z [   +3 ms]   [   +3 ms] link_hooks: Complete
+2026-10-05T10:45:00.0613119Z [   +2 ms]   [   +2 ms] install_code_assets: Starting due to {}
+2026-10-05T10:45:00.0720867Z [  +10 ms]   [  +10 ms] Writing native assets json to file:///D:/a/guoapp/guoapp/.dart_tool/flutter_build/502a464d462895ebe0e6012bc1399418/native_assets.json.
+2026-10-05T10:45:00.0732013Z [   +1 ms]   [   +1 ms] Writing D:\a\guoapp\guoapp\.dart_tool\flutter_build\502a464d462895ebe0e6012bc1399418\native_assets.json done.
+2026-10-05T10:45:00.0738117Z [        ]   [        ] install_code_assets: Complete
+2026-10-05T10:45:18.7272648Z [+18653 ms]   [+18652 ms] aot_elf_release: Complete
+2026-10-05T10:45:18.7789048Z [  +51 ms]   [  +51 ms] windows_aot_bundle: Starting due to {InvalidatedReasonKind.inputChanged: The following inputs have updated contents: D:\a\guoapp\guoapp\.dart_tool\flutter_build\502a464d462895ebe0e6012bc1399418\app.so, InvalidatedReasonKind.outputSetAddition: The following outputs were added to the output set: D:\a\guoapp\guoapp\build\windows\app.so}
+2026-10-05T10:45:18.7831055Z [   +4 ms]   [   +4 ms] windows_aot_bundle: Complete
+2026-10-05T10:45:18.8343772Z [  +51 ms]   [  +51 ms] release_bundle_windows-x64_assets: Starting due to {}
+2026-10-05T10:45:18.9591842Z [ +124 ms]   [ +124 ms] Manifest contained wildcard assets. Inserting missing file into build graph to force rerun. for more information see #56466.
+2026-10-05T10:45:18.9739077Z [  +14 ms]   [  +14 ms] impellerc command: [C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64\flutter\bin\cache\artifacts\engine\windows-x64\impellerc.exe, --sksl, --runtime-stage-gles, --runtime-stage-gles3, --runtime-stage-vulkan, --iplr, --sl=D:\a\guoapp\guoapp\build\flutter_assets\shaders/ink_sparkle.frag, --spirv=D:\a\guoapp\guoapp\build\flutter_assets\shaders/ink_sparkle.frag.spirv, --input=C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64\flutter\packages\flutter\lib\src\material\shaders\ink_sparkle.frag, --input-type=frag, --include=C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64\flutter\packages\flutter\lib\src\material\shaders, --include=C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64\flutter\bin\cache\artifacts\engine\windows-x64\shader_lib]
+2026-10-05T10:45:18.9754415Z [   +1 ms]   [   +1 ms] impellerc command: [C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64\flutter\bin\cache\artifacts\engine\windows-x64\impellerc.exe, --sksl, --runtime-stage-gles, --runtime-stage-gles3, --runtime-stage-vulkan, --iplr, --sl=D:\a\guoapp\guoapp\build\flutter_assets\shaders/stretch_effect.frag, --spirv=D:\a\guoapp\guoapp\build\flutter_assets\shaders/stretch_effect.frag.spirv, --input=C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64\flutter\packages\flutter\lib\src\widgets\shaders\stretch_effect.frag, --input-type=frag, --include=C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64\flutter\packages\flutter\lib\src\widgets\shaders, --include=C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64\flutter\bin\cache\artifacts\engine\windows-x64\shader_lib]
+2026-10-05T10:45:19.0257874Z [  +49 ms]   [  +49 ms] Running command: C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64\flutter\bin\cache\dart-sdk\bin\dart.exe C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64\flutter\bin\cache\artifacts\engine\windows-x64\const_finder.dart.snapshot --kernel-file D:\a\guoapp\guoapp\.dart_tool\flutter_build\502a464d462895ebe0e6012bc1399418\app.dill --class-library-uri package:flutter/src/widgets/icon_data.dart --class-name IconData --annotation-class-name _StaticIconProvider --annotation-class-library-uri package:flutter/src/widgets/icon_data.dart
+2026-10-05T10:45:20.3573710Z [+1331 ms]   [+1331 ms] Expected to find fontFamily for constant IconData with codepoint: 128842, but found fontFamily: null. This usually means you are relying on the system font. Alternatively, font families in an IconData class can be provided in the assets section of your pubspec.yaml, or you are missing "uses-material-design: true".
+2026-10-05T10:45:20.3593466Z [   +1 ms]   [   +1 ms] Running font-subset: C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64\flutter\bin\cache\artifacts\engine\windows-x64\font-subset.exe D:\a\guoapp\guoapp\build\flutter_assets\fonts/MaterialIcons-Regular.otf C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64\flutter\bin\cache\artifacts\material_fonts\MaterialIcons-Regular.otf, using codepoints 61940 63199 983273 983200 63428 63263 63264 63298 57690 61152 62929 983363 63047 63031 62600 63357 63358 62010 57912 63200 983126 62831 63053 983648 63126 983202 983357 63323 983640 983516 63029 63035 61426 63705 57588 58574 61877 58134 63030 62122 63034 62221 63566 62624 62910 983382 983148 63509 63477 983203 63584 983559 983464 61784 983356 61703 62927 61807 63471 983741 57926 61453 63144 63143 63069 983556 63084 983994 63539 983255 983256 63008 63010 983645 63073 983451 983927 983508 983503 58644 984379 984387 57744 983898 58571 57787 983201 62775 983204 62834 62832 985111 983443 983442 983705 983706 983191 63397 63398 63070 61282 983307 983333 61791 61011 58519 58289 57695 62072 62870 984000 62625 62842 58727 62950 61396 62031 58504 61585 983386 61728 61110 58676 61890 57866 58404 62260 61939 61267 57490 57706 58332 57502 57501 57657 57496 58372 58370 57846 57686 59076 59074 59077 57614 57615 57613 57944 58813 58814 58060 58059 57945
+2026-10-05T10:45:20.3836165Z [  +24 ms]   [  +24 ms] Font asset "MaterialIcons-Regular.otf" was tree-shaken, reducing it from 1645184 to 21284 bytes (98.7% reduction). Tree-shaking can be disabled by providing the --no-tree-shake-icons flag when building your app.
+2026-10-05T10:45:20.3843875Z [        ]   [   +1 ms] release_bundle_windows-x64_assets: Complete
+2026-10-05T10:45:20.4295948Z [  +45 ms]   [  +44 ms] Persisting file store
+2026-10-05T10:45:20.4458432Z [  +16 ms]   [  +16 ms] Done persisting file store
+2026-10-05T10:45:20.4742836Z [  +28 ms]   [  +28 ms] build succeeded.
+2026-10-05T10:45:20.4812724Z [   +6 ms]   [   +6 ms] "flutter assemble" took 49,468ms.
+2026-10-05T10:45:20.4827374Z [   +1 ms]   [   +1 ms] Running 1 shutdown hook
+2026-10-05T10:45:20.4831097Z [        ]   [        ] Shutdown hooks complete
+2026-10-05T10:45:20.4832678Z [        ]   [        ] exiting with code 0
+2026-10-05T10:45:20.5353151Z [  +51 ms]   Building Custom Rule D:/a/guoapp/guoapp/windows/flutter/CMakeLists.txt
+2026-10-05T10:45:20.5772207Z [  +41 ms] FinalizeBuildStatus:
+2026-10-05T10:45:20.5774862Z [        ]   Deleting file "x64\Release\flutter_assemble\flutter_assemble.tlog\unsuccessfulbuild".
+2026-10-05T10:45:20.5777051Z [        ]   Touching "x64\Release\flutter_assemble\flutter_assemble.tlog\flutter_assemble.lastbuildstate".
+2026-10-05T10:45:20.5788735Z [   +1 ms] Done Building Project "D:\a\guoapp\guoapp\build\windows\x64\flutter\flutter_assemble.vcxproj" (default targets).
+2026-10-05T10:45:20.6023619Z [  +23 ms] Project "D:\a\guoapp\guoapp\build\windows\x64\plugins\ffmpeg_kit_flutter_new_min_gpl\ffmpeg_kit_flutter_new_min_gpl_plugin.vcxproj" (4) is building "D:\a\guoapp\guoapp\build\windows\x64\plugins\ffmpeg_kit_flutter_new_min_gpl\patch_ffmpegkit_dlls.vcxproj" (6) on node 1 (default targets).
+2026-10-05T10:45:20.6038460Z [        ] PrepareForBuild:
+2026-10-05T10:45:20.6039599Z [        ]   Creating directory "x64\Release\patch_ffmpegkit_dlls\".
+2026-10-05T10:45:20.6041203Z [   +1 ms]   Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+2026-10-05T10:45:20.6042341Z [        ]   Creating directory "x64\Release\patch_ffmpegkit_dlls\patch_ff.7FDDBA43.tlog\".
+2026-10-05T10:45:20.6060186Z [   +1 ms] InitializeBuildStatus:
+2026-10-05T10:45:20.6062602Z [        ]   Creating "x64\Release\patch_ffmpegkit_dlls\patch_ff.7FDDBA43.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+2026-10-05T10:45:20.6063776Z [        ]   Touching "x64\Release\patch_ffmpegkit_dlls\patch_ff.7FDDBA43.tlog\unsuccessfulbuild".
+2026-10-05T10:45:20.6103374Z [   +3 ms] CustomBuild:
+2026-10-05T10:45:20.6108055Z [        ]   "The build of 'D:\a\guoapp\guoapp\build\windows\x64\CMakeFiles\8730414129b2f6039a865428db10af89\patch_ffmpegkit_dlls.rule' depends on 'D:\A\GUOAPP\GUOAPP\BUILD\WINDOWS\X64\PLUGINS\FFMPEG_KIT_FLUTTER_NEW_MIN_GPL\FFMPEG-KIT\BIN\.HIGH_ENTROPY_PATCHED' which is produced by the build of 'D:\a\guoapp\guoapp\build\windows\x64\CMakeFiles\27ba5814defa99998c25c179fa130fa4\.high_entropy_patched.rule'. The items cannot be built in parallel."
+2026-10-05T10:45:20.6341512Z [  +23 ms]   Patching MinGW FFmpegKit DLLs (ASLR off + rebase)
+2026-10-05T10:45:20.8468351Z [ +212 ms]   Building Custom Rule D:/a/guoapp/guoapp/windows/flutter/ephemeral/.plugin_symlinks/ffmpeg_kit_flutter_new_min_gpl/windows/CMakeLists.txt
+2026-10-05T10:45:20.8838508Z [  +37 ms] FinalizeBuildStatus:
+2026-10-05T10:45:20.8840458Z [        ]   Deleting file "x64\Release\patch_ffmpegkit_dlls\patch_ff.7FDDBA43.tlog\unsuccessfulbuild".
+2026-10-05T10:45:20.8842233Z [        ]   Touching "x64\Release\patch_ffmpegkit_dlls\patch_ff.7FDDBA43.tlog\patch_ffmpegkit_dlls.lastbuildstate".
+2026-10-05T10:45:20.8856450Z [   +1 ms] Done Building Project "D:\a\guoapp\guoapp\build\windows\x64\plugins\ffmpeg_kit_flutter_new_min_gpl\patch_ffmpegkit_dlls.vcxproj" (default targets).
+2026-10-05T10:45:20.9127214Z [  +27 ms] Project "D:\a\guoapp\guoapp\build\windows\x64\plugins\ffmpeg_kit_flutter_new_min_gpl\ffmpeg_kit_flutter_new_min_gpl_plugin.vcxproj" (4) is building "D:\a\guoapp\guoapp\build\windows\x64\flutter\flutter_wrapper_plugin.vcxproj" (7) on node 1 (default targets).
+2026-10-05T10:45:20.9130243Z [        ] PrepareForBuild:
+2026-10-05T10:45:20.9131810Z [        ]   Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+2026-10-05T10:45:20.9133353Z [        ]   Creating directory "D:\a\guoapp\guoapp\build\windows\x64\flutter\Release\".
+2026-10-05T10:45:20.9134352Z [        ]   Creating directory "flutter_wrapper_plugin.dir\Release\flutter_.C051DA57.tlog\".
+2026-10-05T10:45:20.9146506Z [   +1 ms] InitializeBuildStatus:
+2026-10-05T10:45:20.9148514Z [        ]   Creating "flutter_wrapper_plugin.dir\Release\flutter_.C051DA57.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+2026-10-05T10:45:20.9150452Z [        ]   Touching "flutter_wrapper_plugin.dir\Release\flutter_.C051DA57.tlog\unsuccessfulbuild".
+2026-10-05T10:45:20.9404939Z [  +25 ms] CustomBuild:
+2026-10-05T10:45:20.9406712Z [        ]   Building Custom Rule D:/a/guoapp/guoapp/windows/flutter/CMakeLists.txt
+2026-10-05T10:45:21.0290324Z [  +88 ms] ClCompile:
+2026-10-05T10:45:21.0295629Z [        ]   C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\CL.exe /c /ID:\a\guoapp\guoapp\windows\flutter\ephemeral\cpp_client_wrapper\include /ID:\a\guoapp\guoapp\windows\flutter\ephemeral /nologo /W4 /WX /diagnostics:column /O2 /Ob2 /D _UNICODE /D UNICODE /D WIN32 /D _WINDOWS /D NDEBUG /D _HAS_EXCEPTIONS=0 /D UNICODE /D _UNICODE /D "CMAKE_INTDIR=\"Release\"" /EHsc /MD /GR /std:c++17 /Fo"flutter_wrapper_plugin.dir\Release\\" /Fd"D:\a\guoapp\guoapp\build\windows\x64\flutter\Release\flutter_wrapper_plugin.pdb" /external:W4 /TP /wd4100 /errorReport:queue D:\a\guoapp\guoapp\windows\flutter\ephemeral\cpp_client_wrapper\core_implementations.cc D:\a\guoapp\guoapp\windows\flutter\ephemeral\cpp_client_wrapper\standard_codec.cc D:\a\guoapp\guoapp\windows\flutter\ephemeral\cpp_client_wrapper\plugin_registrar.cc
+2026-10-05T10:45:21.0699523Z [  +40 ms]   core_implementations.cc
+2026-10-05T10:45:23.4268698Z [+2356 ms]   standard_codec.cc
+2026-10-05T10:45:24.6388578Z [+1212 ms]   plugin_registrar.cc
+2026-10-05T10:45:25.3049287Z [ +666 ms]   Generating Code...
+2026-10-05T10:45:27.4218897Z [+2116 ms] Lib:
+2026-10-05T10:45:27.4221258Z [        ]   C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\Lib.exe /OUT:"D:\a\guoapp\guoapp\build\windows\x64\flutter\Release\flutter_wrapper_plugin.lib" /NOLOGO /MACHINE:X64  /machine:x64 flutter_wrapper_plugin.dir\Release\core_implementations.obj
+2026-10-05T10:45:27.4222977Z [        ]   flutter_wrapper_plugin.dir\Release\standard_codec.obj
+2026-10-05T10:45:27.4223417Z [        ]   flutter_wrapper_plugin.dir\Release\plugin_registrar.obj
+2026-10-05T10:45:27.5116667Z [  +89 ms]   flutter_wrapper_plugin.vcxproj -> D:\a\guoapp\guoapp\build\windows\x64\flutter\Release\flutter_wrapper_plugin.lib
+2026-10-05T10:45:27.5264896Z [  +14 ms] FinalizeBuildStatus:
+2026-10-05T10:45:27.5267333Z [        ]   Deleting file "flutter_wrapper_plugin.dir\Release\flutter_.C051DA57.tlog\unsuccessfulbuild".
+2026-10-05T10:45:27.5268782Z [        ]   Touching "flutter_wrapper_plugin.dir\Release\flutter_.C051DA57.tlog\flutter_wrapper_plugin.lastbuildstate".
+2026-10-05T10:45:27.5274752Z [        ] Done Building Project "D:\a\guoapp\guoapp\build\windows\x64\flutter\flutter_wrapper_plugin.vcxproj" (default targets).
+2026-10-05T10:45:27.5356716Z [   +8 ms] PrepareForBuild:
+2026-10-05T10:45:27.5360148Z [        ]   Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+2026-10-05T10:45:27.5362466Z [        ]   Creating directory "D:\a\guoapp\guoapp\build\windows\x64\plugins\ffmpeg_kit_flutter_new_min_gpl\Release\".
+2026-10-05T10:45:27.5363695Z [        ]   Creating directory "ffmpeg_kit_flutter_new_min_gpl_plugin.dir\Release\ffmpeg_k.DF68D697.tlog\".
+2026-10-05T10:45:27.5379434Z [   +1 ms] InitializeBuildStatus:
+2026-10-05T10:45:27.5382125Z [        ]   Creating "ffmpeg_kit_flutter_new_min_gpl_plugin.dir\Release\ffmpeg_k.DF68D697.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+2026-10-05T10:45:27.5386047Z [        ]   Touching "ffmpeg_kit_flutter_new_min_gpl_plugin.dir\Release\ffmpeg_k.DF68D697.tlog\unsuccessfulbuild".
+2026-10-05T10:45:27.5627293Z [  +24 ms] CustomBuild:
+2026-10-05T10:45:27.5629087Z [        ]   Building Custom Rule D:/a/guoapp/guoapp/windows/flutter/ephemeral/.plugin_symlinks/ffmpeg_kit_flutter_new_min_gpl/windows/CMakeLists.txt
+2026-10-05T10:45:27.6044579Z [  +41 ms] ClCompile:
+2026-10-05T10:45:27.6052832Z [        ]   C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\CL.exe /c /ID:\a\guoapp\guoapp\build\windows\x64\plugins\ffmpeg_kit_flutter_new_min_gpl /ID:\a\guoapp\guoapp\windows\flutter\ephemeral /ID:\a\guoapp\guoapp\windows\flutter\ephemeral\cpp_client_wrapper\include /nologo /W3 /WX- /diagnostics:column /O2 /Ob2 /D _WINDLL /D _UNICODE /D UNICODE /D WIN32 /D _WINDOWS /D NDEBUG /D FLUTTER_PLUGIN_IMPL /D UNICODE /D _UNICODE /D "CMAKE_INTDIR=\"Release\"" /D ffmpeg_kit_flutter_new_min_gpl_plugin_EXPORTS /EHsc /MD /GR /std:c++17 /Fo"ffmpeg_kit_flutter_new_min_gpl_plugin.dir\Release\\" /Fd"ffmpeg_kit_flutter_new_min_gpl_plugin.dir\Release\vc145.pdb" /external:W3 /TP /errorReport:queue D:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\ffmpeg_kit_flutter_new_min_gpl\windows\ffmpeg_kit_flutter_plugin.cpp D:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\ffmpeg_kit_flutter_new_min_gpl\windows\ffmpeg_kit_flutter_plugin_c_api.cpp
+2026-10-05T10:45:27.6388880Z [  +34 ms]   ffmpeg_kit_flutter_plugin.cpp
+2026-10-05T10:45:31.3349611Z [+3695 ms]   ffmpeg_kit_flutter_plugin_c_api.cpp
+2026-10-05T10:45:32.6551288Z [+1320 ms]   Generating Code...
+2026-10-05T10:45:35.6513669Z [+2996 ms] Link:
+2026-10-05T10:45:35.6522551Z [        ]   C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\link.exe /OUT:"D:\a\guoapp\guoapp\build\windows\x64\plugins\ffmpeg_kit_flutter_new_min_gpl\Release\ffmpeg_kit_flutter_new_min_gpl_plugin.dll" /INCREMENTAL:NO /NOLOGO ..\..\flutter\Release\flutter_wrapper_plugin.lib D:\a\guoapp\guoapp\windows\flutter\ephemeral\flutter_windows.dll.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"D:/a/guoapp/guoapp/build/windows/x64/plugins/ffmpeg_kit_flutter_new_min_gpl/Release/ffmpeg_kit_flutter_new_min_gpl_plugin.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"D:/a/guoapp/guoapp/build/windows/x64/plugins/ffmpeg_kit_flutter_new_min_gpl/Release/ffmpeg_kit_flutter_new_min_gpl_plugin.lib" /MACHINE:X64  /machine:x64 /DLL ffmpeg_kit_flutter_new_min_gpl_plugin.dir\Release\ffmpeg_kit_flutter_plugin.obj
+2026-10-05T10:45:35.6529628Z [        ]   ffmpeg_kit_flutter_new_min_gpl_plugin.dir\Release\ffmpeg_kit_flutter_plugin_c_api.obj
+2026-10-05T10:45:36.0722606Z [ +420 ms]      Creating library D:/a/guoapp/guoapp/build/windows/x64/plugins/ffmpeg_kit_flutter_new_min_gpl/Release/ffmpeg_kit_flutter_new_min_gpl_plugin.lib and object D:/a/guoapp/guoapp/build/windows/x64/plugins/ffmpeg_kit_flutter_new_min_gpl/Release/ffmpeg_kit_flutter_new_min_gpl_plugin.exp
+2026-10-05T10:45:36.1628799Z [  +90 ms]   ffmpeg_kit_flutter_new_min_gpl_plugin.vcxproj -> D:\a\guoapp\guoapp\build\windows\x64\plugins\ffmpeg_kit_flutter_new_min_gpl\Release\ffmpeg_kit_flutter_new_min_gpl_plugin.dll
+2026-10-05T10:45:36.1739518Z [  +11 ms] FinalizeBuildStatus:
+2026-10-05T10:45:36.1742321Z [        ]   Deleting file "ffmpeg_kit_flutter_new_min_gpl_plugin.dir\Release\ffmpeg_k.DF68D697.tlog\unsuccessfulbuild".
+2026-10-05T10:45:36.1744122Z [        ]   Touching "ffmpeg_kit_flutter_new_min_gpl_plugin.dir\Release\ffmpeg_k.DF68D697.tlog\ffmpeg_kit_flutter_new_min_gpl_plugin.lastbuildstate".
+2026-10-05T10:45:36.1750287Z [        ] Done Building Project "D:\a\guoapp\guoapp\build\windows\x64\plugins\ffmpeg_kit_flutter_new_min_gpl\ffmpeg_kit_flutter_new_min_gpl_plugin.vcxproj" (default targets).
+2026-10-05T10:45:36.2076613Z [  +32 ms] Project "D:\a\guoapp\guoapp\build\windows\x64\ALL_BUILD.vcxproj" (3) is building "D:\a\guoapp\guoapp\build\windows\x64\flutter\flutter_wrapper_app.vcxproj" (8) on node 1 (default targets).
+2026-10-05T10:45:36.2077864Z [        ] PrepareForBuild:
+2026-10-05T10:45:36.2080205Z [        ]   Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+2026-10-05T10:45:36.2082364Z [        ]   Creating directory "flutter_wrapper_app.dir\Release\flutter_.FD4C85F3.tlog\".
+2026-10-05T10:45:36.2096514Z [   +1 ms] InitializeBuildStatus:
+2026-10-05T10:45:36.2099547Z [        ]   Creating "flutter_wrapper_app.dir\Release\flutter_.FD4C85F3.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+2026-10-05T10:45:36.2101553Z [        ]   Touching "flutter_wrapper_app.dir\Release\flutter_.FD4C85F3.tlog\unsuccessfulbuild".
+2026-10-05T10:45:36.2352809Z [  +24 ms] CustomBuild:
+2026-10-05T10:45:36.2354771Z [        ]   Building Custom Rule D:/a/guoapp/guoapp/windows/flutter/CMakeLists.txt
+2026-10-05T10:45:36.2737162Z [  +38 ms] ClCompile:
+2026-10-05T10:45:36.2744338Z [        ]   C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\CL.exe /c /ID:\a\guoapp\guoapp\windows\flutter\ephemeral\cpp_client_wrapper\include /ID:\a\guoapp\guoapp\windows\flutter\ephemeral /nologo /W4 /WX /diagnostics:column /O2 /Ob2 /D _UNICODE /D UNICODE /D WIN32 /D _WINDOWS /D NDEBUG /D _HAS_EXCEPTIONS=0 /D UNICODE /D _UNICODE /D "CMAKE_INTDIR=\"Release\"" /EHsc /MD /GR /std:c++17 /Fo"flutter_wrapper_app.dir\Release\\" /Fd"D:\a\guoapp\guoapp\build\windows\x64\flutter\Release\flutter_wrapper_app.pdb" /external:W4 /TP /wd4100 /errorReport:queue D:\a\guoapp\guoapp\windows\flutter\ephemeral\cpp_client_wrapper\core_implementations.cc D:\a\guoapp\guoapp\windows\flutter\ephemeral\cpp_client_wrapper\standard_codec.cc D:\a\guoapp\guoapp\windows\flutter\ephemeral\cpp_client_wrapper\flutter_engine.cc D:\a\guoapp\guoapp\windows\flutter\ephemeral\cpp_client_wrapper\flutter_view_controller.cc
+2026-10-05T10:45:36.3095723Z [  +35 ms]   core_implementations.cc
+2026-10-05T10:45:37.3703952Z [+1060 ms]   standard_codec.cc
+2026-10-05T10:45:38.5889686Z [+1218 ms]   flutter_engine.cc
+2026-10-05T10:45:39.8043138Z [+1215 ms]   flutter_view_controller.cc
+2026-10-05T10:45:40.9031611Z [+1098 ms]   Generating Code...
+2026-10-05T10:45:42.9141591Z [+2010 ms] Lib:
+2026-10-05T10:45:42.9143701Z [        ]   C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\Lib.exe /OUT:"D:\a\guoapp\guoapp\build\windows\x64\flutter\Release\flutter_wrapper_app.lib" /NOLOGO /MACHINE:X64  /machine:x64 flutter_wrapper_app.dir\Release\core_implementations.obj
+2026-10-05T10:45:42.9145875Z [        ]   flutter_wrapper_app.dir\Release\standard_codec.obj
+2026-10-05T10:45:42.9146620Z [        ]   flutter_wrapper_app.dir\Release\flutter_engine.obj
+2026-10-05T10:45:42.9147367Z [        ]   flutter_wrapper_app.dir\Release\flutter_view_controller.obj
+2026-10-05T10:45:42.9729344Z [  +58 ms]   flutter_wrapper_app.vcxproj -> D:\a\guoapp\guoapp\build\windows\x64\flutter\Release\flutter_wrapper_app.lib
+2026-10-05T10:45:42.9818572Z [   +9 ms] FinalizeBuildStatus:
+2026-10-05T10:45:42.9820891Z [        ]   Deleting file "flutter_wrapper_app.dir\Release\flutter_.FD4C85F3.tlog\unsuccessfulbuild".
+2026-10-05T10:45:42.9822674Z [        ]   Touching "flutter_wrapper_app.dir\Release\flutter_.FD4C85F3.tlog\flutter_wrapper_app.lastbuildstate".
+2026-10-05T10:45:42.9830121Z [        ] Done Building Project "D:\a\guoapp\guoapp\build\windows\x64\flutter\flutter_wrapper_app.vcxproj" (default targets).
+2026-10-05T10:45:43.0075915Z [  +24 ms] Project "D:\a\guoapp\guoapp\build\windows\x64\ALL_BUILD.vcxproj" (3) is building "D:\a\guoapp\guoapp\build\windows\x64\plugins\jni\shared\jni.vcxproj" (9) on node 1 (default targets).
+2026-10-05T10:45:43.0077352Z [        ] PrepareForBuild:
+2026-10-05T10:45:43.0078674Z [        ]   Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+2026-10-05T10:45:43.0081431Z [        ]   Creating directory "D:\a\guoapp\guoapp\build\windows\x64\plugins\jni\shared\Release\".
+2026-10-05T10:45:43.0083284Z [        ]   Creating directory "jni.dir\Release\jni.tlog\".
+2026-10-05T10:45:43.0097750Z [   +1 ms] InitializeBuildStatus:
+2026-10-05T10:45:43.0099961Z [        ]   Creating "jni.dir\Release\jni.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+2026-10-05T10:45:43.0101671Z [        ]   Touching "jni.dir\Release\jni.tlog\unsuccessfulbuild".
+2026-10-05T10:45:43.0348599Z [  +24 ms] CustomBuild:
+2026-10-05T10:45:43.0351039Z [        ]   Building Custom Rule D:/a/guoapp/guoapp/windows/flutter/ephemeral/.plugin_symlinks/jni/src/CMakeLists.txt
+2026-10-05T10:45:43.0736318Z [  +38 ms] ClCompile:
+2026-10-05T10:45:43.0741642Z [        ]   C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\CL.exe /c /ID:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\jni\src\..\third_party /nologo /W3 /WX- /diagnostics:column /O2 /Ob2 /D _WINDLL /D _UNICODE /D UNICODE /D WIN32 /D _WINDOWS /D NDEBUG /D DART_SHARED_LIB /D UNICODE /D _UNICODE /D "CMAKE_INTDIR=\"Release\"" /D jni_EXPORTS /MD /Fo"jni.dir\Release\\" /Fd"jni.dir\Release\vc145.pdb" /external:W3 /TC /errorReport:queue D:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\jni\src\dartjni.c D:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\jni\src\third_party\global_jni_env.c D:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\jni\src\include\dart_api_dl.c
+2026-10-05T10:45:43.1076951Z [  +33 ms]   dartjni.c
+2026-10-05T10:45:43.3357069Z [ +227 ms]   global_jni_env.c
+2026-10-05T10:45:43.5556029Z [ +219 ms]   dart_api_dl.c
+2026-10-05T10:45:43.5794882Z [  +23 ms]   Generating Code...
+2026-10-05T10:45:43.8569928Z [ +277 ms] Link:
+2026-10-05T10:45:43.8577356Z [        ]   C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\link.exe /OUT:"D:\a\guoapp\guoapp\build\windows\x64\plugins\jni\shared\Release\dartjni.dll" /INCREMENTAL:NO /NOLOGO "C:\hostedtoolcache\windows\Java_Temurin-Hotspot_jdk\17.0.20-101\x64\lib\jvm.lib" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"D:/a/guoapp/guoapp/build/windows/x64/plugins/jni/shared/Release/dartjni.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"D:/a/guoapp/guoapp/build/windows/x64/plugins/jni/shared/Release/dartjni.lib" /MACHINE:X64  /machine:x64 /DLL jni.dir\Release\dartjni.obj
+2026-10-05T10:45:43.8581739Z [        ]   jni.dir\Release\global_jni_env.obj
+2026-10-05T10:45:43.8582183Z [        ]   jni.dir\Release\dart_api_dl.obj
+2026-10-05T10:45:43.9262427Z [  +68 ms]      Creating library D:/a/guoapp/guoapp/build/windows/x64/plugins/jni/shared/Release/dartjni.lib and object D:/a/guoapp/guoapp/build/windows/x64/plugins/jni/shared/Release/dartjni.exp
+2026-10-05T10:45:43.9950348Z [  +68 ms]   jni.vcxproj -> D:\a\guoapp\guoapp\build\windows\x64\plugins\jni\shared\Release\dartjni.dll
+2026-10-05T10:45:44.0025529Z [   +7 ms] FinalizeBuildStatus:
+2026-10-05T10:45:44.0026933Z [        ]   Deleting file "jni.dir\Release\jni.tlog\unsuccessfulbuild".
+2026-10-05T10:45:44.0029220Z [        ]   Touching "jni.dir\Release\jni.tlog\jni.lastbuildstate".
+2026-10-05T10:45:44.0037917Z [        ] Done Building Project "D:\a\guoapp\guoapp\build\windows\x64\plugins\jni\shared\jni.vcxproj" (default targets).
+2026-10-05T10:45:44.0297718Z [  +25 ms] Project "D:\a\guoapp\guoapp\build\windows\x64\ALL_BUILD.vcxproj" (3) is building "D:\a\guoapp\guoapp\build\windows\x64\plugins\media_kit_libs_windows_video\media_kit_libs_windows_video_plugin.vcxproj" (10) on node 1 (default targets).
+2026-10-05T10:45:44.0299538Z [        ] PrepareForBuild:
+2026-10-05T10:45:44.0301880Z [        ]   Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+2026-10-05T10:45:44.0303977Z [        ]   Creating directory "D:\a\guoapp\guoapp\build\windows\x64\plugins\media_kit_libs_windows_video\Release\".
+2026-10-05T10:45:44.0305156Z [        ]   Creating directory "media_kit_libs_windows_video_plugin.dir\Release\media_ki.A02419CC.tlog\".
+2026-10-05T10:45:44.0317043Z [   +1 ms] InitializeBuildStatus:
+2026-10-05T10:45:44.0318994Z [        ]   Creating "media_kit_libs_windows_video_plugin.dir\Release\media_ki.A02419CC.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+2026-10-05T10:45:44.0320426Z [        ]   Touching "media_kit_libs_windows_video_plugin.dir\Release\media_ki.A02419CC.tlog\unsuccessfulbuild".
+2026-10-05T10:45:44.0563551Z [  +24 ms] CustomBuild:
+2026-10-05T10:45:44.0568424Z [        ]   Building Custom Rule D:/a/guoapp/guoapp/windows/flutter/ephemeral/.plugin_symlinks/media_kit_libs_windows_video/windows/CMakeLists.txt
+2026-10-05T10:45:44.0942260Z [  +37 ms] ClCompile:
+2026-10-05T10:45:44.0948125Z [        ]   C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\CL.exe /c /ID:\a\guoapp\guoapp\windows\flutter\ephemeral /ID:\a\guoapp\guoapp\windows\flutter\ephemeral\cpp_client_wrapper\include /nologo /W4 /WX /diagnostics:column /O2 /Ob2 /D _WINDLL /D _UNICODE /D UNICODE /D WIN32 /D _WINDOWS /D NDEBUG /D _HAS_EXCEPTIONS=0 /D FLUTTER_PLUGIN_IMPL /D UNICODE /D _UNICODE /D _DISABLE_CONSTEXPR_MUTEX_CONSTRUCTOR /D "CMAKE_INTDIR=\"Release\"" /D media_kit_libs_windows_video_plugin_EXPORTS /EHsc /MD /GR /std:c++17 /Fo"media_kit_libs_windows_video_plugin.dir\Release\\" /Fd"media_kit_libs_windows_video_plugin.dir\Release\vc145.pdb" /external:W4 /TP /wd4100 /errorReport:queue D:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\media_kit_libs_windows_video\windows\media_kit_libs_windows_video_plugin_c_api.cpp
+2026-10-05T10:45:44.1277729Z [  +33 ms]   media_kit_libs_windows_video_plugin_c_api.cpp
+2026-10-05T10:45:45.2533796Z [+1125 ms] Link:
+2026-10-05T10:45:45.2542473Z [        ]   C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\link.exe /OUT:"D:\a\guoapp\guoapp\build\windows\x64\plugins\media_kit_libs_windows_video\Release\media_kit_libs_windows_video_plugin.dll" /INCREMENTAL:NO /NOLOGO ..\..\flutter\Release\flutter_wrapper_plugin.lib D:\a\guoapp\guoapp\windows\flutter\ephemeral\flutter_windows.dll.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"D:/a/guoapp/guoapp/build/windows/x64/plugins/media_kit_libs_windows_video/Release/media_kit_libs_windows_video_plugin.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"D:/a/guoapp/guoapp/build/windows/x64/plugins/media_kit_libs_windows_video/Release/media_kit_libs_windows_video_plugin.lib" /MACHINE:X64  /machine:x64 /DLL media_kit_libs_windows_video_plugin.dir\Release\media_kit_libs_windows_video_plugin_c_api.obj
+2026-10-05T10:45:45.2928326Z [  +39 ms]      Creating library D:/a/guoapp/guoapp/build/windows/x64/plugins/media_kit_libs_windows_video/Release/media_kit_libs_windows_video_plugin.lib and object D:/a/guoapp/guoapp/build/windows/x64/plugins/media_kit_libs_windows_video/Release/media_kit_libs_windows_video_plugin.exp
+2026-10-05T10:45:45.3567144Z [  +63 ms]   media_kit_libs_windows_video_plugin.vcxproj -> D:\a\guoapp\guoapp\build\windows\x64\plugins\media_kit_libs_windows_video\Release\media_kit_libs_windows_video_plugin.dll
+2026-10-05T10:45:45.3635433Z [   +6 ms] FinalizeBuildStatus:
+2026-10-05T10:45:45.3638196Z [        ]   Deleting file "media_kit_libs_windows_video_plugin.dir\Release\media_ki.A02419CC.tlog\unsuccessfulbuild".
+2026-10-05T10:45:45.3640076Z [        ]   Touching "media_kit_libs_windows_video_plugin.dir\Release\media_ki.A02419CC.tlog\media_kit_libs_windows_video_plugin.lastbuildstate".
+2026-10-05T10:45:45.3646523Z [        ] Done Building Project "D:\a\guoapp\guoapp\build\windows\x64\plugins\media_kit_libs_windows_video\media_kit_libs_windows_video_plugin.vcxproj" (default targets).
+2026-10-05T10:45:45.3907385Z [  +25 ms] Project "D:\a\guoapp\guoapp\build\windows\x64\ALL_BUILD.vcxproj" (3) is building "D:\a\guoapp\guoapp\build\windows\x64\plugins\media_kit_video\media_kit_video_plugin.vcxproj" (11) on node 1 (default targets).
+2026-10-05T10:45:45.3909528Z [        ] PrepareForBuild:
+2026-10-05T10:45:45.3911523Z [        ]   Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+2026-10-05T10:45:45.3913465Z [        ]   Creating directory "D:\a\guoapp\guoapp\build\windows\x64\plugins\media_kit_video\Release\".
+2026-10-05T10:45:45.3915070Z [        ]   Creating directory "media_kit_video_plugin.dir\Release\media_ki.3A2953BD.tlog\".
+2026-10-05T10:45:45.3928583Z [   +1 ms] InitializeBuildStatus:
+2026-10-05T10:45:45.3931504Z [        ]   Creating "media_kit_video_plugin.dir\Release\media_ki.3A2953BD.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+2026-10-05T10:45:45.3932819Z [        ]   Touching "media_kit_video_plugin.dir\Release\media_ki.3A2953BD.tlog\unsuccessfulbuild".
+2026-10-05T10:45:45.4191233Z [  +25 ms] CustomBuild:
+2026-10-05T10:45:45.4194067Z [        ]   Building Custom Rule D:/a/guoapp/guoapp/windows/flutter/ephemeral/.plugin_symlinks/media_kit_video/windows/CMakeLists.txt
+2026-10-05T10:45:45.4582244Z [  +38 ms] ClCompile:
+2026-10-05T10:45:45.4590687Z [        ]   C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\CL.exe /c /ID:\a\guoapp\guoapp\build\windows\x64\libmpv\include /ID:\a\guoapp\guoapp\build\windows\x64\ANGLE\include /ID:\a\guoapp\guoapp\windows\flutter\ephemeral /ID:\a\guoapp\guoapp\windows\flutter\ephemeral\cpp_client_wrapper\include /nologo /W4 /WX /diagnostics:column /O2 /Ob2 /D _WINDLL /D _UNICODE /D UNICODE /D WIN32 /D _WINDOWS /D NDEBUG /D _HAS_EXCEPTIONS=0 /D FLUTTER_PLUGIN_IMPL /D UNICODE /D _UNICODE /D _DISABLE_CONSTEXPR_MUTEX_CONSTRUCTOR /D "CMAKE_INTDIR=\"Release\"" /D media_kit_video_plugin_EXPORTS /EHsc /MD /GR /std:c++17 /Fo"media_kit_video_plugin.dir\Release\\" /Fd"media_kit_video_plugin.dir\Release\vc145.pdb" /external:W4 /TP /wd4100 /errorReport:queue D:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\media_kit_video\windows\angle_surface_manager.cc D:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\media_kit_video\windows\media_kit_video_plugin_c_api.cc D:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\media_kit_video\windows\media_kit_video_plugin.cc D:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\media_kit_video\windows\video_output_manager.cc D:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\media_kit_video\windows\video_output.cc D:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\media_kit_video\windows\utils.cc
+2026-10-05T10:45:45.4917998Z [  +33 ms]   angle_surface_manager.cc
+2026-10-05T10:45:46.9927345Z [+1500 ms]   media_kit_video_plugin_c_api.cc
+2026-10-05T10:45:48.9135084Z [+1920 ms]   media_kit_video_plugin.cc
+2026-10-05T10:45:51.1710862Z [+2257 ms]   video_output_manager.cc
+2026-10-05T10:45:53.1140614Z [+1942 ms]   video_output.cc
+2026-10-05T10:45:55.2122339Z [+2098 ms]   utils.cc
+2026-10-05T10:45:55.5971967Z [ +384 ms]   Generating Code...
+2026-10-05T10:45:58.4200974Z [+2822 ms] Link:
+2026-10-05T10:45:58.4210070Z [        ]   C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\link.exe /OUT:"D:\a\guoapp\guoapp\build\windows\x64\plugins\media_kit_video\Release\media_kit_video_plugin.dll" /INCREMENTAL:NO /NOLOGO ..\..\flutter\Release\flutter_wrapper_plugin.lib ..\..\libmpv\libmpv.dll.a ..\..\ANGLE\lib\libEGL.dll.lib ..\..\ANGLE\lib\libGLESv2.dll.lib D:\a\guoapp\guoapp\windows\flutter\ephemeral\flutter_windows.dll.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"D:/a/guoapp/guoapp/build/windows/x64/plugins/media_kit_video/Release/media_kit_video_plugin.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"D:/a/guoapp/guoapp/build/windows/x64/plugins/media_kit_video/Release/media_kit_video_plugin.lib" /MACHINE:X64  /machine:x64 /DLL media_kit_video_plugin.dir\Release\angle_surface_manager.obj
+2026-10-05T10:45:58.4216773Z [        ]   media_kit_video_plugin.dir\Release\media_kit_video_plugin_c_api.obj
+2026-10-05T10:45:58.4217552Z [        ]   media_kit_video_plugin.dir\Release\media_kit_video_plugin.obj
+2026-10-05T10:45:58.4218251Z [        ]   media_kit_video_plugin.dir\Release\video_output_manager.obj
+2026-10-05T10:45:58.4219403Z [        ]   media_kit_video_plugin.dir\Release\video_output.obj
+2026-10-05T10:45:58.4220018Z [        ]   media_kit_video_plugin.dir\Release\utils.obj
+2026-10-05T10:45:58.6727770Z [ +251 ms]      Creating library D:/a/guoapp/guoapp/build/windows/x64/plugins/media_kit_video/Release/media_kit_video_plugin.lib and object D:/a/guoapp/guoapp/build/windows/x64/plugins/media_kit_video/Release/media_kit_video_plugin.exp
+2026-10-05T10:45:58.9413612Z [ +268 ms]   media_kit_video_plugin.vcxproj -> D:\a\guoapp\guoapp\build\windows\x64\plugins\media_kit_video\Release\media_kit_video_plugin.dll
+2026-10-05T10:45:58.9486854Z [   +7 ms] FinalizeBuildStatus:
+2026-10-05T10:45:58.9488647Z [        ]   Deleting file "media_kit_video_plugin.dir\Release\media_ki.3A2953BD.tlog\unsuccessfulbuild".
+2026-10-05T10:45:58.9490327Z [        ]   Touching "media_kit_video_plugin.dir\Release\media_ki.3A2953BD.tlog\media_kit_video_plugin.lastbuildstate".
+2026-10-05T10:45:58.9499133Z [        ] Done Building Project "D:\a\guoapp\guoapp\build\windows\x64\plugins\media_kit_video\media_kit_video_plugin.vcxproj" (default targets).
+2026-10-05T10:45:58.9806990Z [  +30 ms] Project "D:\a\guoapp\guoapp\build\windows\x64\ALL_BUILD.vcxproj" (3) is building "D:\a\guoapp\guoapp\build\windows\x64\plugins\nsd_windows\nsd_windows_plugin.vcxproj" (12) on node 1 (default targets).
+2026-10-05T10:45:58.9809082Z [        ] PrepareForBuild:
+2026-10-05T10:45:58.9810809Z [        ]   Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+2026-10-05T10:45:58.9813146Z [        ]   Creating directory "D:\a\guoapp\guoapp\build\windows\x64\plugins\nsd_windows\Release\".
+2026-10-05T10:45:58.9814264Z [        ]   Creating directory "nsd_windows_plugin.dir\Release\nsd_wind.DD304D7C.tlog\".
+2026-10-05T10:45:58.9829083Z [   +1 ms] InitializeBuildStatus:
+2026-10-05T10:45:58.9831182Z [        ]   Creating "nsd_windows_plugin.dir\Release\nsd_wind.DD304D7C.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+2026-10-05T10:45:58.9832815Z [        ]   Touching "nsd_windows_plugin.dir\Release\nsd_wind.DD304D7C.tlog\unsuccessfulbuild".
+2026-10-05T10:45:59.0092819Z [  +25 ms] CustomBuild:
+2026-10-05T10:45:59.0095322Z [        ]   Building Custom Rule D:/a/guoapp/guoapp/windows/flutter/ephemeral/.plugin_symlinks/nsd_windows/windows/CMakeLists.txt
+2026-10-05T10:45:59.0455616Z [  +35 ms] ClCompile:
+2026-10-05T10:45:59.0465921Z [        ]   C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\CL.exe /c /ID:\a\guoapp\guoapp\windows\flutter\ephemeral /ID:\a\guoapp\guoapp\windows\flutter\ephemeral\cpp_client_wrapper\include /nologo /W4 /WX /diagnostics:column /O2 /Ob2 /D _WINDLL /D _UNICODE /D UNICODE /D WIN32 /D _WINDOWS /D NDEBUG /D _HAS_EXCEPTIONS=0 /D FLUTTER_PLUGIN_IMPL /D UNICODE /D _UNICODE /D "CMAKE_INTDIR=\"Release\"" /D nsd_windows_plugin_EXPORTS /EHsc /MD /GR /std:c++17 /Fo"nsd_windows_plugin.dir\Release\\" /Fd"nsd_windows_plugin.dir\Release\vc145.pdb" /external:W4 /TP /wd4100 /errorReport:queue D:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\nsd_windows\windows\nsd_windows_plugin_c_api.cpp D:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\nsd_windows\windows\nsd_windows_plugin.cpp D:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\nsd_windows\windows\nsd_windows.cpp D:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\nsd_windows\windows\nsd_error.cpp D:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\nsd_windows\windows\utilities.cpp
+2026-10-05T10:45:59.0801402Z [  +34 ms]   nsd_windows_plugin_c_api.cpp
+2026-10-05T10:46:02.0261587Z [+2945 ms]   nsd_windows_plugin.cpp
+2026-10-05T10:46:04.2203675Z [+2194 ms]   nsd_windows.cpp
+2026-10-05T10:46:05.9908577Z [+1770 ms]   nsd_error.cpp
+2026-10-05T10:46:06.3109542Z [ +320 ms]   utilities.cpp
+2026-10-05T10:46:08.9824006Z [+2671 ms]   Generating Code...
+2026-10-05T10:46:11.9509929Z [+2968 ms] Link:
+2026-10-05T10:46:11.9517488Z [        ]   C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\link.exe /OUT:"D:\a\guoapp\guoapp\build\windows\x64\plugins\nsd_windows\Release\nsd_windows_plugin.dll" /INCREMENTAL:NO /NOLOGO ..\..\flutter\Release\flutter_wrapper_plugin.lib D:\a\guoapp\guoapp\windows\flutter\ephemeral\flutter_windows.dll.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"D:/a/guoapp/guoapp/build/windows/x64/plugins/nsd_windows/Release/nsd_windows_plugin.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"D:/a/guoapp/guoapp/build/windows/x64/plugins/nsd_windows/Release/nsd_windows_plugin.lib" /MACHINE:X64  /machine:x64 /DLL nsd_windows_plugin.dir\Release\nsd_windows_plugin_c_api.obj
+2026-10-05T10:46:11.9520961Z [        ]   nsd_windows_plugin.dir\Release\nsd_windows_plugin.obj
+2026-10-05T10:46:11.9521357Z [        ]   nsd_windows_plugin.dir\Release\nsd_windows.obj
+2026-10-05T10:46:11.9521722Z [        ]   nsd_windows_plugin.dir\Release\nsd_error.obj
+2026-10-05T10:46:11.9522058Z [        ]   nsd_windows_plugin.dir\Release\utilities.obj
+2026-10-05T10:46:12.0422844Z [  +90 ms]      Creating library D:/a/guoapp/guoapp/build/windows/x64/plugins/nsd_windows/Release/nsd_windows_plugin.lib and object D:/a/guoapp/guoapp/build/windows/x64/plugins/nsd_windows/Release/nsd_windows_plugin.exp
+2026-10-05T10:46:12.2062149Z [ +163 ms]   nsd_windows_plugin.vcxproj -> D:\a\guoapp\guoapp\build\windows\x64\plugins\nsd_windows\Release\nsd_windows_plugin.dll
+2026-10-05T10:46:12.2131031Z [   +7 ms] FinalizeBuildStatus:
+2026-10-05T10:46:12.2134093Z [        ]   Deleting file "nsd_windows_plugin.dir\Release\nsd_wind.DD304D7C.tlog\unsuccessfulbuild".
+2026-10-05T10:46:12.2135466Z [        ]   Touching "nsd_windows_plugin.dir\Release\nsd_wind.DD304D7C.tlog\nsd_windows_plugin.lastbuildstate".
+2026-10-05T10:46:12.2142270Z [        ] Done Building Project "D:\a\guoapp\guoapp\build\windows\x64\plugins\nsd_windows\nsd_windows_plugin.vcxproj" (default targets).
+2026-10-05T10:46:12.2405315Z [  +26 ms] Project "D:\a\guoapp\guoapp\build\windows\x64\ALL_BUILD.vcxproj" (3) is building "D:\a\guoapp\guoapp\build\windows\x64\plugins\screen_retriever_windows\screen_retriever_windows_plugin.vcxproj" (13) on node 1 (default targets).
+2026-10-05T10:46:12.2408797Z [        ] PrepareForBuild:
+2026-10-05T10:46:12.2410110Z [        ]   Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+2026-10-05T10:46:12.2411774Z [        ]   Creating directory "D:\a\guoapp\guoapp\build\windows\x64\plugins\screen_retriever_windows\Release\".
+2026-10-05T10:46:12.2412979Z [        ]   Creating directory "screen_retriever_windows_plugin.dir\Release\screen_r.7BB72106.tlog\".
+2026-10-05T10:46:12.2426312Z [   +1 ms] InitializeBuildStatus:
+2026-10-05T10:46:12.2428362Z [        ]   Creating "screen_retriever_windows_plugin.dir\Release\screen_r.7BB72106.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+2026-10-05T10:46:12.2429935Z [        ]   Touching "screen_retriever_windows_plugin.dir\Release\screen_r.7BB72106.tlog\unsuccessfulbuild".
+2026-10-05T10:46:12.2672971Z [  +24 ms] CustomBuild:
+2026-10-05T10:46:12.2674403Z [        ]   Building Custom Rule D:/a/guoapp/guoapp/windows/flutter/ephemeral/.plugin_symlinks/screen_retriever_windows/windows/CMakeLists.txt
+2026-10-05T10:46:12.3058641Z [  +38 ms] ClCompile:
+2026-10-05T10:46:12.3067290Z [        ]   C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\CL.exe /c /ID:\a\guoapp\guoapp\windows\flutter\ephemeral /ID:\a\guoapp\guoapp\windows\flutter\ephemeral\cpp_client_wrapper\include /nologo /W4 /WX /diagnostics:column /O2 /Ob2 /D _WINDLL /D _UNICODE /D UNICODE /D WIN32 /D _WINDOWS /D NDEBUG /D _HAS_EXCEPTIONS=0 /D FLUTTER_PLUGIN_IMPL /D _SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING /D UNICODE /D _UNICODE /D "CMAKE_INTDIR=\"Release\"" /D screen_retriever_windows_plugin_EXPORTS /EHsc /MD /GR /std:c++17 /Fo"screen_retriever_windows_plugin.dir\Release\\" /Fd"screen_retriever_windows_plugin.dir\Release\vc145.pdb" /external:W4 /TP /wd4100 /errorReport:queue D:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\screen_retriever_windows\windows\screen_retriever_windows_plugin_c_api.cpp D:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\screen_retriever_windows\windows\screen_retriever_windows_plugin.cpp
+2026-10-05T10:46:12.3399658Z [  +33 ms]   screen_retriever_windows_plugin_c_api.cpp
+2026-10-05T10:46:13.4445590Z [+1104 ms]   screen_retriever_windows_plugin.cpp
+2026-10-05T10:46:15.2915717Z [+1846 ms]   Generating Code...
+2026-10-05T10:46:16.9078120Z [+1616 ms] Link:
+2026-10-05T10:46:16.9084702Z [        ]   C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\link.exe /OUT:"D:\a\guoapp\guoapp\build\windows\x64\plugins\screen_retriever_windows\Release\screen_retriever_windows_plugin.dll" /INCREMENTAL:NO /NOLOGO ..\..\flutter\Release\flutter_wrapper_plugin.lib D:\a\guoapp\guoapp\windows\flutter\ephemeral\flutter_windows.dll.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"D:/a/guoapp/guoapp/build/windows/x64/plugins/screen_retriever_windows/Release/screen_retriever_windows_plugin.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"D:/a/guoapp/guoapp/build/windows/x64/plugins/screen_retriever_windows/Release/screen_retriever_windows_plugin.lib" /MACHINE:X64  /machine:x64 /DLL screen_retriever_windows_plugin.dir\Release\screen_retriever_windows_plugin_c_api.obj
+2026-10-05T10:46:16.9088480Z [        ]   screen_retriever_windows_plugin.dir\Release\screen_retriever_windows_plugin.obj
+2026-10-05T10:46:16.9656968Z [  +57 ms]      Creating library D:/a/guoapp/guoapp/build/windows/x64/plugins/screen_retriever_windows/Release/screen_retriever_windows_plugin.lib and object D:/a/guoapp/guoapp/build/windows/x64/plugins/screen_retriever_windows/Release/screen_retriever_windows_plugin.exp
+2026-10-05T10:46:17.0430172Z [  +77 ms]   screen_retriever_windows_plugin.vcxproj -> D:\a\guoapp\guoapp\build\windows\x64\plugins\screen_retriever_windows\Release\screen_retriever_windows_plugin.dll
+2026-10-05T10:46:17.0498437Z [   +6 ms] FinalizeBuildStatus:
+2026-10-05T10:46:17.0500797Z [        ]   Deleting file "screen_retriever_windows_plugin.dir\Release\screen_r.7BB72106.tlog\unsuccessfulbuild".
+2026-10-05T10:46:17.0502335Z [        ]   Touching "screen_retriever_windows_plugin.dir\Release\screen_r.7BB72106.tlog\screen_retriever_windows_plugin.lastbuildstate".
+2026-10-05T10:46:17.0510039Z [        ] Done Building Project "D:\a\guoapp\guoapp\build\windows\x64\plugins\screen_retriever_windows\screen_retriever_windows_plugin.vcxproj" (default targets).
+2026-10-05T10:46:17.0789651Z [  +27 ms] Project "D:\a\guoapp\guoapp\build\windows\x64\ALL_BUILD.vcxproj" (3) is building "D:\a\guoapp\guoapp\build\windows\x64\plugins\window_manager\window_manager_plugin.vcxproj" (14) on node 1 (default targets).
+2026-10-05T10:46:17.0791613Z [        ] PrepareForBuild:
+2026-10-05T10:46:17.0792857Z [        ]   Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+2026-10-05T10:46:17.0794517Z [        ]   Creating directory "D:\a\guoapp\guoapp\build\windows\x64\plugins\window_manager\Release\".
+2026-10-05T10:46:17.0795602Z [        ]   Creating directory "window_manager_plugin.dir\Release\window_m.CAC782A4.tlog\".
+2026-10-05T10:46:17.0810499Z [   +1 ms] InitializeBuildStatus:
+2026-10-05T10:46:17.0812570Z [        ]   Creating "window_manager_plugin.dir\Release\window_m.CAC782A4.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+2026-10-05T10:46:17.0813968Z [        ]   Touching "window_manager_plugin.dir\Release\window_m.CAC782A4.tlog\unsuccessfulbuild".
+2026-10-05T10:46:17.1060049Z [  +24 ms] CustomBuild:
+2026-10-05T10:46:17.1061974Z [        ]   Building Custom Rule D:/a/guoapp/guoapp/windows/flutter/ephemeral/.plugin_symlinks/window_manager/windows/CMakeLists.txt
+2026-10-05T10:46:17.1414598Z [  +35 ms] ClCompile:
+2026-10-05T10:46:17.1422451Z [        ]   C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\CL.exe /c /ID:\a\guoapp\guoapp\windows\flutter\ephemeral /ID:\a\guoapp\guoapp\windows\flutter\ephemeral\cpp_client_wrapper\include /nologo /W4 /WX /diagnostics:column /O2 /Ob2 /D _WINDLL /D _UNICODE /D UNICODE /D WIN32 /D _WINDOWS /D NDEBUG /D _HAS_EXCEPTIONS=0 /D FLUTTER_PLUGIN_IMPL /D _SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING /D UNICODE /D _UNICODE /D "CMAKE_INTDIR=\"Release\"" /D window_manager_plugin_EXPORTS /EHsc /MD /GR /std:c++17 /Fo"window_manager_plugin.dir\Release\\" /Fd"window_manager_plugin.dir\Release\vc145.pdb" /external:W4 /TP /wd4100 /errorReport:queue D:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\window_manager\windows\window_manager.cpp D:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\window_manager\windows\window_manager_plugin.cpp
+2026-10-05T10:46:17.1752947Z [  +33 ms]   window_manager.cpp
+2026-10-05T10:46:19.0127095Z [+1837 ms]   window_manager_plugin.cpp
+2026-10-05T10:46:20.9513027Z [+1938 ms]   Generating Code...
+2026-10-05T10:46:22.7548635Z [+1803 ms] Link:
+2026-10-05T10:46:22.7554621Z [        ]   C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\link.exe /OUT:"D:\a\guoapp\guoapp\build\windows\x64\plugins\window_manager\Release\window_manager_plugin.dll" /INCREMENTAL:NO /NOLOGO ..\..\flutter\Release\flutter_wrapper_plugin.lib D:\a\guoapp\guoapp\windows\flutter\ephemeral\flutter_windows.dll.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"D:/a/guoapp/guoapp/build/windows/x64/plugins/window_manager/Release/window_manager_plugin.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"D:/a/guoapp/guoapp/build/windows/x64/plugins/window_manager/Release/window_manager_plugin.lib" /MACHINE:X64  /machine:x64 /DLL window_manager_plugin.dir\Release\window_manager.obj
+2026-10-05T10:46:22.7558905Z [        ]   window_manager_plugin.dir\Release\window_manager_plugin.obj
+2026-10-05T10:46:22.8706755Z [ +115 ms]      Creating library D:/a/guoapp/guoapp/build/windows/x64/plugins/window_manager/Release/window_manager_plugin.lib and object D:/a/guoapp/guoapp/build/windows/x64/plugins/window_manager/Release/window_manager_plugin.exp
+2026-10-05T10:46:22.9469821Z [  +76 ms]   window_manager_plugin.vcxproj -> D:\a\guoapp\guoapp\build\windows\x64\plugins\window_manager\Release\window_manager_plugin.dll
+2026-10-05T10:46:22.9540464Z [   +7 ms] FinalizeBuildStatus:
+2026-10-05T10:46:22.9548338Z [        ]   Deleting file "window_manager_plugin.dir\Release\window_m.CAC782A4.tlog\unsuccessfulbuild".
+2026-10-05T10:46:22.9557697Z [        ]   Touching "window_manager_plugin.dir\Release\window_m.CAC782A4.tlog\window_manager_plugin.lastbuildstate".
+2026-10-05T10:46:22.9559516Z [        ] Done Building Project "D:\a\guoapp\guoapp\build\windows\x64\plugins\window_manager\window_manager_plugin.vcxproj" (default targets).
+2026-10-05T10:46:22.9950829Z [  +39 ms] Project "D:\a\guoapp\guoapp\build\windows\x64\ALL_BUILD.vcxproj" (3) is building "D:\a\guoapp\guoapp\build\windows\x64\runner\zhenguojian.vcxproj" (15) on node 1 (default targets).
+2026-10-05T10:46:22.9952925Z [        ] PrepareForBuild:
+2026-10-05T10:46:22.9954653Z [        ]   Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+2026-10-05T10:46:22.9957669Z [        ]   Creating directory "D:\a\guoapp\guoapp\build\windows\x64\runner\Release\".
+2026-10-05T10:46:22.9958967Z [        ]   Creating directory "zhenguojian.dir\Release\zhenguojian.tlog\".
+2026-10-05T10:46:22.9971200Z [   +1 ms] InitializeBuildStatus:
+2026-10-05T10:46:22.9973277Z [        ]   Creating "zhenguojian.dir\Release\zhenguojian.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+2026-10-05T10:46:22.9974921Z [        ]   Touching "zhenguojian.dir\Release\zhenguojian.tlog\unsuccessfulbuild".
+2026-10-05T10:46:23.0213958Z [  +23 ms] CustomBuild:
+2026-10-05T10:46:23.0216446Z [        ]   Building Custom Rule D:/a/guoapp/guoapp/windows/runner/CMakeLists.txt
+2026-10-05T10:46:23.0719968Z [  +50 ms] ClCompile:
+2026-10-05T10:46:23.0728379Z [        ]   C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\CL.exe /c /ID:\a\guoapp\guoapp\windows /ID:\a\guoapp\guoapp\build\windows\x64\runner /ID:\a\guoapp\guoapp\windows\flutter\ephemeral /ID:\a\guoapp\guoapp\windows\flutter\ephemeral\cpp_client_wrapper\include /ID:\a\guoapp\guoapp\build\windows\x64\plugins\ffmpeg_kit_flutter_new_min_gpl\include /ID:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\media_kit_libs_windows_video\windows\include /ID:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\media_kit_video\windows\include /ID:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\nsd_windows\windows\include /ID:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\screen_retriever_windows\windows\include /ID:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\window_manager\windows\include /nologo /W4 /WX /diagnostics:column /O2 /Ob2 /D _UNICODE /D UNICODE /D WIN32 /D _WINDOWS /D NDEBUG /D _HAS_EXCEPTIONS=0 /D "FLUTTER_VERSION=\"0.2.97+2103\"" /D FLUTTER_VERSION_MAJOR=0 /D FLUTTER_VERSION_MINOR=2 /D FLUTTER_VERSION_PATCH=97 /D FLUTTER_VERSION_BUILD=2103 /D NOMINMAX /D UNICODE /D _UNICODE /D "CMAKE_INTDIR=\"Release\"" /EHsc /MD /GR /std:c++17 /Fo"zhenguojian.dir\Release\\" /Fd"zhenguojian.dir\Release\vc145.pdb" /external:W4 /TP /wd4100 /errorReport:queue  /utf-8 D:\a\guoapp\guoapp\windows\runner\flutter_window.cpp D:\a\guoapp\guoapp\windows\runner\main.cpp D:\a\guoapp\guoapp\windows\runner\utils.cpp D:\a\guoapp\guoapp\windows\runner\win32_window.cpp D:\a\guoapp\guoapp\windows\flutter\generated_plugin_registrant.cc
+2026-10-05T10:46:23.1069887Z [  +34 ms]   flutter_window.cpp
+2026-10-05T10:46:24.7453833Z [+1638 ms]   main.cpp
+2026-10-05T10:46:26.0086605Z [+1263 ms]   utils.cpp
+2026-10-05T10:46:26.9370708Z [ +928 ms]   win32_window.cpp
+2026-10-05T10:46:27.7388785Z [ +801 ms]   generated_plugin_registrant.cc
+2026-10-05T10:46:28.4237012Z [ +684 ms]   Generating Code...
+2026-10-05T10:46:29.8124969Z [+1388 ms] ResourceCompile:
+2026-10-05T10:46:29.8135555Z [        ]   C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\x64\rc.exe /D _UNICODE /D UNICODE /D WIN32 /D _WINDOWS /D NDEBUG /D _HAS_EXCEPTIONS=0 /D "FLUTTER_VERSION=\\\"0.2.97+2103\\\"" /D FLUTTER_VERSION_MAJOR=0 /D FLUTTER_VERSION_MINOR=2 /D FLUTTER_VERSION_PATCH=97 /D FLUTTER_VERSION_BUILD=2103 /D NOMINMAX /D UNICODE /D _UNICODE /D "CMAKE_INTDIR=\\\"Release\\\"" /l"0x0409" /ID:\a\guoapp\guoapp\windows /ID:\a\guoapp\guoapp\build\windows\x64\runner /ID:\a\guoapp\guoapp\windows\flutter\ephemeral /ID:\a\guoapp\guoapp\windows\flutter\ephemeral\cpp_client_wrapper\include /ID:\a\guoapp\guoapp\build\windows\x64\plugins\ffmpeg_kit_flutter_new_min_gpl\include /ID:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\media_kit_libs_windows_video\windows\include /ID:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\media_kit_video\windows\include /ID:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\nsd_windows\windows\include /ID:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\screen_retriever_windows\windows\include /ID:\a\guoapp\guoapp\windows\flutter\ephemeral\.plugin_symlinks\window_manager\windows\include /nologo /fo"zhenguojian.dir\Release\Runner.res" D:\a\guoapp\guoapp\windows\runner\Runner.rc 
+2026-10-05T10:46:29.8996463Z [  +86 ms] Link:
+2026-10-05T10:46:29.9006056Z [        ]   C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\link.exe /OUT:"D:\a\guoapp\guoapp\build\windows\x64\runner\Release\zhenguojian.exe" /INCREMENTAL:NO /NOLOGO ..\flutter\Release\flutter_wrapper_app.lib dwmapi.lib ..\plugins\ffmpeg_kit_flutter_new_min_gpl\Release\ffmpeg_kit_flutter_new_min_gpl_plugin.lib ..\plugins\media_kit_libs_windows_video\Release\media_kit_libs_windows_video_plugin.lib ..\plugins\media_kit_video\Release\media_kit_video_plugin.lib ..\plugins\nsd_windows\Release\nsd_windows_plugin.lib ..\plugins\screen_retriever_windows\Release\screen_retriever_windows_plugin.lib ..\plugins\window_manager\Release\window_manager_plugin.lib D:\a\guoapp\guoapp\windows\flutter\ephemeral\flutter_windows.dll.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:D:\a\guoapp\guoapp\windows\runner\runner.exe.manifest /PDB:"D:/a/guoapp/guoapp/build/windows/x64/runner/Release/zhenguojian.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /IMPLIB:"D:/a/guoapp/guoapp/build/windows/x64/runner/Release/zhenguojian.lib" /MACHINE:X64  /machine:x64 zhenguojian.dir\Release\Runner.res
+2026-10-05T10:46:29.9011624Z [        ]   zhenguojian.dir\Release\flutter_window.obj
+2026-10-05T10:46:29.9011972Z [        ]   zhenguojian.dir\Release\main.obj
+2026-10-05T10:46:29.9012263Z [        ]   zhenguojian.dir\Release\utils.obj
+2026-10-05T10:46:29.9012739Z [        ]   zhenguojian.dir\Release\win32_window.obj
+2026-10-05T10:46:29.9013259Z [        ]   zhenguojian.dir\Release\generated_plugin_registrant.obj
+2026-10-05T10:46:30.2596553Z [ +358 ms]   zhenguojian.vcxproj -> D:\a\guoapp\guoapp\build\windows\x64\runner\Release\zhenguojian.exe
+2026-10-05T10:46:30.2691750Z [   +9 ms] FinalizeBuildStatus:
+2026-10-05T10:46:30.2693705Z [        ]   Deleting file "zhenguojian.dir\Release\zhenguojian.tlog\unsuccessfulbuild".
+2026-10-05T10:46:30.2694826Z [        ]   Touching "zhenguojian.dir\Release\zhenguojian.tlog\zhenguojian.lastbuildstate".
+2026-10-05T10:46:30.2702485Z [        ] Done Building Project "D:\a\guoapp\guoapp\build\windows\x64\runner\zhenguojian.vcxproj" (default targets).
+2026-10-05T10:46:30.2769710Z [   +6 ms] PrepareForBuild:
+2026-10-05T10:46:30.2771509Z [        ]   Creating directory "x64\Release\ALL_BUILD\".
+2026-10-05T10:46:30.2786551Z [   +1 ms]   Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+2026-10-05T10:46:30.2787728Z [        ]   Creating directory "x64\Release\ALL_BUILD\ALL_BUILD.tlog\".
+2026-10-05T10:46:30.2804158Z [   +1 ms] InitializeBuildStatus:
+2026-10-05T10:46:30.2806521Z [        ]   Creating "x64\Release\ALL_BUILD\ALL_BUILD.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+2026-10-05T10:46:30.2807649Z [        ]   Touching "x64\Release\ALL_BUILD\ALL_BUILD.tlog\unsuccessfulbuild".
+2026-10-05T10:46:30.3051172Z [  +24 ms] CustomBuild:
+2026-10-05T10:46:30.3053274Z [        ]   Building Custom Rule D:/a/guoapp/guoapp/windows/CMakeLists.txt
+2026-10-05T10:46:30.3486553Z [  +43 ms] FinalizeBuildStatus:
+2026-10-05T10:46:30.3488601Z [        ]   Deleting file "x64\Release\ALL_BUILD\ALL_BUILD.tlog\unsuccessfulbuild".
+2026-10-05T10:46:30.3489878Z [        ]   Touching "x64\Release\ALL_BUILD\ALL_BUILD.tlog\ALL_BUILD.lastbuildstate".
+2026-10-05T10:46:30.3503024Z [   +1 ms] Done Building Project "D:\a\guoapp\guoapp\build\windows\x64\ALL_BUILD.vcxproj" (default targets).
+2026-10-05T10:46:30.3546944Z [   +4 ms] PrepareForBuild:
+2026-10-05T10:46:30.3548538Z [        ]   Creating directory "x64\Release\INSTALL\".
+2026-10-05T10:46:30.3563822Z [   +1 ms]   Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+2026-10-05T10:46:30.3565273Z [        ]   Creating directory "x64\Release\INSTALL\INSTALL.tlog\".
+2026-10-05T10:46:30.3582447Z [   +1 ms] InitializeBuildStatus:
+2026-10-05T10:46:30.3584676Z [        ]   Creating "x64\Release\INSTALL\INSTALL.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+2026-10-05T10:46:30.3585776Z [        ]   Touching "x64\Release\INSTALL\INSTALL.tlog\unsuccessfulbuild".
+2026-10-05T10:46:30.3817962Z [  +23 ms] CustomBuild:
+2026-10-05T10:46:30.3818607Z [        ]   1>
+2026-10-05T10:46:30.3963900Z [  +14 ms] PostBuildEvent:
+2026-10-05T10:46:30.3964562Z [        ]   setlocal
+2026-10-05T10:46:30.3967191Z [        ]   "C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DBUILD_TYPE=Release -P cmake_install.cmake
+2026-10-05T10:46:30.3968565Z [        ]   if %errorlevel% neq 0 goto :cmEnd
+2026-10-05T10:46:30.3969024Z [        ]   :cmEnd
+2026-10-05T10:46:30.3970181Z [        ]   endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+2026-10-05T10:46:30.3970986Z [        ]   :cmErrorLevel
+2026-10-05T10:46:30.3972495Z [        ]   exit /b %1
+2026-10-05T10:46:30.3973837Z [        ]   :cmDone
+2026-10-05T10:46:30.3975137Z [        ]   if %errorlevel% neq 0 goto :VCEnd
+2026-10-05T10:46:30.3976658Z [        ]   :VCEnd
+2026-10-05T10:46:30.4371914Z [  +39 ms]   -- Install configuration: "Release"
+2026-10-05T10:46:30.4398512Z [   +2 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/icudtl.dat
+2026-10-05T10:46:30.4420468Z [   +2 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/flutter_windows.dll
+2026-10-05T10:46:30.4759496Z [  +33 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/ffmpeg_kit_flutter_new_min_gpl_plugin.dll
+2026-10-05T10:46:30.4766987Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/avcodec-62.dll
+2026-10-05T10:46:30.4941478Z [  +17 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/avdevice-62.dll
+2026-10-05T10:46:30.4953341Z [   +1 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/avfilter-11.dll
+2026-10-05T10:46:30.5014742Z [   +6 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/avformat-62.dll
+2026-10-05T10:46:30.5056119Z [   +4 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/avutil-60.dll
+2026-10-05T10:46:30.5075316Z [   +1 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libbz2-1.dll
+2026-10-05T10:46:30.5084607Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libffmpegkit.dll
+2026-10-05T10:46:30.5114020Z [   +2 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libfftw3-3.dll
+2026-10-05T10:46:30.5192392Z [   +7 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libgcc_s_seh-1.dll
+2026-10-05T10:46:30.5201908Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libgomp-1.dll
+2026-10-05T10:46:30.5216231Z [   +1 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libiconv-2.dll
+2026-10-05T10:46:30.5241154Z [   +2 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/liblzma-5.dll
+2026-10-05T10:46:30.5251376Z [   +1 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/librubberband-2.dll
+2026-10-05T10:46:30.5264663Z [   +1 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libsamplerate-0.dll
+2026-10-05T10:46:30.5295116Z [   +3 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libstdc++-6.dll
+2026-10-05T10:46:30.5343246Z [   +4 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libva.dll
+2026-10-05T10:46:30.5357047Z [   +1 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libva_win32.dll
+2026-10-05T10:46:30.5364590Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libvidstab.dll
+2026-10-05T10:46:30.5374306Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libwinpthread-1.dll
+2026-10-05T10:46:30.5382638Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libx264-165.dll
+2026-10-05T10:46:30.5421155Z [   +3 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libx265-216.dll
+2026-10-05T10:46:30.5792644Z [  +37 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/swresample-6.dll
+2026-10-05T10:46:30.5798207Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/swscale-9.dll
+2026-10-05T10:46:30.5818697Z [   +1 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/xvidcore.dll
+2026-10-05T10:46:30.5838141Z [   +1 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/zlib1.dll
+2026-10-05T10:46:30.5848263Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/media_kit_libs_windows_video_plugin.dll
+2026-10-05T10:46:30.5855141Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libmpv-2.dll
+2026-10-05T10:46:30.7879327Z [ +202 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/d3dcompiler_47.dll
+2026-10-05T10:46:30.7961569Z [   +8 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libc++.dll
+2026-10-05T10:46:30.7990139Z [   +2 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libEGL.dll
+2026-10-05T10:46:30.8004703Z [   +1 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libGLESv2.dll
+2026-10-05T10:46:30.8131169Z [  +12 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/vk_swiftshader.dll
+2026-10-05T10:46:30.8212302Z [   +8 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/vulkan-1.dll
+2026-10-05T10:46:30.8232728Z [   +2 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/zlib.dll
+2026-10-05T10:46:30.8242866Z [   +1 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/media_kit_video_plugin.dll
+2026-10-05T10:46:30.8252458Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/nsd_windows_plugin.dll
+2026-10-05T10:46:30.8263176Z [   +1 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/screen_retriever_windows_plugin.dll
+2026-10-05T10:46:30.8272392Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/window_manager_plugin.dll
+2026-10-05T10:46:30.8283409Z [   +1 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/dartjni.dll
+2026-10-05T10:46:30.8292694Z [        ]   -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release
+2026-10-05T10:46:30.8299811Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets
+2026-10-05T10:46:30.8308304Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/AssetManifest.bin
+2026-10-05T10:46:30.8314955Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/assets
+2026-10-05T10:46:30.8324254Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/assets/video_enhancement
+2026-10-05T10:46:30.8333451Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/assets/video_enhancement/Anime4K-LICENSE.txt
+2026-10-05T10:46:30.8341227Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/assets/video_enhancement/Anime4K_Upscale_Denoise_CNN_x2_S.glsl
+2026-10-05T10:46:30.8349144Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/assets/video_enhancement/FSRCNNX_x2_8-0-4-1.glsl
+2026-10-05T10:46:30.8357127Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/assets/video_enhancement/GPL-3.0.txt
+2026-10-05T10:46:30.8365315Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/assets/video_enhancement/LGPL-3.0.txt
+2026-10-05T10:46:30.8372171Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/assets/video_enhancement/manifest.json
+2026-10-05T10:46:30.8382916Z [   +1 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/assets/video_enhancement/ravu-lite-ar-r2.hook
+2026-10-05T10:46:30.8390689Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/assets/video_enhancement/ravu-r2-rgb.hook
+2026-10-05T10:46:30.8398106Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/FontManifest.json
+2026-10-05T10:46:30.8404687Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/fonts
+2026-10-05T10:46:30.8413448Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/fonts/MaterialIcons-Regular.otf
+2026-10-05T10:46:30.8420856Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/NativeAssetsManifest.json
+2026-10-05T10:46:30.8426668Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/NOTICES.Z
+2026-10-05T10:46:30.8438327Z [   +1 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/packages
+2026-10-05T10:46:30.8446488Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/packages/media_kit
+2026-10-05T10:46:30.8456087Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/packages/media_kit/assets
+2026-10-05T10:46:30.8464482Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/packages/media_kit/assets/web
+2026-10-05T10:46:30.8473928Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/packages/media_kit/assets/web/hls1.4.10.js
+2026-10-05T10:46:30.8486974Z [   +1 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/packages/wakelock_plus
+2026-10-05T10:46:30.8495878Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/packages/wakelock_plus/assets
+2026-10-05T10:46:30.8504883Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/packages/wakelock_plus/assets/no_sleep.js
+2026-10-05T10:46:30.8511842Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/shaders
+2026-10-05T10:46:30.8521083Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/shaders/ink_sparkle.frag
+2026-10-05T10:46:30.8528303Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/shaders/stretch_effect.frag
+2026-10-05T10:46:30.8536460Z [        ]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/app.so
+2026-10-05T10:46:30.8712778Z [  +17 ms]   -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/duanju_core.dll
+2026-10-05T10:46:30.8972688Z [  +26 ms]   CMake Error at cmake_install.cmake:510 (file):
+2026-10-05T10:46:30.8973483Z [        ]     file cannot create directory:
+2026-10-05T10:46:30.8974839Z [        ]     D:/a/guoapp/guoapp/build/windows/x64/$<TARGET_FILE_DIR:zhenguojian>/..
+2026-10-05T10:46:30.8976049Z [        ]     Maybe need administrative privileges.
+2026-10-05T10:46:30.9141839Z [  +14 ms] C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: The command "setlocal [D:\a\guoapp\guoapp\build\windows\x64\INSTALL.vcxproj]
+2026-10-05T10:46:30.9145575Z [   +1 ms] C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: "C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DBUILD_TYPE=Release -P cmake_install.cmake [D:\a\guoapp\guoapp\build\windows\x64\INSTALL.vcxproj]
+2026-10-05T10:46:30.9149337Z [        ] C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :cmEnd [D:\a\guoapp\guoapp\build\windows\x64\INSTALL.vcxproj]
+2026-10-05T10:46:30.9151882Z [        ] C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmEnd [D:\a\guoapp\guoapp\build\windows\x64\INSTALL.vcxproj]
+2026-10-05T10:46:30.9154398Z [        ] C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone [D:\a\guoapp\guoapp\build\windows\x64\INSTALL.vcxproj]
+2026-10-05T10:46:30.9157170Z [        ] C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmErrorLevel [D:\a\guoapp\guoapp\build\windows\x64\INSTALL.vcxproj]
+2026-10-05T10:46:30.9158881Z [        ] C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: exit /b %1 [D:\a\guoapp\guoapp\build\windows\x64\INSTALL.vcxproj]
+2026-10-05T10:46:30.9160238Z [        ] C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmDone [D:\a\guoapp\guoapp\build\windows\x64\INSTALL.vcxproj]
+2026-10-05T10:46:30.9161637Z [        ] C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :VCEnd [D:\a\guoapp\guoapp\build\windows\x64\INSTALL.vcxproj]
+2026-10-05T10:46:30.9163312Z [        ] C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: :VCEnd" exited with code 1. [D:\a\guoapp\guoapp\build\windows\x64\INSTALL.vcxproj]
+2026-10-05T10:46:30.9164400Z [        ] Done Building Project "D:\a\guoapp\guoapp\build\windows\x64\INSTALL.vcxproj" (default targets) -- FAILED.
+2026-10-05T10:46:30.9167614Z [   +1 ms] Build FAILED.
+2026-10-05T10:46:30.9170828Z [        ] "D:\a\guoapp\guoapp\build\windows\x64\INSTALL.vcxproj" (default target) (1) ->
+2026-10-05T10:46:30.9172713Z [        ] (PostBuildEvent target) -> 
+2026-10-05T10:46:30.9176068Z [        ]   C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: The command "setlocal [D:\a\guoapp\guoapp\build\windows\x64\INSTALL.vcxproj]
+2026-10-05T10:46:30.9179747Z [        ] C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: "C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DBUILD_TYPE=Release -P cmake_install.cmake [D:\a\guoapp\guoapp\build\windows\x64\INSTALL.vcxproj]
+2026-10-05T10:46:30.9182475Z [        ] C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :cmEnd [D:\a\guoapp\guoapp\build\windows\x64\INSTALL.vcxproj]
+2026-10-05T10:46:30.9184538Z [        ] C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmEnd [D:\a\guoapp\guoapp\build\windows\x64\INSTALL.vcxproj]
+2026-10-05T10:46:30.9186441Z [        ] C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone [D:\a\guoapp\guoapp\build\windows\x64\INSTALL.vcxproj]
+2026-10-05T10:46:30.9188734Z [        ] C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmErrorLevel [D:\a\guoapp\guoapp\build\windows\x64\INSTALL.vcxproj]
+2026-10-05T10:46:30.9191837Z [        ] C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: exit /b %1 [D:\a\guoapp\guoapp\build\windows\x64\INSTALL.vcxproj]
+2026-10-05T10:46:30.9193823Z [        ] C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmDone [D:\a\guoapp\guoapp\build\windows\x64\INSTALL.vcxproj]
+2026-10-05T10:46:30.9195481Z [        ] C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :VCEnd [D:\a\guoapp\guoapp\build\windows\x64\INSTALL.vcxproj]
+2026-10-05T10:46:30.9196957Z [        ] C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: :VCEnd" exited with code 1. [D:\a\guoapp\guoapp\build\windows\x64\INSTALL.vcxproj]
+2026-10-05T10:46:30.9197797Z [        ]     0 Warning(s)
+2026-10-05T10:46:30.9198011Z [        ]     1 Error(s)
+2026-10-05T10:46:30.9198234Z [        ] Time Elapsed 00:02:01.87
+2026-10-05T10:46:30.9484013Z [  +29 ms] Building Windows application... (completed in 141.2s)
+2026-10-05T10:46:30.9491884Z [        ] "flutter windows" took 141,598ms.
+2026-10-05T10:46:30.9515828Z [   +2 ms] Build process failed.
+2026-10-05T10:46:30.9519337Z [        ] 
+2026-10-05T10:46:30.9521174Z            #0      throwToolExit (package:flutter_tools/src/base/common.dart:34:3)
+2026-10-05T10:46:30.9522903Z            #1      _runBuild (package:flutter_tools/src/windows/build_windows.dart:262:5)
+2026-10-05T10:46:30.9524492Z            <asynchronous suspension>
+2026-10-05T10:46:30.9525520Z            #2      buildWindows (package:flutter_tools/src/windows/build_windows.dart:118:5)
+2026-10-05T10:46:30.9526317Z            <asynchronous suspension>
+2026-10-05T10:46:30.9528844Z            #3      BuildWindowsCommand.runCommand (package:flutter_tools/src/commands/build_windows.dart:73:5)
+2026-10-05T10:46:30.9529553Z            <asynchronous suspension>
+2026-10-05T10:46:30.9530349Z            #4      FlutterCommand.run.<anonymous closure> (package:flutter_tools/src/runner/flutter_command.dart:1663:27)
+2026-10-05T10:46:30.9531235Z            <asynchronous suspension>
+2026-10-05T10:46:30.9531926Z            #5      AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+2026-10-05T10:46:30.9532468Z            <asynchronous suspension>
+2026-10-05T10:46:30.9533014Z            #6      CommandRunner.runCommand (package:args/command_runner.dart:212:13)
+2026-10-05T10:46:30.9533494Z            <asynchronous suspension>
+2026-10-05T10:46:30.9534358Z            #7      FlutterCommandRunner.runCommand.<anonymous closure> (package:flutter_tools/src/runner/flutter_command_runner.dart:496:9)
+2026-10-05T10:46:30.9535226Z            <asynchronous suspension>
+2026-10-05T10:46:30.9536158Z            #8      AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+2026-10-05T10:46:30.9536819Z            <asynchronous suspension>
+2026-10-05T10:46:30.9537713Z            #9      FlutterCommandRunner.runCommand (package:flutter_tools/src/runner/flutter_command_runner.dart:431:5)
+2026-10-05T10:46:30.9538340Z            <asynchronous suspension>
+2026-10-05T10:46:30.9539136Z            #10     FlutterCommandRunner.run.<anonymous closure> (package:flutter_tools/src/runner/flutter_command_runner.dart:307:33)
+2026-10-05T10:46:30.9539735Z            <asynchronous suspension>
+2026-10-05T10:46:30.9540360Z            #11     run.<anonymous closure>.<anonymous closure> (package:flutter_tools/runner.dart:104:11)
+2026-10-05T10:46:30.9540847Z            <asynchronous suspension>
+2026-10-05T10:46:30.9541459Z            #12     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+2026-10-05T10:46:30.9542300Z            <asynchronous suspension>
+2026-10-05T10:46:30.9542722Z            #13     main (package:flutter_tools/executable.dart:103:3)
+2026-10-05T10:46:30.9543104Z            <asynchronous suspension>
+2026-10-05T10:46:30.9543257Z 
+2026-10-05T10:46:30.9543263Z 
+2026-10-05T10:46:30.9543370Z [        ] Running 1 shutdown hook
+2026-10-05T10:46:30.9543624Z [        ] Shutdown hooks complete
+2026-10-05T10:46:30.9543858Z [        ] exiting with code 1
+2026-10-05T10:46:30.9704202Z [diagnose] Windows install failed; replaying cmake_install.cmake
+2026-10-05T10:46:30.9705685Z [diagnose] present D:\a\guoapp\guoapp\build\native_assets\windows
+2026-10-05T10:46:30.9706437Z [diagnose] present D:\a\guoapp\guoapp\build\flutter_assets
+2026-10-05T10:46:30.9707022Z [diagnose] present D:\a\guoapp\guoapp\build\windows\app.so
+2026-10-05T10:46:30.9707552Z [diagnose] present D:\a\guoapp\guoapp\windows\runner\duanju_core.dll
+2026-10-05T10:46:30.9708611Z [diagnose] present D:\a\guoapp\guoapp\windows\flutter\ephemeral\flutter_windows.dll
+2026-10-05T10:46:30.9709165Z [diagnose] present D:\a\guoapp\guoapp\windows\flutter\ephemeral\icudtl.dat
+2026-10-05T10:46:30.9714922Z [diagnose] bundle: avcodec-62.dll avdevice-62.dll avfilter-11.dll avformat-62.dll avutil-60.dll d3dcompiler_47.dll dartjni.dll data duanju_core.dll ffmpeg_kit_flutter_new_min_gpl_plugin.dll flutter_windows.dll libEGL.dll libGLESv2.dll libbz2-1.dll libc++.dll libffmpegkit.dll libfftw3-3.dll libgcc_s_seh-1.dll libgomp-1.dll libiconv-2.dll liblzma-5.dll libmpv-2.dll librubberband-2.dll libsamplerate-0.dll libstdc++-6.dll libva.dll libva_win32.dll libvidstab.dll libwinpthread-1.dll libx264-165.dll libx265-216.dll media_kit_libs_windows_video_plugin.dll media_kit_video_plugin.dll nsd_windows_plugin.dll screen_retriever_windows_plugin.dll swresample-6.dll swscale-9.dll vk_swiftshader.dll vulkan-1.dll window_manager_plugin.dll xvidcore.dll zhenguojian.exe zlib.dll zlib1.dll
+2026-10-05T10:46:30.9717828Z [diagnose] replaying install script
+2026-10-05T10:46:30.9912622Z -- Install configuration: "Release"
+2026-10-05T10:46:30.9934248Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/icudtl.dat
+2026-10-05T10:46:30.9936239Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/flutter_windows.dll
+2026-10-05T10:46:30.9938918Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/ffmpeg_kit_flutter_new_min_gpl_plugin.dll
+2026-10-05T10:46:30.9939825Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/avcodec-62.dll
+2026-10-05T10:46:30.9941498Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/avdevice-62.dll
+2026-10-05T10:46:30.9943298Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/avfilter-11.dll
+2026-10-05T10:46:30.9944095Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/avformat-62.dll
+2026-10-05T10:46:30.9946075Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/avutil-60.dll
+2026-10-05T10:46:30.9947381Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libbz2-1.dll
+2026-10-05T10:46:30.9948925Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libffmpegkit.dll
+2026-10-05T10:46:30.9950085Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libfftw3-3.dll
+2026-10-05T10:46:30.9951709Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libgcc_s_seh-1.dll
+2026-10-05T10:46:30.9953862Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libgomp-1.dll
+2026-10-05T10:46:30.9955711Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libiconv-2.dll
+2026-10-05T10:46:30.9957676Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/liblzma-5.dll
+2026-10-05T10:46:30.9959671Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/librubberband-2.dll
+2026-10-05T10:46:30.9961000Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libsamplerate-0.dll
+2026-10-05T10:46:30.9962226Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libstdc++-6.dll
+2026-10-05T10:46:30.9963729Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libva.dll
+2026-10-05T10:46:30.9964957Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libva_win32.dll
+2026-10-05T10:46:30.9966931Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libvidstab.dll
+2026-10-05T10:46:30.9968121Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libwinpthread-1.dll
+2026-10-05T10:46:30.9969617Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libx264-165.dll
+2026-10-05T10:46:30.9970817Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libx265-216.dll
+2026-10-05T10:46:30.9972357Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/swresample-6.dll
+2026-10-05T10:46:30.9973494Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/swscale-9.dll
+2026-10-05T10:46:30.9974987Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/xvidcore.dll
+2026-10-05T10:46:30.9976184Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/zlib1.dll
+2026-10-05T10:46:30.9977857Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/media_kit_libs_windows_video_plugin.dll
+2026-10-05T10:46:30.9978866Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libmpv-2.dll
+2026-10-05T10:46:30.9980386Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/d3dcompiler_47.dll
+2026-10-05T10:46:30.9981574Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libc++.dll
+2026-10-05T10:46:30.9983171Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libEGL.dll
+2026-10-05T10:46:30.9984193Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/libGLESv2.dll
+2026-10-05T10:46:30.9985828Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/vk_swiftshader.dll
+2026-10-05T10:46:30.9987469Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/vulkan-1.dll
+2026-10-05T10:46:30.9988554Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/zlib.dll
+2026-10-05T10:46:30.9990378Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/media_kit_video_plugin.dll
+2026-10-05T10:46:30.9991350Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/nsd_windows_plugin.dll
+2026-10-05T10:46:30.9993118Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/screen_retriever_windows_plugin.dll
+2026-10-05T10:46:30.9994251Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/window_manager_plugin.dll
+2026-10-05T10:46:30.9995811Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/dartjni.dll
+2026-10-05T10:46:30.9998076Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release
+2026-10-05T10:46:31.0033478Z -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets
+2026-10-05T10:46:31.0040061Z -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/AssetManifest.bin
+2026-10-05T10:46:31.0045694Z -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/assets
+2026-10-05T10:46:31.0052247Z -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/assets/video_enhancement
+2026-10-05T10:46:31.0059441Z -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/assets/video_enhancement/Anime4K-LICENSE.txt
+2026-10-05T10:46:31.0064993Z -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/assets/video_enhancement/Anime4K_Upscale_Denoise_CNN_x2_S.glsl
+2026-10-05T10:46:31.0070542Z -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/assets/video_enhancement/FSRCNNX_x2_8-0-4-1.glsl
+2026-10-05T10:46:31.0076581Z -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/assets/video_enhancement/GPL-3.0.txt
+2026-10-05T10:46:31.0082156Z -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/assets/video_enhancement/LGPL-3.0.txt
+2026-10-05T10:46:31.0087576Z -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/assets/video_enhancement/manifest.json
+2026-10-05T10:46:31.0095857Z -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/assets/video_enhancement/ravu-lite-ar-r2.hook
+2026-10-05T10:46:31.0101753Z -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/assets/video_enhancement/ravu-r2-rgb.hook
+2026-10-05T10:46:31.0108019Z -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/FontManifest.json
+2026-10-05T10:46:31.0112497Z -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/fonts
+2026-10-05T10:46:31.0119268Z -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/fonts/MaterialIcons-Regular.otf
+2026-10-05T10:46:31.0125207Z -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/NativeAssetsManifest.json
+2026-10-05T10:46:31.0129610Z -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/NOTICES.Z
+2026-10-05T10:46:31.0138676Z -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/packages
+2026-10-05T10:46:31.0145381Z -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/packages/media_kit
+2026-10-05T10:46:31.0151998Z -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/packages/media_kit/assets
+2026-10-05T10:46:31.0159130Z -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/packages/media_kit/assets/web
+2026-10-05T10:46:31.0167322Z -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/packages/media_kit/assets/web/hls1.4.10.js
+2026-10-05T10:46:31.0177440Z -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/packages/wakelock_plus
+2026-10-05T10:46:31.0185228Z -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/packages/wakelock_plus/assets
+2026-10-05T10:46:31.0192332Z -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/packages/wakelock_plus/assets/no_sleep.js
+2026-10-05T10:46:31.0197070Z -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/shaders
+2026-10-05T10:46:31.0204037Z -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/shaders/ink_sparkle.frag
+2026-10-05T10:46:31.0209371Z -- Installing: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/flutter_assets/shaders/stretch_effect.frag
+2026-10-05T10:46:31.0215498Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/data/app.so
+2026-10-05T10:46:31.0217519Z -- Up-to-date: D:/a/guoapp/guoapp/build/windows/x64/runner/Release/duanju_core.dll
+2026-10-05T10:46:31.0223387Z CMake Error at cmake_install.cmake:510 (file):
+2026-10-05T10:46:31.0223971Z   file cannot create directory:
+2026-10-05T10:46:31.0224573Z   D:/a/guoapp/guoapp/build/windows/x64/$<TARGET_FILE_DIR:zhenguojian>/..
+2026-10-05T10:46:31.0225506Z   Maybe need administrative privileges.
+2026-10-05T10:46:31.0225818Z 
+2026-10-05T10:46:31.0225832Z 
+2026-10-05T10:46:31.0264140Z [diagnose] replay exit code: 1
+2026-10-05T10:46:31.0307602Z Traceback (most recent call last):
+2026-10-05T10:46:31.0316303Z   File "D:\a\guoapp\guoapp\scripts\build_windows.py", line 79, in <module>
+2026-10-05T10:46:31.0317440Z     subprocess.run([flutter, 'build', 'windows', '--release', '--no-pub', '--verbose', *variant.flutter_arguments], cwd=root, env=env, check=True)
+2026-10-05T10:46:31.0391863Z   File "C:\hostedtoolcache\windows\Python\3.12.10\x64\Lib\subprocess.py", line 571, in run
+2026-10-05T10:46:31.0483731Z     raise CalledProcessError(retcode, process.args,
+2026-10-05T10:46:31.0485725Z subprocess.CalledProcessError: Command '['C:\\hostedtoolcache\\windows\\flutter\\stable-3.47.4-x64/flutter/bin\\flutter.BAT', 'build', 'windows', '--release', '--no-pub', '--verbose', '--dart-define=ALL_SOURCES=false']' returned non-zero exit status 1.
+2026-10-05T10:46:31.1660768Z ##[error]Process completed with exit code 1.
