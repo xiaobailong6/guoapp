@@ -7,6 +7,13 @@
 - 使用方式：拿到新日志后先在「快速对照表」按症状定位，再跳到对应条目按「复查」执行；改动源码或工作流后按「下次更新源码后的核查顺序」整体过一遍
 - 逐轮运行记录同时保留在 `README.md` 的「当前检查与平台状态」一节
 
+## Windows 冒烟视频轨道修复（0.3.4+2110）
+
+- 最新日志：`logs_101019754389/2_windows (zhenguojian, --all-sources).txt`，2026-10-05 13:04 UTC，第 1480 行报告等待进度 20 秒超时，进程退出 1；构建和发布打包已完成。
+- 根因：核对 pub.dev 的锁定包 `media_kit 1.2.6`，`native/player/real.dart` 默认设置 `vid=no`，由 `VideoController` 挂接时启用视频。冒烟流程没有挂接控制器，并设置 `AudioTrack.no()`，因此所有轨道被关闭。
+- 修法：在 `lib/package_smoke.dart` 打开媒体前显式调用 `player.setVideoTrack(VideoTrack.auto())`。保留无画面输出 `vo=null`、关闭音频、400 毫秒进度判定和 20 秒超时，不放宽验收。
+- 验证边界：仅日志与锁定依赖源码核对，未在本机编译、测试或运行验证；待 Windows Actions 重跑确认。
+
 ## Windows 冒烟失败报告保留（0.3.3+2109）
 
 - 最新日志 2026-10-05 12:43 UTC：`logs_101019754389/2_windows (zhenguojian, --all-sources).txt` 第 1485–1493 行仅显示应用 `--package-smoke` 返回 1，没有应用错误报告；构建和发布包生成已完成。
