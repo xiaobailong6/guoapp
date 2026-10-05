@@ -1,6 +1,8 @@
 # 红果鉴 / 真果鉴
 
-Flutter 多端独立短剧应用，原名“短剧库 APP”。站源请求、解析、下载和播放均在设备上完成，不依赖旧项目或自建服务。当前源码版本：**0.3.1+2107（开发快照）**。
+Flutter 多端独立短剧应用，原名“短剧库 APP”。站源请求、解析、下载和播放均在设备上完成，不依赖旧项目或自建服务。当前源码版本：**0.3.2+2108（开发快照）**。
+
+0.3.2 修复 Windows Actions 冒烟脚本编码失败。最新日志已进入 `python scripts/smoke_windows.py --all-sources`，构建和发布打包步骤已完成，但冒烟脚本使用 Windows 默认 `cp1252` 读取含中文的 UTF-8 `pubspec.yaml`，在启动应用前触发 `UnicodeDecodeError`。现将该脚本的版本文件、JSON 报告读取和报告写出统一显式使用 UTF-8，保留包启动验收逻辑。本轮仅核对日志与源码，未在本机编译、测试或运行验证；Windows 包启动检查仍待 Actions 重跑，保持开发快照状态。
 
 0.3.1 修复 Windows 发布包仍缺 DLL 和资源的问题。最新日志显示编译和安装成功，但 DLL、资源、MSVC 运行库安装到 `build/windows/x64/runner`，可执行文件与发布脚本使用 `runner/Release`。此前“多配置安装自动追加 Release”的说明有误：CMake 安装不会自动追加配置目录。现保留 `${CMAKE_BINARY_DIR}/runner` 的纯路径安装前缀，将所有安装目标显式统一为 `${CMAKE_INSTALL_PREFIX}/$<CONFIG>`，包括可执行文件、插件 DLL、Go 核心、native assets、Flutter 资源、AOT 文件及 MSVC 运行库。保留发布包完整性检查。本轮仅核对日志与源码，未在本机编译、测试或运行验证，需 Windows Actions 重跑确认，仍为开发快照。
 
