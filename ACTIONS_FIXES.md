@@ -7,6 +7,14 @@
 - 使用方式：拿到新日志后先在「快速对照表」按症状定位，再跳到对应条目按「复查」执行；改动源码或工作流后按「下次更新源码后的核查顺序」整体过一遍
 - 逐轮运行记录同时保留在 `README.md` 的「当前检查与平台状态」一节
 
+## Windows CMake 与发布脚本目录修复（0.3.0+2106）
+
+- 日志：`logs_101019754389/2_windows (zhenguojian, --all-sources).txt`；第 1422–1431 行 Windows 编译和 CMake 安装成功，但实际安装到了 `build/runner`；第 1432 行 `package_release.py` 按 `build/windows/x64/runner/Release` 检查时误报缺少全部文件。
+- 根因：上轮使用 `${PROJECT_BUILD_DIR}/runner` 作为安装前缀，`PROJECT_BUILD_DIR` 在该工程中指向 `build`，没有包含 Flutter Windows 的 `build/windows/x64` 配置目录。
+- 修法：将 `BUILD_BUNDLE_DIR` 改为 `${CMAKE_BINARY_DIR}/runner`，由当前 CMake 二进制目录解析为 `build/windows/x64/runner`；Windows 多配置安装继续写入 `runner/Release`，与 `scripts/package_release.py` 一致。
+- 本机限制：没有 Windows Flutter / MSVC 环境，未编译或验证；修复效果待 Windows Actions 重跑确认。
+
+
 ## Windows 发布打包编码修复（0.2.99+2105）
 
 - 日志：`logs_101019754389/2_windows (zhenguojian, --all-sources).txt`；第 1425–1434 行显示 Windows 编译与 CMake 安装成功，构建产物为 `build\\windows\\x64\\runner\\Release\\zhenguojian.exe`；第 1435–1452 行 `scripts/package_release.py` 读取 `pubspec.yaml` 时因 Windows 默认 `cp1252` 解码中文失败。
