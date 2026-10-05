@@ -1,6 +1,8 @@
 # 红果鉴 / 真果鉴
 
-Flutter 多端独立短剧应用，原名“短剧库 APP”。站源请求、解析、下载和播放均在设备上完成，不依赖旧项目或自建服务。当前源码版本：**0.2.98+2104（开发快照）**。
+Flutter 多端独立短剧应用，原名“短剧库 APP”。站源请求、解析、下载和播放均在设备上完成，不依赖旧项目或自建服务。当前源码版本：**0.2.99+2105（开发快照）**。
+
+0.2.99 修复 Windows Actions 打包阶段失败：Windows Flutter 编译和 CMake 安装已成功，但 `scripts/package_release.py` 在读取含中文内容的 `pubspec.yaml` 时使用 Windows 默认 `cp1252`，触发 `UnicodeDecodeError`。现显式按 UTF-8 读取版本文件，避免 Windows 区域编码影响发布包生成。未改动构建产物校验逻辑。本机没有 Windows Flutter / MSVC 环境，未编译或验证，需重跑 Windows Actions 确认，仍为开发快照。
 
 0.2.98 修复 Windows Actions 安装阶段失败：编译、插件 DLL 安装和 Flutter 资源安装均已完成，但 CMake 在 `cmake_install.cmake:510` 试图创建包含字面 `$<TARGET_FILE_DIR:zhenguojian>` 的路径。原因是把生成器表达式用于配置期的 `CMAKE_INSTALL_PREFIX`。现改用 `${PROJECT_BUILD_DIR}/runner` 作为安装前缀，让 Windows 多配置安装按 Release 自动写入 `runner/Release`；未改动业务代码。本机没有 Windows Flutter / MSVC 环境，未编译或验证，Windows Actions 需重跑确认，仍为开发快照。
 

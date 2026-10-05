@@ -7,6 +7,14 @@
 - 使用方式：拿到新日志后先在「快速对照表」按症状定位，再跳到对应条目按「复查」执行；改动源码或工作流后按「下次更新源码后的核查顺序」整体过一遍
 - 逐轮运行记录同时保留在 `README.md` 的「当前检查与平台状态」一节
 
+## Windows 发布打包编码修复（0.2.99+2105）
+
+- 日志：`logs_101019754389/2_windows (zhenguojian, --all-sources).txt`；第 1425–1434 行显示 Windows 编译与 CMake 安装成功，构建产物为 `build\\windows\\x64\\runner\\Release\\zhenguojian.exe`；第 1435–1452 行 `scripts/package_release.py` 读取 `pubspec.yaml` 时因 Windows 默认 `cp1252` 解码中文失败。
+- 根因：`Path.read_text()` 未指定编码，在 Windows runner 上使用系统默认编码，无法读取 UTF-8 源码文件。
+- 修法：`scripts/package_release.py` 读取 `pubspec.yaml` 时显式使用 `encoding='utf-8'`，保持版本解析和发布包校验逻辑不变。
+- 本机限制：没有 Windows Flutter / MSVC 环境，未编译或验证；修复效果待 Windows Actions 重跑确认。
+
+
 ## Windows CMake 安装前缀修复（0.2.98+2104）
 
 - 日志：`logs_101019754389/2_windows (zhenguojian, --all-sources).txt`；C++ 编译、插件 DLL 和 Flutter 资源均安装成功，第 1407–1421 行在 `cmake_install.cmake:510` 失败，目标路径含字面 `$<TARGET_FILE_DIR:zhenguojian>/..`。
