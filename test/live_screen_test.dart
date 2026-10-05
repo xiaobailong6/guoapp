@@ -102,10 +102,16 @@ void main() {
     return (store, repository);
   }
 
-  Future<void> pump(WidgetTester tester, LiveRepository repository, LiveStore store) async {
+  Future<void> pump(
+    WidgetTester tester,
+    LiveRepository repository,
+    LiveStore store,
+  ) async {
     await tester.pumpWidget(
       MaterialApp(
-        home: Scaffold(body: LiveScreen(repository: repository, store: store)),
+        home: Scaffold(
+          body: LiveScreen(repository: repository, store: store),
+        ),
       ),
     );
     await tester.pumpAndSettle();
@@ -132,11 +138,7 @@ void main() {
     final (store, repository) = await create();
     await pump(tester, repository, store);
 
-    expect(
-      LiveSource.values.length,
-      1,
-      reason: '两个面板是同一上游的镜像，已合并成一个直播源',
-    );
+    expect(LiveSource.values.length, 1, reason: '两个面板是同一上游的镜像，已合并成一个直播源');
     expect(repository.sources, [LiveSource.values.first.id]);
     expect(
       find.textContaining(LiveSource.values.first.name),
@@ -168,7 +170,10 @@ void main() {
     final (store, repository) = await create();
     await pump(tester, repository, store);
 
-    expect(find.byKey(const ValueKey('live-group-__favourites')), findsOneWidget);
+    expect(
+      find.byKey(const ValueKey('live-group-__favourites')),
+      findsOneWidget,
+    );
     expect(find.text('最近'), findsNothing);
   });
 
@@ -176,12 +181,18 @@ void main() {
     final (store, repository) = await create();
     await pump(tester, repository, store);
 
-    expect(find.byKey(ValueKey('live-channel-${_channel('央视IPV4', 'CCTV1综合').key}')), findsOneWidget);
+    expect(
+      find.byKey(ValueKey('live-channel-${_channel('央视IPV4', 'CCTV1综合').key}')),
+      findsOneWidget,
+    );
 
     await tester.tap(find.byKey(const ValueKey('live-group-satellite')));
     await tester.pumpAndSettle();
 
-    expect(find.byKey(ValueKey('live-channel-${_channel('卫视IPV4', '湖南卫视').key}')), findsOneWidget);
+    expect(
+      find.byKey(ValueKey('live-channel-${_channel('卫视IPV4', '湖南卫视').key}')),
+      findsOneWidget,
+    );
     expect(
       find.byKey(ValueKey('live-channel-${_channel('央视IPV4', 'CCTV1综合').key}')),
       findsNothing,

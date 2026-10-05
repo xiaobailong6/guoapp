@@ -1,6 +1,8 @@
 # 红果鉴 / 真果鉴
 
-Flutter 多端独立短剧应用，原名“短剧库 APP”。站源请求、解析、下载和播放均在设备上完成，不依赖旧项目或自建服务。当前源码版本：**0.2.93+2099（开发快照）**。
+Flutter 多端独立短剧应用，原名“短剧库 APP”。站源请求、解析、下载和播放均在设备上完成，不依赖旧项目或自建服务。当前源码版本：**0.2.94+2100（开发快照）**。
+
+0.2.94 修复 `logs_100686774775/3_checks.txt` 所示的 Actions 阻断：Python 脚本检查与 `flutter pub get --enforce-lockfile` 已在该轮 CI 通过，但 Dart 3.12 格式检查报告 159 个文件中 35 个需要重排，退出 1，尚未进入静态分析或平台编译。使用会话临时目录中的独立 Dart 3.13.5 工具，显式按 `--language-version 3.12` 重排源码，实际写入的 35 个文件与日志清单一致；保留 CI 的严格格式检查，不改业务逻辑。本机未解析 Flutter 依赖，格式工具因无法读取 `flutter_lints` 配置发出警告并退出 1，虽然已完成全部格式写入，但不作为检查通过的结论。本轮未编译、未运行测试、静态分析或设备验证，修复效果待 GitHub Actions 重跑确认，仍为开发快照。
 
 0.2.93 按 `ACTIONS_FIXES.md` 对更新后的源码逐项核对 Actions 修复：六个依赖的修复版本、四处暂停测试不阻断表达式、Android NDK 三处版本一致、MinGW 直接安装、Windows native assets 安装期 `OPTIONAL` 和构建失败诊断均已保留，未重复改动。补回 `scripts/sync_source.py` 的 `ACTIONS_FIXES.md` 收录规则，防止后续源码镜像和压缩包漏掉修复记录；工作流格式步骤显式使用与根包 SDK 下限一致的 `--language-version 3.12`。本轮未执行测试、静态分析、平台构建或设备验证；本机 PATH 无 Dart / Flutter，未执行 Dart 格式整理和 `flutter pub get --enforce-lockfile`，新源码格式与依赖解析仍待工具链可用后复查。历史 Actions 结果不作为本版验收依据，Windows 安装修复仍待真实 runner 验证。
 

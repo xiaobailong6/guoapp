@@ -40,8 +40,9 @@ class LivePlaybackController extends ChangeNotifier {
   VideoController? get controller => _controller;
   LiveSource? get source => _source;
   List<LiveChannel> get channels => _channels;
-  LiveChannel? get channel =>
-      _channels.isEmpty ? null : _channels[_index.clamp(0, _channels.length - 1)];
+  LiveChannel? get channel => _channels.isEmpty
+      ? null
+      : _channels[_index.clamp(0, _channels.length - 1)];
   int get index => _index;
   int get count => _channels.length;
   bool get loading => _loading;

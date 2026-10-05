@@ -98,9 +98,7 @@ class _LiveScreenState extends State<LiveScreen> {
 
   void _applyChannels(List<LiveChannel> channels) {
     _channels = channels;
-    unawaited(
-      _playback.load(_source, channels, autoplay: channels.isNotEmpty),
-    );
+    unawaited(_playback.load(_source, channels, autoplay: channels.isNotEmpty));
   }
 
   Future<void> _loadPlatforms() async {
@@ -188,7 +186,8 @@ class _LiveScreenState extends State<LiveScreen> {
     } catch (error) {
       if (!mounted || token != _generation) return;
       final restore = _lastGood;
-      final fallback = !append && restore != null && restore.channels.isNotEmpty;
+      final fallback =
+          !append && restore != null && restore.channels.isNotEmpty;
       setState(() {
         _loading = false;
         _more = false;
@@ -290,10 +289,7 @@ class _LiveScreenState extends State<LiveScreen> {
     return Column(
       children: [
         Expanded(flex: _playbackShare, child: _video(context, television)),
-        Expanded(
-          flex: _listShare,
-          child: _panel(context, television),
-        ),
+        Expanded(flex: _listShare, child: _panel(context, television)),
       ],
     );
   }
@@ -418,7 +414,10 @@ class _LiveScreenState extends State<LiveScreen> {
                   channel.subtitle,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(color: Color(0xB3FFFFFF), fontSize: 12),
+                  style: const TextStyle(
+                    color: Color(0xB3FFFFFF),
+                    fontSize: 12,
+                  ),
                 ),
               ),
             ] else
@@ -572,7 +571,9 @@ class _LiveScreenState extends State<LiveScreen> {
         itemBuilder: (_, index, node, onFocus) => RemoteListTile(
           key: ValueKey('live-group-${entries[index].id}'),
           title: entries[index].name,
-          subtitle: entries[index].count > 0 ? '${entries[index].count} 个频道' : '',
+          subtitle: entries[index].count > 0
+              ? '${entries[index].count} 个频道'
+              : '',
           selected: entries[index].id == _group,
           focusNode: node,
           onFocus: onFocus,
@@ -655,9 +656,7 @@ class _LiveScreenState extends State<LiveScreen> {
     if (_channels.isEmpty) {
       return StatusPanel(
         title: _group == _favouritesId ? '还没有收藏频道' : '没有可用频道',
-        message: _group == _favouritesId
-            ? '播放时点星标即可加入收藏。'
-            : '可以切换其他分类或直播源。',
+        message: _group == _favouritesId ? '播放时点星标即可加入收藏。' : '可以切换其他分类或直播源。',
         icon: Icons.live_tv_rounded,
       );
     }
