@@ -1,6 +1,8 @@
 # 红果鉴 / 真果鉴
 
-Flutter 多端独立短剧应用，原名“短剧库 APP”。站源请求、解析、下载和播放均在设备上完成，不依赖旧项目或自建服务。当前源码版本：**0.3.0+2106（开发快照）**。
+Flutter 多端独立短剧应用，原名“短剧库 APP”。站源请求、解析、下载和播放均在设备上完成，不依赖旧项目或自建服务。当前源码版本：**0.3.1+2107（开发快照）**。
+
+0.3.1 修复 Windows 发布包仍缺 DLL 和资源的问题。最新日志显示编译和安装成功，但 DLL、资源、MSVC 运行库安装到 `build/windows/x64/runner`，可执行文件与发布脚本使用 `runner/Release`。此前“多配置安装自动追加 Release”的说明有误：CMake 安装不会自动追加配置目录。现保留 `${CMAKE_BINARY_DIR}/runner` 的纯路径安装前缀，将所有安装目标显式统一为 `${CMAKE_INSTALL_PREFIX}/$<CONFIG>`，包括可执行文件、插件 DLL、Go 核心、native assets、Flutter 资源、AOT 文件及 MSVC 运行库。保留发布包完整性检查。本轮仅核对日志与源码，未在本机编译、测试或运行验证，需 Windows Actions 重跑确认，仍为开发快照。
 
 0.3.0 修复 Windows Actions 发布包目录不一致：Windows 编译和 CMake 安装均已成功，但 CMake 上轮写入 `build/runner`，而 `scripts/package_release.py` 按 Flutter 标准路径查找 `build/windows/x64/runner/Release`，因此误报缺少全部 Windows 文件。现将 CMake 安装前缀改为 `${CMAKE_BINARY_DIR}/runner`，对应 `build/windows/x64/runner`，与发布脚本保持一致；UTF-8 读取修复继续保留。本机没有 Windows Flutter / MSVC 环境，未编译或验证，需重跑 Windows Actions 确认，仍为开发快照。
 

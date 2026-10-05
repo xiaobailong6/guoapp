@@ -7,6 +7,14 @@
 - 使用方式：拿到新日志后先在「快速对照表」按症状定位，再跳到对应条目按「复查」执行；改动源码或工作流后按「下次更新源码后的核查顺序」整体过一遍
 - 逐轮运行记录同时保留在 `README.md` 的「当前检查与平台状态」一节
 
+## Windows 配置目录修复（0.3.1+2107）
+
+- 最新日志：`logs_101019754389/2_windows (zhenguojian, --all-sources).txt`，2026-10-05 11:50 UTC；第 1342、1412–1414 行显示 DLL、AOT 文件和运行库安装到 `build/windows/x64/runner`，第 1432 行可执行文件位于 `runner/Release`，第 1437 行发布完整性检查缺件并失败。
+- 根因：CMake 多配置安装不会自动追加 `Release`。此前 0.2.98 和 0.3.0 条目中关于自动追加配置目录的判断不正确，以本条修正为准。
+- 修法：保留不含生成器表达式的 `${CMAKE_BINARY_DIR}/runner` 安装前缀，将 `INSTALL_BUNDLE_LIB_DIR` 显式设为 `${CMAKE_INSTALL_PREFIX}/$<CONFIG>`，数据目录为其下的 `data`；可执行文件和 MSVC 运行库也使用该目录。生成器表达式仅用于安装目标和安装代码，不写入安装前缀缓存。
+- 发布脚本继续检查 `build/windows/x64/runner/Release` 的完整文件，未降低缺件检查要求。
+- 验证范围：仅读取日志并核对源码，未在本机编译、测试或运行验证；待 Windows Actions 重跑确认。
+
 ## Windows CMake 与发布脚本目录修复（0.3.0+2106）
 
 - 日志：`logs_101019754389/2_windows (zhenguojian, --all-sources).txt`；第 1422–1431 行 Windows 编译和 CMake 安装成功，但实际安装到了 `build/runner`；第 1432 行 `package_release.py` 按 `build/windows/x64/runner/Release` 检查时误报缺少全部文件。
