@@ -98,14 +98,7 @@ void main() {
         isNull,
       );
       expect(
-        RecommendationEntry.fromWire([
-          'hongguo',
-          'hongguo:1',
-          '剧名',
-          '',
-          '都市',
-          1,
-        ]),
+        RecommendationEntry.fromWire(['hongguo', 'hongguo:1', '剧名', '', '都市', 1]),
         isNull,
       );
       expect(RecommendationEntry.fromWire(['hongguo', 'hongguo:1']), isNull);
@@ -170,22 +163,8 @@ void main() {
         _event(
           secret: _secret,
           content: _vector([
-            [
-              'hongguo',
-              'hongguo:1',
-              '剧名',
-              'https://i.example.com/a.jpg',
-              '',
-              1,
-            ],
-            [
-              'hongguo',
-              'hongguo:1',
-              '剧名',
-              'https://i.example.com/a.jpg',
-              '',
-              2,
-            ],
+            ['hongguo', 'hongguo:1', '剧名', 'https://i.example.com/a.jpg', '', 1],
+            ['hongguo', 'hongguo:1', '剧名', 'https://i.example.com/a.jpg', '', 2],
           ]),
         ),
       );
@@ -237,14 +216,7 @@ void main() {
           content: _vector([
             ['weizhi', 'weizhi:1', '剧名', 'https://i.example.com/a.jpg', '', 1],
             ['hongguo', 'hongguo:1', '', 'https://i.example.com/a.jpg', '', 1],
-            [
-              'hongguo',
-              'hongguo:2',
-              '好剧',
-              'https://i.example.com/b.jpg',
-              '',
-              2,
-            ],
+            ['hongguo', 'hongguo:2', '好剧', 'https://i.example.com/b.jpg', '', 2],
           ]),
         ),
       );
@@ -258,35 +230,14 @@ void main() {
       final mine = _event(
         secret: _secret,
         content: _vector([
-          [
-            'hongguo',
-            'hongguo:1',
-            '被两个人推荐',
-            'https://i.example.com/a.jpg',
-            '',
-            100,
-          ],
-          [
-            'hongguo',
-            'hongguo:2',
-            '只有我推荐',
-            'https://i.example.com/b.jpg',
-            '',
-            200,
-          ],
+          ['hongguo', 'hongguo:1', '被两个人推荐', 'https://i.example.com/a.jpg', '', 100],
+          ['hongguo', 'hongguo:2', '只有我推荐', 'https://i.example.com/b.jpg', '', 200],
         ]),
       );
       final other = _event(
         secret: _otherSecret,
         content: _vector([
-          [
-            'hongguo',
-            'hongguo:1',
-            '被两个人推荐',
-            'https://i.example.com/a.jpg',
-            '',
-            300,
-          ],
+          ['hongguo', 'hongguo:1', '被两个人推荐', 'https://i.example.com/a.jpg', '', 300],
         ]),
         createdAt: 1760000100,
       );
@@ -306,27 +257,13 @@ void main() {
       final first = _event(
         secret: _secret,
         content: _vector([
-          [
-            'hongguo',
-            'hongguo:1',
-            '剧名',
-            'https://i.example.com/a.jpg',
-            '',
-            100,
-          ],
+          ['hongguo', 'hongguo:1', '剧名', 'https://i.example.com/a.jpg', '', 100],
         ]),
       );
       final second = _event(
         secret: _secret,
         content: _vector([
-          [
-            'hongguo',
-            'hongguo:1',
-            '剧名',
-            'https://i.example.com/a.jpg',
-            '',
-            200,
-          ],
+          ['hongguo', 'hongguo:1', '剧名', 'https://i.example.com/a.jpg', '', 200],
         ]),
         createdAt: 1760000200,
       );
@@ -342,14 +279,7 @@ void main() {
       final event = _event(
         secret: _secret,
         content: _vector([
-          [
-            'hongguo',
-            'hongguo:1',
-            '剧名',
-            'https://i.example.com/a.jpg',
-            '',
-            100,
-          ],
+          ['hongguo', 'hongguo:1', '剧名', 'https://i.example.com/a.jpg', '', 100],
         ]),
       );
       expect(buildFeed([decodeVectorEvent(event)!]), hasLength(1));

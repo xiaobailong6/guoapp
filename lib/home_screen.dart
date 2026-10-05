@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
 import 'app_layout.dart';
@@ -8,6 +9,7 @@ import 'app_bottom_navigation.dart';
 import 'core_bridge.dart';
 import 'catalog_filters.dart';
 import 'catalog_browser.dart';
+import 'catalog_prefetch.dart';
 import 'catalog_sort.dart';
 import 'catalog_sort_sheet.dart';
 import 'feeds_screen.dart';
@@ -32,6 +34,9 @@ import 'batch_download_screen.dart';
 import 'batch_downloads.dart';
 import 'drama_actions.dart';
 import 'library_updater.dart';
+import 'live_repository.dart';
+import 'live_screen.dart';
+import 'live_store.dart';
 import 'saved_library.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -47,10 +52,11 @@ class _HomeScreenState extends State<HomeScreen> {
   static const _tabDiscover = 0;
   static const _tabFeed = 1;
   static const _tabFollow = 2;
-  static const _tabHistory = 3;
+  static const _tabLive = 3;
   static const _tabDownloads = 4;
   final _search = TextEditingController();
   final _scroll = ScrollController();
+  final _prefetch = CatalogPrefetchScheduler();
   Timer? _debounce;
   late SourceSite _source;
   bool _allSources = false;
@@ -82,6 +88,11 @@ class _HomeScreenState extends State<HomeScreen> {
   final _navKey = GlobalKey<RemoteListState>();
   final _appBarFocus = FocusNode(debugLabel: 'tv-appbar');
   final _selectionFocus = FocusNode(debugLabel: 'tv-selection');
+  late final LiveRepository _liveRepository = LiveRepository();
+  late final LiveStore _liveStore = LiveStore(
+    widget.store.preferences,
+    widget.store.profile.id,
+  )..load();
 
   List<SourceGroup> get _sourceGroups {
     final groups = SourceGroup.fromSources(widget.store.sources);
@@ -407,6 +418,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _scroll.addListener(_onCatalogScroll);
+    _prefetch.onIdle = () => unawaited(_prefetchCatalog());
     _source = SourceSite.byId(widget.store.source);
     _allSources = widget.store.catalogView.allSources;
     _browser = CatalogBrowser(widget.repository);
@@ -441,13 +453,22 @@ class _HomeScreenState extends State<HomeScreen> {
     _debounce?.cancel();
     _search.dispose();
     _scroll.removeListener(_onCatalogScroll);
+    _prefetch.dispose();
     _scroll.dispose();
     _appBarFocus.dispose();
     _selectionFocus.dispose();
+    _liveRepository.dispose();
+    _liveStore.dispose();
     super.dispose();
   }
 
   void _onCatalogScroll() {
+    if (mounted && _scroll.hasClients) {
+      _prefetch.scrolled(
+        extentAfter: _scroll.position.extentAfter,
+        viewport: _scroll.position.viewportDimension,
+      );
+    }
     if (!mounted ||
         _showRecommendations ||
         !_hasMore ||
@@ -472,6 +493,28 @@ class _HomeScreenState extends State<HomeScreen> {
       }
       unawaited(_load(more: true));
     });
+  }
+
+  bool get _canPrefetch =>
+      mounted &&
+      _tab == _tabDiscover &&
+      !_showRecommendations &&
+      _hasMore &&
+      !_loading &&
+      !_loadingMore &&
+      _scroll.hasClients;
+
+  void _schedulePrefetch() {
+    if (!mounted || !_scroll.hasClients) return;
+    _prefetch.settled(
+      extentAfter: _scroll.position.extentAfter,
+      viewport: _scroll.position.viewportDimension,
+    );
+  }
+
+  Future<void> _prefetchCatalog() async {
+    if (!_canPrefetch) return;
+    await _load(more: true);
   }
 
   void _metadataChanged() {
@@ -618,6 +661,7 @@ class _HomeScreenState extends State<HomeScreen> {
     } finally {
       if (generation == _generation) _stopProgressPolling();
     }
+    _schedulePrefetch();
   }
 
   void _startProgressPolling(SourceGroup group, String query, int generation) {
@@ -756,11 +800,19 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void _changeTab(int tab) => setState(() {
-    _tab = tab;
-    _selectionMode = false;
-    _selectedDramas.clear();
-  });
+  void _changeTab(int tab) {
+    if (tab == _tabDiscover) {
+      _prefetch.resume();
+      WidgetsBinding.instance.addPostFrameCallback((_) => _schedulePrefetch());
+    } else {
+      _prefetch.hold();
+    }
+    setState(() {
+      _tab = tab;
+      _selectionMode = false;
+      _selectedDramas.clear();
+    });
+  }
 
   void _cancelSelection() => setState(() {
     _selectionMode = false;
@@ -890,7 +942,7 @@ class _HomeScreenState extends State<HomeScreen> {
           (_tabDiscover, Icons.home_rounded, '主页'),
           (_tabFeed, Icons.play_circle_rounded, '在看'),
           (_tabFollow, Icons.bookmark_rounded, '追剧'),
-          (_tabHistory, Icons.history_rounded, '历史'),
+          (_tabLive, Icons.live_tv_rounded, '直播'),
           if (widget.store.canDownload)
             (_tabDownloads, Icons.download_rounded, '下载'),
         ];
@@ -943,13 +995,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   )
-                : Text(switch (_tab) {
-                    _tabFeed => '在看',
-                    _tabFollow => '追剧',
-                    _tabHistory => '历史',
-                    _tabDownloads => '下载',
-                    _ => appName,
-                  }),
+                : Text(
+                    switch (_tab) {
+                      _tabFeed => '在看',
+                      _tabFollow => '追剧',
+                      _tabLive => '直播',
+                      _tabDownloads => '下载',
+                      _ => appName,
+                    },
+                  ),
             actions: [
               if (_selectionMode) ...[
                 TextButton(
@@ -970,7 +1024,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   IconButton(
                     key: const ValueKey('feed-refresh'),
                     tooltip: '刷新动态',
-                    onPressed: () => RecommendationService.current?.refresh(),
+                    onPressed: () =>
+                        RecommendationService.current?.refresh(),
                     icon: const Icon(Icons.refresh_rounded),
                   ),
                 if (_tab == _tabFollow)
@@ -1178,8 +1233,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         label: Text('追剧'),
                       ),
                       NavigationRailDestination(
-                        icon: Icon(Icons.history_rounded),
-                        label: Text('历史'),
+                        icon: Icon(Icons.live_tv_outlined),
+                        selectedIcon: Icon(Icons.live_tv_rounded),
+                        label: Text('直播'),
                       ),
                       if (widget.store.canDownload)
                         NavigationRailDestination(
@@ -1208,6 +1264,15 @@ class _HomeScreenState extends State<HomeScreen> {
                               ? () => _navKey.currentState?.focusCurrent()
                               : null,
                         )
+                      : _tab == _tabLive
+                      ? LiveScreen(
+                          key: const ValueKey('live-tab'),
+                          repository: _liveRepository,
+                          store: _liveStore,
+                          onExitLeft: television
+                              ? () => _navKey.currentState?.focusCurrent()
+                              : null,
+                        )
                       : _tab == _tabDownloads
                       ? DownloadsScreen(
                           repository: widget.repository,
@@ -1218,7 +1283,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           key: ValueKey('saved-tab-$_tab'),
                           repository: widget.repository,
                           store: widget.store,
-                          history: _tab == _tabHistory,
+                          history: false,
+                          historyToggle: true,
                           remoteAutofocus: television,
                           onExitLeft: television
                               ? () => _navKey.currentState?.focusCurrent()
@@ -1260,8 +1326,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       label: '追剧',
                     ),
                     NavigationDestination(
-                      icon: Icon(Icons.history_rounded),
-                      label: '历史',
+                      icon: Icon(Icons.live_tv_outlined),
+                      selectedIcon: Icon(Icons.live_tv_rounded),
+                      label: '直播',
                     ),
                     if (widget.store.canDownload)
                       NavigationDestination(
@@ -1477,6 +1544,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           onRefresh: _refreshCatalog,
                           child: CustomScrollView(
                             controller: _scroll,
+                            scrollCacheExtent: ScrollCacheExtent.viewport(1),
                             physics: const AlwaysScrollableScrollPhysics(),
                             slivers: [
                               SliverPadding(

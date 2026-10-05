@@ -50,7 +50,7 @@ jobs:
           channel: stable
           cache: true
       - run: flutter pub get --enforce-lockfile
-      - run: dart format --output=none --set-exit-if-changed lib test integration_test test_driver
+      - run: dart format --language-version 3.12 --output=none --set-exit-if-changed lib test integration_test test_driver
       - run: dart analyze lib test integration_test test_driver
       - run: sudo apt-get update && sudo apt-get install -y ffmpeg
       # 依据 AGENTS.md：当前功能优先、暂停测试与回归，暂停中的测试默认只记录不阻断打包。

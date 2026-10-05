@@ -15,8 +15,8 @@ SOURCE_DIRECTORIES = {
     'web', 'assets', 'packages', 'scripts', 'test', 'test_driver', 'integration_test',
 }
 SOURCE_FILES = {
-    '.gitattributes', '.gitignore', '.metadata', '.editorconfig', 'ACTIONS_FIXES.md',
-    'AGENTS.md', 'README.md', 'pubspec.yaml', 'pubspec.lock',
+    '.gitattributes', '.gitignore', '.metadata', '.editorconfig',
+    'AGENTS.md', 'README.md', 'ACTIONS_FIXES.md', 'pubspec.yaml', 'pubspec.lock',
     'analysis_options.yaml', 'l10n.yaml', 'flutter_launcher_icons.yaml',
 }
 EXCLUDED_DIRECTORIES = {

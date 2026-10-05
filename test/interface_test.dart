@@ -160,15 +160,25 @@ void main() {
       Size? catalogSize;
       for (final tab in const [0, 2, 3]) {
         if (tab > 0) {
+          final nav = tab == 3 ? 2 : tab;
           final destination = layout.$3
-              ? find.byKey(ValueKey('tv-nav-$tab'))
+              ? find.byKey(ValueKey('tv-nav-$nav'))
               : layout.$1.width < 840
-              ? find.byKey(ValueKey('bottom-nav-$tab'))
+              ? find.byKey(ValueKey('bottom-nav-$nav'))
               : find.descendant(
                   of: find.byType(NavigationRail),
-                  matching: find.text(tab == 2 ? '追剧' : '历史'),
+                  matching: find.text('追剧'),
                 );
           await tester.tap(destination);
+          await tester.pumpAndSettle();
+        }
+        if (tab == 3) {
+          await tester.tap(
+            find.descendant(
+              of: find.byKey(const ValueKey('saved-mode')),
+              matching: find.text('历史'),
+            ),
+          );
           await tester.pumpAndSettle();
         }
         final covers = find.byType(DramaCover);

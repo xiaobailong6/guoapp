@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import 'search_input.dart';
 import 'app_layout.dart';
@@ -361,6 +362,7 @@ class RemoteGridState extends State<RemoteGrid> {
     onKeyEvent: _key,
     child: CustomScrollView(
       controller: _scroll,
+      scrollCacheExtent: const ScrollCacheExtent.pixels(1200),
       slivers: [
         SliverPadding(
           padding: widget.padding,
@@ -541,7 +543,9 @@ class RemoteRowState extends State<RemoteRow> {
           for (var index = 0; index < widget.itemKeys.length; index++)
             Padding(
               padding: EdgeInsets.only(
-                right: index == widget.itemKeys.length - 1 ? 0 : widget.spacing,
+                right: index == widget.itemKeys.length - 1
+                    ? 0
+                    : widget.spacing,
               ),
               child: widget.itemBuilder(
                 context,
@@ -917,9 +921,7 @@ class TelevisionActionDialog extends StatelessWidget {
           maxHeight: MediaQuery.sizeOf(context).height * .6,
         ),
         child: RemoteList(
-          itemKeys: [
-            for (var index = 0; index <= options.length; index++) '$index',
-          ],
+          itemKeys: [for (var index = 0; index <= options.length; index++) '$index'],
           itemExtent: RemoteListTile.extent,
           padding: EdgeInsets.zero,
           autofocus: true,

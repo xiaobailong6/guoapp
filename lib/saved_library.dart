@@ -16,6 +16,7 @@ class SavedLibrary extends StatefulWidget {
     required this.repository,
     required this.store,
     required this.history,
+    this.historyToggle = false,
     required this.onOpen,
     required this.onContinue,
     this.onDownload,
@@ -27,6 +28,9 @@ class SavedLibrary extends StatefulWidget {
   final AppRepository repository;
   final LocalStore store;
   final bool history;
+
+  /// 追剧页签内是否提供「追剧 / 历史」分段切换。
+  final bool historyToggle;
   final ValueChanged<Drama> onOpen;
   final ValueChanged<Drama> onContinue;
   final ValueChanged<Drama>? onDownload;
@@ -41,6 +45,9 @@ class SavedLibrary extends StatefulWidget {
 class _SavedLibraryState extends State<SavedLibrary> {
   final _search = TextEditingController();
   String _filter = '';
+  late bool _history = widget.history;
+
+  bool get _toggle => widget.historyToggle;
 
   @override
   void initState() {
@@ -54,6 +61,9 @@ class _SavedLibraryState extends State<SavedLibrary> {
     if (oldWidget.store != widget.store) {
       oldWidget.store.libraryChanges.removeListener(_libraryChanged);
       widget.store.libraryChanges.addListener(_libraryChanged);
+    }
+    if (oldWidget.history != widget.history && !_toggle) {
+      _history = widget.history;
     }
   }
 
@@ -133,13 +143,13 @@ class _SavedLibraryState extends State<SavedLibrary> {
     animation: widget.store,
     builder: (context, _) {
       final history = widget.store.history;
-      final all = widget.history
+      final all = _history
           ? history.map((entry) => entry.drama).toList()
           : widget.store.favorites;
       final items = all.where((drama) {
         if (!matchesDramaQuery(drama, _search.text)) return false;
         final state = widget.store.following(drama.id);
-        return widget.history ||
+        return _history ||
             _filter.isEmpty ||
             (_filter == 'updates'
                 ? state?.hasUpdates == true
@@ -156,17 +166,42 @@ class _SavedLibraryState extends State<SavedLibrary> {
           )
           .firstOrNull;
       final header = [
+        if (_toggle)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+            child: SegmentedButton<bool>(
+              key: const ValueKey('saved-mode'),
+              segments: const [
+                ButtonSegment(
+                  value: false,
+                  icon: Icon(Icons.bookmark_border_rounded, size: 18),
+                  label: Text('追剧'),
+                ),
+                ButtonSegment(
+                  value: true,
+                  icon: Icon(Icons.history_rounded, size: 18),
+                  label: Text('历史'),
+                ),
+              ],
+              showSelectedIcon: false,
+              selected: {_history},
+              onSelectionChanged: (value) => setState(() {
+                _history = value.first;
+                _filter = '';
+              }),
+            ),
+          ),
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 12, 12, 8),
           child: Row(
             children: [
               Expanded(
                 child: Text(
-                  '${widget.history ? '历史' : '我的追剧'} · ${all.length}',
+                  '${_history ? '历史' : '我的追剧'} · ${all.length}',
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
               ),
-              if (widget.history && all.isNotEmpty)
+              if (_history && all.isNotEmpty)
                 IconButton(
                   tooltip: '清空观看记录',
                   onPressed: _clearHistory,
@@ -179,13 +214,13 @@ class _SavedLibraryState extends State<SavedLibrary> {
           padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
           child: TextField(
             key: ValueKey(
-              widget.history ? 'history-search' : 'favorites-search',
+              _history ? 'history-search' : 'favorites-search',
             ),
             controller: _search,
             onChanged: (_) => setState(() {}),
             textInputAction: TextInputAction.search,
             decoration: InputDecoration(
-              hintText: widget.history ? '搜索观看记录' : '搜索追剧',
+              hintText: _history ? '搜索观看记录' : '搜索追剧',
               prefixIcon: const Icon(Icons.search_rounded),
               suffixIcon: _search.text.isEmpty
                   ? null
@@ -197,7 +232,7 @@ class _SavedLibraryState extends State<SavedLibrary> {
             ),
           ),
         ),
-        if (!widget.history)
+        if (!_history)
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
@@ -244,12 +279,12 @@ class _SavedLibraryState extends State<SavedLibrary> {
       ];
       final empty = StatusPanel(
         title: all.isEmpty
-            ? widget.history
+            ? _history
                   ? '还没有观看记录'
                   : '还没有追剧'
             : '没有匹配的记录',
         message: all.isEmpty ? '去发现页，挑一部喜欢的短剧。' : '可以更换搜索词或筛选条件。',
-        icon: widget.history
+        icon: _history
             ? Icons.history_rounded
             : Icons.bookmark_border_rounded,
       );
@@ -275,7 +310,7 @@ class _SavedLibraryState extends State<SavedLibrary> {
                       ? empty
                       : RemoteGrid(
                           key: ValueKey(
-                            'saved-tv-${widget.history}-$_filter-${_search.text}',
+                            'saved-tv-$_history-$_filter-${_search.text}',
                           ),
                           itemKeys: items.map((item) => item.id).toList(),
                           columns: columns,
@@ -297,7 +332,7 @@ class _SavedLibraryState extends State<SavedLibrary> {
           final padding = constraints.maxWidth < 600 ? 16.0 : 24.0;
           return CustomScrollView(
             key: PageStorageKey(
-              'saved-${widget.history}-$_filter-${_search.text}',
+              'saved-$_history-$_filter-${_search.text}',
             ),
             slivers: [
               SliverToBoxAdapter(child: Column(children: header)),

@@ -286,7 +286,8 @@ void main() {
       await tester.pump(const Duration(seconds: 2));
       await tester.pump(const Duration(milliseconds: 150));
       await tester.pumpAndSettle();
-      expect(repository.requests.length, before);
+      expect(repository.requests.length, before + 1);
+      expect(repository.pages, [5]);
       expect(find.text('新发现的合成剧'), findsOneWidget);
       expect(store.following(first.id)!.newEpisodes, 3);
       expect(

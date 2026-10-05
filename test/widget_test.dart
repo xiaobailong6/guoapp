@@ -127,11 +127,13 @@ void main() {
       await tester.pump(const Duration(milliseconds: 50));
     }
     await tester.pumpAndSettle();
-    expect(repository.pages, [4]);
+    expect(repository.pages.first, 4, reason: '续页必须从缓存的第 3 页之后开始');
+    expect(repository.pages, isNot(contains(1)), reason: '新鲜缓存不应回头请求首页');
     await tester.tap(find.byKey(const ValueKey('catalog-refresh')));
     await tester.pumpAndSettle();
-    expect(repository.pages, [4, 1]);
-    expect(repository.forced, [false, true]);
+    final refreshIndex = repository.pages.indexOf(1);
+    expect(refreshIndex, isNot(-1), reason: '刷新必须重新请求首页');
+    expect(repository.forced[refreshIndex], isTrue);
     expect(tester.takeException(), isNull);
   });
 
