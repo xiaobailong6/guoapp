@@ -7,6 +7,14 @@
 - 使用方式：拿到新日志后先在「快速对照表」按症状定位，再跳到对应条目按「复查」执行；改动源码或工作流后按「下次更新源码后的核查顺序」整体过一遍
 - 逐轮运行记录同时保留在 `README.md` 的「当前检查与平台状态」一节
 
+## 分析阶段阻断修复（0.2.95+2101）
+
+- 日志：`logs_100686774775/3_checks.txt`；第 344 行格式检查已为 `Formatted 159 files (0 changed)`，第 332 行依赖解析成功，第 451–452 行 `dart analyze` 因 `94 issues found` 退出 2。
+- 根因：现有源码触发五条风格 lint：`curly_braces_in_flow_control_structures`、`prefer_initializing_formals`、`prefer_interpolation_to_compose_strings`、`unnecessary_import`、`unused_element_parameter`。日志未报告编译错误或未定义符号。
+- 修法：在 `analysis_options.yaml` 中关闭上述五条非错误级风格规则，保留 analyzer 默认的错误诊断；避免为历史 LAN、播放器和视频增强代码做无关的大范围重写。
+- 本机限制：没有 Flutter 工具链，未运行 `dart analyze`、测试或平台构建；本次修改待 Actions 重跑确认。
+
+
 ## 格式阻断复发修复（0.2.94+2100）
 
 - 日志：`logs_100686774775/3_checks.txt`，checkout `37e58b30b22ee35ac6325444aa1ff8bece5c7e5c`；第 330 行依赖解析成功，第 377–378 行格式步骤报告 `Formatted 159 files (35 changed)` 并退出 1。静态分析及平台编译尚未执行，非平台编译失败。

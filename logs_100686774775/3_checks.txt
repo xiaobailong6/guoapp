@@ -1,399 +1,473 @@
-﻿2026-10-05T09:08:28.6040863Z Current runner version: '2.337.0'
-2026-10-05T09:08:28.6065632Z ##[group]Runner Image Provisioner
-2026-10-05T09:08:28.6066498Z Hosted Compute Agent
-2026-10-05T09:08:28.6067166Z Version: 20260901.588
-2026-10-05T09:08:28.6067758Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
-2026-10-05T09:08:28.6068541Z Build Date: 2026-09-01T19:56:44Z
-2026-10-05T09:08:28.6069200Z Worker ID: {613a4934-d12c-47a3-ac76-f3083dbd1c77}
-2026-10-05T09:08:28.6069891Z Azure Region: westcentralus
-2026-10-05T09:08:28.6070508Z ##[endgroup]
-2026-10-05T09:08:28.6072058Z ##[group]Operating System
-2026-10-05T09:08:28.6072678Z Ubuntu
-2026-10-05T09:08:28.6073290Z 24.04.5
-2026-10-05T09:08:28.6073785Z LTS
-2026-10-05T09:08:28.6074323Z ##[endgroup]
-2026-10-05T09:08:28.6074857Z ##[group]Runner Image
-2026-10-05T09:08:28.6075440Z Image: ubuntu-24.04
-2026-10-05T09:08:28.6076459Z Version: 20260927.320.1
-2026-10-05T09:08:28.6077663Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260927.320/images/ubuntu/Ubuntu2404-Readme.md
-2026-10-05T09:08:28.6079166Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260927.320
-2026-10-05T09:08:28.6080121Z ##[endgroup]
-2026-10-05T09:08:28.6081593Z ##[group]GITHUB_TOKEN Permissions
-2026-10-05T09:08:28.6083891Z Contents: read
-2026-10-05T09:08:28.6084514Z Metadata: read
-2026-10-05T09:08:28.6085061Z ##[endgroup]
-2026-10-05T09:08:28.6087117Z Secret source: Actions
-2026-10-05T09:08:28.6088018Z Cache mode: write
-2026-10-05T09:08:28.6088677Z Prepare workflow directory
-2026-10-05T09:08:28.6506618Z Prepare all required actions
-2026-10-05T09:08:28.6554810Z Getting action download info
-2026-10-05T09:08:29.2658288Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
-2026-10-05T09:08:29.3743493Z Download action repository 'actions/setup-go@v5' (SHA:40f1582b2485089dde7abd97c1529aa768e1baff)
-2026-10-05T09:08:30.2388144Z Download action repository 'subosito/flutter-action@v2' (SHA:1a449444c387b1966244ae4d4f8c696479add0b2)
-2026-10-05T09:08:30.6914199Z Getting action download info
-2026-10-05T09:08:30.8475372Z Download action repository 'actions/cache@v5' (SHA:caa296126883cff596d87d8935842f9db880ef25)
-2026-10-05T09:08:31.0259536Z Complete job name: checks
-2026-10-05T09:08:31.1122866Z ##[group]Run actions/checkout@v4
-2026-10-05T09:08:31.1124126Z with:
-2026-10-05T09:08:31.1125146Z   repository: xiaobailong6/guoapp
-2026-10-05T09:08:31.1132584Z   token: ***
-2026-10-05T09:08:31.1133494Z   ssh-strict: true
-2026-10-05T09:08:31.1134324Z   ssh-user: git
-2026-10-05T09:08:31.1135174Z   persist-credentials: true
-2026-10-05T09:08:31.1136129Z   clean: true
-2026-10-05T09:08:31.1136963Z   sparse-checkout-cone-mode: true
-2026-10-05T09:08:31.1137947Z   fetch-depth: 1
-2026-10-05T09:08:31.1138779Z   fetch-tags: false
-2026-10-05T09:08:31.1139665Z   show-progress: true
-2026-10-05T09:08:31.1140744Z   lfs: false
-2026-10-05T09:08:31.1141607Z   submodules: false
-2026-10-05T09:08:31.1142481Z   set-safe-directory: true
-2026-10-05T09:08:31.1143453Z   allow-unsafe-pr-checkout: false
-2026-10-05T09:08:31.1144963Z env:
-2026-10-05T09:08:31.1145877Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-05T09:08:31.1146957Z   GOSUMDB: sum.golang.org
-2026-10-05T09:08:31.1147822Z ##[endgroup]
-2026-10-05T09:08:31.2202664Z Syncing repository: xiaobailong6/guoapp
-2026-10-05T09:08:31.2206554Z ##[group]Getting Git version info
-2026-10-05T09:08:31.2208620Z Working directory is '/home/runner/work/guoapp/guoapp'
-2026-10-05T09:08:31.2211808Z [command]/usr/bin/git version
-2026-10-05T09:08:31.2221002Z git version 2.55.0
-2026-10-05T09:08:31.2240981Z ##[endgroup]
-2026-10-05T09:08:31.2253602Z Temporarily overriding HOME='/home/runner/work/_temp/655f964e-fb72-4294-b599-56121b86c060' before making global git config changes
-2026-10-05T09:08:31.2257750Z Adding repository directory to the temporary git global config as a safe directory
-2026-10-05T09:08:31.2262907Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/guoapp/guoapp
-2026-10-05T09:08:31.2318401Z Deleting the contents of '/home/runner/work/guoapp/guoapp'
-2026-10-05T09:08:31.2324504Z ##[group]Initializing the repository
-2026-10-05T09:08:31.2327207Z [command]/usr/bin/git init /home/runner/work/guoapp/guoapp
-2026-10-05T09:08:31.2434482Z hint: Using 'master' as the name for the initial branch. This default branch name
-2026-10-05T09:08:31.2437419Z hint: will change to "main" in Git 3.0. To configure the initial branch name
-2026-10-05T09:08:31.2439981Z hint: to use in all of your new repositories, which will suppress this warning,
-2026-10-05T09:08:31.2442430Z hint: call:
-2026-10-05T09:08:31.2443557Z hint:
-2026-10-05T09:08:31.2445035Z hint: 	git config --global init.defaultBranch <name>
-2026-10-05T09:08:31.2446696Z hint:
-2026-10-05T09:08:31.2447861Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
-2026-10-05T09:08:31.2450832Z hint: 'development'. The just-created branch can be renamed via this command:
-2026-10-05T09:08:31.2452899Z hint:
-2026-10-05T09:08:31.2454012Z hint: 	git branch -m <name>
-2026-10-05T09:08:31.2455400Z hint:
-2026-10-05T09:08:31.2457069Z hint: Disable this message with "git config set advice.defaultBranchName false"
-2026-10-05T09:08:31.2459733Z Initialized empty Git repository in /home/runner/work/guoapp/guoapp/.git/
-2026-10-05T09:08:31.2466679Z [command]/usr/bin/git remote add origin https://github.com/xiaobailong6/guoapp
-2026-10-05T09:08:31.2498396Z ##[endgroup]
-2026-10-05T09:08:31.2501314Z ##[group]Disabling automatic garbage collection
-2026-10-05T09:08:31.2503511Z [command]/usr/bin/git config --local gc.auto 0
-2026-10-05T09:08:31.2535229Z ##[endgroup]
-2026-10-05T09:08:31.2537959Z ##[group]Setting up auth
-2026-10-05T09:08:31.2540340Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
-2026-10-05T09:08:31.2570988Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
-2026-10-05T09:08:31.2931840Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
-2026-10-05T09:08:31.2967061Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
-2026-10-05T09:08:31.3169542Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
-2026-10-05T09:08:31.3202040Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
-2026-10-05T09:08:31.3392066Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
-2026-10-05T09:08:31.3436256Z ##[endgroup]
-2026-10-05T09:08:31.3438801Z ##[group]Fetching the repository
-2026-10-05T09:08:31.3448285Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +37e58b30b22ee35ac6325444aa1ff8bece5c7e5c:refs/remotes/origin/main
-2026-10-05T09:08:32.5965221Z From https://github.com/xiaobailong6/guoapp
-2026-10-05T09:08:32.5965966Z  * [new ref]         37e58b30b22ee35ac6325444aa1ff8bece5c7e5c -> origin/main
-2026-10-05T09:08:32.5983196Z ##[endgroup]
-2026-10-05T09:08:32.5984241Z ##[group]Determining the checkout info
-2026-10-05T09:08:32.5985034Z ##[endgroup]
-2026-10-05T09:08:32.5985555Z [command]/usr/bin/git sparse-checkout disable
-2026-10-05T09:08:32.6041161Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
-2026-10-05T09:08:32.6075724Z ##[group]Checking out the ref
-2026-10-05T09:08:32.6082274Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
-2026-10-05T09:08:32.6698423Z Switched to a new branch 'main'
-2026-10-05T09:08:32.6703763Z branch 'main' set up to track 'origin/main'.
-2026-10-05T09:08:32.6712383Z ##[endgroup]
-2026-10-05T09:08:32.6758844Z [command]/usr/bin/git log -1 --format=%H
-2026-10-05T09:08:32.6780412Z 37e58b30b22ee35ac6325444aa1ff8bece5c7e5c
-2026-10-05T09:08:32.6971511Z ##[group]Run python3 -m unittest discover -s scripts -p 'test_*.py'
-2026-10-05T09:08:32.6972523Z [36;1mpython3 -m unittest discover -s scripts -p 'test_*.py'[0m
-2026-10-05T09:08:32.7176849Z shell: /usr/bin/bash -e {0}
-2026-10-05T09:08:32.7177338Z env:
-2026-10-05T09:08:32.7177784Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-05T09:08:32.7178273Z   GOSUMDB: sum.golang.org
-2026-10-05T09:08:32.7178640Z ##[endgroup]
-2026-10-05T09:08:33.0995053Z ..................
-2026-10-05T09:08:33.0995827Z ----------------------------------------------------------------------
-2026-10-05T09:08:33.0996866Z Ran 18 tests in 0.263s
-2026-10-05T09:08:33.0997117Z 
-2026-10-05T09:08:33.0997319Z OK
-2026-10-05T09:08:33.1249676Z ##[group]Run actions/setup-go@v5
-2026-10-05T09:08:33.1250089Z with:
-2026-10-05T09:08:33.1250456Z   go-version-file: native/go.mod
-2026-10-05T09:08:33.1251034Z   cache-dependency-path: native/go.sum
-2026-10-05T09:08:33.1251433Z   check-latest: false
-2026-10-05T09:08:33.1253937Z   token: ***
-2026-10-05T09:08:33.1254301Z   cache: true
-2026-10-05T09:08:33.1254644Z env:
-2026-10-05T09:08:33.1255057Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-05T09:08:33.1255471Z   GOSUMDB: sum.golang.org
-2026-10-05T09:08:33.1255803Z ##[endgroup]
-2026-10-05T09:08:33.2548218Z Setup go version spec 1.24.1
-2026-10-05T09:08:33.2558154Z Attempting to download 1.24.1...
-2026-10-05T09:08:33.2664874Z (node:2364) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
-2026-10-05T09:08:33.2666290Z (Use `node --trace-deprecation ...` to show where the warning was created)
-2026-10-05T09:08:34.1347533Z matching 1.24.1...
-2026-10-05T09:08:34.1447559Z Acquiring 1.24.1 from https://github.com/actions/go-versions/releases/download/1.24.1-13667719799/go-1.24.1-linux-x64.tar.gz
-2026-10-05T09:08:34.9148218Z Extracting Go...
-2026-10-05T09:08:34.9262882Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/974477dd-a419-4fb4-bafb-51314d268e06 -f /home/runner/work/_temp/e01522df-e2ee-4883-a0e3-ecb8169f6183
-2026-10-05T09:08:36.7488543Z Successfully extracted go to /home/runner/work/_temp/974477dd-a419-4fb4-bafb-51314d268e06
-2026-10-05T09:08:36.7489358Z Adding to the cache ...
-2026-10-05T09:08:42.3684103Z Successfully cached go to /opt/hostedtoolcache/go/1.24.1/x64
-2026-10-05T09:08:42.3686273Z Added go to the path
-2026-10-05T09:08:42.3690900Z Successfully set up Go version 1.24.1
-2026-10-05T09:08:42.3873972Z [command]/opt/hostedtoolcache/go/1.24.1/x64/bin/go env GOMODCACHE
-2026-10-05T09:08:42.3904119Z [command]/opt/hostedtoolcache/go/1.24.1/x64/bin/go env GOCACHE
-2026-10-05T09:08:42.3934013Z /home/runner/go/pkg/mod
-2026-10-05T09:08:42.3949967Z /home/runner/.cache/go-build
-2026-10-05T09:08:42.5952422Z Cache hit for: setup-go-Linux-x64-ubuntu24-go-1.24.1-08fd0a1e03bd5f8f8408fc5c86ca527da129df47f98b180c77a3204f069032d3
-2026-10-05T09:08:42.6056705Z (node:2364) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
-2026-10-05T09:08:43.8337363Z Received 46137344 of 266581795 (17.3%), 44.0 MBs/sec
-2026-10-05T09:08:44.8354860Z Received 197132288 of 266581795 (73.9%), 93.9 MBs/sec
-2026-10-05T09:08:45.1950927Z Received 266581795 of 266581795 (100.0%), 107.7 MBs/sec
-2026-10-05T09:08:45.1952043Z Cache Size: ~254 MB (266581795 B)
-2026-10-05T09:08:45.1986815Z [command]/usr/bin/tar -xf /home/runner/work/_temp/9ed684cf-7eb0-4c8a-beb2-194d4d88723c/cache.tzst -P -C /home/runner/work/guoapp/guoapp --use-compress-program unzstd
-2026-10-05T09:08:45.9773535Z Cache restored successfully
-2026-10-05T09:08:45.9877857Z Cache restored from key: setup-go-Linux-x64-ubuntu24-go-1.24.1-08fd0a1e03bd5f8f8408fc5c86ca527da129df47f98b180c77a3204f069032d3
-2026-10-05T09:08:45.9911867Z go version go1.24.1 linux/amd64
-2026-10-05T09:08:45.9912147Z 
-2026-10-05T09:08:45.9912779Z ##[group]go env
-2026-10-05T09:08:46.0173840Z AR='ar'
-2026-10-05T09:08:46.0174745Z CC='gcc'
-2026-10-05T09:08:46.0175468Z CGO_CFLAGS='-O2 -g'
-2026-10-05T09:08:46.0175973Z CGO_CPPFLAGS=''
-2026-10-05T09:08:46.0176495Z CGO_CXXFLAGS='-O2 -g'
-2026-10-05T09:08:46.0176951Z CGO_ENABLED='1'
-2026-10-05T09:08:46.0177365Z CGO_FFLAGS='-O2 -g'
-2026-10-05T09:08:46.0177935Z CGO_LDFLAGS='-O2 -g'
-2026-10-05T09:08:46.0178338Z CXX='g++'
-2026-10-05T09:08:46.0178802Z GCCGO='gccgo'
-2026-10-05T09:08:46.0179199Z GO111MODULE=''
-2026-10-05T09:08:46.0179708Z GOAMD64='v1'
-2026-10-05T09:08:46.0180134Z GOARCH='amd64'
-2026-10-05T09:08:46.0180744Z GOAUTH='netrc'
-2026-10-05T09:08:46.0181270Z GOBIN=''
-2026-10-05T09:08:46.0181734Z GOCACHE='/home/runner/.cache/go-build'
-2026-10-05T09:08:46.0182608Z GOCACHEPROG=''
-2026-10-05T09:08:46.0183023Z GODEBUG=''
-2026-10-05T09:08:46.0183471Z GOENV='/home/runner/.config/go/env'
-2026-10-05T09:08:46.0184035Z GOEXE=''
-2026-10-05T09:08:46.0184493Z GOEXPERIMENT=''
-2026-10-05T09:08:46.0184926Z GOFIPS140='off'
-2026-10-05T09:08:46.0185307Z GOFLAGS=''
-2026-10-05T09:08:46.0186730Z GOGCCFLAGS='-fPIC -m64 -pthread -Wl,--no-gc-sections -fmessage-length=0 -ffile-prefix-map=/tmp/go-build794784288=/tmp/go-build -gno-record-gcc-switches'
-2026-10-05T09:08:46.0187841Z GOHOSTARCH='amd64'
-2026-10-05T09:08:46.0188240Z GOHOSTOS='linux'
-2026-10-05T09:08:46.0188658Z GOINSECURE=''
-2026-10-05T09:08:46.0189033Z GOMOD='/dev/null'
-2026-10-05T09:08:46.0189488Z GOMODCACHE='/home/runner/go/pkg/mod'
-2026-10-05T09:08:46.0189979Z GONOPROXY=''
-2026-10-05T09:08:46.0190349Z GONOSUMDB=''
-2026-10-05T09:08:46.0190953Z GOOS='linux'
-2026-10-05T09:08:46.0191366Z GOPATH='/home/runner/go'
-2026-10-05T09:08:46.0191757Z GOPRIVATE=''
-2026-10-05T09:08:46.0192277Z GOPROXY='https://proxy.golang.org,direct'
-2026-10-05T09:08:46.0192838Z GOROOT='/opt/hostedtoolcache/go/1.24.1/x64'
-2026-10-05T09:08:46.0193439Z GOSUMDB='sum.golang.org'
-2026-10-05T09:08:46.0193902Z GOTELEMETRY='local'
-2026-10-05T09:08:46.0194410Z GOTELEMETRYDIR='/home/runner/.config/go/telemetry'
-2026-10-05T09:08:46.0195010Z GOTMPDIR=''
-2026-10-05T09:08:46.0195456Z GOTOOLCHAIN='auto'
-2026-10-05T09:08:46.0196082Z GOTOOLDIR='/opt/hostedtoolcache/go/1.24.1/x64/pkg/tool/linux_amd64'
-2026-10-05T09:08:46.0196650Z GOVCS=''
-2026-10-05T09:08:46.0196997Z GOVERSION='go1.24.1'
-2026-10-05T09:08:46.0197529Z GOWORK=''
-2026-10-05T09:08:46.0197913Z PKG_CONFIG='pkg-config'
-2026-10-05T09:08:46.0198230Z 
-2026-10-05T09:08:46.0198793Z ##[endgroup]
-2026-10-05T09:08:46.1021158Z ##[group]Run subosito/flutter-action@v2
-2026-10-05T09:08:46.1021661Z with:
-2026-10-05T09:08:46.1021953Z   flutter-version: 3.47.4
-2026-10-05T09:08:46.1022336Z   channel: stable
-2026-10-05T09:08:46.1022622Z   cache: true
-2026-10-05T09:08:46.1022917Z   architecture: X64
-2026-10-05T09:08:46.1023279Z   pub-cache-path: default
-2026-10-05T09:08:46.1023618Z   dry-run: false
-2026-10-05T09:08:46.1024029Z   git-source: https://github.com/flutter/flutter.git
-2026-10-05T09:08:46.1024392Z env:
-2026-10-05T09:08:46.1024706Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-05T09:08:46.1025156Z   GOSUMDB: sum.golang.org
-2026-10-05T09:08:46.1025454Z ##[endgroup]
-2026-10-05T09:08:46.1094529Z ##[start-action display=Make yq tool available on Windows runners;id=__subosito_flutter-action.__run]
-2026-10-05T09:08:46.1106445Z ##[end-action id=__subosito_flutter-action.__run;outcome=skipped;conclusion=skipped;duration_ms=0]
-2026-10-05T09:08:46.1109289Z ##[start-action display=Make setup script executable;id=__subosito_flutter-action.__run_2]
-2026-10-05T09:08:46.1313973Z ##[group]Run chmod +x "$GITHUB_ACTION_PATH/setup.sh"
-2026-10-05T09:08:46.1314480Z [36;1mchmod +x "$GITHUB_ACTION_PATH/setup.sh"[0m
-2026-10-05T09:08:46.1359365Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
-2026-10-05T09:08:46.1359833Z env:
-2026-10-05T09:08:46.1360200Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-05T09:08:46.1360700Z   GOSUMDB: sum.golang.org
-2026-10-05T09:08:46.1361053Z ##[endgroup]
-2026-10-05T09:08:46.1737038Z ##[end-action id=__subosito_flutter-action.__run_2;outcome=success;conclusion=success;duration_ms=62]
-2026-10-05T09:08:46.1740204Z ##[start-action display=Set action inputs;id=__subosito_flutter-action.flutter-action]
-2026-10-05T09:08:46.2122794Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh -p \
-2026-10-05T09:08:46.2123384Z [36;1m$GITHUB_ACTION_PATH/setup.sh -p \[0m
-2026-10-05T09:08:46.2123750Z [36;1m  -n '3.47.4' \[0m
-2026-10-05T09:08:46.2124080Z [36;1m  -f '' \[0m
-2026-10-05T09:08:46.2124442Z [36;1m  -a 'X64' \[0m
-2026-10-05T09:08:46.2124745Z [36;1m  -k '' \[0m
-2026-10-05T09:08:46.2125081Z [36;1m  -c '' \[0m
-2026-10-05T09:08:46.2125360Z [36;1m  -l '' \[0m
-2026-10-05T09:08:46.2125721Z [36;1m  -d 'default' \[0m
-2026-10-05T09:08:46.2126104Z [36;1m  -g 'https://github.com/flutter/flutter.git' \[0m
-2026-10-05T09:08:46.2126501Z [36;1m  stable[0m
-2026-10-05T09:08:46.2166767Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
-2026-10-05T09:08:46.2167442Z env:
-2026-10-05T09:08:46.2167820Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-05T09:08:46.2168267Z   GOSUMDB: sum.golang.org
-2026-10-05T09:08:46.2168621Z ##[endgroup]
-2026-10-05T09:08:46.4733460Z ##[end-action id=__subosito_flutter-action.flutter-action;outcome=success;conclusion=success;duration_ms=299]
-2026-10-05T09:08:46.4739374Z ##[start-action display=Cache Flutter;id=__subosito_flutter-action.cache-flutter]
-2026-10-05T09:08:46.5009135Z ##[group]Run actions/cache@v5
-2026-10-05T09:08:46.5009544Z with:
-2026-10-05T09:08:46.5009946Z   path: /opt/hostedtoolcache/flutter/stable-3.47.4-x64
-2026-10-05T09:08:46.5010465Z   key: flutter-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
-2026-10-05T09:08:46.5011339Z   enableCrossOsArchive: false
-2026-10-05T09:08:46.5011674Z   fail-on-cache-miss: false
-2026-10-05T09:08:46.5012020Z   lookup-only: false
-2026-10-05T09:08:46.5012359Z   save-always: false
-2026-10-05T09:08:46.5012654Z env:
-2026-10-05T09:08:46.5013057Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-05T09:08:46.5013423Z   GOSUMDB: sum.golang.org
-2026-10-05T09:08:46.5013856Z ##[endgroup]
-2026-10-05T09:08:46.8254845Z Cache hit for: flutter-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
-2026-10-05T09:08:48.0708912Z Received 37748736 of 1720618134 (2.2%), 36.0 MBs/sec
-2026-10-05T09:08:49.0729016Z Received 188743680 of 1720618134 (11.0%), 89.9 MBs/sec
-2026-10-05T09:08:50.0763076Z Received 348127232 of 1720618134 (20.2%), 110.4 MBs/sec
-2026-10-05T09:08:51.1034207Z Received 536870912 of 1720618134 (31.2%), 126.9 MBs/sec
-2026-10-05T09:08:52.1046788Z Received 671088640 of 1720618134 (39.0%), 127.1 MBs/sec
-2026-10-05T09:08:53.1070393Z Received 847249408 of 1720618134 (49.2%), 133.8 MBs/sec
-2026-10-05T09:08:54.1065630Z Received 981467136 of 1720618134 (57.0%), 133.0 MBs/sec
-2026-10-05T09:08:55.1067764Z Received 1170210816 of 1720618134 (68.0%), 138.9 MBs/sec
-2026-10-05T09:08:56.1094154Z Received 1337982976 of 1720618134 (77.8%), 141.2 MBs/sec
-2026-10-05T09:08:57.1088615Z Received 1484783616 of 1720618134 (86.3%), 141.0 MBs/sec
-2026-10-05T09:08:58.1142668Z Received 1631584256 of 1720618134 (94.8%), 140.9 MBs/sec
-2026-10-05T09:08:58.6780019Z Received 1720618134 of 1720618134 (100.0%), 141.4 MBs/sec
-2026-10-05T09:08:58.6782381Z Cache Size: ~1641 MB (1720618134 B)
-2026-10-05T09:08:58.6906938Z [command]/usr/bin/tar -xf /home/runner/work/_temp/acc1c978-44b0-48f7-8f22-b9b8dbfc1051/cache.tzst -P -C /home/runner/work/guoapp/guoapp --use-compress-program unzstd
-2026-10-05T09:09:08.4904547Z Cache restored successfully
-2026-10-05T09:09:08.5606847Z Cache restored from key: flutter-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
-2026-10-05T09:09:08.5683286Z ##[end-action id=__subosito_flutter-action.cache-flutter;outcome=success;conclusion=success;duration_ms=22094]
-2026-10-05T09:09:08.5686442Z ##[start-action display=Cache pub dependencies;id=__subosito_flutter-action.cache-pub]
-2026-10-05T09:09:08.9243156Z ##[group]Run actions/cache@v5
-2026-10-05T09:09:08.9243539Z with:
-2026-10-05T09:09:08.9243879Z   path: /home/runner/.pub-cache
-2026-10-05T09:09:08.9244627Z   key: flutter-pub-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b-4f2d9e15f937ee8713c1f3993dbd5ead79b6170906737c543425d7b407a7609e
-2026-10-05T09:09:08.9245547Z   enableCrossOsArchive: false
-2026-10-05T09:09:08.9245925Z   fail-on-cache-miss: false
-2026-10-05T09:09:08.9246385Z   lookup-only: false
-2026-10-05T09:09:08.9246688Z   save-always: false
-2026-10-05T09:09:08.9247029Z env:
-2026-10-05T09:09:08.9247369Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-05T09:09:08.9247760Z   GOSUMDB: sum.golang.org
-2026-10-05T09:09:08.9248133Z ##[endgroup]
-2026-10-05T09:09:09.2362016Z Cache not found for input keys: flutter-pub-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b-4f2d9e15f937ee8713c1f3993dbd5ead79b6170906737c543425d7b407a7609e
-2026-10-05T09:09:09.2403948Z ##[end-action id=__subosito_flutter-action.cache-pub;outcome=success;conclusion=success;duration_ms=671]
-2026-10-05T09:09:09.2406960Z ##[start-action display=Run setup script;id=__subosito_flutter-action.__run_3]
-2026-10-05T09:09:09.2449250Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh \
-2026-10-05T09:09:09.2449693Z [36;1m$GITHUB_ACTION_PATH/setup.sh \[0m
-2026-10-05T09:09:09.2450148Z [36;1m  -n '3.47.4' \[0m
-2026-10-05T09:09:09.2450459Z [36;1m  -a 'x64' \[0m
-2026-10-05T09:09:09.2451100Z [36;1m  -c '/opt/hostedtoolcache/flutter/stable-3.47.4-x64' \[0m
-2026-10-05T09:09:09.2451558Z [36;1m  -d '/home/runner/.pub-cache' \[0m
-2026-10-05T09:09:09.2451928Z [36;1m  stable[0m
-2026-10-05T09:09:09.2494136Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
-2026-10-05T09:09:09.2494838Z env:
-2026-10-05T09:09:09.2495188Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-05T09:09:09.2495597Z   GOSUMDB: sum.golang.org
-2026-10-05T09:09:09.2495975Z ##[endgroup]
-2026-10-05T09:09:09.4960817Z ##[end-action id=__subosito_flutter-action.__run_3;outcome=success;conclusion=success;duration_ms=255]
-2026-10-05T09:09:09.5933195Z ##[group]Run flutter pub get --enforce-lockfile
-2026-10-05T09:09:09.5933745Z [36;1mflutter pub get --enforce-lockfile[0m
-2026-10-05T09:09:09.5975216Z shell: /usr/bin/bash -e {0}
-2026-10-05T09:09:09.5975728Z env:
-2026-10-05T09:09:09.5976105Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-05T09:09:09.5976610Z   GOSUMDB: sum.golang.org
-2026-10-05T09:09:09.5977050Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
-2026-10-05T09:09:09.5977704Z   PUB_CACHE: /home/runner/.pub-cache
-2026-10-05T09:09:09.5978223Z ##[endgroup]
-2026-10-05T09:09:13.4074956Z Resolving dependencies...
-2026-10-05T09:09:14.0968970Z Downloading packages...
-2026-10-05T09:09:17.5593405Z   cross_file 0.3.5+5 (0.4.0 available)
-2026-10-05T09:09:17.5594637Z   ffmpeg_kit_flutter_new_min_gpl 2.6.2 (2.6.4 available)
-2026-10-05T09:09:17.5595391Z   material_color_utilities 0.13.0 (0.13.1 available)
-2026-10-05T09:09:17.5596595Z ! media_kit_libs_windows_video 1.0.11+duanju.1 from path packages/media_kit_libs_windows_video (overridden)
-2026-10-05T09:09:17.5597560Z   test_api 0.7.12 (0.7.14 available)
-2026-10-05T09:09:17.5598265Z Got dependencies!
-2026-10-05T09:09:17.5599654Z 4 packages have newer versions incompatible with dependency constraints.
-2026-10-05T09:09:17.5600523Z Try `flutter pub outdated` for more information.
-2026-10-05T09:09:18.2661223Z ##[group]Run dart format --language-version 3.12 --output=none --set-exit-if-changed lib test integration_test test_driver
-2026-10-05T09:09:18.2662290Z [36;1mdart format --language-version 3.12 --output=none --set-exit-if-changed lib test integration_test test_driver[0m
-2026-10-05T09:09:18.2704584Z shell: /usr/bin/bash -e {0}
-2026-10-05T09:09:18.2705046Z env:
-2026-10-05T09:09:18.2705595Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-05T09:09:18.2706028Z   GOSUMDB: sum.golang.org
-2026-10-05T09:09:18.2706525Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
-2026-10-05T09:09:18.2706992Z   PUB_CACHE: /home/runner/.pub-cache
-2026-10-05T09:09:18.2707438Z ##[endgroup]
-2026-10-05T09:09:18.3804181Z Changed lib/catalog_filters.dart
-2026-10-05T09:09:18.3845631Z Changed lib/catalog_sort.dart
-2026-10-05T09:09:18.4079938Z Changed lib/danmaku_models.dart
-2026-10-05T09:09:18.4170188Z Changed lib/danmaku_overlay.dart
-2026-10-05T09:09:18.5115794Z Changed lib/feeds_screen.dart
-2026-10-05T09:09:18.5591972Z Changed lib/home_screen.dart
-2026-10-05T09:09:18.6511356Z Changed lib/live_parser.dart
-2026-10-05T09:09:18.6547074Z Changed lib/live_playback.dart
-2026-10-05T09:09:18.6601829Z Changed lib/live_repository.dart
-2026-10-05T09:09:18.6713070Z Changed lib/live_screen.dart
-2026-10-05T09:09:18.6730286Z Changed lib/live_store.dart
-2026-10-05T09:09:18.7205206Z Changed lib/main.dart
-2026-10-05T09:09:18.7701791Z Changed lib/nostr_crypto.dart
-2026-10-05T09:09:18.7725862Z Changed lib/nostr_relay.dart
-2026-10-05T09:09:18.8642383Z Changed lib/ranking_models.dart
-2026-10-05T09:09:18.8771984Z Changed lib/recommendation_models.dart
-2026-10-05T09:09:18.8822025Z Changed lib/recommendation_service.dart
-2026-10-05T09:09:18.8860237Z Changed lib/recommendation_store.dart
-2026-10-05T09:09:18.8939209Z Changed lib/recommendations_screen.dart
-2026-10-05T09:09:18.9097283Z Changed lib/remote_widgets.dart
-2026-10-05T09:09:18.9278646Z Changed lib/saved_library.dart
-2026-10-05T09:09:18.9538967Z Changed lib/settings_screen.dart
-2026-10-05T09:09:18.9819196Z Changed lib/television_controls.dart
-2026-10-05T09:09:19.0471754Z Changed test/feeds_screen_test.dart
-2026-10-05T09:09:19.0733432Z Changed test/live_parser_test.dart
-2026-10-05T09:09:19.0756492Z Changed test/live_repository_test.dart
-2026-10-05T09:09:19.0782495Z Changed test/live_screen_test.dart
-2026-10-05T09:09:19.0791909Z Changed test/live_store_test.dart
-2026-10-05T09:09:19.0886541Z Changed test/nostr_crypto_test.dart
-2026-10-05T09:09:19.1040670Z Changed test/recommendation_models_test.dart
-2026-10-05T09:09:19.1090838Z Changed test/recommendation_service_test.dart
-2026-10-05T09:09:19.1121375Z Changed test/search_cache_test.dart
-2026-10-05T09:09:19.1149127Z Changed test/sources_screen_test.dart
-2026-10-05T09:09:19.1320829Z Changed test/theme_test.dart
-2026-10-05T09:09:19.1609649Z Changed integration_test/surface_lifecycle_test.dart
-2026-10-05T09:09:19.1649176Z Formatted 159 files (35 changed) in 0.87 seconds.
-2026-10-05T09:09:19.1707348Z ##[error]Process completed with exit code 1.
-2026-10-05T09:09:19.1904467Z Post job cleanup.
-2026-10-05T09:09:19.1909969Z ##[start-action display=Cache pub dependencies;id=__803f741f-86b8-48b9-b2d3-3df071390a1a.cache-pub]
-2026-10-05T09:09:19.1913099Z ##[end-action id=__803f741f-86b8-48b9-b2d3-3df071390a1a.cache-pub;outcome=skipped;conclusion=skipped;duration_ms=0]
-2026-10-05T09:09:19.1915480Z ##[start-action display=Cache Flutter;id=__803f741f-86b8-48b9-b2d3-3df071390a1a.cache-flutter]
-2026-10-05T09:09:19.1917845Z ##[end-action id=__803f741f-86b8-48b9-b2d3-3df071390a1a.cache-flutter;outcome=skipped;conclusion=skipped;duration_ms=0]
-2026-10-05T09:09:19.1998291Z Post job cleanup.
-2026-10-05T09:09:19.2866781Z [command]/usr/bin/git version
-2026-10-05T09:09:19.2912589Z git version 2.55.0
-2026-10-05T09:09:19.2954000Z Temporarily overriding HOME='/home/runner/work/_temp/a4d24668-47f9-46cd-9d98-becad18c66b0' before making global git config changes
-2026-10-05T09:09:19.2954788Z Adding repository directory to the temporary git global config as a safe directory
-2026-10-05T09:09:19.2960397Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/guoapp/guoapp
-2026-10-05T09:09:19.3002261Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
-2026-10-05T09:09:19.3035007Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
-2026-10-05T09:09:19.3253075Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
-2026-10-05T09:09:19.3283208Z http.https://github.com/.extraheader
-2026-10-05T09:09:19.3295150Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
-2026-10-05T09:09:19.3336947Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
-2026-10-05T09:09:19.3558592Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
-2026-10-05T09:09:19.3593312Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
-2026-10-05T09:09:19.3952832Z Cleaning up orphan processes
-2026-10-05T09:09:19.4354895Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-go@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+﻿2026-10-05T09:14:03.2143243Z Current runner version: '2.337.0'
+2026-10-05T09:14:03.2167368Z ##[group]Runner Image Provisioner
+2026-10-05T09:14:03.2168334Z Hosted Compute Agent
+2026-10-05T09:14:03.2168977Z Version: 20260901.588
+2026-10-05T09:14:03.2169598Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+2026-10-05T09:14:03.2170413Z Build Date: 2026-09-01T19:56:44Z
+2026-10-05T09:14:03.2171126Z Worker ID: {7d124628-8a5e-4e6c-b808-fbb6d23b27ab}
+2026-10-05T09:14:03.2171933Z Azure Region: westus2
+2026-10-05T09:14:03.2172626Z ##[endgroup]
+2026-10-05T09:14:03.2174176Z ##[group]Operating System
+2026-10-05T09:14:03.2174943Z Ubuntu
+2026-10-05T09:14:03.2175675Z 24.04.5
+2026-10-05T09:14:03.2176281Z LTS
+2026-10-05T09:14:03.2176892Z ##[endgroup]
+2026-10-05T09:14:03.2177451Z ##[group]Runner Image
+2026-10-05T09:14:03.2178453Z Image: ubuntu-24.04
+2026-10-05T09:14:03.2179089Z Version: 20260927.320.1
+2026-10-05T09:14:03.2180379Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260927.320/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-05T09:14:03.2181953Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260927.320
+2026-10-05T09:14:03.2182958Z ##[endgroup]
+2026-10-05T09:14:03.2184063Z ##[group]GITHUB_TOKEN Permissions
+2026-10-05T09:14:03.2186511Z Contents: read
+2026-10-05T09:14:03.2187154Z Metadata: read
+2026-10-05T09:14:03.2187791Z ##[endgroup]
+2026-10-05T09:14:03.2189850Z Secret source: Actions
+2026-10-05T09:14:03.2190943Z Cache mode: write
+2026-10-05T09:14:03.2191669Z Prepare workflow directory
+2026-10-05T09:14:03.2630470Z Prepare all required actions
+2026-10-05T09:14:03.2677998Z Getting action download info
+2026-10-05T09:14:03.6406306Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-05T09:14:03.7265264Z Download action repository 'actions/setup-go@v5' (SHA:40f1582b2485089dde7abd97c1529aa768e1baff)
+2026-10-05T09:14:04.0143319Z Download action repository 'subosito/flutter-action@v2' (SHA:1a449444c387b1966244ae4d4f8c696479add0b2)
+2026-10-05T09:14:04.3025883Z Getting action download info
+2026-10-05T09:14:04.4611343Z Download action repository 'actions/cache@v5' (SHA:caa296126883cff596d87d8935842f9db880ef25)
+2026-10-05T09:14:04.6264473Z Complete job name: checks
+2026-10-05T09:14:04.7209975Z ##[group]Run actions/checkout@v4
+2026-10-05T09:14:04.7211300Z with:
+2026-10-05T09:14:04.7212137Z   repository: xiaobailong6/guoapp
+2026-10-05T09:14:04.7220630Z   token: ***
+2026-10-05T09:14:04.7221456Z   ssh-strict: true
+2026-10-05T09:14:04.7222288Z   ssh-user: git
+2026-10-05T09:14:04.7223138Z   persist-credentials: true
+2026-10-05T09:14:04.7224080Z   clean: true
+2026-10-05T09:14:04.7224928Z   sparse-checkout-cone-mode: true
+2026-10-05T09:14:04.7226066Z   fetch-depth: 1
+2026-10-05T09:14:04.7226897Z   fetch-tags: false
+2026-10-05T09:14:04.7227755Z   show-progress: true
+2026-10-05T09:14:04.7228631Z   lfs: false
+2026-10-05T09:14:04.7229430Z   submodules: false
+2026-10-05T09:14:04.7230296Z   set-safe-directory: true
+2026-10-05T09:14:04.7231288Z   allow-unsafe-pr-checkout: false
+2026-10-05T09:14:04.7232589Z env:
+2026-10-05T09:14:04.7233467Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-05T09:14:04.7234616Z   GOSUMDB: sum.golang.org
+2026-10-05T09:14:04.7235665Z ##[endgroup]
+2026-10-05T09:14:04.8322009Z Syncing repository: xiaobailong6/guoapp
+2026-10-05T09:14:04.8325850Z ##[group]Getting Git version info
+2026-10-05T09:14:04.8327565Z Working directory is '/home/runner/work/guoapp/guoapp'
+2026-10-05T09:14:04.8329464Z [command]/usr/bin/git version
+2026-10-05T09:14:04.8396677Z git version 2.55.0
+2026-10-05T09:14:04.8430021Z ##[endgroup]
+2026-10-05T09:14:04.8448318Z Temporarily overriding HOME='/home/runner/work/_temp/f9577fa6-4341-4568-950f-0145b05b6a6a' before making global git config changes
+2026-10-05T09:14:04.8453200Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-05T09:14:04.8457001Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/guoapp/guoapp
+2026-10-05T09:14:04.8510466Z Deleting the contents of '/home/runner/work/guoapp/guoapp'
+2026-10-05T09:14:04.8602816Z ##[group]Initializing the repository
+2026-10-05T09:14:04.8604987Z [command]/usr/bin/git init /home/runner/work/guoapp/guoapp
+2026-10-05T09:14:04.8634867Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-05T09:14:04.8638328Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-05T09:14:04.8641430Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-05T09:14:04.8643846Z hint: call:
+2026-10-05T09:14:04.8645022Z hint:
+2026-10-05T09:14:04.8646679Z hint: 	git config --global init.defaultBranch <name>
+2026-10-05T09:14:04.8648582Z hint:
+2026-10-05T09:14:04.8650356Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-05T09:14:04.8653388Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-05T09:14:04.8656826Z hint:
+2026-10-05T09:14:04.8658086Z hint: 	git branch -m <name>
+2026-10-05T09:14:04.8659545Z hint:
+2026-10-05T09:14:04.8662254Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-05T09:14:04.8666413Z Initialized empty Git repository in /home/runner/work/guoapp/guoapp/.git/
+2026-10-05T09:14:04.8671572Z [command]/usr/bin/git remote add origin https://github.com/xiaobailong6/guoapp
+2026-10-05T09:14:04.8724976Z ##[endgroup]
+2026-10-05T09:14:04.8727744Z ##[group]Disabling automatic garbage collection
+2026-10-05T09:14:04.8729183Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-05T09:14:04.8755021Z ##[endgroup]
+2026-10-05T09:14:04.8757539Z ##[group]Setting up auth
+2026-10-05T09:14:04.8761071Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-05T09:14:04.8799940Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-05T09:14:04.9173551Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-05T09:14:04.9217518Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-05T09:14:04.9472652Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-05T09:14:04.9510600Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-05T09:14:04.9739777Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-05T09:14:04.9782784Z ##[endgroup]
+2026-10-05T09:14:04.9784204Z ##[group]Fetching the repository
+2026-10-05T09:14:04.9793668Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +5f07bbf1790121102c92f79b5796d58d3f1bc47b:refs/remotes/origin/main
+2026-10-05T09:14:05.5776584Z From https://github.com/xiaobailong6/guoapp
+2026-10-05T09:14:05.5779215Z  * [new ref]         5f07bbf1790121102c92f79b5796d58d3f1bc47b -> origin/main
+2026-10-05T09:14:05.5784863Z ##[endgroup]
+2026-10-05T09:14:05.5787793Z ##[group]Determining the checkout info
+2026-10-05T09:14:05.5790648Z ##[endgroup]
+2026-10-05T09:14:05.5792700Z [command]/usr/bin/git sparse-checkout disable
+2026-10-05T09:14:05.5849619Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-05T09:14:05.5883658Z ##[group]Checking out the ref
+2026-10-05T09:14:05.5889144Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-10-05T09:14:05.6502386Z Switched to a new branch 'main'
+2026-10-05T09:14:05.6507280Z branch 'main' set up to track 'origin/main'.
+2026-10-05T09:14:05.6517534Z ##[endgroup]
+2026-10-05T09:14:05.6562538Z [command]/usr/bin/git log -1 --format=%H
+2026-10-05T09:14:05.6591254Z 5f07bbf1790121102c92f79b5796d58d3f1bc47b
+2026-10-05T09:14:05.6840369Z ##[group]Run python3 -m unittest discover -s scripts -p 'test_*.py'
+2026-10-05T09:14:05.6842364Z [36;1mpython3 -m unittest discover -s scripts -p 'test_*.py'[0m
+2026-10-05T09:14:05.7117801Z shell: /usr/bin/bash -e {0}
+2026-10-05T09:14:05.7118991Z env:
+2026-10-05T09:14:05.7120053Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-05T09:14:05.7121427Z   GOSUMDB: sum.golang.org
+2026-10-05T09:14:05.7122506Z ##[endgroup]
+2026-10-05T09:14:06.8894946Z ..................
+2026-10-05T09:14:06.8895968Z ----------------------------------------------------------------------
+2026-10-05T09:14:06.8896651Z Ran 18 tests in 1.020s
+2026-10-05T09:14:06.8896914Z 
+2026-10-05T09:14:06.8897070Z OK
+2026-10-05T09:14:06.9128787Z ##[group]Run actions/setup-go@v5
+2026-10-05T09:14:06.9129124Z with:
+2026-10-05T09:14:06.9129376Z   go-version-file: native/go.mod
+2026-10-05T09:14:06.9129706Z   cache-dependency-path: native/go.sum
+2026-10-05T09:14:06.9130035Z   check-latest: false
+2026-10-05T09:14:06.9132619Z   token: ***
+2026-10-05T09:14:06.9132888Z   cache: true
+2026-10-05T09:14:06.9133121Z env:
+2026-10-05T09:14:06.9133393Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-05T09:14:06.9133785Z   GOSUMDB: sum.golang.org
+2026-10-05T09:14:06.9134081Z ##[endgroup]
+2026-10-05T09:14:07.0409551Z Setup go version spec 1.24.1
+2026-10-05T09:14:07.0419837Z Attempting to download 1.24.1...
+2026-10-05T09:14:07.0528062Z (node:2290) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-05T09:14:07.0529035Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-05T09:14:07.8457832Z matching 1.24.1...
+2026-10-05T09:14:07.8513050Z Acquiring 1.24.1 from https://github.com/actions/go-versions/releases/download/1.24.1-13667719799/go-1.24.1-linux-x64.tar.gz
+2026-10-05T09:14:08.4511320Z Extracting Go...
+2026-10-05T09:14:08.4646941Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/9a2b8068-38da-49cb-825a-4054ca8a193c -f /home/runner/work/_temp/b227521f-c846-4418-b708-78e655320ad6
+2026-10-05T09:14:10.2957042Z Successfully extracted go to /home/runner/work/_temp/9a2b8068-38da-49cb-825a-4054ca8a193c
+2026-10-05T09:14:10.2958011Z Adding to the cache ...
+2026-10-05T09:14:16.8448488Z Successfully cached go to /opt/hostedtoolcache/go/1.24.1/x64
+2026-10-05T09:14:16.8452918Z Added go to the path
+2026-10-05T09:14:16.8462743Z Successfully set up Go version 1.24.1
+2026-10-05T09:14:16.8678661Z [command]/opt/hostedtoolcache/go/1.24.1/x64/bin/go env GOMODCACHE
+2026-10-05T09:14:16.8727508Z [command]/opt/hostedtoolcache/go/1.24.1/x64/bin/go env GOCACHE
+2026-10-05T09:14:16.8773940Z /home/runner/go/pkg/mod
+2026-10-05T09:14:16.8789086Z /home/runner/.cache/go-build
+2026-10-05T09:14:17.1236878Z Cache hit for: setup-go-Linux-x64-ubuntu24-go-1.24.1-08fd0a1e03bd5f8f8408fc5c86ca527da129df47f98b180c77a3204f069032d3
+2026-10-05T09:14:17.1359560Z (node:2290) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-05T09:14:18.4226520Z Received 4194304 of 266581795 (1.6%), 4.0 MBs/sec
+2026-10-05T09:14:19.4358258Z Received 134217728 of 266581795 (50.3%), 63.6 MBs/sec
+2026-10-05T09:14:20.3001307Z Received 266581795 of 266581795 (100.0%), 88.3 MBs/sec
+2026-10-05T09:14:20.3002619Z Cache Size: ~254 MB (266581795 B)
+2026-10-05T09:14:20.3040058Z [command]/usr/bin/tar -xf /home/runner/work/_temp/85cad4d3-a7e3-4cb2-b223-0b289f41294f/cache.tzst -P -C /home/runner/work/guoapp/guoapp --use-compress-program unzstd
+2026-10-05T09:14:21.4317836Z Cache restored successfully
+2026-10-05T09:14:21.4480516Z Cache restored from key: setup-go-Linux-x64-ubuntu24-go-1.24.1-08fd0a1e03bd5f8f8408fc5c86ca527da129df47f98b180c77a3204f069032d3
+2026-10-05T09:14:21.4508556Z go version go1.24.1 linux/amd64
+2026-10-05T09:14:21.4509238Z 
+2026-10-05T09:14:21.4510092Z ##[group]go env
+2026-10-05T09:14:21.4649503Z AR='ar'
+2026-10-05T09:14:21.4650341Z CC='gcc'
+2026-10-05T09:14:21.4651631Z CGO_CFLAGS='-O2 -g'
+2026-10-05T09:14:21.4652261Z CGO_CPPFLAGS=''
+2026-10-05T09:14:21.4652665Z CGO_CXXFLAGS='-O2 -g'
+2026-10-05T09:14:21.4653047Z CGO_ENABLED='1'
+2026-10-05T09:14:21.4653399Z CGO_FFLAGS='-O2 -g'
+2026-10-05T09:14:21.4653755Z CGO_LDFLAGS='-O2 -g'
+2026-10-05T09:14:21.4654110Z CXX='g++'
+2026-10-05T09:14:21.4654431Z GCCGO='gccgo'
+2026-10-05T09:14:21.4654759Z GO111MODULE=''
+2026-10-05T09:14:21.4655087Z GOAMD64='v1'
+2026-10-05T09:14:21.4655413Z GOARCH='amd64'
+2026-10-05T09:14:21.4656056Z GOAUTH='netrc'
+2026-10-05T09:14:21.4656414Z GOBIN=''
+2026-10-05T09:14:21.4656898Z GOCACHE='/home/runner/.cache/go-build'
+2026-10-05T09:14:21.4657674Z GOCACHEPROG=''
+2026-10-05T09:14:21.4658023Z GODEBUG=''
+2026-10-05T09:14:21.4658406Z GOENV='/home/runner/.config/go/env'
+2026-10-05T09:14:21.4658840Z GOEXE=''
+2026-10-05T09:14:21.4659151Z GOEXPERIMENT=''
+2026-10-05T09:14:21.4659503Z GOFIPS140='off'
+2026-10-05T09:14:21.4659825Z GOFLAGS=''
+2026-10-05T09:14:21.4660971Z GOGCCFLAGS='-fPIC -m64 -pthread -Wl,--no-gc-sections -fmessage-length=0 -ffile-prefix-map=/tmp/go-build3526570331=/tmp/go-build -gno-record-gcc-switches'
+2026-10-05T09:14:21.4662183Z GOHOSTARCH='amd64'
+2026-10-05T09:14:21.4662546Z GOHOSTOS='linux'
+2026-10-05T09:14:21.4662883Z GOINSECURE=''
+2026-10-05T09:14:21.4663215Z GOMOD='/dev/null'
+2026-10-05T09:14:21.4663595Z GOMODCACHE='/home/runner/go/pkg/mod'
+2026-10-05T09:14:21.4664045Z GONOPROXY=''
+2026-10-05T09:14:21.4664369Z GONOSUMDB=''
+2026-10-05T09:14:21.4664682Z GOOS='linux'
+2026-10-05T09:14:21.4665022Z GOPATH='/home/runner/go'
+2026-10-05T09:14:21.4665396Z GOPRIVATE=''
+2026-10-05T09:14:21.4666480Z GOPROXY='https://proxy.golang.org,direct'
+2026-10-05T09:14:21.4667209Z GOROOT='/opt/hostedtoolcache/go/1.24.1/x64'
+2026-10-05T09:14:21.4667716Z GOSUMDB='sum.golang.org'
+2026-10-05T09:14:21.4668158Z GOTELEMETRY='local'
+2026-10-05T09:14:21.4668612Z GOTELEMETRYDIR='/home/runner/.config/go/telemetry'
+2026-10-05T09:14:21.4669132Z GOTMPDIR=''
+2026-10-05T09:14:21.4669456Z GOTOOLCHAIN='auto'
+2026-10-05T09:14:21.4670014Z GOTOOLDIR='/opt/hostedtoolcache/go/1.24.1/x64/pkg/tool/linux_amd64'
+2026-10-05T09:14:21.4670635Z GOVCS=''
+2026-10-05T09:14:21.4670955Z GOVERSION='go1.24.1'
+2026-10-05T09:14:21.4671301Z GOWORK=''
+2026-10-05T09:14:21.4671631Z PKG_CONFIG='pkg-config'
+2026-10-05T09:14:21.4671876Z 
+2026-10-05T09:14:21.4672337Z ##[endgroup]
+2026-10-05T09:14:21.5028663Z ##[group]Run subosito/flutter-action@v2
+2026-10-05T09:14:21.5028978Z with:
+2026-10-05T09:14:21.5029185Z   flutter-version: 3.47.4
+2026-10-05T09:14:21.5029423Z   channel: stable
+2026-10-05T09:14:21.5029618Z   cache: true
+2026-10-05T09:14:21.5029824Z   architecture: X64
+2026-10-05T09:14:21.5030039Z   pub-cache-path: default
+2026-10-05T09:14:21.5030263Z   dry-run: false
+2026-10-05T09:14:21.5030524Z   git-source: https://github.com/flutter/flutter.git
+2026-10-05T09:14:21.5030841Z env:
+2026-10-05T09:14:21.5031063Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-05T09:14:21.5031358Z   GOSUMDB: sum.golang.org
+2026-10-05T09:14:21.5031576Z ##[endgroup]
+2026-10-05T09:14:21.5091536Z ##[start-action display=Make yq tool available on Windows runners;id=__subosito_flutter-action.__run]
+2026-10-05T09:14:21.5102677Z ##[end-action id=__subosito_flutter-action.__run;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-10-05T09:14:21.5104870Z ##[start-action display=Make setup script executable;id=__subosito_flutter-action.__run_2]
+2026-10-05T09:14:21.5128922Z ##[group]Run chmod +x "$GITHUB_ACTION_PATH/setup.sh"
+2026-10-05T09:14:21.5129304Z [36;1mchmod +x "$GITHUB_ACTION_PATH/setup.sh"[0m
+2026-10-05T09:14:21.5219277Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-05T09:14:21.5219862Z env:
+2026-10-05T09:14:21.5220259Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-05T09:14:21.5220817Z   GOSUMDB: sum.golang.org
+2026-10-05T09:14:21.5221231Z ##[endgroup]
+2026-10-05T09:14:21.5339764Z ##[end-action id=__subosito_flutter-action.__run_2;outcome=success;conclusion=success;duration_ms=23]
+2026-10-05T09:14:21.5341983Z ##[start-action display=Set action inputs;id=__subosito_flutter-action.flutter-action]
+2026-10-05T09:14:21.5378172Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh -p \
+2026-10-05T09:14:21.5378576Z [36;1m$GITHUB_ACTION_PATH/setup.sh -p \[0m
+2026-10-05T09:14:21.5378877Z [36;1m  -n '3.47.4' \[0m
+2026-10-05T09:14:21.5379106Z [36;1m  -f '' \[0m
+2026-10-05T09:14:21.5379337Z [36;1m  -a 'X64' \[0m
+2026-10-05T09:14:21.5379542Z [36;1m  -k '' \[0m
+2026-10-05T09:14:21.5379741Z [36;1m  -c '' \[0m
+2026-10-05T09:14:21.5379938Z [36;1m  -l '' \[0m
+2026-10-05T09:14:21.5380145Z [36;1m  -d 'default' \[0m
+2026-10-05T09:14:21.5380445Z [36;1m  -g 'https://github.com/flutter/flutter.git' \[0m
+2026-10-05T09:14:21.5380762Z [36;1m  stable[0m
+2026-10-05T09:14:21.5438850Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-05T09:14:21.5439220Z env:
+2026-10-05T09:14:21.5439458Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-05T09:14:21.5439765Z   GOSUMDB: sum.golang.org
+2026-10-05T09:14:21.5439990Z ##[endgroup]
+2026-10-05T09:14:21.7339695Z ##[end-action id=__subosito_flutter-action.flutter-action;outcome=success;conclusion=success;duration_ms=199]
+2026-10-05T09:14:21.7344618Z ##[start-action display=Cache Flutter;id=__subosito_flutter-action.cache-flutter]
+2026-10-05T09:14:21.7388627Z ##[group]Run actions/cache@v5
+2026-10-05T09:14:21.7388891Z with:
+2026-10-05T09:14:21.7389173Z   path: /opt/hostedtoolcache/flutter/stable-3.47.4-x64
+2026-10-05T09:14:21.7389650Z   key: flutter-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
+2026-10-05T09:14:21.7390096Z   enableCrossOsArchive: false
+2026-10-05T09:14:21.7390354Z   fail-on-cache-miss: false
+2026-10-05T09:14:21.7390589Z   lookup-only: false
+2026-10-05T09:14:21.7390798Z   save-always: false
+2026-10-05T09:14:21.7391004Z env:
+2026-10-05T09:14:21.7391228Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-05T09:14:21.7391523Z   GOSUMDB: sum.golang.org
+2026-10-05T09:14:21.7391745Z ##[endgroup]
+2026-10-05T09:14:22.1256951Z Cache hit for: flutter-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
+2026-10-05T09:14:23.4436909Z Received 0 of 1720618134 (0.0%), 0.0 MBs/sec
+2026-10-05T09:14:24.4461399Z Received 121634816 of 1720618134 (7.1%), 58.0 MBs/sec
+2026-10-05T09:14:25.4414769Z Received 264241152 of 1720618134 (15.4%), 84.0 MBs/sec
+2026-10-05T09:14:26.4457136Z Received 398458880 of 1720618134 (23.2%), 95.0 MBs/sec
+2026-10-05T09:14:27.4456511Z Received 532676608 of 1720618134 (31.0%), 101.6 MBs/sec
+2026-10-05T09:14:28.4466036Z Received 671088640 of 1720618134 (39.0%), 106.6 MBs/sec
+2026-10-05T09:14:29.4452368Z Received 805306368 of 1720618134 (46.8%), 109.7 MBs/sec
+2026-10-05T09:14:30.4461485Z Received 939524096 of 1720618134 (54.6%), 111.9 MBs/sec
+2026-10-05T09:14:31.4499353Z Received 1082130432 of 1720618134 (62.9%), 114.6 MBs/sec
+2026-10-05T09:14:32.4501308Z Received 1241513984 of 1720618134 (72.2%), 118.3 MBs/sec
+2026-10-05T09:14:33.4557205Z Received 1396703232 of 1720618134 (81.2%), 121.0 MBs/sec
+2026-10-05T09:14:34.4513512Z Received 1560281088 of 1720618134 (90.7%), 123.9 MBs/sec
+2026-10-05T09:14:35.4512460Z Received 1698693120 of 1720618134 (98.7%), 124.5 MBs/sec
+2026-10-05T09:14:35.6211081Z Received 1720618134 of 1720618134 (100.0%), 124.5 MBs/sec
+2026-10-05T09:14:35.6214510Z Cache Size: ~1641 MB (1720618134 B)
+2026-10-05T09:14:35.6349037Z [command]/usr/bin/tar -xf /home/runner/work/_temp/83172d28-867b-4549-a24e-32b965920d79/cache.tzst -P -C /home/runner/work/guoapp/guoapp --use-compress-program unzstd
+2026-10-05T09:14:40.1927506Z Cache restored successfully
+2026-10-05T09:14:40.2781946Z Cache restored from key: flutter-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
+2026-10-05T09:14:40.2919161Z ##[end-action id=__subosito_flutter-action.cache-flutter;outcome=success;conclusion=success;duration_ms=18557]
+2026-10-05T09:14:40.2923284Z ##[start-action display=Cache pub dependencies;id=__subosito_flutter-action.cache-pub]
+2026-10-05T09:14:40.5337827Z ##[group]Run actions/cache@v5
+2026-10-05T09:14:40.5338146Z with:
+2026-10-05T09:14:40.5338395Z   path: /home/runner/.pub-cache
+2026-10-05T09:14:40.5339475Z   key: flutter-pub-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b-4f2d9e15f937ee8713c1f3993dbd5ead79b6170906737c543425d7b407a7609e
+2026-10-05T09:14:40.5340408Z   enableCrossOsArchive: false
+2026-10-05T09:14:40.5340727Z   fail-on-cache-miss: false
+2026-10-05T09:14:40.5341035Z   lookup-only: false
+2026-10-05T09:14:40.5341294Z   save-always: false
+2026-10-05T09:14:40.5341542Z env:
+2026-10-05T09:14:40.5341822Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-05T09:14:40.5342182Z   GOSUMDB: sum.golang.org
+2026-10-05T09:14:40.5342427Z ##[endgroup]
+2026-10-05T09:14:40.9067836Z Cache not found for input keys: flutter-pub-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b-4f2d9e15f937ee8713c1f3993dbd5ead79b6170906737c543425d7b407a7609e
+2026-10-05T09:14:40.9140406Z ##[end-action id=__subosito_flutter-action.cache-pub;outcome=success;conclusion=success;duration_ms=621]
+2026-10-05T09:14:40.9144284Z ##[start-action display=Run setup script;id=__subosito_flutter-action.__run_3]
+2026-10-05T09:14:41.0566831Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh \
+2026-10-05T09:14:41.0567406Z [36;1m$GITHUB_ACTION_PATH/setup.sh \[0m
+2026-10-05T09:14:41.0567872Z [36;1m  -n '3.47.4' \[0m
+2026-10-05T09:14:41.0568246Z [36;1m  -a 'x64' \[0m
+2026-10-05T09:14:41.0568764Z [36;1m  -c '/opt/hostedtoolcache/flutter/stable-3.47.4-x64' \[0m
+2026-10-05T09:14:41.0569382Z [36;1m  -d '/home/runner/.pub-cache' \[0m
+2026-10-05T09:14:41.0569838Z [36;1m  stable[0m
+2026-10-05T09:14:41.0631558Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-05T09:14:41.0631913Z env:
+2026-10-05T09:14:41.0632167Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-05T09:14:41.0632472Z   GOSUMDB: sum.golang.org
+2026-10-05T09:14:41.0632714Z ##[endgroup]
+2026-10-05T09:14:41.7190732Z ##[end-action id=__subosito_flutter-action.__run_3;outcome=success;conclusion=success;duration_ms=804]
+2026-10-05T09:14:41.7670280Z ##[group]Run flutter pub get --enforce-lockfile
+2026-10-05T09:14:41.7670977Z [36;1mflutter pub get --enforce-lockfile[0m
+2026-10-05T09:14:41.7753443Z shell: /usr/bin/bash -e {0}
+2026-10-05T09:14:41.7753865Z env:
+2026-10-05T09:14:41.7754253Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-05T09:14:41.7754780Z   GOSUMDB: sum.golang.org
+2026-10-05T09:14:41.7755365Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
+2026-10-05T09:14:41.7756175Z   PUB_CACHE: /home/runner/.pub-cache
+2026-10-05T09:14:41.7756588Z ##[endgroup]
+2026-10-05T09:14:46.9486806Z Resolving dependencies...
+2026-10-05T09:14:47.7706103Z Downloading packages...
+2026-10-05T09:14:52.6674523Z   cross_file 0.3.5+5 (0.4.0 available)
+2026-10-05T09:14:52.6675659Z   ffmpeg_kit_flutter_new_min_gpl 2.6.2 (2.6.4 available)
+2026-10-05T09:14:52.6676529Z   material_color_utilities 0.13.0 (0.13.1 available)
+2026-10-05T09:14:52.6677836Z ! media_kit_libs_windows_video 1.0.11+duanju.1 from path packages/media_kit_libs_windows_video (overridden)
+2026-10-05T09:14:52.6678828Z   test_api 0.7.12 (0.7.14 available)
+2026-10-05T09:14:52.6679355Z Got dependencies!
+2026-10-05T09:14:52.6681851Z 4 packages have newer versions incompatible with dependency constraints.
+2026-10-05T09:14:52.6682986Z Try `flutter pub outdated` for more information.
+2026-10-05T09:14:52.9408702Z ##[group]Run dart format --language-version 3.12 --output=none --set-exit-if-changed lib test integration_test test_driver
+2026-10-05T09:14:52.9409631Z [36;1mdart format --language-version 3.12 --output=none --set-exit-if-changed lib test integration_test test_driver[0m
+2026-10-05T09:14:52.9471426Z shell: /usr/bin/bash -e {0}
+2026-10-05T09:14:52.9471691Z env:
+2026-10-05T09:14:52.9471939Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-05T09:14:52.9472253Z   GOSUMDB: sum.golang.org
+2026-10-05T09:14:52.9472614Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
+2026-10-05T09:14:52.9473021Z   PUB_CACHE: /home/runner/.pub-cache
+2026-10-05T09:14:52.9473292Z ##[endgroup]
+2026-10-05T09:14:53.8944175Z Formatted 159 files (0 changed) in 0.92 seconds.
+2026-10-05T09:14:53.9050674Z ##[group]Run dart analyze lib test integration_test test_driver
+2026-10-05T09:14:53.9051183Z [36;1mdart analyze lib test integration_test test_driver[0m
+2026-10-05T09:14:53.9114892Z shell: /usr/bin/bash -e {0}
+2026-10-05T09:14:53.9115170Z env:
+2026-10-05T09:14:53.9115421Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-05T09:14:53.9115989Z   GOSUMDB: sum.golang.org
+2026-10-05T09:14:53.9116376Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
+2026-10-05T09:14:53.9116794Z   PUB_CACHE: /home/runner/.pub-cache
+2026-10-05T09:14:53.9117080Z ##[endgroup]
+2026-10-05T09:14:53.9363204Z Analyzing lib, test, integration_test, test_driver...
+2026-10-05T09:15:12.0337372Z 
+2026-10-05T09:15:12.0338952Z warning - test/live_screen_test.dart:14:25 - A value for optional parameter 'extraGroups' isn't ever given. Try removing the unused parameter. - unused_element_parameter
+2026-10-05T09:15:12.0341453Z warning - test/live_screen_test.dart:14:47 - A value for optional parameter 'failGroups' isn't ever given. Try removing the unused parameter. - unused_element_parameter
+2026-10-05T09:15:12.0344219Z    info - lib/app_orientation.dart:11:7 - Use an initializing formal to assign a parameter to a field. Try using an initialing formal ('this._television') to initialize the field. - prefer_initializing_formals
+2026-10-05T09:15:12.0347662Z    info - lib/lan_controller.dart:88:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0350305Z    info - lib/lan_controller.dart:151:9 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-05T09:15:12.0352885Z    info - lib/lan_controller.dart:335:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0355446Z    info - lib/lan_controller.dart:360:17 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-05T09:15:12.0358261Z    info - lib/lan_controller.dart:432:19 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-05T09:15:12.0360961Z    info - lib/lan_controller.dart:433:19 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-05T09:15:12.0363280Z    info - lib/lan_controller.dart:510:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0365792Z    info - lib/lan_controller.dart:542:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0367810Z    info - lib/lan_controller.dart:558:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0370093Z    info - lib/lan_controller.dart:578:13 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0372403Z    info - lib/lan_controller.dart:582:13 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0374693Z    info - lib/lan_controller.dart:647:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0377201Z    info - lib/lan_controller.dart:658:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0380005Z    info - lib/lan_controller.dart:682:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0382373Z    info - lib/lan_controller.dart:789:17 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0384670Z    info - lib/lan_controller.dart:877:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0387477Z    info - lib/lan_controller.dart:883:23 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-05T09:15:12.0389936Z    info - lib/lan_controller.dart:909:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0392223Z    info - lib/lan_playback.dart:80:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0394459Z    info - lib/lan_playback.dart:94:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0397174Z    info - lib/lan_playback.dart:98:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0399425Z    info - lib/lan_playback.dart:104:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0401690Z    info - lib/lan_playback.dart:112:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0403922Z    info - lib/lan_playback.dart:153:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0406348Z    info - lib/lan_playback.dart:177:11 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0408584Z    info - lib/lan_playback.dart:206:11 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0410842Z    info - lib/lan_playback.dart:212:11 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0413105Z    info - lib/lan_playback.dart:216:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0415419Z    info - lib/lan_playback.dart:278:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0417859Z    info - lib/lan_playback.dart:311:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0420363Z    info - lib/lan_playback.dart:355:21 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-05T09:15:12.0423015Z    info - lib/lan_screen.dart:228:40 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-05T09:15:12.0426323Z    info - lib/lan_screen.dart:257:33 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-05T09:15:12.0429142Z    info - lib/lan_screen.dart:326:35 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-05T09:15:12.0431768Z    info - lib/lan_screen.dart:336:35 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-05T09:15:12.0434355Z    info - lib/lan_screen.dart:341:35 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-05T09:15:12.0437277Z    info - lib/lan_screen.dart:346:35 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-05T09:15:12.0439685Z    info - lib/lan_screen.dart:516:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0441898Z    info - lib/lan_screen.dart:519:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0444112Z    info - lib/lan_screen.dart:525:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0446494Z    info - lib/lan_screen.dart:562:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0448691Z    info - lib/lan_screen.dart:758:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0451118Z    info - lib/lan_screen.dart:847:34 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-05T09:15:12.0453781Z    info - lib/lan_screen.dart:850:34 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-05T09:15:12.0456727Z    info - lib/lan_screen.dart:856:35 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-05T09:15:12.0459349Z    info - lib/lan_screen.dart:866:41 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-05T09:15:12.0461958Z    info - lib/lan_screen.dart:870:41 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-05T09:15:12.0464629Z    info - lib/lan_screen.dart:934:12 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-05T09:15:12.0467461Z    info - lib/lan_screen.dart:936:9 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-05T09:15:12.0470068Z    info - lib/lan_screen.dart:1036:15 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-05T09:15:12.0472681Z    info - lib/lan_screen.dart:1171:21 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-05T09:15:12.0475053Z    info - lib/lan_sync.dart:105:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0477712Z    info - lib/lan_sync.dart:121:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0479886Z    info - lib/lan_sync.dart:170:11 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0482038Z    info - lib/lan_sync.dart:202:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0484460Z    info - lib/lan_sync.dart:323:15 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-05T09:15:12.0487242Z    info - lib/lan_sync.dart:325:15 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-05T09:15:12.0489643Z    info - lib/lan_sync.dart:340:13 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0491835Z    info - lib/lan_sync.dart:348:13 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0494008Z    info - lib/lan_sync.dart:399:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0496537Z    info - lib/lan_sync.dart:399:26 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-05T09:15:12.0498883Z    info - lib/lan_sync.dart:423:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0501054Z    info - lib/lan_sync.dart:431:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0503220Z    info - lib/lan_sync.dart:446:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0505375Z    info - lib/lan_sync.dart:459:11 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0507754Z    info - lib/lan_sync.dart:471:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0509908Z    info - lib/lan_sync.dart:486:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0512292Z    info - lib/lan_sync.dart:556:11 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-05T09:15:12.0514875Z    info - lib/lan_sync.dart:558:11 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-05T09:15:12.0517388Z    info - lib/lan_sync.dart:585:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0519551Z    info - lib/lan_sync.dart:600:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0521757Z    info - lib/local_store_sync.dart:25:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0524185Z    info - lib/player_screen.dart:405:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0527006Z    info - lib/player_screen.dart:665:13 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-05T09:15:12.0529683Z    info - lib/player_screen.dart:667:13 - Use interpolation to compose strings and values. Try using string interpolation to build the composite string. - prefer_interpolation_to_compose_strings
+2026-10-05T09:15:12.0532114Z    info - lib/player_screen.dart:686:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0534372Z    info - lib/player_screen.dart:699:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0536794Z    info - lib/player_screen.dart:710:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0539049Z    info - lib/player_screen.dart:728:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0541308Z    info - lib/player_screen.dart:1328:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0544118Z    info - lib/video_enhancement.dart:4:8 - The import of 'dart:ui' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/services.dart'. Try removing the import directive. - unnecessary_import
+2026-10-05T09:15:12.0547377Z    info - lib/video_enhancement.dart:24:8 - Use an initializing formal to assign a parameter to a field. Try using an initialing formal ('this._preferences') to initialize the field. - prefer_initializing_formals
+2026-10-05T09:15:12.0549968Z    info - lib/video_enhancement.dart:381:11 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0552321Z    info - lib/video_enhancement.dart:491:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0554598Z    info - lib/video_enhancement.dart:504:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0557044Z    info - lib/video_enhancement.dart:583:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0559376Z    info - lib/video_enhancement.dart:599:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0561705Z    info - lib/video_enhancement.dart:607:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0564070Z    info - lib/video_enhancement.dart:709:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0566615Z    info - lib/video_enhancement.dart:758:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+2026-10-05T09:15:12.0569404Z    info - lib/video_output_size.dart:3:8 - The import of 'dart:ui' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/services.dart'. Try removing the import directive. - unnecessary_import
+2026-10-05T09:15:12.0570891Z 
+2026-10-05T09:15:12.0571349Z 94 issues found.
+2026-10-05T09:15:12.1331387Z ##[error]Process completed with exit code 2.
+2026-10-05T09:15:12.1525256Z Post job cleanup.
+2026-10-05T09:15:12.1529791Z ##[start-action display=Cache pub dependencies;id=__27835fab-37a0-472a-96de-cc4c5ded0186.cache-pub]
+2026-10-05T09:15:12.1531976Z ##[end-action id=__27835fab-37a0-472a-96de-cc4c5ded0186.cache-pub;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-10-05T09:15:12.1533896Z ##[start-action display=Cache Flutter;id=__27835fab-37a0-472a-96de-cc4c5ded0186.cache-flutter]
+2026-10-05T09:15:12.1536072Z ##[end-action id=__27835fab-37a0-472a-96de-cc4c5ded0186.cache-flutter;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-10-05T09:15:12.1603743Z Post job cleanup.
+2026-10-05T09:15:12.2510841Z [command]/usr/bin/git version
+2026-10-05T09:15:12.2556586Z git version 2.55.0
+2026-10-05T09:15:12.2601920Z Temporarily overriding HOME='/home/runner/work/_temp/94dadfb4-c0c0-4fc8-854d-744049d644da' before making global git config changes
+2026-10-05T09:15:12.2603198Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-05T09:15:12.2608921Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/guoapp/guoapp
+2026-10-05T09:15:12.2650212Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-05T09:15:12.2687487Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-05T09:15:12.2958186Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-05T09:15:12.2989143Z http.https://github.com/.extraheader
+2026-10-05T09:15:12.3006617Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-05T09:15:12.3039805Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-05T09:15:12.3285958Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-05T09:15:12.3321447Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-05T09:15:12.3876165Z Cleaning up orphan processes
+2026-10-05T09:15:12.4319406Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-go@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
