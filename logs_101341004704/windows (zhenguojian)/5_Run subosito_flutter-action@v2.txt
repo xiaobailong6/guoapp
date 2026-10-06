@@ -1,0 +1,135 @@
+﻿2026-10-06T04:30:54.8900576Z ##[group]Run subosito/flutter-action@v2
+2026-10-06T04:30:54.8900947Z with:
+2026-10-06T04:30:54.8901143Z   flutter-version: 3.47.4
+2026-10-06T04:30:54.8901379Z   channel: stable
+2026-10-06T04:30:54.8901567Z   cache: true
+2026-10-06T04:30:54.8901750Z   architecture: X64
+2026-10-06T04:30:54.8901958Z   pub-cache-path: default
+2026-10-06T04:30:54.8902183Z   dry-run: false
+2026-10-06T04:30:54.8902427Z   git-source: https://github.com/flutter/flutter.git
+2026-10-06T04:30:54.8902942Z env:
+2026-10-06T04:30:54.8903145Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-06T04:30:54.8903428Z   GOSUMDB: sum.golang.org
+2026-10-06T04:30:54.8903723Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-06T04:30:54.8904167Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-06T04:30:54.8904607Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-06T04:30:54.8905012Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-06T04:30:54.8905440Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-06T04:30:54.8905750Z ##[endgroup]
+2026-10-06T04:30:54.8966621Z ##[start-action display=Make yq tool available on Windows runners;id=__subosito_flutter-action.__run]
+2026-10-06T04:30:54.8979550Z ##[end-action id=__subosito_flutter-action.__run;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-10-06T04:30:54.8981719Z ##[start-action display=Make setup script executable;id=__subosito_flutter-action.__run_2]
+2026-10-06T04:30:54.9149170Z ##[group]Run chmod +x "$GITHUB_ACTION_PATH/setup.sh"
+2026-10-06T04:30:54.9149594Z [36;1mchmod +x "$GITHUB_ACTION_PATH/setup.sh"[0m
+2026-10-06T04:30:54.9180169Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-10-06T04:30:54.9180579Z env:
+2026-10-06T04:30:54.9180800Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-06T04:30:54.9181084Z   GOSUMDB: sum.golang.org
+2026-10-06T04:30:54.9181386Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-06T04:30:54.9181864Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-06T04:30:54.9182305Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-06T04:30:54.9182694Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-06T04:30:54.9183089Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-06T04:30:54.9183390Z ##[endgroup]
+2026-10-06T04:30:55.2830888Z ##[end-action id=__subosito_flutter-action.__run_2;outcome=success;conclusion=success;duration_ms=384]
+2026-10-06T04:30:55.2833418Z ##[start-action display=Set action inputs;id=__subosito_flutter-action.flutter-action]
+2026-10-06T04:30:55.2977428Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh -p \
+2026-10-06T04:30:55.2977818Z [36;1m$GITHUB_ACTION_PATH/setup.sh -p \[0m
+2026-10-06T04:30:55.2978112Z [36;1m  -n '3.47.4' \[0m
+2026-10-06T04:30:55.2978326Z [36;1m  -f '' \[0m
+2026-10-06T04:30:55.2978514Z [36;1m  -a 'X64' \[0m
+2026-10-06T04:30:55.2978725Z [36;1m  -k '' \[0m
+2026-10-06T04:30:55.2978902Z [36;1m  -c '' \[0m
+2026-10-06T04:30:55.2979084Z [36;1m  -l '' \[0m
+2026-10-06T04:30:55.2979265Z [36;1m  -d 'default' \[0m
+2026-10-06T04:30:55.2979549Z [36;1m  -g 'https://github.com/flutter/flutter.git' \[0m
+2026-10-06T04:30:55.2979847Z [36;1m  stable[0m
+2026-10-06T04:30:55.2998922Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-10-06T04:30:55.2999332Z env:
+2026-10-06T04:30:55.2999550Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-06T04:30:55.2999835Z   GOSUMDB: sum.golang.org
+2026-10-06T04:30:55.3000144Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-06T04:30:55.3000592Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-06T04:30:55.3001038Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-06T04:30:55.3001448Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-06T04:30:55.3004319Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-06T04:30:55.3004652Z ##[endgroup]
+2026-10-06T04:30:58.8488119Z ##[end-action id=__subosito_flutter-action.flutter-action;outcome=success;conclusion=success;duration_ms=3565]
+2026-10-06T04:30:58.8494372Z ##[start-action display=Cache Flutter;id=__subosito_flutter-action.cache-flutter]
+2026-10-06T04:30:58.8735091Z ##[group]Run actions/cache@v5
+2026-10-06T04:30:58.8735490Z with:
+2026-10-06T04:30:58.8736865Z   path: C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64
+2026-10-06T04:30:58.8737645Z   key: flutter-windows-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
+2026-10-06T04:30:58.8738337Z   enableCrossOsArchive: false
+2026-10-06T04:30:58.8738784Z   fail-on-cache-miss: false
+2026-10-06T04:30:58.8739241Z   lookup-only: false
+2026-10-06T04:30:58.8739722Z   save-always: false
+2026-10-06T04:30:58.8740111Z env:
+2026-10-06T04:30:58.8740540Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-06T04:30:58.8741131Z   GOSUMDB: sum.golang.org
+2026-10-06T04:30:58.8741732Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-06T04:30:58.8742610Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-06T04:30:58.8743438Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-06T04:30:58.8744256Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-06T04:30:58.8745007Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-06T04:30:58.8745606Z ##[endgroup]
+2026-10-06T04:30:59.3561100Z Cache hit for: flutter-windows-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
+2026-10-06T04:31:00.4854823Z Received 142606336 of 1925544766 (7.4%), 135.5 MBs/sec
+2026-10-06T04:31:01.4938596Z Received 369098752 of 1925544766 (19.2%), 174.7 MBs/sec
+2026-10-06T04:31:02.4945902Z Received 536870912 of 1925544766 (27.9%), 169.8 MBs/sec
+2026-10-06T04:31:03.4947769Z Received 759169024 of 1925544766 (39.4%), 180.3 MBs/sec
+2026-10-06T04:31:04.5253587Z Received 939524096 of 1925544766 (48.8%), 177.6 MBs/sec
+2026-10-06T04:31:05.5293712Z Received 1149239296 of 1925544766 (59.7%), 181.1 MBs/sec
+2026-10-06T04:31:06.5854239Z Received 1342177280 of 1925544766 (69.7%), 180.1 MBs/sec
+2026-10-06T04:31:07.6089932Z Received 1551892480 of 1925544766 (80.6%), 182.0 MBs/sec
+2026-10-06T04:31:08.6726153Z Received 1744830464 of 1925544766 (90.6%), 181.0 MBs/sec
+2026-10-06T04:31:09.6373590Z Received 1925544766 of 1925544766 (100.0%), 180.8 MBs/sec
+2026-10-06T04:31:09.6377831Z Cache Size: ~1836 MB (1925544766 B)
+2026-10-06T04:31:09.6448830Z [command]"C:\Program Files\Git\usr\bin\tar.exe" -xf D:/a/_temp/d08f3bc3-f263-4626-ab47-bdfc3dde751e/cache.tzst -P -C D:/a/guoapp/guoapp --force-local --use-compress-program "zstd -d"
+2026-10-06T04:32:07.6661915Z Cache restored successfully
+2026-10-06T04:32:07.8044914Z Cache restored from key: flutter-windows-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
+2026-10-06T04:32:07.8179917Z ##[end-action id=__subosito_flutter-action.cache-flutter;outcome=success;conclusion=success;duration_ms=68968]
+2026-10-06T04:32:07.8182960Z ##[start-action display=Cache pub dependencies;id=__subosito_flutter-action.cache-pub]
+2026-10-06T04:32:08.0707944Z ##[group]Run actions/cache@v5
+2026-10-06T04:32:08.0708409Z with:
+2026-10-06T04:32:08.0708708Z   path: C:\Users\runneradmin\AppData\Local\Pub\Cache
+2026-10-06T04:32:08.0709465Z   key: flutter-pub-windows-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b-0b6c9b91354e0bf5d83aa97181a342d2ce64177739fb13e2145d8f6cafec0468
+2026-10-06T04:32:08.0710210Z   enableCrossOsArchive: false
+2026-10-06T04:32:08.0710445Z   fail-on-cache-miss: false
+2026-10-06T04:32:08.0710662Z   lookup-only: false
+2026-10-06T04:32:08.0710856Z   save-always: false
+2026-10-06T04:32:08.0711034Z env:
+2026-10-06T04:32:08.0711245Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-06T04:32:08.0711531Z   GOSUMDB: sum.golang.org
+2026-10-06T04:32:08.0711826Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-06T04:32:08.0713439Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-06T04:32:08.0713903Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-06T04:32:08.0714310Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-06T04:32:08.0714712Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-06T04:32:08.0715223Z ##[endgroup]
+2026-10-06T04:32:08.4458757Z Cache hit for: flutter-pub-windows-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b-0b6c9b91354e0bf5d83aa97181a342d2ce64177739fb13e2145d8f6cafec0468
+2026-10-06T04:32:09.1906914Z Received 58341612 of 58341612 (100.0%), 89.5 MBs/sec
+2026-10-06T04:32:09.1908535Z Cache Size: ~56 MB (58341612 B)
+2026-10-06T04:32:09.2002644Z [command]"C:\Program Files\Git\usr\bin\tar.exe" -xf D:/a/_temp/a91846bd-61cb-49be-a4bb-8a3b0690199d/cache.tzst -P -C D:/a/guoapp/guoapp --force-local --use-compress-program "zstd -d"
+2026-10-06T04:32:50.1539110Z Cache restored successfully
+2026-10-06T04:32:50.1714944Z Cache restored from key: flutter-pub-windows-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b-0b6c9b91354e0bf5d83aa97181a342d2ce64177739fb13e2145d8f6cafec0468
+2026-10-06T04:32:50.1834915Z ##[end-action id=__subosito_flutter-action.cache-pub;outcome=success;conclusion=success;duration_ms=42365]
+2026-10-06T04:32:50.1838525Z ##[start-action display=Run setup script;id=__subosito_flutter-action.__run_3]
+2026-10-06T04:32:50.1991839Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh \
+2026-10-06T04:32:50.1992189Z [36;1m$GITHUB_ACTION_PATH/setup.sh \[0m
+2026-10-06T04:32:50.1992470Z [36;1m  -n '3.47.4' \[0m
+2026-10-06T04:32:50.1992693Z [36;1m  -a 'x64' \[0m
+2026-10-06T04:32:50.1993005Z [36;1m  -c 'C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64' \[0m
+2026-10-06T04:32:50.1993427Z [36;1m  -d 'C:\Users\runneradmin\AppData\Local\Pub\Cache' \[0m
+2026-10-06T04:32:50.1993752Z [36;1m  stable[0m
+2026-10-06T04:32:50.2012185Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-10-06T04:32:50.2012599Z env:
+2026-10-06T04:32:50.2012842Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-06T04:32:50.2013156Z   GOSUMDB: sum.golang.org
+2026-10-06T04:32:50.2013483Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-06T04:32:50.2013961Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-06T04:32:50.2014437Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-06T04:32:50.2014860Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-06T04:32:50.2015273Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-06T04:32:50.2015606Z ##[endgroup]
+2026-10-06T04:32:52.8457484Z ##[end-action id=__subosito_flutter-action.__run_3;outcome=success;conclusion=success;duration_ms=2661]

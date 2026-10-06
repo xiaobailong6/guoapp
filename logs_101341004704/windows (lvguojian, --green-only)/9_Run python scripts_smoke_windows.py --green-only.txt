@@ -1,0 +1,28 @@
+﻿2026-10-06T04:36:15.9206469Z ##[group]Run python scripts/smoke_windows.py --green-only
+2026-10-06T04:36:15.9207005Z [36;1mpython scripts/smoke_windows.py --green-only[0m
+2026-10-06T04:36:15.9282528Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-06T04:36:15.9282909Z env:
+2026-10-06T04:36:15.9283141Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-06T04:36:15.9283439Z   GOSUMDB: sum.golang.org
+2026-10-06T04:36:15.9283764Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-06T04:36:15.9284903Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-06T04:36:15.9285384Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-06T04:36:15.9285806Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-06T04:36:15.9286241Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-06T04:36:15.9286700Z   FLUTTER_ROOT: C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64/flutter
+2026-10-06T04:36:15.9287177Z   PUB_CACHE: C:\Users\runneradmin\AppData\Local\Pub\Cache
+2026-10-06T04:36:15.9287489Z ##[endgroup]
+2026-10-06T04:36:22.1430699Z {
+2026-10-06T04:36:22.1431296Z   "ok": true,
+2026-10-06T04:36:22.1431757Z   "nativeCore": true,
+2026-10-06T04:36:22.1432220Z   "ffprobe": true,
+2026-10-06T04:36:22.1432635Z   "remux": true,
+2026-10-06T04:36:22.1433087Z   "mediaKitPlayback": true,
+2026-10-06T04:36:22.1433562Z   "process": {
+2026-10-06T04:36:22.1433991Z     "timedOut": false,
+2026-10-06T04:36:22.1434478Z     "returncode": 0,
+2026-10-06T04:36:22.1436683Z     "stdout": "Loading ffmpeg-kit.\nLoaded ffmpeg-kit-min-gpl-x86_64-6.0-20260712.\npackage:media_kit_libs_windows_video registered.\nLoading ffmpeg-kit-flutter.\nLoaded ffmpeg-kit-flutter-windows-min-gpl-x86_64-8.0.0.\n",
+2026-10-06T04:36:22.1439342Z     "stderr": "[IMPORTANT:flutter/shell/platform/embedder/embedder_surface_gl_impeller.cc(126)] Using the Impeller rendering backend (OpenGLESSDF).\n"
+2026-10-06T04:36:22.1440524Z   }
+2026-10-06T04:36:22.1440882Z }
+2026-10-06T04:36:22.1441110Z 

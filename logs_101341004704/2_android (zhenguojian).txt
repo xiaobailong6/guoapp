@@ -1,0 +1,639 @@
+﻿2026-10-06T04:30:04.7186366Z Current runner version: '2.337.0'
+2026-10-06T04:30:04.7222360Z ##[group]Runner Image Provisioner
+2026-10-06T04:30:04.7223787Z Hosted Compute Agent
+2026-10-06T04:30:04.7225262Z Version: 20260901.588
+2026-10-06T04:30:04.7226568Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+2026-10-06T04:30:04.7228068Z Build Date: 2026-09-01T19:56:44Z
+2026-10-06T04:30:04.7229357Z Worker ID: {04899986-8321-4852-a7d0-8cc5b25ce429}
+2026-10-06T04:30:04.7230580Z Azure Region: eastus
+2026-10-06T04:30:04.7231596Z ##[endgroup]
+2026-10-06T04:30:04.7233929Z ##[group]Operating System
+2026-10-06T04:30:04.7235066Z Ubuntu
+2026-10-06T04:30:04.7236035Z 24.04.5
+2026-10-06T04:30:04.7237219Z LTS
+2026-10-06T04:30:04.7238153Z ##[endgroup]
+2026-10-06T04:30:04.7239088Z ##[group]Runner Image
+2026-10-06T04:30:04.7240167Z Image: ubuntu-24.04
+2026-10-06T04:30:04.7241228Z Version: 20260927.320.1
+2026-10-06T04:30:04.7243315Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260927.320/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-06T04:30:04.7246157Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260927.320
+2026-10-06T04:30:04.7248153Z ##[endgroup]
+2026-10-06T04:30:04.7250093Z ##[group]GITHUB_TOKEN Permissions
+2026-10-06T04:30:04.7253083Z Contents: read
+2026-10-06T04:30:04.7254066Z Metadata: read
+2026-10-06T04:30:04.7255040Z ##[endgroup]
+2026-10-06T04:30:04.7258397Z Secret source: Actions
+2026-10-06T04:30:04.7259973Z Cache mode: write
+2026-10-06T04:30:04.7261593Z Prepare workflow directory
+2026-10-06T04:30:04.7769193Z Prepare all required actions
+2026-10-06T04:30:04.7820139Z Getting action download info
+2026-10-06T04:30:05.0100935Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-06T04:30:05.1194905Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-10-06T04:30:05.1999203Z Download action repository 'actions/setup-java@v4' (SHA:cf277c60eb25467037889841efdb72551f06f6c3)
+2026-10-06T04:30:05.4541141Z Download action repository 'actions/setup-go@v5' (SHA:40f1582b2485089dde7abd97c1529aa768e1baff)
+2026-10-06T04:30:05.6428138Z Download action repository 'subosito/flutter-action@v2' (SHA:1a449444c387b1966244ae4d4f8c696479add0b2)
+2026-10-06T04:30:05.7577864Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-06T04:30:06.0098652Z Getting action download info
+2026-10-06T04:30:06.0887216Z Download action repository 'actions/cache@v5' (SHA:caa296126883cff596d87d8935842f9db880ef25)
+2026-10-06T04:30:06.2631146Z Complete job name: android (zhenguojian)
+2026-10-06T04:30:06.3512279Z ##[group]Run actions/checkout@v4
+2026-10-06T04:30:06.3513342Z with:
+2026-10-06T04:30:06.3513849Z   repository: xiaobailong6/guoapp
+2026-10-06T04:30:06.3521811Z   token: ***
+2026-10-06T04:30:06.3522311Z   ssh-strict: true
+2026-10-06T04:30:06.3522815Z   ssh-user: git
+2026-10-06T04:30:06.3523334Z   persist-credentials: true
+2026-10-06T04:30:06.3523937Z   clean: true
+2026-10-06T04:30:06.3524494Z   sparse-checkout-cone-mode: true
+2026-10-06T04:30:06.3525162Z   fetch-depth: 1
+2026-10-06T04:30:06.3525657Z   fetch-tags: false
+2026-10-06T04:30:06.3526188Z   show-progress: true
+2026-10-06T04:30:06.3526924Z   lfs: false
+2026-10-06T04:30:06.3527417Z   submodules: false
+2026-10-06T04:30:06.3527965Z   set-safe-directory: true
+2026-10-06T04:30:06.3528602Z   allow-unsafe-pr-checkout: false
+2026-10-06T04:30:06.3529546Z env:
+2026-10-06T04:30:06.3530084Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-06T04:30:06.3530849Z   GOSUMDB: sum.golang.org
+2026-10-06T04:30:06.3531421Z ##[endgroup]
+2026-10-06T04:30:06.4626495Z Syncing repository: xiaobailong6/guoapp
+2026-10-06T04:30:06.4629873Z ##[group]Getting Git version info
+2026-10-06T04:30:06.4631364Z Working directory is '/home/runner/work/guoapp/guoapp'
+2026-10-06T04:30:06.4633498Z [command]/usr/bin/git version
+2026-10-06T04:30:06.4713198Z git version 2.55.0
+2026-10-06T04:30:06.4743390Z ##[endgroup]
+2026-10-06T04:30:06.4753938Z Temporarily overriding HOME='/home/runner/work/_temp/fd9eacf1-f6da-40c7-a0ce-4a3ba5524774' before making global git config changes
+2026-10-06T04:30:06.4759095Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-06T04:30:06.4762559Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/guoapp/guoapp
+2026-10-06T04:30:06.4819143Z Deleting the contents of '/home/runner/work/guoapp/guoapp'
+2026-10-06T04:30:06.4825116Z ##[group]Initializing the repository
+2026-10-06T04:30:06.4829591Z [command]/usr/bin/git init /home/runner/work/guoapp/guoapp
+2026-10-06T04:30:06.4958760Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-06T04:30:06.4961710Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-06T04:30:06.4964247Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-06T04:30:06.4965625Z hint: call:
+2026-10-06T04:30:06.4966137Z hint:
+2026-10-06T04:30:06.4967237Z hint: 	git config --global init.defaultBranch <name>
+2026-10-06T04:30:06.4968252Z hint:
+2026-10-06T04:30:06.4969279Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-06T04:30:06.4970716Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-06T04:30:06.4971791Z hint:
+2026-10-06T04:30:06.4972269Z hint: 	git branch -m <name>
+2026-10-06T04:30:06.4972861Z hint:
+2026-10-06T04:30:06.4973710Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-06T04:30:06.4975323Z Initialized empty Git repository in /home/runner/work/guoapp/guoapp/.git/
+2026-10-06T04:30:06.4978958Z [command]/usr/bin/git remote add origin https://github.com/xiaobailong6/guoapp
+2026-10-06T04:30:06.5034115Z ##[endgroup]
+2026-10-06T04:30:06.5035106Z ##[group]Disabling automatic garbage collection
+2026-10-06T04:30:06.5038816Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-06T04:30:06.5073414Z ##[endgroup]
+2026-10-06T04:30:06.5074309Z ##[group]Setting up auth
+2026-10-06T04:30:06.5082103Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-06T04:30:06.5150428Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-06T04:30:06.5565135Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-06T04:30:06.5606577Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-06T04:30:06.5834824Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-06T04:30:06.5871930Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-06T04:30:06.6099375Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-06T04:30:06.6140784Z ##[endgroup]
+2026-10-06T04:30:06.6141826Z ##[group]Fetching the repository
+2026-10-06T04:30:06.6151926Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +eaa2900377370df99fd044a9bc91f6fd9388ef0f:refs/remotes/origin/main
+2026-10-06T04:30:07.1834360Z From https://github.com/xiaobailong6/guoapp
+2026-10-06T04:30:07.1837425Z  * [new ref]         eaa2900377370df99fd044a9bc91f6fd9388ef0f -> origin/main
+2026-10-06T04:30:07.1844033Z ##[endgroup]
+2026-10-06T04:30:07.1847183Z ##[group]Determining the checkout info
+2026-10-06T04:30:07.1850345Z ##[endgroup]
+2026-10-06T04:30:07.1852619Z [command]/usr/bin/git sparse-checkout disable
+2026-10-06T04:30:07.1913045Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-06T04:30:07.1948683Z ##[group]Checking out the ref
+2026-10-06T04:30:07.1954259Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-10-06T04:30:07.2616989Z Switched to a new branch 'main'
+2026-10-06T04:30:07.2620919Z branch 'main' set up to track 'origin/main'.
+2026-10-06T04:30:07.2631929Z ##[endgroup]
+2026-10-06T04:30:07.2680326Z [command]/usr/bin/git log -1 --format=%H
+2026-10-06T04:30:07.2707728Z eaa2900377370df99fd044a9bc91f6fd9388ef0f
+2026-10-06T04:30:07.3070635Z ##[group]Run actions/setup-python@v5
+2026-10-06T04:30:07.3071847Z with:
+2026-10-06T04:30:07.3072730Z   python-version: 3.12
+2026-10-06T04:30:07.3073696Z   check-latest: false
+2026-10-06T04:30:07.3082609Z   token: ***
+2026-10-06T04:30:07.3083569Z   update-environment: true
+2026-10-06T04:30:07.3084638Z   allow-prereleases: false
+2026-10-06T04:30:07.3085687Z   freethreaded: false
+2026-10-06T04:30:07.3086623Z env:
+2026-10-06T04:30:07.3087767Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-06T04:30:07.3089004Z   GOSUMDB: sum.golang.org
+2026-10-06T04:30:07.3089980Z ##[endgroup]
+2026-10-06T04:30:07.4438496Z ##[group]Installed versions
+2026-10-06T04:30:07.4529473Z (node:2323) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-06T04:30:07.4533710Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-06T04:30:07.4535393Z Successfully set up CPython (3.12.14)
+2026-10-06T04:30:07.4537495Z ##[endgroup]
+2026-10-06T04:30:07.4953771Z ##[group]Run actions/setup-java@v4
+2026-10-06T04:30:07.4954899Z with:
+2026-10-06T04:30:07.4955739Z   distribution: temurin
+2026-10-06T04:30:07.4956853Z   java-version: 17
+2026-10-06T04:30:07.4957769Z   java-package: jdk
+2026-10-06T04:30:07.4958687Z   check-latest: false
+2026-10-06T04:30:07.4959614Z   server-id: github
+2026-10-06T04:30:07.4960547Z   server-username: GITHUB_ACTOR
+2026-10-06T04:30:07.4961622Z   server-password: GITHUB_TOKEN
+2026-10-06T04:30:07.4962699Z   overwrite-settings: true
+2026-10-06T04:30:07.4963944Z   job-status: success
+2026-10-06T04:30:07.4972328Z   token: ***
+2026-10-06T04:30:07.4973199Z env:
+2026-10-06T04:30:07.4974157Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-06T04:30:07.4975372Z   GOSUMDB: sum.golang.org
+2026-10-06T04:30:07.4976589Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:07.4978427Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-10-06T04:30:07.4980150Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:07.4981689Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:07.4983225Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:07.4984794Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-10-06T04:30:07.4986118Z ##[endgroup]
+2026-10-06T04:30:07.6717697Z ##[warning]setup-java v4 is deprecated and will no longer receive updates. Please migrate to actions/setup-java@v5.
+2026-10-06T04:30:07.6728832Z ##[group]Installed distributions
+2026-10-06T04:30:07.6831661Z Resolved Java 17.0.20+1 from tool-cache
+2026-10-06T04:30:07.6833136Z Setting Java 17.0.20+1 as the default
+2026-10-06T04:30:07.6872975Z (node:2331) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-06T04:30:07.6875738Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-06T04:30:07.6878573Z Creating toolchains.xml for JDK version 17 from temurin
+2026-10-06T04:30:07.6926630Z Writing to /home/runner/.m2/toolchains.xml
+2026-10-06T04:30:07.6927992Z 
+2026-10-06T04:30:07.6928555Z Java configuration:
+2026-10-06T04:30:07.6929556Z   Distribution: temurin
+2026-10-06T04:30:07.6930534Z   Version: 17.0.20+1
+2026-10-06T04:30:07.6932057Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-06T04:30:07.6933136Z 
+2026-10-06T04:30:07.6934302Z ##[endgroup]
+2026-10-06T04:30:07.6949371Z Creating settings.xml with server-id: github
+2026-10-06T04:30:07.6951628Z Writing to /home/runner/.m2/settings.xml
+2026-10-06T04:30:07.7306404Z ##[group]Run actions/setup-go@v5
+2026-10-06T04:30:07.7308445Z with:
+2026-10-06T04:30:07.7309923Z   go-version-file: native/go.mod
+2026-10-06T04:30:07.7311074Z   cache-dependency-path: native/go.sum
+2026-10-06T04:30:07.7312334Z   check-latest: false
+2026-10-06T04:30:07.7321233Z   token: ***
+2026-10-06T04:30:07.7322110Z   cache: true
+2026-10-06T04:30:07.7323070Z env:
+2026-10-06T04:30:07.7324089Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-06T04:30:07.7325284Z   GOSUMDB: sum.golang.org
+2026-10-06T04:30:07.7326464Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:07.7328323Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-10-06T04:30:07.7329960Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:07.7331465Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:07.7332953Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:07.7334522Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-10-06T04:30:07.7336160Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-06T04:30:07.7338343Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-06T04:30:07.7339834Z ##[endgroup]
+2026-10-06T04:30:07.8687324Z Setup go version spec 1.24.1
+2026-10-06T04:30:07.8718504Z Attempting to download 1.24.1...
+2026-10-06T04:30:07.8811322Z (node:2343) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-06T04:30:07.8814058Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-06T04:30:08.3508708Z matching 1.24.1...
+2026-10-06T04:30:08.3597462Z Acquiring 1.24.1 from https://github.com/actions/go-versions/releases/download/1.24.1-13667719799/go-1.24.1-linux-x64.tar.gz
+2026-10-06T04:30:08.8577935Z Extracting Go...
+2026-10-06T04:30:08.8725859Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/de0033e3-0167-4395-aa64-8d67ef69227d -f /home/runner/work/_temp/66b34145-8820-4a7c-ab19-345e5e495545
+2026-10-06T04:30:10.7270117Z Successfully extracted go to /home/runner/work/_temp/de0033e3-0167-4395-aa64-8d67ef69227d
+2026-10-06T04:30:10.7271324Z Adding to the cache ...
+2026-10-06T04:30:16.0544601Z Successfully cached go to /opt/hostedtoolcache/go/1.24.1/x64
+2026-10-06T04:30:16.0548205Z Added go to the path
+2026-10-06T04:30:16.0550928Z Successfully set up Go version 1.24.1
+2026-10-06T04:30:16.0784077Z [command]/opt/hostedtoolcache/go/1.24.1/x64/bin/go env GOMODCACHE
+2026-10-06T04:30:16.0823811Z [command]/opt/hostedtoolcache/go/1.24.1/x64/bin/go env GOCACHE
+2026-10-06T04:30:16.0866330Z /home/runner/go/pkg/mod
+2026-10-06T04:30:16.0883014Z /home/runner/.cache/go-build
+2026-10-06T04:30:16.1703371Z Cache hit for: setup-go-Linux-x64-ubuntu24-go-1.24.1-08fd0a1e03bd5f8f8408fc5c86ca527da129df47f98b180c77a3204f069032d3
+2026-10-06T04:30:16.1826404Z (node:2343) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-06T04:30:17.2255486Z Received 234881024 of 266581795 (88.1%), 223.8 MBs/sec
+2026-10-06T04:30:17.3569549Z Received 266581795 of 266581795 (100.0%), 224.6 MBs/sec
+2026-10-06T04:30:17.3570932Z Cache Size: ~254 MB (266581795 B)
+2026-10-06T04:30:17.3640474Z [command]/usr/bin/tar -xf /home/runner/work/_temp/2d932da1-f418-4ef2-aa75-3f05eec6a0a6/cache.tzst -P -C /home/runner/work/guoapp/guoapp --use-compress-program unzstd
+2026-10-06T04:30:18.2694440Z Cache restored successfully
+2026-10-06T04:30:18.2814460Z Cache restored from key: setup-go-Linux-x64-ubuntu24-go-1.24.1-08fd0a1e03bd5f8f8408fc5c86ca527da129df47f98b180c77a3204f069032d3
+2026-10-06T04:30:18.2829471Z go version go1.24.1 linux/amd64
+2026-10-06T04:30:18.2829730Z 
+2026-10-06T04:30:18.2830057Z ##[group]go env
+2026-10-06T04:30:18.2983426Z AR='ar'
+2026-10-06T04:30:18.2984543Z CC='gcc'
+2026-10-06T04:30:18.2984992Z CGO_CFLAGS='-O2 -g'
+2026-10-06T04:30:18.2985687Z CGO_CPPFLAGS=''
+2026-10-06T04:30:18.2986068Z CGO_CXXFLAGS='-O2 -g'
+2026-10-06T04:30:18.2986465Z CGO_ENABLED='1'
+2026-10-06T04:30:18.2987001Z CGO_FFLAGS='-O2 -g'
+2026-10-06T04:30:18.2987359Z CGO_LDFLAGS='-O2 -g'
+2026-10-06T04:30:18.2987735Z CXX='g++'
+2026-10-06T04:30:18.2988082Z GCCGO='gccgo'
+2026-10-06T04:30:18.2988436Z GO111MODULE=''
+2026-10-06T04:30:18.2988850Z GOAMD64='v1'
+2026-10-06T04:30:18.2989178Z GOARCH='amd64'
+2026-10-06T04:30:18.2989517Z GOAUTH='netrc'
+2026-10-06T04:30:18.2989835Z GOBIN=''
+2026-10-06T04:30:18.2990199Z GOCACHE='/home/runner/.cache/go-build'
+2026-10-06T04:30:18.2990655Z GOCACHEPROG=''
+2026-10-06T04:30:18.2990986Z GODEBUG=''
+2026-10-06T04:30:18.2991339Z GOENV='/home/runner/.config/go/env'
+2026-10-06T04:30:18.2991750Z GOEXE=''
+2026-10-06T04:30:18.2992056Z GOEXPERIMENT=''
+2026-10-06T04:30:18.2992393Z GOFIPS140='off'
+2026-10-06T04:30:18.2992710Z GOFLAGS=''
+2026-10-06T04:30:18.2993782Z GOGCCFLAGS='-fPIC -m64 -pthread -Wl,--no-gc-sections -fmessage-length=0 -ffile-prefix-map=/tmp/go-build2668782406=/tmp/go-build -gno-record-gcc-switches'
+2026-10-06T04:30:18.2994871Z GOHOSTARCH='amd64'
+2026-10-06T04:30:18.2995211Z GOHOSTOS='linux'
+2026-10-06T04:30:18.2995542Z GOINSECURE=''
+2026-10-06T04:30:18.2995861Z GOMOD='/dev/null'
+2026-10-06T04:30:18.2996231Z GOMODCACHE='/home/runner/go/pkg/mod'
+2026-10-06T04:30:18.2996855Z GONOPROXY=''
+2026-10-06T04:30:18.2997196Z GONOSUMDB=''
+2026-10-06T04:30:18.2997523Z GOOS='linux'
+2026-10-06T04:30:18.2997854Z GOPATH='/home/runner/go'
+2026-10-06T04:30:18.2998226Z GOPRIVATE=''
+2026-10-06T04:30:18.2998881Z GOPROXY='https://proxy.golang.org,direct'
+2026-10-06T04:30:18.2999417Z GOROOT='/opt/hostedtoolcache/go/1.24.1/x64'
+2026-10-06T04:30:18.2999893Z GOSUMDB='sum.golang.org'
+2026-10-06T04:30:18.3000271Z GOTELEMETRY='local'
+2026-10-06T04:30:18.3000711Z GOTELEMETRYDIR='/home/runner/.config/go/telemetry'
+2026-10-06T04:30:18.3001190Z GOTMPDIR=''
+2026-10-06T04:30:18.3001520Z GOTOOLCHAIN='auto'
+2026-10-06T04:30:18.3002105Z GOTOOLDIR='/opt/hostedtoolcache/go/1.24.1/x64/pkg/tool/linux_amd64'
+2026-10-06T04:30:18.3002685Z GOVCS=''
+2026-10-06T04:30:18.3002991Z GOVERSION='go1.24.1'
+2026-10-06T04:30:18.3003319Z GOWORK=''
+2026-10-06T04:30:18.3003658Z PKG_CONFIG='pkg-config'
+2026-10-06T04:30:18.3003979Z 
+2026-10-06T04:30:18.3004467Z ##[endgroup]
+2026-10-06T04:30:18.3375223Z ##[group]Run subosito/flutter-action@v2
+2026-10-06T04:30:18.3375567Z with:
+2026-10-06T04:30:18.3375780Z   flutter-version: 3.47.4
+2026-10-06T04:30:18.3376020Z   channel: stable
+2026-10-06T04:30:18.3376232Z   cache: true
+2026-10-06T04:30:18.3376438Z   architecture: X64
+2026-10-06T04:30:18.3376920Z   pub-cache-path: default
+2026-10-06T04:30:18.3377172Z   dry-run: false
+2026-10-06T04:30:18.3377447Z   git-source: https://github.com/flutter/flutter.git
+2026-10-06T04:30:18.3377765Z env:
+2026-10-06T04:30:18.3377992Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-06T04:30:18.3378299Z   GOSUMDB: sum.golang.org
+2026-10-06T04:30:18.3378603Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:18.3379040Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-10-06T04:30:18.3379553Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:18.3379960Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:18.3380381Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:18.3380772Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-10-06T04:30:18.3381262Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-06T04:30:18.3381748Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-06T04:30:18.3382134Z ##[endgroup]
+2026-10-06T04:30:18.3441993Z ##[start-action display=Make yq tool available on Windows runners;id=__subosito_flutter-action.__run]
+2026-10-06T04:30:18.3453430Z ##[end-action id=__subosito_flutter-action.__run;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-10-06T04:30:18.3455714Z ##[start-action display=Make setup script executable;id=__subosito_flutter-action.__run_2]
+2026-10-06T04:30:18.3500843Z ##[group]Run chmod +x "$GITHUB_ACTION_PATH/setup.sh"
+2026-10-06T04:30:18.3501305Z [36;1mchmod +x "$GITHUB_ACTION_PATH/setup.sh"[0m
+2026-10-06T04:30:18.3821554Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-06T04:30:18.3822008Z env:
+2026-10-06T04:30:18.3822309Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-06T04:30:18.3822676Z   GOSUMDB: sum.golang.org
+2026-10-06T04:30:18.3823023Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:18.3823507Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-10-06T04:30:18.3823990Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:18.3824425Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:18.3824868Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:18.3825307Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-10-06T04:30:18.3825828Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-06T04:30:18.3826377Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-06T04:30:18.3827128Z ##[endgroup]
+2026-10-06T04:30:18.3971847Z ##[end-action id=__subosito_flutter-action.__run_2;outcome=success;conclusion=success;duration_ms=51]
+2026-10-06T04:30:18.3974672Z ##[start-action display=Set action inputs;id=__subosito_flutter-action.flutter-action]
+2026-10-06T04:30:18.4000449Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh -p \
+2026-10-06T04:30:18.4000858Z [36;1m$GITHUB_ACTION_PATH/setup.sh -p \[0m
+2026-10-06T04:30:18.4001158Z [36;1m  -n '3.47.4' \[0m
+2026-10-06T04:30:18.4001386Z [36;1m  -f '' \[0m
+2026-10-06T04:30:18.4001595Z [36;1m  -a 'X64' \[0m
+2026-10-06T04:30:18.4001816Z [36;1m  -k '' \[0m
+2026-10-06T04:30:18.4002015Z [36;1m  -c '' \[0m
+2026-10-06T04:30:18.4002213Z [36;1m  -l '' \[0m
+2026-10-06T04:30:18.4002422Z [36;1m  -d 'default' \[0m
+2026-10-06T04:30:18.4002757Z [36;1m  -g 'https://github.com/flutter/flutter.git' \[0m
+2026-10-06T04:30:18.4003110Z [36;1m  stable[0m
+2026-10-06T04:30:18.4069251Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-06T04:30:18.4069610Z env:
+2026-10-06T04:30:18.4070092Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-06T04:30:18.4070420Z   GOSUMDB: sum.golang.org
+2026-10-06T04:30:18.4070737Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:18.4071187Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-10-06T04:30:18.4071621Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:18.4072001Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:18.4072390Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:18.4072774Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-10-06T04:30:18.4073258Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-06T04:30:18.4073754Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-06T04:30:18.4074139Z ##[endgroup]
+2026-10-06T04:30:18.5746506Z ##[end-action id=__subosito_flutter-action.flutter-action;outcome=success;conclusion=success;duration_ms=177]
+2026-10-06T04:30:18.5752105Z ##[start-action display=Cache Flutter;id=__subosito_flutter-action.cache-flutter]
+2026-10-06T04:30:18.5810360Z ##[group]Run actions/cache@v5
+2026-10-06T04:30:18.5810638Z with:
+2026-10-06T04:30:18.5810903Z   path: /opt/hostedtoolcache/flutter/stable-3.47.4-x64
+2026-10-06T04:30:18.5811371Z   key: flutter-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
+2026-10-06T04:30:18.5811796Z   enableCrossOsArchive: false
+2026-10-06T04:30:18.5812063Z   fail-on-cache-miss: false
+2026-10-06T04:30:18.5812300Z   lookup-only: false
+2026-10-06T04:30:18.5812514Z   save-always: false
+2026-10-06T04:30:18.5812717Z env:
+2026-10-06T04:30:18.5812950Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-06T04:30:18.5813246Z   GOSUMDB: sum.golang.org
+2026-10-06T04:30:18.5813741Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:18.5814162Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-10-06T04:30:18.5814588Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:18.5814963Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:18.5815341Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:18.5815720Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-10-06T04:30:18.5816151Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-06T04:30:18.5816623Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-06T04:30:18.5817336Z ##[endgroup]
+2026-10-06T04:30:18.7869163Z Cache hit for: flutter-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
+2026-10-06T04:30:19.8540641Z Received 230686720 of 1720618134 (13.4%), 220.0 MBs/sec
+2026-10-06T04:30:20.8546489Z Received 482344960 of 1720618134 (28.0%), 229.9 MBs/sec
+2026-10-06T04:30:21.8549935Z Received 734003200 of 1720618134 (42.7%), 233.3 MBs/sec
+2026-10-06T04:30:22.8708216Z Received 985661440 of 1720618134 (57.3%), 234.5 MBs/sec
+2026-10-06T04:30:23.8640178Z Received 1254096896 of 1720618134 (72.9%), 238.7 MBs/sec
+2026-10-06T04:30:24.8658575Z Received 1526726656 of 1720618134 (88.7%), 242.2 MBs/sec
+2026-10-06T04:30:25.5875645Z Received 1720618134 of 1720618134 (100.0%), 243.7 MBs/sec
+2026-10-06T04:30:25.5878826Z Cache Size: ~1641 MB (1720618134 B)
+2026-10-06T04:30:25.5922342Z [command]/usr/bin/tar -xf /home/runner/work/_temp/34fb5322-d82b-4288-ae1a-ea1d732f7a94/cache.tzst -P -C /home/runner/work/guoapp/guoapp --use-compress-program unzstd
+2026-10-06T04:30:30.5011375Z Cache restored successfully
+2026-10-06T04:30:30.9387259Z Cache restored from key: flutter-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
+2026-10-06T04:30:30.9532276Z ##[end-action id=__subosito_flutter-action.cache-flutter;outcome=success;conclusion=success;duration_ms=12377]
+2026-10-06T04:30:30.9535258Z ##[start-action display=Cache pub dependencies;id=__subosito_flutter-action.cache-pub]
+2026-10-06T04:30:31.0745056Z ##[group]Run actions/cache@v5
+2026-10-06T04:30:31.0745565Z with:
+2026-10-06T04:30:31.0745793Z   path: /home/runner/.pub-cache
+2026-10-06T04:30:31.0746490Z   key: flutter-pub-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b-4f2d9e15f937ee8713c1f3993dbd5ead79b6170906737c543425d7b407a7609e
+2026-10-06T04:30:31.0747553Z   enableCrossOsArchive: false
+2026-10-06T04:30:31.0747824Z   fail-on-cache-miss: false
+2026-10-06T04:30:31.0748065Z   lookup-only: false
+2026-10-06T04:30:31.0748281Z   save-always: false
+2026-10-06T04:30:31.0748490Z env:
+2026-10-06T04:30:31.0748741Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-06T04:30:31.0749055Z   GOSUMDB: sum.golang.org
+2026-10-06T04:30:31.0749355Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:31.0749786Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-10-06T04:30:31.0750247Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:31.0750626Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:31.0751017Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:31.0751404Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-10-06T04:30:31.0751851Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-06T04:30:31.0752339Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-06T04:30:31.0752721Z ##[endgroup]
+2026-10-06T04:30:31.3061606Z Cache hit for: flutter-pub-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b-4f2d9e15f937ee8713c1f3993dbd5ead79b6170906737c543425d7b407a7609e
+2026-10-06T04:30:31.8987395Z Received 58833931 of 58833931 (100.0%), 107.5 MBs/sec
+2026-10-06T04:30:31.8988347Z Cache Size: ~56 MB (58833931 B)
+2026-10-06T04:30:31.9024785Z [command]/usr/bin/tar -xf /home/runner/work/_temp/701df5c5-cb07-4859-8e71-53fe50d3eb30/cache.tzst -P -C /home/runner/work/guoapp/guoapp --use-compress-program unzstd
+2026-10-06T04:30:32.9849321Z Cache restored successfully
+2026-10-06T04:30:32.9954482Z Cache restored from key: flutter-pub-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b-4f2d9e15f937ee8713c1f3993dbd5ead79b6170906737c543425d7b407a7609e
+2026-10-06T04:30:33.0045945Z ##[end-action id=__subosito_flutter-action.cache-pub;outcome=success;conclusion=success;duration_ms=2050]
+2026-10-06T04:30:33.0048917Z ##[start-action display=Run setup script;id=__subosito_flutter-action.__run_3]
+2026-10-06T04:30:33.0085600Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh \
+2026-10-06T04:30:33.0085972Z [36;1m$GITHUB_ACTION_PATH/setup.sh \[0m
+2026-10-06T04:30:33.0086273Z [36;1m  -n '3.47.4' \[0m
+2026-10-06T04:30:33.0086511Z [36;1m  -a 'x64' \[0m
+2026-10-06T04:30:33.0087389Z [36;1m  -c '/opt/hostedtoolcache/flutter/stable-3.47.4-x64' \[0m
+2026-10-06T04:30:33.0088021Z [36;1m  -d '/home/runner/.pub-cache' \[0m
+2026-10-06T04:30:33.0088491Z [36;1m  stable[0m
+2026-10-06T04:30:33.0154335Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-06T04:30:33.0154706Z env:
+2026-10-06T04:30:33.0155002Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-06T04:30:33.0155328Z   GOSUMDB: sum.golang.org
+2026-10-06T04:30:33.0155644Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:33.0156102Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-10-06T04:30:33.0156549Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:33.0157148Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:33.0157557Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:33.0157958Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-10-06T04:30:33.0158410Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-06T04:30:33.0158923Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-06T04:30:33.0159317Z ##[endgroup]
+2026-10-06T04:30:33.1654455Z ##[end-action id=__subosito_flutter-action.__run_3;outcome=success;conclusion=success;duration_ms=160]
+2026-10-06T04:30:33.1711690Z ##[group]Run sdk_root="${ANDROID_SDK_ROOT:-$ANDROID_HOME}"
+2026-10-06T04:30:33.1712164Z [36;1msdk_root="${ANDROID_SDK_ROOT:-$ANDROID_HOME}"[0m
+2026-10-06T04:30:33.1712514Z [36;1mndk="$sdk_root/ndk/28.2.13676358"[0m
+2026-10-06T04:30:33.1712807Z [36;1mif [ ! -d "$ndk" ]; then[0m
+2026-10-06T04:30:33.1713279Z [36;1m  sdkmanager=$(find "$sdk_root" -maxdepth 4 -name sdkmanager -type f 2>/dev/null | head -n 1)[0m
+2026-10-06T04:30:33.1713790Z [36;1m  if [ -n "$sdkmanager" ]; then[0m
+2026-10-06T04:30:33.1714116Z [36;1m    yes | "$sdkmanager" "ndk;28.2.13676358"[0m
+2026-10-06T04:30:33.1714412Z [36;1m  fi[0m
+2026-10-06T04:30:33.1714617Z [36;1mfi[0m
+2026-10-06T04:30:33.1714826Z [36;1mif [ -d "$ndk" ]; then[0m
+2026-10-06T04:30:33.1715155Z [36;1m  echo "ANDROID_NDK_HOME=$ndk" >> "$GITHUB_ENV"[0m
+2026-10-06T04:30:33.1715478Z [36;1m  exit 0[0m
+2026-10-06T04:30:33.1715691Z [36;1mfi[0m
+2026-10-06T04:30:33.1715917Z [36;1mls "$sdk_root/ndk" || true[0m
+2026-10-06T04:30:33.1716275Z [36;1mecho "缺少 Android NDK 28.2.13676358：$ndk" >&2[0m
+2026-10-06T04:30:33.1716581Z [36;1mexit 1[0m
+2026-10-06T04:30:33.1782178Z shell: /usr/bin/bash -e {0}
+2026-10-06T04:30:33.1782457Z env:
+2026-10-06T04:30:33.1782730Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-06T04:30:33.1783055Z   GOSUMDB: sum.golang.org
+2026-10-06T04:30:33.1783379Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:33.1783842Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-10-06T04:30:33.1784291Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:33.1784694Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:33.1785093Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:33.1785687Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-10-06T04:30:33.1786134Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-06T04:30:33.1786866Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-06T04:30:33.1787387Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
+2026-10-06T04:30:33.1787777Z   PUB_CACHE: /home/runner/.pub-cache
+2026-10-06T04:30:33.1788045Z ##[endgroup]
+2026-10-06T04:30:33.1921894Z ##[group]Run python scripts/configure_signing.py
+2026-10-06T04:30:33.1922298Z [36;1mpython scripts/configure_signing.py[0m
+2026-10-06T04:30:33.1980344Z shell: /usr/bin/bash -e {0}
+2026-10-06T04:30:33.1980623Z env:
+2026-10-06T04:30:33.1980882Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-06T04:30:33.1981211Z   GOSUMDB: sum.golang.org
+2026-10-06T04:30:33.1981535Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:33.1982005Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-10-06T04:30:33.1982466Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:33.1982860Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:33.1983263Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:33.1983662Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-10-06T04:30:33.1984111Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-06T04:30:33.1984631Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-06T04:30:33.1985135Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
+2026-10-06T04:30:33.1985520Z   PUB_CACHE: /home/runner/.pub-cache
+2026-10-06T04:30:33.1985867Z   ANDROID_NDK_HOME: /usr/local/lib/android/sdk/ndk/28.2.13676358
+2026-10-06T04:30:33.1986225Z   ANDROID_KEYSTORE_BASE64: 
+2026-10-06T04:30:33.1986477Z   ANDROID_KEYSTORE_PASSWORD: 
+2026-10-06T04:30:33.1987036Z   ANDROID_KEY_ALIAS: 
+2026-10-06T04:30:33.1987266Z   ANDROID_KEY_PASSWORD: 
+2026-10-06T04:30:33.1987508Z ##[endgroup]
+2026-10-06T04:30:33.2880893Z 未配置签名 Secrets：生成预览 APK；正式发布请配置固定签名。
+2026-10-06T04:30:33.2955876Z ##[group]Run python scripts/build_android.py 
+2026-10-06T04:30:33.2956303Z [36;1mpython scripts/build_android.py [0m
+2026-10-06T04:30:33.3020103Z shell: /usr/bin/bash -e {0}
+2026-10-06T04:30:33.3020384Z env:
+2026-10-06T04:30:33.3020665Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-06T04:30:33.3020999Z   GOSUMDB: sum.golang.org
+2026-10-06T04:30:33.3021324Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:33.3021782Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-10-06T04:30:33.3022244Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:33.3022643Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:33.3023045Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:30:33.3023462Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-10-06T04:30:33.3023914Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-06T04:30:33.3024446Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-06T04:30:33.3024939Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
+2026-10-06T04:30:33.3025358Z   PUB_CACHE: /home/runner/.pub-cache
+2026-10-06T04:30:33.3025701Z   ANDROID_NDK_HOME: /usr/local/lib/android/sdk/ndk/28.2.13676358
+2026-10-06T04:30:33.3026048Z ##[endgroup]
+2026-10-06T04:30:33.4407446Z Building android/app/src/main/jniLibs/arm64-v8a/libduanju_core.so
+2026-10-06T04:30:57.9161753Z Building android/app/src/main/jniLibs/armeabi-v7a/libduanju_core.so
+2026-10-06T04:31:19.2349095Z Building android/app/src/main/jniLibs/x86_64/libduanju_core.so
+2026-10-06T04:31:41.0392398Z Resolving dependencies...
+2026-10-06T04:31:41.1556065Z Downloading packages...
+2026-10-06T04:31:41.1985874Z   cross_file 0.3.5+5 (0.4.0 available)
+2026-10-06T04:31:41.1986990Z   ffmpeg_kit_flutter_new_min_gpl 2.6.2 (2.6.4 available)
+2026-10-06T04:31:41.1987894Z   material_color_utilities 0.13.0 (0.13.1 available)
+2026-10-06T04:31:41.1988941Z ! media_kit_libs_windows_video 1.0.11+duanju.1 from path packages/media_kit_libs_windows_video (overridden)
+2026-10-06T04:31:41.1989976Z   test_api 0.7.12 (0.7.14 available)
+2026-10-06T04:31:41.1990551Z Got dependencies!
+2026-10-06T04:31:41.1991181Z 4 packages have newer versions incompatible with dependency constraints.
+2026-10-06T04:31:41.1991963Z Try `flutter pub outdated` for more information.
+2026-10-06T04:34:06.7870496Z Running Gradle task 'assembleRelease'...                        
+2026-10-06T04:34:06.7898761Z Downloading file from: https://github.com/media-kit/libmpv-android-video-build/releases/download/v1.1.7/default-arm64-v8a.jar
+2026-10-06T04:34:07.0724892Z Downloading file from: https://github.com/media-kit/libmpv-android-video-build/releases/download/v1.1.7/default-armeabi-v7a.jar
+2026-10-06T04:34:07.2722167Z Downloading file from: https://github.com/media-kit/libmpv-android-video-build/releases/download/v1.1.7/default-x86_64.jar
+2026-10-06T04:34:07.3720302Z Downloading file from: https://github.com/media-kit/libmpv-android-video-build/releases/download/v1.1.7/default-x86.jar
+2026-10-06T04:34:37.1769233Z WARNING: Your app uses the following plugins that apply Kotlin Gradle Plugin (KGP): ffmpeg_kit_flutter_new_min_gpl, nsd_android
+2026-10-06T04:34:37.1778470Z Future versions of Flutter will fail to build if your app uses plugins that apply KGP.
+2026-10-06T04:34:37.1779458Z 
+2026-10-06T04:34:37.1780448Z Please check the changelogs of these plugins and upgrade to a version that supports Built-in Kotlin.
+2026-10-06T04:34:37.1782137Z If no such version exists, report the issue to the plugin. If necessary, here is a guide on filing
+2026-10-06T04:34:37.1784589Z an issue against a plugin: https://docs.flutter.dev/release/breaking-changes/migrate-to-built-in-kotlin/for-app-developers#report-incompatible-kotlin-gradle-plugin-usage-to-plugin-authors
+2026-10-06T04:34:37.1786363Z 
+2026-10-06T04:34:37.1788807Z If you are a plugin author, please migrate your plugin to Built-in Kotlin using this guide: https://docs.flutter.dev/release/breaking-changes/migrate-to-built-in-kotlin/for-plugin-authors
+2026-10-06T04:35:24.2739207Z Font asset "MaterialIcons-Regular.otf" was tree-shaken, reducing it from 1645184 to 21424 bytes (98.7% reduction). Tree-shaking can be disabled by providing the --no-tree-shake-icons flag when building your app.
+2026-10-06T04:35:53.0722265Z Checking the license for package CMake 3.22.1 in /usr/local/lib/android/sdk/licenses
+2026-10-06T04:35:53.0727557Z License for package CMake 3.22.1 accepted.
+2026-10-06T04:35:53.0728815Z Preparing "Install CMake 3.22.1 v.3.22.1".
+2026-10-06T04:35:54.0714012Z "Install CMake 3.22.1 v.3.22.1" ready.
+2026-10-06T04:35:54.0715392Z Installing CMake 3.22.1 in /usr/local/lib/android/sdk/cmake/3.22.1
+2026-10-06T04:35:54.0717032Z "Install CMake 3.22.1 v.3.22.1" complete.
+2026-10-06T04:35:54.3754147Z "Install CMake 3.22.1 v.3.22.1" finished.
+2026-10-06T04:36:37.0728786Z Caught exception: Already watching path: /home/runner/work/guoapp/guoapp/android
+2026-10-06T04:37:58.0715830Z Running Gradle task 'assembleRelease'...                          376.3s
+2026-10-06T04:37:58.4506543Z ✓ Built build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk (40.7MB)
+2026-10-06T04:37:58.7192845Z ✓ Built build/app/outputs/flutter-apk/app-arm64-v8a-release.apk (32.1MB)
+2026-10-06T04:37:58.9784289Z ✓ Built build/app/outputs/flutter-apk/app-x86_64-release.apk (33.8MB)
+2026-10-06T04:37:59.4084191Z /home/runner/work/guoapp/guoapp/dist/android/zhenguojian-0.2.122+2128-arm64-v8a.apk
+2026-10-06T04:37:59.4085648Z /home/runner/work/guoapp/guoapp/dist/android/zhenguojian-0.2.122+2128-armeabi-v7a.apk
+2026-10-06T04:37:59.4086509Z /home/runner/work/guoapp/guoapp/dist/android/zhenguojian-0.2.122+2128-x86_64.apk
+2026-10-06T04:37:59.4295313Z ##[group]Run python scripts/configure_signing.py --clean
+2026-10-06T04:37:59.4295980Z [36;1mpython scripts/configure_signing.py --clean[0m
+2026-10-06T04:37:59.4633918Z shell: /usr/bin/bash -e {0}
+2026-10-06T04:37:59.4634220Z env:
+2026-10-06T04:37:59.4634493Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-06T04:37:59.4634826Z   GOSUMDB: sum.golang.org
+2026-10-06T04:37:59.4635148Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:37:59.4635592Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-10-06T04:37:59.4636028Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:37:59.4636413Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:37:59.4637087Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:37:59.4637480Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-10-06T04:37:59.4638019Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-06T04:37:59.4638511Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-06T04:37:59.4639020Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
+2026-10-06T04:37:59.4639400Z   PUB_CACHE: /home/runner/.pub-cache
+2026-10-06T04:37:59.4639745Z   ANDROID_NDK_HOME: /usr/local/lib/android/sdk/ndk/28.2.13676358
+2026-10-06T04:37:59.4640082Z ##[endgroup]
+2026-10-06T04:37:59.5121836Z ##[group]Run actions/upload-artifact@v4
+2026-10-06T04:37:59.5122153Z with:
+2026-10-06T04:37:59.5122379Z   name: zhenguojian-android
+2026-10-06T04:37:59.5122638Z   path: dist/android/*
+2026-10-06T04:37:59.5122882Z   if-no-files-found: error
+2026-10-06T04:37:59.5123125Z   retention-days: 14
+2026-10-06T04:37:59.5123354Z   compression-level: 6
+2026-10-06T04:37:59.5123580Z   overwrite: false
+2026-10-06T04:37:59.5123825Z   include-hidden-files: false
+2026-10-06T04:37:59.5124076Z env:
+2026-10-06T04:37:59.5124313Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-06T04:37:59.5124625Z   GOSUMDB: sum.golang.org
+2026-10-06T04:37:59.5124952Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:37:59.5125395Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-10-06T04:37:59.5125840Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:37:59.5126234Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:37:59.5127004Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-06T04:37:59.5127472Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-10-06T04:37:59.5127940Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-06T04:37:59.5128440Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-06T04:37:59.5128933Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
+2026-10-06T04:37:59.5129331Z   PUB_CACHE: /home/runner/.pub-cache
+2026-10-06T04:37:59.5129677Z   ANDROID_NDK_HOME: /usr/local/lib/android/sdk/ndk/28.2.13676358
+2026-10-06T04:37:59.5130027Z ##[endgroup]
+2026-10-06T04:37:59.7000866Z (node:11271) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-06T04:37:59.7002091Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-06T04:37:59.7071130Z With the provided path, there will be 4 files uploaded
+2026-10-06T04:37:59.7078160Z Artifact name is valid!
+2026-10-06T04:37:59.7078660Z Root directory input is valid!
+2026-10-06T04:37:59.8997308Z Beginning upload of artifact content to blob storage
+2026-10-06T04:38:00.2009036Z (node:11271) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-06T04:38:00.7514197Z Uploaded bytes 8388608
+2026-10-06T04:38:00.9914866Z Uploaded bytes 16777216
+2026-10-06T04:38:01.2509198Z Uploaded bytes 25165824
+2026-10-06T04:38:01.4105920Z Uploaded bytes 33554432
+2026-10-06T04:38:01.7251799Z Uploaded bytes 41943040
+2026-10-06T04:38:01.9822625Z Uploaded bytes 50331648
+2026-10-06T04:38:02.2025755Z Uploaded bytes 58720256
+2026-10-06T04:38:02.4405758Z Uploaded bytes 67108864
+2026-10-06T04:38:02.7687223Z Uploaded bytes 75497472
+2026-10-06T04:38:02.9815917Z Uploaded bytes 83886080
+2026-10-06T04:38:03.2042679Z Uploaded bytes 92274688
+2026-10-06T04:38:09.2765721Z Uploaded bytes 100663296
+2026-10-06T04:38:09.4040670Z Uploaded bytes 105833706
+2026-10-06T04:38:09.4445416Z Finished uploading artifact content to blob storage!
+2026-10-06T04:38:09.4449310Z SHA256 digest of uploaded artifact zip is f317282e59c64a0c98a222997ce5930175b5d5b72484d6272ee46d0f0a8abc55
+2026-10-06T04:38:09.4451606Z Finalizing artifact upload
+2026-10-06T04:38:09.6837903Z Artifact zhenguojian-android.zip successfully finalized. Artifact ID 11389833436
+2026-10-06T04:38:09.6838880Z Artifact zhenguojian-android has been successfully uploaded! Final size is 105833706 bytes. Artifact ID is 11389833436
+2026-10-06T04:38:09.6849643Z Artifact download URL: https://github.com/xiaobailong6/guoapp/actions/runs/37413673887/artifacts/11389833436
+2026-10-06T04:38:09.7145725Z Post job cleanup.
+2026-10-06T04:38:09.7150407Z ##[start-action display=Cache pub dependencies;id=__be9508fe-0398-46b5-ade1-6fc218aab32c.cache-pub]
+2026-10-06T04:38:11.1654806Z Post job cleanup.
+2026-10-06T04:38:11.3146275Z Cache hit occurred on the primary key flutter-pub-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b-4f2d9e15f937ee8713c1f3993dbd5ead79b6170906737c543425d7b407a7609e, not saving cache.
+2026-10-06T04:38:11.3236187Z ##[end-action id=__be9508fe-0398-46b5-ade1-6fc218aab32c.cache-pub;outcome=success;conclusion=success;duration_ms=1608]
+2026-10-06T04:38:11.3240059Z ##[start-action display=Cache Flutter;id=__be9508fe-0398-46b5-ade1-6fc218aab32c.cache-flutter]
+2026-10-06T04:38:11.3277684Z Post job cleanup.
+2026-10-06T04:38:11.4680662Z Cache hit occurred on the primary key flutter-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b, not saving cache.
+2026-10-06T04:38:11.4748438Z ##[end-action id=__be9508fe-0398-46b5-ade1-6fc218aab32c.cache-flutter;outcome=success;conclusion=success;duration_ms=150]
+2026-10-06T04:38:11.4802058Z Post job cleanup.
+2026-10-06T04:38:11.6188551Z (node:11313) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-06T04:38:11.6189583Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-06T04:38:11.6290779Z [command]/opt/hostedtoolcache/go/1.24.1/x64/bin/go env GOMODCACHE
+2026-10-06T04:38:11.6339432Z [command]/opt/hostedtoolcache/go/1.24.1/x64/bin/go env GOCACHE
+2026-10-06T04:38:11.6373899Z /home/runner/go/pkg/mod
+2026-10-06T04:38:11.6397387Z /home/runner/.cache/go-build
+2026-10-06T04:38:11.6404727Z Cache hit occurred on the primary key setup-go-Linux-x64-ubuntu24-go-1.24.1-08fd0a1e03bd5f8f8408fc5c86ca527da129df47f98b180c77a3204f069032d3, not saving cache.
+2026-10-06T04:38:11.6616475Z Post job cleanup.
+2026-10-06T04:38:11.8081639Z (node:11337) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-06T04:38:11.8082445Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-06T04:38:11.8273449Z Post job cleanup.
+2026-10-06T04:38:11.9665801Z (node:11345) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-06T04:38:11.9667500Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-06T04:38:11.9850195Z Post job cleanup.
+2026-10-06T04:38:12.0827637Z [command]/usr/bin/git version
+2026-10-06T04:38:12.0870998Z git version 2.55.0
+2026-10-06T04:38:12.0945174Z Temporarily overriding HOME='/home/runner/work/_temp/a686c6a9-549c-454a-9b1e-2363ea049411' before making global git config changes
+2026-10-06T04:38:12.0947129Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-06T04:38:12.0952480Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/guoapp/guoapp
+2026-10-06T04:38:12.1000827Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-06T04:38:12.1058173Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-06T04:38:12.1392364Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-06T04:38:12.1416062Z http.https://github.com/.extraheader
+2026-10-06T04:38:12.1430791Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-06T04:38:12.1478544Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-06T04:38:12.1749435Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-06T04:38:12.1795688Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-06T04:38:12.2184612Z Cleaning up orphan processes
+2026-10-06T04:38:12.2512301Z Terminate orphan process: pid (10244) (java)
+2026-10-06T04:38:12.2586239Z Terminate orphan process: pid (10339) (java)
+2026-10-06T04:38:12.2651511Z Terminate orphan process: pid (10486) (java)
+2026-10-06T04:38:12.2666109Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-go@v5, actions/setup-java@v4, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
