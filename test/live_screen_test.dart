@@ -11,8 +11,6 @@ import 'package:shared_preferences_platform_interface/shared_preferences_platfor
 
 /// 合成直播源：不联网，只验证界面与收藏交互。
 class _FakeRepository extends LiveRepository {
-  _FakeRepository();
-
   final List<String> sources = [];
   int channelCalls = 0;
 
@@ -100,12 +98,17 @@ void main() {
   Future<void> pump(
     WidgetTester tester,
     LiveRepository repository,
-    LiveStore store,
-  ) async {
+    LiveStore store, {
+    bool greenMode = false,
+  }) async {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
-          body: LiveScreen(repository: repository, store: store),
+          body: LiveScreen(
+            repository: repository,
+            store: store,
+            greenMode: greenMode,
+          ),
         ),
       ),
     );
@@ -133,7 +136,11 @@ void main() {
     final (store, repository) = await create();
     await pump(tester, repository, store);
 
-    expect(LiveSource.values.length, 1, reason: '两个面板是同一上游的镜像，已合并成一个直播源');
+    expect(
+      LiveSource.values.first.name,
+      '秀果',
+      reason: '两个面板是同一上游的镜像，已合并成一个直播源',
+    );
     expect(repository.sources, [LiveSource.values.first.id]);
     expect(
       find.textContaining(LiveSource.values.first.name),
@@ -161,14 +168,75 @@ void main() {
     expect(find.text('央视IPV4'), findsOneWidget);
   });
 
+  testWidgets('绿色模式下直播整源隐藏并给出可操作空态', (tester) async {
+    final (store, repository) = await create();
+    await pump(tester, repository, store, greenMode: true);
+
+    expect(
+      find.byKey(const ValueKey('live-green-empty')),
+      findsOneWidget,
+      reason: '没有可见直播源时应给出空态，而不是在 .first 上抛异常',
+    );
+    expect(repository.sources, isEmpty, reason: '绿色模式下不应发起任何取源请求');
+    await pump(tester, repository, store, greenMode: false);
+    expect(find.byKey(const ValueKey('live-stage')), findsOneWidget);
+
+    const adultOnly = LiveSource(
+      id: 'adult-fixture',
+      name: '成人源',
+      description: '合成成人源',
+      protocol: LiveProtocol.list,
+      endpoints: ['https://adult.example/list.m3u'],
+      adult: true,
+    );
+    expect(
+      LiveSource.visible(true).map((source) => source.id),
+      isNot(contains('adult-fixture')),
+      reason: '整源标记为成人时绿色模式不展示',
+    );
+    expect(
+      LiveSource.spreadWith(adultOnly, greenMode: false).map((s) => s.id),
+      contains('adult-fixture'),
+    );
+      expect(
+        LiveSource.visible(true),
+        isEmpty,
+        reason: '内置直播源是秀场面板，绿色模式下整体隐藏',
+      );
+      expect(
+        LiveSource.visible(false).map((source) => source.name),
+        contains('秀果'),
+        reason: '关闭绿色模式后直播源恢复可见',
+      );
+
+      expect(
+        LiveSource.hidesCategory('卫视直播', greenMode: true),
+        isFalse,
+        reason: '只有公开电视直播分类在绿色模式下放行',
+      );
+      expect(
+        LiveSource.hidesCategory('十八禁', greenMode: true),
+        isTrue,
+        reason: '秀场分类名以花名为主，白名单之外一律隐藏',
+      );
+      expect(
+        LiveSource.hidesCategory('卡哇伊', greenMode: true),
+        isTrue,
+        reason: '卡哇伊是秀场分类，黑名单列不全，必须靠白名单挡住',
+      );
+      expect(LiveSource.hidesCategory('小黄书', greenMode: true), isTrue);
+      expect(
+        LiveSource.hidesCategory('十八禁', greenMode: false),
+        isFalse,
+        reason: '关闭绿色模式后不再过滤分类',
+      );
+  });
+
   testWidgets('分类栏只有收藏，没有最近入口', (tester) async {
     final (store, repository) = await create();
     await pump(tester, repository, store);
 
-    expect(
-      find.byKey(const ValueKey('live-group-__favourites')),
-      findsOneWidget,
-    );
+    expect(find.byKey(const ValueKey('live-group-__favourites')), findsOneWidget);
     expect(find.text('最近'), findsNothing);
   });
 
@@ -176,18 +244,12 @@ void main() {
     final (store, repository) = await create();
     await pump(tester, repository, store);
 
-    expect(
-      find.byKey(ValueKey('live-channel-${_channel('央视IPV4', 'CCTV1综合').key}')),
-      findsOneWidget,
-    );
+    expect(find.byKey(ValueKey('live-channel-${_channel('央视IPV4', 'CCTV1综合').key}')), findsOneWidget);
 
     await tester.tap(find.byKey(const ValueKey('live-group-satellite')));
     await tester.pumpAndSettle();
 
-    expect(
-      find.byKey(ValueKey('live-channel-${_channel('卫视IPV4', '湖南卫视').key}')),
-      findsOneWidget,
-    );
+    expect(find.byKey(ValueKey('live-channel-${_channel('卫视IPV4', '湖南卫视').key}')), findsOneWidget);
     expect(
       find.byKey(ValueKey('live-channel-${_channel('央视IPV4', 'CCTV1综合').key}')),
       findsNothing,

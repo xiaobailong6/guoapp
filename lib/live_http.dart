@@ -7,6 +7,10 @@ import 'core_bridge.dart';
 import 'live_models.dart';
 
 const liveRequestTimeout = Duration(seconds: 14);
+
+/// 线路预检超时。比正常请求短得多：预检只为排序，慢线路按「不可用」处理，
+/// 不能让用户停在列表页等一条 14 秒的超时。
+const liveRouteProbeTimeout = Duration(seconds: 4);
 const _maxLiveBytes = 8 << 20;
 const _deviceInfo = '{"t":"webPc","v":"1.0","ui":"0","ck":{"sessKeyAsp":""}}';
 

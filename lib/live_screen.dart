@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:media_kit_video/media_kit_video.dart';
 
 import 'app_layout.dart';
+import 'core_bridge.dart';
 import 'live_models.dart';
 import 'live_playback.dart';
 import 'live_player_screen.dart';
@@ -19,11 +20,13 @@ class LiveScreen extends StatefulWidget {
     super.key,
     required this.repository,
     required this.store,
+    this.greenMode = true,
     this.onExitLeft,
   });
 
   final LiveRepository repository;
   final LiveStore store;
+  final bool greenMode;
   final VoidCallback? onExitLeft;
 
   @override
@@ -35,7 +38,7 @@ class _LiveScreenState extends State<LiveScreen> {
   static const _playbackShare = 9;
   static const _listShare = 14;
 
-  LiveSource _source = LiveSource.values.first;
+  LiveSource? _source;
   List<LivePlatform> _platforms = const [];
   List<LiveChannel> _channels = const [];
   String _group = '';
@@ -58,7 +61,7 @@ class _LiveScreenState extends State<LiveScreen> {
     _playback = LivePlaybackController(repository: widget.repository)
       ..addListener(_playbackChanged);
     widget.store.addListener(_storeChanged);
-    _loadPlatforms();
+    _syncSources();
   }
 
   @override
@@ -81,6 +84,44 @@ class _LiveScreenState extends State<LiveScreen> {
     setState(() {
       if (_group == _favouritesId) _channels = widget.store.favourites;
     });
+    // 绿色模式开关会整源改变可见集合，必须重算当前源。
+    final visible = LiveSource.visible(widget.greenMode);
+    if (visible.isEmpty || !visible.any((item) => item.id == _source?.id)) {
+      setState(() {
+        _source = visible.isEmpty ? null : visible.first;
+        _platforms = const [];
+        _channels = const [];
+        _group = '';
+        _lastGood = null;
+        _error = null;
+      });
+      if (_source != null) unawaited(_loadPlatforms());
+    }
+  }
+
+  /// 绿色模式可能把直播源全部挡掉，此时保持空态，不能在 `.first` 上抛异常。
+  @override
+  void didUpdateWidget(covariant LiveScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // 分级限制开关会在运行中改变可见源：开关打开时把全部源挡掉，关掉后
+    // 又该重新出现，所以必须跟着重算，否则直播页会一直停在空态。
+    if (oldWidget.greenMode == widget.greenMode || _source != null) return;
+    _syncSources();
+  }
+
+  void _syncSources() {
+    final visible = LiveSource.visible(widget.greenMode);
+    if (visible.isEmpty) {
+      setState(() {
+        _source = null;
+        _loading = false;
+        _platforms = const [];
+        _channels = const [];
+      });
+      return;
+    }
+    _source = visible.first;
+    unawaited(_loadPlatforms());
   }
 
   List<({String id, String name, int count})> get _entries => [
@@ -97,11 +138,17 @@ class _LiveScreenState extends State<LiveScreen> {
       '直播';
 
   void _applyChannels(List<LiveChannel> channels) {
+    final source = _source;
     _channels = channels;
-    unawaited(_playback.load(_source, channels, autoplay: channels.isNotEmpty));
+    if (source == null) return;
+    unawaited(
+      _playback.load(source, channels, autoplay: channels.isNotEmpty),
+    );
   }
 
   Future<void> _loadPlatforms() async {
+    final source = _source;
+    if (source == null) return;
     final token = ++_generation;
     widget.repository.cancel();
     setState(() {
@@ -114,13 +161,16 @@ class _LiveScreenState extends State<LiveScreen> {
       _page = 1;
     });
     try {
-      final platforms = await widget.repository.platforms(_source);
+      final platforms = _visiblePlatforms(
+        await widget.repository.platforms(source),
+      );
       if (!mounted || token != _generation) return;
+      if (platforms.isEmpty) throw AppFailure('该直播源没有可用分类');
       setState(() {
         _platforms = platforms;
         _loading = false;
       });
-      if (platforms.isNotEmpty) await _loadChannels(platforms.first.id);
+      await _loadChannels(platforms.first.id);
     } catch (error) {
       if (!mounted || token != _generation) return;
       setState(() {
@@ -131,6 +181,8 @@ class _LiveScreenState extends State<LiveScreen> {
   }
 
   Future<void> _loadChannels(String id, {bool append = false}) async {
+    final source = _source;
+    if (source == null) return;
     if (id == _favouritesId) {
       final channels = widget.store.favourites;
       _lastGood = (group: id, channels: channels);
@@ -164,7 +216,7 @@ class _LiveScreenState extends State<LiveScreen> {
     final token = _generation;
     try {
       final channels = await widget.repository.channels(
-        _source,
+        source,
         platform,
         page: page,
       );
@@ -174,7 +226,7 @@ class _LiveScreenState extends State<LiveScreen> {
         _page = page;
         _loading = false;
         _more = false;
-        _hasMore = _source.paginated && channels.length >= 24;
+        _hasMore = _source!.paginated && channels.length >= 24;
         _applyChannels(
           append && !_playback.ready
               ? [..._channels, ...channels]
@@ -186,8 +238,7 @@ class _LiveScreenState extends State<LiveScreen> {
     } catch (error) {
       if (!mounted || token != _generation) return;
       final restore = _lastGood;
-      final fallback =
-          !append && restore != null && restore.channels.isNotEmpty;
+      final fallback = !append && restore != null && restore.channels.isNotEmpty;
       setState(() {
         _loading = false;
         _more = false;
@@ -208,7 +259,7 @@ class _LiveScreenState extends State<LiveScreen> {
   }
 
   void _changeSource(LiveSource source) {
-    if (source.id == _source.id) return;
+    if (source.id == _source?.id) return;
     setState(() => _source = source);
     _loadPlatforms();
   }
@@ -223,10 +274,14 @@ class _LiveScreenState extends State<LiveScreen> {
     }
     final local = _channels.indexWhere((entry) => entry.key == channel.key);
     if (local < 0) return;
-    unawaited(_playback.load(_source, _channels, index: local));
+    final playing = _source;
+    if (playing == null) return;
+    unawaited(_playback.load(playing, _channels, index: local));
   }
 
   Future<void> _openFullscreen() async {
+    final source = _source;
+    if (source == null) return;
     if (_playback.channel == null || _playback.channels.isEmpty) return;
     setState(() => _detached = true);
     await Navigator.push<void>(
@@ -234,7 +289,7 @@ class _LiveScreenState extends State<LiveScreen> {
       playerRoute(
         LivePlayerScreen(
           playback: _playback,
-          source: _source,
+          source: source,
           store: widget.store,
           onExit: () => setState(() => _detached = false),
         ),
@@ -242,6 +297,18 @@ class _LiveScreenState extends State<LiveScreen> {
     );
     if (mounted) setState(() => _detached = false);
   }
+
+  List<LiveSource> get _sources => LiveSource.visible(widget.greenMode);
+
+  /// 绿色模式下隐藏成人分类，收藏入口始终保留在最前。
+  List<LivePlatform> _visiblePlatforms(List<LivePlatform> platforms) => [
+    for (final platform in platforms)
+      if (!LiveSource.hidesCategory(
+        platform.name,
+        greenMode: widget.greenMode,
+      ))
+        platform,
+  ];
 
   void _pickSource() {
     showModalBottomSheet<void>(
@@ -259,14 +326,14 @@ class _LiveScreenState extends State<LiveScreen> {
                 style: Theme.of(context).textTheme.titleMedium,
               ),
             ),
-            for (final source in LiveSource.values)
+            for (final source in _sources)
               ListTile(
                 key: ValueKey('live-source-${source.id}'),
                 leading: Icon(
-                  source.id == _source.id
+                  source.id == _source?.id
                       ? Icons.radio_button_checked_rounded
                       : Icons.radio_button_unchecked_rounded,
-                  color: source.id == _source.id
+                  color: source.id == _source?.id
                       ? Theme.of(context).colorScheme.primary
                       : null,
                 ),
@@ -286,10 +353,21 @@ class _LiveScreenState extends State<LiveScreen> {
   @override
   Widget build(BuildContext context) {
     final television = AppLayout.isTelevision(context);
+    if (_source == null) {
+      return StatusPanel(
+        key: const ValueKey('live-green-empty'),
+        title: '暂无可用直播源',
+        message: '当前没有可用的直播源。',
+        icon: Icons.verified_user_outlined,
+      );
+    }
     return Column(
       children: [
         Expanded(flex: _playbackShare, child: _video(context, television)),
-        Expanded(flex: _listShare, child: _panel(context, television)),
+        Expanded(
+          flex: _listShare,
+          child: _panel(context, television),
+        ),
       ],
     );
   }
@@ -414,10 +492,7 @@ class _LiveScreenState extends State<LiveScreen> {
                   channel.subtitle,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    color: Color(0xB3FFFFFF),
-                    fontSize: 12,
-                  ),
+                  style: const TextStyle(color: Color(0xB3FFFFFF), fontSize: 12),
                 ),
               ),
             ] else
@@ -427,6 +502,14 @@ class _LiveScreenState extends State<LiveScreen> {
                 '线路 ${channel.urls.length}',
                 style: const TextStyle(color: Color(0xB3FFFFFF), fontSize: 12),
               ),
+            // 内嵌播放器此前只能靠点视频区域进全屏，没有可见入口；点播详情页
+            // 的顶部播放器一直有显式全屏按钮，这里补上以保持一致。
+            IconButton(
+              visualDensity: VisualDensity.compact,
+              tooltip: '全屏与旋转',
+              onPressed: () => unawaited(_openFullscreen()),
+              icon: const Icon(Icons.screen_rotation_alt_rounded, size: 20),
+            ),
             IconButton(
               visualDensity: VisualDensity.compact,
               tooltip: favourite ? '取消收藏' : '收藏频道',
@@ -522,8 +605,8 @@ class _LiveScreenState extends State<LiveScreen> {
   String _caption() {
     if (_loading) return '载入中…';
     final channel = _playback.channel;
-    if (channel == null) return '${_source.name} · 选择一个频道';
-    return '${_source.name} · ${channel.group} · '
+    if (channel == null) return '${_source!.name} · 选择一个频道';
+    return '${_source!.name} · ${channel.group} · '
         '${_playback.index + 1}/${_playback.count}';
   }
 
@@ -546,7 +629,7 @@ class _LiveScreenState extends State<LiveScreen> {
     final error = _error;
     if (_platforms.isEmpty && error != null && !_loading) {
       return StatusPanel(
-        title: '${_source.name} 直播源暂时不可用',
+        title: '${_source!.name} 直播源暂时不可用',
         message: error,
         icon: Icons.wifi_off_rounded,
         onRetry: _loadPlatforms,
@@ -571,9 +654,7 @@ class _LiveScreenState extends State<LiveScreen> {
         itemBuilder: (_, index, node, onFocus) => RemoteListTile(
           key: ValueKey('live-group-${entries[index].id}'),
           title: entries[index].name,
-          subtitle: entries[index].count > 0
-              ? '${entries[index].count} 个频道'
-              : '',
+          subtitle: entries[index].count > 0 ? '${entries[index].count} 个频道' : '',
           selected: entries[index].id == _group,
           focusNode: node,
           onFocus: onFocus,
@@ -656,7 +737,9 @@ class _LiveScreenState extends State<LiveScreen> {
     if (_channels.isEmpty) {
       return StatusPanel(
         title: _group == _favouritesId ? '还没有收藏频道' : '没有可用频道',
-        message: _group == _favouritesId ? '播放时点星标即可加入收藏。' : '可以切换其他分类或直播源。',
+        message: _group == _favouritesId
+            ? '播放时点星标即可加入收藏。'
+            : '可以切换其他分类或直播源。',
         icon: Icons.live_tv_rounded,
       );
     }

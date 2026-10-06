@@ -36,7 +36,8 @@ class NostrRelayPool {
   var _started = false;
   var _subscription = 'zhenguo-feed';
 
-  int get connected => _links.where((link) => link.socket != null).length;
+  int get connected =>
+      _links.where((link) => link.socket != null).length;
 
   int get total => _links.length;
 
@@ -264,9 +265,8 @@ class _RelayLink {
     owner._notify();
     _retry?.cancel();
     final delay = Duration(
-      milliseconds: (2000 * (1 << _retries.clamp(0, 4)))
-          .clamp(2000, 30000)
-          .toInt(),
+      milliseconds:
+          (2000 * (1 << _retries.clamp(0, 4))).clamp(2000, 30000).toInt(),
     );
     _retries++;
     _retry = Timer(delay, connect);

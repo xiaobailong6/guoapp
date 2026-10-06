@@ -20,6 +20,7 @@ import 'cover_decoder.dart';
 import 'catalog_updates.dart';
 import 'download_collections.dart';
 import 'resource_settings.dart';
+import 'network_exit.dart';
 import 'library_transfer.dart';
 
 typedef _NativeRequest = Pointer<Utf8> Function(Pointer<Utf8>);
@@ -564,6 +565,23 @@ class NativeRepository extends AppRepository {
         }),
       );
 
+  /// 先用当前出口请求；失败且错误特征指向出口被拒、同时系统开着 VPN 时，
+  /// 临时把进程绑到物理网络重试一次，随后恢复。这样既能让必须本机出口的
+  /// 站源在挂代理时照样可用，也不会影响只有走代理才连得上的站源。
+  Future<String> _invokeNative(String body, Duration limit) async {
+    try {
+      return await Isolate.run(() => _nativeRequest(body)).timeout(limit);
+    } on Object catch (error) {
+      if (!NetworkExit.worthBypassing(error)) rethrow;
+      if (!await NetworkExit.borrow()) rethrow;
+      try {
+        return await Isolate.run(() => _nativeRequest(body)).timeout(limit);
+      } finally {
+        await NetworkExit.release();
+      }
+    }
+  }
+
   Future<Map<String, dynamic>> _call(Map<String, dynamic> input) async {
     try {
       final action = input['action'] as String;
@@ -631,23 +649,22 @@ class NativeRepository extends AppRepository {
         input['force'] = true;
       }
       final body = jsonEncode(input);
-      final encoded = await Isolate.run(() => _nativeRequest(body)).timeout(
-        Duration(
-          seconds: action == 'moveDownloads'
-              ? 620
-              : action == 'danmaku'
-              ? 15
-              : action == 'preload'
-              ? 20
-              : action == 'libraryImport'
-              ? 180
-              : 70,
-        ),
+      final limit = Duration(
+        seconds: action == 'moveDownloads'
+            ? 620
+            : action == 'danmaku'
+            ? 15
+            : action == 'preload'
+            ? 20
+            : action == 'libraryImport'
+            ? 180
+            : 70,
       );
+      final encoded = await _invokeNative(body, limit);
       final response = jsonDecode(encoded) as Map<String, dynamic>;
       if (response['ok'] != true) {
         throw AppFailure(
-          response['error'] as String? ?? '读取失败，请重试',
+          NetworkExit.describe(response['error'] as String? ?? '读取失败，请重试'),
           code: response['code'] as String? ?? '',
         );
       }

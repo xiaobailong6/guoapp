@@ -12,6 +12,8 @@ options = parser.parse_args()
 output = options.output
 with Image.open(root / 'assets/branding/app_icon.png') as source:
     icon = source.convert('RGBA')
+with Image.open(root / 'assets/branding/app_icon_full.png') as source:
+    full_icon = source.convert('RGBA')
 if icon.width != icon.height:
     parser.error('应用图标必须是正方形。')
 opaque_icon = Image.new('RGB', icon.size, icon.getpixel((icon.width // 2, 0))[:3])
@@ -24,8 +26,9 @@ def save(image, name, **options):
 
 for density, size in [('mdpi', 48), ('hdpi', 72), ('xhdpi', 96),
                       ('xxhdpi', 144), ('xxxhdpi', 192)]:
-    save(icon.resize((size, size), Image.Resampling.LANCZOS),
-         f'android/app/src/main/res/mipmap-{density}/ic_launcher.png')
+    for name, image in (('ic_launcher', icon), ('ic_launcher_full', full_icon)):
+        save(image.resize((size, size), Image.Resampling.LANCZOS),
+             f'android/app/src/main/res/mipmap-{density}/{name}.png')
 
 contents = json.loads((root / 'ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json').read_text())
 for entry in contents['images']:
@@ -38,7 +41,7 @@ save(icon.resize((256, 256), Image.Resampling.LANCZOS),
      sizes=[(size, size) for size in (16, 24, 32, 48, 64, 128, 256)])
 font = ImageFont.truetype(str(options.font), 76)
 banner_icon = icon.resize((180, 180), Image.Resampling.LANCZOS)
-for name, resource in [('红果鉴', 'tv_banner'), ('真果鉴', 'tv_banner_all_sources')]:
+for name, resource in [('绿果鉴', 'tv_banner'), ('真果鉴', 'tv_banner_all_sources')]:
     banner = Image.new('RGB', (640, 360), '#101114')
     banner.paste(banner_icon, (44, 90), banner_icon)
     draw = ImageDraw.Draw(banner)

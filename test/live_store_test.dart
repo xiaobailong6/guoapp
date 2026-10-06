@@ -20,8 +20,10 @@ void main() {
     SharedPreferences.resetStatic();
     SharedPreferencesStorePlatform.instance =
         InMemorySharedPreferencesStore.withData(const {});
-    final store = LiveStore(await SharedPreferences.getInstance(), profileId)
-      ..load();
+    final store = LiveStore(
+      await SharedPreferences.getInstance(),
+      profileId,
+    )..load();
     addTearDown(store.dispose);
     return store;
   }
@@ -35,10 +37,7 @@ void main() {
     addTearDown(reloaded.dispose);
     expect(reloaded.favourites.length, 1);
     expect(reloaded.favourites.single.name, 'CCTV1');
-    expect(
-      reloaded.favourites.single.urls.single,
-      'http://a.example/CCTV1.m3u8',
-    );
+    expect(reloaded.favourites.single.urls.single, 'http://a.example/CCTV1.m3u8');
   });
 
   test('再次收藏同一频道即取消', () async {

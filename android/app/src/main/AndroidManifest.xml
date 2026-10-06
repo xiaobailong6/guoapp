@@ -31,12 +31,37 @@
                 android:value="true"/>
             <meta-data android:name="io.flutter.embedding.android.NormalTheme"
                 android:resource="@style/NormalTheme"/>
+            </activity>
+        <activity-alias
+            android:name=".LauncherGreen"
+            android:enabled="true"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher"
+            android:roundIcon="@mipmap/ic_launcher"
+            android:label="${appLabel}"
+            android:banner="${appBanner}"
+            android:targetActivity=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER"/>
             </intent-filter>
-        </activity>
+        </activity-alias>
+        <activity-alias
+            android:name=".LauncherFull"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_full"
+            android:roundIcon="@mipmap/ic_launcher_full"
+            android:label="${appLabelFull}"
+            android:banner="${appBannerFull}"
+            android:targetActivity=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER"/>
+            </intent-filter>
+        </activity-alias>
         <service android:name="com.pravera.flutter_foreground_task.service.ForegroundService"
             android:foregroundServiceType="dataSync" android:exported="false" android:stopWithTask="false"/>
         <meta-data android:name="flutterEmbedding" android:value="2"/>

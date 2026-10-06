@@ -58,7 +58,7 @@ func nativeLibraryExchangeApp() string {
 	if buildAllSources == "true" {
 		return "zhenguojian"
 	}
-	return "hongguojian"
+	return "lvguojian"
 }
 
 func nativeLibraryExchangeText(value string, limit int) string {

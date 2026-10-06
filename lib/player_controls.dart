@@ -68,6 +68,7 @@ class PlayerControls extends StatefulWidget {
     this.onRetryDanmaku,
     this.onPush,
     this.onPictureInPicture,
+    this.onRotate,
     this.enhancement,
   });
 
@@ -85,6 +86,10 @@ class PlayerControls extends StatefulWidget {
   final Future<void> Function() onEpisodes;
   final Future<void> Function() onSpeed;
   final Future<void> Function() onQuality;
+
+  /// 垂直布局下也常驻的旋转入口。直播页整屏都是播放器，没有「退出全屏」
+  /// 这个中间状态可用来暴露旋转按钮，必须单独给一个入口。
+  final VoidCallback? onRotate;
   final double speed;
   final String qualityLabel;
   final VoidCallback onFocusSurface;
@@ -433,10 +438,10 @@ class _PlayerControlsState extends State<PlayerControls> {
               )
             else
               const Spacer(),
-            if (compact)
+            if (compact || widget.onRotate != null)
               _overlayIconButton(
                 tooltip: '旋转与全屏',
-                onPressed: widget.onFullscreen,
+                onPressed: widget.onRotate ?? widget.onFullscreen,
                 icon: Icons.screen_rotation_alt_rounded,
               ),
           ],

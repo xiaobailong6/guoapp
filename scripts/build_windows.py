@@ -8,62 +8,48 @@ from pathlib import Path
 from build_mirrors import china_mirror_environment, mirrored_pub_lockfile
 from app_build import BuildVariant, add_variant_argument
 
-root = Path(__file__).resolve().parents[1]
+
+for stream in (sys.stdout, sys.stderr):
+    if hasattr(stream, 'reconfigure'):
+        stream.reconfigure(encoding='utf-8', errors='replace')
 
 
-def configure_console():
-    for stream in (sys.stdout, sys.stderr):
-        reconfigure = getattr(stream, 'reconfigure', None)
-        if reconfigure:
-            reconfigure(encoding='utf-8', errors='backslashreplace')
-
-
-def find_cmake(build_dir):
-    cache = build_dir / 'CMakeCache.txt'
+def diagnose_install(root, environment):
+    build = root / 'build' / 'windows' / 'x64'
+    for source in (
+        root / 'windows' / 'flutter' / 'ephemeral' / 'icudtl.dat',
+        root / 'windows' / 'flutter' / 'ephemeral' / 'flutter_windows.dll',
+        root / 'windows' / 'runner' / 'duanju_core.dll',
+        root / 'build' / 'flutter_assets',
+        build / 'app.so',
+    ):
+        print(f'Install source: {source} exists={source.exists()}', flush=True)
+    bundle = build / 'runner' / 'Release'
+    if bundle.exists():
+        for path in sorted(bundle.rglob('*')):
+            print('Bundle: ' + str(path.relative_to(bundle)), flush=True)
+    report = build / 'install_error.txt'
+    if report.is_file():
+        print(report.read_text(encoding='utf-8', errors='replace'), flush=True)
+    cache = build / 'CMakeCache.txt'
     if cache.is_file():
         for line in cache.read_text(encoding='utf-8', errors='replace').splitlines():
             if line.startswith('CMAKE_COMMAND:INTERNAL='):
-                candidate = Path(line.split('=', 1)[1])
-                if candidate.is_file():
-                    return str(candidate)
-    return shutil.which('cmake')
+                cmake = line.split('=', 1)[1]
+                script = build / 'cmake_install.cmake'
+                if Path(cmake).is_file() and script.is_file():
+                    subprocess.run([cmake, '-DCMAKE_INSTALL_CONFIG_NAME=Release',
+                                    '-P', str(script)], cwd=build, env=environment,
+                                   check=False)
+                break
 
 
-def diagnose_windows_install(build_dir, env):
-    print('[diagnose] Windows install failed; replaying cmake_install.cmake', flush=True)
-    sources = (root / 'build' / 'native_assets' / 'windows', root / 'build' / 'flutter_assets',
-               root / 'build' / 'windows' / 'app.so', root / 'windows' / 'runner' / 'duanju_core.dll',
-               root / 'windows' / 'flutter' / 'ephemeral' / 'flutter_windows.dll',
-               root / 'windows' / 'flutter' / 'ephemeral' / 'icudtl.dat')
-    for path in sources:
-        state = 'present' if path.exists() else 'missing'
-        print(f'[diagnose] {state} {path}', flush=True)
-    bundle = build_dir / 'runner' / 'Release'
-    if bundle.is_dir():
-        names = ' '.join(sorted(item.name for item in bundle.iterdir()))
-        print('[diagnose] bundle: ' + names, flush=True)
-    else:
-        print(f'[diagnose] bundle missing: {bundle}', flush=True)
-    log = build_dir / 'install_error.txt'
-    if log.is_file():
-        print('[diagnose] install_error.txt:', flush=True)
-        print(log.read_text(encoding='utf-8', errors='replace'), flush=True)
-    cmake = find_cmake(build_dir)
-    script = build_dir / 'cmake_install.cmake'
-    if not cmake or not script.is_file():
-        print(f'[diagnose] cannot replay (cmake={cmake}, script={script.is_file()})', flush=True)
-        return
-    print('[diagnose] replaying install script', flush=True)
-    result = subprocess.run([cmake, '-DBUILD_TYPE=Release', '-P', 'cmake_install.cmake'], cwd=build_dir, env=env)
-    print(f'[diagnose] replay exit code: {result.returncode}', flush=True)
-
-
+root = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser()
 parser.add_argument('--cn-mirrors', action='store_true', help='使用 Flutter 中国镜像')
 add_variant_argument(parser)
 options = parser.parse_args()
 variant = BuildVariant(options.all_sources)
-configure_console()
 environment = os.environ.copy()
 environment.setdefault('GOPROXY', 'https://goproxy.cn,direct')
 environment.setdefault('GOSUMDB', 'off')
@@ -76,9 +62,13 @@ with china_mirror_environment(environment, options.cn_mirrors, gradle=False) as 
                        cwd=root, env=env, check=True)
         subprocess.run([flutter, 'pub', 'get', '--enforce-lockfile'], cwd=root, env=env, check=True)
         try:
-            subprocess.run([flutter, 'build', 'windows', '--release', '--no-pub', '--verbose', *variant.flutter_arguments], cwd=root, env=env, check=True)
+            subprocess.run([flutter, 'build', 'windows', '--release', '--no-pub',
+                            '--verbose', *variant.flutter_arguments], cwd=root, env=env, check=True)
         except subprocess.CalledProcessError:
-            diagnose_windows_install(root / 'build' / 'windows' / 'x64', env)
+            try:
+                diagnose_install(root, env)
+            except OSError as error:
+                print('安装诊断失败：' + str(error), file=sys.stderr)
             raise
         subprocess.run([sys.executable, str(root / 'scripts' / 'package_release.py'), '--platform', 'windows', *variant.arguments],
                        cwd=root, env=env, check=True)

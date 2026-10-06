@@ -99,7 +99,9 @@ void main() {
 
     test('rtmp 线路排在 http 线路之后', () {
       final channels = result.groups.last.channels;
-      final zhejiang = channels.firstWhere((channel) => channel.name == '浙江卫视');
+      final zhejiang = channels.firstWhere(
+        (channel) => channel.name == '浙江卫视',
+      );
       expect(zhejiang.urls.single, 'rtmp://a.example/zhejiang');
       expect(zhejiang.urls.single.startsWith('rtmp'), isTrue);
     });
@@ -115,7 +117,10 @@ void main() {
 
     test('频道 key 在源与分组内稳定', () {
       final channel = result.groups.first.channels.first;
-      expect(channel.key, LiveChannel.makeKey('xiuguo', '央视IPV4', 'CCTV1综合'));
+      expect(
+        channel.key,
+        LiveChannel.makeKey('xiuguo', '央视IPV4', 'CCTV1综合'),
+      );
     });
   });
 
@@ -146,7 +151,9 @@ void main() {
     });
 
     test('同名频道合并线路而不是重复出现', () {
-      final satellite = result.groups.firstWhere((group) => group.name == '卫视');
+      final satellite = result.groups.firstWhere(
+        (group) => group.name == '卫视',
+      );
       expect(satellite.channels.length, 1);
       expect(satellite.channels.single.urls.length, 2);
     });
@@ -173,6 +180,28 @@ void main() {
 
   group('容错', () {
     test('空内容不产生频道', () {
+      final panda = LiveParser.parse(
+        _liveListFixture,
+        source: 'list',
+        defaultGroup: '主播',
+      );
+      expect(panda.groups.length, 1);
+      expect(
+        panda.groups.first.name,
+        '主播',
+        reason: '列表不带分组信息，应按站源指定的默认分组归类',
+      );
+      expect(panda.groups.first.channels.length, 2);
+      expect(
+        panda.groups.first.channels.first.name,
+        'podo0311',
+        reason: '该列表用 #EXTINF:-1 ,ID,名称 三段式，取第一段作频道名',
+      );
+      expect(
+        panda.groups.first.channels.first.urls.first,
+        contains('playlist.live-video.net'),
+      );
+
       expect(LiveParser.parse('', source: 'xiuguo').isEmpty, isTrue);
       expect(LiveParser.parse('   \n  ', source: 'xiuguo').isEmpty, isTrue);
     });
@@ -212,3 +241,13 @@ void main() {
     });
   });
 }
+
+const _liveListFixture = '''
+#列表说明,本站长期使用域名 list.example
+#主播数量：2
+#EXTM3U
+#EXTINF:-1 ,podo0311,podo0311
+https://ffdced10e5f6.usw24.playlist.live-video.net/v1/playlist/AAA.m3u8
+#EXTINF:-1 ,o111na,o111na
+https://ffdced10e5f6.usw23.playlist.live-video.net/v1/playlist/BBB.m3u8
+''';

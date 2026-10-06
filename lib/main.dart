@@ -14,6 +14,7 @@ import 'app_orientation.dart';
 import 'app_theme.dart';
 import 'error_boundary.dart';
 import 'home_screen.dart';
+import 'launcher_icon.dart';
 import 'local_store.dart';
 import 'profiles_screen.dart';
 import 'media_library.dart';
@@ -124,6 +125,7 @@ class _AppBootstrapState extends State<AppBootstrap>
       RecommendationService.current = RecommendationService(preferences);
       await _refreshDevice();
       await repository.initialize();
+      await LauncherIcon.apply(LocalStore(preferences).fullMode);
       if (mounted) {
         setState(() {
           store = LocalStore(preferences);
@@ -226,7 +228,7 @@ class DuanjuApp extends StatelessWidget {
 
   Widget _application() => MaterialApp(
     navigatorKey: navigatorKey,
-    title: appName,
+    title: appEditionName(store?.fullMode ?? false),
     debugShowCheckedModeBanner: false,
     locale: const Locale('zh', 'CN'),
     supportedLocales: const [Locale('zh', 'CN')],
@@ -272,10 +274,10 @@ class DuanjuApp extends StatelessWidget {
     home: store != null
         ? store!.locked
               ? ProfilesScreen(
-                  store: store!,
-                  locked: true,
-                  repository: repository,
-                )
+                store: store!,
+                locked: true,
+                repository: repository,
+              )
               : HomeScreen(
                   key: ValueKey(
                     'profile-${store!.profile.id}-${store!.profileEpoch}',
@@ -297,7 +299,7 @@ class DuanjuApp extends StatelessWidget {
                     ),
                     const SizedBox(height: 24),
                     Text(
-                      bootstrapError ?? '正在打开$appName',
+                      bootstrapError ?? '正在打开${appEditionName(false)}',
                       textAlign: TextAlign.center,
                       style: const TextStyle(fontSize: 18),
                     ),

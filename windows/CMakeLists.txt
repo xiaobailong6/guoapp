@@ -72,6 +72,20 @@ endif()
 set(INSTALL_BUNDLE_LIB_DIR "${CMAKE_INSTALL_PREFIX}/$<CONFIG>")
 set(INSTALL_BUNDLE_DATA_DIR "${INSTALL_BUNDLE_LIB_DIR}/data")
 
+install(CODE "
+  foreach(required IN ITEMS
+      \"${FLUTTER_ICU_DATA_FILE}\"
+      \"${FLUTTER_LIBRARY}\"
+      \"${CMAKE_CURRENT_SOURCE_DIR}/runner/duanju_core.dll\"
+      \"${PROJECT_BUILD_DIR}/flutter_assets\")
+    if(NOT EXISTS \"\${required}\")
+      file(WRITE \"${CMAKE_BINARY_DIR}/install_error.txt\"
+        \"Missing required install source: \${required}\\n\")
+      message(FATAL_ERROR \"Missing required install source: \${required}\")
+    endif()
+  endforeach()
+" COMPONENT Runtime)
+
 install(TARGETS ${BINARY_NAME} RUNTIME DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
   COMPONENT Runtime)
 
@@ -87,38 +101,16 @@ if(PLUGIN_BUNDLED_LIBRARIES)
     COMPONENT Runtime)
 endif()
 
-# Fully re-copy the assets directory on each build to avoid having stale files
-# from a previous install.
-set(FLUTTER_ASSET_DIR_NAME "flutter_assets")
 # Copy the native assets provided by the build.dart from all packages.
-# 该目录仅在依赖声明了 Windows native asset 时存在，缺失时不能中断安装。
 set(NATIVE_ASSETS_DIR "${PROJECT_BUILD_DIR}native_assets/windows/")
-install(CODE "
-  if(NOT EXISTS \"${NATIVE_ASSETS_DIR}\")
-    message(STATUS \"Skipping missing native assets: ${NATIVE_ASSETS_DIR}\")
-  endif()
-  " COMPONENT Runtime)
 install(DIRECTORY "${NATIVE_ASSETS_DIR}"
    DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
    OPTIONAL
    COMPONENT Runtime)
-install(CODE "
-  set(_required
-    \"${CMAKE_CURRENT_SOURCE_DIR}/runner/duanju_core.dll\"
-    \"${FLUTTER_ICU_DATA_FILE}\"
-    \"${FLUTTER_LIBRARY}\"
-    \"${PROJECT_BUILD_DIR}/${FLUTTER_ASSET_DIR_NAME}\"
-  )
-  if(NOT \"\${CMAKE_INSTALL_CONFIG_NAME}\" STREQUAL \"Debug\")
-    list(APPEND _required \"${AOT_LIBRARY}\")
-  endif()
-  foreach(_file IN LISTS _required)
-    if(NOT EXISTS \"\${_file}\")
-      file(APPEND \"${CMAKE_BINARY_DIR}/install_error.txt\" \"missing \${_file}\\n\")
-      message(FATAL_ERROR \"Windows install source is missing: \${_file}\")
-    endif()
-  endforeach()
-  " COMPONENT Runtime)
+
+# Fully re-copy the assets directory on each build to avoid having stale files
+# from a previous install.
+set(FLUTTER_ASSET_DIR_NAME "flutter_assets")
 install(CODE "
   file(REMOVE_RECURSE \"${INSTALL_BUNDLE_DATA_DIR}/${FLUTTER_ASSET_DIR_NAME}\")
   " COMPONENT Runtime)

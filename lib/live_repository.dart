@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'core_bridge.dart';
@@ -17,6 +18,7 @@ class LiveRepository {
   final LiveHttp _http;
   final Map<String, List<LivePlatform>> _platforms = {};
   final Map<String, List<LiveChannel>> _channels = {};
+  final Map<String, List<int>> _routeOrders = {};
   int _generation = 0;
 
   void cancel() {
@@ -31,6 +33,7 @@ class LiveRepository {
   void clear() {
     _platforms.clear();
     _channels.clear();
+    _routeOrders.clear();
   }
 
   Future<List<LivePlatform>> platforms(
@@ -122,10 +125,7 @@ class LiveRepository {
       );
     }
     final all = byId.values.toList();
-    final result = [
-      for (final item in all)
-        if (item.count > 0) item,
-    ];
+    final result = [for (final item in all) if (item.count > 0) item];
     // 上游整体不带频道数字段时不做过滤，避免把整个源误判成没有分类。
     return result.isEmpty ? all : result;
   }
@@ -182,7 +182,78 @@ class LiveRepository {
 
   Future<List<LiveChannel>> _listChannels(LiveSource source) async {
     final text = await _http.get(source.endpoint, headers: source.headers);
-    final parsed = LiveParser.parse(text, source: source.id);
-    return [for (final group in parsed.groups) ...group.channels];
+    final parsed = LiveParser.parse(
+      text,
+      source: source.id,
+      defaultGroup: source.group.isEmpty ? liveUnsortedGroup : source.group,
+    );
+    final channels = [for (final group in parsed.groups) ...group.channels];
+    if (source.proxies.isEmpty) return channels;
+    final expanded = [
+      for (final channel in channels)
+        channel.withUrls([
+          for (final proxy in source.proxies)
+            if (channel.url.isNotEmpty) '$proxy${channel.url}',
+          ...channel.urls,
+        ]),
+    ];
+    final order = await _routeOrder(source, channels.first.url, channels.first.headers);
+    if (order == null) return expanded;
+    return [
+      for (final channel in expanded)
+        channel.withUrls([
+          for (final index in order)
+            if (index < channel.urls.length) channel.urls[index],
+        ]),
+    ];
+  }
+
+  /// 线路可用性取决于用户所处网络，写死的顺序对一部分用户必然是最差顺序：
+  /// 列表型源的首条代理实测要 11 秒才响应，而同一条直连在另一些网络直接 403。
+  /// 因此按「能取到清单 + 响应快」实测排序，取不到清单的线路沉到最后兜底。
+  Future<List<int>?> _routeOrder(
+    LiveSource source,
+    String sample,
+    Map<String, String> headers,
+  ) async {
+    if (source.proxies.isEmpty || sample.isEmpty) return null;
+    final cached = _routeOrders[source.id];
+    if (cached != null) return cached;
+    final total = source.proxies.length + 1;
+    final probes = await Future.wait<Duration?>([
+      for (var index = 0; index < total; index++)
+        _probeRoute(
+          index == total - 1 ? sample : '${source.proxies[index]}$sample',
+          headers,
+        ),
+    ]);
+    final order = List<int>.generate(total, (index) => index)
+      ..sort((left, right) {
+        final a = probes[left];
+        final b = probes[right];
+        if (a == null || b == null) {
+          if (a == null && b == null) return left.compareTo(right);
+          return a == null ? 1 : -1;
+        }
+        final compared = a.compareTo(b);
+        return compared == 0 ? left.compareTo(right) : compared;
+      });
+    _routeOrders[source.id] = order;
+    return order;
+  }
+
+  /// 返回该线路取回播放清单的耗时，取不到返回 null。
+  Future<Duration?> _probeRoute(
+    String url,
+    Map<String, String> headers,
+  ) async {
+    final watch = Stopwatch()..start();
+    try {
+      await _http.get(url, headers: headers).timeout(liveRouteProbeTimeout);
+      return watch.elapsed;
+    } catch (_) {
+      // 预检失败只影响排序，不应该让整个分类加载失败。
+      return null;
+    }
   }
 }

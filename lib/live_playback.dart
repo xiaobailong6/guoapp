@@ -17,11 +17,16 @@ class LivePlaybackController extends ChangeNotifier {
   static const maxRetries = 3;
   static const _reconnectDelay = Duration(seconds: 2);
 
+  /// 起播后迟迟没有画面的判定时限。列表型直播源的代理线路会返回正常清单却
+  /// 一直卡在缓冲，不触发错误事件，只靠 error 回调永远等不到换线。
+  static const _stallTimeout = Duration(seconds: 15);
+
   final LiveRepository repository;
 
   final _screenAwake = ScreenAwake();
   final _subscriptions = <StreamSubscription<dynamic>>[];
   Timer? _reconnect;
+  Timer? _stall;
 
   Player? _player;
   VideoController? _controller;
@@ -40,9 +45,8 @@ class LivePlaybackController extends ChangeNotifier {
   VideoController? get controller => _controller;
   LiveSource? get source => _source;
   List<LiveChannel> get channels => _channels;
-  LiveChannel? get channel => _channels.isEmpty
-      ? null
-      : _channels[_index.clamp(0, _channels.length - 1)];
+  LiveChannel? get channel =>
+      _channels.isEmpty ? null : _channels[_index.clamp(0, _channels.length - 1)];
   int get index => _index;
   int get count => _channels.length;
   bool get loading => _loading;
@@ -66,11 +70,21 @@ class LivePlaybackController extends ChangeNotifier {
     );
     _subscriptions.add(
       player.stream.playing.listen((value) {
-        if (_disposed || !value || _error == null) return;
+        if (_disposed || !value) return;
+        _stall?.cancel();
+        if (_error == null) return;
         _error = null;
         notifyListeners();
       }),
     );
+  }
+
+  void _armStallWatch() {
+    _stall?.cancel();
+    _stall = Timer(_stallTimeout, () {
+      if (_disposed || _error != null) return;
+      _onError('当前线路长时间没有画面');
+    });
   }
 
   /// 切换直播源或分类：重置频道表并按需播放第一条。
@@ -106,6 +120,7 @@ class LivePlaybackController extends ChangeNotifier {
     final source = _source;
     if (source == null) return;
     if (!reconnect) _retries = 0;
+    if (!reconnect && index != _index) _route = 0;
     final token = ++_generation;
     _index = index;
     _loading = true;
@@ -127,6 +142,7 @@ class LivePlaybackController extends ChangeNotifier {
       _loading = false;
       _error = null;
       _screenAwake.enable();
+      _armStallWatch();
       notifyListeners();
     } catch (error) {
       if (_disposed || token != _generation) return;
@@ -173,8 +189,19 @@ class LivePlaybackController extends ChangeNotifier {
   }
 
   void _scheduleReconnect() {
-    if (_retries >= maxRetries) return;
+    final channel = this.channel;
+    // 线路数多于固定重试次数时必须走完整批线路：列表型源的可用线路可能排在
+    // 最后一条，只允许推进 3 次就永远够不到它，用户只能手动一路切过去。
+    final routes = channel?.urls.length ?? 0;
+    final limit = routes > 1 ? routes : maxRetries;
+    if (_retries >= limit) return;
     _retries++;
+    // 实测列表型直播源的代理线路质量波动很大（同一批前缀会交替返回
+    // 404/500 或掉到十几 KB/s），重连必须换线路，否则几次重试全部
+    // 打在同一条已经劣化的线路上，表现为长时间转圈。
+    if (channel != null && channel.urls.length > 1) {
+      _route = (_route + 1) % channel.urls.length;
+    }
     _reconnect?.cancel();
     _reconnect = Timer(_reconnectDelay, () {
       if (!_disposed) unawaited(play(_index, reconnect: true));
@@ -185,6 +212,7 @@ class LivePlaybackController extends ChangeNotifier {
   void dispose() {
     _disposed = true;
     _reconnect?.cancel();
+    _stall?.cancel();
     for (final subscription in _subscriptions) {
       subscription.cancel();
     }

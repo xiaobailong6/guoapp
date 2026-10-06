@@ -35,6 +35,8 @@ class LocalSnapshot {
     'autoExport',
     'exportPosters',
     'forceLogin',
+    'greenMode',
+    'fullMode',
   };
   final SharedPreferences preferences;
   final SnapshotEncoder encoder = SnapshotEncoder();
@@ -80,6 +82,8 @@ class LocalSnapshot {
         'autoExport',
         'exportPosters',
         'forceLogin',
+        'greenMode',
+        'fullMode',
       }.contains(entry.key.split('.').last);
       if (!owns(entry.key) ||
           (boolean ? entry.value is! bool : entry.value is! String)) {

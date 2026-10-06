@@ -3,12 +3,16 @@ import 'dart:convert';
 import 'app_build.dart';
 
 class SourceSite {
-  const SourceSite(this.id, this.name, this.description);
+  const SourceSite(this.id, this.name, this.description, {this.adult = false});
   final String id;
   final String name;
   final String description;
+
+  /// 成人站源。绿色模式开启时不出现在站源管理与选择列表里。
+  final bool adult;
   bool get onlineSearch => id == 'hongguo' || pagedSearch;
   bool get pagedSearch =>
+      id == 'hongguo' ||
       id == 'huangguoai' ||
       id == 'huangju' ||
       id == 'yeguo' ||
@@ -19,13 +23,21 @@ class SourceSite {
     'guanguo',
     'huaguo',
     'niuguo',
-    'piguo',
     'wuguo',
     'maoguo',
     'fanguo',
     'heguo',
     'xingguo',
     'chaoguo',
+    'miguo',
+    'shuangguo',
+    'yanguo',
+    'taoguo',
+    'youguo',
+    'liuguo',
+    'meiguo',
+    'chengguo',
+    'xiaoguo',
   }.contains(id);
   bool get searchSuggestions => id == 'hongguo';
   String get groupId => switch (id) {
@@ -41,7 +53,7 @@ class SourceSite {
   };
 
   static const hongguo = SourceSite('hongguo', '红果', '短剧 · 漫剧 · AI 剧');
-  static const dsd = SourceSite('dsd', '帝果', '分类视频 · 在线搜索');
+  static const dsd = SourceSite('dsd', '帝果', '懂色帝 · AV 网页目录', adult: true);
   static const duanjuValues = [
     SourceSite('yaguo', '芽果', '星芽短剧 · 登录接口'),
     SourceSite('maoguo', '猫果', '七猫短剧 · 签名接口'),
@@ -51,35 +63,55 @@ class SourceSite {
     SourceSite('xingguo', '星果', '星星短剧 · 连载接口'),
     SourceSite('huaguo', '花果', '花生短剧 · 网页目录'),
     SourceSite('niuguo', '牛果', '牛牛短剧 · 分类接口'),
-    SourceSite('piguo', '皮果', 'PTT 短剧 · 网页目录'),
     SourceSite('wuguo', '伍果', '五五短剧 · 网页目录'),
-    SourceSite('chaoguo', '超果', '超短剧 · 网页目录'),
+    SourceSite('chaoguo', '超果', '超短剧 · AI 成人短剧', adult: true),
+    SourceSite('miguo', '米果', '大米星球 · 网页目录'),
+    SourceSite('shuangguo', '爽果', '短剧网 · 网页目录'),
+    SourceSite('yanguo', '艳果', 'AV星球 · 网页目录', adult: true),
+    SourceSite('taoguo', '桃果', '撸鸡鸡 · 网页目录', adult: true),
+    SourceSite('youguo', '柚果', 'Youavhub · 网页目录', adult: true),
+    SourceSite('liuguo', '榴果', '榴莲视频 · 网页目录', adult: true),
+    SourceSite('meiguo', '美果', '唯美精品 · 网页目录', adult: true),
+    SourceSite('chengguo', '城果', '不夜城 · 网页目录', adult: true),
+    SourceSite('xiaoguo', '宵果', '夜色 · 网页目录', adult: true),
+    SourceSite('yingguo', '樱果', 'MissAV · 网页目录', adult: true),
+    SourceSite('luguo', '露果', '撸一天 · 网页目录', adult: true),
+    SourceSite('liguo', '荔果', '日日撸 · 网页目录', adult: true),
+    SourceSite('juguo', '橘果', '海角乱伦 · 网页目录', adult: true),
+    SourceSite('zaoguo', '枣果', '银河视频 · 网页目录', adult: true),
+    SourceSite('ningguo', '柠果', '愛豆AV · 网页目录', adult: true),
+    SourceSite('mangguo', '芒果', '真实人妻 · 网页目录', adult: true),
   ];
   static const knownValues = [
     hongguo,
-    SourceSite('huangdou', '黄豆', '精选短剧'),
-    SourceSite('huangju', '剧果', '热门 · 最新 · 分类短剧'),
-    SourceSite('yeguo', '野果', '分类短剧 · 在线搜索'),
+    SourceSite('huangdou', '豆果', '魔改短剧 · 网页目录', adult: true),
+    SourceSite('huangju', '剧果', '红果黄剧 · AI 成人短剧', adult: true),
+    SourceSite('yeguo', '野果', '野果短剧 · AI 成人短剧', adult: true),
     dsd,
-    SourceSite('huangguo-video', '黄果视频', '视频剧集'),
-    SourceSite('huangguoai', '黄果 AI', 'AI 短剧'),
-    SourceSite('cloudfront', '黄果旧版', '旧 API 剧库'),
+    SourceSite('huangguo-video', '黄果视频', '黄果 · AI 成人短剧', adult: true),
+    SourceSite('huangguoai', '黄果 AI', '黄果 · AI 成人短剧', adult: true),
+    SourceSite('cloudfront', '黄果旧版', '黄果 · 旧 API 剧库', adult: true),
     ...duanjuValues,
   ];
   static const allValues = [
     hongguo,
-    SourceSite('huangdou', '黄豆', '精选短剧'),
-    SourceSite('huangju', '剧果', '热门 · 最新 · 分类短剧'),
-    SourceSite('yeguo', '野果', '分类短剧 · 在线搜索'),
+    SourceSite('huangdou', '豆果', '魔改短剧 · 网页目录', adult: true),
+    SourceSite('huangju', '剧果', '红果黄剧 · AI 成人短剧', adult: true),
+    SourceSite('yeguo', '野果', '野果短剧 · AI 成人短剧', adult: true),
     dsd,
-    SourceSite('huangguo-video', '黄果视频', '视频剧集'),
-    SourceSite('huangguoai', '黄果 AI', 'AI 短剧'),
-    SourceSite('cloudfront', '黄果旧版', '旧 API 剧库'),
+    SourceSite('huangguo-video', '黄果视频', '黄果 · AI 成人短剧', adult: true),
+    SourceSite('huangguoai', '黄果 AI', '黄果 · AI 成人短剧', adult: true),
+    SourceSite('cloudfront', '黄果旧版', '黄果 · 旧 API 剧库', adult: true),
     ...duanjuValues,
   ];
-  static const values = allSourcesEnabled ? knownValues : [hongguo];
+  // 绿色版按 adult 标记自动收口：新增站源只要没标 adult 就会自动进入绿色版。
+  static final values = allSourcesEnabled
+      ? knownValues
+      : allValues.where((site) => !site.adult).toList();
   static bool isAvailable(String id) => values.any((site) => site.id == id);
   static bool isKnown(String id) => allValues.any((site) => site.id == id);
+  static bool isAdult(String id) =>
+      allValues.any((site) => site.id == id && site.adult);
   static SourceSite byId(String id) =>
       allValues.firstWhere((site) => site.id == id, orElse: () => hongguo);
 }

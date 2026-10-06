@@ -61,7 +61,11 @@ class LiveParser {
   static final _genre = RegExp(r'#genre#');
   static final _m3uHeader = RegExp(r'#EXTM3U', caseSensitive: false);
 
-  static LiveParseResult parse(String text, {required String source}) {
+  static LiveParseResult parse(
+    String text, {
+    required String source,
+    String defaultGroup = liveUnsortedGroup,
+  }) {
     if (text.trim().isEmpty) {
       return const LiveParseResult(groups: []);
     }
@@ -72,9 +76,9 @@ class LiveParser {
       if (json != null && !json.isEmpty) return json;
     }
     if (!_genre.hasMatch(normalized) && _m3uHeader.hasMatch(normalized)) {
-      return _parseM3u(normalized, source);
+      return _parseM3u(normalized, source, defaultGroup);
     }
-    return _parseText(normalized, source);
+    return _parseText(normalized, source, defaultGroup);
   }
 
   static bool _isMetaChannel(String name) {
@@ -98,7 +102,11 @@ class LiveParser {
     return line.substring(at + 1).trim();
   }
 
-  static LiveParseResult _parseText(String text, String source) {
+  static LiveParseResult _parseText(
+    String text,
+    String source,
+    String defaultGroup,
+  ) {
     final groups = <_GroupBuilder>[];
     final setters = _Setters();
     for (final raw in text.split('\n')) {
@@ -113,7 +121,7 @@ class LiveParser {
         final name = parts.$1.trim();
         groups.add(
           _GroupBuilder(
-            name.isEmpty || name == '#genre#' ? liveUnsortedGroup : name,
+            name.isEmpty || name == '#genre#' ? defaultGroup : name,
           ),
         );
         continue;
@@ -130,7 +138,7 @@ class LiveParser {
           setters.readHeader(pair.$2!);
         }
         final group = groups.isEmpty
-            ? (groups..add(_GroupBuilder(liveUnsortedGroup))).last
+            ? (groups..add(_GroupBuilder(defaultGroup))).last
             : groups.last;
         final channel = group.channel(name);
         channel.urls.add(url);
@@ -140,7 +148,11 @@ class LiveParser {
     return LiveParseResult(groups: _finalize(groups, source));
   }
 
-  static LiveParseResult _parseM3u(String text, String source) {
+  static LiveParseResult _parseM3u(
+    String text,
+    String source,
+    String defaultGroup,
+  ) {
     final groups = <_GroupBuilder>[];
     final setters = _Setters();
     var epg = '';
@@ -169,7 +181,7 @@ class LiveParser {
         }
         final title = _attribute(raw, 'group-title');
         final target = title == null || title.isEmpty
-            ? liveUnsortedGroup
+            ? defaultGroup
             : title;
         group = groups.where((entry) => entry.name == target).firstOrNull;
         if (group == null) {
@@ -224,12 +236,9 @@ class LiveParser {
     final groups = <_GroupBuilder>[];
     for (final row in rows) {
       if (row is! Map) continue;
-      final raw =
-          row['channel'] ?? row['channels'] ?? row['list'] ?? row['items'];
+      final raw = row['channel'] ?? row['channels'] ?? row['list'] ?? row['items'];
       if (raw is! List) continue;
-      if (groups.any(
-        (entry) => entry.name == _pick(row, const ['group', 'name']),
-      )) {
+      if (groups.any((entry) => entry.name == _pick(row, const ['group', 'name']))) {
         continue;
       }
       final group = _GroupBuilder(_pick(row, const ['group', 'name', 'title']));
@@ -271,10 +280,7 @@ class LiveParser {
       if (!group.isEmpty) groups.add(group);
     }
     if (groups.isEmpty) return null;
-    return LiveParseResult(
-      groups: _finalize(groups, source),
-      format: LiveFormat.json,
-    );
+    return LiveParseResult(groups: _finalize(groups, source), format: LiveFormat.json);
   }
 
   static String _pick(Map row, List<String> keys) {

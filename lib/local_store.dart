@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'app_build.dart';
+import 'launcher_icon.dart';
 import 'local_profiles.dart';
 import 'local_snapshot.dart';
 import 'models.dart';
@@ -135,8 +137,13 @@ class LocalStore extends ChangeNotifier {
   }
 
   bool get canDownload => !locked && (profile.admin || profile.download);
+  /// 绿色模式并进入口本身而不是只过滤站源列表：榜单、搜索、推荐、资料库、
+  /// 下载与局域网同步都有直接按站源 id 取用的路径，只在列表处过滤会漏掉它们。
   bool allowsSource(String source) =>
-      !locked && SourceSite.isAvailable(source) && profile.allows(source);
+      !locked &&
+      SourceSite.isAvailable(source) &&
+      (!greenMode || !SourceSite.isAdult(source)) &&
+      profile.allows(source);
   List<SourceSite> get sources =>
       SourceSite.values.where((site) => allowsSource(site.id)).toList();
 
@@ -264,6 +271,12 @@ class LocalStore extends ChangeNotifier {
   }
 
   bool get autoExport => !locked && (_bool('autoExport') ?? false);
+
+  /// 绿色开关：默认开启，成人点播与成人直播一律不展示。
+  /// 绿果鉴只出绿色内容，完整模式对它没有意义：该版本下这里恒为 false，
+  /// 因此分级限制也不存在关闭的路径。
+  bool get fullMode => allSourcesEnabled && (_bool('fullMode') ?? false);
+  bool get greenMode => !fullMode || (_bool('greenMode') ?? true);
   bool get exportPosters => !locked && (_bool('exportPosters') ?? false);
   String get source {
     if (locked) return '';
@@ -422,6 +435,13 @@ class LocalStore extends ChangeNotifier {
       _setting('exportPosters', value, admin: true);
   Future<void> setAutoExport(bool value) =>
       _setting('autoExport', value, admin: true);
+  Future<void> setGreenMode(bool value) => _setting('greenMode', value);
+  Future<void> setFullMode(bool value) async {
+    if (!allSourcesEnabled) return;
+    if (!value) await _setting('greenMode', true);
+    await _setting('fullMode', value);
+    await LauncherIcon.apply(value);
+  }
   Future<void> setForceLogin(bool value) =>
       _setting('forceLogin', value, admin: true);
   Future<void> setHideVip(bool value) => _setting(_key('hideVip'), value);
@@ -913,6 +933,8 @@ class LocalStore extends ChangeNotifier {
       'displayMode': displayMode,
       'themeMode': themeMode,
       'autoExport': autoExport,
+      'greenMode': greenMode,
+      'fullMode': fullMode,
       'exportPosters': exportPosters,
       'forceLogin': forceLogin,
       'libraries': {
@@ -1040,6 +1062,8 @@ class LocalStore extends ChangeNotifier {
           : 'auto',
       'themeMode': data['themeMode'] as String? ?? themeMode,
       'autoExport': data['autoExport'] == true,
+      'greenMode': data['greenMode'] is bool ? data['greenMode'] as bool : true,
+      'fullMode': data['fullMode'] == true,
       'exportPosters': data['exportPosters'] == true,
       'forceLogin': data['forceLogin'] is bool
           ? data['forceLogin'] as bool

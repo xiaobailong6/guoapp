@@ -14,5 +14,3 @@ linter:
     curly_braces_in_flow_control_structures: false
     prefer_initializing_formals: false
     prefer_interpolation_to_compose_strings: false
-    unnecessary_import: false
-    unused_element_parameter: false

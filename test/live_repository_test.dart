@@ -14,10 +14,7 @@ class _FakeHttp extends LiveHttp {
   final List<String> requested = [];
 
   @override
-  Future<String> get(
-    String url, {
-    Map<String, String> headers = const {},
-  }) async {
+  Future<String> get(String url, {Map<String, String> headers = const {}}) async {
     requested.add(url);
     for (final entry in routes.entries) {
       if (url.contains(entry.key)) return entry.value;
@@ -91,12 +88,11 @@ void main() {
     final platforms = await repository.platforms(source);
     final ids = platforms.map((item) => item.id).toList();
 
-    expect(ids, [
-      'jsonkawayi.txt',
-      'jsonmihu.txt',
-      'jsonfubao.txt',
-      'jsonxiaohongmao.txt',
-    ], reason: '两镜像各自的分类都要保留，龙珠两边都为空要剔除');
+    expect(
+      ids,
+      ['jsonkawayi.txt', 'jsonmihu.txt', 'jsonfubao.txt', 'jsonxiaohongmao.txt'],
+      reason: '两镜像各自的分类都要保留，龙珠两边都为空要剔除',
+    );
     expect(ids, isNot(contains('jsonweishizhibo.txt')));
     expect(ids, isNot(contains('jsonlongzhu.txt')));
   });
@@ -113,7 +109,11 @@ void main() {
     final fubao = platforms.firstWhere((item) => item.id == 'jsonfubao.txt');
 
     expect(fubao.count, 77, reason: '视果记 0 而彩果记 77，应取有内容的一边');
-    expect(fubao.endpoint, contains('hclyz.com'), reason: '要跟随报告有内容的镜像取频道');
+    expect(
+      fubao.endpoint,
+      contains('hclyz.com'),
+      reason: '要跟随报告有内容的镜像取频道',
+    );
   });
 
   test('分类按提供它的镜像取频道', () async {
@@ -126,9 +126,7 @@ void main() {
     addTearDown(repository.dispose);
 
     final platforms = await repository.platforms(source);
-    final only = platforms.firstWhere(
-      (item) => item.id == 'jsonxiaohongmao.txt',
-    );
+    final only = platforms.firstWhere((item) => item.id == 'jsonxiaohongmao.txt');
     final channels = await repository.channels(source, only);
 
     expect(channels.map((item) => item.name), ['主播甲']);
@@ -173,10 +171,7 @@ void main() {
 
     final platforms = await repository.platforms(source);
 
-    expect(platforms.map((item) => item.id), [
-      'jsonkawayi.txt',
-      'jsonmihu.txt',
-    ]);
+    expect(platforms.map((item) => item.id), ['jsonkawayi.txt', 'jsonmihu.txt']);
   });
 
   test('央视与卫视频道被过滤', () async {

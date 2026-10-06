@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:media_kit_video/media_kit_video.dart';
 
 import 'app_layout.dart';
+import 'app_orientation.dart';
 import 'app_theme.dart';
 import 'live_playback.dart';
 import 'live_sources.dart';
@@ -38,6 +39,9 @@ class _LivePlayerScreenState extends State<LivePlayerScreen> {
   late final PlayerInteractions _interactions;
   final _focus = FocusNode();
   bool _panel = false;
+  AppOrientationController? _orientationController;
+  bool _television = false;
+  bool _landscape = true;
 
   LivePlaybackController get _playback => widget.playback;
 
@@ -60,10 +64,47 @@ class _LivePlayerScreenState extends State<LivePlayerScreen> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _television = AppLayout.isTelevision(context);
+    _orientationController = AppOrientationScope.maybeOf(context);
+    unawaited(_applyOrientation());
+  }
+
+  /// 直播流都是横屏，进页面即锁横屏并全屏；旋转按钮在横竖屏之间切换。
+  /// 这一步此前完全缺失：页面只切了系统栏，从没动过设备方向，
+  /// 所以横屏直播既没有旋转入口也无法按视频比例固定方向。
+  Future<void> _applyOrientation() async {
+    if (_television) return;
+    try {
+      await _orientationController?.setPlayback(
+        this,
+        fullscreen: true,
+        aspectRatio: _landscape ? 16 / 9 : 9 / 16,
+      );
+    } catch (_) {
+      // 方向被系统策略拒绝时保持当前方向，不影响播放。
+    }
+  }
+
+  Future<void> _toggleRotate() async {
+    if (_television) return;
+    setState(() => _landscape = !_landscape);
+    await _applyOrientation();
+    if (Platform.isAndroid) {
+      await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+    }
+  }
+
+  @override
   void dispose() {
     _playback.removeListener(_changed);
     _interactions.dispose();
     _focus.dispose();
+    unawaited(
+      (_orientationController?.releasePlayback(this) ?? Future<void>.value())
+          .catchError((Object _) {}),
+    );
     if (Platform.isAndroid) {
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     }
@@ -217,11 +258,12 @@ class _LivePlayerScreenState extends State<LivePlayerScreen> {
             interactions: _interactions,
             enabled: error == null,
             panelOpen: _panel,
-            fullscreen: true,
+            fullscreen: _landscape,
             showOnPlaybackReady: false,
             title: title,
             onTogglePlayback: _toggle,
             swipeEnabled: true,
+            onRotate: _toggleRotate,
             onFullscreen: _exit,
             onBack: _exit,
             onFocusSurface: _focus.requestFocus,

@@ -12,11 +12,14 @@ import android.os.SystemClock
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.ComponentName
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.graphics.Rect
 import android.net.ConnectivityManager
+import android.net.Network
+import android.net.NetworkCapabilities
 import android.net.Uri
 import android.util.Rational
 import android.view.InputDevice
@@ -65,6 +68,53 @@ class MainActivity : FlutterActivity() {
         super.setRequestedOrientation(
             if (televisionMode) ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE else requestedOrientation
         )
+    }
+
+    private fun vpnActive(): Boolean {
+        val manager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        return manager.allNetworks.any { network ->
+            manager.getNetworkCapabilities(network)
+                ?.hasTransport(NetworkCapabilities.TRANSPORT_VPN) == true
+        }
+    }
+
+    private fun physicalNetwork(manager: ConnectivityManager): Network? {
+        return manager.allNetworks.firstOrNull { network ->
+            val capabilities = manager.getNetworkCapabilities(network) ?: return@firstOrNull false
+            if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_VPN)) return@firstOrNull false
+            if (!capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)) {
+                return@firstOrNull false
+            }
+            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)
+        }
+    }
+
+    private fun bindPhysicalNetwork(enabled: Boolean): Boolean {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) return false
+        val manager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (!enabled) return manager.bindProcessToNetwork(null)
+        val target = physicalNetwork(manager) ?: return false
+        return manager.bindProcessToNetwork(target)
+    }
+
+    private fun setLauncherEdition(full: Boolean): Boolean {
+        val green = ComponentName(this, "$packageName.LauncherGreen")
+        val complete = ComponentName(this, "$packageName.LauncherFull")
+        val wanted = if (full) complete else green
+        val dropped = if (full) green else complete
+        packageManager.setComponentEnabledSetting(
+            wanted,
+            PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+            PackageManager.DONT_KILL_APP
+        )
+        packageManager.setComponentEnabledSetting(
+            dropped,
+            PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+            PackageManager.DONT_KILL_APP
+        )
+        return true
     }
 
     private fun playbackPower(): Map<String, Any?> {
@@ -141,6 +191,15 @@ class MainActivity : FlutterActivity() {
                             }
                         }
                         "playbackPower" -> result.success(runCatching { playbackPower() }.getOrNull())
+                        "vpnActive" -> result.success(runCatching { vpnActive() }.getOrDefault(false))
+                        "setLauncherEdition" -> {
+                            val full = call.argument<Boolean>("full") ?: false
+                            result.success(runCatching { setLauncherEdition(full) }.getOrDefault(false))
+                        }
+                        "bindPhysicalNetwork" -> {
+                            val enabled = call.argument<Boolean>("enabled") ?: false
+                            result.success(runCatching { bindPhysicalNetwork(enabled) }.getOrDefault(false))
+                        }
                         "systemProxy" -> {
                             val connection = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
                             val proxy = connection.defaultProxy

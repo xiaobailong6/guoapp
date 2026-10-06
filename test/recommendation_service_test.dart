@@ -82,9 +82,7 @@ void main() {
   late LocalStore store;
   late _FakeRelay relay;
 
-  Future<RecommendationService> attach({
-    Duration publishDelay = const Duration(milliseconds: 20),
-  }) async {
+  Future<RecommendationService> attach({Duration publishDelay = const Duration(milliseconds: 20)}) async {
     final service = RecommendationService(
       preferences,
       publishDelay: publishDelay,
@@ -116,13 +114,12 @@ void main() {
   test('首次进入会生成本机身份并保存', () async {
     final service = await attach();
     expect(service.shortIdentity, isNot('未就绪'));
-    final saved = RecommendationStore(preferences).identity(store.profile.id);
+    final saved = RecommendationStore(
+      preferences,
+    ).identity(store.profile.id);
     expect(saved, isNotNull);
     expect(saved, matches(RegExp(r'^[0-9a-f]{64}$')));
-    expect(
-      NostrIdentity.publicKeyOf(saved!),
-      startsWith(service.shortIdentity),
-    );
+    expect(NostrIdentity.publicKeyOf(saved!), startsWith(service.shortIdentity));
     // 再次进入沿用同一个身份
     service.detach();
     final again = await attach();
@@ -146,7 +143,12 @@ void main() {
     // 单集长剧：只看时长这一条规则也能达标。
     for (var second = 5; second <= 610; second += 5) {
       service.observe(
-        _watch(drama, episode: 1, position: second.toDouble(), duration: 3600),
+        _watch(
+          drama,
+          episode: 1,
+          position: second.toDouble(),
+          duration: 3600,
+        ),
       );
     }
     await Future<void>.delayed(const Duration(milliseconds: 160));
@@ -205,11 +207,7 @@ void main() {
     }
     await Future<void>.delayed(const Duration(milliseconds: 200));
     expect(service.myCount, 3);
-    expect(service.myEntries.map((entry) => entry.id), [
-      'hongguo:3',
-      'hongguo:2',
-      'hongguo:1',
-    ]);
+    expect(service.myEntries.map((entry) => entry.id), ['hongguo:3', 'hongguo:2', 'hongguo:1']);
 
     await service.removeMany([first.id, third.id]);
     await Future<void>.delayed(const Duration(milliseconds: 200));
@@ -494,10 +492,10 @@ void main() {
     service.toggleSource(first.id);
     service.toggleSource(second.id);
     expect(service.selectedSources, {first.id, second.id});
-    expect(service.items.map((row) => row.id).toSet(), {
-      '${first.id}:9',
-      '${second.id}:9',
-    });
+    expect(
+      service.items.map((row) => row.id).toSet(),
+      {'${first.id}:9', '${second.id}:9'},
+    );
 
     service.toggleSource(first.id);
     expect(service.selectedSources, {second.id});

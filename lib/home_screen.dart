@@ -97,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<SourceGroup> get _sourceGroups {
     final groups = SourceGroup.fromSources(widget.store.sources);
     return [
-      if (groups.length > 1) SourceGroup('all', '全部站源', widget.store.sources),
+      if (groups.length > 1) SourceGroup('all', '全部', widget.store.sources),
       ...groups,
     ];
   }
@@ -995,13 +995,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   )
-                : Text(switch (_tab) {
-                    _tabFeed => '在看',
-                    _tabFollow => '追剧',
-                    _tabLive => '直播',
-                    _tabDownloads => '下载',
-                    _ => appName,
-                  }),
+                : Text(
+                    switch (_tab) {
+                      _tabFeed => '在看',
+                      _tabFollow => '追剧',
+                      _tabLive => '直播',
+                      _tabDownloads => '下载',
+                      _ => appEditionName(widget.store.fullMode),
+                    },
+                  ),
             actions: [
               if (_selectionMode) ...[
                 TextButton(
@@ -1022,7 +1024,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   IconButton(
                     key: const ValueKey('feed-refresh'),
                     tooltip: '刷新动态',
-                    onPressed: () => RecommendationService.current?.refresh(),
+                    onPressed: () =>
+                        RecommendationService.current?.refresh(),
                     icon: const Icon(Icons.refresh_rounded),
                   ),
                 if (_tab == _tabFollow)
@@ -1121,18 +1124,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     } else if (value == 'display') {
                       _chooseDisplayMode();
                     } else if (value == 'about') {
-                      showAboutDialog(
+                      showDialog<void>(
                         context: context,
-                        applicationName: appName,
-                        applicationVersion: AppLayout.versionOf(context),
-                        applicationIcon: const Icon(
-                          Icons.play_circle_filled_rounded,
-                          size: 48,
-                          color: Color(0xFFFF765F),
-                        ),
-                        children: [
-                          const Text('独立运行，打开即可浏览和播放。观看记录与追剧收藏保存在当前设备。'),
-                        ],
+                        builder: (_) => _AboutDialog(store: widget.store),
                       );
                     }
                   },
@@ -1160,9 +1154,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Text('设置与备份'),
                     ),
                     const PopupMenuItem(value: 'display', child: Text('界面模式')),
-                    const PopupMenuItem(
+                    PopupMenuItem(
                       value: 'about',
-                      child: Text('关于$appName'),
+                      child: Text('关于${appEditionName(widget.store.fullMode)}'),
                     ),
                   ],
                 ),
@@ -1266,6 +1260,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           key: const ValueKey('live-tab'),
                           repository: _liveRepository,
                           store: _liveStore,
+                          greenMode: widget.store.greenMode,
                           onExitLeft: television
                               ? () => _navKey.currentState?.focusCurrent()
                               : null,
@@ -1700,6 +1695,77 @@ class _HomeScreenState extends State<HomeScreen> {
       onExitDown: _selectionMode ? () => _selectionFocus.requestFocus() : null,
       itemBuilder: (_, index, node, onFocus) =>
           _catalogTile(items[index], focusNode: node, onFocus: onFocus),
+    );
+  }
+}
+
+
+class _AboutDialog extends StatefulWidget {
+  const _AboutDialog({required this.store});
+  final LocalStore store;
+  @override
+  State<_AboutDialog> createState() => _AboutDialogState();
+}
+
+class _AboutDialogState extends State<_AboutDialog> {
+  static const _required = 5;
+  int _taps = 0;
+
+  Future<void> _tapVersion() async {
+    _taps += 1;
+    if (_taps < _required) return;
+    _taps = 0;
+    final navigator = Navigator.of(context);
+    await widget.store.setFullMode(!widget.store.fullMode);
+    if (mounted) navigator.pop();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return AlertDialog(
+      icon: const Icon(
+        Icons.play_circle_filled_rounded,
+        size: 48,
+        color: Color(0xFFFF765F),
+      ),
+      title: Text(appEditionName(widget.store.fullMode)),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          if (allSourcesEnabled)
+            TextButton(
+              key: const ValueKey('about-version'),
+              autofocus: AppLayout.isTelevision(context),
+              style: TextButton.styleFrom(
+                minimumSize: const Size.fromHeight(44),
+              ),
+              onPressed: _tapVersion,
+              child: Text(
+                AppLayout.versionOf(context),
+                style: theme.textTheme.titleSmall,
+              ),
+            )
+          else
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              child: Text(
+                AppLayout.versionOf(context),
+                textAlign: TextAlign.center,
+                style: theme.textTheme.titleSmall,
+              ),
+            ),
+          const SizedBox(height: 8),
+          const Text('独立运行，打开即可浏览和播放。观看记录与追剧收藏保存在当前设备。'),
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('关闭'),
+        ),
+      ],
     );
   }
 }

@@ -413,7 +413,13 @@ func (d *Downloader) fetchProviderText(ctx context.Context, rawURL, referer stri
 			} else {
 				req.Header.Set("Referer", referer)
 			}
+			req.Header.Set("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8")
 			req.Header.Set("Accept-Language", "zh-CN,zh;q=0.9")
+			req.Header.Set("Upgrade-Insecure-Requests", "1")
+			req.Header.Set("Sec-Fetch-Dest", "document")
+			req.Header.Set("Sec-Fetch-Mode", "navigate")
+			req.Header.Set("Sec-Fetch-Site", "same-origin")
+			req.Header.Set("Sec-Fetch-User", "?1")
 			if noCache, _ := ctx.Value(providerTextNoCacheKey{}).(bool); noCache {
 				req.Header.Set("Cache-Control", "no-cache")
 			}

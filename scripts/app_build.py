@@ -11,11 +11,11 @@ class BuildVariant:
 
     @property
     def name(self):
-        return '真果鉴' if self.all_sources else '红果鉴'
+        return '真果鉴' if self.all_sources else '绿果鉴'
 
     @property
     def slug(self):
-        return 'zhenguojian' if self.all_sources else 'hongguojian'
+        return 'zhenguojian' if self.all_sources else 'lvguojian'
 
     @property
     def arguments(self):
@@ -43,7 +43,7 @@ class BuildVariant:
 
 def add_variant_argument(parser):
     parser.add_argument('--all-sources', action='store_true',
-                        help='构建包含全部站源的真果鉴；默认构建仅红果的红果鉴')
+                        help='构建包含全部站源的真果鉴；默认构建只有绿色站源的绿果鉴')
 
 
 def record_native_build(library, variant, *, platform, architecture):
