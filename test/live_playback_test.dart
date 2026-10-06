@@ -27,10 +27,7 @@ https://stream.example/b.m3u8
 
 class _FakeHttp extends LiveHttp {
   @override
-  Future<String> get(
-    String url, {
-    Map<String, String> headers = const {},
-  }) async => _m3u;
+  Future<String> get(String url, {Map<String, String> headers = const {}}) async => _m3u;
 }
 
 /// 按主机名模拟线路质量：列表页正常，命中 dead 前缀的线路取不到播放清单。
@@ -46,10 +43,7 @@ class _RankedHttp extends LiveHttp {
   final bool offline;
 
   @override
-  Future<String> get(
-    String url, {
-    Map<String, String> headers = const {},
-  }) async {
+  Future<String> get(String url, {Map<String, String> headers = const {}}) async {
     if (url.endsWith('/list.m3u')) return _m3u;
     if (offline) throw AppFailure('直播源连接超时');
     for (final host in dead) {
@@ -91,16 +85,8 @@ void main() {
     final urls = channels.first.urls;
     expect(urls, hasLength(3), reason: '失败线路保留为兜底，不能丢线路');
     expect(urls[0], 'https://stream.example/a.m3u8', reason: '最快的可用线路排第一');
-    expect(
-      urls[1],
-      startsWith('https://p2.example/proxy/'),
-      reason: '可用但慢的线路排第二',
-    );
-    expect(
-      urls[2],
-      startsWith('https://p1.example/proxy/'),
-      reason: '取不到清单的线路沉底',
-    );
+    expect(urls[1], startsWith('https://p2.example/proxy/'), reason: '可用但慢的线路排第二');
+    expect(urls[2], startsWith('https://p1.example/proxy/'), reason: '取不到清单的线路沉底');
 
     final plan = await repository.playback(_listSource, channels.first);
     expect(plan.url, urls.first, reason: '默认从实测可用的首条线路起播');
@@ -161,7 +147,11 @@ void main() {
 
     final first = _channel(['https://p1.example/a', 'https://p2.example/a']);
     final second = _channel(['https://p1.example/b', 'https://p2.example/b']);
-    await controller.load(_listSource, [first, second], autoplay: false);
+    await controller.load(
+      _listSource,
+      [first, second],
+      autoplay: false,
+    );
     await controller.playRoute(1);
     expect(controller.route, 1);
 

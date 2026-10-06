@@ -274,10 +274,10 @@ class DuanjuApp extends StatelessWidget {
     home: store != null
         ? store!.locked
               ? ProfilesScreen(
-                  store: store!,
-                  locked: true,
-                  repository: repository,
-                )
+                store: store!,
+                locked: true,
+                repository: repository,
+              )
               : HomeScreen(
                   key: ValueKey(
                     'profile-${store!.profile.id}-${store!.profileEpoch}',

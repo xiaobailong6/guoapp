@@ -1,4 +1,3 @@
-import argparse
 import base64
 import hashlib
 import json
@@ -8,7 +7,7 @@ from pathlib import Path
 
 @dataclass(frozen=True)
 class BuildVariant:
-    all_sources: bool = True
+    all_sources: bool = False
 
     @property
     def name(self):
@@ -20,7 +19,7 @@ class BuildVariant:
 
     @property
     def arguments(self):
-        return [] if self.all_sources else ['--green-only']
+        return ['--all-sources'] if self.all_sources else []
 
     @property
     def flutter_arguments(self):
@@ -39,17 +38,12 @@ class BuildVariant:
             key, separator, value = base64.b64decode(item, validate=True).decode('utf-8').partition('=')
             if separator:
                 values[key] = value
-        if 'ALL_SOURCES' not in values:
-            return cls()
-        return cls(values['ALL_SOURCES'] == 'true')
+        return cls(values.get('ALL_SOURCES') == 'true')
 
 
 def add_variant_argument(parser):
-    parser.add_argument('--green-only', action='store_false', dest='all_sources',
-                        help='构建只包含绿色站源的绿果鉴；省略时为包含全部站源的真果鉴')
-    parser.add_argument('--all-sources', action='store_true', dest='all_sources',
-                        help=argparse.SUPPRESS)
-    parser.set_defaults(all_sources=BuildVariant.all_sources)
+    parser.add_argument('--all-sources', action='store_true',
+                        help='构建包含全部站源的真果鉴；默认构建只有绿色站源的绿果鉴')
 
 
 def record_native_build(library, variant, *, platform, architecture):

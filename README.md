@@ -1,14 +1,6 @@
 # 红果鉴 / 真果鉴
 
-Flutter 多端独立短剧应用，原名“短剧库 APP”。站源请求、解析、下载和播放均在设备上完成，不依赖旧项目或自建服务。当前源码版本：**0.2.122+2128（开发快照）**。
-
-0.2.122 把全站源（35 条）真果鉴改成默认构建版本，绿果鉴改为需要显式指定的版本。`scripts/app_build.py` 的 `BuildVariant.all_sources` 默认值由 `False` 改为 `True`，新增 `--green-only`（`dest` 仍为 `all_sources`，取 `False`），`arguments` 改为全站源返回空、绿果鉴返回 `--green-only`；`--all-sources` 保留为向后兼容的空操作，旧命令与历史文档仍然可用。同步改动：`.github/workflows/build.yml` 的 android / windows / ios 三个矩阵把 `zhenguojian` 放在首位并使用空参数、`lvguojian` 传 `--green-only`；`scripts/build_windows.ps1` 的 `-AllSources` 开关改为 `-GreenOnly`；`android/app/build.gradle.kts` 的 `verifyNativeCore` 提示命令改为绿果鉴侧带 `--green-only`。Dart 侧不变：`lib/app_build.dart` 仍由 `--dart-define=ALL_SOURCES` 取值，Android 的应用名与 TV 横幅本来就按该定义在真果鉴 / 绿果鉴之间切换，因此默认构建直接得到「真果鉴」名称与 `tv_banner_all_sources`。校验强度不降：`verify_native_build`、Gradle `verifyNativeCore` 与 `package_release.py` 仍逐项比对 `allSources`、平台、架构和 SHA-256，混合两版核心会照旧报错。README 同步更新默认命令行示例、PowerShell 开关、iOS 示例、Artifact 表（`zhenguojian-*` 为默认、`lvguojian-*` 为绿果鉴）与 Windows 可执行文件名。`scripts/test_app_build.py` 的三个用例随默认值改写，并新增 `--green-only` 与 `arguments` 传递的断言；本机按约定只做 Python 语法、单元测试与源码收尾同步，Dart 格式化、静态分析、Android / Windows / iOS 构建与设备验收均未执行，仍为开发快照。
-
-0.2.121 修复 Actions run `100686774775` 的 checks 格式阻断。日志中 Python 脚本测试与 enforce-lockfile 已通过，随后 `dart format --language-version 3.12 --output=none --set-exit-if-changed` 判定 43 个 Dart 文件需要排版，退出码为 1；该次尚未执行静态分析和平台构建。本轮下载与 CI 一致的 Dart 3.13.3（Flutter 3.47.4 内置版本）到临时目录，按 `--language-version 3.12` 直接对 `lib`、`test`、`integration_test`、`test_driver` 四个目录执行排版，改写 43 个文件；随后用同一命令复验，164 个文件 0 changed、退出码 0，即 CI 的严格格式检查可通过。因此未改动 `build.yml`，保留原有严格格式检查与静态分析，未引入 CI 侧排版或上传兜底；仅在源码侧完成整理。本轮未在本机编译或运行测试，修复效果待下一次 Actions 确认。
-
-0.2.120 按 `ANDROID_BUILD_FIXES.md` 与 `WINDOWS_BUILD_FIXES.md` 对更新后的源码重新合并构建修复。**Windows**：CMake 安装前缀恢复为纯路径，所有库与 MSVC 运行库安装到配置目录，数据安装到同目录的 `data`，native assets 保持安装期 `OPTIONAL`；缺少必要安装源时输出 `install_error.txt`。构建脚本恢复 UTF-8 控制台、verbose 输出、失败资源清单及 CMake 安装重放；发布版本读取显式指定 UTF-8。包冒烟流程在打开媒体前启用自动视频轨道，并先保存、打印应用报告和进程输出，再按退出码、超时及报告状态判定失败。
-
-**两平台共用项**：恢复三条有效的历史风格 lint 配置，删除两个多余的 `dart:ui` 导入及直播测试中未使用的参数和分支；源码收录规则恢复三份构建修复记录。Actions 的默认版产物名称与当前 `lvguojian` 一致，保留全站源参数、strict_tests 和失败诊断上传。NDK 三处仍为 `28.2.13676358`，锁文件六个修复版本已核对保留，没有覆盖更新后的依赖或业务实现。**验证边界**：本轮仅做 Python 语法及源码配置核对，按项目约定不运行测试或回归；本机 PATH 未提供 Dart/Flutter，Dart 格式化、分析、Android/Windows 构建与设备验收均未执行，仍为开发快照。
+Flutter 多端独立短剧应用，原名“短剧库 APP”。站源请求、解析、下载和播放均在设备上完成，不依赖旧项目或自建服务。当前源码版本：**0.2.119+2125（开发快照）**。
 
 0.2.119 更正一处错误结论，并按反馈收紧首页标签。**桌面图标延迟是平台行为，不是缺陷**：查 AOSP `PackageManagerService.setEnabledSettings` 后确认，`setComponentEnabledSetting` 在带 `DONT_KILL_APP` 时把组件写入 `mPendingBroadcasts` 待发队列，并用 `mHandler.sendMessageDelayed(SEND_PENDING_BROADCAST, broadcastDelay)` 延迟发出，`BROADCAST_DELAY` 是 1 秒、系统启动后 60 秒内为 `BROADCAST_DELAY_DURING_STARTUP` 即 10 秒；只有不带 `DONT_KILL_APP`（即允许杀掉本应用）才走同一调用内的 `sendNowBroadcasts` 立即广播。而且连续两次调用会因 `!mHandler.hasMessages(SEND_PENDING_BROADCAST)` 判定合并成一条广播，计时自首次调用起算。广播到达后 Launcher3 一侧是干净的（`model/PackageUpdatedTask` 的 `OP_UPDATE` 调 `icons/IconCache.updateIconsForPkg`，后者先 `removeIconsForPkg` 再按 `LauncherApps.getActivityList` 重建），vivo 自己的桌面另有图标缓存，这才是名称先到、彩色图标后到、需要手动划动才刷新的原因。该延迟无法在应用侧消除：立即广播与保留进程互斥，`mPendingBroadcasts` 也没有公开冲刷接口。
 
@@ -1027,7 +1019,7 @@ SR-1、SR-2 与 SR-4 已接入源码，小型动漫 CNN 也包含在本轮；SR-
 | 平台 | 包与状态 |
 | --- | --- |
 | Android 8.0+ 手机 | 已装 `0.2.78+2084` 全站源 ARM64 Release：包检查、覆盖安装与启动均通过（vivo V2453A / Android 15，数据保留，logcat 无崩溃）；同时包含 0.2.73 红果 4 MB 以上剧集无法播放的修复、0.2.74 播放常亮修复、0.2.78 音量键暂停修复与短剧站源收录深度补齐，真实站源播放、熄屏、下载与音量键行为待真机验收，保留开发快照状态 |
-| Windows 10/11 x64 | 完整 ZIP 解压后运行 `zhenguojian.exe`，绿果鉴为 `lvguojian.exe`，保留所有 DLL 和 `data`；局域网原生发现依赖 Windows 10 1903+。完整包运行需 Windows / Actions，新增设备互联未验证；0.2.74 起播放常亮改由应用内统一管理（纹理路径关闭 media_kit_video 自带 wakelock），桌面端屏幕保持未验证，也未重新打包 Windows 版 |
+| Windows 10/11 x64 | 完整 ZIP 解压后运行 `hongguojian.exe`，全站源版为 `zhenguojian.exe`，保留所有 DLL 和 `data`；局域网原生发现依赖 Windows 10 1903+。完整包运行需 Windows / Actions，新增设备互联未验证；0.2.74 起播放常亮改由应用内统一管理（纹理路径关闭 media_kit_video 自带 wakelock），桌面端屏幕保持未验证，也未重新打包 Windows 版 |
 | Android TV | 与手机共用 Android 源码；当前源码 `0.2.78+2084` 已随手机包一同构建，未验证；已补强自动识别与电视模式横屏，待电视 / 盒子实机验收；0.2.12 选集 / 设置及 0.2.13 同步仍待集中验证；0.2.74 常亮修复对电视盒子同样生效但未验证 |
 | iOS 15.1+ | 当前源码 `0.2.78+2084`，本轮未验证；已加入工程、Go 核心链接、媒体依赖、文件管理、系统代理桥接、Bonjour / 局域网权限和构建脚本；0.2.40 起 iOS 播放页禁用 media_kit_video 硬件纹理加速以规避 libmpv OpenGL ES 渲染上下文失败直接退出；0.2.74 常亮走 wakelock_plus 的 iOS 插件，待 Xcode 构建与真机验收，没有已签名 IPA |
 
@@ -1048,13 +1040,13 @@ SR-1、SR-2 与 SR-4 已接入源码，小型动漫 CNN 也包含在本轮；SR-
 
 推送 `main` / `master`、`v*` 标签、提交 PR，或手动运行 **Build app packages**，会先检查再构建：
 
-| 真果鉴 Artifact（默认） | 绿果鉴 Artifact（`--green-only`） | 内容 |
+| 红果版 Artifact | 全站源版 Artifact | 内容 |
 | --- | --- | --- |
-| `zhenguojian-android` | `lvguojian-android` | 三种架构 APK 和 SHA256 |
-| `zhenguojian-windows` | `lvguojian-windows` | 完整 ZIP 和 SHA256；从解压包检查原生核心、FFprobe、换封装及播放器启动 |
-| `zhenguojian-ios-unsigned` | `lvguojian-ios-unsigned` | 未签名 `.app` ZIP 和 SHA256，不能直接当已签名 IPA 安装 |
+| `hongguojian-android` | `zhenguojian-android` | 三种架构 APK 和 SHA256 |
+| `hongguojian-windows` | `zhenguojian-windows` | 完整 ZIP 和 SHA256；从解压包检查原生核心、FFprobe、换封装及播放器启动 |
+| `hongguojian-ios-unsigned` | `zhenguojian-ios-unsigned` | 未签名 `.app` ZIP 和 SHA256，不能直接当已签名 IPA 安装 |
 
-Actions 默认构建全站源的真果鉴，矩阵里的另一项传 `--green-only` 构建绿果鉴，Flutter 和 Go 回归也覆盖两种编译配置。产物保留 14 天，不自动创建 GitHub Release。首次平台构建结果以实际 Actions 输出为准。
+Actions 分别传入默认参数与 `--all-sources` 构建两版，Flutter 和 Go 回归也覆盖两种编译配置。产物保留 14 天，不自动创建 GitHub Release。首次平台构建结果以实际 Actions 输出为准。
 
 Android 正式发布持续使用同一签名并递增构建号，在仓库 Secrets 配置：
 
@@ -1065,7 +1057,7 @@ Android 正式发布持续使用同一签名并递增构建号，在仓库 Secre
 | `ANDROID_KEY_ALIAS` | 密钥别名 |
 | `ANDROID_KEY_PASSWORD` | 密钥密码 |
 
-在 GitHub Actions 上未配置这四个 Secrets 时，Android 构建会直接失败（`configure_signing.py` 检测到 CI 环境缺少签名即中止），以保证产物始终用同一正式签名、可与已装版本直接覆盖升级；本机未配置时才回退生成预览 APK，不同构建机的预览签名可能无法相互覆盖。创建签名文件并保存到项目外：
+未配置时生成预览 APK，不同构建机的预览签名可能无法相互覆盖。创建签名文件并保存到项目外：
 
 ~~~sh
 keytool -genkeypair -v -keystore zhenguojian-release.jks -storetype JKS -alias zhenguojian -keyalg RSA -keysize 2048 -validity 10000
@@ -1088,22 +1080,22 @@ Flutter `3.47.4`、Dart `3.12+`、Go `1.24.1+`、Python `3.10+`。Android 需要
 
 ~~~sh
 python3 scripts/build_android.py
-python3 scripts/build_android.py --green-only
+python3 scripts/build_android.py --all-sources
 python3 scripts/build_android.py --abi arm64-v8a
 python3 scripts/build_android.py --cn-mirrors
 ~~~
 
-首条默认生成含全部站源的真果鉴，第二条生成只有绿色站源的绿果鉴。`--green-only` 可以与 `--abi`、`--cn-mirrors` 组合，例如 `python3 scripts/build_android.py --abi arm64-v8a --cn-mirrors`。
+首条默认生成红果鉴，第二条生成含全部站源的真果鉴。`--all-sources` 可以与 `--abi`、`--cn-mirrors` 组合，例如 `python3 scripts/build_android.py --all-sources --abi arm64-v8a --cn-mirrors`。
 
 Windows PowerShell：
 
 ~~~powershell
 .\scripts\build_windows.ps1
-.\scripts\build_windows.ps1 -GreenOnly
+.\scripts\build_windows.ps1 -AllSources
 .\scripts\build_windows.ps1 -ChinaMirrors
 ~~~
 
-Windows 也可运行 `python scripts/build_windows.py`；加 `--green-only` 才是绿果鉴。
+Windows 也可运行 `python scripts/build_windows.py --all-sources`；省略参数为红果版。
 
 国内构建可使用以上镜像开关：Flutter/pub 使用 `storage.flutter-io.cn` / `pub.flutter-io.cn`，Android 的 Google、Maven Central 和 Gradle 插件依赖优先使用阿里云镜像，同时保留官方仓库。已有环境变量优先；镜像配置仅作用于本次构建，保留锁定的依赖版本与 SHA256 校验值；结束后恢复原锁文件并清理临时 Gradle 配置，不改全局代理。GitHub Actions 默认使用官方源。镜像可能有同步延迟，遇到镜像缺失或异常可去掉开关重试；此开关不替代 Flutter SDK 和 Gradle 发行包的初次安装。
 
@@ -1111,7 +1103,7 @@ iOS 未签名构建、只生成核心、或额外生成模拟器核心（不会�
 
 ~~~sh
 python3 scripts/build_ios.py
-python3 scripts/build_ios.py --green-only
+python3 scripts/build_ios.py --all-sources
 python3 scripts/build_ios.py --core-only
 python3 scripts/build_ios.py --core-only --simulator
 ~~~
@@ -1122,7 +1114,7 @@ python3 scripts/build_ios.py --core-only --simulator
 python3 scripts/build_ios.py --export-options /path/to/ExportOptions.plist
 ~~~
 
-产物在 `dist/android`、`dist/windows`、`dist/ios`，全站源版以 `zhenguojian-` 开头，绿果鉴以 `lvguojian-` 开头。iOS 脚本将 Go 核心生成 XCFramework，再经 CocoaPods 链接并检查 FFI 导出符号；媒体库随应用打包。
+产物在 `dist/android`、`dist/windows`、`dist/ios`，红果版以 `hongguojian-` 开头，全站源版以 `zhenguojian-` 开头。iOS 脚本将 Go 核心生成 XCFramework，再经 CocoaPods 链接并检查 FFI 导出符号；媒体库随应用打包。
 
 首次 Android 调试先编译对应架构核心：
 
@@ -1134,7 +1126,7 @@ flutter run
 
 Windows 对应 `--platform windows` 和 `flutter run -d windows`。
 
-直接使用 Flutter 命令调试全站源版时，默认核心已是全站源，直接运行 `flutter run --dart-define=ALL_SOURCES=true` 即可；绿果鉴对应 `build_native.py --green-only` 加 `flutter run --dart-define=ALL_SOURCES=false`，iOS 对应 `build_ios.py --core-only --green-only`。`--all-sources` 仍被接受，等价于省略该参数。脚本会同步设置 Dart 常量和 Go 编译参数。0.2.62 起 Android 打包还要求原生库旁存在 `libduanju_core.build.json`，校验其站源配置、平台、架构和 SHA-256；分发时复核 APK 内核心的哈希。构建记录由 `build_native.py` 自动生成，不纳入源码镜像。直接运行 Flutter 前必须按目标架构和站源版本重新构建核心；应用启动时仍保留一致性检查。
+直接使用 Flutter 命令调试全站源版时，先给 `build_native.py` 加 `--all-sources`，再运行 `flutter run --dart-define=ALL_SOURCES=true`；iOS 对应 `build_ios.py --core-only --all-sources`。切回默认版同样重新构建默认核心，Flutter 参数省略或设为 `--dart-define=ALL_SOURCES=false`。脚本会同步设置 Dart 常量和 Go 编译参数。0.2.62 起 Android 打包还要求原生库旁存在 `libduanju_core.build.json`，校验其站源配置、平台、架构和 SHA-256；分发时复核 APK 内核心的哈希。构建记录由 `build_native.py` 自动生成，不纳入源码镜像。直接运行 Flutter 前必须按目标架构和站源版本重新构建核心；应用启动时仍保留一致性检查。
 
 播放器使用 [media_kit](https://github.com/media-kit/media-kit) / libmpv，合并和导出使用 [FFmpegKit min-gpl](https://github.com/sk3llo/ffmpeg_kit_flutter)，含 FFmpeg、x264 / x265 等 GPL 媒体组件，各组件适用上游许可证。FFmpegKit 不参与正常播放或下载的转码；系统 FFmpeg 只用于开发验证，用户不用另装。
 

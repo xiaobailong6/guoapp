@@ -43,7 +43,11 @@ void main() {
         reason: '关闭绿色模式后成人站源应可选',
       );
     } else {
-      expect(store.fullMode, isFalse, reason: '绿果鉴没有完整模式，点版本号也开不出来');
+      expect(
+        store.fullMode,
+        isFalse,
+        reason: '绿果鉴没有完整模式，点版本号也开不出来',
+      );
       expect(store.greenMode, isTrue, reason: '绿果鉴必须始终是绿色模式');
       expect(
         store.sources.any((source) => source.adult),
@@ -103,41 +107,45 @@ void main() {
     store.dispose();
   });
 
-  test('分级限制过滤收藏与记录，备份仍保留被过滤的条目', () async {
-    final history = [
-      for (final drama in [red, other])
-        WatchEntry(
-          drama: drama,
-          episode: 1,
-          position: 12,
-          duration: 60,
-          updatedAt: DateTime(2026, 9, 19),
-        ).toJson(),
-    ];
-    SharedPreferences.setMockInitialValues({
-      'source': 'huangdou',
-      'favorites': jsonEncode([red.toJson(), other.toJson()]),
-      'history': jsonEncode(history),
-    });
-    final store = LocalStore(await SharedPreferences.getInstance());
-    // 豆果是成人站源，任何版本下绿色模式都不显示它的收藏与记录。
-    expect(store.favorites.map((drama) => drama.id), [red.id]);
-    expect(store.history.map((entry) => entry.drama.id), [red.id]);
-    expect(store.isFavorite(other.id), isFalse);
-    expect(store.watched(other.id) != null, isFalse);
-    await store.toggleFavorite(red);
-    final backup = await store.exportBackup();
-    final library = (jsonDecode(backup)['libraries'] as Map)['default'] as Map;
-    expect((library['favorites'] as List).map((row) => (row as Map)['id']), [
-      other.id,
-    ]);
-    expect(library['history'], hasLength(2));
-    await store.importBackup(backup);
-    expect(store.preferences.getString('source'), 'huangdou');
-    expect(store.history, hasLength(1));
-    expect(store.favorites, isEmpty);
-    store.dispose();
-  });
+  test(
+    '分级限制过滤收藏与记录，备份仍保留被过滤的条目',
+    () async {
+      final history = [
+        for (final drama in [red, other])
+          WatchEntry(
+            drama: drama,
+            episode: 1,
+            position: 12,
+            duration: 60,
+            updatedAt: DateTime(2026, 9, 19),
+          ).toJson(),
+      ];
+      SharedPreferences.setMockInitialValues({
+        'source': 'huangdou',
+        'favorites': jsonEncode([red.toJson(), other.toJson()]),
+        'history': jsonEncode(history),
+      });
+      final store = LocalStore(await SharedPreferences.getInstance());
+      // 豆果是成人站源，任何版本下绿色模式都不显示它的收藏与记录。
+      expect(store.favorites.map((drama) => drama.id), [red.id]);
+      expect(store.history.map((entry) => entry.drama.id), [red.id]);
+      expect(store.isFavorite(other.id), isFalse);
+      expect(store.watched(other.id) != null, isFalse);
+      await store.toggleFavorite(red);
+      final backup = await store.exportBackup();
+      final library =
+          (jsonDecode(backup)['libraries'] as Map)['default'] as Map;
+      expect((library['favorites'] as List).map((row) => (row as Map)['id']), [
+        other.id,
+      ]);
+      expect(library['history'], hasLength(2));
+      await store.importBackup(backup);
+      expect(store.preferences.getString('source'), 'huangdou');
+      expect(store.history, hasLength(1));
+      expect(store.favorites, isEmpty);
+      store.dispose();
+    },
+  );
 
   test(
     'a restored foreign-source profile keeps its identity and permissions',

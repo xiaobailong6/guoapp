@@ -18,7 +18,6 @@ SOURCE_FILES = {
     '.gitattributes', '.gitignore', '.metadata', '.editorconfig',
     'AGENTS.md', 'README.md', 'pubspec.yaml', 'pubspec.lock',
     'analysis_options.yaml', 'l10n.yaml', 'flutter_launcher_icons.yaml',
-    'ACTIONS_FIXES.md', 'ANDROID_BUILD_FIXES.md', 'WINDOWS_BUILD_FIXES.md',
 }
 EXCLUDED_DIRECTORIES = {
     '.git', '.dart_tool', '.pub-cache', '.gradle', '.cxx', '.kotlin',

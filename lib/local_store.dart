@@ -137,7 +137,6 @@ class LocalStore extends ChangeNotifier {
   }
 
   bool get canDownload => !locked && (profile.admin || profile.download);
-
   /// 绿色模式并进入口本身而不是只过滤站源列表：榜单、搜索、推荐、资料库、
   /// 下载与局域网同步都有直接按站源 id 取用的路径，只在列表处过滤会漏掉它们。
   bool allowsSource(String source) =>
@@ -443,7 +442,6 @@ class LocalStore extends ChangeNotifier {
     await _setting('fullMode', value);
     await LauncherIcon.apply(value);
   }
-
   Future<void> setForceLogin(bool value) =>
       _setting('forceLogin', value, admin: true);
   Future<void> setHideVip(bool value) => _setting(_key('hideVip'), value);

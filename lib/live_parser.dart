@@ -180,7 +180,9 @@ class LiveParser {
           continue;
         }
         final title = _attribute(raw, 'group-title');
-        final target = title == null || title.isEmpty ? defaultGroup : title;
+        final target = title == null || title.isEmpty
+            ? defaultGroup
+            : title;
         group = groups.where((entry) => entry.name == target).firstOrNull;
         if (group == null) {
           group = _GroupBuilder(target);
@@ -234,12 +236,9 @@ class LiveParser {
     final groups = <_GroupBuilder>[];
     for (final row in rows) {
       if (row is! Map) continue;
-      final raw =
-          row['channel'] ?? row['channels'] ?? row['list'] ?? row['items'];
+      final raw = row['channel'] ?? row['channels'] ?? row['list'] ?? row['items'];
       if (raw is! List) continue;
-      if (groups.any(
-        (entry) => entry.name == _pick(row, const ['group', 'name']),
-      )) {
+      if (groups.any((entry) => entry.name == _pick(row, const ['group', 'name']))) {
         continue;
       }
       final group = _GroupBuilder(_pick(row, const ['group', 'name', 'title']));
@@ -281,10 +280,7 @@ class LiveParser {
       if (!group.isEmpty) groups.add(group);
     }
     if (groups.isEmpty) return null;
-    return LiveParseResult(
-      groups: _finalize(groups, source),
-      format: LiveFormat.json,
-    );
+    return LiveParseResult(groups: _finalize(groups, source), format: LiveFormat.json);
   }
 
   static String _pick(Map row, List<String> keys) {

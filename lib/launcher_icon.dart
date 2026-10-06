@@ -10,8 +10,7 @@ import 'app_build.dart';
 class LauncherIcon {
   static const _channel = MethodChannel('duanju/device');
 
-  static bool get supported =>
-      allSourcesEnabled && !kIsWeb && Platform.isAndroid;
+  static bool get supported => allSourcesEnabled && !kIsWeb && Platform.isAndroid;
 
   static Future<void> apply(bool full) async {
     if (!supported) return;

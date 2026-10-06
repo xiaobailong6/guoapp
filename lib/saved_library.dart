@@ -213,7 +213,9 @@ class _SavedLibraryState extends State<SavedLibrary> {
         Padding(
           padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
           child: TextField(
-            key: ValueKey(_history ? 'history-search' : 'favorites-search'),
+            key: ValueKey(
+              _history ? 'history-search' : 'favorites-search',
+            ),
             controller: _search,
             onChanged: (_) => setState(() {}),
             textInputAction: TextInputAction.search,
@@ -282,7 +284,9 @@ class _SavedLibraryState extends State<SavedLibrary> {
                   : '还没有追剧'
             : '没有匹配的记录',
         message: all.isEmpty ? '去发现页，挑一部喜欢的短剧。' : '可以更换搜索词或筛选条件。',
-        icon: _history ? Icons.history_rounded : Icons.bookmark_border_rounded,
+        icon: _history
+            ? Icons.history_rounded
+            : Icons.bookmark_border_rounded,
       );
       return LayoutBuilder(
         builder: (context, constraints) {
@@ -327,7 +331,9 @@ class _SavedLibraryState extends State<SavedLibrary> {
           }
           final padding = constraints.maxWidth < 600 ? 16.0 : 24.0;
           return CustomScrollView(
-            key: PageStorageKey('saved-$_history-$_filter-${_search.text}'),
+            key: PageStorageKey(
+              'saved-$_history-$_filter-${_search.text}',
+            ),
             slivers: [
               SliverToBoxAdapter(child: Column(children: header)),
               if (items.isEmpty)

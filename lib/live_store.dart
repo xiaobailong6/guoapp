@@ -17,7 +17,8 @@ class LiveStore extends ChangeNotifier {
   bool get ready => _ready;
   List<LiveChannel> get favourites => List.unmodifiable(_favourites);
   List<LiveChannel> get recent => List.unmodifiable(_recent);
-  bool isFavourite(String key) => _favourites.any((entry) => entry.key == key);
+  bool isFavourite(String key) =>
+      _favourites.any((entry) => entry.key == key);
 
   String _scope(String key) =>
       profileId == 'default' ? key : 'profile.$profileId.$key';

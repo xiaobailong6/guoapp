@@ -26,10 +26,10 @@ void main() {
   });
 
   test('电视模式始终锁横屏，不参与旋转', () {
-    expect(AppOrientationController.orientations(television: true), [
-      DeviceOrientation.landscapeLeft,
-      DeviceOrientation.landscapeRight,
-    ]);
+    expect(
+      AppOrientationController.orientations(television: true),
+      [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight],
+    );
   });
 
   test('已下线的熊果不再出现在直播源里', () {

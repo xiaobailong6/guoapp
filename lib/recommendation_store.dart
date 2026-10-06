@@ -230,7 +230,9 @@ class RecommendationStore {
       }
       final legacy = '${decoded['source'] ?? ''}';
       return (
-        sources: legacy.isEmpty || legacy == 'all' ? <String>{} : {legacy},
+        sources: legacy.isEmpty || legacy == 'all'
+            ? <String>{}
+            : {legacy},
         category: category,
         chosen: true,
       );

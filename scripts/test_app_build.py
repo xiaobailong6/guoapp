@@ -1,8 +1,6 @@
-import argparse
 import base64
 import os
 from pathlib import Path
-import platform
 import plistlib
 import runpy
 import shutil
@@ -12,7 +10,7 @@ import tempfile
 import unittest
 from unittest import mock
 
-from app_build import BuildVariant, add_variant_argument, record_native_build, verify_native_build
+from app_build import BuildVariant, record_native_build, verify_native_build
 from configure_ios_branding import configure
 
 
@@ -38,12 +36,12 @@ class AppBuildTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, '内容与构建记录不一致'):
                 verify_native_build(library, BuildVariant(True))
 
-    def test_omitted_or_true_flag_builds_the_full_edition(self):
-        for encoded in ['', dart_defines('ALL_SOURCES=true'), dart_defines('OTHER=true')]:
+    def test_omitted_or_false_flag_keeps_hongguo_only(self):
+        for encoded in ['', dart_defines('ALL_SOURCES=false'), dart_defines('OTHER=true')]:
             variant = BuildVariant.from_dart_defines(encoded)
-            self.assertTrue(variant.all_sources)
-            self.assertEqual(variant.name, '真果鉴')
-            self.assertEqual(variant.slug, 'zhenguojian')
+            self.assertFalse(variant.all_sources)
+            self.assertEqual(variant.name, '绿果鉴')
+            self.assertEqual(variant.slug, 'lvguojian')
 
     def test_full_edition_decodes_among_other_flutter_defines(self):
         variant = BuildVariant.from_dart_defines(dart_defines(
@@ -51,33 +49,6 @@ class AppBuildTests(unittest.TestCase):
         self.assertTrue(variant.all_sources)
         self.assertEqual(variant.name, '真果鉴')
         self.assertEqual(variant.slug, 'zhenguojian')
-
-    def test_false_flag_selects_the_green_edition(self):
-        for encoded in [dart_defines('ALL_SOURCES=false'),
-                        dart_defines('OTHER=中文', 'ALL_SOURCES=false')]:
-            variant = BuildVariant.from_dart_defines(encoded)
-            self.assertFalse(variant.all_sources)
-            self.assertEqual(variant.name, '绿果鉴')
-            self.assertEqual(variant.slug, 'lvguojian')
-
-    def test_variant_arguments_carry_the_green_edition_to_child_builds(self):
-        self.assertEqual(BuildVariant(True).arguments, [])
-        self.assertEqual(BuildVariant(False).arguments, ['--green-only'])
-        for enabled in [True, False]:
-            arguments = BuildVariant(enabled).flutter_arguments
-            self.assertEqual(arguments, ['--dart-define=ALL_SOURCES=' + str(enabled).lower()])
-
-    def test_build_scripts_parse_the_green_flag_and_keep_the_legacy_one(self):
-        parser = argparse.ArgumentParser()
-        add_variant_argument(parser)
-        for arguments, expected in [
-            ([], True),
-            (['--all-sources'], True),
-            (['--green-only'], False),
-            (['--green-only', '--all-sources'], True),
-        ]:
-            with self.subTest(arguments=arguments):
-                self.assertEqual(parser.parse_args(arguments).all_sources, expected)
 
     def test_ios_branding_can_switch_editions_without_replacing_bundle_identity(self):
         with tempfile.TemporaryDirectory() as temporary:
@@ -116,13 +87,12 @@ class AppBuildTests(unittest.TestCase):
     def test_android_and_windows_propagate_one_edition_to_core_flutter_and_package(self):
         root = Path(__file__).resolve().parent
         for target in ['android', 'windows']:
-            for enabled in [True, False]:
+            for enabled in [False, True]:
                 with self.subTest(target=target, all_sources=enabled):
                     script = root / f'build_{target}.py'
-                    arguments = [str(script)] + ([] if enabled else ['--green-only'])
+                    arguments = [str(script)] + (['--all-sources'] if enabled else [])
                     with mock.patch.object(sys, 'argv', arguments), \
                             mock.patch.dict(os.environ, {'PATH': '/tools'}, clear=True), \
-                            mock.patch('platform.system', return_value='Windows'), \
                             mock.patch('shutil.which', return_value='/tools/flutter'), \
                             mock.patch('subprocess.run') as run:
                         runpy.run_path(str(script), run_name='__main__')
@@ -130,8 +100,8 @@ class AppBuildTests(unittest.TestCase):
                     native = next(call for call in calls if any(str(arg).endswith('build_native.py') for arg in call))
                     flutter = next(call for call in calls if 'build' in call)
                     package = next(call for call in calls if any(str(arg).endswith('package_release.py') for arg in call))
-                    self.assertEqual('--green-only' in native, not enabled)
-                    self.assertEqual('--green-only' in package, not enabled)
+                    self.assertEqual('--all-sources' in native, enabled)
+                    self.assertEqual('--all-sources' in package, enabled)
                     self.assertIn('--dart-define=ALL_SOURCES=' + str(enabled).lower(), flutter)
                     self.assertIn('core.buildAllSources=' + str(enabled).lower(), BuildVariant(enabled).linker_flags)
 

@@ -18,6 +18,7 @@
 | `analysis_options.yaml` | 保留三条有效的历史风格 lint 关闭配置及已有分析设置 | 后两条诊断最终直接修复了源码，详见下文 |
 | Dart 源码及测试 | 按 Dart 3.12 整理排版，清理未使用参数和多余导入 | 更新源码后仍需实际格式化，固定 CI 参数本身不会重排源码 |
 | `scripts/package_release.py` | 显式 UTF-8 读取 pubspec 版本 | 此改动两平台共享，主要解决 Windows 编码问题 |
+| `scripts/configure_signing.py` | CI 缺 Secrets 时中止构建；解码后校验 JKS/PKCS12 文件头魔数 | 升级签名密钥时保留四个 Secret 名称与魔数校验 |
 
 NDK 三处版本是本轮核对确认保留的耦合配置，不表示三份文件本轮都重新改写过。
 
@@ -127,6 +128,53 @@ python scripts/build_android.py --all-sources --abi arm64-v8a
 产物在 `dist/android/`：`<edition>-<version>-<abi>.apk` 和 `SHA256SUMS.txt`。发布脚本检查 APK 内核心、Flutter、mpv、FFmpeg 库及原生核心记录与打包字节一致性，保留这些校验。
 
 Actions 签名由 `configure_signing.py` 使用仓库 Secrets 注入，之后 `if: always()` 清理签名文件。保留现有 Secret 名称，不将密钥、key.properties 或签名文件写入复用文档及源码归档。
+
+### 本轮签名改动：固定正式签名与提前报错
+
+为让 GitHub Actions 每次产物都用同一正式签名（Android 更新 APK 可直接覆盖升级、无需先卸载），`scripts/configure_signing.py` 本轮新增两条校验：
+
+1. **CI 缺 Secrets 直接失败**：脚本用 `GITHUB_ACTIONS == 'true'` 区分 CI 与本机。CI 上四个 `ANDROID_KEYSTORE_*` Secrets 全空时直接 `raise SystemExit` 中止构建，不再静默生成随机签名预览 APK；四个 Secrets 部分缺失时报"需同时配置全部四个"。本机全空仍保留预览 APK 行为（exit 0），不阻塞本地开发。
+2. **解码后魔数校验**：Base64 解码写盘前检查文件头——JKS 固定以 `FE ED FE ED` 开头、PKCS12 以 `30 82` 开头。若头不对立即报"不是有效的 Java 签名文件"，提示重新复制 Base64 并确认未截断。这能把"Secret 值损坏"提前暴露在配置步骤，而不是拖到 Gradle `packageRelease` 报 `DerInputStream.getLength(): lengthTag=... too big`。
+
+复现的失败日志：CI 的 `configure_signing.py` 正常打印"已配置固定 Android 发布签名"，但后续 `:app:packageRelease` 读 keystore 报 `lengthTag=109, too big`，根因是仓库里 `ANDROID_KEYSTORE_BASE64` Secret 值在复制时被截断/改动，解码出的字节不是有效 JKS。四个 Secret 与既有 `android/app/build.gradle.kts` 的 release 签名回退逻辑、workflow 的 signing → build → `--clean` 顺序保持不变。
+
+升级正式签名密钥时：重新用 `keytool` 生成 JKS，重新填写仓库四个 Secrets，并保留 `configure_signing.py` 的魔数校验；不要在 CI 里回退 debug 签名。
+
+### 签名 Secrets 配置与更新
+
+本文件被 `sync_source.py` 打进源码镜像与压缩包，因此**不写入实际密钥值、key.properties 或 JKS 内容**。四个 Secret 的名称、来源、生成与填写命令如下，按此即可在新环境重新配置并保证每次 CI 产物可用同一签名覆盖升级：
+
+| Secret 名称 | 来源 / 说明 |
+| --- | --- |
+| `ANDROID_KEYSTORE_BASE64` | JKS 文件的 Base64（单行、无换行、无截断） |
+| `ANDROID_KEYSTORE_PASSWORD` | 签名文件口令（`keytool` 的 `-storepass`） |
+| `ANDROID_KEY_ALIAS` | 密钥别名（`keytool` 的 `-alias`） |
+| `ANDROID_KEY_PASSWORD` | 密钥口令（`keytool` 的 `-keypass`，可与 storepass 相同） |
+
+首次或换密钥时，在**本机**（不是 GitHub）生成正式 JKS 并保存到项目外（如 `E:\Github Local\keystore\zhenguojian-release.jks`）：
+
+```powershell
+New-Item -ItemType Directory -Force -Path "E:\Github Local\keystore"
+keytool -genkeypair -v `
+  -keystore "E:\Github Local\keystore\zhenguojian-release.jks" `
+  -storetype JKS -alias zhenguojian -keyalg RSA -keysize 2048 -validity 10000 `
+  -storepass "<你的文件口令>" -keypass "<你的密钥口令>" `
+  -dname "CN=ZhenGuoJian, OU=Dev, O=GuoJian, L=Hangzhou, S=Zhejiang, C=CN"
+```
+
+导出 `ANDROID_KEYSTORE_BASE64` 的值（**确认输出单行、以 `u3+7Q` 开头、`Y5U=` 结尾、末尾无换行**）：
+
+```powershell
+[System.Convert]::ToBase64String([System.IO.File]::ReadAllBytes("E:\Github Local\keystore\zhenguojian-release.jks"))
+```
+
+然后到仓库 **Settings → Secrets and variables → Actions**，用上面的值新增/覆盖 `ANDROID_KEYSTORE_BASE64`、`ANDROID_KEYSTORE_PASSWORD`、`ANDROID_KEY_ALIAS`、`ANDROID_KEY_PASSWORD` 四个 Secret。
+
+**必须遵守**：
+- 本机 `android/key.properties`（格式 `storeFile=...` / `storePassword=...` / `keyAlias=...` / `keyPassword=...`）仅存在于项目内，已被同步排除，不入库。
+- 密钥与密码**只能**存在本机 keystore 目录和 GitHub Secrets 中，任何入库行为都会让正式签名公开失效。
+- 生成后可自检 JKS 有效：`keytool -list -keystore "<你的jks>" -storetype JKS -storepass "<你的口令>"`，能列出 `zhenguojian` 私钥条目即为有效。
+- 若 CI 的 `configure_signing.py` 报"不是有效的 Java 签名文件"，说明 `ANDROID_KEYSTORE_BASE64` 值被截断或含换行，重新按上述命令导出后覆盖。
 
 ## 下次更新源码的核对顺序
 

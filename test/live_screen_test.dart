@@ -11,6 +11,10 @@ import 'package:shared_preferences_platform_interface/shared_preferences_platfor
 
 /// 合成直播源：不联网，只验证界面与收藏交互。
 class _FakeRepository extends LiveRepository {
+  _FakeRepository({this.extraGroups = 0, this.failGroups = const {}});
+
+  final int extraGroups;
+  final Set<String> failGroups;
   final List<String> sources = [];
   int channelCalls = 0;
 
@@ -23,6 +27,8 @@ class _FakeRepository extends LiveRepository {
     return [
       const LivePlatform(id: 'cctv', name: '央视IPV4', count: 3),
       const LivePlatform(id: 'satellite', name: '卫视IPV4', count: 2),
+      for (var index = 0; index < extraGroups; index++)
+        LivePlatform(id: 'group$index', name: '分类$index', count: 1),
     ];
   }
 
@@ -34,6 +40,7 @@ class _FakeRepository extends LiveRepository {
     bool force = false,
   }) async {
     channelCalls++;
+    if (failGroups.contains(platform.id)) throw AppFailure('直播源返回 404');
     if (platform.id == 'satellite') {
       return [
         LiveChannel(
@@ -198,44 +205,45 @@ void main() {
       LiveSource.spreadWith(adultOnly, greenMode: false).map((s) => s.id),
       contains('adult-fixture'),
     );
-    expect(LiveSource.visible(true), isEmpty, reason: '内置直播源是秀场面板，绿色模式下整体隐藏');
-    expect(
-      LiveSource.visible(false).map((source) => source.name),
-      contains('秀果'),
-      reason: '关闭绿色模式后直播源恢复可见',
-    );
+      expect(
+        LiveSource.visible(true),
+        isEmpty,
+        reason: '内置直播源是秀场面板，绿色模式下整体隐藏',
+      );
+      expect(
+        LiveSource.visible(false).map((source) => source.name),
+        contains('秀果'),
+        reason: '关闭绿色模式后直播源恢复可见',
+      );
 
-    expect(
-      LiveSource.hidesCategory('卫视直播', greenMode: true),
-      isFalse,
-      reason: '只有公开电视直播分类在绿色模式下放行',
-    );
-    expect(
-      LiveSource.hidesCategory('十八禁', greenMode: true),
-      isTrue,
-      reason: '秀场分类名以花名为主，白名单之外一律隐藏',
-    );
-    expect(
-      LiveSource.hidesCategory('卡哇伊', greenMode: true),
-      isTrue,
-      reason: '卡哇伊是秀场分类，黑名单列不全，必须靠白名单挡住',
-    );
-    expect(LiveSource.hidesCategory('小黄书', greenMode: true), isTrue);
-    expect(
-      LiveSource.hidesCategory('十八禁', greenMode: false),
-      isFalse,
-      reason: '关闭绿色模式后不再过滤分类',
-    );
+      expect(
+        LiveSource.hidesCategory('卫视直播', greenMode: true),
+        isFalse,
+        reason: '只有公开电视直播分类在绿色模式下放行',
+      );
+      expect(
+        LiveSource.hidesCategory('十八禁', greenMode: true),
+        isTrue,
+        reason: '秀场分类名以花名为主，白名单之外一律隐藏',
+      );
+      expect(
+        LiveSource.hidesCategory('卡哇伊', greenMode: true),
+        isTrue,
+        reason: '卡哇伊是秀场分类，黑名单列不全，必须靠白名单挡住',
+      );
+      expect(LiveSource.hidesCategory('小黄书', greenMode: true), isTrue);
+      expect(
+        LiveSource.hidesCategory('十八禁', greenMode: false),
+        isFalse,
+        reason: '关闭绿色模式后不再过滤分类',
+      );
   });
 
   testWidgets('分类栏只有收藏，没有最近入口', (tester) async {
     final (store, repository) = await create();
     await pump(tester, repository, store);
 
-    expect(
-      find.byKey(const ValueKey('live-group-__favourites')),
-      findsOneWidget,
-    );
+    expect(find.byKey(const ValueKey('live-group-__favourites')), findsOneWidget);
     expect(find.text('最近'), findsNothing);
   });
 
@@ -243,18 +251,12 @@ void main() {
     final (store, repository) = await create();
     await pump(tester, repository, store);
 
-    expect(
-      find.byKey(ValueKey('live-channel-${_channel('央视IPV4', 'CCTV1综合').key}')),
-      findsOneWidget,
-    );
+    expect(find.byKey(ValueKey('live-channel-${_channel('央视IPV4', 'CCTV1综合').key}')), findsOneWidget);
 
     await tester.tap(find.byKey(const ValueKey('live-group-satellite')));
     await tester.pumpAndSettle();
 
-    expect(
-      find.byKey(ValueKey('live-channel-${_channel('卫视IPV4', '湖南卫视').key}')),
-      findsOneWidget,
-    );
+    expect(find.byKey(ValueKey('live-channel-${_channel('卫视IPV4', '湖南卫视').key}')), findsOneWidget);
     expect(
       find.byKey(ValueKey('live-channel-${_channel('央视IPV4', 'CCTV1综合').key}')),
       findsNothing,

@@ -1,7 +1,7 @@
-param([switch]$ChinaMirrors, [switch]$GreenOnly)
+param([switch]$ChinaMirrors, [switch]$AllSources)
 $ErrorActionPreference = "Stop"
 $BuildArguments = @()
 if ($ChinaMirrors) { $BuildArguments += "--cn-mirrors" }
-if ($GreenOnly) { $BuildArguments += "--green-only" }
+if ($AllSources) { $BuildArguments += "--all-sources" }
 python (Join-Path $PSScriptRoot "build_windows.py") @BuildArguments
 exit $LASTEXITCODE

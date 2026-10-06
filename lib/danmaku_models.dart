@@ -85,7 +85,11 @@ class DanmakuPage {
       if (cleaned.isEmpty) continue;
       seen.add(id);
       items.add(
-        DanmakuItem(id: id, text: trimDanmakuText(cleaned, 181), timeMs: time),
+        DanmakuItem(
+          id: id,
+          text: trimDanmakuText(cleaned, 181),
+          timeMs: time,
+        ),
       );
     }
     items.sort((a, b) => a.timeMs.compareTo(b.timeMs));

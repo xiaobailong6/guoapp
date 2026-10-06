@@ -97,7 +97,7 @@ val verifyNativeCore by tasks.registering {
             val library = file("src/main/jniLibs/$abi/libduanju_core.so")
             val manifest = file("src/main/jniLibs/$abi/libduanju_core.build.json")
             val command = "python3 scripts/build_android.py --abi $abi" +
-                if (allSources) "" else " --green-only"
+                if (allSources) " --all-sources" else ""
             if (!library.isFile || !manifest.isFile) {
                 throw GradleException("原生核心缺少构建记录，请运行：$command")
             }

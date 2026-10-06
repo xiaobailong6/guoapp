@@ -72,20 +72,6 @@ endif()
 set(INSTALL_BUNDLE_LIB_DIR "${CMAKE_INSTALL_PREFIX}/$<CONFIG>")
 set(INSTALL_BUNDLE_DATA_DIR "${INSTALL_BUNDLE_LIB_DIR}/data")
 
-install(CODE "
-  foreach(required IN ITEMS
-      \"${FLUTTER_ICU_DATA_FILE}\"
-      \"${FLUTTER_LIBRARY}\"
-      \"${CMAKE_CURRENT_SOURCE_DIR}/runner/duanju_core.dll\"
-      \"${PROJECT_BUILD_DIR}/flutter_assets\")
-    if(NOT EXISTS \"\${required}\")
-      file(WRITE \"${CMAKE_BINARY_DIR}/install_error.txt\"
-        \"Missing required install source: \${required}\\n\")
-      message(FATAL_ERROR \"Missing required install source: \${required}\")
-    endif()
-  endforeach()
-" COMPONENT Runtime)
-
 install(TARGETS ${BINARY_NAME} RUNTIME DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
   COMPONENT Runtime)
 
@@ -121,6 +107,23 @@ install(DIRECTORY "${PROJECT_BUILD_DIR}/${FLUTTER_ASSET_DIR_NAME}"
 install(FILES "${AOT_LIBRARY}" DESTINATION "${INSTALL_BUNDLE_DATA_DIR}"
   CONFIGURATIONS Profile;Release
   COMPONENT Runtime)
+
+# Diagnose missing required bundle files at install time instead of relying
+# only on the generic MSB3073 error, and write a readable error file.
+set(REQUIRED_BUNDLE_FILES
+  "${CMAKE_CURRENT_SOURCE_DIR}/runner/duanju_core.dll")
+install(CODE "
+  set(_missing \"\")
+  foreach(_f ${REQUIRED_BUNDLE_FILES})
+    if(NOT EXISTS \"\${_f}\")
+      list(APPEND _missing \"\${_f}\")
+    endif()
+  endforeach()
+  if(_missing)
+    file(WRITE \"${CMAKE_BINARY_DIR}/install_error.txt\" \"缺少必需源文件:\\n\${_missing}\")
+    message(FATAL_ERROR \"缺少必需源文件: \${_missing}\")
+  endif()
+  " COMPONENT Runtime)
 
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/runner/duanju_core.dll"
   DESTINATION "${INSTALL_BUNDLE_LIB_DIR}" COMPONENT Runtime)
