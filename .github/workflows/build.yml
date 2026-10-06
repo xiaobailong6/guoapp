@@ -73,10 +73,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - edition: lvguojian
-            arguments: ''
           - edition: zhenguojian
-            arguments: '--all-sources'
+            arguments: ''
+          - edition: lvguojian
+            arguments: '--green-only'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -137,10 +137,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - edition: lvguojian
-            arguments: ''
           - edition: zhenguojian
-            arguments: '--all-sources'
+            arguments: ''
+          - edition: lvguojian
+            arguments: '--green-only'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
@@ -196,10 +196,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - edition: lvguojian
-            arguments: ''
           - edition: zhenguojian
-            arguments: '--all-sources'
+            arguments: ''
+          - edition: lvguojian
+            arguments: '--green-only'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
