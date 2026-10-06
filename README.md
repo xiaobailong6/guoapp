@@ -1,6 +1,8 @@
 # 红果鉴 / 真果鉴
 
-Flutter 多端独立短剧应用，原名“短剧库 APP”。站源请求、解析、下载和播放均在设备上完成，不依赖旧项目或自建服务。当前源码版本：**0.2.120+2126（开发快照）**。
+Flutter 多端独立短剧应用，原名“短剧库 APP”。站源请求、解析、下载和播放均在设备上完成，不依赖旧项目或自建服务。当前源码版本：**0.2.121+2127（开发快照）**。
+
+0.2.121 修复 Actions run `100686774775` 的 checks 格式阻断。日志中 Python 脚本测试与 enforce-lockfile 已通过，随后 `dart format --language-version 3.12 --output=none --set-exit-if-changed` 判定 43 个 Dart 文件需要排版，退出码为 1；该次尚未执行静态分析和平台构建。本轮下载与 CI 一致的 Dart 3.13.3（Flutter 3.47.4 内置版本）到临时目录，按 `--language-version 3.12` 直接对 `lib`、`test`、`integration_test`、`test_driver` 四个目录执行排版，改写 43 个文件；随后用同一命令复验，164 个文件 0 changed、退出码 0，即 CI 的严格格式检查可通过。因此未改动 `build.yml`，保留原有严格格式检查与静态分析，未引入 CI 侧排版或上传兜底；仅在源码侧完成整理。本轮未在本机编译或运行测试，修复效果待下一次 Actions 确认。
 
 0.2.120 按 `ANDROID_BUILD_FIXES.md` 与 `WINDOWS_BUILD_FIXES.md` 对更新后的源码重新合并构建修复。**Windows**：CMake 安装前缀恢复为纯路径，所有库与 MSVC 运行库安装到配置目录，数据安装到同目录的 `data`，native assets 保持安装期 `OPTIONAL`；缺少必要安装源时输出 `install_error.txt`。构建脚本恢复 UTF-8 控制台、verbose 输出、失败资源清单及 CMake 安装重放；发布版本读取显式指定 UTF-8。包冒烟流程在打开媒体前启用自动视频轨道，并先保存、打印应用报告和进程输出，再按退出码、超时及报告状态判定失败。
 

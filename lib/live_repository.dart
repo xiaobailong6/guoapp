@@ -125,7 +125,10 @@ class LiveRepository {
       );
     }
     final all = byId.values.toList();
-    final result = [for (final item in all) if (item.count > 0) item];
+    final result = [
+      for (final item in all)
+        if (item.count > 0) item,
+    ];
     // 上游整体不带频道数字段时不做过滤，避免把整个源误判成没有分类。
     return result.isEmpty ? all : result;
   }
@@ -197,7 +200,11 @@ class LiveRepository {
           ...channel.urls,
         ]),
     ];
-    final order = await _routeOrder(source, channels.first.url, channels.first.headers);
+    final order = await _routeOrder(
+      source,
+      channels.first.url,
+      channels.first.headers,
+    );
     if (order == null) return expanded;
     return [
       for (final channel in expanded)
@@ -243,10 +250,7 @@ class LiveRepository {
   }
 
   /// 返回该线路取回播放清单的耗时，取不到返回 null。
-  Future<Duration?> _probeRoute(
-    String url,
-    Map<String, String> headers,
-  ) async {
+  Future<Duration?> _probeRoute(String url, Map<String, String> headers) async {
     final watch = Stopwatch()..start();
     try {
       await _http.get(url, headers: headers).timeout(liveRouteProbeTimeout);

@@ -85,7 +85,6 @@ class LiveSource {
       if (!greenMode || !source.adult) source,
   ];
 
-
   static LiveSource? byId(String id) =>
       values.where((source) => source.id == id).firstOrNull;
 
