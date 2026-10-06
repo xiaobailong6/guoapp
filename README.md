@@ -1065,7 +1065,7 @@ Android 正式发布持续使用同一签名并递增构建号，在仓库 Secre
 | `ANDROID_KEY_ALIAS` | 密钥别名 |
 | `ANDROID_KEY_PASSWORD` | 密钥密码 |
 
-未配置时生成预览 APK，不同构建机的预览签名可能无法相互覆盖。创建签名文件并保存到项目外：
+在 GitHub Actions 上未配置这四个 Secrets 时，Android 构建会直接失败（`configure_signing.py` 检测到 CI 环境缺少签名即中止），以保证产物始终用同一正式签名、可与已装版本直接覆盖升级；本机未配置时才回退生成预览 APK，不同构建机的预览签名可能无法相互覆盖。创建签名文件并保存到项目外：
 
 ~~~sh
 keytool -genkeypair -v -keystore zhenguojian-release.jks -storetype JKS -alias zhenguojian -keyalg RSA -keysize 2048 -validity 10000

@@ -21,11 +21,15 @@ if options.clean:
 names = ['ANDROID_KEYSTORE_BASE64', 'ANDROID_KEYSTORE_PASSWORD',
          'ANDROID_KEY_ALIAS', 'ANDROID_KEY_PASSWORD']
 values = [os.environ.get(name, '') for name in names]
+on_ci = os.environ.get('GITHUB_ACTIONS') == 'true'
 if not any(values):
+    if on_ci:
+        raise SystemExit('GitHub Actions 构建必须配置正式发布签名 Secrets（ANDROID_KEYSTORE_*），'
+                         '未配置时无法保证 APK 可与已装版本覆盖升级，已中止构建。')
     print('未配置签名 Secrets：生成预览 APK；正式发布请配置固定签名。')
     raise SystemExit(0)
 if not all(values):
-    raise SystemExit('Android 签名需要同时配置全部四个 Secrets。')
+    raise SystemExit('Android 签名需要同时配置全部四个 Secrets（ANDROID_KEYSTORE_*）。')
 try:
     data = base64.b64decode(''.join(values[0].split()), validate=True)
 except ValueError:
