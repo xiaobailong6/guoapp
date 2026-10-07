@@ -1,18 +1,11 @@
-﻿2026-10-07T01:15:44.3825588Z ##[group]Run dart analyze lib test integration_test test_driver
-2026-10-07T01:15:44.3827198Z [36;1mdart analyze lib test integration_test test_driver[0m
-2026-10-07T01:15:44.3918997Z shell: /usr/bin/bash -e {0}
-2026-10-07T01:15:44.3919655Z env:
-2026-10-07T01:15:44.3920415Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-07T01:15:44.3921159Z   GOSUMDB: sum.golang.org
-2026-10-07T01:15:44.3922136Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
-2026-10-07T01:15:44.3923156Z   PUB_CACHE: /home/runner/.pub-cache
-2026-10-07T01:15:44.3923874Z ##[endgroup]
-2026-10-07T01:15:44.4173301Z Analyzing lib, test, integration_test, test_driver...
-2026-10-07T01:16:01.8398679Z 
-2026-10-07T01:16:01.8400249Z warning - test/live_screen_test.dart:14:25 - A value for optional parameter 'extraGroups' isn't ever given. Try removing the unused parameter. - unused_element_parameter
-2026-10-07T01:16:01.8402108Z warning - test/live_screen_test.dart:14:47 - A value for optional parameter 'failGroups' isn't ever given. Try removing the unused parameter. - unused_element_parameter
-2026-10-07T01:16:01.8405461Z    info - lib/video_enhancement.dart:4:8 - The import of 'dart:ui' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/services.dart'. Try removing the import directive. - unnecessary_import
-2026-10-07T01:16:01.8408416Z    info - lib/video_output_size.dart:3:8 - The import of 'dart:ui' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/services.dart'. Try removing the import directive. - unnecessary_import
-2026-10-07T01:16:01.8409507Z 
-2026-10-07T01:16:01.8409896Z 4 issues found.
-2026-10-07T01:16:01.9275414Z ##[error]Process completed with exit code 2.
+﻿2026-10-07T02:22:33.1275280Z ##[group]Run dart analyze lib test integration_test test_driver
+2026-10-07T02:22:33.1276121Z [36;1mdart analyze lib test integration_test test_driver[0m
+2026-10-07T02:22:33.1353589Z shell: /usr/bin/bash -e {0}
+2026-10-07T02:22:33.1353835Z env:
+2026-10-07T02:22:33.1354061Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T02:22:33.1354339Z   GOSUMDB: sum.golang.org
+2026-10-07T02:22:33.1354631Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
+2026-10-07T02:22:33.1354944Z   PUB_CACHE: /home/runner/.pub-cache
+2026-10-07T02:22:33.1355161Z ##[endgroup]
+2026-10-07T02:22:33.1563104Z Analyzing lib, test, integration_test, test_driver...
+2026-10-07T02:22:47.6441986Z No issues found!
