@@ -99,9 +99,7 @@ void main() {
 
     test('rtmp 线路排在 http 线路之后', () {
       final channels = result.groups.last.channels;
-      final zhejiang = channels.firstWhere(
-        (channel) => channel.name == '浙江卫视',
-      );
+      final zhejiang = channels.firstWhere((channel) => channel.name == '浙江卫视');
       expect(zhejiang.urls.single, 'rtmp://a.example/zhejiang');
       expect(zhejiang.urls.single.startsWith('rtmp'), isTrue);
     });
@@ -117,10 +115,7 @@ void main() {
 
     test('频道 key 在源与分组内稳定', () {
       final channel = result.groups.first.channels.first;
-      expect(
-        channel.key,
-        LiveChannel.makeKey('xiuguo', '央视IPV4', 'CCTV1综合'),
-      );
+      expect(channel.key, LiveChannel.makeKey('xiuguo', '央视IPV4', 'CCTV1综合'));
     });
   });
 
@@ -151,9 +146,7 @@ void main() {
     });
 
     test('同名频道合并线路而不是重复出现', () {
-      final satellite = result.groups.firstWhere(
-        (group) => group.name == '卫视',
-      );
+      final satellite = result.groups.firstWhere((group) => group.name == '卫视');
       expect(satellite.channels.length, 1);
       expect(satellite.channels.single.urls.length, 2);
     });
@@ -186,11 +179,7 @@ void main() {
         defaultGroup: '主播',
       );
       expect(panda.groups.length, 1);
-      expect(
-        panda.groups.first.name,
-        '主播',
-        reason: '列表不带分组信息，应按站源指定的默认分组归类',
-      );
+      expect(panda.groups.first.name, '主播', reason: '列表不带分组信息，应按站源指定的默认分组归类');
       expect(panda.groups.first.channels.length, 2);
       expect(
         panda.groups.first.channels.first.name,
