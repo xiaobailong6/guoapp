@@ -1,0 +1,8 @@
+2026-10-07T06:55:13.2940000Z Evaluating windows.if
+2026-10-07T06:55:13.2940000Z Evaluating: success()
+2026-10-07T06:55:13.2940000Z Result: true
+2026-10-07T06:55:13.4540000Z Requested labels: windows-latest
+2026-10-07T06:55:13.4540000Z Job defined at: xiaobailong6/guoapp/.github/workflows/build.yml@refs/heads/main
+2026-10-07T06:55:13.4540000Z Waiting for a runner to pick up this job...
+2026-10-07T06:55:13.8600000Z Job is about to start running on the hosted runner: GitHub Actions 1000003344
+2026-10-07T06:55:13.8600000Z Job is waiting for a hosted runner to come online.

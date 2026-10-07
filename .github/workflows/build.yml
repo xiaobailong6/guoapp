@@ -87,7 +87,47 @@ jobs:
           flutter-version: '3.47.4'
           channel: stable
           cache: true
-      - run: sdkmanager 'ndk;28.2.13676358'
+      - name: Install Android NDK
+        run: |
+          # GitHub 托管运行器预装 Android SDK，但新版镜像不再把 sdkmanager
+          # 加入 PATH，SDK 目录也不固定。先定位 SDK 目录并补装 cmdline-tools，
+          # 再安装项目所需 NDK 版本。
+          for sdk in "$ANDROID_HOME" "$ANDROID_SDK_ROOT" "/usr/local/lib/android/sdk" "$HOME/Android/Sdk"; do
+            if [ -n "$sdk" ] && [ -d "$sdk" ]; then
+              echo "ANDROID_HOME=$sdk" >> "$GITHUB_ENV"
+              echo "ANDROID_SDK_ROOT=$sdk" >> "$GITHUB_ENV"
+              echo "ANDROID_NDK_HOME=$sdk/ndk/28.2.13676358" >> "$GITHUB_ENV"
+              echo "using Android SDK at $sdk"
+              SDK_DIR="$sdk"
+              break
+            fi
+          done
+          : "${SDK_DIR:?无法定位 Android SDK 目录}"
+          # 优先使用已安装的 sdkmanager（可能位于 latest 或版本化目录）。
+          SDKMGR=$(find "$SDK_DIR/cmdline-tools" -maxdepth 3 -name sdkmanager -type f 2>/dev/null | head -n1)
+          if [ -z "$SDKMGR" ]; then
+            echo "未找到 sdkmanager，正在安装 cmdline-tools..."
+            CMDLINE_DIR="$SDK_DIR/cmdline-tools"
+            mkdir -p "$CMDLINE_DIR"
+            # 下载指定版本的 Android 命令行工具（Linux 版）。
+            curl -sSL -o /tmp/cmdline-tools.zip \
+              "https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip"
+            unzip -q -o /tmp/cmdline-tools.zip -d "$CMDLINE_DIR"
+            mkdir -p "$CMDLINE_DIR/latest"
+            mv -f "$CMDLINE_DIR/cmdline-tools/"* "$CMDLINE_DIR/latest/" 2>/dev/null || true
+            rmdir "$CMDLINE_DIR/cmdline-tools" 2>/dev/null || true
+            SDKMGR="$CMDLINE_DIR/latest/bin/sdkmanager"
+          fi
+          SDKMGR_DIR=$(dirname "$SDKMGR")
+          echo "$SDKMGR_DIR" >> "$GITHUB_PATH"
+          export PATH="$SDKMGR_DIR:$PATH"
+          # 关闭 pipefail，避免 `yes |` 因 SIGPIPE 被误判为失败。
+          set +o pipefail
+          yes | sdkmanager --licenses >/dev/null 2>&1 || true
+          yes | sdkmanager "ndk;28.2.13676358"
+          status=$?
+          set -o pipefail
+          exit $status
       - name: Configure Android signing
         run: python scripts/configure_signing.py
         env:

@@ -1,0 +1,162 @@
+﻿2026-10-07T06:55:57.3358170Z ##[group]Run subosito/flutter-action@v2
+2026-10-07T06:55:57.3358500Z with:
+2026-10-07T06:55:57.3359210Z   flutter-version: 3.47.4
+2026-10-07T06:55:57.3359550Z   channel: stable
+2026-10-07T06:55:57.3359770Z   cache: true
+2026-10-07T06:55:57.3360120Z   architecture: ARM64
+2026-10-07T06:55:57.3360470Z   pub-cache-path: default
+2026-10-07T06:55:57.3360660Z   dry-run: false
+2026-10-07T06:55:57.3361020Z   git-source: https://github.com/flutter/flutter.git
+2026-10-07T06:55:57.3361420Z env:
+2026-10-07T06:55:57.3361650Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T06:55:57.3361990Z   GOSUMDB: sum.golang.org
+2026-10-07T06:55:57.3362300Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T06:55:57.3362770Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-10-07T06:55:57.3363300Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T06:55:57.3363750Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T06:55:57.3364360Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T06:55:57.3364670Z ##[endgroup]
+2026-10-07T06:55:57.3433320Z ##[start-action display=Make yq tool available on Windows runners;id=__subosito_flutter-action.__run]
+2026-10-07T06:55:57.3445310Z ##[end-action id=__subosito_flutter-action.__run;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-10-07T06:55:57.3447860Z ##[start-action display=Make setup script executable;id=__subosito_flutter-action.__run_2]
+2026-10-07T06:55:57.3491960Z ##[group]Run chmod +x "$GITHUB_ACTION_PATH/setup.sh"
+2026-10-07T06:55:57.3492390Z [36;1mchmod +x "$GITHUB_ACTION_PATH/setup.sh"[0m
+2026-10-07T06:55:57.3739080Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-07T06:55:57.3739410Z env:
+2026-10-07T06:55:57.3739610Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T06:55:57.3739840Z   GOSUMDB: sum.golang.org
+2026-10-07T06:55:57.3740110Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T06:55:57.3740530Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-10-07T06:55:57.3740930Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T06:55:57.3741300Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T06:55:57.3741660Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T06:55:57.3741930Z ##[endgroup]
+2026-10-07T06:55:57.4357400Z ##[end-action id=__subosito_flutter-action.__run_2;outcome=success;conclusion=success;duration_ms=90]
+2026-10-07T06:55:57.4359750Z ##[start-action display=Set action inputs;id=__subosito_flutter-action.flutter-action]
+2026-10-07T06:55:57.4381180Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh -p \
+2026-10-07T06:55:57.4381510Z [36;1m$GITHUB_ACTION_PATH/setup.sh -p \[0m
+2026-10-07T06:55:57.4381790Z [36;1m  -n '3.47.4' \[0m
+2026-10-07T06:55:57.4381970Z [36;1m  -f '' \[0m
+2026-10-07T06:55:57.4382180Z [36;1m  -a 'ARM64' \[0m
+2026-10-07T06:55:57.4382390Z [36;1m  -k '' \[0m
+2026-10-07T06:55:57.4382540Z [36;1m  -c '' \[0m
+2026-10-07T06:55:57.4382710Z [36;1m  -l '' \[0m
+2026-10-07T06:55:57.4382870Z [36;1m  -d 'default' \[0m
+2026-10-07T06:55:57.4383140Z [36;1m  -g 'https://github.com/flutter/flutter.git' \[0m
+2026-10-07T06:55:57.4383400Z [36;1m  stable[0m
+2026-10-07T06:55:57.4414640Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-07T06:55:57.4415010Z env:
+2026-10-07T06:55:57.4415300Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T06:55:57.4415650Z   GOSUMDB: sum.golang.org
+2026-10-07T06:55:57.4416000Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T06:55:57.4416490Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-10-07T06:55:57.4416940Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T06:55:57.4417660Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T06:55:57.4418120Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T06:55:57.4418780Z ##[endgroup]
+2026-10-07T06:55:57.8596820Z ##[end-action id=__subosito_flutter-action.flutter-action;outcome=success;conclusion=success;duration_ms=423]
+2026-10-07T06:55:57.8608300Z ##[start-action display=Cache Flutter;id=__subosito_flutter-action.cache-flutter]
+2026-10-07T06:55:57.8692970Z ##[group]Run actions/cache@v5
+2026-10-07T06:55:57.8693210Z with:
+2026-10-07T06:55:57.8693450Z   path: /Users/runner/hostedtoolcache/flutter/stable-3.47.4-arm64
+2026-10-07T06:55:57.8694170Z   key: flutter-macos-stable-3.47.4-arm64-9584c6713b324636289d067944a46fd6b49df14b
+2026-10-07T06:55:57.8694600Z   enableCrossOsArchive: false
+2026-10-07T06:55:57.8694840Z   fail-on-cache-miss: false
+2026-10-07T06:55:57.8695100Z   lookup-only: false
+2026-10-07T06:55:57.8695400Z   save-always: false
+2026-10-07T06:55:57.8695580Z env:
+2026-10-07T06:55:57.8695770Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T06:55:57.8696050Z   GOSUMDB: sum.golang.org
+2026-10-07T06:55:57.8696800Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T06:55:57.8697290Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-10-07T06:55:57.8697770Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T06:55:57.8698150Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T06:55:57.8698580Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T06:55:57.8699030Z ##[endgroup]
+2026-10-07T06:55:58.3791600Z Cache hit for: flutter-macos-stable-3.47.4-arm64-9584c6713b324636289d067944a46fd6b49df14b
+2026-10-07T06:55:59.6522750Z Received 0 of 2220559952 (0.0%), 0.0 MBs/sec
+2026-10-07T06:56:00.6527630Z Received 71303168 of 2220559952 (3.2%), 34.0 MBs/sec
+2026-10-07T06:56:01.6532100Z Received 134217728 of 2220559952 (6.0%), 42.6 MBs/sec
+2026-10-07T06:56:02.6529590Z Received 222298112 of 2220559952 (10.0%), 53.0 MBs/sec
+2026-10-07T06:56:03.6535760Z Received 268435456 of 2220559952 (12.1%), 51.2 MBs/sec
+2026-10-07T06:56:04.6529890Z Received 343932928 of 2220559952 (15.5%), 54.6 MBs/sec
+2026-10-07T06:56:05.7381470Z Received 402653184 of 2220559952 (18.1%), 54.2 MBs/sec
+2026-10-07T06:56:06.7375000Z Received 457179136 of 2220559952 (20.6%), 53.9 MBs/sec
+2026-10-07T06:56:07.9768570Z Received 536870912 of 2220559952 (24.2%), 54.9 MBs/sec
+2026-10-07T06:56:08.9769640Z Received 591396864 of 2220559952 (26.6%), 54.6 MBs/sec
+2026-10-07T06:56:09.9794710Z Received 662700032 of 2220559952 (29.8%), 55.8 MBs/sec
+2026-10-07T06:56:10.9797240Z Received 713031680 of 2220559952 (32.1%), 55.2 MBs/sec
+2026-10-07T06:56:11.9803590Z Received 784334848 of 2220559952 (35.3%), 56.1 MBs/sec
+2026-10-07T06:56:12.9809950Z Received 826277888 of 2220559952 (37.2%), 55.0 MBs/sec
+2026-10-07T06:56:13.9806580Z Received 897581056 of 2220559952 (40.4%), 55.8 MBs/sec
+2026-10-07T06:56:14.9805910Z Received 939524096 of 2220559952 (42.3%), 54.9 MBs/sec
+2026-10-07T06:56:15.9812210Z Received 1010827264 of 2220559952 (45.5%), 55.6 MBs/sec
+2026-10-07T06:56:16.9831650Z Received 1065353216 of 2220559952 (48.0%), 55.4 MBs/sec
+2026-10-07T06:56:17.9850030Z Received 1073741824 of 2220559952 (48.4%), 53.0 MBs/sec
+2026-10-07T06:56:18.9855990Z Received 1128267776 of 2220559952 (50.8%), 52.9 MBs/sec
+2026-10-07T06:56:19.9863490Z Received 1186988032 of 2220559952 (53.5%), 53.1 MBs/sec
+2026-10-07T06:56:21.0881940Z Received 1207959552 of 2220559952 (54.4%), 51.3 MBs/sec
+2026-10-07T06:56:22.0863550Z Received 1254096896 of 2220559952 (56.5%), 51.0 MBs/sec
+2026-10-07T06:56:23.0876660Z Received 1312817152 of 2220559952 (59.1%), 51.2 MBs/sec
+2026-10-07T06:56:24.1450060Z Received 1342177280 of 2220559952 (60.4%), 50.2 MBs/sec
+2026-10-07T06:56:25.1458870Z Received 1388314624 of 2220559952 (62.5%), 50.0 MBs/sec
+2026-10-07T06:56:26.1465630Z Received 1447034880 of 2220559952 (65.2%), 50.2 MBs/sec
+2026-10-07T06:56:27.1466170Z Received 1480589312 of 2220559952 (66.7%), 49.6 MBs/sec
+2026-10-07T06:56:28.1470630Z Received 1543503872 of 2220559952 (69.5%), 49.9 MBs/sec
+2026-10-07T06:56:29.1723270Z Received 1610612736 of 2220559952 (72.5%), 50.3 MBs/sec
+2026-10-07T06:56:30.1620760Z Received 1656750080 of 2220559952 (74.6%), 50.1 MBs/sec
+2026-10-07T06:56:31.1618010Z Received 1728053248 of 2220559952 (77.8%), 50.7 MBs/sec
+2026-10-07T06:56:32.1628470Z Received 1778384896 of 2220559952 (80.1%), 50.6 MBs/sec
+2026-10-07T06:56:33.1723960Z Received 1837105152 of 2220559952 (82.7%), 50.8 MBs/sec
+2026-10-07T06:56:34.1644540Z Received 1879048192 of 2220559952 (84.6%), 50.5 MBs/sec
+2026-10-07T06:56:35.1661340Z Received 1929379840 of 2220559952 (86.9%), 50.4 MBs/sec
+2026-10-07T06:56:36.1653900Z Received 2000683008 of 2220559952 (90.1%), 50.9 MBs/sec
+2026-10-07T06:56:37.1655300Z Received 2030043136 of 2220559952 (91.4%), 50.3 MBs/sec
+2026-10-07T06:56:38.1676440Z Received 2105540608 of 2220559952 (94.8%), 50.8 MBs/sec
+2026-10-07T06:56:39.1876500Z Received 2147483648 of 2220559952 (96.7%), 50.5 MBs/sec
+2026-10-07T06:56:40.1814060Z Received 2212171344 of 2220559952 (99.6%), 50.8 MBs/sec
+2026-10-07T06:56:40.3689130Z Received 2220559952 of 2220559952 (100.0%), 50.8 MBs/sec
+2026-10-07T06:56:40.3690670Z Cache Size: ~2118 MB (2220559952 B)
+2026-10-07T06:56:40.3753170Z [command]/opt/homebrew/bin/gtar -xf /Users/runner/work/_temp/5976f782-f450-47a6-9d32-f5101dcda9b2/cache.tzst -P -C /Users/runner/work/guoapp/guoapp --delay-directory-restore --use-compress-program unzstd
+2026-10-07T06:57:00.9204990Z Cache restored successfully
+2026-10-07T06:57:01.1398690Z Cache restored from key: flutter-macos-stable-3.47.4-arm64-9584c6713b324636289d067944a46fd6b49df14b
+2026-10-07T06:57:01.2045760Z ##[end-action id=__subosito_flutter-action.cache-flutter;outcome=success;conclusion=success;duration_ms=63343]
+2026-10-07T06:57:01.2065110Z ##[start-action display=Cache pub dependencies;id=__subosito_flutter-action.cache-pub]
+2026-10-07T06:57:02.3860520Z ##[group]Run actions/cache@v5
+2026-10-07T06:57:02.3861640Z with:
+2026-10-07T06:57:02.3862110Z   path: /Users/runner/.pub-cache
+2026-10-07T06:57:02.3863910Z   key: flutter-pub-macos-stable-3.47.4-arm64-9584c6713b324636289d067944a46fd6b49df14b-4f2d9e15f937ee8713c1f3993dbd5ead79b6170906737c543425d7b407a7609e
+2026-10-07T06:57:02.3865500Z   enableCrossOsArchive: false
+2026-10-07T06:57:02.3866010Z   fail-on-cache-miss: false
+2026-10-07T06:57:02.3866400Z   lookup-only: false
+2026-10-07T06:57:02.3866720Z   save-always: false
+2026-10-07T06:57:02.3866970Z env:
+2026-10-07T06:57:02.3867380Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T06:57:02.3868190Z   GOSUMDB: sum.golang.org
+2026-10-07T06:57:02.3868550Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T06:57:02.3869130Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-10-07T06:57:02.3869870Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T06:57:02.3870390Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T06:57:02.3870940Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T06:57:02.3871490Z ##[endgroup]
+2026-10-07T06:57:03.1643210Z Cache not found for input keys: flutter-pub-macos-stable-3.47.4-arm64-9584c6713b324636289d067944a46fd6b49df14b-4f2d9e15f937ee8713c1f3993dbd5ead79b6170906737c543425d7b407a7609e
+2026-10-07T06:57:03.1761450Z ##[end-action id=__subosito_flutter-action.cache-pub;outcome=success;conclusion=success;duration_ms=1969]
+2026-10-07T06:57:03.1765100Z ##[start-action display=Run setup script;id=__subosito_flutter-action.__run_3]
+2026-10-07T06:57:03.1838330Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh \
+2026-10-07T06:57:03.1838890Z [36;1m$GITHUB_ACTION_PATH/setup.sh \[0m
+2026-10-07T06:57:03.1839530Z [36;1m  -n '3.47.4' \[0m
+2026-10-07T06:57:03.1839960Z [36;1m  -a 'arm64' \[0m
+2026-10-07T06:57:03.1840450Z [36;1m  -c '/Users/runner/hostedtoolcache/flutter/stable-3.47.4-arm64' \[0m
+2026-10-07T06:57:03.1849710Z [36;1m  -d '/Users/runner/.pub-cache' \[0m
+2026-10-07T06:57:03.1850150Z [36;1m  stable[0m
+2026-10-07T06:57:03.5441450Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-07T06:57:03.5444330Z env:
+2026-10-07T06:57:03.5445740Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T06:57:03.5446810Z   GOSUMDB: sum.golang.org
+2026-10-07T06:57:03.5447440Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T06:57:03.5448850Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-10-07T06:57:03.5449590Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T06:57:03.5450060Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T06:57:03.5453850Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T06:57:03.5456460Z ##[endgroup]
+2026-10-07T06:57:04.3935650Z ##[end-action id=__subosito_flutter-action.__run_3;outcome=success;conclusion=success;duration_ms=1216]

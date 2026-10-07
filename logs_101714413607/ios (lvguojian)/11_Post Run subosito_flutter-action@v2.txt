@@ -1,0 +1,13 @@
+﻿2026-10-07T06:59:21.8774390Z Post job cleanup.
+2026-10-07T06:59:21.8779840Z ##[start-action display=Cache pub dependencies;id=__c0038cbd-5a64-4f70-8f0d-53b8a4ea5d13.cache-pub]
+2026-10-07T06:59:22.5171200Z Post job cleanup.
+2026-10-07T06:59:22.7855900Z [command]/opt/homebrew/bin/gtar --posix -cf cache.tzst --exclude cache.tzst -P -C /Users/runner/work/guoapp/guoapp --files-from manifest.txt --delay-directory-restore --use-compress-program zstdmt
+2026-10-07T06:59:34.8793520Z Sent 15138816 of 125118749 (12.1%), 14.4 MBs/sec
+2026-10-07T06:59:35.8955710Z Sent 77398016 of 125118749 (61.9%), 36.8 MBs/sec
+2026-10-07T06:59:36.8822120Z Sent 125118749 of 125118749 (100.0%), 39.7 MBs/sec
+2026-10-07T06:59:37.4459990Z Cache saved with key: flutter-pub-macos-stable-3.47.4-arm64-9584c6713b324636289d067944a46fd6b49df14b-4f2d9e15f937ee8713c1f3993dbd5ead79b6170906737c543425d7b407a7609e
+2026-10-07T06:59:37.4558750Z ##[end-action id=__c0038cbd-5a64-4f70-8f0d-53b8a4ea5d13.cache-pub;outcome=success;conclusion=success;duration_ms=15568]
+2026-10-07T06:59:37.4571290Z ##[start-action display=Cache Flutter;id=__c0038cbd-5a64-4f70-8f0d-53b8a4ea5d13.cache-flutter]
+2026-10-07T06:59:37.4657200Z Post job cleanup.
+2026-10-07T06:59:37.7642780Z Cache hit occurred on the primary key flutter-macos-stable-3.47.4-arm64-9584c6713b324636289d067944a46fd6b49df14b, not saving cache.
+2026-10-07T06:59:37.7715330Z ##[end-action id=__c0038cbd-5a64-4f70-8f0d-53b8a4ea5d13.cache-flutter;outcome=success;conclusion=success;duration_ms=313]

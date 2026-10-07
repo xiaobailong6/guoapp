@@ -1,0 +1,151 @@
+﻿2026-10-07T06:55:30.6638674Z ##[group]Run subosito/flutter-action@v2
+2026-10-07T06:55:30.6639023Z with:
+2026-10-07T06:55:30.6639241Z   flutter-version: 3.47.4
+2026-10-07T06:55:30.6639504Z   channel: stable
+2026-10-07T06:55:30.6639725Z   cache: true
+2026-10-07T06:55:30.6639937Z   architecture: X64
+2026-10-07T06:55:30.6640166Z   pub-cache-path: default
+2026-10-07T06:55:30.6640398Z   dry-run: false
+2026-10-07T06:55:30.6640689Z   git-source: https://github.com/flutter/flutter.git
+2026-10-07T06:55:30.6641016Z env:
+2026-10-07T06:55:30.6641255Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T06:55:30.6641561Z   GOSUMDB: sum.golang.org
+2026-10-07T06:55:30.6641872Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-07T06:55:30.6642322Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-07T06:55:30.6642764Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-07T06:55:30.6643163Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-07T06:55:30.6643566Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-07T06:55:30.6643992Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-07T06:55:30.6644436Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-07T06:55:30.6644950Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-07T06:55:30.6645334Z ##[endgroup]
+2026-10-07T06:55:30.6704289Z ##[start-action display=Make yq tool available on Windows runners;id=__subosito_flutter-action.__run]
+2026-10-07T06:55:30.6715657Z ##[end-action id=__subosito_flutter-action.__run;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-10-07T06:55:30.6718219Z ##[start-action display=Make setup script executable;id=__subosito_flutter-action.__run_2]
+2026-10-07T06:55:30.6753639Z ##[group]Run chmod +x "$GITHUB_ACTION_PATH/setup.sh"
+2026-10-07T06:55:30.6754091Z [36;1mchmod +x "$GITHUB_ACTION_PATH/setup.sh"[0m
+2026-10-07T06:55:30.7063254Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-07T06:55:30.7063720Z env:
+2026-10-07T06:55:30.7064025Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T06:55:30.7064414Z   GOSUMDB: sum.golang.org
+2026-10-07T06:55:30.7064798Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-07T06:55:30.7065340Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-07T06:55:30.7065892Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-07T06:55:30.7066377Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-07T06:55:30.7066870Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-07T06:55:30.7067562Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-07T06:55:30.7068122Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-07T06:55:30.7068753Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-07T06:55:30.7069255Z ##[endgroup]
+2026-10-07T06:55:30.7215103Z ##[end-action id=__subosito_flutter-action.__run_2;outcome=success;conclusion=success;duration_ms=49]
+2026-10-07T06:55:30.7217843Z ##[start-action display=Set action inputs;id=__subosito_flutter-action.flutter-action]
+2026-10-07T06:55:30.7239916Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh -p \
+2026-10-07T06:55:30.7240326Z [36;1m$GITHUB_ACTION_PATH/setup.sh -p \[0m
+2026-10-07T06:55:30.7240647Z [36;1m  -n '3.47.4' \[0m
+2026-10-07T06:55:30.7240898Z [36;1m  -f '' \[0m
+2026-10-07T06:55:30.7241128Z [36;1m  -a 'X64' \[0m
+2026-10-07T06:55:30.7241355Z [36;1m  -k '' \[0m
+2026-10-07T06:55:30.7241567Z [36;1m  -c '' \[0m
+2026-10-07T06:55:30.7241785Z [36;1m  -l '' \[0m
+2026-10-07T06:55:30.7242021Z [36;1m  -d 'default' \[0m
+2026-10-07T06:55:30.7242362Z [36;1m  -g 'https://github.com/flutter/flutter.git' \[0m
+2026-10-07T06:55:30.7242716Z [36;1m  stable[0m
+2026-10-07T06:55:30.7302664Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-07T06:55:30.7303031Z env:
+2026-10-07T06:55:30.7303284Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T06:55:30.7303806Z   GOSUMDB: sum.golang.org
+2026-10-07T06:55:30.7304129Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-07T06:55:30.7304586Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-07T06:55:30.7305027Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-07T06:55:30.7305428Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-07T06:55:30.7305822Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-07T06:55:30.7306228Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-07T06:55:30.7306673Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-07T06:55:30.7307381Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-07T06:55:30.7307786Z ##[endgroup]
+2026-10-07T06:55:30.9151558Z ##[end-action id=__subosito_flutter-action.flutter-action;outcome=success;conclusion=success;duration_ms=193]
+2026-10-07T06:55:30.9156438Z ##[start-action display=Cache Flutter;id=__subosito_flutter-action.cache-flutter]
+2026-10-07T06:55:30.9226516Z ##[group]Run actions/cache@v5
+2026-10-07T06:55:30.9226804Z with:
+2026-10-07T06:55:30.9227335Z   path: /opt/hostedtoolcache/flutter/stable-3.47.4-x64
+2026-10-07T06:55:30.9227927Z   key: flutter-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
+2026-10-07T06:55:30.9228386Z   enableCrossOsArchive: false
+2026-10-07T06:55:30.9228666Z   fail-on-cache-miss: false
+2026-10-07T06:55:30.9228926Z   lookup-only: false
+2026-10-07T06:55:30.9229155Z   save-always: false
+2026-10-07T06:55:30.9229375Z env:
+2026-10-07T06:55:30.9229637Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T06:55:30.9230161Z   GOSUMDB: sum.golang.org
+2026-10-07T06:55:30.9230482Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-07T06:55:30.9230930Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-07T06:55:30.9231376Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-07T06:55:30.9231787Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-07T06:55:30.9232189Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-07T06:55:30.9232590Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-07T06:55:30.9233042Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-07T06:55:30.9233545Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-07T06:55:30.9233946Z ##[endgroup]
+2026-10-07T06:55:31.1233214Z Cache hit for: flutter-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
+2026-10-07T06:55:32.1728886Z Received 226492416 of 1720618134 (13.2%), 214.9 MBs/sec
+2026-10-07T06:55:33.1818770Z Received 457179136 of 1720618134 (26.6%), 216.7 MBs/sec
+2026-10-07T06:55:34.1822041Z Received 692060160 of 1720618134 (40.2%), 219.0 MBs/sec
+2026-10-07T06:55:35.1839716Z Received 926941184 of 1720618134 (53.9%), 220.2 MBs/sec
+2026-10-07T06:55:36.1957435Z Received 1153433600 of 1720618134 (67.0%), 218.9 MBs/sec
+2026-10-07T06:55:37.1925528Z Received 1384120320 of 1720618134 (80.4%), 219.1 MBs/sec
+2026-10-07T06:55:38.1936869Z Received 1606418432 of 1720618134 (93.4%), 218.0 MBs/sec
+2026-10-07T06:55:38.6860254Z Received 1720618134 of 1720618134 (100.0%), 218.3 MBs/sec
+2026-10-07T06:55:38.6862838Z Cache Size: ~1641 MB (1720618134 B)
+2026-10-07T06:55:38.6980136Z [command]/usr/bin/tar -xf /home/runner/work/_temp/201cc782-893e-4d13-b7bb-2fef7275c147/cache.tzst -P -C /home/runner/work/guoapp/guoapp --use-compress-program unzstd
+2026-10-07T06:55:43.5490359Z Cache restored successfully
+2026-10-07T06:55:43.6294125Z Cache restored from key: flutter-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
+2026-10-07T06:55:43.6425949Z ##[end-action id=__subosito_flutter-action.cache-flutter;outcome=success;conclusion=success;duration_ms=12726]
+2026-10-07T06:55:43.6429352Z ##[start-action display=Cache pub dependencies;id=__subosito_flutter-action.cache-pub]
+2026-10-07T06:55:43.7637775Z ##[group]Run actions/cache@v5
+2026-10-07T06:55:43.7638068Z with:
+2026-10-07T06:55:43.7638289Z   path: /home/runner/.pub-cache
+2026-10-07T06:55:43.7639012Z   key: flutter-pub-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b-4f2d9e15f937ee8713c1f3993dbd5ead79b6170906737c543425d7b407a7609e
+2026-10-07T06:55:43.7639763Z   enableCrossOsArchive: false
+2026-10-07T06:55:43.7640031Z   fail-on-cache-miss: false
+2026-10-07T06:55:43.7640289Z   lookup-only: false
+2026-10-07T06:55:43.7640518Z   save-always: false
+2026-10-07T06:55:43.7640735Z env:
+2026-10-07T06:55:43.7641005Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T06:55:43.7641323Z   GOSUMDB: sum.golang.org
+2026-10-07T06:55:43.7641656Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-07T06:55:43.7642101Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-07T06:55:43.7642555Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-07T06:55:43.7642963Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-07T06:55:43.7643387Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-07T06:55:43.7643801Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-07T06:55:43.7644257Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-07T06:55:43.7644756Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-07T06:55:43.7645156Z ##[endgroup]
+2026-10-07T06:55:43.9665410Z Cache hit for: flutter-pub-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b-4f2d9e15f937ee8713c1f3993dbd5ead79b6170906737c543425d7b407a7609e
+2026-10-07T06:55:44.3592178Z Received 58833931 of 58833931 (100.0%), 161.7 MBs/sec
+2026-10-07T06:55:44.3593503Z Cache Size: ~56 MB (58833931 B)
+2026-10-07T06:55:44.3626361Z [command]/usr/bin/tar -xf /home/runner/work/_temp/b15d198a-a43d-4a4c-b27b-69f0700af220/cache.tzst -P -C /home/runner/work/guoapp/guoapp --use-compress-program unzstd
+2026-10-07T06:55:45.5636410Z Cache restored successfully
+2026-10-07T06:55:45.5740278Z Cache restored from key: flutter-pub-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b-4f2d9e15f937ee8713c1f3993dbd5ead79b6170906737c543425d7b407a7609e
+2026-10-07T06:55:45.5831752Z ##[end-action id=__subosito_flutter-action.cache-pub;outcome=success;conclusion=success;duration_ms=1940]
+2026-10-07T06:55:45.5834657Z ##[start-action display=Run setup script;id=__subosito_flutter-action.__run_3]
+2026-10-07T06:55:45.5874882Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh \
+2026-10-07T06:55:45.5875251Z [36;1m$GITHUB_ACTION_PATH/setup.sh \[0m
+2026-10-07T06:55:45.5875558Z [36;1m  -n '3.47.4' \[0m
+2026-10-07T06:55:45.5875811Z [36;1m  -a 'x64' \[0m
+2026-10-07T06:55:45.5876150Z [36;1m  -c '/opt/hostedtoolcache/flutter/stable-3.47.4-x64' \[0m
+2026-10-07T06:55:45.5876534Z [36;1m  -d '/home/runner/.pub-cache' \[0m
+2026-10-07T06:55:45.5876843Z [36;1m  stable[0m
+2026-10-07T06:55:45.5939943Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-07T06:55:45.5940334Z env:
+2026-10-07T06:55:45.5940589Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T06:55:45.5940922Z   GOSUMDB: sum.golang.org
+2026-10-07T06:55:45.5941249Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-07T06:55:45.5941703Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-07T06:55:45.5942183Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-07T06:55:45.5942593Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-07T06:55:45.5943002Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-07T06:55:45.5943418Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-07T06:55:45.5943884Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-07T06:55:45.5944398Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-07T06:55:45.5944810Z ##[endgroup]
+2026-10-07T06:55:45.7620958Z ##[end-action id=__subosito_flutter-action.__run_3;outcome=success;conclusion=success;duration_ms=178]

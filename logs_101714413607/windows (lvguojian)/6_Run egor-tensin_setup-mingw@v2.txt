@@ -1,0 +1,225 @@
+﻿2026-10-07T06:57:44.6594708Z ##[group]Run egor-tensin/setup-mingw@v2
+2026-10-07T06:57:44.6595100Z with:
+2026-10-07T06:57:44.6595289Z   platform: x64
+2026-10-07T06:57:44.6595723Z   cygwin: 0
+2026-10-07T06:57:44.6596000Z   static: 1
+2026-10-07T06:57:44.6596297Z   cc: 1
+2026-10-07T06:57:44.6596468Z   hardlinks: 0
+2026-10-07T06:57:44.6596655Z env:
+2026-10-07T06:57:44.6596872Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T06:57:44.6597181Z   GOSUMDB: sum.golang.org
+2026-10-07T06:57:44.6597499Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:57:44.6597968Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-07T06:57:44.6598425Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:57:44.6598849Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:57:44.6599256Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:57:44.6599944Z   FLUTTER_ROOT: C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64/flutter
+2026-10-07T06:57:44.6600419Z   PUB_CACHE: C:\Users\runneradmin\AppData\Local\Pub\Cache
+2026-10-07T06:57:44.6600734Z ##[endgroup]
+2026-10-07T06:57:44.6617358Z ##[start-action display=Run New-Variable os -Value 'Windows' -Option Constant;id=__egor-tensin_setup-mingw.setup]
+2026-10-07T06:57:44.6823016Z ##[group]Run New-Variable os -Value 'Windows' -Option Constant
+2026-10-07T06:57:44.6823870Z [36;1mNew-Variable os -Value 'Windows' -Option Constant[0m
+2026-10-07T06:57:44.6824287Z [36;1mNew-Variable mingw_version -Value '' -Option Constant[0m
+2026-10-07T06:57:44.6824769Z [36;1mNew-Variable mingw_version_supplied -Value ('' -ne '') -Option Constant[0m
+2026-10-07T06:57:44.6825161Z [36;1m[0m
+2026-10-07T06:57:44.6825466Z [36;1mNew-Variable linux_host -Value ($os -eq 'Linux') -Option Constant[0m
+2026-10-07T06:57:44.6825937Z [36;1mNew-Variable cygwin_host -Value ('0' -eq '1') -Option Constant[0m
+2026-10-07T06:57:44.6826521Z [36;1mNew-Variable windows_host -Value ($os -eq 'Windows' -and !$cygwin_host) -Option Constant[0m
+2026-10-07T06:57:44.6826983Z [36;1m[0m
+2026-10-07T06:57:44.6827258Z [36;1mNew-Variable x64 -Value ('x64' -eq 'x64') -Option Constant[0m
+2026-10-07T06:57:44.6827732Z [36;1mNew-Variable static_workaround -Value ('1' -eq '1') -Option Constant[0m
+2026-10-07T06:57:44.6828097Z [36;1m[0m
+2026-10-07T06:57:44.6828289Z [36;1m$prefix32 = 'i686-w64-mingw32'[0m
+2026-10-07T06:57:44.6828560Z [36;1m$prefix64 = 'x86_64-w64-mingw32'[0m
+2026-10-07T06:57:44.6828897Z [36;1m$prefix = if ($x64) { $prefix64 } else { $prefix32 }[0m
+2026-10-07T06:57:44.6829197Z [36;1m[0m
+2026-10-07T06:57:44.6829384Z [36;1mfunction Locate-Choco {[0m
+2026-10-07T06:57:44.6829717Z [36;1m    $path = Get-Command 'choco' -ErrorAction SilentlyContinue[0m
+2026-10-07T06:57:44.6830068Z [36;1m    if ($path) {[0m
+2026-10-07T06:57:44.6830296Z [36;1m        $path.Path[0m
+2026-10-07T06:57:44.6830528Z [36;1m    } else {[0m
+2026-10-07T06:57:44.6830817Z [36;1m        Join-Path ${env:ProgramData} 'chocolatey' 'bin' 'choco'[0m
+2026-10-07T06:57:44.6831171Z [36;1m    }[0m
+2026-10-07T06:57:44.6831353Z [36;1m}[0m
+2026-10-07T06:57:44.6831523Z [36;1m[0m
+2026-10-07T06:57:44.6831713Z [36;1mfunction Install-Package {[0m
+2026-10-07T06:57:44.6831967Z [36;1m    param([0m
+2026-10-07T06:57:44.6832301Z [36;1m        [Parameter(Mandatory=$true, ValueFromRemainingArguments=$true)][0m
+2026-10-07T06:57:44.6832683Z [36;1m        [string[]] $Packages[0m
+2026-10-07T06:57:44.6832920Z [36;1m    )[0m
+2026-10-07T06:57:44.6833090Z [36;1m[0m
+2026-10-07T06:57:44.6833276Z [36;1m    if ($script:linux_host) {[0m
+2026-10-07T06:57:44.6833535Z [36;1m        sudo apt-get update[0m
+2026-10-07T06:57:44.6833997Z [36;1m        sudo DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends $Packages[0m
+2026-10-07T06:57:44.6834492Z [36;1m    } elseif ($script:cygwin_host) {[0m
+2026-10-07T06:57:44.6834782Z [36;1m        $choco = Locate-Choco[0m
+2026-10-07T06:57:44.6837710Z [36;1m        & $choco install $Packages -y --no-progress --source=cygwin[0m
+2026-10-07T06:57:44.6838129Z [36;1m    } elseif ($script:windows_host) {[0m
+2026-10-07T06:57:44.6838426Z [36;1m        $choco = Locate-Choco[0m
+2026-10-07T06:57:44.6838801Z [36;1m        & $choco upgrade $Packages -y --no-progress --allow-downgrade[0m
+2026-10-07T06:57:44.6839170Z [36;1m    } else {[0m
+2026-10-07T06:57:44.6839493Z [36;1m        throw "Sorry, installing packages is unsupported on $script:os"[0m
+2026-10-07T06:57:44.6839885Z [36;1m    }[0m
+2026-10-07T06:57:44.6840078Z [36;1m}[0m
+2026-10-07T06:57:44.6840257Z [36;1m[0m
+2026-10-07T06:57:44.6840506Z [36;1mfunction Remove-Package {[0m
+2026-10-07T06:57:44.6840766Z [36;1m    param([0m
+2026-10-07T06:57:44.6841089Z [36;1m        [Parameter(Mandatory=$true, ValueFromRemainingArguments=$true)][0m
+2026-10-07T06:57:44.6841481Z [36;1m        [string[]] $Packages[0m
+2026-10-07T06:57:44.6841932Z [36;1m    )[0m
+2026-10-07T06:57:44.6842115Z [36;1m[0m
+2026-10-07T06:57:44.6842296Z [36;1m    if ($script:linux_host) {[0m
+2026-10-07T06:57:44.6842621Z [36;1m        sudo apt-get autoremove --purge -yq $Packages[0m
+2026-10-07T06:57:44.6842956Z [36;1m    } elseif ($script:cygwin_host) {[0m
+2026-10-07T06:57:44.6843234Z [36;1m        $choco = Locate-Choco[0m
+2026-10-07T06:57:44.6843584Z [36;1m        & $choco uninstall $Packages -y --no-progress --source=cygwin[0m
+2026-10-07T06:57:44.6843966Z [36;1m    } elseif ($script:windows_host) {[0m
+2026-10-07T06:57:44.6844237Z [36;1m        $choco = Locate-Choco[0m
+2026-10-07T06:57:44.6844596Z [36;1m        & $choco uninstall $Packages -y --no-progress[0m
+2026-10-07T06:57:44.6844908Z [36;1m    } else {[0m
+2026-10-07T06:57:44.6845210Z [36;1m        throw "Sorry, removing packages is unsupported on $script:os"[0m
+2026-10-07T06:57:44.6845557Z [36;1m    }[0m
+2026-10-07T06:57:44.6845734Z [36;1m}[0m
+2026-10-07T06:57:44.6845900Z [36;1m[0m
+2026-10-07T06:57:44.6846070Z [36;1mif ($linux_host) {[0m
+2026-10-07T06:57:44.6846323Z [36;1m    if ($mingw_version_supplied) {[0m
+2026-10-07T06:57:44.6846641Z [36;1m        Install-Package mingw-w64=$mingw_version[0m
+2026-10-07T06:57:44.6846935Z [36;1m    } else {[0m
+2026-10-07T06:57:44.6847151Z [36;1m        Install-Package mingw-w64[0m
+2026-10-07T06:57:44.6847403Z [36;1m    }[0m
+2026-10-07T06:57:44.6847570Z [36;1m[0m
+2026-10-07T06:57:44.6847851Z [36;1m    # Make the compilers use the POSIX threading model, whatever that[0m
+2026-10-07T06:57:44.6848308Z [36;1m    # is.  Without it, the stuff from <mutex>/<thread>/etc. doesn't[0m
+2026-10-07T06:57:44.6848749Z [36;1m    # compile.  Of course, it makes the binaries depend on[0m
+2026-10-07T06:57:44.6849131Z [36;1m    # libwinpthread-1.dll, but what you gonna do?[0m
+2026-10-07T06:57:44.6849427Z [36;1m[0m
+2026-10-07T06:57:44.6849771Z [36;1m    sudo update-alternatives --set "$prefix32-gcc" "/usr/bin/$prefix32-gcc-posix"[0m
+2026-10-07T06:57:44.6850340Z [36;1m    sudo update-alternatives --set "$prefix32-g++" "/usr/bin/$prefix32-g++-posix"[0m
+2026-10-07T06:57:44.6850901Z [36;1m    sudo update-alternatives --set "$prefix64-gcc" "/usr/bin/$prefix64-gcc-posix"[0m
+2026-10-07T06:57:44.6851453Z [36;1m    sudo update-alternatives --set "$prefix64-g++" "/usr/bin/$prefix64-g++-posix"[0m
+2026-10-07T06:57:44.6851849Z [36;1m[0m
+2026-10-07T06:57:44.6852030Z [36;1m    if ($static_workaround) {[0m
+2026-10-07T06:57:44.6852294Z [36;1m        sudo rm `[0m
+2026-10-07T06:57:44.6852562Z [36;1m            "/usr/$prefix32/lib/libpthread.dll.a" `[0m
+2026-10-07T06:57:44.6852923Z [36;1m            "/usr/$prefix32/lib/libwinpthread.dll.a" `[0m
+2026-10-07T06:57:44.6853268Z [36;1m            "/usr/$prefix64/lib/libpthread.dll.a" `[0m
+2026-10-07T06:57:44.6853606Z [36;1m            "/usr/$prefix64/lib/libwinpthread.dll.a"[0m
+2026-10-07T06:57:44.6853899Z [36;1m    }[0m
+2026-10-07T06:57:44.6854097Z [36;1m} elseif ($cygwin_host) {[0m
+2026-10-07T06:57:44.6854459Z [36;1m    $pkg = if ($x64) { 'mingw64-x86_64-gcc-g++' } else { 'mingw64-i686-gcc-g++' }[0m
+2026-10-07T06:57:44.6855635Z [36;1m    if ($mingw_version_supplied) {[0m
+2026-10-07T06:57:44.6856220Z [36;1m        Install-Package $pkg --version $mingw_version[0m
+2026-10-07T06:57:44.6856539Z [36;1m    } else {[0m
+2026-10-07T06:57:44.6856756Z [36;1m        Install-Package $pkg[0m
+2026-10-07T06:57:44.6856992Z [36;1m    }[0m
+2026-10-07T06:57:44.6857167Z [36;1m[0m
+2026-10-07T06:57:44.6857432Z [36;1m    $bin_dir = cygpath.exe -wa "/usr/$prefix/sys-root/mingw/bin"[0m
+2026-10-07T06:57:44.6857878Z [36;1m    $lib_dir = cygpath.exe -wa "/usr/$prefix/sys-root/mingw/lib"[0m
+2026-10-07T06:57:44.6858208Z [36;1m[0m
+2026-10-07T06:57:44.6858410Z [36;1m    echo $bin_dir >> $env:GITHUB_PATH[0m
+2026-10-07T06:57:44.6858665Z [36;1m[0m
+2026-10-07T06:57:44.6858845Z [36;1m    if ($static_workaround) {[0m
+2026-10-07T06:57:44.6859776Z [36;1m        Remove-Item (Join-Path $lib_dir 'libpthread.dll.a')[0m
+2026-10-07T06:57:44.6860205Z [36;1m        Remove-Item (Join-Path $lib_dir 'libwinpthread.dll.a')[0m
+2026-10-07T06:57:44.6860538Z [36;1m    }[0m
+2026-10-07T06:57:44.6860728Z [36;1m} elseif ($windows_host) {[0m
+2026-10-07T06:57:44.6860984Z [36;1m    $choco = Locate-Choco[0m
+2026-10-07T06:57:44.6861213Z [36;1m[0m
+2026-10-07T06:57:44.6861391Z [36;1m    $mingw32 = 'mingw32'[0m
+2026-10-07T06:57:44.6861621Z [36;1m    $mingw64 = 'mingw64'[0m
+2026-10-07T06:57:44.6861907Z [36;1m    $mingw = if ($x64) { $mingw64 } else { $mingw32 }[0m
+2026-10-07T06:57:44.6862193Z [36;1m[0m
+2026-10-07T06:57:44.6862526Z [36;1m    $mingw_install = Join-Path C: ProgramData chocolatey lib mingw tools install[0m
+2026-10-07T06:57:44.6862981Z [36;1m    $mingw_root = Join-Path $mingw_install $mingw[0m
+2026-10-07T06:57:44.6863317Z [36;1m    $mingw_bin = Join-Path $mingw_root bin[0m
+2026-10-07T06:57:44.6863654Z [36;1m    $mingw_lib = Join-Path $mingw_root $prefix lib[0m
+2026-10-07T06:57:44.6863948Z [36;1m[0m
+2026-10-07T06:57:44.6864132Z [36;1m    $pkg = 'mingw'[0m
+2026-10-07T06:57:44.6864339Z [36;1m[0m
+2026-10-07T06:57:44.6864511Z [36;1m    if ($x64) {[0m
+2026-10-07T06:57:44.6864809Z [36;1m        # If the 32-bit version is installed, we won't detect that.[0m
+2026-10-07T06:57:44.6865236Z [36;1m        # But it's not that important, and we save a lot of time.[0m
+2026-10-07T06:57:44.6865600Z [36;1m        if ($mingw_version_supplied) {[0m
+2026-10-07T06:57:44.6865946Z [36;1m            Install-Package $pkg --version $mingw_version[0m
+2026-10-07T06:57:44.6866261Z [36;1m        } else {[0m
+2026-10-07T06:57:44.6866491Z [36;1m            Install-Package $pkg[0m
+2026-10-07T06:57:44.6866736Z [36;1m        }[0m
+2026-10-07T06:57:44.6866926Z [36;1m    } else {[0m
+2026-10-07T06:57:44.6867173Z [36;1m        # Assuming the 64-bit version is installed.[0m
+2026-10-07T06:57:44.6867481Z [36;1m        Remove-Package $pkg[0m
+2026-10-07T06:57:44.6867749Z [36;1m        if ($mingw_version_supplied) {[0m
+2026-10-07T06:57:44.6868108Z [36;1m            Install-Package $pkg --version $mingw_version --x86[0m
+2026-10-07T06:57:44.6868443Z [36;1m        } else {[0m
+2026-10-07T06:57:44.6868672Z [36;1m            Install-Package $pkg --x86[0m
+2026-10-07T06:57:44.6868932Z [36;1m        }[0m
+2026-10-07T06:57:44.6869110Z [36;1m    }[0m
+2026-10-07T06:57:44.6869323Z [36;1m    echo $mingw_bin >> $env:GITHUB_PATH[0m
+2026-10-07T06:57:44.6869583Z [36;1m[0m
+2026-10-07T06:57:44.6869767Z [36;1m    if ($static_workaround) {[0m
+2026-10-07T06:57:44.6870098Z [36;1m        Remove-Item (Join-Path $mingw_lib 'libpthread.dll.a')[0m
+2026-10-07T06:57:44.6870530Z [36;1m        Remove-Item (Join-Path $mingw_lib 'libwinpthread.dll.a')[0m
+2026-10-07T06:57:44.6870862Z [36;1m    }[0m
+2026-10-07T06:57:44.6871041Z [36;1m} else {[0m
+2026-10-07T06:57:44.6871305Z [36;1m    throw "Sorry, installing MinGW is unsupported on $os"[0m
+2026-10-07T06:57:44.6871632Z [36;1m}[0m
+2026-10-07T06:57:44.6871795Z [36;1m[0m
+2026-10-07T06:57:44.6872074Z [36;1m$gcc = $prefix + '-gcc'[0m
+2026-10-07T06:57:44.6872313Z [36;1m$gxx = $prefix + '-g++'[0m
+2026-10-07T06:57:44.6872561Z [36;1m$windres = $prefix = '-windres'[0m
+2026-10-07T06:57:44.6873081Z [36;1m[0m
+2026-10-07T06:57:44.6873320Z [36;1mecho "prefix=$prefix"   >> $env:GITHUB_OUTPUT[0m
+2026-10-07T06:57:44.6873882Z [36;1mecho "gcc=$gcc"         >> $env:GITHUB_OUTPUT[0m
+2026-10-07T06:57:44.6874206Z [36;1mecho "gxx=$gxx"         >> $env:GITHUB_OUTPUT[0m
+2026-10-07T06:57:44.6874577Z [36;1mecho "windres=$windres" >> $env:GITHUB_OUTPUT[0m
+2026-10-07T06:57:44.7246754Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-07T06:57:44.7247254Z env:
+2026-10-07T06:57:44.7247542Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T06:57:44.7247933Z   GOSUMDB: sum.golang.org
+2026-10-07T06:57:44.7248336Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:57:44.7249144Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-07T06:57:44.7249757Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:57:44.7250291Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:57:44.7250821Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:57:44.7251620Z   FLUTTER_ROOT: C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64/flutter
+2026-10-07T06:57:44.7252191Z   PUB_CACHE: C:\Users\runneradmin\AppData\Local\Pub\Cache
+2026-10-07T06:57:44.7252583Z ##[endgroup]
+2026-10-07T06:57:48.7431657Z Chocolatey v2.7.4
+2026-10-07T06:57:48.9885566Z Upgrading the following packages:
+2026-10-07T06:57:48.9890173Z mingw
+2026-10-07T06:57:48.9893674Z By upgrading, you accept licenses for the packages.
+2026-10-07T06:57:55.3873383Z mingw is not installed. Installing...
+2026-10-07T06:57:56.5260717Z Downloading package from source 'https://community.chocolatey.org/api/v2/'
+2026-10-07T06:57:57.2878806Z 
+2026-10-07T06:57:57.2879247Z mingw v16.1.0 [Approved]
+2026-10-07T06:57:57.3105643Z mingw package files upgrade completed. Performing other installation steps.
+2026-10-07T06:58:00.6771180Z Downloading mingw 64 bit
+2026-10-07T06:58:00.6772682Z   from 'https://github.com/niXman/mingw-builds-binaries/releases/download/16.1.0-rt_v14-rev0/x86_64-16.1.0-release-posix-seh-ucrt-rt_v14-rev0.7z'
+2026-10-07T06:58:02.6130370Z 
+2026-10-07T06:58:02.6152127Z Download of x86_64-16.1.0-release-posix-seh-ucrt-rt_v14-rev0.7z (101.95 MB) completed.
+2026-10-07T06:58:07.4462065Z Hashes match.
+2026-10-07T06:58:07.5039978Z Extracting C:\Users\runneradmin\AppData\Local\Temp\chocolatey\mingw\16.1.0\x86_64-16.1.0-release-posix-seh-ucrt-rt_v14-rev0.7z to C:\ProgramData\chocolatey\lib\mingw\tools\install...
+2026-10-07T06:58:39.6052967Z C:\ProgramData\chocolatey\lib\mingw\tools\install
+2026-10-07T06:58:39.9856048Z Using ProgramData: C:\ProgramData
+2026-10-07T06:58:40.0040184Z Testing path: C:\ProgramData\mingw64\mingw32\bin...Not Found!
+2026-10-07T06:58:40.0050859Z Testing path: C:\ProgramData\mingw64\mingw64\bin...Found!
+2026-10-07T06:58:40.0144971Z PATH environment variable does not have C:\ProgramData\mingw64\mingw64\bin in it. Adding...
+2026-10-07T06:58:40.2735724Z Environment Vars (like PATH) have changed. Close/reopen your shell to
+2026-10-07T06:58:40.2739272Z  see the changes (or in powershell/cmd.exe just type `refreshenv`).
+2026-10-07T06:58:40.3753529Z  The upgrade of mingw was successful.
+2026-10-07T06:58:40.3757358Z   Deployed to 'C:\ProgramData\chocolatey\lib\mingw\tools\install'
+2026-10-07T06:58:40.3910084Z 
+2026-10-07T06:58:40.3910619Z Chocolatey upgraded 1/1 packages. 
+2026-10-07T06:58:40.3914148Z  See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+2026-10-07T06:58:40.6800554Z [31;1mRemove-Item: [0mD:\a\_temp\a5e5c0cd-164d-4c53-8be2-78881eb94075.ps1:140[0m
+2026-10-07T06:58:40.6801652Z [31;1m[0m[36;1mLine |[0m
+2026-10-07T06:58:40.6802672Z [31;1m[0m[36;1m[36;1m 140 | [0m         [36;1mRemove-Item (Join-Path $mingw_lib 'libpthread.dll.a')[0m
+2026-10-07T06:58:40.6804221Z [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m     | [31;1m         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+2026-10-07T06:58:40.6804916Z [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m     | [31;1mCannot find path[0m
+2026-10-07T06:58:40.6805951Z [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m[31;1m[36;1m     | [31;1m'C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libpthread.dll.a' because it[0m
+2026-10-07T06:58:40.6806946Z [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m[31;1m[36;1m[31;1m[36;1m     | [31;1mdoes not exist.[0m
+2026-10-07T06:58:40.7015205Z ##[error]Process completed with exit code 1.
+2026-10-07T06:58:40.7026116Z ##[end-action id=__egor-tensin_setup-mingw.setup;outcome=failure;conclusion=failure;duration_ms=56040]
+2026-10-07T06:58:40.7033180Z ##[start-action display=Run New-Variable os -Value 'Windows' -Option Constant;id=__egor-tensin_setup-mingw.__run]
+2026-10-07T06:58:40.7036437Z ##[end-action id=__egor-tensin_setup-mingw.__run;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-10-07T06:58:40.7040074Z ##[start-action display=Run New-Variable cygwin_host -Value ('0' -eq '1') -Option Constant;id=__egor-tensin_setup-mingw.__run_2]
+2026-10-07T06:58:40.7042153Z ##[end-action id=__egor-tensin_setup-mingw.__run_2;outcome=skipped;conclusion=skipped;duration_ms=0]

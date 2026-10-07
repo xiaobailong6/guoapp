@@ -1,0 +1,77 @@
+﻿2026-10-07T06:55:21.6233340Z ##[group]Run actions/checkout@v4
+2026-10-07T06:55:21.6233940Z with:
+2026-10-07T06:55:21.6234270Z   repository: xiaobailong6/guoapp
+2026-10-07T06:55:21.6240890Z   token: ***
+2026-10-07T06:55:21.6241200Z   ssh-strict: true
+2026-10-07T06:55:21.6241510Z   ssh-user: git
+2026-10-07T06:55:21.6241830Z   persist-credentials: true
+2026-10-07T06:55:21.6242200Z   clean: true
+2026-10-07T06:55:21.6242620Z   sparse-checkout-cone-mode: true
+2026-10-07T06:55:21.6243240Z   fetch-depth: 1
+2026-10-07T06:55:21.6243730Z   fetch-tags: false
+2026-10-07T06:55:21.6244190Z   show-progress: true
+2026-10-07T06:55:21.6244580Z   lfs: false
+2026-10-07T06:55:21.6244930Z   submodules: false
+2026-10-07T06:55:21.6245460Z   set-safe-directory: true
+2026-10-07T06:55:21.6246070Z   allow-unsafe-pr-checkout: false
+2026-10-07T06:55:21.6246690Z env:
+2026-10-07T06:55:21.6247050Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T06:55:21.6247570Z   GOSUMDB: sum.golang.org
+2026-10-07T06:55:21.6248010Z ##[endgroup]
+2026-10-07T06:55:21.9721520Z Syncing repository: xiaobailong6/guoapp
+2026-10-07T06:55:21.9723540Z ##[group]Getting Git version info
+2026-10-07T06:55:21.9724130Z Working directory is '/Users/runner/work/guoapp/guoapp'
+2026-10-07T06:55:21.9725070Z [command]/opt/homebrew/bin/git version
+2026-10-07T06:55:22.0278240Z git version 2.55.0
+2026-10-07T06:55:22.0290960Z ##[endgroup]
+2026-10-07T06:55:22.0297460Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/041fa9bd-ed34-40ac-a6d2-941ba96ad85d/.gitconfig'
+2026-10-07T06:55:22.0302960Z Temporarily overriding HOME='/Users/runner/work/_temp/041fa9bd-ed34-40ac-a6d2-941ba96ad85d' before making global git config changes
+2026-10-07T06:55:22.0304320Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-07T06:55:22.0306750Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/guoapp/guoapp
+2026-10-07T06:55:22.0407560Z Deleting the contents of '/Users/runner/work/guoapp/guoapp'
+2026-10-07T06:55:22.0410340Z ##[group]Initializing the repository
+2026-10-07T06:55:22.0413770Z [command]/opt/homebrew/bin/git init /Users/runner/work/guoapp/guoapp
+2026-10-07T06:55:22.0616030Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-07T06:55:22.0617490Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-07T06:55:22.0618400Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-07T06:55:22.0619180Z hint: call:
+2026-10-07T06:55:22.0619520Z hint:
+2026-10-07T06:55:22.0619980Z hint: 	git config --global init.defaultBranch <name>
+2026-10-07T06:55:22.0620490Z hint:
+2026-10-07T06:55:22.0620980Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-07T06:55:22.0621860Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-07T06:55:22.0622540Z hint:
+2026-10-07T06:55:22.0622970Z hint: 	git branch -m <name>
+2026-10-07T06:55:22.0623390Z hint:
+2026-10-07T06:55:22.0624020Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-07T06:55:22.0624970Z Initialized empty Git repository in /Users/runner/work/guoapp/guoapp/.git/
+2026-10-07T06:55:22.0626730Z [command]/opt/homebrew/bin/git remote add origin https://github.com/xiaobailong6/guoapp
+2026-10-07T06:55:22.0940820Z ##[endgroup]
+2026-10-07T06:55:22.0941620Z ##[group]Disabling automatic garbage collection
+2026-10-07T06:55:22.0943740Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+2026-10-07T06:55:22.1010230Z ##[endgroup]
+2026-10-07T06:55:22.1010940Z ##[group]Setting up auth
+2026-10-07T06:55:22.1015390Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-07T06:55:22.1079680Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-07T06:55:22.2286500Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-07T06:55:22.2401080Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-07T06:55:22.3240860Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-07T06:55:22.3305240Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-07T06:55:22.4699620Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-07T06:55:22.4706900Z ##[endgroup]
+2026-10-07T06:55:22.4707660Z ##[group]Fetching the repository
+2026-10-07T06:55:22.4709210Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +15ebd816d2d5d970480e589a97609b2d9741592f:refs/remotes/origin/main
+2026-10-07T06:55:23.1689030Z From https://github.com/xiaobailong6/guoapp
+2026-10-07T06:55:23.1690370Z  * [new ref]         15ebd816d2d5d970480e589a97609b2d9741592f -> origin/main
+2026-10-07T06:55:23.1692770Z ##[endgroup]
+2026-10-07T06:55:23.1693600Z ##[group]Determining the checkout info
+2026-10-07T06:55:23.1695240Z ##[endgroup]
+2026-10-07T06:55:23.1696370Z [command]/opt/homebrew/bin/git sparse-checkout disable
+2026-10-07T06:55:23.1778920Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-07T06:55:23.1845340Z ##[group]Checking out the ref
+2026-10-07T06:55:23.1853070Z [command]/opt/homebrew/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-10-07T06:55:23.2635050Z Switched to a new branch 'main'
+2026-10-07T06:55:23.2650880Z branch 'main' set up to track 'origin/main'.
+2026-10-07T06:55:23.2672360Z ##[endgroup]
+2026-10-07T06:55:23.2744900Z [command]/opt/homebrew/bin/git log -1 --format=%H
+2026-10-07T06:55:23.2811680Z 15ebd816d2d5d970480e589a97609b2d9741592f

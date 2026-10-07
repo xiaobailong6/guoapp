@@ -1,0 +1,37 @@
+﻿2026-10-07T07:00:28.1780710Z ##[group]Run actions/upload-artifact@v4
+2026-10-07T07:00:28.1781200Z with:
+2026-10-07T07:00:28.1781560Z   name: zhenguojian-ios-unsigned
+2026-10-07T07:00:28.1781900Z   path: dist/ios/*
+2026-10-07T07:00:28.1782170Z   if-no-files-found: error
+2026-10-07T07:00:28.1782510Z   retention-days: 14
+2026-10-07T07:00:28.1783000Z   compression-level: 6
+2026-10-07T07:00:28.1783350Z   overwrite: false
+2026-10-07T07:00:28.1783660Z   include-hidden-files: false
+2026-10-07T07:00:28.1784080Z env:
+2026-10-07T07:00:28.1784360Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T07:00:28.1784840Z   GOSUMDB: sum.golang.org
+2026-10-07T07:00:28.1785190Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T07:00:28.1785920Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-10-07T07:00:28.1787010Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T07:00:28.1787470Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T07:00:28.1788310Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T07:00:28.1788830Z   FLUTTER_ROOT: /Users/runner/hostedtoolcache/flutter/stable-3.47.4-arm64/flutter
+2026-10-07T07:00:28.1789360Z   PUB_CACHE: /Users/runner/.pub-cache
+2026-10-07T07:00:28.1789850Z ##[endgroup]
+2026-10-07T07:00:28.9568260Z (node:9945) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-07T07:00:28.9570310Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-07T07:00:28.9740190Z With the provided path, there will be 2 files uploaded
+2026-10-07T07:00:28.9741310Z Artifact name is valid!
+2026-10-07T07:00:28.9745020Z Root directory input is valid!
+2026-10-07T07:00:29.4167510Z Beginning upload of artifact content to blob storage
+2026-10-07T07:00:29.7743710Z (node:9945) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-07T07:00:30.7436200Z Uploaded bytes 8388608
+2026-10-07T07:00:31.0705640Z Uploaded bytes 16777216
+2026-10-07T07:00:31.2893270Z Uploaded bytes 25165824
+2026-10-07T07:00:31.7681880Z Uploaded bytes 32447518
+2026-10-07T07:00:31.8570790Z Finished uploading artifact content to blob storage!
+2026-10-07T07:00:31.8573350Z SHA256 digest of uploaded artifact zip is afea66e722a83ca32d72b38484caefbb0fddcd98e80d5868f8d7fee553044ce0
+2026-10-07T07:00:31.8575510Z Finalizing artifact upload
+2026-10-07T07:00:32.1418500Z Artifact zhenguojian-ios-unsigned.zip successfully finalized. Artifact ID 11465193556
+2026-10-07T07:00:32.1420750Z Artifact zhenguojian-ios-unsigned has been successfully uploaded! Final size is 32447518 bytes. Artifact ID is 11465193556
+2026-10-07T07:00:32.1437290Z Artifact download URL: https://github.com/xiaobailong6/guoapp/actions/runs/37583743580/artifacts/11465193556

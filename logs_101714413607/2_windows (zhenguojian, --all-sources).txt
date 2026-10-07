@@ -1,0 +1,594 @@
+﻿2026-10-07T06:55:17.2701652Z Current runner version: '2.337.0'
+2026-10-07T06:55:17.2726854Z ##[group]Runner Image Provisioner
+2026-10-07T06:55:17.2727660Z Hosted Compute Agent
+2026-10-07T06:55:17.2728306Z Version: 20260901.588
+2026-10-07T06:55:17.2728906Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+2026-10-07T06:55:17.2729595Z Build Date: 2026-09-01T19:56:44Z
+2026-10-07T06:55:17.2730233Z Worker ID: {4aa2fae5-e180-45b7-b77c-4b506a8b7cb0}
+2026-10-07T06:55:17.2730896Z Azure Region: westus3
+2026-10-07T06:55:17.2731446Z ##[endgroup]
+2026-10-07T06:55:17.2732831Z ##[group]Operating System
+2026-10-07T06:55:17.2733486Z Microsoft Windows Server 2025
+2026-10-07T06:55:17.2734088Z 10.0.26100
+2026-10-07T06:55:17.2734568Z Datacenter
+2026-10-07T06:55:17.2735094Z ##[endgroup]
+2026-10-07T06:55:17.2735598Z ##[group]Runner Image
+2026-10-07T06:55:17.2736146Z Image: windows-2025-vs2026
+2026-10-07T06:55:17.2736731Z Version: 20260925.250.1
+2026-10-07T06:55:17.2738696Z Included Software: https://github.com/actions/runner-images/blob/win25-vs2026/20260925.250/images/windows/Windows2025-VS2026-Readme.md
+2026-10-07T06:55:17.2740392Z Image Release: https://github.com/actions/runner-images/releases/tag/win25-vs2026%2F20260925.250
+2026-10-07T06:55:17.2741349Z ##[endgroup]
+2026-10-07T06:55:17.2742412Z ##[group]GITHUB_TOKEN Permissions
+2026-10-07T06:55:17.2744380Z Contents: read
+2026-10-07T06:55:17.2745032Z Metadata: read
+2026-10-07T06:55:17.2745565Z ##[endgroup]
+2026-10-07T06:55:17.2747654Z Secret source: Actions
+2026-10-07T06:55:17.2748680Z Cache mode: write
+2026-10-07T06:55:17.2749400Z Prepare workflow directory
+2026-10-07T06:55:17.3252276Z Prepare all required actions
+2026-10-07T06:55:17.3318120Z Getting action download info
+2026-10-07T06:55:17.6556831Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-07T06:55:17.7960423Z Download action repository 'actions/setup-go@v5' (SHA:40f1582b2485089dde7abd97c1529aa768e1baff)
+2026-10-07T06:55:18.4652611Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-10-07T06:55:18.6518634Z Download action repository 'subosito/flutter-action@v2' (SHA:1a449444c387b1966244ae4d4f8c696479add0b2)
+2026-10-07T06:55:19.0441868Z Download action repository 'egor-tensin/setup-mingw@v2' (SHA:84c781b557efd538dec66bde06988d81cd3138cf)
+2026-10-07T06:55:19.6694077Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-07T06:55:20.0172305Z Getting action download info
+2026-10-07T06:55:20.1460585Z Download action repository 'actions/cache@v5' (SHA:caa296126883cff596d87d8935842f9db880ef25)
+2026-10-07T06:55:20.3563131Z Complete job name: windows (zhenguojian, --all-sources)
+2026-10-07T06:55:20.5152900Z ##[group]Run actions/checkout@v4
+2026-10-07T06:55:20.5153766Z with:
+2026-10-07T06:55:20.5154031Z   repository: xiaobailong6/guoapp
+2026-10-07T06:55:20.5156419Z   token: ***
+2026-10-07T06:55:20.5156650Z   ssh-strict: true
+2026-10-07T06:55:20.5156884Z   ssh-user: git
+2026-10-07T06:55:20.5157159Z   persist-credentials: true
+2026-10-07T06:55:20.5157411Z   clean: true
+2026-10-07T06:55:20.5157652Z   sparse-checkout-cone-mode: true
+2026-10-07T06:55:20.5157928Z   fetch-depth: 1
+2026-10-07T06:55:20.5158149Z   fetch-tags: false
+2026-10-07T06:55:20.5158386Z   show-progress: true
+2026-10-07T06:55:20.5158620Z   lfs: false
+2026-10-07T06:55:20.5158835Z   submodules: false
+2026-10-07T06:55:20.5159070Z   set-safe-directory: true
+2026-10-07T06:55:20.5159342Z   allow-unsafe-pr-checkout: false
+2026-10-07T06:55:20.5159820Z env:
+2026-10-07T06:55:20.5160075Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T06:55:20.5160396Z   GOSUMDB: sum.golang.org
+2026-10-07T06:55:20.5160928Z ##[endgroup]
+2026-10-07T06:55:20.6622329Z Syncing repository: xiaobailong6/guoapp
+2026-10-07T06:55:20.6624294Z ##[group]Getting Git version info
+2026-10-07T06:55:20.6624905Z Working directory is 'D:\a\guoapp\guoapp'
+2026-10-07T06:55:20.7630257Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-07T06:55:21.1759385Z git version 2.55.0.windows.5
+2026-10-07T06:55:21.1815838Z ##[endgroup]
+2026-10-07T06:55:21.1837110Z Temporarily overriding HOME='D:\a\_temp\4051b39f-5eb7-4b3e-9447-20cbd1c1f002' before making global git config changes
+2026-10-07T06:55:21.1837888Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-07T06:55:21.1848134Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\guoapp\guoapp
+2026-10-07T06:55:21.2590247Z Deleting the contents of 'D:\a\guoapp\guoapp'
+2026-10-07T06:55:21.2596391Z ##[group]Initializing the repository
+2026-10-07T06:55:21.2605176Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\guoapp\guoapp
+2026-10-07T06:55:21.3516724Z Initialized empty Git repository in D:/a/guoapp/guoapp/.git/
+2026-10-07T06:55:21.3573225Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/xiaobailong6/guoapp
+2026-10-07T06:55:21.4265877Z ##[endgroup]
+2026-10-07T06:55:21.4266373Z ##[group]Disabling automatic garbage collection
+2026-10-07T06:55:21.4280708Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+2026-10-07T06:55:21.4579188Z ##[endgroup]
+2026-10-07T06:55:21.4579665Z ##[group]Setting up auth
+2026-10-07T06:55:21.4591525Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-07T06:55:21.4899875Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-07T06:55:23.2265051Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-07T06:55:23.2573928Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-07T06:55:23.7899855Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-07T06:55:23.8199304Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-07T06:55:24.4168035Z [command]"C:\Program Files\Git\bin\git.exe" config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2026-10-07T06:55:24.4634446Z ##[endgroup]
+2026-10-07T06:55:24.4635128Z ##[group]Fetching the repository
+2026-10-07T06:55:24.4652264Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +15ebd816d2d5d970480e589a97609b2d9741592f:refs/remotes/origin/main
+2026-10-07T06:55:26.3172181Z From https://github.com/xiaobailong6/guoapp
+2026-10-07T06:55:26.3173205Z  * [new ref]         15ebd816d2d5d970480e589a97609b2d9741592f -> origin/main
+2026-10-07T06:55:26.3221674Z ##[endgroup]
+2026-10-07T06:55:26.3222288Z ##[group]Determining the checkout info
+2026-10-07T06:55:26.3225149Z ##[endgroup]
+2026-10-07T06:55:26.3239709Z [command]"C:\Program Files\Git\bin\git.exe" sparse-checkout disable
+2026-10-07T06:55:26.3713989Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all extensions.worktreeConfig
+2026-10-07T06:55:26.4029098Z ##[group]Checking out the ref
+2026-10-07T06:55:26.4040101Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force -B main refs/remotes/origin/main
+2026-10-07T06:55:26.6267913Z Switched to a new branch 'main'
+2026-10-07T06:55:26.6339952Z branch 'main' set up to track 'origin/main'.
+2026-10-07T06:55:26.6396371Z ##[endgroup]
+2026-10-07T06:55:26.6824815Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+2026-10-07T06:55:26.7103106Z 15ebd816d2d5d970480e589a97609b2d9741592f
+2026-10-07T06:55:26.7563735Z ##[group]Run actions/setup-go@v5
+2026-10-07T06:55:26.7564081Z with:
+2026-10-07T06:55:26.7564978Z   go-version-file: native/go.mod
+2026-10-07T06:55:26.7565269Z   cache-dependency-path: native/go.sum
+2026-10-07T06:55:26.7565531Z   check-latest: false
+2026-10-07T06:55:26.7567891Z   token: ***
+2026-10-07T06:55:26.7568073Z   cache: true
+2026-10-07T06:55:26.7568264Z env:
+2026-10-07T06:55:26.7568488Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T06:55:26.7568768Z   GOSUMDB: sum.golang.org
+2026-10-07T06:55:26.7568975Z ##[endgroup]
+2026-10-07T06:55:26.9151132Z Setup go version spec 1.24.1
+2026-10-07T06:55:26.9164449Z Attempting to download 1.24.1...
+2026-10-07T06:55:26.9343270Z (node:8856) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-07T06:55:26.9344045Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-07T06:55:27.8300846Z matching 1.24.1...
+2026-10-07T06:55:27.8364923Z Acquiring 1.24.1 from https://github.com/actions/go-versions/releases/download/1.24.1-13667719799/go-1.24.1-win32-x64.zip
+2026-10-07T06:55:28.6816877Z Extracting Go...
+2026-10-07T06:55:28.8407201Z [command]"C:\Program Files\PowerShell\7\pwsh.exe" -NoLogo -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -Command "$ErrorActionPreference = 'Stop' ; try { Add-Type -AssemblyName System.IO.Compression.ZipFile } catch { } ; try { [System.IO.Compression.ZipFile]::ExtractToDirectory('D:\a\_temp\go-1.24.1-win32-x64.zip', 'D:\a\_temp\7842eacf-906c-467b-ab7f-0be4ae68c59b', $true) } catch { if (($_.Exception.GetType().FullName -eq 'System.Management.Automation.MethodException') -or ($_.Exception.GetType().FullName -eq 'System.Management.Automation.RuntimeException') ){ Expand-Archive -LiteralPath 'D:\a\_temp\go-1.24.1-win32-x64.zip' -DestinationPath 'D:\a\_temp\7842eacf-906c-467b-ab7f-0be4ae68c59b' -Force } else { throw $_ } } ;"
+2026-10-07T06:55:34.9098554Z Successfully extracted go to D:\a\_temp\7842eacf-906c-467b-ab7f-0be4ae68c59b
+2026-10-07T06:55:34.9099324Z Adding to the cache ...
+2026-10-07T06:55:45.8671597Z Created link C:\hostedtoolcache\windows\go\1.24.1\x64 => D:\hostedtoolcache\windows\go\1.24.1\x64
+2026-10-07T06:55:45.8676543Z Created link C:\hostedtoolcache\windows\go\1.24.1\x64.complete => D:\hostedtoolcache\windows\go\1.24.1\x64.complete
+2026-10-07T06:55:45.8678450Z Successfully cached go to C:\hostedtoolcache\windows\go\1.24.1\x64
+2026-10-07T06:55:45.8684580Z Added go to the path
+2026-10-07T06:55:45.8687582Z Successfully set up Go version 1.24.1
+2026-10-07T06:55:46.2458870Z [command]C:\hostedtoolcache\windows\go\1.24.1\x64\bin\go.exe env GOMODCACHE
+2026-10-07T06:55:46.2512549Z [command]C:\hostedtoolcache\windows\go\1.24.1\x64\bin\go.exe env GOCACHE
+2026-10-07T06:55:46.2970324Z C:\Users\runneradmin\go\pkg\mod
+2026-10-07T06:55:46.2984028Z C:\Users\runneradmin\AppData\Local\go-build
+2026-10-07T06:55:46.6597780Z Cache hit for: setup-go-Windows-x64-go-1.24.1-7cda561703b15ab0a4544bbfa16f15c8708bc5bfc26e942c16eba3ccfa404618
+2026-10-07T06:55:46.6729606Z (node:8856) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-07T06:55:47.8737330Z Received 75497472 of 254929212 (29.6%), 71.9 MBs/sec
+2026-10-07T06:55:48.9733146Z Received 134217728 of 254929212 (52.6%), 61.0 MBs/sec
+2026-10-07T06:55:49.8746481Z Received 254929212 of 254929212 (100.0%), 81.0 MBs/sec
+2026-10-07T06:55:49.8749782Z Cache Size: ~243 MB (254929212 B)
+2026-10-07T06:55:49.8836767Z [command]"C:\Program Files\Git\usr\bin\tar.exe" -xf D:/a/_temp/a61d54ec-7808-4a20-964b-480de8452479/cache.tzst -P -C D:/a/guoapp/guoapp --force-local --use-compress-program "zstd -d"
+2026-10-07T06:56:05.8983269Z Cache restored successfully
+2026-10-07T06:56:05.9134614Z Cache restored from key: setup-go-Windows-x64-go-1.24.1-7cda561703b15ab0a4544bbfa16f15c8708bc5bfc26e942c16eba3ccfa404618
+2026-10-07T06:56:05.9151056Z go version go1.24.1 windows/amd64
+2026-10-07T06:56:05.9151767Z 
+2026-10-07T06:56:05.9152040Z ##[group]go env
+2026-10-07T06:56:06.6748267Z set AR=ar
+2026-10-07T06:56:06.6748730Z set CC=gcc
+2026-10-07T06:56:06.6749105Z set CGO_CFLAGS=-O2 -g
+2026-10-07T06:56:06.6750076Z set CGO_CPPFLAGS=
+2026-10-07T06:56:06.6750421Z set CGO_CXXFLAGS=-O2 -g
+2026-10-07T06:56:06.6750780Z set CGO_ENABLED=1
+2026-10-07T06:56:06.6751076Z set CGO_FFLAGS=-O2 -g
+2026-10-07T06:56:06.6751404Z set CGO_LDFLAGS=-O2 -g
+2026-10-07T06:56:06.6751715Z set CXX=g++
+2026-10-07T06:56:06.6751977Z set GCCGO=gccgo
+2026-10-07T06:56:06.6752262Z set GO111MODULE=
+2026-10-07T06:56:06.6752550Z set GOAMD64=v1
+2026-10-07T06:56:06.6752840Z set GOARCH=amd64
+2026-10-07T06:56:06.6753143Z set GOAUTH=netrc
+2026-10-07T06:56:06.6753418Z set GOBIN=
+2026-10-07T06:56:06.6753809Z set GOCACHE=C:\Users\runneradmin\AppData\Local\go-build
+2026-10-07T06:56:06.6754306Z set GOCACHEPROG=
+2026-10-07T06:56:06.6754641Z set GODEBUG=
+2026-10-07T06:56:06.6755008Z set GOENV=C:\Users\runneradmin\AppData\Roaming\go\env
+2026-10-07T06:56:06.6755499Z set GOEXE=.exe
+2026-10-07T06:56:06.6755791Z set GOEXPERIMENT=
+2026-10-07T06:56:06.6756100Z set GOFIPS140=off
+2026-10-07T06:56:06.6756382Z set GOFLAGS=
+2026-10-07T06:56:06.6757589Z set GOGCCFLAGS=-m64 -mthreads -Wl,--no-gc-sections -fmessage-length=0 -ffile-prefix-map=C:\Users\RUNNER~1\AppData\Local\Temp\go-build992166084=/tmp/go-build -gno-record-gcc-switches
+2026-10-07T06:56:06.6759174Z set GOHOSTARCH=amd64
+2026-10-07T06:56:06.6759499Z set GOHOSTOS=windows
+2026-10-07T06:56:06.6759803Z set GOINSECURE=
+2026-10-07T06:56:06.6760144Z set GOMOD=NUL
+2026-10-07T06:56:06.6760507Z set GOMODCACHE=C:\Users\runneradmin\go\pkg\mod
+2026-10-07T06:56:06.6760962Z set GONOPROXY=
+2026-10-07T06:56:06.6761249Z set GONOSUMDB=
+2026-10-07T06:56:06.6761541Z set GOOS=windows
+2026-10-07T06:56:06.6761859Z set GOPATH=C:\Users\runneradmin\go
+2026-10-07T06:56:06.6762271Z set GOPRIVATE=
+2026-10-07T06:56:06.6762728Z set GOPROXY=https://proxy.golang.org,direct
+2026-10-07T06:56:06.6763289Z set GOROOT=C:\hostedtoolcache\windows\go\1.24.1\x64
+2026-10-07T06:56:06.6763801Z set GOSUMDB=sum.golang.org
+2026-10-07T06:56:06.6764154Z set GOTELEMETRY=local
+2026-10-07T06:56:06.6764679Z set GOTELEMETRYDIR=C:\Users\runneradmin\AppData\Roaming\go\telemetry
+2026-10-07T06:56:06.6765250Z set GOTMPDIR=
+2026-10-07T06:56:06.6765521Z set GOTOOLCHAIN=auto
+2026-10-07T06:56:06.6766037Z set GOTOOLDIR=C:\hostedtoolcache\windows\go\1.24.1\x64\pkg\tool\windows_amd64
+2026-10-07T06:56:06.6766660Z set GOVCS=
+2026-10-07T06:56:06.6766943Z set GOVERSION=go1.24.1
+2026-10-07T06:56:06.6767255Z set GOWORK=
+2026-10-07T06:56:06.6767571Z set PKG_CONFIG=pkg-config
+2026-10-07T06:56:06.6767812Z 
+2026-10-07T06:56:06.6768315Z ##[endgroup]
+2026-10-07T06:56:06.7134009Z ##[group]Run actions/setup-python@v5
+2026-10-07T06:56:06.7134367Z with:
+2026-10-07T06:56:06.7134556Z   python-version: 3.12
+2026-10-07T06:56:06.7134782Z   check-latest: false
+2026-10-07T06:56:06.7137534Z   token: ***
+2026-10-07T06:56:06.7137744Z   update-environment: true
+2026-10-07T06:56:06.7137999Z   allow-prereleases: false
+2026-10-07T06:56:06.7138217Z   freethreaded: false
+2026-10-07T06:56:06.7138415Z env:
+2026-10-07T06:56:06.7138620Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T06:56:06.7138914Z   GOSUMDB: sum.golang.org
+2026-10-07T06:56:06.7139116Z ##[endgroup]
+2026-10-07T06:56:06.8832350Z ##[group]Installed versions
+2026-10-07T06:56:06.9073537Z (node:9144) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-07T06:56:06.9074888Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-07T06:56:06.9075985Z Successfully set up CPython (3.12.10)
+2026-10-07T06:56:06.9076926Z ##[endgroup]
+2026-10-07T06:56:06.9510097Z ##[group]Run subosito/flutter-action@v2
+2026-10-07T06:56:06.9510451Z with:
+2026-10-07T06:56:06.9510640Z   flutter-version: 3.47.4
+2026-10-07T06:56:06.9510864Z   channel: stable
+2026-10-07T06:56:06.9511047Z   cache: true
+2026-10-07T06:56:06.9511233Z   architecture: X64
+2026-10-07T06:56:06.9511660Z   pub-cache-path: default
+2026-10-07T06:56:06.9511875Z   dry-run: false
+2026-10-07T06:56:06.9512116Z   git-source: https://github.com/flutter/flutter.git
+2026-10-07T06:56:06.9512403Z env:
+2026-10-07T06:56:06.9512596Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T06:56:06.9512866Z   GOSUMDB: sum.golang.org
+2026-10-07T06:56:06.9513156Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:56:06.9513606Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-07T06:56:06.9514049Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:56:06.9514479Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:56:06.9514878Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:56:06.9515183Z ##[endgroup]
+2026-10-07T06:56:06.9577017Z ##[start-action display=Make yq tool available on Windows runners;id=__subosito_flutter-action.__run]
+2026-10-07T06:56:06.9590209Z ##[end-action id=__subosito_flutter-action.__run;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-10-07T06:56:06.9592409Z ##[start-action display=Make setup script executable;id=__subosito_flutter-action.__run_2]
+2026-10-07T06:56:06.9753980Z ##[group]Run chmod +x "$GITHUB_ACTION_PATH/setup.sh"
+2026-10-07T06:56:06.9754406Z [36;1mchmod +x "$GITHUB_ACTION_PATH/setup.sh"[0m
+2026-10-07T06:56:06.9776958Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-10-07T06:56:06.9777352Z env:
+2026-10-07T06:56:06.9777571Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T06:56:06.9777857Z   GOSUMDB: sum.golang.org
+2026-10-07T06:56:06.9778188Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:56:06.9778660Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-07T06:56:06.9779126Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:56:06.9779530Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:56:06.9779940Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:56:06.9780264Z ##[endgroup]
+2026-10-07T06:56:07.2044846Z ##[end-action id=__subosito_flutter-action.__run_2;outcome=success;conclusion=success;duration_ms=245]
+2026-10-07T06:56:07.2047432Z ##[start-action display=Set action inputs;id=__subosito_flutter-action.flutter-action]
+2026-10-07T06:56:07.2185593Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh -p \
+2026-10-07T06:56:07.2185953Z [36;1m$GITHUB_ACTION_PATH/setup.sh -p \[0m
+2026-10-07T06:56:07.2186220Z [36;1m  -n '3.47.4' \[0m
+2026-10-07T06:56:07.2186424Z [36;1m  -f '' \[0m
+2026-10-07T06:56:07.2186633Z [36;1m  -a 'X64' \[0m
+2026-10-07T06:56:07.2186823Z [36;1m  -k '' \[0m
+2026-10-07T06:56:07.2187016Z [36;1m  -c '' \[0m
+2026-10-07T06:56:07.2187196Z [36;1m  -l '' \[0m
+2026-10-07T06:56:07.2187390Z [36;1m  -d 'default' \[0m
+2026-10-07T06:56:07.2187683Z [36;1m  -g 'https://github.com/flutter/flutter.git' \[0m
+2026-10-07T06:56:07.2188000Z [36;1m  stable[0m
+2026-10-07T06:56:07.2207583Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-10-07T06:56:07.2207981Z env:
+2026-10-07T06:56:07.2208190Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T06:56:07.2208471Z   GOSUMDB: sum.golang.org
+2026-10-07T06:56:07.2208769Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:56:07.2209233Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-07T06:56:07.2209687Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:56:07.2212317Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:56:07.2212876Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:56:07.2213210Z ##[endgroup]
+2026-10-07T06:56:10.6980419Z ##[end-action id=__subosito_flutter-action.flutter-action;outcome=success;conclusion=success;duration_ms=3493]
+2026-10-07T06:56:10.6986550Z ##[start-action display=Cache Flutter;id=__subosito_flutter-action.cache-flutter]
+2026-10-07T06:56:10.7171320Z ##[group]Run actions/cache@v5
+2026-10-07T06:56:10.7171572Z with:
+2026-10-07T06:56:10.7171837Z   path: C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64
+2026-10-07T06:56:10.7172312Z   key: flutter-windows-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
+2026-10-07T06:56:10.7172728Z   enableCrossOsArchive: false
+2026-10-07T06:56:10.7172966Z   fail-on-cache-miss: false
+2026-10-07T06:56:10.7173183Z   lookup-only: false
+2026-10-07T06:56:10.7173379Z   save-always: false
+2026-10-07T06:56:10.7173565Z env:
+2026-10-07T06:56:10.7173792Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T06:56:10.7174076Z   GOSUMDB: sum.golang.org
+2026-10-07T06:56:10.7174371Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:56:10.7174827Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-07T06:56:10.7175279Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:56:10.7175673Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:56:10.7176070Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:56:10.7176381Z ##[endgroup]
+2026-10-07T06:56:11.1991663Z Cache hit for: flutter-windows-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
+2026-10-07T06:56:12.4150649Z Received 75497472 of 1925544766 (3.9%), 71.9 MBs/sec
+2026-10-07T06:56:13.4211614Z Received 251658240 of 1925544766 (13.1%), 119.8 MBs/sec
+2026-10-07T06:56:14.4264955Z Received 381681664 of 1925544766 (19.8%), 120.8 MBs/sec
+2026-10-07T06:56:15.5037507Z Received 536870912 of 1925544766 (27.9%), 125.2 MBs/sec
+2026-10-07T06:56:16.5190845Z Received 671088640 of 1925544766 (34.9%), 125.4 MBs/sec
+2026-10-07T06:56:17.5366561Z Received 838860800 of 1925544766 (43.6%), 130.7 MBs/sec
+2026-10-07T06:56:18.5433255Z Received 1019215872 of 1925544766 (52.9%), 136.3 MBs/sec
+2026-10-07T06:56:19.5447504Z Received 1182793728 of 1925544766 (61.4%), 138.7 MBs/sec
+2026-10-07T06:56:20.5465979Z Received 1212153856 of 1925544766 (63.0%), 126.6 MBs/sec
+2026-10-07T06:56:21.5510604Z Received 1375731712 of 1925544766 (71.4%), 129.4 MBs/sec
+2026-10-07T06:56:22.5604187Z Received 1572864000 of 1925544766 (81.7%), 134.6 MBs/sec
+2026-10-07T06:56:23.5760637Z Received 1698693120 of 1925544766 (88.2%), 133.2 MBs/sec
+2026-10-07T06:56:24.5787360Z Received 1774190592 of 1925544766 (92.1%), 128.5 MBs/sec
+2026-10-07T06:56:25.5933683Z Received 1921350462 of 1925544766 (99.8%), 129.2 MBs/sec
+2026-10-07T06:56:26.4475678Z Received 1925544766 of 1925544766 (100.0%), 122.1 MBs/sec
+2026-10-07T06:56:26.4480743Z Cache Size: ~1836 MB (1925544766 B)
+2026-10-07T06:56:26.4522760Z [command]"C:\Program Files\Git\usr\bin\tar.exe" -xf D:/a/_temp/8bf0d046-a4c6-431d-9e35-b3119982fdcd/cache.tzst -P -C D:/a/guoapp/guoapp --force-local --use-compress-program "zstd -d"
+2026-10-07T06:57:16.3979827Z Cache restored successfully
+2026-10-07T06:57:16.5154149Z Cache restored from key: flutter-windows-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
+2026-10-07T06:57:16.5377483Z ##[end-action id=__subosito_flutter-action.cache-flutter;outcome=success;conclusion=success;duration_ms=65839]
+2026-10-07T06:57:16.5379979Z ##[start-action display=Cache pub dependencies;id=__subosito_flutter-action.cache-pub]
+2026-10-07T06:57:16.7702993Z ##[group]Run actions/cache@v5
+2026-10-07T06:57:16.7703283Z with:
+2026-10-07T06:57:16.7703526Z   path: C:\Users\runneradmin\AppData\Local\Pub\Cache
+2026-10-07T06:57:16.7705175Z   key: flutter-pub-windows-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b-0b6c9b91354e0bf5d83aa97181a342d2ce64177739fb13e2145d8f6cafec0468
+2026-10-07T06:57:16.7705937Z   enableCrossOsArchive: false
+2026-10-07T06:57:16.7706191Z   fail-on-cache-miss: false
+2026-10-07T06:57:16.7706414Z   lookup-only: false
+2026-10-07T06:57:16.7706625Z   save-always: false
+2026-10-07T06:57:16.7706813Z env:
+2026-10-07T06:57:16.7707191Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T06:57:16.7707495Z   GOSUMDB: sum.golang.org
+2026-10-07T06:57:16.7707806Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:57:16.7708284Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-07T06:57:16.7708758Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:57:16.7709169Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:57:16.7709583Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:57:16.7709906Z ##[endgroup]
+2026-10-07T06:57:17.2628531Z Cache hit for: flutter-pub-windows-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b-0b6c9b91354e0bf5d83aa97181a342d2ce64177739fb13e2145d8f6cafec0468
+2026-10-07T06:57:18.4321693Z Received 58341612 of 58341612 (100.0%), 58.3 MBs/sec
+2026-10-07T06:57:18.4325509Z Cache Size: ~56 MB (58341612 B)
+2026-10-07T06:57:18.4392368Z [command]"C:\Program Files\Git\usr\bin\tar.exe" -xf D:/a/_temp/a6739f0b-d455-4b4c-b02a-38007a6b4d09/cache.tzst -P -C D:/a/guoapp/guoapp --force-local --use-compress-program "zstd -d"
+2026-10-07T06:57:45.5634397Z Cache restored successfully
+2026-10-07T06:57:45.5799095Z Cache restored from key: flutter-pub-windows-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b-0b6c9b91354e0bf5d83aa97181a342d2ce64177739fb13e2145d8f6cafec0468
+2026-10-07T06:57:45.5922291Z ##[end-action id=__subosito_flutter-action.cache-pub;outcome=success;conclusion=success;duration_ms=29054]
+2026-10-07T06:57:45.5926351Z ##[start-action display=Run setup script;id=__subosito_flutter-action.__run_3]
+2026-10-07T06:57:45.6087976Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh \
+2026-10-07T06:57:45.6088340Z [36;1m$GITHUB_ACTION_PATH/setup.sh \[0m
+2026-10-07T06:57:45.6088616Z [36;1m  -n '3.47.4' \[0m
+2026-10-07T06:57:45.6088848Z [36;1m  -a 'x64' \[0m
+2026-10-07T06:57:45.6089162Z [36;1m  -c 'C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64' \[0m
+2026-10-07T06:57:45.6089619Z [36;1m  -d 'C:\Users\runneradmin\AppData\Local\Pub\Cache' \[0m
+2026-10-07T06:57:45.6089932Z [36;1m  stable[0m
+2026-10-07T06:57:45.6108613Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-10-07T06:57:45.6109031Z env:
+2026-10-07T06:57:45.6109262Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T06:57:45.6109576Z   GOSUMDB: sum.golang.org
+2026-10-07T06:57:45.6109899Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:57:45.6110388Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-07T06:57:45.6110863Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:57:45.6111288Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:57:45.6111696Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:57:45.6112039Z ##[endgroup]
+2026-10-07T06:57:48.2718787Z ##[end-action id=__subosito_flutter-action.__run_3;outcome=success;conclusion=success;duration_ms=2679]
+2026-10-07T06:57:48.3001622Z ##[group]Run egor-tensin/setup-mingw@v2
+2026-10-07T06:57:48.3002001Z with:
+2026-10-07T06:57:48.3002195Z   platform: x64
+2026-10-07T06:57:48.3002399Z   cygwin: 0
+2026-10-07T06:57:48.3002574Z   static: 1
+2026-10-07T06:57:48.3002753Z   cc: 1
+2026-10-07T06:57:48.3002921Z   hardlinks: 0
+2026-10-07T06:57:48.3003114Z env:
+2026-10-07T06:57:48.3003332Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T06:57:48.3003635Z   GOSUMDB: sum.golang.org
+2026-10-07T06:57:48.3003951Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:57:48.3004436Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-07T06:57:48.3004926Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:57:48.3005347Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:57:48.3006219Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:57:48.3006958Z   FLUTTER_ROOT: C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64/flutter
+2026-10-07T06:57:48.3007409Z   PUB_CACHE: C:\Users\runneradmin\AppData\Local\Pub\Cache
+2026-10-07T06:57:48.3007719Z ##[endgroup]
+2026-10-07T06:57:48.3023550Z ##[start-action display=Run New-Variable os -Value 'Windows' -Option Constant;id=__egor-tensin_setup-mingw.setup]
+2026-10-07T06:57:48.3232423Z ##[group]Run New-Variable os -Value 'Windows' -Option Constant
+2026-10-07T06:57:48.3233257Z [36;1mNew-Variable os -Value 'Windows' -Option Constant[0m
+2026-10-07T06:57:48.3233663Z [36;1mNew-Variable mingw_version -Value '' -Option Constant[0m
+2026-10-07T06:57:48.3234141Z [36;1mNew-Variable mingw_version_supplied -Value ('' -ne '') -Option Constant[0m
+2026-10-07T06:57:48.3234531Z [36;1m[0m
+2026-10-07T06:57:48.3234827Z [36;1mNew-Variable linux_host -Value ($os -eq 'Linux') -Option Constant[0m
+2026-10-07T06:57:48.3235302Z [36;1mNew-Variable cygwin_host -Value ('0' -eq '1') -Option Constant[0m
+2026-10-07T06:57:48.3235883Z [36;1mNew-Variable windows_host -Value ($os -eq 'Windows' -and !$cygwin_host) -Option Constant[0m
+2026-10-07T06:57:48.3236340Z [36;1m[0m
+2026-10-07T06:57:48.3236609Z [36;1mNew-Variable x64 -Value ('x64' -eq 'x64') -Option Constant[0m
+2026-10-07T06:57:48.3237086Z [36;1mNew-Variable static_workaround -Value ('1' -eq '1') -Option Constant[0m
+2026-10-07T06:57:48.3237465Z [36;1m[0m
+2026-10-07T06:57:48.3237667Z [36;1m$prefix32 = 'i686-w64-mingw32'[0m
+2026-10-07T06:57:48.3237944Z [36;1m$prefix64 = 'x86_64-w64-mingw32'[0m
+2026-10-07T06:57:48.3238278Z [36;1m$prefix = if ($x64) { $prefix64 } else { $prefix32 }[0m
+2026-10-07T06:57:48.3238583Z [36;1m[0m
+2026-10-07T06:57:48.3238775Z [36;1mfunction Locate-Choco {[0m
+2026-10-07T06:57:48.3239121Z [36;1m    $path = Get-Command 'choco' -ErrorAction SilentlyContinue[0m
+2026-10-07T06:57:48.3239476Z [36;1m    if ($path) {[0m
+2026-10-07T06:57:48.3239700Z [36;1m        $path.Path[0m
+2026-10-07T06:57:48.3239934Z [36;1m    } else {[0m
+2026-10-07T06:57:48.3240227Z [36;1m        Join-Path ${env:ProgramData} 'chocolatey' 'bin' 'choco'[0m
+2026-10-07T06:57:48.3240566Z [36;1m    }[0m
+2026-10-07T06:57:48.3240742Z [36;1m}[0m
+2026-10-07T06:57:48.3240914Z [36;1m[0m
+2026-10-07T06:57:48.3241106Z [36;1mfunction Install-Package {[0m
+2026-10-07T06:57:48.3241355Z [36;1m    param([0m
+2026-10-07T06:57:48.3241682Z [36;1m        [Parameter(Mandatory=$true, ValueFromRemainingArguments=$true)][0m
+2026-10-07T06:57:48.3242067Z [36;1m        [string[]] $Packages[0m
+2026-10-07T06:57:48.3242307Z [36;1m    )[0m
+2026-10-07T06:57:48.3242481Z [36;1m[0m
+2026-10-07T06:57:48.3242813Z [36;1m    if ($script:linux_host) {[0m
+2026-10-07T06:57:48.3243223Z [36;1m        sudo apt-get update[0m
+2026-10-07T06:57:48.3243701Z [36;1m        sudo DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends $Packages[0m
+2026-10-07T06:57:48.3244210Z [36;1m    } elseif ($script:cygwin_host) {[0m
+2026-10-07T06:57:48.3246504Z [36;1m        $choco = Locate-Choco[0m
+2026-10-07T06:57:48.3246967Z [36;1m        & $choco install $Packages -y --no-progress --source=cygwin[0m
+2026-10-07T06:57:48.3247382Z [36;1m    } elseif ($script:windows_host) {[0m
+2026-10-07T06:57:48.3247682Z [36;1m        $choco = Locate-Choco[0m
+2026-10-07T06:57:48.3248060Z [36;1m        & $choco upgrade $Packages -y --no-progress --allow-downgrade[0m
+2026-10-07T06:57:48.3248436Z [36;1m    } else {[0m
+2026-10-07T06:57:48.3248764Z [36;1m        throw "Sorry, installing packages is unsupported on $script:os"[0m
+2026-10-07T06:57:48.3249134Z [36;1m    }[0m
+2026-10-07T06:57:48.3249308Z [36;1m}[0m
+2026-10-07T06:57:48.3249477Z [36;1m[0m
+2026-10-07T06:57:48.3249726Z [36;1mfunction Remove-Package {[0m
+2026-10-07T06:57:48.3249980Z [36;1m    param([0m
+2026-10-07T06:57:48.3250317Z [36;1m        [Parameter(Mandatory=$true, ValueFromRemainingArguments=$true)][0m
+2026-10-07T06:57:48.3250889Z [36;1m        [string[]] $Packages[0m
+2026-10-07T06:57:48.3251140Z [36;1m    )[0m
+2026-10-07T06:57:48.3251315Z [36;1m[0m
+2026-10-07T06:57:48.3251504Z [36;1m    if ($script:linux_host) {[0m
+2026-10-07T06:57:48.3251831Z [36;1m        sudo apt-get autoremove --purge -yq $Packages[0m
+2026-10-07T06:57:48.3252173Z [36;1m    } elseif ($script:cygwin_host) {[0m
+2026-10-07T06:57:48.3252452Z [36;1m        $choco = Locate-Choco[0m
+2026-10-07T06:57:48.3252804Z [36;1m        & $choco uninstall $Packages -y --no-progress --source=cygwin[0m
+2026-10-07T06:57:48.3253198Z [36;1m    } elseif ($script:windows_host) {[0m
+2026-10-07T06:57:48.3253476Z [36;1m        $choco = Locate-Choco[0m
+2026-10-07T06:57:48.3253790Z [36;1m        & $choco uninstall $Packages -y --no-progress[0m
+2026-10-07T06:57:48.3254094Z [36;1m    } else {[0m
+2026-10-07T06:57:48.3254409Z [36;1m        throw "Sorry, removing packages is unsupported on $script:os"[0m
+2026-10-07T06:57:48.3254759Z [36;1m    }[0m
+2026-10-07T06:57:48.3254947Z [36;1m}[0m
+2026-10-07T06:57:48.3255116Z [36;1m[0m
+2026-10-07T06:57:48.3255300Z [36;1mif ($linux_host) {[0m
+2026-10-07T06:57:48.3255552Z [36;1m    if ($mingw_version_supplied) {[0m
+2026-10-07T06:57:48.3255884Z [36;1m        Install-Package mingw-w64=$mingw_version[0m
+2026-10-07T06:57:48.3256179Z [36;1m    } else {[0m
+2026-10-07T06:57:48.3256402Z [36;1m        Install-Package mingw-w64[0m
+2026-10-07T06:57:48.3256662Z [36;1m    }[0m
+2026-10-07T06:57:48.3256834Z [36;1m[0m
+2026-10-07T06:57:48.3257121Z [36;1m    # Make the compilers use the POSIX threading model, whatever that[0m
+2026-10-07T06:57:48.3257582Z [36;1m    # is.  Without it, the stuff from <mutex>/<thread>/etc. doesn't[0m
+2026-10-07T06:57:48.3258013Z [36;1m    # compile.  Of course, it makes the binaries depend on[0m
+2026-10-07T06:57:48.3258397Z [36;1m    # libwinpthread-1.dll, but what you gonna do?[0m
+2026-10-07T06:57:48.3258692Z [36;1m[0m
+2026-10-07T06:57:48.3259028Z [36;1m    sudo update-alternatives --set "$prefix32-gcc" "/usr/bin/$prefix32-gcc-posix"[0m
+2026-10-07T06:57:48.3259621Z [36;1m    sudo update-alternatives --set "$prefix32-g++" "/usr/bin/$prefix32-g++-posix"[0m
+2026-10-07T06:57:48.3260187Z [36;1m    sudo update-alternatives --set "$prefix64-gcc" "/usr/bin/$prefix64-gcc-posix"[0m
+2026-10-07T06:57:48.3261153Z [36;1m    sudo update-alternatives --set "$prefix64-g++" "/usr/bin/$prefix64-g++-posix"[0m
+2026-10-07T06:57:48.3261566Z [36;1m[0m
+2026-10-07T06:57:48.3261752Z [36;1m    if ($static_workaround) {[0m
+2026-10-07T06:57:48.3262009Z [36;1m        sudo rm `[0m
+2026-10-07T06:57:48.3262278Z [36;1m            "/usr/$prefix32/lib/libpthread.dll.a" `[0m
+2026-10-07T06:57:48.3263189Z [36;1m            "/usr/$prefix32/lib/libwinpthread.dll.a" `[0m
+2026-10-07T06:57:48.3263555Z [36;1m            "/usr/$prefix64/lib/libpthread.dll.a" `[0m
+2026-10-07T06:57:48.3263904Z [36;1m            "/usr/$prefix64/lib/libwinpthread.dll.a"[0m
+2026-10-07T06:57:48.3264205Z [36;1m    }[0m
+2026-10-07T06:57:48.3264413Z [36;1m} elseif ($cygwin_host) {[0m
+2026-10-07T06:57:48.3265337Z [36;1m    $pkg = if ($x64) { 'mingw64-x86_64-gcc-g++' } else { 'mingw64-i686-gcc-g++' }[0m
+2026-10-07T06:57:48.3265791Z [36;1m    if ($mingw_version_supplied) {[0m
+2026-10-07T06:57:48.3266137Z [36;1m        Install-Package $pkg --version $mingw_version[0m
+2026-10-07T06:57:48.3266448Z [36;1m    } else {[0m
+2026-10-07T06:57:48.3266664Z [36;1m        Install-Package $pkg[0m
+2026-10-07T06:57:48.3266909Z [36;1m    }[0m
+2026-10-07T06:57:48.3267088Z [36;1m[0m
+2026-10-07T06:57:48.3267364Z [36;1m    $bin_dir = cygpath.exe -wa "/usr/$prefix/sys-root/mingw/bin"[0m
+2026-10-07T06:57:48.3267811Z [36;1m    $lib_dir = cygpath.exe -wa "/usr/$prefix/sys-root/mingw/lib"[0m
+2026-10-07T06:57:48.3268139Z [36;1m[0m
+2026-10-07T06:57:48.3268337Z [36;1m    echo $bin_dir >> $env:GITHUB_PATH[0m
+2026-10-07T06:57:48.3268601Z [36;1m[0m
+2026-10-07T06:57:48.3268811Z [36;1m    if ($static_workaround) {[0m
+2026-10-07T06:57:48.3269625Z [36;1m        Remove-Item (Join-Path $lib_dir 'libpthread.dll.a')[0m
+2026-10-07T06:57:48.3270052Z [36;1m        Remove-Item (Join-Path $lib_dir 'libwinpthread.dll.a')[0m
+2026-10-07T06:57:48.3270387Z [36;1m    }[0m
+2026-10-07T06:57:48.3270591Z [36;1m} elseif ($windows_host) {[0m
+2026-10-07T06:57:48.3270843Z [36;1m    $choco = Locate-Choco[0m
+2026-10-07T06:57:48.3271076Z [36;1m[0m
+2026-10-07T06:57:48.3271252Z [36;1m    $mingw32 = 'mingw32'[0m
+2026-10-07T06:57:48.3271494Z [36;1m    $mingw64 = 'mingw64'[0m
+2026-10-07T06:57:48.3271784Z [36;1m    $mingw = if ($x64) { $mingw64 } else { $mingw32 }[0m
+2026-10-07T06:57:48.3272074Z [36;1m[0m
+2026-10-07T06:57:48.3272408Z [36;1m    $mingw_install = Join-Path C: ProgramData chocolatey lib mingw tools install[0m
+2026-10-07T06:57:48.3272871Z [36;1m    $mingw_root = Join-Path $mingw_install $mingw[0m
+2026-10-07T06:57:48.3273213Z [36;1m    $mingw_bin = Join-Path $mingw_root bin[0m
+2026-10-07T06:57:48.3273559Z [36;1m    $mingw_lib = Join-Path $mingw_root $prefix lib[0m
+2026-10-07T06:57:48.3273860Z [36;1m[0m
+2026-10-07T06:57:48.3274035Z [36;1m    $pkg = 'mingw'[0m
+2026-10-07T06:57:48.3274247Z [36;1m[0m
+2026-10-07T06:57:48.3274419Z [36;1m    if ($x64) {[0m
+2026-10-07T06:57:48.3274729Z [36;1m        # If the 32-bit version is installed, we won't detect that.[0m
+2026-10-07T06:57:48.3275156Z [36;1m        # But it's not that important, and we save a lot of time.[0m
+2026-10-07T06:57:48.3275526Z [36;1m        if ($mingw_version_supplied) {[0m
+2026-10-07T06:57:48.3275871Z [36;1m            Install-Package $pkg --version $mingw_version[0m
+2026-10-07T06:57:48.3276187Z [36;1m        } else {[0m
+2026-10-07T06:57:48.3276439Z [36;1m            Install-Package $pkg[0m
+2026-10-07T06:57:48.3276699Z [36;1m        }[0m
+2026-10-07T06:57:48.3276893Z [36;1m    } else {[0m
+2026-10-07T06:57:48.3277155Z [36;1m        # Assuming the 64-bit version is installed.[0m
+2026-10-07T06:57:48.3277484Z [36;1m        Remove-Package $pkg[0m
+2026-10-07T06:57:48.3277763Z [36;1m        if ($mingw_version_supplied) {[0m
+2026-10-07T06:57:48.3278133Z [36;1m            Install-Package $pkg --version $mingw_version --x86[0m
+2026-10-07T06:57:48.3278466Z [36;1m        } else {[0m
+2026-10-07T06:57:48.3278708Z [36;1m            Install-Package $pkg --x86[0m
+2026-10-07T06:57:48.3278970Z [36;1m        }[0m
+2026-10-07T06:57:48.3279155Z [36;1m    }[0m
+2026-10-07T06:57:48.3279369Z [36;1m    echo $mingw_bin >> $env:GITHUB_PATH[0m
+2026-10-07T06:57:48.3279642Z [36;1m[0m
+2026-10-07T06:57:48.3279825Z [36;1m    if ($static_workaround) {[0m
+2026-10-07T06:57:48.3280164Z [36;1m        Remove-Item (Join-Path $mingw_lib 'libpthread.dll.a')[0m
+2026-10-07T06:57:48.3280713Z [36;1m        Remove-Item (Join-Path $mingw_lib 'libwinpthread.dll.a')[0m
+2026-10-07T06:57:48.3281191Z [36;1m    }[0m
+2026-10-07T06:57:48.3281377Z [36;1m} else {[0m
+2026-10-07T06:57:48.3281642Z [36;1m    throw "Sorry, installing MinGW is unsupported on $os"[0m
+2026-10-07T06:57:48.3281977Z [36;1m}[0m
+2026-10-07T06:57:48.3282299Z [36;1m[0m
+2026-10-07T06:57:48.3282490Z [36;1m$gcc = $prefix + '-gcc'[0m
+2026-10-07T06:57:48.3282952Z [36;1m$gxx = $prefix + '-g++'[0m
+2026-10-07T06:57:48.3283204Z [36;1m$windres = $prefix = '-windres'[0m
+2026-10-07T06:57:48.3283449Z [36;1m[0m
+2026-10-07T06:57:48.3283674Z [36;1mecho "prefix=$prefix"   >> $env:GITHUB_OUTPUT[0m
+2026-10-07T06:57:48.3284011Z [36;1mecho "gcc=$gcc"         >> $env:GITHUB_OUTPUT[0m
+2026-10-07T06:57:48.3284335Z [36;1mecho "gxx=$gxx"         >> $env:GITHUB_OUTPUT[0m
+2026-10-07T06:57:48.3284654Z [36;1mecho "windres=$windres" >> $env:GITHUB_OUTPUT[0m
+2026-10-07T06:57:48.4809181Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-07T06:57:48.4809818Z env:
+2026-10-07T06:57:48.4810096Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T06:57:48.4810439Z   GOSUMDB: sum.golang.org
+2026-10-07T06:57:48.4810858Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:57:48.4811640Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-07T06:57:48.4812168Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:57:48.4812638Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:57:48.4813102Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-07T06:57:48.4813612Z   FLUTTER_ROOT: C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64/flutter
+2026-10-07T06:57:48.4814097Z   PUB_CACHE: C:\Users\runneradmin\AppData\Local\Pub\Cache
+2026-10-07T06:57:48.4814444Z ##[endgroup]
+2026-10-07T06:57:53.0072040Z Chocolatey v2.7.4
+2026-10-07T06:57:53.2713255Z Upgrading the following packages:
+2026-10-07T06:57:53.2719441Z mingw
+2026-10-07T06:57:53.2723477Z By upgrading, you accept licenses for the packages.
+2026-10-07T06:57:56.7101201Z mingw is not installed. Installing...
+2026-10-07T06:57:57.9764732Z Downloading package from source 'https://community.chocolatey.org/api/v2/'
+2026-10-07T06:57:58.4149563Z 
+2026-10-07T06:57:58.4150154Z mingw v16.1.0 [Approved]
+2026-10-07T06:57:58.4402172Z mingw package files upgrade completed. Performing other installation steps.
+2026-10-07T06:58:05.6494659Z Downloading mingw 64 bit
+2026-10-07T06:58:05.6495791Z   from 'https://github.com/niXman/mingw-builds-binaries/releases/download/16.1.0-rt_v14-rev0/x86_64-16.1.0-release-posix-seh-ucrt-rt_v14-rev0.7z'
+2026-10-07T06:58:07.3607643Z 
+2026-10-07T06:58:07.3629381Z Download of x86_64-16.1.0-release-posix-seh-ucrt-rt_v14-rev0.7z (101.95 MB) completed.
+2026-10-07T06:58:12.7116118Z Hashes match.
+2026-10-07T06:58:12.7698239Z Extracting C:\Users\runneradmin\AppData\Local\Temp\chocolatey\mingw\16.1.0\x86_64-16.1.0-release-posix-seh-ucrt-rt_v14-rev0.7z to C:\ProgramData\chocolatey\lib\mingw\tools\install...
+2026-10-07T06:58:46.4825563Z C:\ProgramData\chocolatey\lib\mingw\tools\install
+2026-10-07T06:58:46.8215294Z Using ProgramData: C:\ProgramData
+2026-10-07T06:58:46.8382945Z Testing path: C:\ProgramData\mingw64\mingw32\bin...Not Found!
+2026-10-07T06:58:46.8393131Z Testing path: C:\ProgramData\mingw64\mingw64\bin...Found!
+2026-10-07T06:58:46.8484842Z PATH environment variable does not have C:\ProgramData\mingw64\mingw64\bin in it. Adding...
+2026-10-07T06:58:47.1113310Z Environment Vars (like PATH) have changed. Close/reopen your shell to
+2026-10-07T06:58:47.1113946Z  see the changes (or in powershell/cmd.exe just type `refreshenv`).
+2026-10-07T06:58:47.2096717Z  The upgrade of mingw was successful.
+2026-10-07T06:58:47.2099814Z   Deployed to 'C:\ProgramData\chocolatey\lib\mingw\tools\install'
+2026-10-07T06:58:47.2240658Z 
+2026-10-07T06:58:47.2240881Z Chocolatey upgraded 1/1 packages. 
+2026-10-07T06:58:47.2241390Z  See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+2026-10-07T06:58:47.4948125Z [31;1mRemove-Item: [0mD:\a\_temp\4e564c1d-0b96-4207-9021-2ea6de6dd501.ps1:140[0m
+2026-10-07T06:58:47.4951580Z [31;1m[0m[36;1mLine |[0m
+2026-10-07T06:58:47.4953029Z [31;1m[0m[36;1m[36;1m 140 | [0m         [36;1mRemove-Item (Join-Path $mingw_lib 'libpthread.dll.a')[0m
+2026-10-07T06:58:47.4954045Z [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m     | [31;1m         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+2026-10-07T06:58:47.4955230Z [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m     | [31;1mCannot find path[0m
+2026-10-07T06:58:47.4957098Z [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m[31;1m[36;1m     | [31;1m'C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libpthread.dll.a' because it[0m
+2026-10-07T06:58:47.4958726Z [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m[31;1m[36;1m[31;1m[36;1m     | [31;1mdoes not exist.[0m
+2026-10-07T06:58:47.5150561Z ##[error]Process completed with exit code 1.
+2026-10-07T06:58:47.5159127Z ##[end-action id=__egor-tensin_setup-mingw.setup;outcome=failure;conclusion=failure;duration_ms=59213]
+2026-10-07T06:58:47.5166368Z ##[start-action display=Run New-Variable os -Value 'Windows' -Option Constant;id=__egor-tensin_setup-mingw.__run]
+2026-10-07T06:58:47.5168635Z ##[end-action id=__egor-tensin_setup-mingw.__run;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-10-07T06:58:47.5171841Z ##[start-action display=Run New-Variable cygwin_host -Value ('0' -eq '1') -Option Constant;id=__egor-tensin_setup-mingw.__run_2]
+2026-10-07T06:58:47.5173952Z ##[end-action id=__egor-tensin_setup-mingw.__run_2;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-10-07T06:58:47.5497797Z Post job cleanup.
+2026-10-07T06:58:47.5502195Z ##[start-action display=Cache pub dependencies;id=__a295c762-9cb3-4d93-b241-968de72e4b72.cache-pub]
+2026-10-07T06:58:47.5504378Z ##[end-action id=__a295c762-9cb3-4d93-b241-968de72e4b72.cache-pub;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-10-07T06:58:47.5506304Z ##[start-action display=Cache Flutter;id=__a295c762-9cb3-4d93-b241-968de72e4b72.cache-flutter]
+2026-10-07T06:58:47.5508293Z ##[end-action id=__a295c762-9cb3-4d93-b241-968de72e4b72.cache-flutter;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-10-07T06:58:47.5723024Z Post job cleanup.
+2026-10-07T06:58:47.7832868Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-07T06:58:47.8103222Z git version 2.55.0.windows.5
+2026-10-07T06:58:47.8166221Z Temporarily overriding HOME='D:\a\_temp\6f8b33dd-5d56-4550-bb77-f0290fef5d0d' before making global git config changes
+2026-10-07T06:58:47.8167582Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-07T06:58:47.8177520Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\guoapp\guoapp
+2026-10-07T06:58:47.8475315Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-07T06:58:47.8768916Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-07T06:58:48.4025998Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-07T06:58:48.4283349Z http.https://github.com/.extraheader
+2026-10-07T06:58:48.4323839Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all http.https://github.com/.extraheader
+2026-10-07T06:58:48.4615685Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-07T06:58:49.0009648Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-07T06:58:49.0305063Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-07T06:58:49.5786797Z Cleaning up orphan processes
+2026-10-07T06:58:49.6138617Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-go@v5, actions/setup-python@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
