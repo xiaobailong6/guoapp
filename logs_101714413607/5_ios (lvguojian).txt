@@ -1,761 +1,542 @@
-﻿2026-10-07T06:55:19.6843960Z Current runner version: '2.337.0'
-2026-10-07T06:55:19.6860360Z ##[group]Runner Image Provisioner
-2026-10-07T06:55:19.6860890Z Hosted Compute Agent
-2026-10-07T06:55:19.6861250Z Version: 20260828.587
-2026-10-07T06:55:19.6861650Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
-2026-10-07T06:55:19.6862120Z Build Date: 2026-08-28T16:44:25Z
-2026-10-07T06:55:19.6862550Z Worker ID: {e0ed1b35-8dba-4caf-8e04-a7bd2acb9d31}
-2026-10-07T06:55:19.6863000Z Azure Region: westus
-2026-10-07T06:55:19.6863350Z ##[endgroup]
-2026-10-07T06:55:19.6864280Z ##[group]Operating System
-2026-10-07T06:55:19.6864660Z macOS
-2026-10-07T06:55:19.6864980Z 26.6.2
-2026-10-07T06:55:19.6865290Z 25G83
-2026-10-07T06:55:19.6865610Z ##[endgroup]
-2026-10-07T06:55:19.6865950Z ##[group]Runner Image
-2026-10-07T06:55:19.6866320Z Image: macos-26-arm64
-2026-10-07T06:55:19.6866680Z Version: 20260907.0351.1
-2026-10-07T06:55:19.6867490Z Included Software: https://github.com/actions/runner-images/blob/macos-26-arm64/20260907.0351/images/macos/macos-26-arm64-Readme.md
-2026-10-07T06:55:19.6868500Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-26-arm64%2F20260907.0351
-2026-10-07T06:55:19.6869140Z ##[endgroup]
-2026-10-07T06:55:19.6869990Z ##[group]GITHUB_TOKEN Permissions
-2026-10-07T06:55:19.6871230Z Contents: read
-2026-10-07T06:55:19.6871580Z Metadata: read
-2026-10-07T06:55:19.6871930Z ##[endgroup]
-2026-10-07T06:55:19.6873250Z Secret source: Actions
-2026-10-07T06:55:19.6873830Z Cache mode: write
-2026-10-07T06:55:19.6874240Z Prepare workflow directory
-2026-10-07T06:55:19.7149890Z Prepare all required actions
-2026-10-07T06:55:19.7185520Z Getting action download info
-2026-10-07T06:55:20.1242660Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
-2026-10-07T06:55:20.3103430Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
-2026-10-07T06:55:20.3879070Z Download action repository 'actions/setup-go@v5' (SHA:40f1582b2485089dde7abd97c1529aa768e1baff)
-2026-10-07T06:55:20.8174050Z Download action repository 'subosito/flutter-action@v2' (SHA:1a449444c387b1966244ae4d4f8c696479add0b2)
-2026-10-07T06:55:21.1082320Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
-2026-10-07T06:55:21.3346270Z Getting action download info
-2026-10-07T06:55:21.4624800Z Download action repository 'actions/cache@v5' (SHA:caa296126883cff596d87d8935842f9db880ef25)
-2026-10-07T06:55:21.5759500Z Complete job name: ios (lvguojian)
-2026-10-07T06:55:21.6233370Z ##[group]Run actions/checkout@v4
-2026-10-07T06:55:21.6233950Z with:
-2026-10-07T06:55:21.6234270Z   repository: xiaobailong6/guoapp
-2026-10-07T06:55:21.6240900Z   token: ***
-2026-10-07T06:55:21.6241200Z   ssh-strict: true
-2026-10-07T06:55:21.6241510Z   ssh-user: git
-2026-10-07T06:55:21.6241830Z   persist-credentials: true
-2026-10-07T06:55:21.6242200Z   clean: true
-2026-10-07T06:55:21.6242620Z   sparse-checkout-cone-mode: true
-2026-10-07T06:55:21.6243250Z   fetch-depth: 1
-2026-10-07T06:55:21.6243730Z   fetch-tags: false
-2026-10-07T06:55:21.6244200Z   show-progress: true
-2026-10-07T06:55:21.6244590Z   lfs: false
-2026-10-07T06:55:21.6244930Z   submodules: false
-2026-10-07T06:55:21.6245460Z   set-safe-directory: true
-2026-10-07T06:55:21.6246080Z   allow-unsafe-pr-checkout: false
-2026-10-07T06:55:21.6246700Z env:
-2026-10-07T06:55:21.6247050Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-07T06:55:21.6247580Z   GOSUMDB: sum.golang.org
-2026-10-07T06:55:21.6248010Z ##[endgroup]
-2026-10-07T06:55:21.9721850Z Syncing repository: xiaobailong6/guoapp
-2026-10-07T06:55:21.9723540Z ##[group]Getting Git version info
-2026-10-07T06:55:21.9724140Z Working directory is '/Users/runner/work/guoapp/guoapp'
-2026-10-07T06:55:21.9725070Z [command]/opt/homebrew/bin/git version
-2026-10-07T06:55:22.0278310Z git version 2.55.0
-2026-10-07T06:55:22.0290970Z ##[endgroup]
-2026-10-07T06:55:22.0297480Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/041fa9bd-ed34-40ac-a6d2-941ba96ad85d/.gitconfig'
-2026-10-07T06:55:22.0302970Z Temporarily overriding HOME='/Users/runner/work/_temp/041fa9bd-ed34-40ac-a6d2-941ba96ad85d' before making global git config changes
-2026-10-07T06:55:22.0304320Z Adding repository directory to the temporary git global config as a safe directory
-2026-10-07T06:55:22.0306770Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/guoapp/guoapp
-2026-10-07T06:55:22.0407620Z Deleting the contents of '/Users/runner/work/guoapp/guoapp'
-2026-10-07T06:55:22.0410380Z ##[group]Initializing the repository
-2026-10-07T06:55:22.0413770Z [command]/opt/homebrew/bin/git init /Users/runner/work/guoapp/guoapp
-2026-10-07T06:55:22.0616110Z hint: Using 'master' as the name for the initial branch. This default branch name
-2026-10-07T06:55:22.0617490Z hint: will change to "main" in Git 3.0. To configure the initial branch name
-2026-10-07T06:55:22.0618410Z hint: to use in all of your new repositories, which will suppress this warning,
-2026-10-07T06:55:22.0619180Z hint: call:
-2026-10-07T06:55:22.0619530Z hint:
-2026-10-07T06:55:22.0619980Z hint: 	git config --global init.defaultBranch <name>
-2026-10-07T06:55:22.0620500Z hint:
-2026-10-07T06:55:22.0620990Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
-2026-10-07T06:55:22.0621860Z hint: 'development'. The just-created branch can be renamed via this command:
-2026-10-07T06:55:22.0622550Z hint:
-2026-10-07T06:55:22.0622980Z hint: 	git branch -m <name>
-2026-10-07T06:55:22.0623390Z hint:
-2026-10-07T06:55:22.0624030Z hint: Disable this message with "git config set advice.defaultBranchName false"
-2026-10-07T06:55:22.0624980Z Initialized empty Git repository in /Users/runner/work/guoapp/guoapp/.git/
-2026-10-07T06:55:22.0626730Z [command]/opt/homebrew/bin/git remote add origin https://github.com/xiaobailong6/guoapp
-2026-10-07T06:55:22.0940900Z ##[endgroup]
-2026-10-07T06:55:22.0941620Z ##[group]Disabling automatic garbage collection
-2026-10-07T06:55:22.0943760Z [command]/opt/homebrew/bin/git config --local gc.auto 0
-2026-10-07T06:55:22.1010290Z ##[endgroup]
-2026-10-07T06:55:22.1010940Z ##[group]Setting up auth
-2026-10-07T06:55:22.1015410Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
-2026-10-07T06:55:22.1079730Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
-2026-10-07T06:55:22.2287600Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
-2026-10-07T06:55:22.2401510Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
-2026-10-07T06:55:22.3240920Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
-2026-10-07T06:55:22.3305300Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
-2026-10-07T06:55:22.4699690Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
-2026-10-07T06:55:22.4706920Z ##[endgroup]
-2026-10-07T06:55:22.4707660Z ##[group]Fetching the repository
-2026-10-07T06:55:22.4709270Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +15ebd816d2d5d970480e589a97609b2d9741592f:refs/remotes/origin/main
-2026-10-07T06:55:23.1689090Z From https://github.com/xiaobailong6/guoapp
-2026-10-07T06:55:23.1690380Z  * [new ref]         15ebd816d2d5d970480e589a97609b2d9741592f -> origin/main
-2026-10-07T06:55:23.1692770Z ##[endgroup]
-2026-10-07T06:55:23.1693600Z ##[group]Determining the checkout info
-2026-10-07T06:55:23.1695260Z ##[endgroup]
-2026-10-07T06:55:23.1696380Z [command]/opt/homebrew/bin/git sparse-checkout disable
-2026-10-07T06:55:23.1778980Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
-2026-10-07T06:55:23.1845400Z ##[group]Checking out the ref
-2026-10-07T06:55:23.1853090Z [command]/opt/homebrew/bin/git checkout --progress --force -B main refs/remotes/origin/main
-2026-10-07T06:55:23.2635150Z Switched to a new branch 'main'
-2026-10-07T06:55:23.2650930Z branch 'main' set up to track 'origin/main'.
-2026-10-07T06:55:23.2672390Z ##[endgroup]
-2026-10-07T06:55:23.2744960Z [command]/opt/homebrew/bin/git log -1 --format=%H
-2026-10-07T06:55:23.2811820Z 15ebd816d2d5d970480e589a97609b2d9741592f
-2026-10-07T06:55:23.3050120Z ##[group]Run actions/setup-python@v5
-2026-10-07T06:55:23.3050940Z with:
-2026-10-07T06:55:23.3051530Z   python-version: 3.12
-2026-10-07T06:55:23.3052100Z   check-latest: false
-2026-10-07T06:55:23.3054960Z   token: ***
-2026-10-07T06:55:23.3055500Z   update-environment: true
-2026-10-07T06:55:23.3056090Z   allow-prereleases: false
-2026-10-07T06:55:23.3056670Z   freethreaded: false
-2026-10-07T06:55:23.3057220Z env:
-2026-10-07T06:55:23.3057870Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-07T06:55:23.3058500Z   GOSUMDB: sum.golang.org
-2026-10-07T06:55:23.3059060Z ##[endgroup]
-2026-10-07T06:55:23.4335580Z ##[group]Installed versions
-2026-10-07T06:55:23.4470530Z (node:2686) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
-2026-10-07T06:55:23.4628310Z (Use `node --trace-deprecation ...` to show where the warning was created)
-2026-10-07T06:55:23.6170510Z Successfully set up CPython (3.12.10)
-2026-10-07T06:55:23.6271260Z ##[endgroup]
-2026-10-07T06:55:23.6562900Z ##[group]Run actions/setup-go@v5
-2026-10-07T06:55:23.6563540Z with:
-2026-10-07T06:55:23.6564090Z   go-version-file: native/go.mod
-2026-10-07T06:55:23.6564770Z   cache-dependency-path: native/go.sum
-2026-10-07T06:55:23.6565380Z   check-latest: false
-2026-10-07T06:55:23.6568250Z   token: ***
-2026-10-07T06:55:23.6568820Z   cache: true
-2026-10-07T06:55:23.6569340Z env:
-2026-10-07T06:55:23.6569920Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-07T06:55:23.6570750Z   GOSUMDB: sum.golang.org
-2026-10-07T06:55:23.6571550Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:55:23.6572580Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
-2026-10-07T06:55:23.6573570Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:55:23.6574380Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:55:23.6575330Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:55:23.6576110Z ##[endgroup]
-2026-10-07T06:55:23.7741760Z Setup go version spec 1.24.1
-2026-10-07T06:55:23.7784880Z Attempting to download 1.24.1...
-2026-10-07T06:55:23.7893520Z (node:2698) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
-2026-10-07T06:55:23.7896130Z (Use `node --trace-deprecation ...` to show where the warning was created)
-2026-10-07T06:55:24.3580100Z matching 1.24.1...
-2026-10-07T06:55:24.3679690Z Acquiring 1.24.1 from https://github.com/actions/go-versions/releases/download/1.24.1-13667719799/go-1.24.1-darwin-arm64.tar.gz
-2026-10-07T06:55:25.4667660Z Extracting Go...
-2026-10-07T06:55:25.4851260Z [command]/usr/bin/tar xz -C /Users/runner/work/_temp/63a36636-5f36-4e6a-a4a4-0da20292d8b3 -f /Users/runner/work/_temp/1d52653a-0cf7-4d32-ae87-7d4911140dee
-2026-10-07T06:55:27.6683030Z Successfully extracted go to /Users/runner/work/_temp/63a36636-5f36-4e6a-a4a4-0da20292d8b3
-2026-10-07T06:55:27.6683830Z Adding to the cache ...
-2026-10-07T06:55:34.4681810Z Successfully cached go to /Users/runner/hostedtoolcache/go/1.24.1/arm64
-2026-10-07T06:55:34.4683900Z Added go to the path
-2026-10-07T06:55:34.4685580Z Successfully set up Go version 1.24.1
-2026-10-07T06:55:34.5777770Z [command]/Users/runner/hostedtoolcache/go/1.24.1/arm64/bin/go env GOMODCACHE
-2026-10-07T06:55:34.5788770Z [command]/Users/runner/hostedtoolcache/go/1.24.1/arm64/bin/go env GOCACHE
-2026-10-07T06:55:34.5856440Z /Users/runner/go/pkg/mod
-2026-10-07T06:55:34.5871020Z /Users/runner/Library/Caches/go-build
-2026-10-07T06:55:34.8482340Z Cache hit for: setup-go-macOS-arm64-go-1.24.1-08fd0a1e03bd5f8f8408fc5c86ca527da129df47f98b180c77a3204f069032d3
-2026-10-07T06:55:34.8570490Z (node:2698) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
-2026-10-07T06:55:36.1347680Z Received 0 of 255265559 (0.0%), 0.0 MBs/sec
-2026-10-07T06:55:37.1373660Z Received 88080384 of 255265559 (34.5%), 42.0 MBs/sec
-2026-10-07T06:55:38.1359300Z Received 163577856 of 255265559 (64.1%), 51.9 MBs/sec
-2026-10-07T06:55:39.1378140Z Received 251071255 of 255265559 (98.4%), 59.8 MBs/sec
-2026-10-07T06:55:39.3000620Z Received 255265559 of 255265559 (100.0%), 58.4 MBs/sec
-2026-10-07T06:55:39.3022980Z Cache Size: ~243 MB (255265559 B)
-2026-10-07T06:55:39.3091860Z [command]/opt/homebrew/bin/gtar -xf /Users/runner/work/_temp/790f18e9-5298-4bfe-a7ab-7dd570f8122b/cache.tzst -P -C /Users/runner/work/guoapp/guoapp --delay-directory-restore --use-compress-program unzstd
-2026-10-07T06:55:41.5505410Z Cache restored successfully
-2026-10-07T06:55:41.5549560Z Cache restored from key: setup-go-macOS-arm64-go-1.24.1-08fd0a1e03bd5f8f8408fc5c86ca527da129df47f98b180c77a3204f069032d3
-2026-10-07T06:55:41.5566160Z go version go1.24.1 darwin/arm64
-2026-10-07T06:55:41.5566340Z 
-2026-10-07T06:55:41.5566660Z ##[group]go env
-2026-10-07T06:55:42.9471410Z AR='ar'
-2026-10-07T06:55:42.9473210Z CC='clang'
-2026-10-07T06:55:42.9473670Z CGO_CFLAGS='-O2 -g'
-2026-10-07T06:55:42.9474370Z CGO_CPPFLAGS=''
-2026-10-07T06:55:42.9474750Z CGO_CXXFLAGS='-O2 -g'
-2026-10-07T06:55:42.9475090Z CGO_ENABLED='1'
-2026-10-07T06:55:42.9475350Z CGO_FFLAGS='-O2 -g'
-2026-10-07T06:55:42.9475660Z CGO_LDFLAGS='-O2 -g'
-2026-10-07T06:55:42.9476310Z CXX='clang++'
-2026-10-07T06:55:42.9476800Z GCCGO='gccgo'
-2026-10-07T06:55:42.9477210Z GO111MODULE=''
-2026-10-07T06:55:42.9477700Z GOARCH='arm64'
-2026-10-07T06:55:42.9477960Z GOARM64='v8.0'
-2026-10-07T06:55:42.9478340Z GOAUTH='netrc'
-2026-10-07T06:55:42.9478670Z GOBIN=''
-2026-10-07T06:55:42.9479000Z GOCACHE='/Users/runner/Library/Caches/go-build'
-2026-10-07T06:55:42.9479430Z GOCACHEPROG=''
-2026-10-07T06:55:42.9479740Z GODEBUG=''
-2026-10-07T06:55:42.9480260Z GOENV='/Users/runner/Library/Application Support/go/env'
-2026-10-07T06:55:42.9480680Z GOEXE=''
-2026-10-07T06:55:42.9480900Z GOEXPERIMENT=''
-2026-10-07T06:55:42.9481200Z GOFIPS140='off'
-2026-10-07T06:55:42.9481580Z GOFLAGS=''
-2026-10-07T06:55:42.9482890Z GOGCCFLAGS='-fPIC -arch arm64 -pthread -fno-caret-diagnostics -Qunused-arguments -fmessage-length=0 -ffile-prefix-map=/var/folders/36/tjdph2t965j8snz9_vkdnw0r0000gn/T/go-build2558039397=/tmp/go-build -gno-record-gcc-switches -fno-common'
-2026-10-07T06:55:42.9483860Z GOHOSTARCH='arm64'
-2026-10-07T06:55:42.9484140Z GOHOSTOS='darwin'
-2026-10-07T06:55:42.9484520Z GOINSECURE=''
-2026-10-07T06:55:42.9484840Z GOMOD='/dev/null'
-2026-10-07T06:55:42.9485230Z GOMODCACHE='/Users/runner/go/pkg/mod'
-2026-10-07T06:55:42.9485620Z GONOPROXY=''
-2026-10-07T06:55:42.9485980Z GONOSUMDB=''
-2026-10-07T06:55:42.9486300Z GOOS='darwin'
-2026-10-07T06:55:42.9486600Z GOPATH='/Users/runner/go'
-2026-10-07T06:55:42.9486950Z GOPRIVATE=''
-2026-10-07T06:55:42.9487420Z GOPROXY='https://proxy.golang.org,direct'
-2026-10-07T06:55:42.9487890Z GOROOT='/Users/runner/hostedtoolcache/go/1.24.1/arm64'
-2026-10-07T06:55:42.9488410Z GOSUMDB='sum.golang.org'
-2026-10-07T06:55:42.9488740Z GOTELEMETRY='local'
-2026-10-07T06:55:42.9489220Z GOTELEMETRYDIR='/Users/runner/Library/Application Support/go/telemetry'
-2026-10-07T06:55:42.9489700Z GOTMPDIR=''
-2026-10-07T06:55:42.9489910Z GOTOOLCHAIN='auto'
-2026-10-07T06:55:42.9490400Z GOTOOLDIR='/Users/runner/hostedtoolcache/go/1.24.1/arm64/pkg/tool/darwin_arm64'
-2026-10-07T06:55:42.9490880Z GOVCS=''
-2026-10-07T06:55:42.9491240Z GOVERSION='go1.24.1'
-2026-10-07T06:55:42.9491550Z GOWORK=''
-2026-10-07T06:55:42.9491790Z PKG_CONFIG='pkg-config'
-2026-10-07T06:55:42.9496280Z 
-2026-10-07T06:55:42.9496970Z ##[endgroup]
-2026-10-07T06:55:42.9784760Z ##[group]Run subosito/flutter-action@v2
-2026-10-07T06:55:42.9785050Z with:
-2026-10-07T06:55:42.9785250Z   flutter-version: 3.47.4
-2026-10-07T06:55:42.9785460Z   channel: stable
-2026-10-07T06:55:42.9785660Z   cache: true
-2026-10-07T06:55:42.9785850Z   architecture: ARM64
-2026-10-07T06:55:42.9786100Z   pub-cache-path: default
-2026-10-07T06:55:42.9786270Z   dry-run: false
-2026-10-07T06:55:42.9786550Z   git-source: https://github.com/flutter/flutter.git
-2026-10-07T06:55:42.9786830Z env:
-2026-10-07T06:55:42.9786990Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-07T06:55:42.9787240Z   GOSUMDB: sum.golang.org
-2026-10-07T06:55:42.9787570Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:55:42.9788010Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
-2026-10-07T06:55:42.9788490Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:55:42.9788950Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:55:42.9789360Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:55:42.9789650Z ##[endgroup]
-2026-10-07T06:55:42.9838450Z ##[start-action display=Make yq tool available on Windows runners;id=__subosito_flutter-action.__run]
-2026-10-07T06:55:42.9847100Z ##[end-action id=__subosito_flutter-action.__run;outcome=skipped;conclusion=skipped;duration_ms=0]
-2026-10-07T06:55:42.9848820Z ##[start-action display=Make setup script executable;id=__subosito_flutter-action.__run_2]
-2026-10-07T06:55:42.9881770Z ##[group]Run chmod +x "$GITHUB_ACTION_PATH/setup.sh"
-2026-10-07T06:55:42.9882120Z [36;1mchmod +x "$GITHUB_ACTION_PATH/setup.sh"[0m
-2026-10-07T06:55:42.9942980Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
-2026-10-07T06:55:42.9943320Z env:
-2026-10-07T06:55:42.9943600Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-07T06:55:42.9943820Z   GOSUMDB: sum.golang.org
-2026-10-07T06:55:42.9944170Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:55:42.9944620Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
-2026-10-07T06:55:42.9945020Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:55:42.9945380Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:55:42.9945730Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:55:42.9946010Z ##[endgroup]
-2026-10-07T06:55:43.0372140Z ##[end-action id=__subosito_flutter-action.__run_2;outcome=success;conclusion=success;duration_ms=52]
-2026-10-07T06:55:43.0374340Z ##[start-action display=Set action inputs;id=__subosito_flutter-action.flutter-action]
-2026-10-07T06:55:43.0394640Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh -p \
-2026-10-07T06:55:43.0394970Z [36;1m$GITHUB_ACTION_PATH/setup.sh -p \[0m
-2026-10-07T06:55:43.0395240Z [36;1m  -n '3.47.4' \[0m
-2026-10-07T06:55:43.0395500Z [36;1m  -f '' \[0m
-2026-10-07T06:55:43.0395720Z [36;1m  -a 'ARM64' \[0m
-2026-10-07T06:55:43.0395900Z [36;1m  -k '' \[0m
-2026-10-07T06:55:43.0396080Z [36;1m  -c '' \[0m
-2026-10-07T06:55:43.0396260Z [36;1m  -l '' \[0m
-2026-10-07T06:55:43.0396430Z [36;1m  -d 'default' \[0m
-2026-10-07T06:55:43.0396690Z [36;1m  -g 'https://github.com/flutter/flutter.git' \[0m
-2026-10-07T06:55:43.0396950Z [36;1m  stable[0m
-2026-10-07T06:55:43.0427970Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
-2026-10-07T06:55:43.0428240Z env:
-2026-10-07T06:55:43.0428430Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-07T06:55:43.0428660Z   GOSUMDB: sum.golang.org
-2026-10-07T06:55:43.0428930Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:55:43.0429340Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
-2026-10-07T06:55:43.0429730Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:55:43.0430100Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:55:43.0440530Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:55:43.0440900Z ##[endgroup]
-2026-10-07T06:55:43.3911170Z ##[end-action id=__subosito_flutter-action.flutter-action;outcome=success;conclusion=success;duration_ms=353]
-2026-10-07T06:55:43.3914460Z ##[start-action display=Cache Flutter;id=__subosito_flutter-action.cache-flutter]
-2026-10-07T06:55:43.3956660Z ##[group]Run actions/cache@v5
-2026-10-07T06:55:43.3956870Z with:
-2026-10-07T06:55:43.3957140Z   path: /Users/runner/hostedtoolcache/flutter/stable-3.47.4-arm64
-2026-10-07T06:55:43.3957570Z   key: flutter-macos-stable-3.47.4-arm64-9584c6713b324636289d067944a46fd6b49df14b
-2026-10-07T06:55:43.3957930Z   enableCrossOsArchive: false
-2026-10-07T06:55:43.3958140Z   fail-on-cache-miss: false
-2026-10-07T06:55:43.3958340Z   lookup-only: false
-2026-10-07T06:55:43.3958510Z   save-always: false
-2026-10-07T06:55:43.3958680Z env:
-2026-10-07T06:55:43.3958920Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-07T06:55:43.3959260Z   GOSUMDB: sum.golang.org
-2026-10-07T06:55:43.3959560Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:55:43.3959970Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
-2026-10-07T06:55:43.3960380Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:55:43.3960750Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:55:43.3961120Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:55:43.3961400Z ##[endgroup]
-2026-10-07T06:55:43.9577370Z Cache hit for: flutter-macos-stable-3.47.4-arm64-9584c6713b324636289d067944a46fd6b49df14b
-2026-10-07T06:55:45.2341690Z Received 0 of 2220559952 (0.0%), 0.0 MBs/sec
-2026-10-07T06:55:46.2370100Z Received 100663296 of 2220559952 (4.5%), 47.9 MBs/sec
-2026-10-07T06:55:47.2382940Z Received 163577856 of 2220559952 (7.4%), 51.9 MBs/sec
-2026-10-07T06:55:48.2456880Z Received 251658240 of 2220559952 (11.3%), 59.9 MBs/sec
-2026-10-07T06:55:49.2428910Z Received 318767104 of 2220559952 (14.4%), 60.7 MBs/sec
-2026-10-07T06:55:50.3214680Z Received 402653184 of 2220559952 (18.1%), 63.1 MBs/sec
-2026-10-07T06:55:51.3228050Z Received 465567744 of 2220559952 (21.0%), 62.6 MBs/sec
-2026-10-07T06:55:52.3398000Z Received 536870912 of 2220559952 (24.2%), 63.2 MBs/sec
-2026-10-07T06:55:53.3353180Z Received 587202560 of 2220559952 (26.4%), 61.5 MBs/sec
-2026-10-07T06:55:54.3371090Z Received 666894336 of 2220559952 (30.0%), 63.0 MBs/sec
-2026-10-07T06:55:55.3407290Z Received 717225984 of 2220559952 (32.3%), 61.6 MBs/sec
-2026-10-07T06:55:56.3453180Z Received 792723456 of 2220559952 (35.7%), 62.4 MBs/sec
-2026-10-07T06:55:57.3442330Z Received 834666496 of 2220559952 (37.6%), 60.7 MBs/sec
-2026-10-07T06:55:58.3462710Z Received 914358272 of 2220559952 (41.2%), 61.8 MBs/sec
-2026-10-07T06:55:59.3467570Z Received 960495616 of 2220559952 (43.3%), 60.6 MBs/sec
-2026-10-07T06:56:00.3582390Z Received 1027604480 of 2220559952 (46.3%), 60.8 MBs/sec
-2026-10-07T06:56:01.3581880Z Received 1086324736 of 2220559952 (48.9%), 60.5 MBs/sec
-2026-10-07T06:56:02.3602640Z Received 1153433600 of 2220559952 (51.9%), 60.7 MBs/sec
-2026-10-07T06:56:03.3613560Z Received 1203765248 of 2220559952 (54.2%), 60.0 MBs/sec
-2026-10-07T06:56:04.3621750Z Received 1237319680 of 2220559952 (55.7%), 58.6 MBs/sec
-2026-10-07T06:56:05.3683620Z Received 1308622848 of 2220559952 (58.9%), 59.1 MBs/sec
-2026-10-07T06:56:06.3642780Z Received 1342177280 of 2220559952 (60.4%), 57.8 MBs/sec
-2026-10-07T06:56:07.3639080Z Received 1396703232 of 2220559952 (62.9%), 57.6 MBs/sec
-2026-10-07T06:56:08.3652180Z Received 1468006400 of 2220559952 (66.1%), 58.0 MBs/sec
-2026-10-07T06:56:09.3666680Z Received 1501560832 of 2220559952 (67.6%), 57.0 MBs/sec
-2026-10-07T06:56:10.3664140Z Received 1577058304 of 2220559952 (71.0%), 57.6 MBs/sec
-2026-10-07T06:56:11.3676450Z Received 1610612736 of 2220559952 (72.5%), 56.6 MBs/sec
-2026-10-07T06:56:12.3686300Z Received 1669332992 of 2220559952 (75.2%), 56.6 MBs/sec
-2026-10-07T06:56:13.3705850Z Received 1740636160 of 2220559952 (78.4%), 57.0 MBs/sec
-2026-10-07T06:56:14.3704270Z Received 1786773504 of 2220559952 (80.5%), 56.5 MBs/sec
-2026-10-07T06:56:15.3717080Z Received 1853882368 of 2220559952 (83.5%), 56.8 MBs/sec
-2026-10-07T06:56:16.3733620Z Received 1912602624 of 2220559952 (86.1%), 56.8 MBs/sec
-2026-10-07T06:56:17.3739840Z Received 1962934272 of 2220559952 (88.4%), 56.5 MBs/sec
-2026-10-07T06:56:18.3753750Z Received 2013265920 of 2220559952 (90.7%), 56.2 MBs/sec
-2026-10-07T06:56:19.3764430Z Received 2084569088 of 2220559952 (93.9%), 56.6 MBs/sec
-2026-10-07T06:56:20.3780940Z Received 2147483648 of 2220559952 (96.7%), 56.7 MBs/sec
-2026-10-07T06:56:21.3779760Z Received 2207977040 of 2220559952 (99.4%), 56.7 MBs/sec
-2026-10-07T06:56:21.4925730Z Received 2220559952 of 2220559952 (100.0%), 56.8 MBs/sec
-2026-10-07T06:56:21.5079020Z Cache Size: ~2118 MB (2220559952 B)
-2026-10-07T06:56:21.5184190Z [command]/opt/homebrew/bin/gtar -xf /Users/runner/work/_temp/1e8f66f1-b88e-49c5-b1d2-f49709ab868e/cache.tzst -P -C /Users/runner/work/guoapp/guoapp --delay-directory-restore --use-compress-program unzstd
-2026-10-07T06:56:38.4376470Z Cache restored successfully
-2026-10-07T06:56:38.5203620Z Cache restored from key: flutter-macos-stable-3.47.4-arm64-9584c6713b324636289d067944a46fd6b49df14b
-2026-10-07T06:56:38.5370950Z ##[end-action id=__subosito_flutter-action.cache-flutter;outcome=success;conclusion=success;duration_ms=55117]
-2026-10-07T06:56:38.5377480Z ##[start-action display=Cache pub dependencies;id=__subosito_flutter-action.cache-pub]
-2026-10-07T06:56:38.9041360Z ##[group]Run actions/cache@v5
-2026-10-07T06:56:38.9041860Z with:
-2026-10-07T06:56:38.9042250Z   path: /Users/runner/.pub-cache
-2026-10-07T06:56:38.9043030Z   key: flutter-pub-macos-stable-3.47.4-arm64-9584c6713b324636289d067944a46fd6b49df14b-4f2d9e15f937ee8713c1f3993dbd5ead79b6170906737c543425d7b407a7609e
-2026-10-07T06:56:38.9043660Z   enableCrossOsArchive: false
-2026-10-07T06:56:38.9044180Z   fail-on-cache-miss: false
-2026-10-07T06:56:38.9044490Z   lookup-only: false
-2026-10-07T06:56:38.9044830Z   save-always: false
-2026-10-07T06:56:38.9045050Z env:
-2026-10-07T06:56:38.9045370Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-07T06:56:38.9045730Z   GOSUMDB: sum.golang.org
-2026-10-07T06:56:38.9046060Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:56:38.9046630Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
-2026-10-07T06:56:38.9047210Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:56:38.9047660Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:56:38.9048140Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:56:38.9048500Z ##[endgroup]
-2026-10-07T06:56:39.3279800Z Cache not found for input keys: flutter-pub-macos-stable-3.47.4-arm64-9584c6713b324636289d067944a46fd6b49df14b-4f2d9e15f937ee8713c1f3993dbd5ead79b6170906737c543425d7b407a7609e
-2026-10-07T06:56:39.3307530Z ##[end-action id=__subosito_flutter-action.cache-pub;outcome=success;conclusion=success;duration_ms=792]
-2026-10-07T06:56:39.3310340Z ##[start-action display=Run setup script;id=__subosito_flutter-action.__run_3]
-2026-10-07T06:56:39.3349680Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh \
-2026-10-07T06:56:39.3350190Z [36;1m$GITHUB_ACTION_PATH/setup.sh \[0m
-2026-10-07T06:56:39.3350570Z [36;1m  -n '3.47.4' \[0m
-2026-10-07T06:56:39.3350960Z [36;1m  -a 'arm64' \[0m
-2026-10-07T06:56:39.3351550Z [36;1m  -c '/Users/runner/hostedtoolcache/flutter/stable-3.47.4-arm64' \[0m
-2026-10-07T06:56:39.3351990Z [36;1m  -d '/Users/runner/.pub-cache' \[0m
-2026-10-07T06:56:39.3352410Z [36;1m  stable[0m
-2026-10-07T06:56:39.5179270Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
-2026-10-07T06:56:39.5179710Z env:
-2026-10-07T06:56:39.5180130Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-07T06:56:39.5180520Z   GOSUMDB: sum.golang.org
-2026-10-07T06:56:39.5186990Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:56:39.5187640Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
-2026-10-07T06:56:39.5188190Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:56:39.5188550Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:56:39.5189040Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:56:39.5189420Z ##[endgroup]
-2026-10-07T06:56:39.7470820Z ##[end-action id=__subosito_flutter-action.__run_3;outcome=success;conclusion=success;duration_ms=415]
-2026-10-07T06:56:39.7520590Z ##[group]Run python3 scripts/build_ios.py 
-2026-10-07T06:56:39.7520910Z [36;1mpython3 scripts/build_ios.py [0m
-2026-10-07T06:56:39.7553440Z shell: /bin/bash -e {0}
-2026-10-07T06:56:39.7553650Z env:
-2026-10-07T06:56:39.7553850Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-07T06:56:39.7554130Z   GOSUMDB: sum.golang.org
-2026-10-07T06:56:39.7554490Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:56:39.7554950Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
-2026-10-07T06:56:39.7555390Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:56:39.7555790Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:56:39.7556180Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:56:39.7556650Z   FLUTTER_ROOT: /Users/runner/hostedtoolcache/flutter/stable-3.47.4-arm64/flutter
-2026-10-07T06:56:39.7557040Z   PUB_CACHE: /Users/runner/.pub-cache
-2026-10-07T06:56:39.7557300Z ##[endgroup]
-2026-10-07T06:56:51.9212550Z xcframework successfully written out to: /Users/runner/work/guoapp/guoapp/ios/DuanjuCore/DuanjuCore.xcframework
-2026-10-07T06:56:55.9835280Z Resolving dependencies...
-2026-10-07T06:56:56.5488830Z Downloading packages...
-2026-10-07T06:56:59.9949270Z   android_file_picker 2.0.0 (2.0.1 available)
-2026-10-07T06:56:59.9950970Z   cross_file 0.3.5+5 (0.4.0 available)
-2026-10-07T06:56:59.9953550Z   ffmpeg_kit_flutter_new_min_gpl 2.6.2 (2.6.7 available)
-2026-10-07T06:56:59.9954300Z   file_picker_linux 2.0.1 (2.0.2 available)
-2026-10-07T06:56:59.9954960Z   file_picker_web 4.0.0 (4.0.1 available)
-2026-10-07T06:56:59.9956260Z   jni_flutter 1.0.3 (1.0.4+1 available)
-2026-10-07T06:56:59.9957680Z   material_color_utilities 0.13.0 (0.13.1 available)
-2026-10-07T06:56:59.9958670Z ! media_kit_libs_windows_video 1.0.11+duanju.1 from path packages/media_kit_libs_windows_video (overridden)
-2026-10-07T06:56:59.9959730Z   shared_preferences 2.5.5 (2.5.6 available)
-2026-10-07T06:56:59.9960260Z   test_api 0.7.12 (0.7.14 available)
-2026-10-07T06:56:59.9960950Z   windows_file_picker 2.0.0 (2.0.1 available)
-2026-10-07T06:56:59.9961940Z Got dependencies!
-2026-10-07T06:56:59.9962360Z 10 packages have newer versions incompatible with dependency constraints.
-2026-10-07T06:56:59.9962900Z Try `flutter pub outdated` for more information.
-2026-10-07T06:57:01.9348680Z Analyzing dependencies
-2026-10-07T06:57:02.5387640Z mkdir -p .cache/xcframeworks
-2026-10-07T06:57:02.5420840Z rm -f .cache/xcframeworks/*.tmp .cache/xcframeworks/*-ios-universal.tar.gz
-2026-10-07T06:57:02.5486990Z curl -L \
-2026-10-07T06:57:02.5488010Z 		https://github.com/media-kit/libmpv-darwin-build/releases/download/v0.6.0/libmpv-xcframeworks_v0.6.0_ios-universal-video-default.tar.gz \
-2026-10-07T06:57:02.5488960Z 		-o .cache/xcframeworks/libmpv.tar.gz.tmp
-2026-10-07T06:57:02.5618840Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-2026-10-07T06:57:02.5620390Z                                  Dload  Upload   Total   Spent    Left  Speed
-2026-10-07T06:57:02.5620700Z 
-2026-10-07T06:57:02.6519740Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-2026-10-07T06:57:02.7836590Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-2026-10-07T06:57:02.7841060Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-2026-10-07T06:57:03.0311050Z 
-2026-10-07T06:57:03.0342030Z shasum -a 256 -c <<< 'a95bc18508af26136b8a408341c05b5585d644ec013f00ac07db09d2e28d36ae  .cache/xcframeworks/libmpv.tar.gz.tmp'
-2026-10-07T06:57:03.0380060Z 100 18.8M  100 18.8M    0     0  40.3M      0 --:--:-- --:--:-- --:--:-- 40.3M
-2026-10-07T06:57:03.1857440Z .cache/xcframeworks/libmpv.tar.gz.tmp: OK
-2026-10-07T06:57:03.1868170Z mv .cache/xcframeworks/libmpv.tar.gz.tmp .cache/xcframeworks/libmpv-xcframeworks-v0.6.0-ios-universal.tar.gz
-2026-10-07T06:57:03.2384900Z touch .cache/xcframeworks/libmpv-xcframeworks-v0.6.0-ios-universal.tar.gz
-2026-10-07T06:57:03.2463580Z rm -f .cache/xcframeworks/libmpv-xcframeworks-ios-universal.tar.gz
-2026-10-07T06:57:03.2505100Z ln -s libmpv-xcframeworks-v0.6.0-ios-universal.tar.gz .cache/xcframeworks/libmpv-xcframeworks-ios-universal.tar.gz
-2026-10-07T06:57:03.2554080Z mkdir -p Frameworks
-2026-10-07T06:57:03.2591340Z rm -rf Frameworks/*.xcframework
-2026-10-07T06:57:03.2666100Z tar -xvf .cache/xcframeworks/libmpv-xcframeworks-ios-universal.tar.gz --strip-components 1 -C Frameworks
-2026-10-07T06:57:03.2749640Z x Mbedx509.xcframework/
-2026-10-07T06:57:03.2750220Z x Freetype.xcframework/
-2026-10-07T06:57:03.2750910Z x Avformat.xcframework/
-2026-10-07T06:57:03.2751190Z x Fribidi.xcframework/
-2026-10-07T06:57:03.2751700Z x Mbedtls.xcframework/
-2026-10-07T06:57:03.2752220Z x Uchardet.xcframework/
-2026-10-07T06:57:03.2752510Z x Png16.xcframework/
-2026-10-07T06:57:03.2752870Z x Dav1d.xcframework/
-2026-10-07T06:57:03.2753220Z x Mbedcrypto.xcframework/
-2026-10-07T06:57:03.2753720Z x Harfbuzz.xcframework/
-2026-10-07T06:57:03.2754620Z x Swresample.xcframework/
-2026-10-07T06:57:03.2755100Z x Avfilter.xcframework/
-2026-10-07T06:57:03.2755540Z x Avutil.xcframework/
-2026-10-07T06:57:03.2755990Z x Swscale.xcframework/
-2026-10-07T06:57:03.2756450Z x Xml2.xcframework/
-2026-10-07T06:57:03.2756920Z x Avcodec.xcframework/
-2026-10-07T06:57:03.2758590Z x Ass.xcframework/
-2026-10-07T06:57:03.2759040Z x Mpv.xcframework/
-2026-10-07T06:57:03.2759490Z x Mpv.xcframework/ios-arm64_x86_64-simulator/
-2026-10-07T06:57:03.2760040Z x Mpv.xcframework/ios-arm64/
-2026-10-07T06:57:03.2761580Z x Mpv.xcframework/Info.plist
-2026-10-07T06:57:03.2762200Z x Mpv.xcframework/ios-arm64/Mpv.framework/
-2026-10-07T06:57:03.2810430Z x Mpv.xcframework/ios-arm64/Mpv.framework/Mpv
-2026-10-07T06:57:03.2811550Z x Mpv.xcframework/ios-arm64/Mpv.framework/Info.plist
-2026-10-07T06:57:03.2812220Z x Mpv.xcframework/ios-arm64_x86_64-simulator/Mpv.framework/
-2026-10-07T06:57:03.2912480Z x Mpv.xcframework/ios-arm64_x86_64-simulator/Mpv.framework/Mpv
-2026-10-07T06:57:03.2913300Z x Mpv.xcframework/ios-arm64_x86_64-simulator/Mpv.framework/Info.plist
-2026-10-07T06:57:03.2914020Z x Ass.xcframework/ios-arm64_x86_64-simulator/
-2026-10-07T06:57:03.2915060Z x Ass.xcframework/ios-arm64/
-2026-10-07T06:57:03.2915720Z x Ass.xcframework/Info.plist
-2026-10-07T06:57:03.2916500Z x Ass.xcframework/ios-arm64/Ass.framework/
-2026-10-07T06:57:03.2924710Z x Ass.xcframework/ios-arm64/Ass.framework/Ass
-2026-10-07T06:57:03.2927180Z x Ass.xcframework/ios-arm64/Ass.framework/Info.plist
-2026-10-07T06:57:03.2927700Z x Ass.xcframework/ios-arm64_x86_64-simulator/Ass.framework/
-2026-10-07T06:57:03.2940590Z x Ass.xcframework/ios-arm64_x86_64-simulator/Ass.framework/Ass
-2026-10-07T06:57:03.2942480Z x Ass.xcframework/ios-arm64_x86_64-simulator/Ass.framework/Info.plist
-2026-10-07T06:57:03.2944080Z x Avcodec.xcframework/ios-arm64_x86_64-simulator/
-2026-10-07T06:57:03.2971160Z x Avcodec.xcframework/ios-arm64/
-2026-10-07T06:57:03.2971610Z x Avcodec.xcframework/Info.plist
-2026-10-07T06:57:03.2976940Z x Avcodec.xcframework/ios-arm64/Avcodec.framework/
-2026-10-07T06:57:03.3041150Z x Avcodec.xcframework/ios-arm64/Avcodec.framework/Avcodec
-2026-10-07T06:57:03.3042130Z x Avcodec.xcframework/ios-arm64/Avcodec.framework/Info.plist
-2026-10-07T06:57:03.3043020Z x Avcodec.xcframework/ios-arm64_x86_64-simulator/Avcodec.framework/
-2026-10-07T06:57:03.3236540Z x Avcodec.xcframework/ios-arm64_x86_64-simulator/Avcodec.framework/Avcodec
-2026-10-07T06:57:03.3238600Z x Avcodec.xcframework/ios-arm64_x86_64-simulator/Avcodec.framework/Info.plist
-2026-10-07T06:57:03.3240330Z x Xml2.xcframework/ios-arm64_x86_64-simulator/
-2026-10-07T06:57:03.3240700Z x Xml2.xcframework/ios-arm64/
-2026-10-07T06:57:03.3242840Z x Xml2.xcframework/Info.plist
-2026-10-07T06:57:03.3244630Z x Xml2.xcframework/ios-arm64/Xml2.framework/
-2026-10-07T06:57:03.3284500Z x Xml2.xcframework/ios-arm64/Xml2.framework/Xml2
-2026-10-07T06:57:03.3286490Z x Xml2.xcframework/ios-arm64/Xml2.framework/Info.plist
-2026-10-07T06:57:03.3288760Z x Xml2.xcframework/ios-arm64_x86_64-simulator/Xml2.framework/
-2026-10-07T06:57:03.3355650Z x Xml2.xcframework/ios-arm64_x86_64-simulator/Xml2.framework/Xml2
-2026-10-07T06:57:03.3356500Z x Xml2.xcframework/ios-arm64_x86_64-simulator/Xml2.framework/Info.plist
-2026-10-07T06:57:03.3357160Z x Swscale.xcframework/ios-arm64_x86_64-simulator/
-2026-10-07T06:57:03.3357750Z x Swscale.xcframework/ios-arm64/
-2026-10-07T06:57:03.3358740Z x Swscale.xcframework/Info.plist
-2026-10-07T06:57:03.3359290Z x Swscale.xcframework/ios-arm64/Swscale.framework/
-2026-10-07T06:57:03.3374130Z x Swscale.xcframework/ios-arm64/Swscale.framework/Swscale
-2026-10-07T06:57:03.3427580Z x Swscale.xcframework/ios-arm64/Swscale.framework/Info.plist
-2026-10-07T06:57:03.3428490Z x Swscale.xcframework/ios-arm64_x86_64-simulator/Swscale.framework/
-2026-10-07T06:57:03.3429420Z x Swscale.xcframework/ios-arm64_x86_64-simulator/Swscale.framework/Swscale
-2026-10-07T06:57:03.3430080Z x Swscale.xcframework/ios-arm64_x86_64-simulator/Swscale.framework/Info.plist
-2026-10-07T06:57:03.3430670Z x Avutil.xcframework/ios-arm64_x86_64-simulator/
-2026-10-07T06:57:03.3431670Z x Avutil.xcframework/ios-arm64/
-2026-10-07T06:57:03.3432410Z x Avutil.xcframework/Info.plist
-2026-10-07T06:57:03.3432980Z x Avutil.xcframework/ios-arm64/Avutil.framework/
-2026-10-07T06:57:03.3433510Z x Avutil.xcframework/ios-arm64/Avutil.framework/Avutil
-2026-10-07T06:57:03.3434770Z x Avutil.xcframework/ios-arm64/Avutil.framework/Info.plist
-2026-10-07T06:57:03.3436280Z x Avutil.xcframework/ios-arm64_x86_64-simulator/Avutil.framework/
-2026-10-07T06:57:03.3549100Z x Avutil.xcframework/ios-arm64_x86_64-simulator/Avutil.framework/Avutil
-2026-10-07T06:57:03.3572210Z x Avutil.xcframework/ios-arm64_x86_64-simulator/Avutil.framework/Info.plist
-2026-10-07T06:57:03.3606920Z x Avfilter.xcframework/ios-arm64_x86_64-simulator/
-2026-10-07T06:57:03.3620340Z x Avfilter.xcframework/ios-arm64/
-2026-10-07T06:57:03.3658630Z x Avfilter.xcframework/Info.plist
-2026-10-07T06:57:03.3673060Z x Avfilter.xcframework/ios-arm64/Avfilter.framework/
-2026-10-07T06:57:03.3673760Z x Avfilter.xcframework/ios-arm64/Avfilter.framework/Avfilter
-2026-10-07T06:57:03.3674460Z x Avfilter.xcframework/ios-arm64/Avfilter.framework/Info.plist
-2026-10-07T06:57:03.3675120Z x Avfilter.xcframework/ios-arm64_x86_64-simulator/Avfilter.framework/
-2026-10-07T06:57:03.3675770Z x Avfilter.xcframework/ios-arm64_x86_64-simulator/Avfilter.framework/Avfilter
-2026-10-07T06:57:03.3676600Z x Avfilter.xcframework/ios-arm64_x86_64-simulator/Avfilter.framework/Info.plist
-2026-10-07T06:57:03.3677180Z x Swresample.xcframework/ios-arm64_x86_64-simulator/
-2026-10-07T06:57:03.3677560Z x Swresample.xcframework/ios-arm64/
-2026-10-07T06:57:03.3678000Z x Swresample.xcframework/Info.plist
-2026-10-07T06:57:03.3678520Z x Swresample.xcframework/ios-arm64/Swresample.framework/
-2026-10-07T06:57:03.3679090Z x Swresample.xcframework/ios-arm64/Swresample.framework/Swresample
-2026-10-07T06:57:03.3679740Z x Swresample.xcframework/ios-arm64/Swresample.framework/Info.plist
-2026-10-07T06:57:03.3680380Z x Swresample.xcframework/ios-arm64_x86_64-simulator/Swresample.framework/
-2026-10-07T06:57:03.3681030Z x Swresample.xcframework/ios-arm64_x86_64-simulator/Swresample.framework/Swresample
-2026-10-07T06:57:03.3681680Z x Swresample.xcframework/ios-arm64_x86_64-simulator/Swresample.framework/Info.plist
-2026-10-07T06:57:03.3682350Z x Harfbuzz.xcframework/ios-arm64_x86_64-simulator/
-2026-10-07T06:57:03.3683250Z x Harfbuzz.xcframework/ios-arm64/
-2026-10-07T06:57:03.3683650Z x Harfbuzz.xcframework/Info.plist
-2026-10-07T06:57:03.3684150Z x Harfbuzz.xcframework/ios-arm64/Harfbuzz.framework/
-2026-10-07T06:57:03.3684750Z x Harfbuzz.xcframework/ios-arm64/Harfbuzz.framework/Harfbuzz
-2026-10-07T06:57:03.3685230Z x Harfbuzz.xcframework/ios-arm64/Harfbuzz.framework/Info.plist
-2026-10-07T06:57:03.3685780Z x Harfbuzz.xcframework/ios-arm64_x86_64-simulator/Harfbuzz.framework/
-2026-10-07T06:57:03.3733960Z x Harfbuzz.xcframework/ios-arm64_x86_64-simulator/Harfbuzz.framework/Harfbuzz
-2026-10-07T06:57:03.3734950Z x Harfbuzz.xcframework/ios-arm64_x86_64-simulator/Harfbuzz.framework/Info.plist
-2026-10-07T06:57:03.3735570Z x Mbedcrypto.xcframework/ios-arm64_x86_64-simulator/
-2026-10-07T06:57:03.3737470Z x Mbedcrypto.xcframework/ios-arm64/
-2026-10-07T06:57:03.3739100Z x Mbedcrypto.xcframework/Info.plist
-2026-10-07T06:57:03.3740140Z x Mbedcrypto.xcframework/ios-arm64/Mbedcrypto.framework/
-2026-10-07T06:57:03.3764350Z x Mbedcrypto.xcframework/ios-arm64/Mbedcrypto.framework/Mbedcrypto
-2026-10-07T06:57:03.3771590Z x Mbedcrypto.xcframework/ios-arm64/Mbedcrypto.framework/Info.plist
-2026-10-07T06:57:03.3773540Z x Mbedcrypto.xcframework/ios-arm64_x86_64-simulator/Mbedcrypto.framework/
-2026-10-07T06:57:03.3812520Z x Mbedcrypto.xcframework/ios-arm64_x86_64-simulator/Mbedcrypto.framework/Mbedcrypto
-2026-10-07T06:57:03.3815390Z x Mbedcrypto.xcframework/ios-arm64_x86_64-simulator/Mbedcrypto.framework/Info.plist
-2026-10-07T06:57:03.3818940Z x Dav1d.xcframework/ios-arm64_x86_64-simulator/
-2026-10-07T06:57:03.3820390Z x Dav1d.xcframework/ios-arm64/
-2026-10-07T06:57:03.3821170Z x Dav1d.xcframework/Info.plist
-2026-10-07T06:57:03.3823240Z x Dav1d.xcframework/ios-arm64/Dav1d.framework/
-2026-10-07T06:57:03.3847110Z x Dav1d.xcframework/ios-arm64/Dav1d.framework/Dav1d
-2026-10-07T06:57:03.3856580Z x Dav1d.xcframework/ios-arm64/Dav1d.framework/Info.plist
-2026-10-07T06:57:03.3857130Z x Dav1d.xcframework/ios-arm64_x86_64-simulator/Dav1d.framework/
-2026-10-07T06:57:03.3911770Z x Dav1d.xcframework/ios-arm64_x86_64-simulator/Dav1d.framework/Dav1d
-2026-10-07T06:57:03.3912450Z x Dav1d.xcframework/ios-arm64_x86_64-simulator/Dav1d.framework/Info.plist
-2026-10-07T06:57:03.3912930Z x Png16.xcframework/ios-arm64_x86_64-simulator/
-2026-10-07T06:57:03.3913300Z x Png16.xcframework/ios-arm64/
-2026-10-07T06:57:03.3913690Z x Png16.xcframework/Info.plist
-2026-10-07T06:57:03.3914060Z x Png16.xcframework/ios-arm64/Png16.framework/
-2026-10-07T06:57:03.3914890Z x Png16.xcframework/ios-arm64/Png16.framework/Png16
-2026-10-07T06:57:03.3915350Z x Png16.xcframework/ios-arm64/Png16.framework/Info.plist
-2026-10-07T06:57:03.3915930Z x Png16.xcframework/ios-arm64_x86_64-simulator/Png16.framework/
-2026-10-07T06:57:03.3916510Z x Png16.xcframework/ios-arm64_x86_64-simulator/Png16.framework/Png16
-2026-10-07T06:57:03.3917240Z x Png16.xcframework/ios-arm64_x86_64-simulator/Png16.framework/Info.plist
-2026-10-07T06:57:03.3917800Z x Uchardet.xcframework/ios-arm64_x86_64-simulator/
-2026-10-07T06:57:03.3919650Z x Uchardet.xcframework/ios-arm64/
-2026-10-07T06:57:03.3920330Z x Uchardet.xcframework/Info.plist
-2026-10-07T06:57:03.3920990Z x Uchardet.xcframework/ios-arm64/Uchardet.framework/
-2026-10-07T06:57:03.3925800Z x Uchardet.xcframework/ios-arm64/Uchardet.framework/Uchardet
-2026-10-07T06:57:03.3926770Z x Uchardet.xcframework/ios-arm64/Uchardet.framework/Info.plist
-2026-10-07T06:57:03.3927490Z x Uchardet.xcframework/ios-arm64_x86_64-simulator/Uchardet.framework/
-2026-10-07T06:57:03.3937120Z x Uchardet.xcframework/ios-arm64_x86_64-simulator/Uchardet.framework/Uchardet
-2026-10-07T06:57:03.3939230Z x Uchardet.xcframework/ios-arm64_x86_64-simulator/Uchardet.framework/Info.plist
-2026-10-07T06:57:03.3940230Z x Mbedtls.xcframework/ios-arm64_x86_64-simulator/
-2026-10-07T06:57:03.3940680Z x Mbedtls.xcframework/ios-arm64/
-2026-10-07T06:57:03.3941190Z x Mbedtls.xcframework/Info.plist
-2026-10-07T06:57:03.3941640Z x Mbedtls.xcframework/ios-arm64/Mbedtls.framework/
-2026-10-07T06:57:03.3947650Z x Mbedtls.xcframework/ios-arm64/Mbedtls.framework/Mbedtls
-2026-10-07T06:57:03.3948700Z x Mbedtls.xcframework/ios-arm64/Mbedtls.framework/Info.plist
-2026-10-07T06:57:03.3949500Z x Mbedtls.xcframework/ios-arm64_x86_64-simulator/Mbedtls.framework/
-2026-10-07T06:57:03.3963540Z x Mbedtls.xcframework/ios-arm64_x86_64-simulator/Mbedtls.framework/Mbedtls
-2026-10-07T06:57:03.3964440Z x Mbedtls.xcframework/ios-arm64_x86_64-simulator/Mbedtls.framework/Info.plist
-2026-10-07T06:57:03.3965360Z x Fribidi.xcframework/ios-arm64_x86_64-simulator/
-2026-10-07T06:57:03.3965990Z x Fribidi.xcframework/ios-arm64/
-2026-10-07T06:57:03.3966880Z x Fribidi.xcframework/Info.plist
-2026-10-07T06:57:03.3967720Z x Fribidi.xcframework/ios-arm64/Fribidi.framework/
-2026-10-07T06:57:03.3970410Z x Fribidi.xcframework/ios-arm64/Fribidi.framework/Fribidi
-2026-10-07T06:57:03.3972750Z x Fribidi.xcframework/ios-arm64/Fribidi.framework/Info.plist
-2026-10-07T06:57:03.3973480Z x Fribidi.xcframework/ios-arm64_x86_64-simulator/Fribidi.framework/
-2026-10-07T06:57:03.3977190Z x Fribidi.xcframework/ios-arm64_x86_64-simulator/Fribidi.framework/Fribidi
-2026-10-07T06:57:03.3978350Z x Fribidi.xcframework/ios-arm64_x86_64-simulator/Fribidi.framework/Info.plist
-2026-10-07T06:57:03.3978840Z x Avformat.xcframework/ios-arm64_x86_64-simulator/
-2026-10-07T06:57:03.3979310Z x Avformat.xcframework/ios-arm64/
-2026-10-07T06:57:03.3979850Z x Avformat.xcframework/Info.plist
-2026-10-07T06:57:03.3980330Z x Avformat.xcframework/ios-arm64/Avformat.framework/
-2026-10-07T06:57:03.4003800Z x Avformat.xcframework/ios-arm64/Avformat.framework/Avformat
-2026-10-07T06:57:03.4006030Z x Avformat.xcframework/ios-arm64/Avformat.framework/Info.plist
-2026-10-07T06:57:03.4006810Z x Avformat.xcframework/ios-arm64_x86_64-simulator/Avformat.framework/
-2026-10-07T06:57:03.4052420Z x Avformat.xcframework/ios-arm64_x86_64-simulator/Avformat.framework/Avformat
-2026-10-07T06:57:03.4053190Z x Avformat.xcframework/ios-arm64_x86_64-simulator/Avformat.framework/Info.plist
-2026-10-07T06:57:03.4053650Z x Freetype.xcframework/ios-arm64_x86_64-simulator/
-2026-10-07T06:57:03.4054760Z x Freetype.xcframework/ios-arm64/
-2026-10-07T06:57:03.4055730Z x Freetype.xcframework/Info.plist
-2026-10-07T06:57:03.4056840Z x Freetype.xcframework/ios-arm64/Freetype.framework/
-2026-10-07T06:57:03.4086100Z x Freetype.xcframework/ios-arm64/Freetype.framework/Freetype
-2026-10-07T06:57:03.4091770Z x Freetype.xcframework/ios-arm64/Freetype.framework/Info.plist
-2026-10-07T06:57:03.4092910Z x Freetype.xcframework/ios-arm64_x86_64-simulator/Freetype.framework/
-2026-10-07T06:57:03.4147740Z x Freetype.xcframework/ios-arm64_x86_64-simulator/Freetype.framework/Freetype
-2026-10-07T06:57:03.4149450Z x Freetype.xcframework/ios-arm64_x86_64-simulator/Freetype.framework/Info.plist
-2026-10-07T06:57:03.4150330Z x Mbedx509.xcframework/ios-arm64_x86_64-simulator/
-2026-10-07T06:57:03.4150730Z x Mbedx509.xcframework/ios-arm64/
-2026-10-07T06:57:03.4152260Z x Mbedx509.xcframework/Info.plist
-2026-10-07T06:57:03.4153070Z x Mbedx509.xcframework/ios-arm64/Mbedx509.framework/
-2026-10-07T06:57:03.4157080Z x Mbedx509.xcframework/ios-arm64/Mbedx509.framework/Mbedx509
-2026-10-07T06:57:03.4158870Z x Mbedx509.xcframework/ios-arm64/Mbedx509.framework/Info.plist
-2026-10-07T06:57:03.4159820Z x Mbedx509.xcframework/ios-arm64_x86_64-simulator/Mbedx509.framework/
-2026-10-07T06:57:03.4165070Z x Mbedx509.xcframework/ios-arm64_x86_64-simulator/Mbedx509.framework/Mbedx509
-2026-10-07T06:57:03.4165980Z x Mbedx509.xcframework/ios-arm64_x86_64-simulator/Mbedx509.framework/Info.plist
-2026-10-07T06:57:03.4187470Z touch Frameworks/*.xcframework
-2026-10-07T06:57:03.4255490Z rm -rf Frameworks/.symlinks
-2026-10-07T06:57:03.4288150Z mkdir -p Frameworks/.symlinks/mpv
-2026-10-07T06:57:03.4319670Z sed -i '' 's/\r$//g' create_framework_symlinks.sh # remove CRLF line terminator added by Flutter packaging (https://github.com/media-kit/media-kit/issues/338)
-2026-10-07T06:57:03.4428770Z sh create_framework_symlinks.sh Frameworks/Mpv.xcframework Frameworks/.symlinks/mpv
-2026-10-07T06:57:03.5105420Z mkdir -p .cache/headers
-2026-10-07T06:57:03.5142040Z rm -f .cache/headers/*.tmp .cache/headers/*.tar.gz
-2026-10-07T06:57:03.5216070Z curl -L \
-2026-10-07T06:57:03.5217020Z 		https://github.com/mpv-player/mpv/archive/refs/tags/v0.36.0.tar.gz \
-2026-10-07T06:57:03.5218400Z 		-o .cache/headers/mpv.tar.gz.tmp
-2026-10-07T06:57:03.5335810Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-2026-10-07T06:57:03.5338490Z                                  Dload  Upload   Total   Spent    Left  Speed
-2026-10-07T06:57:03.5339900Z 
-2026-10-07T06:57:03.7548130Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-2026-10-07T06:57:03.7588710Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-2026-10-07T06:57:03.7590010Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-2026-10-07T06:57:03.9990410Z 
-2026-10-07T06:57:03.9991580Z 100 3329k  100 3329k    0     0  7153k      0 --:--:-- --:--:-- --:--:-- 7153k
-2026-10-07T06:57:04.0010320Z shasum -a 256 -c <<< '29abc44f8ebee013bb2f9fe14d80b30db19b534c679056e4851ceadf5a5e8bf6  .cache/headers/mpv.tar.gz.tmp'
-2026-10-07T06:57:04.0357970Z .cache/headers/mpv.tar.gz.tmp: OK
-2026-10-07T06:57:04.0363950Z mv .cache/headers/mpv.tar.gz.tmp .cache/headers/mpv-v0.36.0.tar.gz
-2026-10-07T06:57:04.0400260Z touch .cache/headers/mpv-v0.36.0.tar.gz
-2026-10-07T06:57:04.0441910Z rm -f .cache/headers/mpv.tar.gz
-2026-10-07T06:57:04.0481850Z ln -s mpv-v0.36.0.tar.gz .cache/headers/mpv.tar.gz
-2026-10-07T06:57:04.0513680Z mkdir -p /Users/runner/.pub-cache/hosted/pub.dev/media_kit_video-2.0.1/ios/Headers/mpv
-2026-10-07T06:57:04.0547830Z tar  -xvf .cache/headers/mpv.tar.gz --strip-components 2 -C /Users/runner/.pub-cache/hosted/pub.dev/media_kit_video-2.0.1/ios/Headers/mpv/ 'mpv-*/libmpv/*.h'
-2026-10-07T06:57:04.0693510Z x client.h
-2026-10-07T06:57:04.0695830Z x render.h
-2026-10-07T06:57:04.0698040Z x render_gl.h
-2026-10-07T06:57:04.0699320Z x stream_cb.h
-2026-10-07T06:57:04.0774190Z touch /Users/runner/.pub-cache/hosted/pub.dev/media_kit_video-2.0.1/ios/Headers/mpv/*.h
-2026-10-07T06:57:04.0887220Z media_kit: INFO: package:media_kit_libs_ios_video found
-2026-10-07T06:57:04.4744610Z Adding spec repo `trunk` with CDN `https://cdn.cocoapods.org/`
-2026-10-07T06:57:04.4746050Z Downloading dependencies
-2026-10-07T06:57:04.4746450Z Installing DuanjuCore (0.2.0)
-2026-10-07T06:57:04.4746760Z Installing Flutter (1.0.0)
-2026-10-07T06:57:04.4749120Z Installing ffmpeg_kit_flutter_new_min_gpl (8.1.2)
-2026-10-07T06:57:18.4087840Z 
-2026-10-07T06:57:18.4088170Z Installing file_picker_darwin (1.0.0)
-2026-10-07T06:57:18.4178400Z [!] CocoaPods did not set the base configuration of your project because your project already has a custom config set. In order for CocoaPods integration to work at all, please either set the base configurations of the target `Runner` to `Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig` or include the `Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig` in your build configuration (`Flutter/Release.xcconfig`).
-2026-10-07T06:57:18.4179880Z Installing flutter_foreground_task (0.0.1)
-2026-10-07T06:57:18.4194340Z Installing integration_test (0.0.1)
-2026-10-07T06:57:18.4194780Z Installing media_kit_libs_ios_video (1.0.4)
-2026-10-07T06:57:18.4195140Z Installing media_kit_video (0.0.1)
-2026-10-07T06:57:18.4195490Z Installing nsd_ios (0.0.1)
-2026-10-07T06:57:18.4195810Z Installing package_info_plus (0.4.5)
-2026-10-07T06:57:18.4196170Z Installing shared_preferences_foundation (0.0.1)
-2026-10-07T06:57:18.4196550Z Installing wakelock_plus (0.0.1)
-2026-10-07T06:57:18.4197260Z Generating Pods project
-2026-10-07T06:57:18.4197600Z Integrating client project
-2026-10-07T06:57:18.4198120Z Pod installation complete! There are 12 dependencies from the Podfile and 12 total pods installed.
-2026-10-07T06:57:18.6215870Z Warning: Building for device with codesigning disabled. You will have to manually codesign before deploying to device.
-2026-10-07T06:57:22.5017730Z Building com.duanju.duanjuApp for device (ios-release)...
-2026-10-07T06:57:22.5971490Z The following plugins do not support Swift Package Manager for ios:
-2026-10-07T06:57:22.5972050Z   - media_kit_libs_ios_video
-2026-10-07T06:57:22.5972470Z   - media_kit_video
-2026-10-07T06:57:22.5973230Z This will become an error in a future version of Flutter. Please contact the plugin maintainers to request Swift Package Manager adoption.
-2026-10-07T06:57:27.7716810Z Running pod install...                                           1,185ms
-2026-10-07T06:59:06.0125010Z Running Xcode build...                                          
-2026-10-07T06:59:06.0227510Z Xcode build done.                                           98.2s
-2026-10-07T06:59:10.2006070Z ✓ Built build/ios/iphoneos/Runner.app (79.4MB)
-2026-10-07T06:59:17.2025610Z /Users/runner/work/guoapp/guoapp/dist/ios/lvguojian-0.2.123+2129-ios-unsigned-app.zip
-2026-10-07T06:59:17.2616290Z ##[group]Run actions/upload-artifact@v4
-2026-10-07T06:59:17.2618170Z with:
-2026-10-07T06:59:17.2620040Z   name: lvguojian-ios-unsigned
-2026-10-07T06:59:17.2620930Z   path: dist/ios/*
-2026-10-07T06:59:17.2621220Z   if-no-files-found: error
-2026-10-07T06:59:17.2623650Z   retention-days: 14
-2026-10-07T06:59:17.2627010Z   compression-level: 6
-2026-10-07T06:59:17.2628570Z   overwrite: false
-2026-10-07T06:59:17.2629440Z   include-hidden-files: false
-2026-10-07T06:59:17.2630330Z env:
-2026-10-07T06:59:17.2631670Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-07T06:59:17.2632890Z   GOSUMDB: sum.golang.org
-2026-10-07T06:59:17.2635110Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:59:17.2636620Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
-2026-10-07T06:59:17.2638650Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:59:17.2641060Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:59:17.2641600Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
-2026-10-07T06:59:17.2644490Z   FLUTTER_ROOT: /Users/runner/hostedtoolcache/flutter/stable-3.47.4-arm64/flutter
-2026-10-07T06:59:17.2645940Z   PUB_CACHE: /Users/runner/.pub-cache
-2026-10-07T06:59:17.2646820Z ##[endgroup]
-2026-10-07T06:59:18.1626240Z (node:11867) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
-2026-10-07T06:59:18.1670880Z (Use `node --trace-deprecation ...` to show where the warning was created)
-2026-10-07T06:59:18.1964430Z With the provided path, there will be 2 files uploaded
-2026-10-07T06:59:18.1978120Z Artifact name is valid!
-2026-10-07T06:59:18.1978760Z Root directory input is valid!
-2026-10-07T06:59:18.7614500Z Beginning upload of artifact content to blob storage
-2026-10-07T06:59:19.3914450Z (node:11867) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
-2026-10-07T06:59:20.4474500Z Uploaded bytes 8388608
-2026-10-07T06:59:20.8197070Z Uploaded bytes 16777216
-2026-10-07T06:59:21.1531070Z Uploaded bytes 25165824
-2026-10-07T06:59:21.4877970Z Uploaded bytes 32446771
-2026-10-07T06:59:21.5655520Z Finished uploading artifact content to blob storage!
-2026-10-07T06:59:21.5657680Z SHA256 digest of uploaded artifact zip is 5b5592cc62107fa56f68873fb7404cd7e11a7f7a241c88ebb481808d871f8462
-2026-10-07T06:59:21.5662860Z Finalizing artifact upload
-2026-10-07T06:59:21.8361610Z Artifact lvguojian-ios-unsigned.zip successfully finalized. Artifact ID 11465848657
-2026-10-07T06:59:21.8362670Z Artifact lvguojian-ios-unsigned has been successfully uploaded! Final size is 32446771 bytes. Artifact ID is 11465848657
-2026-10-07T06:59:21.8372720Z Artifact download URL: https://github.com/xiaobailong6/guoapp/actions/runs/37583743580/artifacts/11465848657
-2026-10-07T06:59:21.8774410Z Post job cleanup.
-2026-10-07T06:59:21.8779850Z ##[start-action display=Cache pub dependencies;id=__c0038cbd-5a64-4f70-8f0d-53b8a4ea5d13.cache-pub]
-2026-10-07T06:59:22.5171370Z Post job cleanup.
-2026-10-07T06:59:22.7856120Z [command]/opt/homebrew/bin/gtar --posix -cf cache.tzst --exclude cache.tzst -P -C /Users/runner/work/guoapp/guoapp --files-from manifest.txt --delay-directory-restore --use-compress-program zstdmt
-2026-10-07T06:59:34.8793890Z Sent 15138816 of 125118749 (12.1%), 14.4 MBs/sec
-2026-10-07T06:59:35.8955770Z Sent 77398016 of 125118749 (61.9%), 36.8 MBs/sec
-2026-10-07T06:59:36.8822160Z Sent 125118749 of 125118749 (100.0%), 39.7 MBs/sec
-2026-10-07T06:59:37.4460030Z Cache saved with key: flutter-pub-macos-stable-3.47.4-arm64-9584c6713b324636289d067944a46fd6b49df14b-4f2d9e15f937ee8713c1f3993dbd5ead79b6170906737c543425d7b407a7609e
-2026-10-07T06:59:37.4559040Z ##[end-action id=__c0038cbd-5a64-4f70-8f0d-53b8a4ea5d13.cache-pub;outcome=success;conclusion=success;duration_ms=15568]
-2026-10-07T06:59:37.4571360Z ##[start-action display=Cache Flutter;id=__c0038cbd-5a64-4f70-8f0d-53b8a4ea5d13.cache-flutter]
-2026-10-07T06:59:37.4657220Z Post job cleanup.
-2026-10-07T06:59:37.7642870Z Cache hit occurred on the primary key flutter-macos-stable-3.47.4-arm64-9584c6713b324636289d067944a46fd6b49df14b, not saving cache.
-2026-10-07T06:59:37.7715360Z ##[end-action id=__c0038cbd-5a64-4f70-8f0d-53b8a4ea5d13.cache-flutter;outcome=success;conclusion=success;duration_ms=313]
-2026-10-07T06:59:37.7813870Z Post job cleanup.
-2026-10-07T06:59:37.9508510Z (node:12481) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
-2026-10-07T06:59:37.9510220Z (Use `node --trace-deprecation ...` to show where the warning was created)
-2026-10-07T06:59:37.9582800Z [command]/Users/runner/hostedtoolcache/go/1.24.1/arm64/bin/go env GOMODCACHE
-2026-10-07T06:59:37.9632050Z [command]/Users/runner/hostedtoolcache/go/1.24.1/arm64/bin/go env GOCACHE
-2026-10-07T06:59:38.0406040Z /Users/runner/Library/Caches/go-build
-2026-10-07T06:59:38.0423290Z /Users/runner/go/pkg/mod
-2026-10-07T06:59:38.0434850Z Cache hit occurred on the primary key setup-go-macOS-arm64-go-1.24.1-08fd0a1e03bd5f8f8408fc5c86ca527da129df47f98b180c77a3204f069032d3, not saving cache.
-2026-10-07T06:59:38.0651060Z Post job cleanup.
-2026-10-07T06:59:38.2021710Z (node:12487) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
-2026-10-07T06:59:38.2022430Z (Use `node --trace-deprecation ...` to show where the warning was created)
-2026-10-07T06:59:38.2191420Z Post job cleanup.
-2026-10-07T06:59:38.3269710Z [command]/opt/homebrew/bin/git version
-2026-10-07T06:59:38.3870090Z git version 2.55.0
-2026-10-07T06:59:38.4026390Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/8cf60ce3-9aaa-41a0-a84e-0fa56d957b4d/.gitconfig'
-2026-10-07T06:59:38.4027300Z Temporarily overriding HOME='/Users/runner/work/_temp/8cf60ce3-9aaa-41a0-a84e-0fa56d957b4d' before making global git config changes
-2026-10-07T06:59:38.4028290Z Adding repository directory to the temporary git global config as a safe directory
-2026-10-07T06:59:38.4028900Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/guoapp/guoapp
-2026-10-07T06:59:38.4302460Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
-2026-10-07T06:59:38.4475140Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
-2026-10-07T06:59:38.5557930Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
-2026-10-07T06:59:38.5626110Z http.https://github.com/.extraheader
-2026-10-07T06:59:38.5631350Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
-2026-10-07T06:59:38.5745530Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
-2026-10-07T06:59:38.6751880Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
-2026-10-07T06:59:38.6880410Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
-2026-10-07T06:59:38.8510560Z Cleaning up orphan processes
-2026-10-07T06:59:39.5643890Z Terminate orphan process: pid (9720) (ibtoold)
-2026-10-07T06:59:39.8068440Z Terminate orphan process: pid (6994) (ibtoold)
-2026-10-07T06:59:39.8482140Z Terminate orphan process: pid (6977) (ibtoold)
-2026-10-07T06:59:40.8918980Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-go@v5, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+﻿2026-10-07T08:35:43.6446870Z Current runner version: '2.337.0'
+2026-10-07T08:35:43.6462950Z ##[group]Runner Image Provisioner
+2026-10-07T08:35:43.6463550Z Hosted Compute Agent
+2026-10-07T08:35:43.6463960Z Version: 20260828.587
+2026-10-07T08:35:43.6464390Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-10-07T08:35:43.6465310Z Build Date: 2026-08-28T16:44:25Z
+2026-10-07T08:35:43.6465840Z Worker ID: {044288f7-2ccd-42ad-b1e3-2dfdc88a7451}
+2026-10-07T08:35:43.6466360Z Azure Region: westus
+2026-10-07T08:35:43.6466800Z ##[endgroup]
+2026-10-07T08:35:43.6467940Z ##[group]Operating System
+2026-10-07T08:35:43.6468350Z macOS
+2026-10-07T08:35:43.6468680Z 26.6.2
+2026-10-07T08:35:43.6469030Z 25G83
+2026-10-07T08:35:43.6469370Z ##[endgroup]
+2026-10-07T08:35:43.6469780Z ##[group]Runner Image
+2026-10-07T08:35:43.6470230Z Image: macos-26-arm64
+2026-10-07T08:35:43.6470620Z Version: 20260907.0351.1
+2026-10-07T08:35:43.6472030Z Included Software: https://github.com/actions/runner-images/blob/macos-26-arm64/20260907.0351/images/macos/macos-26-arm64-Readme.md
+2026-10-07T08:35:43.6473120Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-26-arm64%2F20260907.0351
+2026-10-07T08:35:43.6473810Z ##[endgroup]
+2026-10-07T08:35:43.6474580Z ##[group]GITHUB_TOKEN Permissions
+2026-10-07T08:35:43.6476160Z Contents: read
+2026-10-07T08:35:43.6476540Z Metadata: read
+2026-10-07T08:35:43.6476910Z ##[endgroup]
+2026-10-07T08:35:43.6478560Z Secret source: Actions
+2026-10-07T08:35:43.6479210Z Cache mode: write
+2026-10-07T08:35:43.6479700Z Prepare workflow directory
+2026-10-07T08:35:43.6798400Z Prepare all required actions
+2026-10-07T08:35:43.6839660Z Getting action download info
+2026-10-07T08:35:44.0790450Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-07T08:35:44.3333610Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-10-07T08:35:44.4591570Z Download action repository 'actions/setup-go@v5' (SHA:40f1582b2485089dde7abd97c1529aa768e1baff)
+2026-10-07T08:35:44.9879420Z Download action repository 'subosito/flutter-action@v2' (SHA:1a449444c387b1966244ae4d4f8c696479add0b2)
+2026-10-07T08:35:45.3362830Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-07T08:35:45.5531390Z Getting action download info
+2026-10-07T08:35:45.6708580Z Download action repository 'actions/cache@v5' (SHA:caa296126883cff596d87d8935842f9db880ef25)
+2026-10-07T08:35:45.8273080Z Complete job name: ios (lvguojian)
+2026-10-07T08:35:45.8861470Z ##[group]Run actions/checkout@v4
+2026-10-07T08:35:45.8862580Z with:
+2026-10-07T08:35:45.8862920Z   repository: xiaobailong6/guoapp
+2026-10-07T08:35:45.8866760Z   token: ***
+2026-10-07T08:35:45.8867130Z   ssh-strict: true
+2026-10-07T08:35:45.8867450Z   ssh-user: git
+2026-10-07T08:35:45.8867770Z   persist-credentials: true
+2026-10-07T08:35:45.8868120Z   clean: true
+2026-10-07T08:35:45.8868510Z   sparse-checkout-cone-mode: true
+2026-10-07T08:35:45.8868910Z   fetch-depth: 1
+2026-10-07T08:35:45.8869350Z   fetch-tags: false
+2026-10-07T08:35:45.8869700Z   show-progress: true
+2026-10-07T08:35:45.8870010Z   lfs: false
+2026-10-07T08:35:45.8870310Z   submodules: false
+2026-10-07T08:35:45.8870630Z   set-safe-directory: true
+2026-10-07T08:35:45.8871010Z   allow-unsafe-pr-checkout: false
+2026-10-07T08:35:45.8871920Z env:
+2026-10-07T08:35:45.8872280Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T08:35:45.8872710Z   GOSUMDB: sum.golang.org
+2026-10-07T08:35:45.8873050Z ##[endgroup]
+2026-10-07T08:35:46.2317660Z Syncing repository: xiaobailong6/guoapp
+2026-10-07T08:35:46.2319680Z ##[group]Getting Git version info
+2026-10-07T08:35:46.2320200Z Working directory is '/Users/runner/work/guoapp/guoapp'
+2026-10-07T08:35:46.2321050Z [command]/opt/homebrew/bin/git version
+2026-10-07T08:35:46.2831640Z git version 2.55.0
+2026-10-07T08:35:46.2843270Z ##[endgroup]
+2026-10-07T08:35:46.2849240Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/531024a9-1e52-4bb5-8614-e73f457a96b9/.gitconfig'
+2026-10-07T08:35:46.2856190Z Temporarily overriding HOME='/Users/runner/work/_temp/531024a9-1e52-4bb5-8614-e73f457a96b9' before making global git config changes
+2026-10-07T08:35:46.2857250Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-07T08:35:46.2860060Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/guoapp/guoapp
+2026-10-07T08:35:46.2969620Z Deleting the contents of '/Users/runner/work/guoapp/guoapp'
+2026-10-07T08:35:46.2974080Z ##[group]Initializing the repository
+2026-10-07T08:35:46.2977210Z [command]/opt/homebrew/bin/git init /Users/runner/work/guoapp/guoapp
+2026-10-07T08:35:46.3219110Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-07T08:35:46.3220820Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-07T08:35:46.3221840Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-07T08:35:46.3222570Z hint: call:
+2026-10-07T08:35:46.3223220Z hint:
+2026-10-07T08:35:46.3223760Z hint: 	git config --global init.defaultBranch <name>
+2026-10-07T08:35:46.3224330Z hint:
+2026-10-07T08:35:46.3224890Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-07T08:35:46.3225810Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-07T08:35:46.3226520Z hint:
+2026-10-07T08:35:46.3226940Z hint: 	git branch -m <name>
+2026-10-07T08:35:46.3227310Z hint:
+2026-10-07T08:35:46.3227800Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-07T08:35:46.3228830Z Initialized empty Git repository in /Users/runner/work/guoapp/guoapp/.git/
+2026-10-07T08:35:46.3235030Z [command]/opt/homebrew/bin/git remote add origin https://github.com/xiaobailong6/guoapp
+2026-10-07T08:35:46.3342570Z ##[endgroup]
+2026-10-07T08:35:46.3344510Z ##[group]Disabling automatic garbage collection
+2026-10-07T08:35:46.3346210Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+2026-10-07T08:35:46.3448040Z ##[endgroup]
+2026-10-07T08:35:46.3449920Z ##[group]Setting up auth
+2026-10-07T08:35:46.3452520Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-07T08:35:46.3541210Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-07T08:35:46.4749120Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-07T08:35:46.4829810Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-07T08:35:46.5528690Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-07T08:35:46.5589660Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-07T08:35:46.6432970Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-07T08:35:46.6562970Z ##[endgroup]
+2026-10-07T08:35:46.6563870Z ##[group]Fetching the repository
+2026-10-07T08:35:46.6565480Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +d35175ad95cac49cb18148d373cc41104a20410b:refs/remotes/origin/main
+2026-10-07T08:35:47.9570720Z From https://github.com/xiaobailong6/guoapp
+2026-10-07T08:35:47.9573080Z  * [new ref]         d35175ad95cac49cb18148d373cc41104a20410b -> origin/main
+2026-10-07T08:35:47.9576150Z ##[endgroup]
+2026-10-07T08:35:47.9577060Z ##[group]Determining the checkout info
+2026-10-07T08:35:47.9578120Z ##[endgroup]
+2026-10-07T08:35:47.9580290Z [command]/opt/homebrew/bin/git sparse-checkout disable
+2026-10-07T08:35:47.9676780Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-07T08:35:47.9792110Z ##[group]Checking out the ref
+2026-10-07T08:35:47.9800620Z [command]/opt/homebrew/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-10-07T08:35:48.1214510Z Switched to a new branch 'main'
+2026-10-07T08:35:48.1219510Z branch 'main' set up to track 'origin/main'.
+2026-10-07T08:35:48.1222750Z ##[endgroup]
+2026-10-07T08:35:48.1333070Z [command]/opt/homebrew/bin/git log -1 --format=%H
+2026-10-07T08:35:48.1447780Z d35175ad95cac49cb18148d373cc41104a20410b
+2026-10-07T08:35:48.1875930Z ##[group]Run actions/setup-python@v5
+2026-10-07T08:35:48.1876750Z with:
+2026-10-07T08:35:48.1877380Z   python-version: 3.12
+2026-10-07T08:35:48.1878000Z   check-latest: false
+2026-10-07T08:35:48.1885330Z   token: ***
+2026-10-07T08:35:48.1885920Z   update-environment: true
+2026-10-07T08:35:48.1886720Z   allow-prereleases: false
+2026-10-07T08:35:48.1887480Z   freethreaded: false
+2026-10-07T08:35:48.1888060Z env:
+2026-10-07T08:35:48.1888690Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T08:35:48.1889500Z   GOSUMDB: sum.golang.org
+2026-10-07T08:35:48.1890230Z ##[endgroup]
+2026-10-07T08:35:48.4135210Z ##[group]Installed versions
+2026-10-07T08:35:48.4379130Z (node:1206) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-07T08:35:48.4381110Z Successfully set up CPython (3.12.10)
+2026-10-07T08:35:48.4418290Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-07T08:35:48.4420310Z ##[endgroup]
+2026-10-07T08:35:48.4683640Z ##[group]Run actions/setup-go@v5
+2026-10-07T08:35:48.4685750Z with:
+2026-10-07T08:35:48.4687060Z   go-version-file: native/go.mod
+2026-10-07T08:35:48.4688810Z   cache-dependency-path: native/go.sum
+2026-10-07T08:35:48.4690560Z   check-latest: false
+2026-10-07T08:35:48.4699100Z   token: ***
+2026-10-07T08:35:48.4699700Z   cache: true
+2026-10-07T08:35:48.4700380Z env:
+2026-10-07T08:35:48.4700960Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T08:35:48.4701810Z   GOSUMDB: sum.golang.org
+2026-10-07T08:35:48.4702680Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:35:48.4704000Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-10-07T08:35:48.4705360Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:35:48.4706430Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:35:48.4707600Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:35:48.4708940Z ##[endgroup]
+2026-10-07T08:35:48.6409450Z Setup go version spec 1.24.1
+2026-10-07T08:35:48.6415310Z Attempting to download 1.24.1...
+2026-10-07T08:35:48.6732380Z (node:1207) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-07T08:35:48.6748650Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-07T08:35:49.3234740Z matching 1.24.1...
+2026-10-07T08:35:49.3302930Z Acquiring 1.24.1 from https://github.com/actions/go-versions/releases/download/1.24.1-13667719799/go-1.24.1-darwin-arm64.tar.gz
+2026-10-07T08:35:50.1361520Z Extracting Go...
+2026-10-07T08:35:50.1642280Z [command]/usr/bin/tar xz -C /Users/runner/work/_temp/1691c204-097e-44bb-af00-29761b739e55 -f /Users/runner/work/_temp/dffba57a-b635-445c-9166-2be2dd762740
+2026-10-07T08:35:54.3919850Z Successfully extracted go to /Users/runner/work/_temp/1691c204-097e-44bb-af00-29761b739e55
+2026-10-07T08:35:54.3921110Z Adding to the cache ...
+2026-10-07T08:36:09.9812720Z Successfully cached go to /Users/runner/hostedtoolcache/go/1.24.1/arm64
+2026-10-07T08:36:09.9833060Z Added go to the path
+2026-10-07T08:36:09.9834570Z Successfully set up Go version 1.24.1
+2026-10-07T08:36:10.2066360Z [command]/Users/runner/hostedtoolcache/go/1.24.1/arm64/bin/go env GOMODCACHE
+2026-10-07T08:36:10.2173700Z [command]/Users/runner/hostedtoolcache/go/1.24.1/arm64/bin/go env GOCACHE
+2026-10-07T08:36:10.2319500Z /Users/runner/go/pkg/mod
+2026-10-07T08:36:10.2360440Z /Users/runner/Library/Caches/go-build
+2026-10-07T08:36:10.7913570Z Cache hit for: setup-go-macOS-arm64-go-1.24.1-08fd0a1e03bd5f8f8408fc5c86ca527da129df47f98b180c77a3204f069032d3
+2026-10-07T08:36:10.8109560Z (node:1207) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-07T08:36:12.1015650Z Received 0 of 255265559 (0.0%), 0.0 MBs/sec
+2026-10-07T08:36:13.1046720Z Received 46137344 of 255265559 (18.1%), 21.9 MBs/sec
+2026-10-07T08:36:14.1062440Z Received 109051904 of 255265559 (42.7%), 34.6 MBs/sec
+2026-10-07T08:36:15.1113240Z Received 130023424 of 255265559 (50.9%), 30.9 MBs/sec
+2026-10-07T08:36:16.1117430Z Received 171966464 of 255265559 (67.4%), 32.7 MBs/sec
+2026-10-07T08:36:17.1129250Z Received 242682647 of 255265559 (95.1%), 38.5 MBs/sec
+2026-10-07T08:36:18.1383910Z Received 255265559 of 255265559 (100.0%), 34.6 MBs/sec
+2026-10-07T08:36:18.1398170Z Cache Size: ~243 MB (255265559 B)
+2026-10-07T08:36:18.1607010Z [command]/opt/homebrew/bin/gtar -xf /Users/runner/work/_temp/7931dded-fdfc-4fea-a12c-18031c7059e1/cache.tzst -P -C /Users/runner/work/guoapp/guoapp --delay-directory-restore --use-compress-program unzstd
+2026-10-07T08:36:22.0419620Z Cache restored successfully
+2026-10-07T08:36:22.0559790Z Cache restored from key: setup-go-macOS-arm64-go-1.24.1-08fd0a1e03bd5f8f8408fc5c86ca527da129df47f98b180c77a3204f069032d3
+2026-10-07T08:36:22.0669060Z go version go1.24.1 darwin/arm64
+2026-10-07T08:36:22.0679660Z 
+2026-10-07T08:36:22.0681110Z ##[group]go env
+2026-10-07T08:36:24.9838400Z AR='ar'
+2026-10-07T08:36:24.9879650Z CC='clang'
+2026-10-07T08:36:24.9880850Z CGO_CFLAGS='-O2 -g'
+2026-10-07T08:36:24.9881900Z CGO_CPPFLAGS=''
+2026-10-07T08:36:24.9882440Z CGO_CXXFLAGS='-O2 -g'
+2026-10-07T08:36:24.9882790Z CGO_ENABLED='1'
+2026-10-07T08:36:24.9883190Z CGO_FFLAGS='-O2 -g'
+2026-10-07T08:36:24.9883640Z CGO_LDFLAGS='-O2 -g'
+2026-10-07T08:36:24.9884230Z CXX='clang++'
+2026-10-07T08:36:24.9884650Z GCCGO='gccgo'
+2026-10-07T08:36:24.9885120Z GO111MODULE=''
+2026-10-07T08:36:24.9885540Z GOARCH='arm64'
+2026-10-07T08:36:24.9886100Z GOARM64='v8.0'
+2026-10-07T08:36:24.9886570Z GOAUTH='netrc'
+2026-10-07T08:36:24.9886950Z GOBIN=''
+2026-10-07T08:36:24.9887450Z GOCACHE='/Users/runner/Library/Caches/go-build'
+2026-10-07T08:36:24.9887930Z GOCACHEPROG=''
+2026-10-07T08:36:24.9888320Z GODEBUG=''
+2026-10-07T08:36:24.9891030Z GOENV='/Users/runner/Library/Application Support/go/env'
+2026-10-07T08:36:24.9892590Z GOEXE=''
+2026-10-07T08:36:24.9893190Z GOEXPERIMENT=''
+2026-10-07T08:36:24.9894450Z GOFIPS140='off'
+2026-10-07T08:36:24.9895320Z GOFLAGS=''
+2026-10-07T08:36:24.9898830Z GOGCCFLAGS='-fPIC -arch arm64 -pthread -fno-caret-diagnostics -Qunused-arguments -fmessage-length=0 -ffile-prefix-map=/var/folders/36/tjdph2t965j8snz9_vkdnw0r0000gn/T/go-build2353107001=/tmp/go-build -gno-record-gcc-switches -fno-common'
+2026-10-07T08:36:24.9901720Z GOHOSTARCH='arm64'
+2026-10-07T08:36:24.9902280Z GOHOSTOS='darwin'
+2026-10-07T08:36:24.9903360Z GOINSECURE=''
+2026-10-07T08:36:24.9915180Z GOMOD='/dev/null'
+2026-10-07T08:36:24.9920000Z GOMODCACHE='/Users/runner/go/pkg/mod'
+2026-10-07T08:36:24.9920960Z GONOPROXY=''
+2026-10-07T08:36:24.9922900Z GONOSUMDB=''
+2026-10-07T08:36:24.9923350Z GOOS='darwin'
+2026-10-07T08:36:24.9923960Z GOPATH='/Users/runner/go'
+2026-10-07T08:36:24.9924780Z GOPRIVATE=''
+2026-10-07T08:36:24.9925780Z GOPROXY='https://proxy.golang.org,direct'
+2026-10-07T08:36:24.9927250Z GOROOT='/Users/runner/hostedtoolcache/go/1.24.1/arm64'
+2026-10-07T08:36:24.9928180Z GOSUMDB='sum.golang.org'
+2026-10-07T08:36:24.9928890Z GOTELEMETRY='local'
+2026-10-07T08:36:24.9929730Z GOTELEMETRYDIR='/Users/runner/Library/Application Support/go/telemetry'
+2026-10-07T08:36:24.9930460Z GOTMPDIR=''
+2026-10-07T08:36:24.9931290Z GOTOOLCHAIN='auto'
+2026-10-07T08:36:24.9931910Z GOTOOLDIR='/Users/runner/hostedtoolcache/go/1.24.1/arm64/pkg/tool/darwin_arm64'
+2026-10-07T08:36:25.0125650Z GOVCS=''
+2026-10-07T08:36:25.0126040Z GOVERSION='go1.24.1'
+2026-10-07T08:36:25.0126600Z GOWORK=''
+2026-10-07T08:36:25.0127020Z PKG_CONFIG='pkg-config'
+2026-10-07T08:36:25.0127210Z 
+2026-10-07T08:36:25.0127670Z ##[endgroup]
+2026-10-07T08:36:25.1274750Z ##[group]Run subosito/flutter-action@v2
+2026-10-07T08:36:25.1275100Z with:
+2026-10-07T08:36:25.1275390Z   flutter-version: 3.47.4
+2026-10-07T08:36:25.1275670Z   channel: stable
+2026-10-07T08:36:25.1275930Z   cache: true
+2026-10-07T08:36:25.1276220Z   architecture: ARM64
+2026-10-07T08:36:25.1276470Z   pub-cache-path: default
+2026-10-07T08:36:25.1276730Z   dry-run: false
+2026-10-07T08:36:25.1277080Z   git-source: https://github.com/flutter/flutter.git
+2026-10-07T08:36:25.1277490Z env:
+2026-10-07T08:36:25.1277780Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T08:36:25.1278060Z   GOSUMDB: sum.golang.org
+2026-10-07T08:36:25.1278410Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:36:25.1278940Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-10-07T08:36:25.1279820Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:36:25.1280400Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:36:25.1280890Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:36:25.1281210Z ##[endgroup]
+2026-10-07T08:36:25.1409850Z ##[start-action display=Make yq tool available on Windows runners;id=__subosito_flutter-action.__run]
+2026-10-07T08:36:25.1424240Z ##[end-action id=__subosito_flutter-action.__run;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-10-07T08:36:25.1427820Z ##[start-action display=Make setup script executable;id=__subosito_flutter-action.__run_2]
+2026-10-07T08:36:25.1489580Z ##[group]Run chmod +x "$GITHUB_ACTION_PATH/setup.sh"
+2026-10-07T08:36:25.1490050Z [36;1mchmod +x "$GITHUB_ACTION_PATH/setup.sh"[0m
+2026-10-07T08:36:25.2027290Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-07T08:36:25.2028250Z env:
+2026-10-07T08:36:25.2028800Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T08:36:25.2029540Z   GOSUMDB: sum.golang.org
+2026-10-07T08:36:25.2030480Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:36:25.2031720Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-10-07T08:36:25.2032930Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:36:25.2034020Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:36:25.2035080Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:36:25.2035910Z ##[endgroup]
+2026-10-07T08:36:25.3949480Z ##[end-action id=__subosito_flutter-action.__run_2;outcome=success;conclusion=success;duration_ms=252]
+2026-10-07T08:36:25.3952700Z ##[start-action display=Set action inputs;id=__subosito_flutter-action.flutter-action]
+2026-10-07T08:36:25.4004710Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh -p \
+2026-10-07T08:36:25.4006340Z [36;1m$GITHUB_ACTION_PATH/setup.sh -p \[0m
+2026-10-07T08:36:25.4007140Z [36;1m  -n '3.47.4' \[0m
+2026-10-07T08:36:25.4007640Z [36;1m  -f '' \[0m
+2026-10-07T08:36:25.4008220Z [36;1m  -a 'ARM64' \[0m
+2026-10-07T08:36:25.4008730Z [36;1m  -k '' \[0m
+2026-10-07T08:36:25.4009330Z [36;1m  -c '' \[0m
+2026-10-07T08:36:25.4009800Z [36;1m  -l '' \[0m
+2026-10-07T08:36:25.4010340Z [36;1m  -d 'default' \[0m
+2026-10-07T08:36:25.4011030Z [36;1m  -g 'https://github.com/flutter/flutter.git' \[0m
+2026-10-07T08:36:25.4011750Z [36;1m  stable[0m
+2026-10-07T08:36:25.4057330Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-07T08:36:25.4057680Z env:
+2026-10-07T08:36:25.4057910Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T08:36:25.4058150Z   GOSUMDB: sum.golang.org
+2026-10-07T08:36:25.4058450Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:36:25.4058900Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-10-07T08:36:25.4059930Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:36:25.4060390Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:36:25.4061430Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:36:25.4061780Z ##[endgroup]
+2026-10-07T08:36:26.0836320Z ##[end-action id=__subosito_flutter-action.flutter-action;outcome=success;conclusion=success;duration_ms=688]
+2026-10-07T08:36:26.0841620Z ##[start-action display=Cache Flutter;id=__subosito_flutter-action.cache-flutter]
+2026-10-07T08:36:26.0997970Z ##[group]Run actions/cache@v5
+2026-10-07T08:36:26.0998280Z with:
+2026-10-07T08:36:26.0998600Z   path: /Users/runner/hostedtoolcache/flutter/stable-3.47.4-arm64
+2026-10-07T08:36:26.0999030Z   key: flutter-macos-stable-3.47.4-arm64-9584c6713b324636289d067944a46fd6b49df14b
+2026-10-07T08:36:26.0999460Z   enableCrossOsArchive: false
+2026-10-07T08:36:26.0999700Z   fail-on-cache-miss: false
+2026-10-07T08:36:26.1000050Z   lookup-only: false
+2026-10-07T08:36:26.1000270Z   save-always: false
+2026-10-07T08:36:26.1000450Z env:
+2026-10-07T08:36:26.1000690Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T08:36:26.1001000Z   GOSUMDB: sum.golang.org
+2026-10-07T08:36:26.1001350Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:36:26.1001860Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-10-07T08:36:26.1002450Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:36:26.1002960Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:36:26.1003530Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:36:26.1003910Z ##[endgroup]
+2026-10-07T08:36:26.6706030Z Cache hit for: flutter-macos-stable-3.47.4-arm64-9584c6713b324636289d067944a46fd6b49df14b
+2026-10-07T08:36:28.2572210Z Received 0 of 2220559952 (0.0%), 0.0 MBs/sec
+2026-10-07T08:36:29.2593460Z Received 46137344 of 2220559952 (2.1%), 22.0 MBs/sec
+2026-10-07T08:36:30.2691980Z Received 121634816 of 2220559952 (5.5%), 38.6 MBs/sec
+2026-10-07T08:36:31.2647950Z Received 180355072 of 2220559952 (8.1%), 42.9 MBs/sec
+2026-10-07T08:36:32.2647470Z Received 264241152 of 2220559952 (11.9%), 50.3 MBs/sec
+2026-10-07T08:36:33.2662630Z Received 314572800 of 2220559952 (14.2%), 49.9 MBs/sec
+2026-10-07T08:36:34.2771710Z Received 381681664 of 2220559952 (17.2%), 51.9 MBs/sec
+2026-10-07T08:36:35.2677790Z Received 436207616 of 2220559952 (19.6%), 51.9 MBs/sec
+2026-10-07T08:36:36.2781490Z Received 499122176 of 2220559952 (22.5%), 52.8 MBs/sec
+2026-10-07T08:36:37.2745180Z Received 536870912 of 2220559952 (24.2%), 51.1 MBs/sec
+2026-10-07T08:36:38.2758690Z Received 591396864 of 2220559952 (26.6%), 51.2 MBs/sec
+2026-10-07T08:36:39.2780870Z Received 658505728 of 2220559952 (29.7%), 52.2 MBs/sec
+2026-10-07T08:36:40.3635080Z Received 671088640 of 2220559952 (30.2%), 48.8 MBs/sec
+2026-10-07T08:36:41.3617760Z Received 708837376 of 2220559952 (31.9%), 47.9 MBs/sec
+2026-10-07T08:36:42.3602440Z Received 775946240 of 2220559952 (34.9%), 49.0 MBs/sec
+2026-10-07T08:36:43.6497590Z Received 805306368 of 2220559952 (36.3%), 46.9 MBs/sec
+2026-10-07T08:36:44.6507100Z Received 851443712 of 2220559952 (38.3%), 46.7 MBs/sec
+2026-10-07T08:36:45.6581330Z Received 905969664 of 2220559952 (40.8%), 47.0 MBs/sec
+2026-10-07T08:36:46.6522100Z Received 939524096 of 2220559952 (42.3%), 46.2 MBs/sec
+2026-10-07T08:36:47.6541490Z Received 1006632960 of 2220559952 (45.3%), 47.1 MBs/sec
+2026-10-07T08:36:48.6569090Z Received 1065353216 of 2220559952 (48.0%), 47.5 MBs/sec
+2026-10-07T08:36:49.6578080Z Received 1073741824 of 2220559952 (48.4%), 45.7 MBs/sec
+2026-10-07T08:36:50.6591320Z Received 1136656384 of 2220559952 (51.2%), 46.3 MBs/sec
+2026-10-07T08:36:51.6617020Z Received 1191182336 of 2220559952 (53.6%), 46.5 MBs/sec
+2026-10-07T08:36:52.6628760Z Received 1207959552 of 2220559952 (54.4%), 45.3 MBs/sec
+2026-10-07T08:36:53.6710670Z Received 1249902592 of 2220559952 (56.3%), 45.1 MBs/sec
+2026-10-07T08:36:54.6645550Z Received 1300234240 of 2220559952 (58.6%), 45.2 MBs/sec
+2026-10-07T08:36:55.7823650Z Received 1342177280 of 2220559952 (60.4%), 44.9 MBs/sec
+2026-10-07T08:36:56.7841500Z Received 1384120320 of 2220559952 (62.3%), 44.7 MBs/sec
+2026-10-07T08:36:57.7832780Z Received 1442840576 of 2220559952 (65.0%), 45.1 MBs/sec
+2026-10-07T08:36:58.7832890Z Received 1476395008 of 2220559952 (66.5%), 44.7 MBs/sec
+2026-10-07T08:36:59.7848040Z Received 1522532352 of 2220559952 (68.6%), 44.6 MBs/sec
+2026-10-07T08:37:00.7878990Z Received 1581252608 of 2220559952 (71.2%), 45.0 MBs/sec
+2026-10-07T08:37:01.7888600Z Received 1610612736 of 2220559952 (72.5%), 44.5 MBs/sec
+2026-10-07T08:37:02.7903220Z Received 1665138688 of 2220559952 (75.0%), 44.7 MBs/sec
+2026-10-07T08:37:03.7912490Z Received 1723858944 of 2220559952 (77.6%), 45.0 MBs/sec
+2026-10-07T08:37:04.7919740Z Received 1744830464 of 2220559952 (78.6%), 44.3 MBs/sec
+2026-10-07T08:37:05.7940690Z Received 1816133632 of 2220559952 (81.8%), 44.9 MBs/sec
+2026-10-07T08:37:06.8733520Z Received 1879048192 of 2220559952 (84.6%), 45.2 MBs/sec
+2026-10-07T08:37:07.8735230Z Received 1933574144 of 2220559952 (87.1%), 45.4 MBs/sec
+2026-10-07T08:37:08.9437160Z Received 2013265920 of 2220559952 (90.7%), 46.1 MBs/sec
+2026-10-07T08:37:09.9447370Z Received 2067791872 of 2220559952 (93.1%), 46.2 MBs/sec
+2026-10-07T08:37:10.9466890Z Received 2139095040 of 2220559952 (96.3%), 46.7 MBs/sec
+2026-10-07T08:37:11.9518380Z Received 2176843776 of 2220559952 (98.0%), 46.5 MBs/sec
+2026-10-07T08:37:12.7010350Z Received 2220559952 of 2220559952 (100.0%), 46.6 MBs/sec
+2026-10-07T08:37:12.7023060Z Cache Size: ~2118 MB (2220559952 B)
+2026-10-07T08:37:12.7157450Z [command]/opt/homebrew/bin/gtar -xf /Users/runner/work/_temp/13da3e03-69a1-442b-824b-94e20598dc41/cache.tzst -P -C /Users/runner/work/guoapp/guoapp --delay-directory-restore --use-compress-program unzstd
+2026-10-07T08:37:31.8865300Z Cache restored successfully
+2026-10-07T08:37:32.1049470Z Cache restored from key: flutter-macos-stable-3.47.4-arm64-9584c6713b324636289d067944a46fd6b49df14b
+2026-10-07T08:37:32.1393490Z ##[end-action id=__subosito_flutter-action.cache-flutter;outcome=success;conclusion=success;duration_ms=66054]
+2026-10-07T08:37:32.1406770Z ##[start-action display=Cache pub dependencies;id=__subosito_flutter-action.cache-pub]
+2026-10-07T08:37:32.6986780Z ##[group]Run actions/cache@v5
+2026-10-07T08:37:32.6987340Z with:
+2026-10-07T08:37:32.6987800Z   path: /Users/runner/.pub-cache
+2026-10-07T08:37:32.6988840Z   key: flutter-pub-macos-stable-3.47.4-arm64-9584c6713b324636289d067944a46fd6b49df14b-4f2d9e15f937ee8713c1f3993dbd5ead79b6170906737c543425d7b407a7609e
+2026-10-07T08:37:32.6989840Z   enableCrossOsArchive: false
+2026-10-07T08:37:32.6990240Z   fail-on-cache-miss: false
+2026-10-07T08:37:32.6990480Z   lookup-only: false
+2026-10-07T08:37:32.6990830Z   save-always: false
+2026-10-07T08:37:32.6991190Z env:
+2026-10-07T08:37:32.6991560Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T08:37:32.6992070Z   GOSUMDB: sum.golang.org
+2026-10-07T08:37:32.6992420Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:37:32.6993060Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-10-07T08:37:32.6993710Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:37:32.6994230Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:37:32.6994840Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:37:32.6995330Z ##[endgroup]
+2026-10-07T08:37:33.1858530Z Cache hit for: flutter-pub-macos-stable-3.47.4-arm64-9584c6713b324636289d067944a46fd6b49df14b-4f2d9e15f937ee8713c1f3993dbd5ead79b6170906737c543425d7b407a7609e
+2026-10-07T08:37:34.4915360Z Received 0 of 125118749 (0.0%), 0.0 MBs/sec
+2026-10-07T08:37:35.4965330Z Received 58720256 of 125118749 (46.9%), 28.0 MBs/sec
+2026-10-07T08:37:36.3994410Z Received 125118749 of 125118749 (100.0%), 41.0 MBs/sec
+2026-10-07T08:37:36.4133660Z Cache Size: ~119 MB (125118749 B)
+2026-10-07T08:37:36.4180470Z [command]/opt/homebrew/bin/gtar -xf /Users/runner/work/_temp/7f18ca4f-0e18-47c1-a5e1-8e2ca1f70022/cache.tzst -P -C /Users/runner/work/guoapp/guoapp --delay-directory-restore --use-compress-program unzstd
+2026-10-07T08:37:42.3960930Z Cache restored successfully
+2026-10-07T08:37:42.4150170Z Cache restored from key: flutter-pub-macos-stable-3.47.4-arm64-9584c6713b324636289d067944a46fd6b49df14b-4f2d9e15f937ee8713c1f3993dbd5ead79b6170906737c543425d7b407a7609e
+2026-10-07T08:37:42.4287710Z ##[end-action id=__subosito_flutter-action.cache-pub;outcome=success;conclusion=success;duration_ms=10287]
+2026-10-07T08:37:42.4294830Z ##[start-action display=Run setup script;id=__subosito_flutter-action.__run_3]
+2026-10-07T08:37:42.4564980Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh \
+2026-10-07T08:37:42.4565590Z [36;1m$GITHUB_ACTION_PATH/setup.sh \[0m
+2026-10-07T08:37:42.4565890Z [36;1m  -n '3.47.4' \[0m
+2026-10-07T08:37:42.4566300Z [36;1m  -a 'arm64' \[0m
+2026-10-07T08:37:42.4566720Z [36;1m  -c '/Users/runner/hostedtoolcache/flutter/stable-3.47.4-arm64' \[0m
+2026-10-07T08:37:42.4567240Z [36;1m  -d '/Users/runner/.pub-cache' \[0m
+2026-10-07T08:37:42.4567650Z [36;1m  stable[0m
+2026-10-07T08:37:42.6514310Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-07T08:37:42.6515420Z env:
+2026-10-07T08:37:42.6516580Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T08:37:42.6518040Z   GOSUMDB: sum.golang.org
+2026-10-07T08:37:42.6519150Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:37:42.6520970Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-10-07T08:37:42.6521770Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:37:42.6522240Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:37:42.6523140Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:37:42.6523610Z ##[endgroup]
+2026-10-07T08:37:43.1141790Z ##[end-action id=__subosito_flutter-action.__run_3;outcome=success;conclusion=success;duration_ms=684]
+2026-10-07T08:37:43.1214950Z ##[group]Run python3 scripts/build_ios.py 
+2026-10-07T08:37:43.1215420Z [36;1mpython3 scripts/build_ios.py [0m
+2026-10-07T08:37:43.1267590Z shell: /bin/bash -e {0}
+2026-10-07T08:37:43.1268040Z env:
+2026-10-07T08:37:43.1268900Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T08:37:43.1270060Z   GOSUMDB: sum.golang.org
+2026-10-07T08:37:43.1271170Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:37:43.1272520Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-10-07T08:37:43.1274050Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:37:43.1275570Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:37:43.1276370Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:37:43.1277020Z   FLUTTER_ROOT: /Users/runner/hostedtoolcache/flutter/stable-3.47.4-arm64/flutter
+2026-10-07T08:37:43.1277580Z   PUB_CACHE: /Users/runner/.pub-cache
+2026-10-07T08:37:43.1278860Z ##[endgroup]
+2026-10-07T08:38:01.3474890Z xcframework successfully written out to: /Users/runner/work/guoapp/guoapp/ios/DuanjuCore/DuanjuCore.xcframework
+2026-10-07T08:38:02.9887710Z Resolving dependencies...
+2026-10-07T08:38:03.4173500Z Downloading packages...
+2026-10-07T08:38:03.6554850Z   android_file_picker 2.0.0 (2.0.1 available)
+2026-10-07T08:38:03.6559060Z   cross_file 0.3.5+5 (0.4.0 available)
+2026-10-07T08:38:03.6559920Z   ffmpeg_kit_flutter_new_min_gpl 2.6.2 (2.6.7 available)
+2026-10-07T08:38:03.6561270Z   file_picker_linux 2.0.1 (2.0.2 available)
+2026-10-07T08:38:03.6562040Z   file_picker_web 4.0.0 (4.0.1 available)
+2026-10-07T08:38:03.6562870Z   jni_flutter 1.0.3 (1.0.4+1 available)
+2026-10-07T08:38:03.6565600Z   material_color_utilities 0.13.0 (0.13.1 available)
+2026-10-07T08:38:03.6570720Z ! media_kit_libs_windows_video 1.0.11+duanju.1 from path packages/media_kit_libs_windows_video (overridden)
+2026-10-07T08:38:03.6573510Z   shared_preferences 2.5.5 (2.5.6 available)
+2026-10-07T08:38:03.6575250Z   test_api 0.7.12 (0.7.14 available)
+2026-10-07T08:38:03.6576450Z   windows_file_picker 2.0.0 (2.0.1 available)
+2026-10-07T08:38:03.6578520Z Got dependencies!
+2026-10-07T08:38:03.6579840Z 10 packages have newer versions incompatible with dependency constraints.
+2026-10-07T08:38:03.6581230Z Try `flutter pub outdated` for more information.
+2026-10-07T08:38:09.8710140Z Analyzing dependencies
+2026-10-07T08:38:11.3831300Z make: Nothing to be done for `all'.
+2026-10-07T08:38:11.4675240Z make: Nothing to be done for `all'.
+2026-10-07T08:38:11.4812790Z media_kit: INFO: package:media_kit_libs_ios_video found
+2026-10-07T08:38:12.0899000Z Adding spec repo `trunk` with CDN `https://cdn.cocoapods.org/`
+2026-10-07T08:38:12.0918060Z Downloading dependencies
+2026-10-07T08:38:12.0930820Z Installing DuanjuCore (0.2.0)
+2026-10-07T08:38:12.0942820Z Installing Flutter (1.0.0)
+2026-10-07T08:38:12.1031510Z Installing ffmpeg_kit_flutter_new_min_gpl (8.1.2)
+2026-10-07T08:38:13.7676830Z 
+2026-10-07T08:38:13.7678820Z Installing file_picker_darwin (1.0.0)
+2026-10-07T08:38:13.7700850Z [!] CocoaPods did not set the base configuration of your project because your project already has a custom config set. In order for CocoaPods integration to work at all, please either set the base configurations of the target `Runner` to `Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig` or include the `Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig` in your build configuration (`Flutter/Release.xcconfig`).
+2026-10-07T08:38:13.7703030Z Installing flutter_foreground_task (0.0.1)
+2026-10-07T08:38:13.7713920Z Installing integration_test (0.0.1)
+2026-10-07T08:38:13.7751200Z Installing media_kit_libs_ios_video (1.0.4)
+2026-10-07T08:38:13.7751940Z Installing media_kit_video (0.0.1)
+2026-10-07T08:38:13.7752460Z Installing nsd_ios (0.0.1)
+2026-10-07T08:38:13.7753300Z Installing package_info_plus (0.4.5)
+2026-10-07T08:38:13.7753900Z Installing shared_preferences_foundation (0.0.1)
+2026-10-07T08:38:13.7762240Z Installing wakelock_plus (0.0.1)
+2026-10-07T08:38:13.7763050Z Generating Pods project
+2026-10-07T08:38:13.7763440Z Integrating client project
+2026-10-07T08:38:13.7764020Z Pod installation complete! There are 12 dependencies from the Podfile and 12 total pods installed.
+2026-10-07T08:38:14.9281610Z Warning: Building for device with codesigning disabled. You will have to manually codesign before deploying to device.
+2026-10-07T08:38:26.4775180Z Building com.duanju.duanjuApp for device (ios-release)...
+2026-10-07T08:38:27.0314800Z The following plugins do not support Swift Package Manager for ios:
+2026-10-07T08:38:27.0416520Z   - media_kit_libs_ios_video
+2026-10-07T08:38:27.0519940Z   - media_kit_video
+2026-10-07T08:38:27.0573940Z This will become an error in a future version of Flutter. Please contact the plugin maintainers to request Swift Package Manager adoption.
+2026-10-07T08:38:38.2417020Z Running pod install...                                           2,117ms
+2026-10-07T08:41:14.0542320Z Running Xcode build...                                          
+2026-10-07T08:41:14.0597860Z Xcode build done.                                           155.8s
+2026-10-07T08:41:16.8592460Z ✓ Built build/ios/iphoneos/Runner.app (79.4MB)
+2026-10-07T08:41:22.8465110Z /Users/runner/work/guoapp/guoapp/dist/ios/lvguojian-0.2.123+2129-ios-unsigned-app.zip
+2026-10-07T08:41:22.9190270Z ##[group]Run actions/upload-artifact@v4
+2026-10-07T08:41:22.9192470Z with:
+2026-10-07T08:41:22.9192910Z   name: lvguojian-ios-unsigned
+2026-10-07T08:41:22.9193340Z   path: dist/ios/*
+2026-10-07T08:41:22.9193670Z   if-no-files-found: error
+2026-10-07T08:41:22.9194100Z   retention-days: 14
+2026-10-07T08:41:22.9194840Z   compression-level: 6
+2026-10-07T08:41:22.9195630Z   overwrite: false
+2026-10-07T08:41:22.9196120Z   include-hidden-files: false
+2026-10-07T08:41:22.9198650Z env:
+2026-10-07T08:41:22.9199250Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T08:41:22.9199870Z   GOSUMDB: sum.golang.org
+2026-10-07T08:41:22.9200230Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:41:22.9201020Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-10-07T08:41:22.9202000Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:41:22.9202810Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:41:22.9203360Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-07T08:41:22.9204590Z   FLUTTER_ROOT: /Users/runner/hostedtoolcache/flutter/stable-3.47.4-arm64/flutter
+2026-10-07T08:41:22.9205200Z   PUB_CACHE: /Users/runner/.pub-cache
+2026-10-07T08:41:22.9205650Z ##[endgroup]
+2026-10-07T08:41:24.3872150Z (node:9940) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-07T08:41:24.3874610Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-07T08:41:24.4023310Z With the provided path, there will be 2 files uploaded
+2026-10-07T08:41:24.4036220Z Artifact name is valid!
+2026-10-07T08:41:24.4037180Z Root directory input is valid!
+2026-10-07T08:41:24.8731580Z Beginning upload of artifact content to blob storage
+2026-10-07T08:41:25.3292090Z (node:9940) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-07T08:41:26.4157830Z Uploaded bytes 8388608
+2026-10-07T08:41:26.7253780Z Uploaded bytes 16777216
+2026-10-07T08:41:27.1154190Z Uploaded bytes 25165824
+2026-10-07T08:41:27.3926220Z Uploaded bytes 32446669
+2026-10-07T08:41:27.4755560Z Finished uploading artifact content to blob storage!
+2026-10-07T08:41:27.4756670Z SHA256 digest of uploaded artifact zip is f8d580fe8fd7cdc1ddbefb882b6fc20662e45f95eeefcd2b699c92ffffff29aa
+2026-10-07T08:41:27.4757680Z Finalizing artifact upload
+2026-10-07T08:41:27.7385400Z Artifact lvguojian-ios-unsigned.zip successfully finalized. Artifact ID 11469942784
+2026-10-07T08:41:27.7390070Z Artifact lvguojian-ios-unsigned has been successfully uploaded! Final size is 32446669 bytes. Artifact ID is 11469942784
+2026-10-07T08:41:27.7408720Z Artifact download URL: https://github.com/xiaobailong6/guoapp/actions/runs/37594229174/artifacts/11469942784
+2026-10-07T08:41:27.7809770Z Post job cleanup.
+2026-10-07T08:41:27.7820360Z ##[start-action display=Cache pub dependencies;id=__1c90fb02-6829-425d-96a0-9319167887dc.cache-pub]
+2026-10-07T08:41:28.4132440Z Post job cleanup.
+2026-10-07T08:41:28.6324370Z Cache hit occurred on the primary key flutter-pub-macos-stable-3.47.4-arm64-9584c6713b324636289d067944a46fd6b49df14b-4f2d9e15f937ee8713c1f3993dbd5ead79b6170906737c543425d7b407a7609e, not saving cache.
+2026-10-07T08:41:28.6354490Z ##[end-action id=__1c90fb02-6829-425d-96a0-9319167887dc.cache-pub;outcome=success;conclusion=success;duration_ms=853]
+2026-10-07T08:41:28.6357470Z ##[start-action display=Cache Flutter;id=__1c90fb02-6829-425d-96a0-9319167887dc.cache-flutter]
+2026-10-07T08:41:28.6402920Z Post job cleanup.
+2026-10-07T08:41:28.8402760Z Cache hit occurred on the primary key flutter-macos-stable-3.47.4-arm64-9584c6713b324636289d067944a46fd6b49df14b, not saving cache.
+2026-10-07T08:41:28.8440460Z ##[end-action id=__1c90fb02-6829-425d-96a0-9319167887dc.cache-flutter;outcome=success;conclusion=success;duration_ms=208]
+2026-10-07T08:41:28.8543930Z Post job cleanup.
+2026-10-07T08:41:29.0586000Z (node:9994) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-07T08:41:29.0587430Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-07T08:41:29.0819420Z [command]/Users/runner/hostedtoolcache/go/1.24.1/arm64/bin/go env GOMODCACHE
+2026-10-07T08:41:29.0976460Z [command]/Users/runner/hostedtoolcache/go/1.24.1/arm64/bin/go env GOCACHE
+2026-10-07T08:41:29.1914220Z /Users/runner/go/pkg/mod
+2026-10-07T08:41:29.1919690Z /Users/runner/Library/Caches/go-build
+2026-10-07T08:41:29.1960950Z Cache hit occurred on the primary key setup-go-macOS-arm64-go-1.24.1-08fd0a1e03bd5f8f8408fc5c86ca527da129df47f98b180c77a3204f069032d3, not saving cache.
+2026-10-07T08:41:29.2114970Z Post job cleanup.
+2026-10-07T08:41:29.3980090Z (node:9998) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-07T08:41:29.4001440Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-07T08:41:29.4223080Z Post job cleanup.
+2026-10-07T08:41:29.5717670Z [command]/opt/homebrew/bin/git version
+2026-10-07T08:41:29.6017100Z git version 2.55.0
+2026-10-07T08:41:29.6040250Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/59a36724-ec49-4ba6-8b07-4e21da2c7db5/.gitconfig'
+2026-10-07T08:41:29.6050060Z Temporarily overriding HOME='/Users/runner/work/_temp/59a36724-ec49-4ba6-8b07-4e21da2c7db5' before making global git config changes
+2026-10-07T08:41:29.6051030Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-07T08:41:29.6054170Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/guoapp/guoapp
+2026-10-07T08:41:29.6219470Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-07T08:41:29.6295260Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-07T08:41:29.7810220Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-07T08:41:29.7915570Z http.https://github.com/.extraheader
+2026-10-07T08:41:29.7930410Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-07T08:41:29.8044550Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-07T08:41:29.9303330Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-07T08:41:29.9343330Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-07T08:41:30.0638940Z Cleaning up orphan processes
+2026-10-07T08:41:31.0750850Z Terminate orphan process: pid (7540) (ibtoold)
+2026-10-07T08:41:32.2333770Z Terminate orphan process: pid (3970) (ibtoold)
+2026-10-07T08:41:32.2856710Z Terminate orphan process: pid (3965) (ibtoold)
+2026-10-07T08:41:33.5759930Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-go@v5, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

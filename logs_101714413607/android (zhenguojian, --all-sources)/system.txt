@@ -1,8 +1,8 @@
-2026-10-07T06:55:13.4560000Z Evaluating android.if
-2026-10-07T06:55:13.4560000Z Evaluating: success()
-2026-10-07T06:55:13.4560000Z Result: true
-2026-10-07T06:55:13.4620000Z Requested labels: ubuntu-latest
-2026-10-07T06:55:13.4620000Z Job defined at: xiaobailong6/guoapp/.github/workflows/build.yml@refs/heads/main
-2026-10-07T06:55:13.4620000Z Waiting for a runner to pick up this job...
-2026-10-07T06:55:14.0160000Z Job is about to start running on the hosted runner: GitHub Actions 1000003346
-2026-10-07T06:55:14.0150000Z Job is waiting for a hosted runner to come online.
+2026-10-07T08:35:35.4700000Z Requested labels: ubuntu-latest
+2026-10-07T08:35:35.4700000Z Job defined at: xiaobailong6/guoapp/.github/workflows/build.yml@refs/heads/main
+2026-10-07T08:35:35.4700000Z Waiting for a runner to pick up this job...
+2026-10-07T08:35:35.4370000Z Evaluating android.if
+2026-10-07T08:35:35.4370000Z Evaluating: success()
+2026-10-07T08:35:35.4370000Z Result: true
+2026-10-07T08:35:36.0550000Z Job is waiting for a hosted runner to come online.
+2026-10-07T08:35:36.0560000Z Job is about to start running on the hosted runner: GitHub Actions 1000003357

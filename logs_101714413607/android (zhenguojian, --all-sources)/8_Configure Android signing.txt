@@ -1,0 +1,25 @@
+﻿2026-10-07T08:36:18.8993664Z ##[group]Run python scripts/configure_signing.py
+2026-10-07T08:36:18.8994003Z [36;1mpython scripts/configure_signing.py[0m
+2026-10-07T08:36:18.9053789Z shell: /usr/bin/bash -e {0}
+2026-10-07T08:36:18.9054045Z env:
+2026-10-07T08:36:18.9054273Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T08:36:18.9054548Z   GOSUMDB: sum.golang.org
+2026-10-07T08:36:18.9054821Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-07T08:36:18.9055203Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-10-07T08:36:18.9055578Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-07T08:36:18.9056090Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-07T08:36:18.9056440Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-07T08:36:18.9056774Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-10-07T08:36:18.9057141Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-07T08:36:18.9057550Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-07T08:36:18.9057994Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
+2026-10-07T08:36:18.9058319Z   PUB_CACHE: /home/runner/.pub-cache
+2026-10-07T08:36:18.9058577Z   ANDROID_HOME: /usr/local/lib/android/sdk
+2026-10-07T08:36:18.9058845Z   ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+2026-10-07T08:36:18.9059157Z   ANDROID_NDK_HOME: /usr/local/lib/android/sdk/ndk/28.2.13676358
+2026-10-07T08:36:18.9073126Z   ANDROID_KEYSTORE_BASE64: ***
+2026-10-07T08:36:18.9073406Z   ANDROID_KEYSTORE_PASSWORD: ***
+2026-10-07T08:36:18.9073665Z   ANDROID_KEY_ALIAS: ***
+2026-10-07T08:36:18.9073890Z   ANDROID_KEY_PASSWORD: ***
+2026-10-07T08:36:18.9074123Z ##[endgroup]
+2026-10-07T08:36:19.0003273Z 已配置固定 Android 发布签名。

@@ -1,8 +1,8 @@
-2026-10-07T06:55:13.2950000Z Evaluating ios.if
-2026-10-07T06:55:13.2950000Z Evaluating: success()
-2026-10-07T06:55:13.2950000Z Result: true
-2026-10-07T06:55:13.4560000Z Requested labels: macos-latest
-2026-10-07T06:55:13.4560000Z Job defined at: xiaobailong6/guoapp/.github/workflows/build.yml@refs/heads/main
-2026-10-07T06:55:13.4560000Z Waiting for a runner to pick up this job...
-2026-10-07T06:55:13.7200000Z Job is waiting for a hosted runner to come online.
-2026-10-07T06:55:13.7210000Z Job is about to start running on the hosted runner: GitHub Actions 1000003343
+2026-10-07T08:35:35.3980000Z Evaluating ios.if
+2026-10-07T08:35:35.3980000Z Evaluating: success()
+2026-10-07T08:35:35.3980000Z Result: true
+2026-10-07T08:35:35.4340000Z Requested labels: macos-latest
+2026-10-07T08:35:35.4340000Z Job defined at: xiaobailong6/guoapp/.github/workflows/build.yml@refs/heads/main
+2026-10-07T08:35:35.4340000Z Waiting for a runner to pick up this job...
+2026-10-07T08:35:35.6340000Z Job is about to start running on the hosted runner: GitHub Actions 1000003353
+2026-10-07T08:35:35.6340000Z Job is waiting for a hosted runner to come online.

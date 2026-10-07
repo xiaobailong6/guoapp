@@ -1,17 +1,17 @@
-﻿2026-10-07T06:55:59.2840771Z ##[group]Run actions/setup-python@v5
-2026-10-07T06:55:59.2841140Z with:
-2026-10-07T06:55:59.2841329Z   python-version: 3.12
-2026-10-07T06:55:59.2841557Z   check-latest: false
-2026-10-07T06:55:59.2844122Z   token: ***
-2026-10-07T06:55:59.2844322Z   update-environment: true
-2026-10-07T06:55:59.2844574Z   allow-prereleases: false
-2026-10-07T06:55:59.2844790Z   freethreaded: false
-2026-10-07T06:55:59.2844980Z env:
-2026-10-07T06:55:59.2845180Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-07T06:55:59.2845457Z   GOSUMDB: sum.golang.org
-2026-10-07T06:55:59.2845657Z ##[endgroup]
-2026-10-07T06:55:59.4601451Z ##[group]Installed versions
-2026-10-07T06:55:59.6173354Z (node:6260) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
-2026-10-07T06:55:59.6174301Z (Use `node --trace-deprecation ...` to show where the warning was created)
-2026-10-07T06:55:59.6174966Z Successfully set up CPython (3.12.10)
-2026-10-07T06:55:59.6176014Z ##[endgroup]
+﻿2026-10-07T08:36:47.1791505Z ##[group]Run actions/setup-python@v5
+2026-10-07T08:36:47.1791955Z with:
+2026-10-07T08:36:47.1792328Z   python-version: 3.12
+2026-10-07T08:36:47.1792631Z   check-latest: false
+2026-10-07T08:36:47.1795054Z   token: ***
+2026-10-07T08:36:47.1795388Z   update-environment: true
+2026-10-07T08:36:47.1795717Z   allow-prereleases: false
+2026-10-07T08:36:47.1796035Z   freethreaded: false
+2026-10-07T08:36:47.1796313Z env:
+2026-10-07T08:36:47.1796662Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T08:36:47.1797028Z   GOSUMDB: sum.golang.org
+2026-10-07T08:36:47.1797314Z ##[endgroup]
+2026-10-07T08:36:47.3398838Z ##[group]Installed versions
+2026-10-07T08:36:47.3618526Z (node:4776) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-07T08:36:47.3619861Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-07T08:36:47.3620615Z Successfully set up CPython (3.12.10)
+2026-10-07T08:36:47.3621559Z ##[endgroup]

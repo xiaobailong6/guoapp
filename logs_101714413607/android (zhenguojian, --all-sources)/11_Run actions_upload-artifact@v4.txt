@@ -1,0 +1,52 @@
+﻿2026-10-07T08:42:48.9693785Z ##[group]Run actions/upload-artifact@v4
+2026-10-07T08:42:48.9694064Z with:
+2026-10-07T08:42:48.9694348Z   name: ***-android
+2026-10-07T08:42:48.9694557Z   path: dist/android/*
+2026-10-07T08:42:48.9694776Z   if-no-files-found: error
+2026-10-07T08:42:48.9695006Z   retention-days: 14
+2026-10-07T08:42:48.9695213Z   compression-level: 6
+2026-10-07T08:42:48.9695420Z   overwrite: false
+2026-10-07T08:42:48.9695797Z   include-hidden-files: false
+2026-10-07T08:42:48.9696105Z env:
+2026-10-07T08:42:48.9696326Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-07T08:42:48.9696598Z   GOSUMDB: sum.golang.org
+2026-10-07T08:42:48.9696866Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-07T08:42:48.9697241Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-10-07T08:42:48.9697608Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-07T08:42:48.9697945Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-07T08:42:48.9698269Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-07T08:42:48.9698630Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-10-07T08:42:48.9699005Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-07T08:42:48.9699413Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-07T08:42:48.9699829Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
+2026-10-07T08:42:48.9700158Z   PUB_CACHE: /home/runner/.pub-cache
+2026-10-07T08:42:48.9700411Z   ANDROID_HOME: /usr/local/lib/android/sdk
+2026-10-07T08:42:48.9700682Z   ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+2026-10-07T08:42:48.9700995Z   ANDROID_NDK_HOME: /usr/local/lib/android/sdk/ndk/28.2.13676358
+2026-10-07T08:42:48.9701286Z ##[endgroup]
+2026-10-07T08:42:49.1245907Z (node:11238) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-07T08:42:49.1246705Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-07T08:42:49.1313036Z With the provided path, there will be 4 files uploaded
+2026-10-07T08:42:49.1314405Z Artifact name is valid!
+2026-10-07T08:42:49.1315013Z Root directory input is valid!
+2026-10-07T08:42:49.3372923Z Beginning upload of artifact content to blob storage
+2026-10-07T08:42:49.5666645Z (node:11238) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-07T08:42:49.7082859Z Uploaded bytes 8388608
+2026-10-07T08:42:49.9500347Z Uploaded bytes 16777216
+2026-10-07T08:42:50.1279696Z Uploaded bytes 25165824
+2026-10-07T08:42:50.3613709Z Uploaded bytes 33554432
+2026-10-07T08:42:50.5309470Z Uploaded bytes 41943040
+2026-10-07T08:42:50.7932511Z Uploaded bytes 50331648
+2026-10-07T08:42:51.0382743Z Uploaded bytes 58720256
+2026-10-07T08:42:51.2194905Z Uploaded bytes 67108864
+2026-10-07T08:42:51.4565301Z Uploaded bytes 75497472
+2026-10-07T08:42:51.7368730Z Uploaded bytes 83886080
+2026-10-07T08:42:51.8907787Z Uploaded bytes 92274688
+2026-10-07T08:42:52.0600644Z Uploaded bytes 100663296
+2026-10-07T08:42:52.2244578Z Uploaded bytes 105833943
+2026-10-07T08:42:52.2366174Z Finished uploading artifact content to blob storage!
+2026-10-07T08:42:52.2368225Z SHA256 digest of uploaded artifact zip is 5580ff311bc6479db21bc442b0827e522f18e0d0bb6b1a74228253ea79da1a82
+2026-10-07T08:42:52.2370189Z Finalizing artifact upload
+2026-10-07T08:42:52.4633593Z Artifact ***-android.zip successfully finalized. Artifact ID 11470831586
+2026-10-07T08:42:52.4634564Z Artifact ***-android has been successfully uploaded! Final size is 105833943 bytes. Artifact ID is 11470831586
+2026-10-07T08:42:52.4641436Z Artifact download URL: https://github.com/xiaobailong6/guoapp/actions/runs/37594229174/artifacts/11470831586
