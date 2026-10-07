@@ -84,6 +84,8 @@ dart format --language-version 3.12 -o write lib test integration_test test_driv
 
 语言版本取根包 `pubspec.yaml` 的 SDK 下限，不取安装的 Dart SDK 最新版本，也不取锁文件中传递依赖要求的 SDK 下限。升级根包下限后需同步调整工作流及排版。
 
+`--language-version` 只决定启用哪一版排版风格，实际排版结果仍由本机 Dart 版本决定。CI 的 Flutter 3.47.4 自带 Dart 3.13.3，比 Dart 3.9（早期 Dart 3.7 系列）在间距与尾随逗号上的排版规则更严；用旧版 Dart 整理源码会漏掉 `integration_test` 中 4 个用例函数（`testWidgets(\n  '...',\n  (tester) async {` 保持展开而不折叠为单行），CI 仍判为需格式化。整理源码前需用与 CI 一致的 Dart 版本（当前 3.13.3），整理后以 `--output=none --set-exit-if-changed` 复跑确认为 0 变化。
+
 `analysis_options.yaml` 当前关闭以下五个名称：
 
 ```yaml

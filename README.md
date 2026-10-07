@@ -1,6 +1,8 @@
 # 红果鉴 / 真果鉴
 
-Flutter 多端独立短剧应用，原名“短剧库 APP”。站源请求、解析、下载和播放均在设备上完成，不依赖旧项目或自建服务。当前源码版本：**0.2.119+2125（开发快照）**。
+Flutter 多端独立短剧应用，原名“短剧库 APP”。站源请求、解析、下载和播放均在设备上完成，不依赖旧项目或自建服务。当前源码版本：**0.2.122+2128（开发快照）**。
+
+0.2.122 修复 GitHub Actions `checks` 的 `dart format` 失败。**根因是格式化器版本不同**：CI 的 Flutter 3.47.4 自带 Dart 3.13.3，间距与尾随逗号的排版规则比 Dart 3.9 更严，用旧版 Dart 整理源码会漏掉 `integration_test` 的 4 个用例（`testWidgets(\n  '...',\n  (tester) async {` 保持展开、整段缩进多一级，而不折叠为单行 `testWidgets('...', (\n  tester,\n) async {`），CI 因此仍判 4 文件需格式化。**修法**：①工作流第 38 行补 `--language-version 3.12`，与 `ANDROID_BUILD_FIXES.md` 记录一致；②用与 CI 一致的 Dart 3.13.3 重新整理 `playback_test.dart`、`player_entry_test.dart`、`startup_test.dart`、`surface_lifecycle_test.dart`，`--output=none --set-exit-if-changed` 复跑为 0 变化；③README 集中检查命令同步补 `--language-version 3.12`；④`ANDROID_BUILD_FIXES.md` 记明「`--language-version` 只选排版风格，实际结果由本机 Dart 版本决定，需用与 CI 一致的版本」。改动为纯排版，无 token 变化。本轮只改源码，未在本机编译或验证，`dart analyze` 与后续 checks 仍需 GitHub Actions 复验。
 
 0.2.119 更正一处错误结论，并按反馈收紧首页标签。**桌面图标延迟是平台行为，不是缺陷**：查 AOSP `PackageManagerService.setEnabledSettings` 后确认，`setComponentEnabledSetting` 在带 `DONT_KILL_APP` 时把组件写入 `mPendingBroadcasts` 待发队列，并用 `mHandler.sendMessageDelayed(SEND_PENDING_BROADCAST, broadcastDelay)` 延迟发出，`BROADCAST_DELAY` 是 1 秒、系统启动后 60 秒内为 `BROADCAST_DELAY_DURING_STARTUP` 即 10 秒；只有不带 `DONT_KILL_APP`（即允许杀掉本应用）才走同一调用内的 `sendNowBroadcasts` 立即广播。而且连续两次调用会因 `!mHandler.hasMessages(SEND_PENDING_BROADCAST)` 判定合并成一条广播，计时自首次调用起算。广播到达后 Launcher3 一侧是干净的（`model/PackageUpdatedTask` 的 `OP_UPDATE` 调 `icons/IconCache.updateIconsForPkg`，后者先 `removeIconsForPkg` 再按 `LauncherApps.getActivityList` 重建），vivo 自己的桌面另有图标缓存，这才是名称先到、彩色图标后到、需要手动划动才刷新的原因。该延迟无法在应用侧消除：立即广播与保留进程互斥，`mPendingBroadcasts` 也没有公开冲刷接口。
 
@@ -1136,7 +1138,7 @@ Windows 对应 `--platform windows` 和 `flutter run -d windows`。
 
 ~~~sh
 python3 -m unittest discover -s scripts -p 'test_*.py'
-dart format --output=none --set-exit-if-changed lib test integration_test test_driver
+dart format --language-version 3.12 --output=none --set-exit-if-changed lib test integration_test test_driver
 dart analyze --fatal-infos lib test integration_test test_driver
 flutter test --dart-define=DISABLE_REMOTE_IMAGES=true
 flutter test --dart-define=DISABLE_REMOTE_IMAGES=true --dart-define=ALL_SOURCES=true
