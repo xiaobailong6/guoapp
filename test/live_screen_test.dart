@@ -11,10 +11,8 @@ import 'package:shared_preferences_platform_interface/shared_preferences_platfor
 
 /// 合成直播源：不联网，只验证界面与收藏交互。
 class _FakeRepository extends LiveRepository {
-  _FakeRepository({this.extraGroups = 0, this.failGroups = const {}});
+  _FakeRepository();
 
-  final int extraGroups;
-  final Set<String> failGroups;
   final List<String> sources = [];
   int channelCalls = 0;
 
@@ -27,8 +25,6 @@ class _FakeRepository extends LiveRepository {
     return [
       const LivePlatform(id: 'cctv', name: '央视IPV4', count: 3),
       const LivePlatform(id: 'satellite', name: '卫视IPV4', count: 2),
-      for (var index = 0; index < extraGroups; index++)
-        LivePlatform(id: 'group$index', name: '分类$index', count: 1),
     ];
   }
 
@@ -40,7 +36,6 @@ class _FakeRepository extends LiveRepository {
     bool force = false,
   }) async {
     channelCalls++;
-    if (failGroups.contains(platform.id)) throw AppFailure('直播源返回 404');
     if (platform.id == 'satellite') {
       return [
         LiveChannel(

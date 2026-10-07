@@ -1,6 +1,8 @@
 # 红果鉴 / 真果鉴
 
-Flutter 多端独立短剧应用，原名“短剧库 APP”。站源请求、解析、下载和播放均在设备上完成，不依赖旧项目或自建服务。当前源码版本：**0.2.122+2128（开发快照）**。
+Flutter 多端独立短剧应用，原名“短剧库 APP”。站源请求、解析、下载和播放均在设备上完成，不依赖旧项目或自建服务。当前源码版本：**0.2.123+2129（开发快照）**。
+
+0.2.123 修复 GitHub Actions `checks` 的 `dart analyze` 失败。`dart format` 已通过（0 changed），失败点移到 `dart analyze lib test integration_test test_driver`（exit 2），四项：`test/live_screen_test.dart` 的 `extraGroups`、`failGroups` 触发 `unused_element_parameter`，`lib/video_enhancement.dart`、`lib/video_output_size.dart` 的多余 `dart:ui` 导入触发 `unnecessary_import`。**根因**：这两条是 analyzer 诊断而非 lint 规则，写在 `analysis_options.yaml` 的 `linter.rules` 下无效（`analysis_options.yaml` 本身不在 `dart analyze lib test ...` 的扫描范围，`undefined_lint` 也不会上报），因此不能靠配置豁免。**修法按 `ANDROID_BUILD_FIXES.md` 第 101-106 行清理源码**：`_FakeRepository` 移除从未传值的 `extraGroups`、`failGroups` 参数、字段与对应分支，构造函数改为无参；两个 lib 文件删除多余 `dart:ui` 导入（所用 `Size`/`Rect` 由 `package:flutter/services.dart` 提供）。本机用与 CI 一致的 Dart 3.13.3 复跑 `--output=none --set-exit-if-changed` 仍为 0 变化；未在本机编译或验证，`dart analyze` 与后续 checks 仍需 GitHub Actions 复验。
 
 0.2.122 修复 GitHub Actions `checks` 的 `dart format` 失败。**根因是格式化器版本不同**：CI 的 Flutter 3.47.4 自带 Dart 3.13.3，间距与尾随逗号的排版规则比 Dart 3.9 更严，用旧版 Dart 整理源码会漏掉 `integration_test` 的 4 个用例（`testWidgets(\n  '...',\n  (tester) async {` 保持展开、整段缩进多一级，而不折叠为单行 `testWidgets('...', (\n  tester,\n) async {`），CI 因此仍判 4 文件需格式化。**修法**：①工作流第 38 行补 `--language-version 3.12`，与 `ANDROID_BUILD_FIXES.md` 记录一致；②用与 CI 一致的 Dart 3.13.3 重新整理 `playback_test.dart`、`player_entry_test.dart`、`startup_test.dart`、`surface_lifecycle_test.dart`，`--output=none --set-exit-if-changed` 复跑为 0 变化；③README 集中检查命令同步补 `--language-version 3.12`；④`ANDROID_BUILD_FIXES.md` 记明「`--language-version` 只选排版风格，实际结果由本机 Dart 版本决定，需用与 CI 一致的版本」。改动为纯排版，无 token 变化。本轮只改源码，未在本机编译或验证，`dart analyze` 与后续 checks 仍需 GitHub Actions 复验。
 
