@@ -5,10 +5,10 @@ import (
 	"strings"
 )
 
-const nativeCatalogMaxBytes = 32 << 20
+const nativeCatalogMaxBytes = 64 << 20
 const nativeSourceMaxBytes = 4 << 20
 
-var errNativeCatalogLimit = errors.New("剧库超过本地保存上限（32 MiB），新内容尚未保存，已暂停继续加载")
+var errNativeCatalogLimit = errors.New("剧库超过本地保存上限（64 MiB），新内容尚未保存，已暂停继续加载")
 var errNativeSourceLimit = errors.New("站源任务记录超过本地保存上限（4 MiB），最新记录尚未保存")
 
 type nativePersistenceError struct {
