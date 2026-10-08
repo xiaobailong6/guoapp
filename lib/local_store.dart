@@ -569,11 +569,11 @@ class LocalStore extends ChangeNotifier {
       final sorted = entries.values.toList()
         ..sort((a, b) => b.updatedAt.compareTo(a.updatedAt));
       final following = _followStates[entry.drama.id];
-      final states = Map.of(_followStates);
-      final favorites = Map.of(_favorites);
+      final states = following == null ? null : Map.of(_followStates);
+      final favorites = following == null ? null : Map.of(_favorites);
       if (following != null) {
-        states[entry.drama.id] = following.afterPlayback(current);
-        favorites[entry.drama.id] = favorites[entry.drama.id]!.merge(
+        states![entry.drama.id] = following.afterPlayback(current);
+        favorites![entry.drama.id] = favorites![entry.drama.id]!.merge(
           current.drama,
         );
       }
@@ -586,9 +586,9 @@ class LocalStore extends ChangeNotifier {
             overrides: {entry.drama.id: row},
           ),
           if (following != null) ...{
-            _key('followStates'): _encodeFollowStates(states),
+            _key('followStates'): _encodeFollowStates(states!),
             _key('favorites'): jsonEncode(
-              favorites.values.map((entry) => entry.toJson()).toList(),
+              favorites!.values.map((entry) => entry.toJson()).toList(),
             ),
           },
         },
@@ -602,12 +602,12 @@ class LocalStore extends ChangeNotifier {
         ..addEntries(kept.map((row) => MapEntry(row.drama.id, row)));
       _historyRows.removeWhere((id, _) => !_history.containsKey(id));
       if (following != null) {
-        _followStates[entry.drama.id] = states[entry.drama.id]!;
-        _favorites[entry.drama.id] = favorites[entry.drama.id]!;
+        _followStates[entry.drama.id] = states![entry.drama.id]!;
+        _favorites[entry.drama.id] = favorites![entry.drama.id]!;
       }
       if (following != null &&
           _encodeFollowStates({entry.drama.id: following}) !=
-              _encodeFollowStates({entry.drama.id: states[entry.drama.id]!})) {
+              _encodeFollowStates({entry.drama.id: states![entry.drama.id]!})) {
         _notify();
         return;
       }

@@ -144,6 +144,8 @@ class _PlayerScreenState extends State<PlayerScreen>
   DateTime? _recommendationRetryAfter;
   Timer? _recommendationProgressTimer;
   bool _videoSurfaceMounted = false;
+  Size? _lastViewportPixels;
+  bool _lastViewportTelevision = false;
   Animation<double>? _routeAnimation;
   double _speed = 1;
   double _aspectRatio = 9 / 16;
@@ -1871,7 +1873,12 @@ class _PlayerScreenState extends State<PlayerScreen>
             constraints.maxHeight * ratio,
           );
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            if (mounted && !_closed) {
+            final changed =
+                _lastViewportPixels != pixels ||
+                _lastViewportTelevision != _television;
+            if (mounted && !_closed && changed) {
+              _lastViewportPixels = pixels;
+              _lastViewportTelevision = _television;
               _enhancement.setViewport(pixels, television: _television);
             }
           });

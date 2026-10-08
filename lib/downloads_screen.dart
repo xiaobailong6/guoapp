@@ -40,6 +40,7 @@ class _CollectionMenu {
 
 class _DownloadsScreenState extends State<DownloadsScreen> {
   Timer? _timer;
+  int _idlePolls = 0;
   final _search = TextEditingController();
   final _selected = <String>{};
   final _expanded = <String>{};
@@ -75,7 +76,7 @@ class _DownloadsScreenState extends State<DownloadsScreen> {
     widget.store.addListener(_changed);
     widget.store.libraryChanges.addListener(_changed);
     _refresh();
-    _timer = Timer.periodic(const Duration(seconds: 2), (_) => _refresh());
+    _timer = Timer.periodic(const Duration(seconds: 2), (_) => _poll());
   }
 
   void _changed() {
@@ -94,12 +95,42 @@ class _DownloadsScreenState extends State<DownloadsScreen> {
     super.dispose();
   }
 
+  void _poll() {
+    if (_jobs.any((job) => job.active || job.state == 'removing')) {
+      _idlePolls = 0;
+    } else {
+      _idlePolls++;
+      if (_idlePolls % 5 != 1) return;
+    }
+    _refresh();
+  }
+
+  bool _sameJobs(List<DownloadJob> jobs) {
+    if (jobs.length != _jobs.length) return false;
+    for (var index = 0; index < jobs.length; index++) {
+      final next = jobs[index];
+      final previous = _jobs[index];
+      if (next.id != previous.id ||
+          next.state != previous.state ||
+          next.progress != previous.progress ||
+          next.bytes != previous.bytes ||
+          next.total != previous.total ||
+          next.actualQuality != previous.actualQuality ||
+          next.error != previous.error ||
+          next.archived != previous.archived ||
+          next.revision != previous.revision) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   Future<void> _refresh() async {
     if (_refreshing || !_allowed) return;
     _refreshing = true;
     try {
       final jobs = await widget.repository.downloads();
-      if (mounted && _allowed) {
+      if (mounted && _allowed && (_error != null || !_sameJobs(jobs))) {
         setState(() {
           _jobs = jobs;
           _selected.retainAll(jobs.map((job) => job.id));
@@ -110,7 +141,7 @@ class _DownloadsScreenState extends State<DownloadsScreen> {
       if (mounted && _allowed) setState(() => _error = error.toString());
     } finally {
       _refreshing = false;
-      if (mounted) setState(() => _loading = false);
+      if (mounted && _loading) setState(() => _loading = false);
     }
   }
 

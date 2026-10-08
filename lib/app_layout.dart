@@ -4,11 +4,26 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'app_theme.dart';
+
 export 'app_build.dart';
 
-const appVersion = '0.2.64';
+const appVersion = '0.2.133';
+
+ThemeData? _televisionThemeLight;
+ThemeData? _televisionThemeDark;
 
 ThemeData televisionTheme(ThemeData theme) {
+  if (identical(theme, AppTheme.light)) {
+    return _televisionThemeLight ??= _buildTelevisionTheme(theme);
+  }
+  if (identical(theme, AppTheme.dark)) {
+    return _televisionThemeDark ??= _buildTelevisionTheme(theme);
+  }
+  return _buildTelevisionTheme(theme);
+}
+
+ThemeData _buildTelevisionTheme(ThemeData theme) {
   final colors = theme.colorScheme;
   final focusSide = WidgetStateProperty.resolveWith<BorderSide?>(
     (states) => states.contains(WidgetState.focused)

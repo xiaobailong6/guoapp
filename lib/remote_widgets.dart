@@ -323,15 +323,14 @@ class RemoteGridState extends State<RemoteGrid> {
   @override
   void didUpdateWidget(covariant RemoteGrid oldWidget) {
     super.didUpdateWidget(oldWidget);
-    final removed = _nodes.keys
-        .where((key) => !widget.itemKeys.contains(key))
-        .toList();
+    final keys = widget.itemKeys.toSet();
+    final removed = _nodes.keys.where((key) => !keys.contains(key)).toList();
     final restore = removed.any((key) => _nodes[key]!.hasFocus);
     final index = oldWidget.itemKeys.indexOf(_focused ?? '');
     for (final key in removed) {
       _nodes.remove(key)?.dispose();
     }
-    if (_focused != null && !widget.itemKeys.contains(_focused)) {
+    if (_focused != null && !keys.contains(_focused)) {
       _focused = null;
       _target = null;
       _generation++;
@@ -507,17 +506,16 @@ class RemoteRowState extends State<RemoteRow> {
   @override
   void didUpdateWidget(covariant RemoteRow oldWidget) {
     super.didUpdateWidget(oldWidget);
-    final removed = _nodes.keys
-        .where((key) => !widget.itemKeys.contains(key))
-        .toList();
+    final keys = widget.itemKeys.toSet();
+    final removed = _nodes.keys.where((key) => !keys.contains(key)).toList();
     for (final key in removed) {
       _nodes.remove(key)?.dispose();
     }
-    if (_focused != null && !widget.itemKeys.contains(_focused)) {
+    if (_focused != null && !keys.contains(_focused)) {
       _focused = null;
       _target = null;
     }
-    if (_target != null && !widget.itemKeys.contains(_target)) _target = null;
+    if (_target != null && !keys.contains(_target)) _target = null;
   }
 
   @override
@@ -691,20 +689,19 @@ class RemoteListState extends State<RemoteList> {
   @override
   void didUpdateWidget(covariant RemoteList oldWidget) {
     super.didUpdateWidget(oldWidget);
-    final removed = _nodes.keys
-        .where((key) => !widget.itemKeys.contains(key))
-        .toList();
+    final keys = widget.itemKeys.toSet();
+    final removed = _nodes.keys.where((key) => !keys.contains(key)).toList();
     final restore = removed.any((key) => _nodes[key]!.hasFocus);
     final index = oldWidget.itemKeys.indexOf(_focused ?? '');
     for (final key in removed) {
       _nodes.remove(key)?.dispose();
     }
-    if (_focused != null && !widget.itemKeys.contains(_focused)) {
+    if (_focused != null && !keys.contains(_focused)) {
       _focused = null;
       _target = null;
       _generation++;
     }
-    if (_target != null && !widget.itemKeys.contains(_target)) _target = null;
+    if (_target != null && !keys.contains(_target)) _target = null;
     if (restore && widget.itemKeys.isNotEmpty) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted && widget.itemKeys.isNotEmpty) {
