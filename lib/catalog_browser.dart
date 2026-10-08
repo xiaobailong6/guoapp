@@ -66,6 +66,7 @@ class CatalogBrowser {
 
   void updateDramas(Iterable<Drama> dramas) {
     final updates = {for (final drama in dramas) drama.id: drama};
+    if (updates.isEmpty) return;
     for (final drama in updates.values) {
       final library = _library[drama.source];
       if (library?.containsKey(drama.id) == true) {
@@ -74,10 +75,15 @@ class CatalogBrowser {
     }
     for (final session in _sessions.values) {
       for (final entry in session.entries.values) {
-        entry.items = [
-          for (final item in entry.items)
-            updates[item.id] == null ? item : item.merge(updates[item.id]!),
-        ];
+        List<Drama>? updatedItems;
+        for (var index = 0; index < entry.items.length; index++) {
+          final item = entry.items[index];
+          final fresh = updates[item.id];
+          if (fresh == null) continue;
+          updatedItems ??= List<Drama>.of(entry.items);
+          updatedItems[index] = item.merge(fresh);
+        }
+        if (updatedItems != null) entry.items = updatedItems;
       }
     }
   }

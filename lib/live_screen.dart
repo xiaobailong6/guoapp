@@ -182,6 +182,8 @@ class _LiveScreenState extends State<LiveScreen> {
     final source = _source;
     if (source == null) return;
     if (id == _favouritesId) {
+      _generation++;
+      widget.repository.cancel();
       final channels = widget.store.favourites;
       _lastGood = (group: id, channels: channels);
       // 切到收藏只换列表，不打断正在播放的频道。
@@ -525,6 +527,32 @@ class _LiveScreenState extends State<LiveScreen> {
   Widget _panel(BuildContext context, bool television) => Column(
     children: [
       _current(context),
+      Padding(
+        padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
+        child: Row(
+          children: [
+            Expanded(
+              child: TextButton.icon(
+                key: const ValueKey('live-favourites-button'),
+                onPressed: () => _loadChannels(_favouritesId),
+                icon: Icon(
+                  _group == _favouritesId
+                      ? Icons.star_rounded
+                      : Icons.star_border_rounded,
+                ),
+                label: Text('直播收藏（${widget.store.favourites.length}）'),
+              ),
+            ),
+            if (_group == _favouritesId)
+              TextButton.icon(
+                key: const ValueKey('live-categories-button'),
+                onPressed: _loadPlatforms,
+                icon: const Icon(Icons.list_rounded),
+                label: const Text('直播分类'),
+              ),
+          ],
+        ),
+      ),
       Expanded(child: _lists(context, television)),
     ],
   );
@@ -623,7 +651,10 @@ class _LiveScreenState extends State<LiveScreen> {
 
   Widget _lists(BuildContext context, bool television) {
     final error = _error;
-    if (_platforms.isEmpty && error != null && !_loading) {
+    if (_group != _favouritesId &&
+        _platforms.isEmpty &&
+        error != null &&
+        !_loading) {
       return StatusPanel(
         title: '${_source!.name} 直播源暂时不可用',
         message: error,
@@ -641,6 +672,29 @@ class _LiveScreenState extends State<LiveScreen> {
       );
     }
     if (television) {
+      if (_group == _favouritesId) {
+        if (_channels.isEmpty) return _channelList(context);
+        final current = _playback.channel?.key;
+        return RemoteList(
+          key: const ValueKey('live-favourites-list'),
+          itemKeys: [for (final channel in _channels) channel.key],
+          itemExtent: RemoteListTile.extent,
+          onExitLeft: widget.onExitLeft,
+          itemBuilder: (_, index, node, onFocus) {
+            final channel = _channels[index];
+            return RemoteListTile(
+              key: ValueKey('live-channel-${channel.key}'),
+              title: channel.name,
+              subtitle: channel.group,
+              leading: const Icon(Icons.star_rounded),
+              selected: channel.key == current,
+              focusNode: node,
+              onFocus: onFocus,
+              onPressed: () => _open(channel),
+            );
+          },
+        );
+      }
       return RemoteList(
         key: _listKey,
         itemKeys: [for (final entry in entries) entry.id],

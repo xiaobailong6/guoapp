@@ -81,6 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final _selectedDramas = <String, Drama>{};
   Timer? _cacheRefreshTimer;
   Timer? _progressTimer;
+  bool _progressRequestActive = false;
   bool _refreshingUpdatedCache = false;
   bool _selectionMode = false;
   bool _showRecommendations = false;
@@ -670,15 +671,17 @@ class _HomeScreenState extends State<HomeScreen> {
     _stopProgressPolling();
     final source = group.sources.first.id;
     _progressTimer = Timer.periodic(const Duration(milliseconds: 700), (
-      _,
+      timer,
     ) async {
       if (!mounted || generation != _generation) {
         _stopProgressPolling();
         return;
       }
+      if (_progressRequestActive) return;
+      _progressRequestActive = true;
       try {
         final page = await widget.repository.searchProgress(source, query);
-        if (!mounted || generation != _generation) return;
+        if (!mounted || generation != _generation || !timer.isActive) return;
         if (page.items.isEmpty || page.items.length <= _items.length) return;
         setState(() {
           _items = page.items;
@@ -686,7 +689,10 @@ class _HomeScreenState extends State<HomeScreen> {
           _loading = true;
           _error = null;
         });
-      } catch (_) {}
+      } catch (_) {
+      } finally {
+        _progressRequestActive = false;
+      }
     });
   }
 
