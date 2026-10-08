@@ -771,23 +771,18 @@ class NativeRepository extends AppRepository {
     }),
   );
   @override
-  Future<CatalogPage> searchProgress(String source, String query) async =>
-      _catalogPage(
-        _call({
-          'action': 'searchProgress',
-          'source': source,
-          'query': query,
-        }),
-      );
+  Future<CatalogPage> searchProgress(String source, String query) async {
+    return _catalogPage(
+      _call({'action': 'searchProgress', 'source': source, 'query': query}),
+    );
+  }
+
   @override
-  Future<CatalogPage> cached(String source, {String category = ''}) async =>
-      _catalogPage(
-        _call({
-          'action': 'cached',
-          'source': source,
-          'category': category,
-        }),
-      );
+  Future<CatalogPage> cached(String source, {String category = ''}) async {
+    return _catalogPage(
+      _call({'action': 'cached', 'source': source, 'category': category}),
+    );
+  }
   @override
   Future<String> cover(Drama drama, {bool force = false}) async {
     final epoch = access?.profileEpoch;

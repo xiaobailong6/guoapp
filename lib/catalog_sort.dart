@@ -155,10 +155,12 @@ String _naturalTitle(String title) =>
       (match) => '第${_seasonNumber(match[1]!)}${match[2]}',
     );
 
-List<String> _naturalTitleParts(String title) => RegExp(r'\d+|\D+')
-    .allMatches(_naturalTitle(title))
-    .map((match) => match[0]!)
-    .toList();
+List<String> _naturalTitleParts(String title) {
+  return RegExp(r'\d+|\D+')
+      .allMatches(_naturalTitle(title))
+      .map((match) => match[0]!)
+      .toList();
+}
 
 int naturalTitleCompare(String left, String right) =>
     _compareNaturalParts(_naturalTitleParts(left), _naturalTitleParts(right));
