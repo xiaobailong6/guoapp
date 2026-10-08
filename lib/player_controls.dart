@@ -296,6 +296,10 @@ class _PlayerControlsState extends State<PlayerControls> {
 
   bool get _chromeVisible {
     final state = widget.player.state;
+    if (!widget.showOnPlaybackReady &&
+        (!widget.enabled || !state.playing || state.buffering)) {
+      return _visible || widget.panelOpen;
+    }
     return !widget.enabled ||
         _visible ||
         !state.playing ||
