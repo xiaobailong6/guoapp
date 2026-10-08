@@ -280,7 +280,9 @@ class NativeRepository extends AppRepository {
     );
   }
 
-  Future<CatalogPage> _catalogPage(Future<Map<String, dynamic>> request) async {
+  Future<CatalogPage> _catalogPage(
+    Future<Map<String, dynamic>> request,
+  ) async {
     final epoch = access?.profileEpoch;
     final data = await request;
     final page = await parseNativeCatalog(data);
@@ -772,16 +774,22 @@ class NativeRepository extends AppRepository {
   );
   @override
   Future<CatalogPage> searchProgress(String source, String query) async {
-    return _catalogPage(
-      _call({'action': 'searchProgress', 'source': source, 'query': query}),
-    );
+    final request = _call({
+      'action': 'searchProgress',
+      'source': source,
+      'query': query,
+    });
+    return _catalogPage(request);
   }
 
   @override
   Future<CatalogPage> cached(String source, {String category = ''}) async {
-    return _catalogPage(
-      _call({'action': 'cached', 'source': source, 'category': category}),
-    );
+    final request = _call({
+      'action': 'cached',
+      'source': source,
+      'category': category,
+    });
+    return _catalogPage(request);
   }
   @override
   Future<String> cover(Drama drama, {bool force = false}) async {

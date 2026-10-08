@@ -156,14 +156,15 @@ String _naturalTitle(String title) =>
     );
 
 List<String> _naturalTitleParts(String title) {
-  return RegExp(r'\d+|\D+')
-      .allMatches(_naturalTitle(title))
-      .map((match) => match[0]!)
-      .toList();
+  final matches = RegExp(r'\d+|\D+').allMatches(_naturalTitle(title));
+  return matches.map((match) => match[0]!).toList();
 }
 
-int naturalTitleCompare(String left, String right) =>
-    _compareNaturalParts(_naturalTitleParts(left), _naturalTitleParts(right));
+int naturalTitleCompare(String left, String right) {
+  final a = _naturalTitleParts(left);
+  final b = _naturalTitleParts(right);
+  return _compareNaturalParts(a, b);
+}
 
 int _compareNaturalParts(List<String> a, List<String> b) {
   for (var index = 0; index < a.length && index < b.length; index++) {
@@ -206,12 +207,15 @@ List<Drama> sortCatalog(Iterable<Drama> rows, CatalogView view) {
         _ => null,
       },
   };
-  final names = view.sort == CatalogSort.name
-      ? {for (final drama in items) drama: normalizedSearchText(drama.title)}
-      : <Drama, String>{};
-  final seasons = view.sort == CatalogSort.season
-      ? {for (final drama in items) drama: _naturalTitleParts(drama.title)}
-      : <Drama, List<String>>{};
+  final names = <Drama, String>{};
+  final seasons = <Drama, List<String>>{};
+  for (final drama in items) {
+    if (view.sort == CatalogSort.name) {
+      names[drama] = normalizedSearchText(drama.title);
+    } else if (view.sort == CatalogSort.season) {
+      seasons[drama] = _naturalTitleParts(drama.title);
+    }
+  }
   items.sort((a, b) {
     final comparison = switch (view.sort) {
       CatalogSort.source => 0,
