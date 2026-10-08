@@ -280,9 +280,7 @@ class NativeRepository extends AppRepository {
     );
   }
 
-  Future<CatalogPage> _catalogPage(
-    Future<Map<String, dynamic>> request,
-  ) async {
+  Future<CatalogPage> _catalogPage(Future<Map<String, dynamic>> request) async {
     final epoch = access?.profileEpoch;
     final data = await request;
     final page = await parseNativeCatalog(data);
@@ -791,6 +789,7 @@ class NativeRepository extends AppRepository {
     });
     return _catalogPage(request);
   }
+
   @override
   Future<String> cover(Drama drama, {bool force = false}) async {
     final epoch = access?.profileEpoch;
