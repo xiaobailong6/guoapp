@@ -1,6 +1,8 @@
 # 红果鉴 / 真果鉴
 
-Flutter 多端独立短剧应用，原名“短剧库 APP”。站源请求、解析、下载和播放均在设备上完成，不依赖旧项目或自建服务。当前源码版本：**0.2.127+2133（开发快照）**。
+Flutter 多端独立短剧应用，原名“短剧库 APP”。站源请求、解析、下载和播放均在设备上完成，不依赖旧项目或自建服务。当前源码版本：**0.2.128+2134（开发快照）**。
+
+0.2.128 调整默认打包方式，不执行实际构建：Actions 默认跳过 iOS，保留完整任务与 `scripts/build_ios.py`，手动运行时可勾选 `build_ios` 恢复；Android 两个版次仅构建 `arm64-v8a`，本地 `build_android.py` 默认架构同步调整，显式重复传入 `--abi` 仍可恢复原三架构构建。Android 默认使用 `actions/upload-artifact@v7` 的 `archive: false` 上传单个 APK，下载不再套 ZIP；原 `upload-artifact@v4` 的 APK／校验和 ZIP 上传步骤保留，手动勾选 `android_zip` 可恢复。Windows 打包与上传不变，源码收尾压缩包不属于 Android 安装包，仍按开发约定生成。本轮仅配置与源码语法核对，未编译、未运行测试或触发 Actions；实际产物上传待远程工作流验证。
 
 0.2.127 根据 `logs_101714413607/3_checks.txt` 的 2026-10-08 02:53 UTC 日志修复 CI 格式检查失败。第 347–349 行显示只有 `lib/core_bridge.dart` 需要格式化，依赖安装已成功，尚未进入静态分析或编译。使用会话临时目录中的官方 Dart 3.13.3 格式器确认准确差异：`_catalogPage` 方法声明合并为一行，`cached` 方法后补空行；仅调整排版，不改业务逻辑，不关闭 CI 检查。按 CI 命令 `dart format --language-version 3.12 --output=none --set-exit-if-changed lib test integration_test test_driver` 复核 166 文件，0 changed、退出码 0。本机没有 Flutter／平台编译环境，未安装 Flutter 或平台工具链，未执行依赖安装、静态分析、测试或构建；格式器提示无法解析未安装的 `flutter_lints` 配置引用，格式检查本身通过，后续检查与 Android／Windows 构建仍待 Actions 复验。本版本仍为未验收开发快照。
 
@@ -1050,15 +1052,15 @@ SR-1、SR-2 与 SR-4 已接入源码，小型动漫 CNN 也包含在本轮；SR-
 
 将 `guoapp` 源码发布到仓库根目录，保留 `.github`、锁文件、`native` 和平台工程；不用上传 SDK、依赖目录、SO、DLL 或缓存。
 
-推送 `main` / `master`、`v*` 标签、提交 PR，或手动运行 **Build app packages**，会先检查再构建：
+推送 `main` / `master`、`v*` 标签、提交 PR，或手动运行 **Build app packages**，会先检查再构建 Android 与 Windows；默认不构建 iOS。
 
-| 红果版 Artifact | 全站源版 Artifact | 内容 |
+| 绿果版 Artifact | 全站源版 Artifact | 内容 |
 | --- | --- | --- |
-| `hongguojian-android` | `zhenguojian-android` | 三种架构 APK 和 SHA256 |
-| `hongguojian-windows` | `zhenguojian-windows` | 完整 ZIP 和 SHA256；从解压包检查原生核心、FFprobe、换封装及播放器启动 |
-| `hongguojian-ios-unsigned` | `zhenguojian-ios-unsigned` | 未签名 `.app` ZIP 和 SHA256，不能直接当已签名 IPA 安装 |
+| `lvguojian-版本号-arm64-v8a.apk` | `zhenguojian-版本号-arm64-v8a.apk` | 单个 ARM64 APK，直接下载，不套 ZIP |
+| `lvguojian-windows` | `zhenguojian-windows` | 完整 ZIP 和 SHA256；从解压包检查原生核心、FFprobe、换封装及播放器启动 |
+| `lvguojian-ios-unsigned` | `zhenguojian-ios-unsigned` | 默认跳过；启用后为未签名 `.app` ZIP 和 SHA256，不能直接当已签名 IPA 安装 |
 
-Actions 分别传入默认参数与 `--all-sources` 构建两版，Flutter 和 Go 回归也覆盖两种编译配置。产物保留 14 天，不自动创建 GitHub Release。首次平台构建结果以实际 Actions 输出为准。
+Actions 分别传入默认参数与 `--all-sources` 构建两版，Flutter 和 Go 回归也覆盖两种编译配置。产物保留 14 天，不自动创建 GitHub Release。Android 使用 `upload-artifact@v7` 的 `archive: false`，产物名即 APK 文件名。手动运行时勾选 `build_ios` 可恢复 iOS 构建，勾选 `android_zip` 可恢复原 Android ZIP 产物（APK 与 SHA256，名称为 `lvguojian-android`／`zhenguojian-android`）；两个选项默认均关闭，原构建与上传代码保留。首次平台构建及上传结果以实际 Actions 输出为准。
 
 Android 正式发布持续使用同一签名并递增构建号，在仓库 Secrets 配置：
 
@@ -1097,7 +1099,7 @@ python3 scripts/build_android.py --abi arm64-v8a
 python3 scripts/build_android.py --cn-mirrors
 ~~~
 
-首条默认生成红果鉴，第二条生成含全部站源的真果鉴。`--all-sources` 可以与 `--abi`、`--cn-mirrors` 组合，例如 `python3 scripts/build_android.py --all-sources --abi arm64-v8a --cn-mirrors`。
+首条默认生成绿果鉴，第二条生成含全部站源的真果鉴，均默认只构建 `arm64-v8a` 并在 `dist/android` 输出 APK，不额外压缩为 ZIP。`--all-sources` 可以与 `--abi`、`--cn-mirrors` 组合，例如 `python3 scripts/build_android.py --all-sources --abi arm64-v8a --cn-mirrors`。原多架构能力保留，恢复三架构可使用 `python3 scripts/build_android.py --abi arm64-v8a --abi armeabi-v7a --abi x86_64`；Actions 需要多架构时修改 Android 构建步骤的 `--abi` 参数并选用保留的 ZIP 上传步骤。
 
 Windows PowerShell：
 

@@ -14,6 +14,14 @@ on:
           - 'false'
           - 'true'
         default: 'false'
+      build_ios:
+        description: Build unsigned iOS packages
+        type: boolean
+        default: false
+      android_zip:
+        description: Wrap Android APK and checksums in the legacy ZIP artifact
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -135,11 +143,20 @@ jobs:
           ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
           ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
-      - run: python scripts/build_android.py ${{ matrix.arguments }}
+      - run: python scripts/build_android.py --abi arm64-v8a ${{ matrix.arguments }}
       - name: Remove signing files
         if: always()
         run: python scripts/configure_signing.py --clean
+      - name: Upload Android APK directly
+        if: ${{ github.event.inputs.android_zip != 'true' }}
+        uses: actions/upload-artifact@v7
+        with:
+          path: dist/android/${{ matrix.edition }}-*-arm64-v8a.apk
+          archive: false
+          if-no-files-found: error
+          retention-days: 14
       - uses: actions/upload-artifact@v4
+        if: ${{ github.event.inputs.android_zip == 'true' }}
         with:
           name: ${{ matrix.edition }}-android
           path: dist/android/*
@@ -199,6 +216,7 @@ jobs:
           retention-days: 14
 
   ios:
+    if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.build_ios == 'true' }}
     needs: checks
     runs-on: macos-latest
     timeout-minutes: 60
