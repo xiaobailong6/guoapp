@@ -573,7 +573,7 @@ class LocalStore extends ChangeNotifier {
       final favorites = following == null ? null : Map.of(_favorites);
       if (following != null) {
         states![entry.drama.id] = following.afterPlayback(current);
-        favorites![entry.drama.id] = favorites![entry.drama.id]!.merge(
+        favorites![entry.drama.id] = favorites[entry.drama.id]!.merge(
           current.drama,
         );
       }
