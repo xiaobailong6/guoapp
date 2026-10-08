@@ -1,0 +1,1019 @@
+﻿2026-10-08T05:24:16.2517712Z ##[group]Run flutter test --dart-define=DISABLE_REMOTE_IMAGES=true
+2026-10-08T05:24:16.2518249Z [36;1mflutter test --dart-define=DISABLE_REMOTE_IMAGES=true[0m
+2026-10-08T05:24:16.2581768Z shell: /usr/bin/bash -e {0}
+2026-10-08T05:24:16.2582045Z env:
+2026-10-08T05:24:16.2582307Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-08T05:24:16.2582640Z   GOSUMDB: sum.golang.org
+2026-10-08T05:24:16.2583012Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
+2026-10-08T05:24:16.2583431Z   PUB_CACHE: /home/runner/.pub-cache
+2026-10-08T05:24:16.2583721Z ##[endgroup]
+2026-10-08T05:24:16.4251327Z Resolving dependencies...
+2026-10-08T05:24:16.5401042Z Downloading packages...
+2026-10-08T05:24:16.7181477Z   cross_file 0.3.5+5 (0.4.0 available)
+2026-10-08T05:24:16.7182479Z   ffmpeg_kit_flutter_new_min_gpl 2.6.2 (2.6.4 available)
+2026-10-08T05:24:16.7183439Z   material_color_utilities 0.13.0 (0.13.1 available)
+2026-10-08T05:24:16.7184813Z ! media_kit_libs_windows_video 1.0.11+duanju.1 from path packages/media_kit_libs_windows_video (overridden)
+2026-10-08T05:24:16.7186024Z   test_api 0.7.12 (0.7.14 available)
+2026-10-08T05:24:16.7186586Z Got dependencies!
+2026-10-08T05:24:16.7187309Z 4 packages have newer versions incompatible with dependency constraints.
+2026-10-08T05:24:16.7188220Z Try `flutter pub outdated` for more information.
+2026-10-08T05:24:18.5519575Z 
+2026-10-08T05:24:27.0625583Z ##[group]✅ Passing tests
+2026-10-08T05:24:27.0627168Z ✅ /home/runner/work/guoapp/guoapp/test/search_cache_test.dart: cache reuse prefers the exact query
+2026-10-08T05:24:27.0673644Z ✅ /home/runner/work/guoapp/guoapp/test/search_cache_test.dart: readAnyQuery can reject unrelated cached queries
+2026-10-08T05:24:27.0699176Z ✅ /home/runner/work/guoapp/guoapp/test/search_cache_test.dart: a cached query is not reused across sources
+2026-10-08T05:24:27.0734015Z ✅ /home/runner/work/guoapp/guoapp/test/search_cache_test.dart: cached items whose titles match the keyword survive filtering
+2026-10-08T05:24:27.0784808Z ✅ /home/runner/work/guoapp/guoapp/test/search_cache_test.dart: expired results remain available for display during a refresh
+2026-10-08T05:24:27.0817077Z ✅ /home/runner/work/guoapp/guoapp/test/search_cache_test.dart: a completed refresh replaces metadata and renews the expiry
+2026-10-08T05:24:27.0849824Z ✅ /home/runner/work/guoapp/guoapp/test/search_cache_test.dart: empty successful results are cached but failed refreshes preserve data
+2026-10-08T05:24:27.0928121Z ✅ /home/runner/work/guoapp/guoapp/test/search_cache_test.dart: equivalent in-flight queries share one request
+2026-10-08T05:24:27.1089370Z ✅ /home/runner/work/guoapp/guoapp/test/search_cache_test.dart: search results survive cache reinitialization
+2026-10-08T05:24:27.4509837Z ✅ /home/runner/work/guoapp/guoapp/test/library_workflow_test.dart: unified updates share source tasks and deliver each finished cache once
+2026-10-08T05:24:27.4589401Z ✅ /home/runner/work/guoapp/guoapp/test/library_workflow_test.dart: stopping during submission prevents queued source starts
+2026-10-08T05:24:27.4772283Z ✅ /home/runner/work/guoapp/guoapp/test/library_workflow_test.dart: update scope respects compiled sources and keeps other starts after a failure
+2026-10-08T05:24:27.4968573Z ✅ /home/runner/work/guoapp/guoapp/test/library_workflow_test.dart: a late update response cannot attach to a changed user session
+2026-10-08T05:24:27.5142523Z ✅ /home/runner/work/guoapp/guoapp/test/library_workflow_test.dart: cache refresh uses saved pagination even when stale and never requests a head page
+2026-10-08T05:24:27.5487844Z ✅ /home/runner/work/guoapp/guoapp/test/library_workflow_test.dart: batch preview excludes VIP, skips duplicates and can recover failed details
+2026-10-08T05:24:27.5614625Z ✅ /home/runner/work/guoapp/guoapp/test/library_workflow_test.dart: a failed chunk resumes without resubmitting accepted episodes
+2026-10-08T05:24:27.5687691Z ✅ /home/runner/work/guoapp/guoapp/test/library_workflow_test.dart: stopping batch preparation keeps the current result and leaves later dramas untouched
+2026-10-08T05:24:27.5754449Z ✅ /home/runner/work/guoapp/guoapp/test/library_workflow_test.dart: stopping batch addition leaves accepted jobs and submits no later drama
+2026-10-08T05:24:27.5801313Z ✅ /home/runner/work/guoapp/guoapp/test/library_workflow_test.dart: changing users during preparation prevents all later reads and queue writes
+2026-10-08T05:24:27.5852326Z ✅ /home/runner/work/guoapp/guoapp/test/library_workflow_test.dart: VIP-only batch requires explicit inclusion before it can be added
+2026-10-08T05:24:28.6236994Z ✅ /home/runner/work/guoapp/guoapp/test/cover_image_test.dart: failed cover can retry and render a decoded local file
+2026-10-08T05:24:33.7923178Z ✅ /home/runner/work/guoapp/guoapp/test/playback_loader_test.dart: a later episode can start before an old resolver completes
+2026-10-08T05:24:33.8018968Z ✅ /home/runner/work/guoapp/guoapp/test/playback_loader_test.dart: a stale failure does not replace the new playback result
+2026-10-08T05:24:33.8048457Z ✅ /home/runner/work/guoapp/guoapp/test/playback_loader_test.dart: leaving playback releases a plan that arrives after disposal
+2026-10-08T05:24:33.8087274Z ✅ /home/runner/work/guoapp/guoapp/test/playback_loader_test.dart: changing episode cancels an in-flight fallback and releases its late session
+2026-10-08T05:24:34.2799506Z ✅ /home/runner/work/guoapp/guoapp/test/playback_recovery_test.dart: tries alternate routes before one fresh resolution, then stops
+2026-10-08T05:24:34.2826483Z ✅ /home/runner/work/guoapp/guoapp/test/playback_recovery_test.dart: one-route sources refresh once without endless retrying
+2026-10-08T05:24:34.2852510Z ✅ /home/runner/work/guoapp/guoapp/test/playback_recovery_test.dart: many failing alternatives cannot exceed the automatic retry limit
+2026-10-08T05:24:34.2916829Z ✅ /home/runner/work/guoapp/guoapp/test/playback_recovery_test.dart: a stalled foreground stream times out but paused and background playback do not
+2026-10-08T05:24:34.6522891Z ✅ /home/runner/work/guoapp/guoapp/test/live_screen_test.dart: 播放器固定在顶部，频道列表位于其下方
+2026-10-08T05:24:34.8730140Z ✅ /home/runner/work/guoapp/guoapp/test/library_transfer_test.dart: library import and export stay available before unlocking
+2026-10-08T05:24:34.8793749Z ✅ /home/runner/work/guoapp/guoapp/test/library_transfer_test.dart: exported packages are named and detected as xz archives
+2026-10-08T05:24:34.8847110Z ✅ /home/runner/work/guoapp/guoapp/test/library_transfer_test.dart: a legacy json package is still accepted while xz is the default
+2026-10-08T05:24:34.9603252Z ✅ /home/runner/work/guoapp/guoapp/test/live_screen_test.dart: 内置直播源合并为单一入口，站源面板收在频道卡上
+2026-10-08T05:24:35.0484971Z ✅ /home/runner/work/guoapp/guoapp/test/live_screen_test.dart: 绿色模式下直播整源隐藏并给出可操作空态
+2026-10-08T05:24:35.1213020Z ✅ /home/runner/work/guoapp/guoapp/test/live_screen_test.dart: 分类栏只有收藏，没有最近入口
+2026-10-08T05:24:35.2403729Z ✅ /home/runner/work/guoapp/guoapp/test/live_screen_test.dart: 切换分类载入对应频道
+2026-10-08T05:24:35.3629112Z ✅ /home/runner/work/guoapp/guoapp/test/live_screen_test.dart: 收藏的频道出现在收藏分类，点击后拿到该频道的播放计划
+2026-10-08T05:24:35.4742851Z ✅ /home/runner/work/guoapp/guoapp/test/live_screen_test.dart: 收藏分类里取消收藏只更新列表，不重新取源
+2026-10-08T05:24:35.5343843Z ✅ /home/runner/work/guoapp/guoapp/test/live_screen_test.dart: 播放引擎不可用时给出可见错误而不是崩溃
+2026-10-08T05:24:35.6197548Z ✅ /home/runner/work/guoapp/guoapp/test/live_screen_test.dart: 空收藏给出提示而不是频道列表
+2026-10-08T05:24:35.6700662Z ✅ /home/runner/work/guoapp/guoapp/test/live_screen_test.dart: 直播源失败时显示可重试的错误面板
+2026-10-08T05:24:35.8192277Z ✅ /home/runner/work/guoapp/guoapp/test/library_transfer_test.dart: the lock screen offers library transfer without a password
+2026-10-08T05:24:36.4500138Z ✅ /home/runner/work/guoapp/guoapp/test/recommendation_service_test.dart: 首次进入会生成本机身份并保存
+2026-10-08T05:24:36.5540587Z ✅ /home/runner/work/guoapp/guoapp/test/recommendation_service_test.dart: 累计观看不足时不会发布
+2026-10-08T05:24:36.5768564Z ✅ /home/runner/work/guoapp/guoapp/test/app_build_test.dart: 绿色模式默认开启并隐藏成人站源
+2026-10-08T05:24:36.5803391Z ✅ /home/runner/work/guoapp/guoapp/test/app_build_test.dart: 配置备份导出与导入都保留完整模式与分级限制开关
+2026-10-08T05:24:36.5851280Z ✅ /home/runner/work/guoapp/guoapp/test/app_build_test.dart: edition sources include DSD only in the all-source build
+2026-10-08T05:24:36.6431091Z ✅ /home/runner/work/guoapp/guoapp/test/app_build_test.dart: 分级限制过滤收藏与记录，备份仍保留被过滤的条目
+2026-10-08T05:24:36.6472418Z ✅ /home/runner/work/guoapp/guoapp/test/app_build_test.dart: a restored foreign-source profile keeps its identity and permissions
+2026-10-08T05:24:36.6502894Z ✅ /home/runner/work/guoapp/guoapp/test/app_build_test.dart: restored DSD profile data follows edition availability
+2026-10-08T05:24:36.7164763Z ✅ /home/runner/work/guoapp/guoapp/test/app_build_test.dart: background requests reject unavailable sources before native I/O
+2026-10-08T05:24:36.7401821Z ✅ /home/runner/work/guoapp/guoapp/test/recommendation_service_test.dart: 累计有效观看达到 10 分钟后自动发布
+2026-10-08T05:24:36.9202984Z ✅ /home/runner/work/guoapp/guoapp/test/recommendation_service_test.dart: 连续看完 5 集同样会进入动态
+2026-10-08T05:24:37.3903525Z ✅ /home/runner/work/guoapp/guoapp/test/recommendation_service_test.dart: 删除自己的记录会重新发布并重新计时
+2026-10-08T05:24:37.9394736Z ✅ /home/runner/work/guoapp/guoapp/test/recommendation_service_test.dart: 多选删除只撤下选中的记录，未选中的继续保留
+2026-10-08T05:24:38.2843591Z ✅ /home/runner/work/guoapp/guoapp/test/recommendation_service_test.dart: 多选删除空集合与未知 ID 都不改变发布内容
+2026-10-08T05:24:38.4662879Z ✅ /home/runner/work/guoapp/guoapp/test/recommendation_service_test.dart: 隐藏只影响本机显示
+2026-10-08T05:24:38.6452584Z ✅ /home/runner/work/guoapp/guoapp/test/recommendation_service_test.dart: 发布的列表在本机立即可见，relay 断线时记为待补发
+2026-10-08T05:24:39.2064697Z ✅ /home/runner/work/guoapp/guoapp/test/recommendation_service_test.dart: 其他用户的推荐会进入榜单
+2026-10-08T05:24:39.5587714Z ##[endgroup]
+2026-10-08T05:24:39.5589471Z ##[group]❌ /home/runner/work/guoapp/guoapp/test/recommendation_service_test.dart: 站源与分类筛选 (failed)
+2026-10-08T05:24:39.5590463Z Expected: Set:['hongguo']
+2026-10-08T05:24:39.5590951Z   Actual: Set:[]
+2026-10-08T05:24:39.5591699Z    Which: does not contain 'hongguo'
+2026-10-08T05:24:39.5592178Z 
+2026-10-08T05:24:39.5607706Z package:matcher                                     expect
+2026-10-08T05:24:39.5608449Z package:flutter_test/src/widget_tester.dart 473:18  expect
+2026-10-08T05:24:39.5609233Z test/recommendation_service_test.dart 355:5         main.<fn>
+2026-10-08T05:24:39.5610151Z ##[endgroup]
+2026-10-08T05:24:39.8497917Z ##[group]✅ Passing tests
+2026-10-08T05:24:39.8499527Z ✅ /home/runner/work/guoapp/guoapp/test/recommendation_service_test.dart: 内置屏蔽的发布者不出现在榜单里
+2026-10-08T05:24:40.1566512Z ✅ /home/runner/work/guoapp/guoapp/test/recommendation_service_test.dart: 屏蔽发布者后其推荐立即消失，恢复后重新出现
+2026-10-08T05:24:40.3947501Z ##[endgroup]
+2026-10-08T05:24:40.3949589Z ##[group]❌ /home/runner/work/guoapp/guoapp/test/interface_test.dart: refresh rotates during a request and stops after success or failure (failed)
+2026-10-08T05:24:40.3951527Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+2026-10-08T05:24:40.3952449Z The following assertion was thrown running a test:
+2026-10-08T05:24:40.3953729Z The finder "Found 0 widgets with key [<'catalog-refresh'>]: []" (used in a call to "tap()") could
+2026-10-08T05:24:40.3954233Z not find any matching widgets.
+2026-10-08T05:24:40.3954414Z 
+2026-10-08T05:24:40.3954571Z When the exception was thrown, this was the stack:
+2026-10-08T05:24:40.3955090Z #0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2095:7)
+2026-10-08T05:24:40.3955725Z #1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+2026-10-08T05:24:40.3956297Z #2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+2026-10-08T05:24:40.3956952Z #3      main.<anonymous closure> (file:///home/runner/work/guoapp/guoapp/test/interface_test.dart:55:22)
+2026-10-08T05:24:40.3957466Z <asynchronous suspension>
+2026-10-08T05:24:40.3957974Z #4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+2026-10-08T05:24:40.3958496Z <asynchronous suspension>
+2026-10-08T05:24:40.3958951Z #5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+2026-10-08T05:24:40.3959437Z <asynchronous suspension>
+2026-10-08T05:24:40.3959689Z <asynchronous suspension>
+2026-10-08T05:24:40.3959967Z (elided one frame from package:stack_trace)
+2026-10-08T05:24:40.3960179Z 
+2026-10-08T05:24:40.3960287Z The test description was:
+2026-10-08T05:24:40.3960674Z   refresh rotates during a request and stops after success or failure
+2026-10-08T05:24:40.3961749Z ════════════════════════════════════════════════════════════════════════════════════════════════════
+2026-10-08T05:24:40.3962484Z Test failed. See exception logs above.
+2026-10-08T05:24:40.3962967Z The test description was: refresh rotates during a request and stops after success or failure
+2026-10-08T05:24:40.3963497Z 
+2026-10-08T05:24:40.3963821Z ##[endgroup]
+2026-10-08T05:24:40.5150602Z ##[group]❌ /home/runner/work/guoapp/guoapp/test/recommendation_service_test.dart: 站源可多选，全部与具体站源互斥 (failed)
+2026-10-08T05:24:40.5156917Z Expected: an object with length of <2>
+2026-10-08T05:24:40.5157953Z   Actual: [Instance of 'FeedItem']
+2026-10-08T05:24:40.5158792Z    Which: has length of <1>
+2026-10-08T05:24:40.5159686Z 
+2026-10-08T05:24:40.5160225Z package:matcher                                     expect
+2026-10-08T05:24:40.5161424Z package:flutter_test/src/widget_tester.dart 473:18  expect
+2026-10-08T05:24:40.5162456Z test/recommendation_service_test.dart 481:5         main.<fn>
+2026-10-08T05:24:40.5164095Z ##[endgroup]
+2026-10-08T05:24:41.0502702Z ##[group]✅ Passing tests
+2026-10-08T05:24:41.0504257Z ✅ /home/runner/work/guoapp/guoapp/test/recommendation_models_test.dart: 推荐记录 合法记录往返
+2026-10-08T05:24:41.0532746Z ✅ /home/runner/work/guoapp/guoapp/test/recommendation_models_test.dart: 推荐记录 兼容不带分类的五字段写法
+2026-10-08T05:24:41.0563278Z ✅ /home/runner/work/guoapp/guoapp/test/recommendation_models_test.dart: 推荐记录 未知站源、空剧名、无海报都会被拒绝
+2026-10-08T05:24:41.0600337Z ✅ /home/runner/work/guoapp/guoapp/test/recommendation_models_test.dart: 推荐记录 超长字段被截断而不是丢弃
+2026-10-08T05:24:41.1365490Z ✅ /home/runner/work/guoapp/guoapp/test/recommendation_models_test.dart: 事件解析 解析自己的推荐列表
+2026-10-08T05:24:41.1617402Z ✅ /home/runner/work/guoapp/guoapp/test/recommendation_models_test.dart: 事件解析 空列表是合法内容，用于撤销自己的推荐
+2026-10-08T05:24:41.1756388Z ✅ /home/runner/work/guoapp/guoapp/test/recommendation_models_test.dart: 事件解析 同一条记录重复出现只算一次
+2026-10-08T05:24:41.2349991Z ✅ /home/runner/work/guoapp/guoapp/test/recommendation_models_test.dart: 事件解析 d 标签、kind、版本不匹配时忽略事件
+2026-10-08T05:24:41.2470712Z ✅ /home/runner/work/guoapp/guoapp/test/recommendation_models_test.dart: 事件解析 事件内容里的脏记录被逐条丢弃
+2026-10-08T05:24:41.2813131Z ✅ /home/runner/work/guoapp/guoapp/test/recommendation_models_test.dart: 榜单聚合 按推荐人数排序，同一部剧合并
+2026-10-08T05:24:41.3042296Z ✅ /home/runner/work/guoapp/guoapp/test/recommendation_models_test.dart: 榜单聚合 同一个人重复出现只算一个人
+2026-10-08T05:24:41.3169595Z ✅ /home/runner/work/guoapp/guoapp/test/recommendation_models_test.dart: 榜单聚合 隐藏的记录不会出现在榜单里
+2026-10-08T05:24:42.4093239Z ✅ /home/runner/work/guoapp/guoapp/test/interface_test.dart: only Huangdou exposes and applies the persistent VIP filter
+2026-10-08T05:24:42.8333715Z ✅ /home/runner/work/guoapp/guoapp/test/danmaku_widget_test.dart: danmaku uses continuous linear motion and synchronizes pause, buffering, speed and seek
+2026-10-08T05:24:43.0017137Z ✅ /home/runner/work/guoapp/guoapp/test/interface_test.dart: posters align across catalog and saved pages at (Size(390.0, 844.0), 1.0, false)
+2026-10-08T05:24:43.3817371Z ✅ /home/runner/work/guoapp/guoapp/test/interface_test.dart: posters align across catalog and saved pages at (Size(320.0, 844.0), 2.0, false)
+2026-10-08T05:24:43.8153894Z ✅ /home/runner/work/guoapp/guoapp/test/danmaku_widget_test.dart: optional requests do not delay video and late replies never appear on another episode
+2026-10-08T05:24:43.8765529Z ✅ /home/runner/work/guoapp/guoapp/test/interface_test.dart: posters align across catalog and saved pages at (Size(1280.0, 800.0), 1.0, false)
+2026-10-08T05:24:44.0037810Z ✅ /home/runner/work/guoapp/guoapp/test/danmaku_widget_test.dart: danmaku failure and manual retry stay on player controls without interrupting playback
+2026-10-08T05:24:44.1773359Z ✅ /home/runner/work/guoapp/guoapp/test/danmaku_widget_test.dart: local playback skips danmaku even when the switch is on
+2026-10-08T05:24:44.3133710Z ✅ /home/runner/work/guoapp/guoapp/test/danmaku_widget_test.dart: switching users clears in-flight danmaku before a delayed response returns
+2026-10-08T05:24:44.3943635Z ✅ /home/runner/work/guoapp/guoapp/test/interface_test.dart: posters align across catalog and saved pages at (Size(960.0, 540.0), 1.0, true)
+2026-10-08T05:24:44.7042824Z ##[endgroup]
+2026-10-08T05:24:44.7044621Z ##[group]❌ /home/runner/work/guoapp/guoapp/test/interface_test.dart: download actions stay above filters and control the whole queue at (Size(360.0, 760.0), 1.0) (failed)
+2026-10-08T05:24:44.7059527Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+2026-10-08T05:24:44.7082361Z The following assertion was thrown running a test:
+2026-10-08T05:24:44.7083504Z The finder "Found 0 widgets with text "下载任务": []" (used in a call to "getCenter()") could not find
+2026-10-08T05:24:44.7084268Z any matching widgets.
+2026-10-08T05:24:44.7084503Z 
+2026-10-08T05:24:44.7084774Z When the exception was thrown, this was the stack:
+2026-10-08T05:24:44.7092595Z #0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2095:7)
+2026-10-08T05:24:44.7094004Z #1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+2026-10-08T05:24:44.7095539Z #2      main.<anonymous closure> (file:///home/runner/work/guoapp/guoapp/test/interface_test.dart:231:26)
+2026-10-08T05:24:44.7096908Z <asynchronous suspension>
+2026-10-08T05:24:44.7098119Z #3      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+2026-10-08T05:24:44.7099320Z <asynchronous suspension>
+2026-10-08T05:24:44.7100316Z #4      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+2026-10-08T05:24:44.7101735Z <asynchronous suspension>
+2026-10-08T05:24:44.7102448Z <asynchronous suspension>
+2026-10-08T05:24:44.7103181Z (elided one frame from package:stack_trace)
+2026-10-08T05:24:44.7103795Z 
+2026-10-08T05:24:44.7104187Z The test description was:
+2026-10-08T05:24:44.7105305Z   download actions stay above filters and control the whole queue at (Size(360.0, 760.0), 1.0)
+2026-10-08T05:24:44.7106892Z ════════════════════════════════════════════════════════════════════════════════════════════════════
+2026-10-08T05:24:44.7107922Z Test failed. See exception logs above.
+2026-10-08T05:24:44.7109043Z The test description was: download actions stay above filters and control the whole queue at (Size(360.0, 760.0), 1.0)
+2026-10-08T05:24:44.7110078Z 
+2026-10-08T05:24:44.7110790Z ##[endgroup]
+2026-10-08T05:24:44.9150448Z ##[group]✅ Passing tests
+2026-10-08T05:24:44.9163304Z ✅ /home/runner/work/guoapp/guoapp/test/danmaku_widget_test.dart: large text settings and TV controls expose the danmaku preference
+2026-10-08T05:24:44.9712148Z ##[endgroup]
+2026-10-08T05:24:44.9733211Z ##[group]❌ /home/runner/work/guoapp/guoapp/test/interface_test.dart: download actions stay above filters and control the whole queue at (Size(320.0, 844.0), 2.0) (failed)
+2026-10-08T05:24:44.9738316Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+2026-10-08T05:24:44.9748880Z The following assertion was thrown running a test:
+2026-10-08T05:24:44.9772482Z The finder "Found 0 widgets with text "下载任务": []" (used in a call to "getCenter()") could not find
+2026-10-08T05:24:44.9797071Z any matching widgets.
+2026-10-08T05:24:44.9797584Z 
+2026-10-08T05:24:44.9798203Z When the exception was thrown, this was the stack:
+2026-10-08T05:24:44.9799482Z #0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2095:7)
+2026-10-08T05:24:44.9801041Z #1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+2026-10-08T05:24:44.9802773Z #2      main.<anonymous closure> (file:///home/runner/work/guoapp/guoapp/test/interface_test.dart:231:26)
+2026-10-08T05:24:44.9803657Z <asynchronous suspension>
+2026-10-08T05:24:44.9804516Z #3      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+2026-10-08T05:24:44.9805403Z <asynchronous suspension>
+2026-10-08T05:24:44.9806159Z #4      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+2026-10-08T05:24:44.9807054Z <asynchronous suspension>
+2026-10-08T05:24:44.9807502Z <asynchronous suspension>
+2026-10-08T05:24:44.9807973Z (elided one frame from package:stack_trace)
+2026-10-08T05:24:44.9808321Z 
+2026-10-08T05:24:44.9808503Z The test description was:
+2026-10-08T05:24:44.9809126Z   download actions stay above filters and control the whole queue at (Size(320.0, 844.0), 2.0)
+2026-10-08T05:24:44.9809952Z ════════════════════════════════════════════════════════════════════════════════════════════════════
+2026-10-08T05:24:44.9810421Z Test failed. See exception logs above.
+2026-10-08T05:24:44.9810997Z The test description was: download actions stay above filters and control the whole queue at (Size(320.0, 844.0), 2.0)
+2026-10-08T05:24:44.9811929Z 
+2026-10-08T05:24:44.9812317Z ##[endgroup]
+2026-10-08T05:24:45.1294805Z ##[group]❌ /home/runner/work/guoapp/guoapp/test/interface_test.dart: download actions stay above filters and control the whole queue at (Size(1280.0, 800.0), 1.0) (failed)
+2026-10-08T05:24:45.1322516Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+2026-10-08T05:24:45.1351898Z The following assertion was thrown running a test:
+2026-10-08T05:24:45.1383207Z The finder "Found 0 widgets with text "下载任务": []" (used in a call to "getCenter()") could not find
+2026-10-08T05:24:45.1411682Z any matching widgets.
+2026-10-08T05:24:45.1412185Z 
+2026-10-08T05:24:45.1441695Z When the exception was thrown, this was the stack:
+2026-10-08T05:24:45.1472498Z #0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2095:7)
+2026-10-08T05:24:45.1497496Z #1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+2026-10-08T05:24:45.1521888Z #2      main.<anonymous closure> (file:///home/runner/work/guoapp/guoapp/test/interface_test.dart:231:26)
+2026-10-08T05:24:45.1523068Z <asynchronous suspension>
+2026-10-08T05:24:45.1552842Z #3      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+2026-10-08T05:24:45.1582756Z <asynchronous suspension>
+2026-10-08T05:24:45.1592664Z #4      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+2026-10-08T05:24:45.1594334Z <asynchronous suspension>
+2026-10-08T05:24:45.1595010Z <asynchronous suspension>
+2026-10-08T05:24:45.1595785Z (elided one frame from package:stack_trace)
+2026-10-08T05:24:45.1596348Z 
+2026-10-08T05:24:45.1596708Z The test description was:
+2026-10-08T05:24:45.1597759Z   download actions stay above filters and control the whole queue at (Size(1280.0, 800.0), 1.0)
+2026-10-08T05:24:45.1599451Z ════════════════════════════════════════════════════════════════════════════════════════════════════
+2026-10-08T05:24:45.1600435Z Test failed. See exception logs above.
+2026-10-08T05:24:45.1601850Z The test description was: download actions stay above filters and control the whole queue at (Size(1280.0, 800.0), 1.0)
+2026-10-08T05:24:45.1602837Z 
+2026-10-08T05:24:45.1603562Z ##[endgroup]
+2026-10-08T05:24:47.7294471Z ##[group]✅ Passing tests
+2026-10-08T05:24:47.7312557Z ✅ /home/runner/work/guoapp/guoapp/test/feeds_screen_test.dart: 底部导航新增动态入口并显示空榜提示
+2026-10-08T05:24:47.9165555Z ##[endgroup]
+2026-10-08T05:24:47.9193138Z ##[group]❌ /home/runner/work/guoapp/guoapp/test/widget_test.dart: catalog, VIP filter and fresh details at Size(390.0, 844.0) (failed)
+2026-10-08T05:24:47.9194837Z ══╡ EXCEPTION CAUGHT BY WIDGETS LIBRARY ╞═══════════════════════════════════════════════════════════
+2026-10-08T05:24:47.9195770Z The following _Exception was thrown building Builder:
+2026-10-08T05:24:47.9196610Z Exception: MediaKit.ensureInitialized must be called before using any API from package:media_kit.
+2026-10-08T05:24:47.9197022Z 
+2026-10-08T05:24:47.9197151Z The relevant error-causing widget was:
+2026-10-08T05:24:47.9197742Z   FocusTraversalGroup FocusTraversalGroup:file:///home/runner/work/guoapp/guoapp/lib/main.dart:266:26
+2026-10-08T05:24:47.9198153Z 
+2026-10-08T05:24:47.9198313Z When the exception was thrown, this was the stack:
+2026-10-08T05:24:47.9198864Z #0      NativeLibrary.path (package:media_kit/src/player/native/core/native_library.dart:22:7)
+2026-10-08T05:24:47.9199487Z #1      new NativePlayer (package:media_kit/src/player/native/player/real.dart:78:63)
+2026-10-08T05:24:47.9200023Z #2      new Player (package:media_kit/src/player/player.dart:112:18)
+2026-10-08T05:24:47.9200547Z #3      _PlayerScreenState.initState (package:duanju_app/player_screen.dart:254:9)
+2026-10-08T05:24:47.9201448Z #4      StatefulElement._firstBuild (package:flutter/src/widgets/framework.dart:5963:55)
+2026-10-08T05:24:47.9202481Z #5      ComponentElement.mount (package:flutter/src/widgets/framework.dart:5806:5)
+2026-10-08T05:24:47.9202937Z ...     Normal element mounting (157 frames)
+2026-10-08T05:24:47.9203385Z #162    Element.inflateWidget (package:flutter/src/widgets/framework.dart:4600:20)
+2026-10-08T05:24:47.9204047Z #163    MultiChildRenderObjectElement.inflateWidget (package:flutter/src/widgets/framework.dart:7277:36)
+2026-10-08T05:24:47.9204706Z #164    Element.updateChild (package:flutter/src/widgets/framework.dart:4072:18)
+2026-10-08T05:24:47.9205289Z #165    Element.updateChildren (package:flutter/src/widgets/framework.dart:4268:32)
+2026-10-08T05:24:47.9205923Z #166    MultiChildRenderObjectElement.update (package:flutter/src/widgets/framework.dart:7308:17)
+2026-10-08T05:24:47.9206545Z #167    Element.updateChild (package:flutter/src/widgets/framework.dart:4050:15)
+2026-10-08T05:24:47.9207492Z #168    ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854:16)
+2026-10-08T05:24:47.9208146Z #169    StatefulElement.performRebuild (package:flutter/src/widgets/framework.dart:5995:11)
+2026-10-08T05:24:47.9208727Z #170    Element.rebuild (package:flutter/src/widgets/framework.dart:5542:7)
+2026-10-08T05:24:47.9209277Z #171    StatefulElement.update (package:flutter/src/widgets/framework.dart:6020:5)
+2026-10-08T05:24:47.9209825Z #172    Element.updateChild (package:flutter/src/widgets/framework.dart:4050:15)
+2026-10-08T05:24:47.9210435Z #173    ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854:16)
+2026-10-08T05:24:47.9211016Z #174    Element.rebuild (package:flutter/src/widgets/framework.dart:5542:7)
+2026-10-08T05:24:47.9211838Z #175    ProxyElement.update (package:flutter/src/widgets/framework.dart:6162:5)
+2026-10-08T05:24:47.9212524Z #176    Element.updateChild (package:flutter/src/widgets/framework.dart:4050:15)
+2026-10-08T05:24:47.9213157Z #177    ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854:16)
+2026-10-08T05:24:47.9213729Z #178    Element.rebuild (package:flutter/src/widgets/framework.dart:5542:7)
+2026-10-08T05:24:47.9214256Z #179    ProxyElement.update (package:flutter/src/widgets/framework.dart:6162:5)
+2026-10-08T05:24:47.9214887Z #180    _InheritedNotifierElement.update (package:flutter/src/widgets/inherited_notifier.dart:108:11)
+2026-10-08T05:24:47.9215520Z #181    Element.updateChild (package:flutter/src/widgets/framework.dart:4050:15)
+2026-10-08T05:24:47.9216295Z #182    ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854:16)
+2026-10-08T05:24:47.9216945Z #183    StatefulElement.performRebuild (package:flutter/src/widgets/framework.dart:5995:11)
+2026-10-08T05:24:47.9217528Z #184    Element.rebuild (package:flutter/src/widgets/framework.dart:5542:7)
+2026-10-08T05:24:47.9218060Z #185    StatefulElement.update (package:flutter/src/widgets/framework.dart:6020:5)
+2026-10-08T05:24:47.9218619Z #186    Element.updateChild (package:flutter/src/widgets/framework.dart:4050:15)
+2026-10-08T05:24:47.9219208Z #187    ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854:16)
+2026-10-08T05:24:47.9219779Z #188    Element.rebuild (package:flutter/src/widgets/framework.dart:5542:7)
+2026-10-08T05:24:47.9220295Z #189    ProxyElement.update (package:flutter/src/widgets/framework.dart:6162:5)
+2026-10-08T05:24:47.9220922Z #190    _InheritedNotifierElement.update (package:flutter/src/widgets/inherited_notifier.dart:108:11)
+2026-10-08T05:24:47.9222186Z #191    Element.updateChild (package:flutter/src/widgets/framework.dart:4050:15)
+2026-10-08T05:24:47.9223253Z #192    ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854:16)
+2026-10-08T05:24:47.9224382Z #193    StatefulElement.performRebuild (package:flutter/src/widgets/framework.dart:5995:11)
+2026-10-08T05:24:47.9225471Z #194    Element.rebuild (package:flutter/src/widgets/framework.dart:5542:7)
+2026-10-08T05:24:47.9226449Z #195    StatefulElement.update (package:flutter/src/widgets/framework.dart:6020:5)
+2026-10-08T05:24:47.9227425Z #196    Element.updateChild (package:flutter/src/widgets/framework.dart:4050:15)
+2026-10-08T05:24:47.9228561Z #197    ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854:16)
+2026-10-08T05:24:47.9229759Z #198    StatefulElement.performRebuild (package:flutter/src/widgets/framework.dart:5995:11)
+2026-10-08T05:24:47.9230828Z #199    Element.rebuild (package:flutter/src/widgets/framework.dart:5542:7)
+2026-10-08T05:24:47.9232095Z #200    StatefulElement.update (package:flutter/src/widgets/framework.dart:6020:5)
+2026-10-08T05:24:47.9233119Z #201    Element.updateChild (package:flutter/src/widgets/framework.dart:4050:15)
+2026-10-08T05:24:47.9234265Z #202    SingleChildRenderObjectElement.update (package:flutter/src/widgets/framework.dart:7135:14)
+2026-10-08T05:24:47.9235388Z #203    Element.updateChild (package:flutter/src/widgets/framework.dart:4050:15)
+2026-10-08T05:24:47.9236821Z #204    SingleChildRenderObjectElement.update (package:flutter/src/widgets/framework.dart:7135:14)
+2026-10-08T05:24:47.9237929Z #205    Element.updateChild (package:flutter/src/widgets/framework.dart:4050:15)
+2026-10-08T05:24:47.9239056Z #206    ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854:16)
+2026-10-08T05:24:47.9240124Z #207    Element.rebuild (package:flutter/src/widgets/framework.dart:5542:7)
+2026-10-08T05:24:47.9241657Z #208    ProxyElement.update (package:flutter/src/widgets/framework.dart:6162:5)
+2026-10-08T05:24:47.9242715Z #209    Element.updateChild (package:flutter/src/widgets/framework.dart:4050:15)
+2026-10-08T05:24:47.9244146Z #210    ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854:16)
+2026-10-08T05:24:47.9245195Z #211    Element.rebuild (package:flutter/src/widgets/framework.dart:5542:7)
+2026-10-08T05:24:47.9246157Z #212    ProxyElement.update (package:flutter/src/widgets/framework.dart:6162:5)
+2026-10-08T05:24:47.9247185Z #213    Element.updateChild (package:flutter/src/widgets/framework.dart:4050:15)
+2026-10-08T05:24:47.9248294Z #214    ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854:16)
+2026-10-08T05:24:47.9249501Z #215    StatefulElement.performRebuild (package:flutter/src/widgets/framework.dart:5995:11)
+2026-10-08T05:24:47.9250572Z #216    Element.rebuild (package:flutter/src/widgets/framework.dart:5542:7)
+2026-10-08T05:24:47.9251795Z #217    BuildScope._tryRebuild (package:flutter/src/widgets/framework.dart:2763:15)
+2026-10-08T05:24:47.9254046Z #218    BuildScope._flushDirtyElements (package:flutter/src/widgets/framework.dart:2820:11)
+2026-10-08T05:24:47.9255132Z #219    BuildOwner.buildScope (package:flutter/src/widgets/framework.dart:3124:18)
+2026-10-08T05:24:47.9256350Z #220    AutomatedTestWidgetsFlutterBinding.drawFrame (package:flutter_test/src/binding.dart:2432:19)
+2026-10-08T05:24:47.9257745Z #221    RendererBinding._handlePersistentFrameCallback (package:flutter/src/rendering/binding.dart:558:5)
+2026-10-08T05:24:47.9258954Z #222    SchedulerBinding._invokeFrameCallback (package:flutter/src/scheduler/binding.dart:1430:15)
+2026-10-08T05:24:47.9260138Z #223    SchedulerBinding.handleDrawFrame (package:flutter/src/scheduler/binding.dart:1345:9)
+2026-10-08T05:24:47.9261756Z #224    AutomatedTestWidgetsFlutterBinding.pump.<anonymous closure> (package:flutter_test/src/binding.dart:2261:9)
+2026-10-08T05:24:47.9263047Z #227    TestAsyncUtils.guard (package:flutter_test/src/test_async_utils.dart:74:41)
+2026-10-08T05:24:47.9264207Z #228    AutomatedTestWidgetsFlutterBinding.pump (package:flutter_test/src/binding.dart:2250:27)
+2026-10-08T05:24:47.9265489Z #229    WidgetTester.pumpAndSettle.<anonymous closure> (package:flutter_test/src/widget_tester.dart:719:23)
+2026-10-08T05:24:47.9266454Z <asynchronous suspension>
+2026-10-08T05:24:47.9267332Z #230    TestAsyncUtils.guard.<anonymous closure> (package:flutter_test/src/test_async_utils.dart:130:27)
+2026-10-08T05:24:47.9268262Z <asynchronous suspension>
+2026-10-08T05:24:47.9269089Z #231    main.<anonymous closure> (file:///home/runner/work/guoapp/guoapp/test/widget_test.dart:49:7)
+2026-10-08T05:24:47.9269944Z <asynchronous suspension>
+2026-10-08T05:24:47.9270860Z #232    testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+2026-10-08T05:24:47.9272042Z <asynchronous suspension>
+2026-10-08T05:24:47.9272962Z #233    TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+2026-10-08T05:24:47.9273846Z <asynchronous suspension>
+2026-10-08T05:24:47.9274324Z <asynchronous suspension>
+2026-10-08T05:24:47.9274879Z (elided 3 frames from dart:async and package:stack_trace)
+2026-10-08T05:24:47.9275322Z 
+2026-10-08T05:24:47.9276047Z ════════════════════════════════════════════════════════════════════════════════════════════════════
+2026-10-08T05:24:47.9277339Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+2026-10-08T05:24:47.9278644Z The following TestFailure was thrown running a test:
+2026-10-08T05:24:47.9279255Z Expected: exactly one matching candidate
+2026-10-08T05:24:47.9280073Z   Actual: _KeyWidgetFinder:<Found 0 widgets with key [<'episode-2'>]: []>
+2026-10-08T05:24:47.9280987Z    Which: means none were found but one was expected
+2026-10-08T05:24:47.9281654Z 
+2026-10-08T05:24:47.9281922Z When the exception was thrown, this was the stack:
+2026-10-08T05:24:47.9282847Z #4      main.<anonymous closure> (file:///home/runner/work/guoapp/guoapp/test/widget_test.dart:51:7)
+2026-10-08T05:24:47.9284025Z <asynchronous suspension>
+2026-10-08T05:24:47.9284970Z #5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+2026-10-08T05:24:47.9285922Z <asynchronous suspension>
+2026-10-08T05:24:47.9286731Z #6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+2026-10-08T05:24:47.9287581Z <asynchronous suspension>
+2026-10-08T05:24:47.9288076Z <asynchronous suspension>
+2026-10-08T05:24:47.9288576Z (elided one frame from package:stack_trace)
+2026-10-08T05:24:47.9288945Z 
+2026-10-08T05:24:47.9289286Z This was caught by the test expectation on the following line:
+2026-10-08T05:24:47.9290213Z   file:///home/runner/work/guoapp/guoapp/test/widget_test.dart line 51
+2026-10-08T05:24:47.9290918Z The test description was:
+2026-10-08T05:24:47.9291800Z   catalog, VIP filter and fresh details at Size(390.0, 844.0)
+2026-10-08T05:24:47.9292910Z ════════════════════════════════════════════════════════════════════════════════════════════════════
+2026-10-08T05:24:47.9294211Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+2026-10-08T05:24:47.9295077Z The following message was thrown:
+2026-10-08T05:24:47.9295952Z Multiple exceptions (2) were detected during the running of the current test, and at least one was
+2026-10-08T05:24:47.9296820Z unexpected.
+2026-10-08T05:24:47.9297711Z ════════════════════════════════════════════════════════════════════════════════════════════════════
+2026-10-08T05:24:47.9298505Z Test failed. See exception logs above.
+2026-10-08T05:24:47.9299282Z The test description was: catalog, VIP filter and fresh details at Size(390.0, 844.0)
+2026-10-08T05:24:47.9299891Z 
+2026-10-08T05:24:47.9300366Z ##[endgroup]
+2026-10-08T05:24:48.1063533Z ##[group]✅ Passing tests
+2026-10-08T05:24:48.1072614Z ✅ /home/runner/work/guoapp/guoapp/test/feeds_screen_test.dart: 其他用户的推荐进入榜单后显示条数与站源
+2026-10-08T05:24:48.8004366Z ##[endgroup]
+2026-10-08T05:24:48.8043676Z ##[group]❌ /home/runner/work/guoapp/guoapp/test/widget_test.dart: catalog, VIP filter and fresh details at Size(1280.0, 800.0) (failed)
+2026-10-08T05:24:48.8045689Z ══╡ EXCEPTION CAUGHT BY WIDGETS LIBRARY ╞═══════════════════════════════════════════════════════════
+2026-10-08T05:24:48.8061911Z The following _Exception was thrown building Builder:
+2026-10-08T05:24:48.8085286Z Exception: MediaKit.ensureInitialized must be called before using any API from package:media_kit.
+2026-10-08T05:24:48.8101555Z 
+2026-10-08T05:24:48.8114436Z The relevant error-causing widget was:
+2026-10-08T05:24:48.8142645Z   FocusTraversalGroup FocusTraversalGroup:file:///home/runner/work/guoapp/guoapp/lib/main.dart:266:26
+2026-10-08T05:24:48.8143598Z 
+2026-10-08T05:24:48.8144057Z When the exception was thrown, this was the stack:
+2026-10-08T05:24:48.8145202Z #0      NativeLibrary.path (package:media_kit/src/player/native/core/native_library.dart:22:7)
+2026-10-08T05:24:48.8146450Z #1      new NativePlayer (package:media_kit/src/player/native/player/real.dart:78:63)
+2026-10-08T05:24:48.8147644Z #2      new Player (package:media_kit/src/player/player.dart:112:18)
+2026-10-08T05:24:48.8148755Z #3      _PlayerScreenState.initState (package:duanju_app/player_screen.dart:254:9)
+2026-10-08T05:24:48.8149968Z #4      StatefulElement._firstBuild (package:flutter/src/widgets/framework.dart:5963:55)
+2026-10-08T05:24:48.8151334Z #5      ComponentElement.mount (package:flutter/src/widgets/framework.dart:5806:5)
+2026-10-08T05:24:48.8152321Z ...     Normal element mounting (157 frames)
+2026-10-08T05:24:48.8153257Z #162    Element.inflateWidget (package:flutter/src/widgets/framework.dart:4600:20)
+2026-10-08T05:24:48.8154601Z #163    MultiChildRenderObjectElement.inflateWidget (package:flutter/src/widgets/framework.dart:7277:36)
+2026-10-08T05:24:48.8155970Z #164    Element.updateChild (package:flutter/src/widgets/framework.dart:4072:18)
+2026-10-08T05:24:48.8157116Z #165    Element.updateChildren (package:flutter/src/widgets/framework.dart:4268:32)
+2026-10-08T05:24:48.8158898Z #166    MultiChildRenderObjectElement.update (package:flutter/src/widgets/framework.dart:7308:17)
+2026-10-08T05:24:48.8160286Z #167    Element.updateChild (package:flutter/src/widgets/framework.dart:4050:15)
+2026-10-08T05:24:48.8161713Z #168    ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854:16)
+2026-10-08T05:24:48.8163120Z #169    StatefulElement.performRebuild (package:flutter/src/widgets/framework.dart:5995:11)
+2026-10-08T05:24:48.8164329Z #170    Element.rebuild (package:flutter/src/widgets/framework.dart:5542:7)
+2026-10-08T05:24:48.8165465Z #171    StatefulElement.update (package:flutter/src/widgets/framework.dart:6020:5)
+2026-10-08T05:24:48.8166647Z #172    Element.updateChild (package:flutter/src/widgets/framework.dart:4050:15)
+2026-10-08T05:24:48.8167876Z #173    ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854:16)
+2026-10-08T05:24:48.8169091Z #174    Element.rebuild (package:flutter/src/widgets/framework.dart:5542:7)
+2026-10-08T05:24:48.8170240Z #175    ProxyElement.update (package:flutter/src/widgets/framework.dart:6162:5)
+2026-10-08T05:24:48.8171535Z #176    Element.updateChild (package:flutter/src/widgets/framework.dart:4050:15)
+2026-10-08T05:24:48.8172814Z #177    ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854:16)
+2026-10-08T05:24:48.8174053Z #178    Element.rebuild (package:flutter/src/widgets/framework.dart:5542:7)
+2026-10-08T05:24:48.8175184Z #179    ProxyElement.update (package:flutter/src/widgets/framework.dart:6162:5)
+2026-10-08T05:24:48.8176494Z #180    _InheritedNotifierElement.update (package:flutter/src/widgets/inherited_notifier.dart:108:11)
+2026-10-08T05:24:48.8177815Z #181    Element.updateChild (package:flutter/src/widgets/framework.dart:4050:15)
+2026-10-08T05:24:48.8179053Z #182    ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854:16)
+2026-10-08T05:24:48.8180442Z #183    StatefulElement.performRebuild (package:flutter/src/widgets/framework.dart:5995:11)
+2026-10-08T05:24:48.8181851Z #184    Element.rebuild (package:flutter/src/widgets/framework.dart:5542:7)
+2026-10-08T05:24:48.8182979Z #185    StatefulElement.update (package:flutter/src/widgets/framework.dart:6020:5)
+2026-10-08T05:24:48.8184159Z #186    Element.updateChild (package:flutter/src/widgets/framework.dart:4050:15)
+2026-10-08T05:24:48.8185394Z #187    ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854:16)
+2026-10-08T05:24:48.8186913Z #188    Element.rebuild (package:flutter/src/widgets/framework.dart:5542:7)
+2026-10-08T05:24:48.8188026Z #189    ProxyElement.update (package:flutter/src/widgets/framework.dart:6162:5)
+2026-10-08T05:24:48.8189320Z #190    _InheritedNotifierElement.update (package:flutter/src/widgets/inherited_notifier.dart:108:11)
+2026-10-08T05:24:48.8190625Z #191    Element.updateChild (package:flutter/src/widgets/framework.dart:4050:15)
+2026-10-08T05:24:48.8192135Z #192    ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854:16)
+2026-10-08T05:24:48.8193493Z #193    StatefulElement.performRebuild (package:flutter/src/widgets/framework.dart:5995:11)
+2026-10-08T05:24:48.8194765Z #194    Element.rebuild (package:flutter/src/widgets/framework.dart:5542:7)
+2026-10-08T05:24:48.8195899Z #195    StatefulElement.update (package:flutter/src/widgets/framework.dart:6020:5)
+2026-10-08T05:24:48.8197060Z #196    Element.updateChild (package:flutter/src/widgets/framework.dart:4050:15)
+2026-10-08T05:24:48.8198300Z #197    ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854:16)
+2026-10-08T05:24:48.8199623Z #198    StatefulElement.performRebuild (package:flutter/src/widgets/framework.dart:5995:11)
+2026-10-08T05:24:48.8200832Z #199    Element.rebuild (package:flutter/src/widgets/framework.dart:5542:7)
+2026-10-08T05:24:48.8202143Z #200    StatefulElement.update (package:flutter/src/widgets/framework.dart:6020:5)
+2026-10-08T05:24:48.8203315Z #201    Element.updateChild (package:flutter/src/widgets/framework.dart:4050:15)
+2026-10-08T05:24:48.8204833Z #202    SingleChildRenderObjectElement.update (package:flutter/src/widgets/framework.dart:7135:14)
+2026-10-08T05:24:48.8206133Z #203    Element.updateChild (package:flutter/src/widgets/framework.dart:4050:15)
+2026-10-08T05:24:48.8207415Z #204    SingleChildRenderObjectElement.update (package:flutter/src/widgets/framework.dart:7135:14)
+2026-10-08T05:24:48.8208694Z #205    Element.updateChild (package:flutter/src/widgets/framework.dart:4050:15)
+2026-10-08T05:24:48.8209933Z #206    ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854:16)
+2026-10-08T05:24:48.8211290Z #207    Element.rebuild (package:flutter/src/widgets/framework.dart:5542:7)
+2026-10-08T05:24:48.8212426Z #208    ProxyElement.update (package:flutter/src/widgets/framework.dart:6162:5)
+2026-10-08T05:24:48.8213589Z #209    Element.updateChild (package:flutter/src/widgets/framework.dart:4050:15)
+2026-10-08T05:24:48.8214832Z #210    ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854:16)
+2026-10-08T05:24:48.8216036Z #211    Element.rebuild (package:flutter/src/widgets/framework.dart:5542:7)
+2026-10-08T05:24:48.8217119Z #212    ProxyElement.update (package:flutter/src/widgets/framework.dart:6162:5)
+2026-10-08T05:24:48.8218259Z #213    Element.updateChild (package:flutter/src/widgets/framework.dart:4050:15)
+2026-10-08T05:24:48.8219487Z #214    ComponentElement.performRebuild (package:flutter/src/widgets/framework.dart:5854:16)
+2026-10-08T05:24:48.8220803Z #215    StatefulElement.performRebuild (package:flutter/src/widgets/framework.dart:5995:11)
+2026-10-08T05:24:48.8222291Z #216    Element.rebuild (package:flutter/src/widgets/framework.dart:5542:7)
+2026-10-08T05:24:48.8223426Z #217    BuildScope._tryRebuild (package:flutter/src/widgets/framework.dart:2763:15)
+2026-10-08T05:24:48.8224681Z #218    BuildScope._flushDirtyElements (package:flutter/src/widgets/framework.dart:2820:11)
+2026-10-08T05:24:48.8226082Z #219    BuildOwner.buildScope (package:flutter/src/widgets/framework.dart:3124:18)
+2026-10-08T05:24:48.8227471Z #220    AutomatedTestWidgetsFlutterBinding.drawFrame (package:flutter_test/src/binding.dart:2432:19)
+2026-10-08T05:24:48.8229000Z #221    RendererBinding._handlePersistentFrameCallback (package:flutter/src/rendering/binding.dart:558:5)
+2026-10-08T05:24:48.8230469Z #222    SchedulerBinding._invokeFrameCallback (package:flutter/src/scheduler/binding.dart:1430:15)
+2026-10-08T05:24:48.8232262Z #223    SchedulerBinding.handleDrawFrame (package:flutter/src/scheduler/binding.dart:1345:9)
+2026-10-08T05:24:48.8233775Z #224    AutomatedTestWidgetsFlutterBinding.pump.<anonymous closure> (package:flutter_test/src/binding.dart:2261:9)
+2026-10-08T05:24:48.8235238Z #227    TestAsyncUtils.guard (package:flutter_test/src/test_async_utils.dart:74:41)
+2026-10-08T05:24:48.8236555Z #228    AutomatedTestWidgetsFlutterBinding.pump (package:flutter_test/src/binding.dart:2250:27)
+2026-10-08T05:24:48.8238018Z #229    WidgetTester.pumpAndSettle.<anonymous closure> (package:flutter_test/src/widget_tester.dart:719:23)
+2026-10-08T05:24:48.8239133Z <asynchronous suspension>
+2026-10-08T05:24:48.8240174Z #230    TestAsyncUtils.guard.<anonymous closure> (package:flutter_test/src/test_async_utils.dart:130:27)
+2026-10-08T05:24:48.8241384Z <asynchronous suspension>
+2026-10-08T05:24:48.8242414Z #231    main.<anonymous closure> (file:///home/runner/work/guoapp/guoapp/test/widget_test.dart:49:7)
+2026-10-08T05:24:48.8243420Z <asynchronous suspension>
+2026-10-08T05:24:48.8244470Z #232    testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+2026-10-08T05:24:48.8245596Z <asynchronous suspension>
+2026-10-08T05:24:48.8246571Z #233    TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+2026-10-08T05:24:48.8247581Z <asynchronous suspension>
+2026-10-08T05:24:48.8248185Z <asynchronous suspension>
+2026-10-08T05:24:48.8248886Z (elided 3 frames from dart:async and package:stack_trace)
+2026-10-08T05:24:48.8249475Z 
+2026-10-08T05:24:48.8250652Z ════════════════════════════════════════════════════════════════════════════════════════════════════
+2026-10-08T05:24:48.8252306Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+2026-10-08T05:24:48.8253458Z The following TestFailure was thrown running a test:
+2026-10-08T05:24:48.8254240Z Expected: exactly one matching candidate
+2026-10-08T05:24:48.8255191Z   Actual: _KeyWidgetFinder:<Found 0 widgets with key [<'episode-2'>]: []>
+2026-10-08T05:24:48.8256252Z    Which: means none were found but one was expected
+2026-10-08T05:24:48.8256820Z 
+2026-10-08T05:24:48.8257239Z When the exception was thrown, this was the stack:
+2026-10-08T05:24:48.8258317Z #4      main.<anonymous closure> (file:///home/runner/work/guoapp/guoapp/test/widget_test.dart:51:7)
+2026-10-08T05:24:48.8259338Z <asynchronous suspension>
+2026-10-08T05:24:48.8260394Z #5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+2026-10-08T05:24:48.8261709Z <asynchronous suspension>
+2026-10-08T05:24:48.8262669Z #6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+2026-10-08T05:24:48.8263675Z <asynchronous suspension>
+2026-10-08T05:24:48.8264293Z <asynchronous suspension>
+2026-10-08T05:24:48.8264952Z (elided one frame from package:stack_trace)
+2026-10-08T05:24:48.8265478Z 
+2026-10-08T05:24:48.8265967Z This was caught by the test expectation on the following line:
+2026-10-08T05:24:48.8267271Z   file:///home/runner/work/guoapp/guoapp/test/widget_test.dart line 51
+2026-10-08T05:24:48.8268127Z The test description was:
+2026-10-08T05:24:48.8268918Z   catalog, VIP filter and fresh details at Size(1280.0, 800.0)
+2026-10-08T05:24:48.8270215Z ════════════════════════════════════════════════════════════════════════════════════════════════════
+2026-10-08T05:24:48.8271824Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+2026-10-08T05:24:48.8272846Z The following message was thrown:
+2026-10-08T05:24:48.8273888Z Multiple exceptions (2) were detected during the running of the current test, and at least one was
+2026-10-08T05:24:48.8274890Z unexpected.
+2026-10-08T05:24:48.8275900Z ════════════════════════════════════════════════════════════════════════════════════════════════════
+2026-10-08T05:24:48.8277145Z Warning: At least one test in this suite creates an HttpClient. When running a test suite that uses
+2026-10-08T05:24:48.8278582Z TestWidgetsFlutterBinding, all HTTP requests will return status code 400, and no network request
+2026-10-08T05:24:48.8279956Z will actually be made. Any test expecting a real network connection and status code will fail.
+2026-10-08T05:24:48.8281466Z To test code that needs an HttpClient, provide your own HttpClient implementation to the code under
+2026-10-08T05:24:48.8282818Z test, so that your test can consistently provide a testable response to the code under test.
+2026-10-08T05:24:48.8283827Z Test failed. See exception logs above.
+2026-10-08T05:24:48.8284995Z The test description was: catalog, VIP filter and fresh details at Size(1280.0, 800.0)
+2026-10-08T05:24:48.8285763Z 
+2026-10-08T05:24:48.8286431Z ##[endgroup]
+2026-10-08T05:24:49.0562691Z ##[group]✅ Passing tests
+2026-10-08T05:24:49.0574098Z ✅ /home/runner/work/guoapp/guoapp/test/widget_test.dart: failed catalog can be retried
+2026-10-08T05:24:49.3512906Z ✅ /home/runner/work/guoapp/guoapp/test/television_test.dart: Android TV detection falls back safely when the platform channel is unavailable
+2026-10-08T05:24:49.8269246Z ✅ /home/runner/work/guoapp/guoapp/test/widget_test.dart: fresh disk catalog skips the network and resumes pagination
+2026-10-08T05:24:49.9458309Z ✅ /home/runner/work/guoapp/guoapp/test/widget_test.dart: stale disk catalog remains usable when refresh fails
+2026-10-08T05:24:49.9615274Z ✅ /home/runner/work/guoapp/guoapp/test/widget_test.dart: watch progress and favorites survive a new store
+2026-10-08T05:24:50.6667340Z ✅ /home/runner/work/guoapp/guoapp/test/live_playback_test.dart: 线路顺序由实测决定：取不到清单的线路沉底，仍保留兜底
+2026-10-08T05:24:50.6712595Z ✅ /home/runner/work/guoapp/guoapp/test/live_playback_test.dart: 预检全部失败时保持原顺序，不阻断加载
+2026-10-08T05:24:50.6770390Z ✅ /home/runner/work/guoapp/guoapp/test/live_playback_test.dart: 预检顺序对整个分类生效，不只作用于首条频道
+2026-10-08T05:24:50.6820567Z ✅ /home/runner/work/guoapp/guoapp/test/live_playback_test.dart: 列表型源按站源指定的默认分组归类，不落进其他
+2026-10-08T05:24:50.6891581Z ✅ /home/runner/work/guoapp/guoapp/test/live_playback_test.dart: 切换线路会更新当前线路标号
+2026-10-08T05:24:50.7004812Z ✅ /home/runner/work/guoapp/guoapp/test/live_playback_test.dart: 换台回到首条线路，避免沿用上一台已经劣化的线路
+2026-10-08T05:24:51.3379394Z ✅ /home/runner/work/guoapp/guoapp/test/television_test.dart: manual interface preference overrides device detection and survives restart
+2026-10-08T05:24:51.5993420Z ✅ /home/runner/work/guoapp/guoapp/test/live_repository_test.dart: 多镜像分类取并集，失效与空分类被剔除
+2026-10-08T05:24:51.6029066Z ✅ /home/runner/work/guoapp/guoapp/test/live_repository_test.dart: 同一分类两镜像计数不同步时取有内容的一边
+2026-10-08T05:24:51.6123727Z ✅ /home/runner/work/guoapp/guoapp/test/live_repository_test.dart: 分类按提供它的镜像取频道
+2026-10-08T05:24:51.6193276Z ✅ /home/runner/work/guoapp/guoapp/test/live_repository_test.dart: 首选镜像不可用时回退到其他镜像
+2026-10-08T05:24:51.6220637Z ✅ /home/runner/work/guoapp/guoapp/test/live_repository_test.dart: 上游不带频道数字段时不过滤分类
+2026-10-08T05:24:51.6250548Z ✅ /home/runner/work/guoapp/guoapp/test/live_repository_test.dart: 央视与卫视频道被过滤
+2026-10-08T05:24:51.6318090Z ✅ /home/runner/work/guoapp/guoapp/test/live_repository_test.dart: 收藏频道经序列化往返后仍解析出播放地址
+2026-10-08T05:24:51.6351029Z ✅ /home/runner/work/guoapp/guoapp/test/live_repository_test.dart: 收藏频道保留请求头
+2026-10-08T05:24:51.6397777Z ✅ /home/runner/work/guoapp/guoapp/test/live_repository_test.dart: 秀场频道保留，RTMP 后排，重名去重
+2026-10-08T05:24:52.1346578Z ##[endgroup]
+2026-10-08T05:24:52.1348980Z ##[group]❌ /home/runner/work/guoapp/guoapp/test/television_test.dart: TV sources, details, VIP confirmation and back retain remote focus at Size(960.0, 540.0) (failed)
+2026-10-08T05:24:52.1351511Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+2026-10-08T05:24:52.1353268Z The following TestFailure was thrown running a test:
+2026-10-08T05:24:52.1354385Z Expected: 'yaguo'
+2026-10-08T05:24:52.1355269Z   Actual: 'hongguo'
+2026-10-08T05:24:52.1355962Z    Which: is different.
+2026-10-08T05:24:52.1356611Z           Expected: yaguo
+2026-10-08T05:24:52.1357100Z             Actual: hongguo
+2026-10-08T05:24:52.1357612Z                     ^
+2026-10-08T05:24:52.1358128Z            Differ at offset 0
+2026-10-08T05:24:52.1358412Z 
+2026-10-08T05:24:52.1358675Z When the exception was thrown, this was the stack:
+2026-10-08T05:24:52.1359647Z #4      main.<anonymous closure> (file:///home/runner/work/guoapp/guoapp/test/television_test.dart:133:9)
+2026-10-08T05:24:52.1360520Z <asynchronous suspension>
+2026-10-08T05:24:52.1361643Z #5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+2026-10-08T05:24:52.1362559Z <asynchronous suspension>
+2026-10-08T05:24:52.1363327Z #6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+2026-10-08T05:24:52.1364137Z <asynchronous suspension>
+2026-10-08T05:24:52.1364588Z <asynchronous suspension>
+2026-10-08T05:24:52.1365053Z (elided one frame from package:stack_trace)
+2026-10-08T05:24:52.1365409Z 
+2026-10-08T05:24:52.1366137Z This was caught by the test expectation on the following line:
+2026-10-08T05:24:52.1367050Z   file:///home/runner/work/guoapp/guoapp/test/television_test.dart line 133
+2026-10-08T05:24:52.1367755Z The test description was:
+2026-10-08T05:24:52.1368512Z   TV sources, details, VIP confirmation and back retain remote focus at Size(960.0, 540.0)
+2026-10-08T05:24:52.1369693Z ════════════════════════════════════════════════════════════════════════════════════════════════════
+2026-10-08T05:24:52.1370440Z Test failed. See exception logs above.
+2026-10-08T05:24:52.1371629Z The test description was: TV sources, details, VIP confirmation and back retain remote focus at Size(960.0, 540.0)
+2026-10-08T05:24:52.1372411Z 
+2026-10-08T05:24:52.1372857Z ##[endgroup]
+2026-10-08T05:24:52.6506525Z ##[group]❌ /home/runner/work/guoapp/guoapp/test/television_test.dart: TV sources, details, VIP confirmation and back retain remote focus at Size(1280.0, 720.0) (failed)
+2026-10-08T05:24:52.6520960Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+2026-10-08T05:24:52.6525036Z The following TestFailure was thrown running a test:
+2026-10-08T05:24:52.6525999Z Expected: 'yaguo'
+2026-10-08T05:24:52.6526713Z   Actual: 'hongguo'
+2026-10-08T05:24:52.6527541Z    Which: is different.
+2026-10-08T05:24:52.6528330Z           Expected: yaguo
+2026-10-08T05:24:52.6529193Z             Actual: hongguo
+2026-10-08T05:24:52.6530252Z                     ^
+2026-10-08T05:24:52.6531700Z            Differ at offset 0
+2026-10-08T05:24:52.6534049Z 
+2026-10-08T05:24:52.6534594Z When the exception was thrown, this was the stack:
+2026-10-08T05:24:52.6535901Z #4      main.<anonymous closure> (file:///home/runner/work/guoapp/guoapp/test/television_test.dart:133:9)
+2026-10-08T05:24:52.6536969Z <asynchronous suspension>
+2026-10-08T05:24:52.6538126Z #5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+2026-10-08T05:24:52.6539358Z <asynchronous suspension>
+2026-10-08T05:24:52.6540455Z #6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+2026-10-08T05:24:52.6542353Z <asynchronous suspension>
+2026-10-08T05:24:52.6543066Z <asynchronous suspension>
+2026-10-08T05:24:52.6543821Z (elided one frame from package:stack_trace)
+2026-10-08T05:24:52.6544453Z 
+2026-10-08T05:24:52.6545019Z This was caught by the test expectation on the following line:
+2026-10-08T05:24:52.6546186Z   file:///home/runner/work/guoapp/guoapp/test/television_test.dart line 133
+2026-10-08T05:24:52.6547070Z The test description was:
+2026-10-08T05:24:52.6548065Z   TV sources, details, VIP confirmation and back retain remote focus at Size(1280.0, 720.0)
+2026-10-08T05:24:52.6550023Z ════════════════════════════════════════════════════════════════════════════════════════════════════
+2026-10-08T05:24:52.6551335Z Test failed. See exception logs above.
+2026-10-08T05:24:52.6553336Z The test description was: TV sources, details, VIP confirmation and back retain remote focus at Size(1280.0, 720.0)
+2026-10-08T05:24:52.6554420Z 
+2026-10-08T05:24:52.6555157Z ##[endgroup]
+2026-10-08T05:24:53.1059768Z ##[group]✅ Passing tests
+2026-10-08T05:24:53.1061451Z ✅ /home/runner/work/guoapp/guoapp/test/television_test.dart: remote grid reaches unbuilt rows, partial last row and pagination without touch
+2026-10-08T05:24:53.4303456Z ✅ /home/runner/work/guoapp/guoapp/test/television_test.dart: episode grid initially focuses an offscreen saved episode
+2026-10-08T05:24:54.0848211Z ✅ /home/runner/work/guoapp/guoapp/test/local_persistence_test.dart: failed false writes keep favorites, preferences and progress after restart
+2026-10-08T05:24:54.1054500Z ✅ /home/runner/work/guoapp/guoapp/test/local_persistence_test.dart: failed throw writes keep favorites, preferences and progress after restart
+2026-10-08T05:24:54.1228419Z ✅ /home/runner/work/guoapp/guoapp/test/local_persistence_test.dart: failed after writes keep favorites, preferences and progress after restart
+2026-10-08T05:24:54.1509077Z ✅ /home/runner/work/guoapp/guoapp/test/local_persistence_test.dart: backup restoration is one snapshot and never mixes old and new data
+2026-10-08T05:24:54.4197571Z ✅ /home/runner/work/guoapp/guoapp/test/catalog_categories_test.dart: compact home keeps search collapsed at 390.0
+2026-10-08T05:24:54.7478101Z ✅ /home/runner/work/guoapp/guoapp/test/catalog_categories_test.dart: compact home keeps search collapsed at 320.0
+2026-10-08T05:24:54.7497629Z ##[endgroup]
+2026-10-08T05:24:54.7498524Z ##[group]⏭️ Skipped tests
+2026-10-08T05:24:54.7500029Z ⏭️ /home/runner/work/guoapp/guoapp/test/catalog_categories_test.dart: one Huangguo source merges catalogs and categories and rejects stale replies (skipped)
+2026-10-08T05:24:54.7587150Z ##[endgroup]
+2026-10-08T05:24:54.7588191Z ##[group]✅ Passing tests
+2026-10-08T05:24:54.7589600Z ✅ /home/runner/work/guoapp/guoapp/test/catalog_categories_test.dart: remote content types never hide fine categories from cached pages
+2026-10-08T05:24:54.7641152Z ✅ /home/runner/work/guoapp/guoapp/test/catalog_categories_test.dart: group pagination retries failed member without skipping or reloading exhausted members
+2026-10-08T05:24:55.1288750Z ✅ /home/runner/work/guoapp/guoapp/test/catalog_categories_test.dart: rankings are separate from categories and preserve upstream rank numbers
+2026-10-08T05:24:55.8246897Z ✅ /home/runner/work/guoapp/guoapp/test/local_persistence_test.dart: queued mutations preserve all successful records and isolate playback preferences
+2026-10-08T05:24:55.8299997Z ✅ /home/runner/work/guoapp/guoapp/test/local_persistence_test.dart: damaged profiles remain locked without replacing raw data: broken-json
+2026-10-08T05:24:55.8330013Z ✅ /home/runner/work/guoapp/guoapp/test/local_persistence_test.dart: damaged profiles remain locked without replacing raw data: []
+2026-10-08T05:24:55.8361568Z ✅ /home/runner/work/guoapp/guoapp/test/local_persistence_test.dart: damaged profiles remain locked without replacing raw data: [{"id":"default","name":"管理员","admin":true,"sources":[],"download":true,"salt":"11111111111111111111111111111111","pinHash":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},{"id":"visitor","name":7}]
+2026-10-08T05:24:55.8388851Z ✅ /home/runner/work/guoapp/guoapp/test/local_persistence_test.dart: damaged profiles remain locked without replacing raw data: [{"id":"default","name":"管理员","admin":true,"sources":[],"salt":"bad"}]
+2026-10-08T05:24:55.9786083Z ✅ /home/runner/work/guoapp/guoapp/test/danmaku_test.dart: danmaku keeps zero timestamps and text while rejecting unverified items and windows
+2026-10-08T05:24:55.9912465Z ✅ /home/runner/work/guoapp/guoapp/test/danmaku_test.dart: windows load independently, use source cursors, and keep one optional request active
+2026-10-08T05:24:55.9939001Z ✅ /home/runner/work/guoapp/guoapp/test/danmaku_test.dart: short upstream windows catch up to a seek without repeating the same request
+2026-10-08T05:24:55.9994127Z ✅ /home/runner/work/guoapp/guoapp/test/danmaku_test.dart: episode changes, disabling and disposal reject late optional responses
+2026-10-08T05:24:56.0019456Z ✅ /home/runner/work/guoapp/guoapp/test/danmaku_test.dart: local playback and unsupported sessions make no danmaku requests
+2026-10-08T05:24:56.0052746Z ✅ /home/runner/work/guoapp/guoapp/test/danmaku_test.dart: pausing and buffering stop motion and background cancels optional loading
+2026-10-08T05:24:56.0104279Z ✅ /home/runner/work/guoapp/guoapp/test/danmaku_test.dart: failed optional windows back off and retry without resolving media
+2026-10-08T05:24:56.0132498Z ✅ /home/runner/work/guoapp/guoapp/test/danmaku_test.dart: ordinary media samples keep animation anchors while seeks and speed changes resync
+2026-10-08T05:24:56.0216685Z ✅ /home/runner/work/guoapp/guoapp/test/danmaku_test.dart: long playback retains only nearby bounded windows
+2026-10-08T05:24:56.0776513Z ✅ /home/runner/work/guoapp/guoapp/test/danmaku_test.dart: lane scheduling bounds density and avoids collisions between different text widths
+2026-10-08T05:24:56.5375118Z ✅ /home/runner/work/guoapp/guoapp/test/local_persistence_test.dart: damaged profile screen offers recovery without an unlocked administrator
+2026-10-08T05:24:57.0205985Z ✅ /home/runner/work/guoapp/guoapp/test/catalog_progressive_test.dart: searchKeyword strips seasons, episode counts and noise
+2026-10-08T05:24:57.0229259Z ✅ /home/runner/work/guoapp/guoapp/test/catalog_progressive_test.dart: searchKeyword keeps titles that only contain digits
+2026-10-08T05:24:57.0319726Z ✅ /home/runner/work/guoapp/guoapp/test/catalog_progressive_test.dart: naturalTitleCompare sorts Chinese numerals correctly
+2026-10-08T05:24:57.2467278Z ✅ /home/runner/work/guoapp/guoapp/test/catalog_progressive_test.dart: partial results stream before slower sources finish
+2026-10-08T05:24:57.2504046Z ✅ /home/runner/work/guoapp/guoapp/test/catalog_progressive_test.dart: search results stream progressively too
+2026-10-08T05:24:58.5915310Z ✅ /home/runner/work/guoapp/guoapp/test/danmaku_test.dart: danmaku preference survives restart, backup, old backups and user switching
+2026-10-08T05:24:58.5982435Z ✅ /home/runner/work/guoapp/guoapp/test/danmaku_test.dart: a failed preference save keeps the previous danmaku switch
+2026-10-08T05:24:59.6893910Z ✅ /home/runner/work/guoapp/guoapp/test/player_screen_test.dart: duplicate errors switch once while keeping progress, rate and pause state
+2026-10-08T05:24:59.9602939Z ✅ /home/runner/work/guoapp/guoapp/test/player_screen_test.dart: recovery exhaustion releases sessions and manual retry keeps the saved position
+2026-10-08T05:25:00.1568786Z ✅ /home/runner/work/guoapp/guoapp/test/player_screen_test.dart: switching episodes ignores a delayed fallback and frees both old plans
+2026-10-08T05:25:00.3191551Z ✅ /home/runner/work/guoapp/guoapp/test/player_screen_test.dart: picture-in-picture hides app overlay controls
+2026-10-08T05:25:00.5064709Z ✅ /home/runner/work/guoapp/guoapp/test/player_screen_test.dart: mobile video reaches the top while buttons avoid the status area
+2026-10-08T05:25:00.6999073Z ✅ /home/runner/work/guoapp/guoapp/test/player_screen_test.dart: loading and buffering use readable text without overlapping playback controls
+2026-10-08T05:25:01.6405159Z ✅ /home/runner/work/guoapp/guoapp/test/player_screen_test.dart: fresh recommendations survive tab switches and reopening without searches
+2026-10-08T05:25:01.9734725Z ✅ /home/runner/work/guoapp/guoapp/test/player_screen_test.dart: expired recommendations stay visible during one silent refresh
+2026-10-08T05:25:02.2592327Z ✅ /home/runner/work/guoapp/guoapp/test/player_screen_test.dart: silent first recommendations stream in and cache empty results
+2026-10-08T05:25:02.3220187Z ✅ /home/runner/work/guoapp/guoapp/test/profiles_test.dart: profiles require an admin password, isolate records and lock on restart
+2026-10-08T05:25:02.3507083Z ✅ /home/runner/work/guoapp/guoapp/test/player_screen_test.dart: compact player tools stay clustered instead of evenly spread
+2026-10-08T05:25:02.3563291Z ✅ /home/runner/work/guoapp/guoapp/test/profiles_test.dart: backup roundtrip validates before replacing account data
+2026-10-08T05:25:02.3702692Z ✅ /home/runner/work/guoapp/guoapp/test/profiles_test.dart: native entry points reject denied sources and downloads before native I/O
+2026-10-08T05:25:02.4522951Z ✅ /home/runner/work/guoapp/guoapp/test/player_screen_test.dart: losing window focus keeps playback running
+2026-10-08T05:25:03.6476217Z ✅ /home/runner/work/guoapp/guoapp/test/profiles_test.dart: online-only home hides download navigation and denied sources
+2026-10-08T05:25:03.9454472Z ✅ /home/runner/work/guoapp/guoapp/test/error_boundary_test.dart: 列表子项出错时给出有界可读的提示，而不是整屏灰块
+2026-10-08T05:25:03.9584779Z ✅ /home/runner/work/guoapp/guoapp/test/error_boundary_test.dart: 描述函数会压缩超长异常文本
+2026-10-08T05:25:04.3394814Z ✅ /home/runner/work/guoapp/guoapp/test/nostr_crypto_test.dart: 公钥与参考实现一致
+2026-10-08T05:25:04.4242667Z ✅ /home/runner/work/guoapp/guoapp/test/nostr_crypto_test.dart: 事件 ID 与签名与参考实现逐字节一致
+2026-10-08T05:25:04.4472832Z ✅ /home/runner/work/guoapp/guoapp/test/nostr_crypto_test.dart: 事件序列化保留 tag 查询能力
+2026-10-08T05:25:04.4752570Z ✅ /home/runner/work/guoapp/guoapp/test/nostr_crypto_test.dart: 生成的随机身份可用
+2026-10-08T05:25:04.4807527Z ✅ /home/runner/work/guoapp/guoapp/test/nostr_crypto_test.dart: 非法私钥被拒绝
+2026-10-08T05:25:04.8085554Z ✅ /home/runner/work/guoapp/guoapp/test/live_store_test.dart: 收藏写入后重新载入仍然存在
+2026-10-08T05:25:04.8139954Z ✅ /home/runner/work/guoapp/guoapp/test/live_store_test.dart: 再次收藏同一频道即取消
+2026-10-08T05:25:04.8179964Z ✅ /home/runner/work/guoapp/guoapp/test/live_store_test.dart: 最近频道去重并最新在前
+2026-10-08T05:25:04.8213966Z ✅ /home/runner/work/guoapp/guoapp/test/live_store_test.dart: 不同用户的收藏互相隔离
+2026-10-08T05:25:04.8241904Z ✅ /home/runner/work/guoapp/guoapp/test/live_store_test.dart: 损坏的收藏内容不会导致崩溃
+2026-10-08T05:25:05.2545440Z ✅ /home/runner/work/guoapp/guoapp/test/theme_test.dart: theme survives restart and backup, with compatible old backups
+2026-10-08T05:25:05.4382706Z ✅ /home/runner/work/guoapp/guoapp/test/catalog_prefetch_test.dart: 滚动期间不触发，停止滚动后才补齐提前量
+2026-10-08T05:25:05.4408833Z ✅ /home/runner/work/guoapp/guoapp/test/catalog_prefetch_test.dart: 提前量充足时不请求下一页
+2026-10-08T05:25:05.4435093Z ✅ /home/runner/work/guoapp/guoapp/test/catalog_prefetch_test.dart: 单次空闲最多补齐到上限轮数
+2026-10-08T05:25:05.4483016Z ✅ /home/runner/work/guoapp/guoapp/test/catalog_prefetch_test.dart: 切换页签会重置轮数并暂停
+2026-10-08T05:25:05.4515358Z ✅ /home/runner/work/guoapp/guoapp/test/catalog_prefetch_test.dart: 重新进入首页后解除暂停并继续补齐
+2026-10-08T05:25:05.4540443Z ✅ /home/runner/work/guoapp/guoapp/test/catalog_prefetch_test.dart: 首屏加载完成后按现有内容判断是否需要预加载
+2026-10-08T05:25:05.4563010Z ✅ /home/runner/work/guoapp/guoapp/test/catalog_prefetch_test.dart: 视口不可用时不做提前量判断
+2026-10-08T05:25:05.4586001Z ✅ /home/runner/work/guoapp/guoapp/test/catalog_prefetch_test.dart: 释放后不再回调
+2026-10-08T05:25:06.2332865Z ✅ /home/runner/work/guoapp/guoapp/test/follow_state_test.dart: manual watched remains separate from progress and history deletion
+2026-10-08T05:25:06.2617202Z ✅ /home/runner/work/guoapp/guoapp/test/follow_state_test.dart: episode notices keep their read baseline across refresh and restart
+2026-10-08T05:25:06.2774106Z ✅ /home/runner/work/guoapp/guoapp/test/follow_state_test.dart: hongguo series season notices are local, persistent and explicitly read
+2026-10-08T05:25:06.2833940Z ✅ /home/runner/work/guoapp/guoapp/test/follow_state_test.dart: hongguo plain first season can discover an explicit later season
+2026-10-08T05:25:06.2880394Z ✅ /home/runner/work/guoapp/guoapp/test/follow_state_test.dart: hongguo series candidates include refreshed catalog dramas
+2026-10-08T05:25:06.3132609Z ✅ /home/runner/work/guoapp/guoapp/test/follow_state_test.dart: actual playback advances automatic status and new episodes reopen it
+2026-10-08T05:25:06.3183013Z ✅ /home/runner/work/guoapp/guoapp/test/follow_state_test.dart: older favorites are readable without rewriting the original snapshot
+2026-10-08T05:25:06.3453376Z ✅ /home/runner/work/guoapp/guoapp/test/follow_state_test.dart: backup restores read baselines and accepts older backups without states
+2026-10-08T05:25:06.3550008Z ✅ /home/runner/work/guoapp/guoapp/test/follow_state_test.dart: malformed state backup cannot change existing records
+2026-10-08T05:25:07.2773446Z ✅ /home/runner/work/guoapp/guoapp/test/theme_test.dart: default theme follows the system from bootstrap through browsing
+2026-10-08T05:25:07.3750373Z ✅ /home/runner/work/guoapp/guoapp/test/follow_state_test.dart: follow states and removal are isolated between local users
+2026-10-08T05:25:07.3914153Z ✅ /home/runner/work/guoapp/guoapp/test/follow_state_test.dart: failed writes preserve both follow state and real progress
+2026-10-08T05:25:07.3946362Z ✅ /home/runner/work/guoapp/guoapp/test/follow_state_test.dart: continue respects actual episode numbers and never skips unfinished progress
+2026-10-08T05:25:08.2055883Z ##[endgroup]
+2026-10-08T05:25:08.2057924Z ##[group]❌ /home/runner/work/guoapp/guoapp/test/theme_test.dart: settings changes open routes without losing the active tab (failed)
+2026-10-08T05:25:08.2059918Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+2026-10-08T05:25:08.2061435Z The following TestFailure was thrown running a test:
+2026-10-08T05:25:08.2062904Z Expected: exactly one matching candidate
+2026-10-08T05:25:08.2064565Z   Actual: _TextWidgetFinder:<Found 0 widgets with text "我的追剧": []>
+2026-10-08T05:25:08.2065682Z    Which: means none were found but one was expected
+2026-10-08T05:25:08.2066370Z 
+2026-10-08T05:25:08.2066823Z When the exception was thrown, this was the stack:
+2026-10-08T05:25:08.2067947Z #4      main.<anonymous closure> (file:///home/runner/work/guoapp/guoapp/test/theme_test.dart:109:5)
+2026-10-08T05:25:08.2069195Z <asynchronous suspension>
+2026-10-08T05:25:08.2070415Z #5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+2026-10-08T05:25:08.2071910Z <asynchronous suspension>
+2026-10-08T05:25:08.2072964Z #6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+2026-10-08T05:25:08.2074096Z <asynchronous suspension>
+2026-10-08T05:25:08.2075195Z <asynchronous suspension>
+2026-10-08T05:25:08.2075942Z (elided one frame from package:stack_trace)
+2026-10-08T05:25:08.2076469Z 
+2026-10-08T05:25:08.2076949Z This was caught by the test expectation on the following line:
+2026-10-08T05:25:08.2078089Z   file:///home/runner/work/guoapp/guoapp/test/theme_test.dart line 109
+2026-10-08T05:25:08.2079049Z The test description was:
+2026-10-08T05:25:08.2079952Z   settings changes open routes without losing the active tab
+2026-10-08T05:25:08.2081654Z ════════════════════════════════════════════════════════════════════════════════════════════════════
+2026-10-08T05:25:08.2082763Z Test failed. See exception logs above.
+2026-10-08T05:25:08.2084362Z The test description was: settings changes open routes without losing the active tab
+2026-10-08T05:25:08.2085227Z 
+2026-10-08T05:25:08.2086294Z ##[endgroup]
+2026-10-08T05:25:08.4150496Z ##[group]✅ Passing tests
+2026-10-08T05:25:08.4154491Z ✅ /home/runner/work/guoapp/guoapp/test/theme_test.dart: settings list keeps the last entry above the system navigation
+2026-10-08T05:25:08.5703667Z ✅ /home/runner/work/guoapp/guoapp/test/theme_test.dart: 3 navigation destinations support large text and keyboard input
+2026-10-08T05:25:08.7158418Z ✅ /home/runner/work/guoapp/guoapp/test/theme_test.dart: 4 navigation destinations support large text and keyboard input
+2026-10-08T05:25:08.9998087Z ✅ /home/runner/work/guoapp/guoapp/test/theme_test.dart: player shell follows light theme while video controls stay dark
+2026-10-08T05:25:09.6138860Z ✅ /home/runner/work/guoapp/guoapp/test/live_parser_test.dart: 文本直播源 按 #genre# 分组并保留名称
+2026-10-08T05:25:09.6182585Z ✅ /home/runner/work/guoapp/guoapp/test/live_parser_test.dart: 文本直播源 过滤更新时间等元信息行
+2026-10-08T05:25:09.6210068Z ✅ /home/runner/work/guoapp/guoapp/test/live_parser_test.dart: 文本直播源 同名单频道合并多线路且保持顺序
+2026-10-08T05:25:09.6239440Z ✅ /home/runner/work/guoapp/guoapp/test/live_parser_test.dart: 文本直播源 行内 | 后面的请求头单独生效
+2026-10-08T05:25:09.6266076Z ✅ /home/runner/work/guoapp/guoapp/test/live_parser_test.dart: 文本直播源 ua 与 referer 指令作用于后续频道
+2026-10-08T05:25:09.6302921Z ✅ /home/runner/work/guoapp/guoapp/test/live_parser_test.dart: 文本直播源 rtmp 线路排在 http 线路之后
+2026-10-08T05:25:09.6339309Z ✅ /home/runner/work/guoapp/guoapp/test/live_parser_test.dart: 文本直播源 按顺序自动编号
+2026-10-08T05:25:09.6364250Z ✅ /home/runner/work/guoapp/guoapp/test/live_parser_test.dart: 文本直播源 频道 key 在源与分组内稳定
+2026-10-08T05:25:09.6407006Z ✅ /home/runner/work/guoapp/guoapp/test/live_parser_test.dart: M3U 直播源 读取 EPG 地址
+2026-10-08T05:25:09.6431328Z ✅ /home/runner/work/guoapp/guoapp/test/live_parser_test.dart: M3U 直播源 解析 group-title 与 tvg 属性
+2026-10-08T05:25:09.6453119Z ✅ /home/runner/work/guoapp/guoapp/test/live_parser_test.dart: M3U 直播源 EXTVLCOPT 设置 User-Agent
+2026-10-08T05:25:09.6475690Z ✅ /home/runner/work/guoapp/guoapp/test/live_parser_test.dart: M3U 直播源 同名频道合并线路而不是重复出现
+2026-10-08T05:25:09.6497823Z ✅ /home/runner/work/guoapp/guoapp/test/live_parser_test.dart: M3U 直播源 过滤更新时间行
+2026-10-08T05:25:09.6540836Z ✅ /home/runner/work/guoapp/guoapp/test/live_parser_test.dart: JSON 直播源 解析分组与多线路
+2026-10-08T05:25:09.6565331Z ✅ /home/runner/work/guoapp/guoapp/test/live_parser_test.dart: 容错 空内容不产生频道
+2026-10-08T05:25:09.6588829Z ✅ /home/runner/work/guoapp/guoapp/test/live_parser_test.dart: 容错 丢弃非播放地址
+2026-10-08T05:25:09.6616481Z ✅ /home/runner/work/guoapp/guoapp/test/live_parser_test.dart: 容错 没有分组行时归入其他
+2026-10-08T05:25:09.6651076Z ✅ /home/runner/work/guoapp/guoapp/test/live_parser_test.dart: 容错 识别播放协议
+2026-10-08T05:25:09.6682075Z ✅ /home/runner/work/guoapp/guoapp/test/live_parser_test.dart: 容错 解析请求头字符串
+2026-10-08T05:25:09.7743272Z ✅ /home/runner/work/guoapp/guoapp/test/library_features_widget_test.dart: history searches locally and deletes one entry while preserving its manual mark
+2026-10-08T05:25:10.2667712Z ✅ /home/runner/work/guoapp/guoapp/test/library_features_widget_test.dart: follow filters show unread updates until explicitly marked read
+2026-10-08T05:25:10.7489943Z ✅ /home/runner/work/guoapp/guoapp/test/library_features_widget_test.dart: series season notices appear in follow filters and detail
+2026-10-08T05:25:10.8245130Z ✅ /home/runner/work/guoapp/guoapp/test/library_features_widget_test.dart: detail related series can use refreshed catalog candidates
+2026-10-08T05:25:11.1582726Z ✅ /home/runner/work/guoapp/guoapp/test/library_features_widget_test.dart: home update uses a shared source job then reloads stale cache without another catalog request
+2026-10-08T05:25:11.1887350Z ##[endgroup]
+2026-10-08T05:25:11.1890185Z ##[group]❌ /home/runner/work/guoapp/guoapp/test/media_library_test.dart: merge retains every matching video and normalizes only the minority (failed)
+2026-10-08T05:25:11.1892047Z Expected: <1>
+2026-10-08T05:25:11.1892770Z   Actual: <3>
+2026-10-08T05:25:11.1893216Z 
+2026-10-08T05:25:11.1893711Z package:matcher                                     expect
+2026-10-08T05:25:11.1894673Z package:flutter_test/src/widget_tester.dart 473:18  expect
+2026-10-08T05:25:11.1895699Z test/media_library_test.dart 151:7                  main.<fn>
+2026-10-08T05:25:11.1896809Z ##[endgroup]
+2026-10-08T05:25:11.2045257Z ##[group]❌ /home/runner/work/guoapp/guoapp/test/media_library_test.dart: missing audio gets silence without discarding existing sound (failed)
+2026-10-08T05:25:11.2047051Z Expected: <2>
+2026-10-08T05:25:11.2047809Z   Actual: <3>
+2026-10-08T05:25:11.2048264Z 
+2026-10-08T05:25:11.2048716Z package:matcher                                     expect
+2026-10-08T05:25:11.2049576Z package:flutter_test/src/widget_tester.dart 473:18  expect
+2026-10-08T05:25:11.2050501Z test/media_library_test.dart 166:5                  main.<fn>
+2026-10-08T05:25:11.2053306Z ##[endgroup]
+2026-10-08T05:25:11.2110102Z ##[group]✅ Passing tests
+2026-10-08T05:25:11.2116551Z ✅ /home/runner/work/guoapp/guoapp/test/media_library_test.dart: NFO escapes metadata and includes an HTTP poster URL without fetching it
+2026-10-08T05:25:11.2752644Z ##[endgroup]
+2026-10-08T05:25:11.2755101Z ##[group]❌ /home/runner/work/guoapp/guoapp/test/media_library_test.dart: cancelling while resolving local media releases the lease without starting FFmpeg (failed)
+2026-10-08T05:25:11.2757265Z Expected: throws satisfies function
+2026-10-08T05:25:11.2758208Z   Actual: <Instance of 'Future<LocalMediaItem>'>
+2026-10-08T05:25:11.2759422Z    Which: threw AppFailure:<本地媒体处理已停止，原分集和恢复记录保留>
+2026-10-08T05:25:11.2760902Z           stack package:duanju_app/media_library.dart 327:7        MediaLibrary._check
+2026-10-08T05:25:11.2763711Z                 package:duanju_app/media_merge.dart 128:7          MediaMergeOperations._mergeFiles
+2026-10-08T05:25:11.2765283Z                 ===== asynchronous gap ===========================
+2026-10-08T05:25:11.2766843Z                 package:matcher                                    expectLater
+2026-10-08T05:25:11.2768282Z                 package:flutter_test/src/widget_tester.dart 507:8  expectLater
+2026-10-08T05:25:11.2769623Z                 test/media_library_test.dart 233:15                main.<fn>
+2026-10-08T05:25:11.2770835Z                 ===== asynchronous gap ===========================
+2026-10-08T05:25:11.2772653Z                 dart:async                                         _CustomZone.registerUnaryCallback
+2026-10-08T05:25:11.2774749Z                 test/media_library_test.dart 207:25                main.<fn>
+2026-10-08T05:25:11.2775433Z 
+2026-10-08T05:25:11.2775909Z package:matcher                                    expectLater
+2026-10-08T05:25:11.2776823Z package:flutter_test/src/widget_tester.dart 507:8  expectLater
+2026-10-08T05:25:11.2777680Z test/media_library_test.dart 233:15                main.<fn>
+2026-10-08T05:25:11.2778576Z ===== asynchronous gap ===========================
+2026-10-08T05:25:11.2779626Z dart:async                                         _CustomZone.registerUnaryCallback
+2026-10-08T05:25:11.2780998Z test/media_library_test.dart 207:25                main.<fn>
+2026-10-08T05:25:11.2782509Z ##[endgroup]
+2026-10-08T05:25:11.6355643Z ##[group]✅ Passing tests
+2026-10-08T05:25:11.6357425Z ✅ /home/runner/work/guoapp/guoapp/test/library_features_widget_test.dart: multi-selection previews all selected dramas before creating any download
+2026-10-08T05:25:12.3767590Z ##[endgroup]
+2026-10-08T05:25:12.3770334Z ##[group]❌ /home/runner/work/guoapp/guoapp/test/library_features_widget_test.dart: catalog card waits on home then opens player without launch page (failed)
+2026-10-08T05:25:12.3774176Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+2026-10-08T05:25:12.3775449Z The following TestFailure was thrown running a test:
+2026-10-08T05:25:12.3776381Z Expected: no matching candidates
+2026-10-08T05:25:12.3777433Z   Actual: _TextWidgetFinder:<Found 1 widget with text "正在进入播放": [
+2026-10-08T05:25:12.3779047Z             Text("正在进入播放", dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),
+2026-10-08T05:25:12.3779901Z           ]>
+2026-10-08T05:25:12.3780431Z    Which: means one was found but none were expected
+2026-10-08T05:25:12.3780846Z 
+2026-10-08T05:25:12.3781328Z When the exception was thrown, this was the stack:
+2026-10-08T05:25:12.3782435Z #4      main.<anonymous closure> (file:///home/runner/work/guoapp/guoapp/test/library_features_widget_test.dart:354:7)
+2026-10-08T05:25:12.3783456Z <asynchronous suspension>
+2026-10-08T05:25:12.3784368Z #5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+2026-10-08T05:25:12.3785336Z <asynchronous suspension>
+2026-10-08T05:25:12.3786185Z #6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+2026-10-08T05:25:12.3787053Z <asynchronous suspension>
+2026-10-08T05:25:12.3787523Z <asynchronous suspension>
+2026-10-08T05:25:12.3788028Z (elided one frame from package:stack_trace)
+2026-10-08T05:25:12.3788401Z 
+2026-10-08T05:25:12.3788741Z This was caught by the test expectation on the following line:
+2026-10-08T05:25:12.3789765Z   file:///home/runner/work/guoapp/guoapp/test/library_features_widget_test.dart line 354
+2026-10-08T05:25:12.3790587Z The test description was:
+2026-10-08T05:25:12.3791461Z   catalog card waits on home then opens player without launch page
+2026-10-08T05:25:12.3793156Z ════════════════════════════════════════════════════════════════════════════════════════════════════
+2026-10-08T05:25:12.3793930Z Test failed. See exception logs above.
+2026-10-08T05:25:12.3794775Z The test description was: catalog card waits on home then opens player without launch page
+2026-10-08T05:25:12.3795421Z 
+2026-10-08T05:25:12.3795961Z ##[endgroup]
+2026-10-08T05:25:12.5662971Z ##[group]✅ Passing tests
+2026-10-08T05:25:12.5664562Z ✅ /home/runner/work/guoapp/guoapp/test/library_features_widget_test.dart: new library controls fit Size(360.0, 640.0) with large text
+2026-10-08T05:25:12.6994391Z ✅ /home/runner/work/guoapp/guoapp/test/library_features_widget_test.dart: new library controls fit Size(1100.0, 720.0) with large text
+2026-10-08T05:25:14.1409299Z ✅ /home/runner/work/guoapp/guoapp/test/media_library_test.dart: real offline merge, CENC remux and Emby export remain playable after deleting inputs
+2026-10-08T05:25:14.4221833Z ✅ /home/runner/work/guoapp/guoapp/test/sources_test.dart: source list keeps bottom content above system navigation
+2026-10-08T05:25:14.8148390Z ✅ /home/runner/work/guoapp/guoapp/test/sources_test.dart: source update prevents duplicate submits and can stop without losing cache
+2026-10-08T05:25:14.9835767Z ##[endgroup]
+2026-10-08T05:25:14.9837989Z ##[group]❌ /home/runner/work/guoapp/guoapp/test/sources_test.dart: source manager requests only the current user permitted compiled sources (failed)
+2026-10-08T05:25:14.9840139Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+2026-10-08T05:25:14.9842205Z The following TestFailure was thrown running a test:
+2026-10-08T05:25:14.9843058Z Expected: ['hongguo']
+2026-10-08T05:25:14.9843698Z   Actual: []
+2026-10-08T05:25:14.9844487Z    Which: at location [0] is [] which shorter than expected
+2026-10-08T05:25:14.9845131Z 
+2026-10-08T05:25:14.9845594Z When the exception was thrown, this was the stack:
+2026-10-08T05:25:14.9846765Z #4      main.<anonymous closure> (file:///home/runner/work/guoapp/guoapp/test/sources_test.dart:151:7)
+2026-10-08T05:25:14.9847879Z <asynchronous suspension>
+2026-10-08T05:25:14.9849000Z #5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+2026-10-08T05:25:14.9850158Z <asynchronous suspension>
+2026-10-08T05:25:14.9851418Z #6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+2026-10-08T05:25:14.9852538Z <asynchronous suspension>
+2026-10-08T05:25:14.9853218Z <asynchronous suspension>
+2026-10-08T05:25:14.9853952Z (elided one frame from package:stack_trace)
+2026-10-08T05:25:14.9854517Z 
+2026-10-08T05:25:14.9855040Z This was caught by the test expectation on the following line:
+2026-10-08T05:25:14.9856165Z   file:///home/runner/work/guoapp/guoapp/test/sources_test.dart line 151
+2026-10-08T05:25:14.9857073Z The test description was:
+2026-10-08T05:25:14.9858115Z   source manager requests only the current user permitted compiled sources
+2026-10-08T05:25:14.9859811Z ════════════════════════════════════════════════════════════════════════════════════════════════════
+2026-10-08T05:25:14.9860824Z Test failed. See exception logs above.
+2026-10-08T05:25:14.9862304Z The test description was: source manager requests only the current user permitted compiled sources
+2026-10-08T05:25:14.9863023Z 
+2026-10-08T05:25:14.9863445Z ##[endgroup]
+2026-10-08T05:25:15.5945772Z ##[group]✅ Passing tests
+2026-10-08T05:25:15.5953452Z ✅ /home/runner/work/guoapp/guoapp/test/sources_test.dart: source diagnostics remain collapsed through check polling and completion
+2026-10-08T05:25:16.2095662Z ✅ /home/runner/work/guoapp/guoapp/test/sources_test.dart: source diagnostics remain collapsed through checkCatalog polling and completion
+2026-10-08T05:25:16.5506341Z ✅ /home/runner/work/guoapp/guoapp/test/sources_test.dart: source diagnostics distinguish CF playback failure on a narrow screen
+2026-10-08T05:25:16.5662448Z ✅ /home/runner/work/guoapp/guoapp/test/television_player_test.dart: TV remote pauses, seeks when hidden, seeks on the timeline and returns from fullscreen
+2026-10-08T05:25:17.3832978Z ✅ /home/runner/work/guoapp/guoapp/test/live_orientation_test.dart: 直播锁横屏，旋转到竖屏后锁竖屏
+2026-10-08T05:25:17.3859393Z ✅ /home/runner/work/guoapp/guoapp/test/live_orientation_test.dart: 电视模式始终锁横屏，不参与旋转
+2026-10-08T05:25:17.3906452Z ✅ /home/runner/work/guoapp/guoapp/test/live_orientation_test.dart: 已下线的熊果不再出现在直播源里
+2026-10-08T05:25:18.0358163Z ✅ /home/runner/work/guoapp/guoapp/test/television_player_test.dart: TV selection restores the current episode and panels keep focus during playback
+2026-10-08T05:25:18.2930682Z ✅ /home/runner/work/guoapp/guoapp/test/television_player_test.dart: TV playback error puts remote focus on retry and restores controls after retry
+2026-10-08T05:25:20.1261358Z ✅ /home/runner/work/guoapp/guoapp/test/search_input_test.dart: search suggestions debounce, highlight, select and suppress stale results
+2026-10-08T05:25:20.2878826Z ##[endgroup]
+2026-10-08T05:25:20.2880405Z ##[group]❌ /home/runner/work/guoapp/guoapp/test/sources_screen_test.dart: every 黄果 entrance forms its own card like other sources (failed)
+2026-10-08T05:25:20.2882251Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+2026-10-08T05:25:20.2883146Z The following StateError was thrown running a test:
+2026-10-08T05:25:20.2883733Z Bad state: No element
+2026-10-08T05:25:20.2883998Z 
+2026-10-08T05:25:20.2884263Z When the exception was thrown, this was the stack:
+2026-10-08T05:25:20.2884691Z #0      Iterable.single (dart:core/iterable.dart:694:25)
+2026-10-08T05:25:20.2885346Z #1      WidgetController.element (package:flutter_test/src/controller.dart:888:30)
+2026-10-08T05:25:20.2886074Z #2      WidgetController.dragUntilVisible.<anonymous closure> (package:flutter_test/src/controller.dart:2489:38)
+2026-10-08T05:25:20.2886626Z <asynchronous suspension>
+2026-10-08T05:25:20.2887103Z #3      TestAsyncUtils.guard.<anonymous closure> (package:flutter_test/src/test_async_utils.dart:130:27)
+2026-10-08T05:25:20.2887612Z <asynchronous suspension>
+2026-10-08T05:25:20.2888142Z #4      WidgetController.scrollUntilVisible.<anonymous closure> (package:flutter_test/src/controller.dart:2439:7)
+2026-10-08T05:25:20.2888683Z <asynchronous suspension>
+2026-10-08T05:25:20.2889148Z #5      TestAsyncUtils.guard.<anonymous closure> (package:flutter_test/src/test_async_utils.dart:130:27)
+2026-10-08T05:25:20.2889634Z <asynchronous suspension>
+2026-10-08T05:25:20.2890125Z #6      main.<anonymous closure> (file:///home/runner/work/guoapp/guoapp/test/sources_screen_test.dart:35:7)
+2026-10-08T05:25:20.2890628Z <asynchronous suspension>
+2026-10-08T05:25:20.2891389Z #7      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+2026-10-08T05:25:20.2892164Z <asynchronous suspension>
+2026-10-08T05:25:20.2892666Z #8      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+2026-10-08T05:25:20.2893163Z <asynchronous suspension>
+2026-10-08T05:25:20.2893784Z <asynchronous suspension>
+2026-10-08T05:25:20.2894059Z (elided one frame from package:stack_trace)
+2026-10-08T05:25:20.2894274Z 
+2026-10-08T05:25:20.2894479Z The test description was:
+2026-10-08T05:25:20.2895083Z   every 黄果 entrance forms its own card like other sources
+2026-10-08T05:25:20.2896092Z ════════════════════════════════════════════════════════════════════════════════════════════════════
+2026-10-08T05:25:20.2896885Z Test failed. See exception logs above.
+2026-10-08T05:25:20.2897611Z The test description was: every 黄果 entrance forms its own card like other sources
+2026-10-08T05:25:20.2897974Z 
+2026-10-08T05:25:20.2898244Z ##[endgroup]
+2026-10-08T05:25:20.3127686Z ##[group]✅ Passing tests
+2026-10-08T05:25:20.3128874Z ✅ /home/runner/work/guoapp/guoapp/test/search_input_test.dart: suggestion failure still allows a manual search and clearing
+2026-10-08T05:25:20.8961591Z ✅ /home/runner/work/guoapp/guoapp/test/cover_decoder_test.dart: HEIC conversion serializes work, shares duplicates and reuses JPEG cache
+2026-10-08T05:25:20.9406368Z ✅ /home/runner/work/guoapp/guoapp/test/cover_decoder_test.dart: conversion failures clean temporary data and allow a later retry
+2026-10-08T05:25:21.5892849Z ##[endgroup]
+2026-10-08T05:25:21.5894815Z ##[group]❌ /home/runner/work/guoapp/guoapp/test/sources_screen_test.dart: tapping a 黄果 card and its actions keeps the app alive (failed)
+2026-10-08T05:25:21.5896839Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+2026-10-08T05:25:21.5898031Z The following StateError was thrown running a test:
+2026-10-08T05:25:21.5899355Z Bad state: No element
+2026-10-08T05:25:21.5899762Z 
+2026-10-08T05:25:21.5900197Z When the exception was thrown, this was the stack:
+2026-10-08T05:25:21.5901008Z #0      Iterable.single (dart:core/iterable.dart:694:25)
+2026-10-08T05:25:21.5902108Z #1      WidgetController.element (package:flutter_test/src/controller.dart:888:30)
+2026-10-08T05:25:21.5903737Z #2      WidgetController.dragUntilVisible.<anonymous closure> (package:flutter_test/src/controller.dart:2489:38)
+2026-10-08T05:25:21.5904809Z <asynchronous suspension>
+2026-10-08T05:25:21.5905713Z #3      TestAsyncUtils.guard.<anonymous closure> (package:flutter_test/src/test_async_utils.dart:130:27)
+2026-10-08T05:25:21.5906629Z <asynchronous suspension>
+2026-10-08T05:25:21.5907633Z #4      WidgetController.scrollUntilVisible.<anonymous closure> (package:flutter_test/src/controller.dart:2439:7)
+2026-10-08T05:25:21.5908830Z <asynchronous suspension>
+2026-10-08T05:25:21.5909871Z #5      TestAsyncUtils.guard.<anonymous closure> (package:flutter_test/src/test_async_utils.dart:130:27)
+2026-10-08T05:25:21.5910979Z <asynchronous suspension>
+2026-10-08T05:25:21.5912289Z #6      main.<anonymous closure> (file:///home/runner/work/guoapp/guoapp/test/sources_screen_test.dart:56:5)
+2026-10-08T05:25:21.5913407Z <asynchronous suspension>
+2026-10-08T05:25:21.5914623Z #7      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+2026-10-08T05:25:21.5915769Z <asynchronous suspension>
+2026-10-08T05:25:21.5916694Z #8      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+2026-10-08T05:25:21.5917714Z <asynchronous suspension>
+2026-10-08T05:25:21.5918329Z <asynchronous suspension>
+2026-10-08T05:25:21.5918967Z (elided one frame from package:stack_trace)
+2026-10-08T05:25:21.5919498Z 
+2026-10-08T05:25:21.5919851Z The test description was:
+2026-10-08T05:25:21.5920785Z   tapping a 黄果 card and its actions keeps the app alive
+2026-10-08T05:25:21.5922221Z ════════════════════════════════════════════════════════════════════════════════════════════════════
+2026-10-08T05:25:21.5923116Z Test failed. See exception logs above.
+2026-10-08T05:25:21.5924075Z The test description was: tapping a 黄果 card and its actions keeps the app alive
+2026-10-08T05:25:21.5924761Z 
+2026-10-08T05:25:21.5925324Z ##[endgroup]
+2026-10-08T05:25:21.9762965Z ##[group]✅ Passing tests
+2026-10-08T05:25:21.9764491Z ✅ /home/runner/work/guoapp/guoapp/test/downloads_test.dart: local-only loader never falls through to online; explicit online bypasses it
+2026-10-08T05:25:22.0751435Z ✅ /home/runner/work/guoapp/guoapp/test/ranking_models_test.dart: every native ranking board resolves to its real source
+2026-10-08T05:25:22.0797643Z ✅ /home/runner/work/guoapp/guoapp/test/ranking_models_test.dart: board sources are known so授权不会误判为未知站源
+2026-10-08T05:25:22.0824293Z ✅ /home/runner/work/guoapp/guoapp/test/ranking_models_test.dart: 授权用的站源在全站源版本里都是可用站源
+2026-10-08T05:25:22.0846423Z ✅ /home/runner/work/guoapp/guoapp/test/ranking_models_test.dart: unknown board ids resolve to an empty source instead of a guess
+2026-10-08T05:25:22.0878142Z ✅ /home/runner/work/guoapp/guoapp/test/ranking_models_test.dart: boards keep the source reported by the native core
+2026-10-08T05:25:22.5445178Z ##[endgroup]
+2026-10-08T05:25:22.5446190Z ##[group]⏭️ Skipped tests
+2026-10-08T05:25:22.5447245Z ⏭️ /home/runner/work/guoapp/guoapp/test/native_ffi_boundary_test.dart: 原生 FFI 边界在缺少动态库时跳过 (skipped)
+2026-10-08T05:25:22.5448207Z Skip: 未构建 darwin 动态库
+2026-10-08T05:25:23.5259422Z ##[endgroup]
+2026-10-08T05:25:23.5260630Z ##[group]✅ Passing tests
+2026-10-08T05:25:23.5262096Z ✅ /home/runner/work/guoapp/guoapp/test/downloads_test.dart: detail download picker handles VIP, quality and added=2
+2026-10-08T05:25:23.8714206Z ✅ /home/runner/work/guoapp/guoapp/test/downloads_test.dart: detail download picker handles VIP, quality and added=0
+2026-10-08T05:25:24.3686895Z ✅ /home/runner/work/guoapp/guoapp/test/downloads_test.dart: mobile player moves download and follow into tabs
+2026-10-08T05:25:24.3751800Z ✅ /home/runner/work/guoapp/guoapp/test/downloads_test.dart: DSD VIP episodes open playback without a confirmation dialog
+2026-10-08T05:25:24.8518187Z ##[endgroup]
+2026-10-08T05:25:24.8520008Z ##[group]❌ /home/runner/work/guoapp/guoapp/test/downloads_test.dart: queue controls, filtering and deletion work on a narrow phone (failed)
+2026-10-08T05:25:24.8522134Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+2026-10-08T05:25:24.8522992Z The following assertion was thrown running a test:
+2026-10-08T05:25:24.8523901Z The finder "Found 0 widgets with key [<'pause-1'>]: []" (used in a call to "tap()") could not find
+2026-10-08T05:25:24.8524803Z any matching widgets.
+2026-10-08T05:25:24.8525098Z 
+2026-10-08T05:25:24.8525356Z When the exception was thrown, this was the stack:
+2026-10-08T05:25:24.8526260Z #0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2095:7)
+2026-10-08T05:25:24.8527402Z #1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+2026-10-08T05:25:24.8528608Z #2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+2026-10-08T05:25:24.8529831Z #3      main.<anonymous closure> (file:///home/runner/work/guoapp/guoapp/test/downloads_test.dart:328:18)
+2026-10-08T05:25:24.8530860Z <asynchronous suspension>
+2026-10-08T05:25:24.8532004Z #4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+2026-10-08T05:25:24.8533017Z <asynchronous suspension>
+2026-10-08T05:25:24.8533805Z #5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+2026-10-08T05:25:24.8534354Z <asynchronous suspension>
+2026-10-08T05:25:24.8534824Z <asynchronous suspension>
+2026-10-08T05:25:24.8535336Z (elided one frame from package:stack_trace)
+2026-10-08T05:25:24.8535714Z 
+2026-10-08T05:25:24.8535919Z The test description was:
+2026-10-08T05:25:24.8536640Z   queue controls, filtering and deletion work on a narrow phone
+2026-10-08T05:25:24.8537888Z ════════════════════════════════════════════════════════════════════════════════════════════════════
+2026-10-08T05:25:24.8538733Z Test failed. See exception logs above.
+2026-10-08T05:25:24.8539473Z The test description was: queue controls, filtering and deletion work on a narrow phone
+2026-10-08T05:25:24.8540080Z 
+2026-10-08T05:25:24.8540619Z ##[endgroup]
+2026-10-08T05:25:25.0823022Z ##[group]❌ /home/runner/work/guoapp/guoapp/test/downloads_test.dart: downloaded episode playback uses saved metadata and progress without detail requests (failed)
+2026-10-08T05:25:25.0825405Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+2026-10-08T05:25:25.0827103Z The following assertion was thrown running a test:
+2026-10-08T05:25:25.0828315Z The finder "Found 0 widgets with key [<'local-play-3'>]: []" (used in a call to "tap()") could not
+2026-10-08T05:25:25.0829289Z find any matching widgets.
+2026-10-08T05:25:25.0830204Z 
+2026-10-08T05:25:25.0830646Z When the exception was thrown, this was the stack:
+2026-10-08T05:25:25.0832046Z #0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2095:7)
+2026-10-08T05:25:25.0833403Z #1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+2026-10-08T05:25:25.0834564Z #2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+2026-10-08T05:25:25.0835849Z #3      main.<anonymous closure> (file:///home/runner/work/guoapp/guoapp/test/downloads_test.dart:387:20)
+2026-10-08T05:25:25.0836851Z <asynchronous suspension>
+2026-10-08T05:25:25.0838164Z #4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+2026-10-08T05:25:25.0839230Z <asynchronous suspension>
+2026-10-08T05:25:25.0840228Z #5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+2026-10-08T05:25:25.0841590Z <asynchronous suspension>
+2026-10-08T05:25:25.0842254Z <asynchronous suspension>
+2026-10-08T05:25:25.0842994Z (elided one frame from package:stack_trace)
+2026-10-08T05:25:25.0843529Z 
+2026-10-08T05:25:25.0843896Z The test description was:
+2026-10-08T05:25:25.0844779Z   downloaded episode playback uses saved metadata and progress without detail requests
+2026-10-08T05:25:25.0846199Z ════════════════════════════════════════════════════════════════════════════════════════════════════
+2026-10-08T05:25:25.0847170Z Test failed. See exception logs above.
+2026-10-08T05:25:25.0848589Z The test description was: downloaded episode playback uses saved metadata and progress without detail requests
+2026-10-08T05:25:25.0849597Z 
+2026-10-08T05:25:25.0850291Z ##[endgroup]
+2026-10-08T05:25:25.3750345Z ##[group]✅ Passing tests
+2026-10-08T05:25:25.3754999Z ✅ /home/runner/work/guoapp/guoapp/test/downloads_test.dart: local failure requires manual online choice, retains progress; localOnly=true
+2026-10-08T05:25:25.6251500Z ✅ /home/runner/work/guoapp/guoapp/test/downloads_test.dart: local failure requires manual online choice, retains progress; localOnly=false
+2026-10-08T05:25:25.7046535Z ✅ /home/runner/work/guoapp/guoapp/test/downloads_test.dart: missing local media exposes online choice without contacting the source
+2026-10-08T05:25:26.1222582Z ##[endgroup]
+2026-10-08T05:25:26.1224507Z ##[group]❌ /home/runner/work/guoapp/guoapp/test/downloads_test.dart: TV download navigation and long queue remain usable with only the remote (failed)
+2026-10-08T05:25:26.1226778Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+2026-10-08T05:25:26.1227873Z The following StateError was thrown running a test:
+2026-10-08T05:25:26.1228593Z Bad state: No element
+2026-10-08T05:25:26.1228987Z 
+2026-10-08T05:25:26.1229486Z When the exception was thrown, this was the stack:
+2026-10-08T05:25:26.1230266Z #0      Iterable.first (dart:core/iterable.dart:663:7)
+2026-10-08T05:25:26.1231363Z #1      _FirstFinderMixin.filter (package:flutter_test/src/finders.dart:1383:28)
+2026-10-08T05:25:26.1232410Z #3      ExpandIterator.moveNext (dart:_internal/iterable.dart:507:21)
+2026-10-08T05:25:26.1233271Z #4      SetBase.addAll (dart:collection/set.dart:58:23)
+2026-10-08T05:25:26.1234010Z #5      _Set.addAll (dart:_compact_hash:1162:11)
+2026-10-08T05:25:26.1234856Z #6      new LinkedHashSet.of (dart:collection/linked_hash_set.dart:193:27)
+2026-10-08T05:25:26.1235717Z #7      Iterable.toSet (dart:core/iterable.dart:532:21)
+2026-10-08T05:25:26.1236701Z #8      _DescendantFinderMixin.allCandidates (package:flutter_test/src/finders.dart:1782:10)
+2026-10-08T05:25:26.1237908Z #9      ChainedFinderMixin.allCandidates (package:flutter_test/src/finders.dart:1363:55)
+2026-10-08T05:25:26.1239087Z #10     FinderBase.evaluate (package:flutter_test/src/finders.dart:1030:76)
+2026-10-08T05:25:26.1240144Z #11     WidgetController.element (package:flutter_test/src/controller.dart:888:19)
+2026-10-08T05:25:26.1241474Z #12     focusRemote (file:///home/runner/work/guoapp/guoapp/test/remote_test_helpers.dart:13:19)
+2026-10-08T05:25:26.1243015Z #13     main.<anonymous closure> (file:///home/runner/work/guoapp/guoapp/test/downloads_test.dart:497:7)
+2026-10-08T05:25:26.1243973Z <asynchronous suspension>
+2026-10-08T05:25:26.1244952Z #14     testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+2026-10-08T05:25:26.1245968Z <asynchronous suspension>
+2026-10-08T05:25:26.1246856Z #15     TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+2026-10-08T05:25:26.1247805Z <asynchronous suspension>
+2026-10-08T05:25:26.1248378Z <asynchronous suspension>
+2026-10-08T05:25:26.1249084Z (elided 2 frames from dart:async-patch and package:stack_trace)
+2026-10-08T05:25:26.1249815Z 
+2026-10-08T05:25:26.1250131Z The test description was:
+2026-10-08T05:25:26.1250963Z   TV download navigation and long queue remain usable with only the remote
+2026-10-08T05:25:26.1252466Z ════════════════════════════════════════════════════════════════════════════════════════════════════
+2026-10-08T05:25:26.1253369Z Test failed. See exception logs above.
+2026-10-08T05:25:26.1254347Z The test description was: TV download navigation and long queue remain usable with only the remote
+2026-10-08T05:25:26.1255140Z 
+2026-10-08T05:25:26.1255653Z ##[endgroup]
+2026-10-08T05:25:26.1582307Z 
+2026-10-08T05:25:26.1613130Z ##[error]252 tests passed, 21 failed, 2 skipped.
+2026-10-08T05:25:26.2413044Z ##[error]Process completed with exit code 1.

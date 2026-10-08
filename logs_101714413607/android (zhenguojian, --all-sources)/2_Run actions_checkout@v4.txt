@@ -1,0 +1,76 @@
+﻿2026-10-08T05:27:55.2619228Z ##[group]Run actions/checkout@v4
+2026-10-08T05:27:55.2619544Z with:
+2026-10-08T05:27:55.2619683Z   repository: xiaobailong6/guoapp
+2026-10-08T05:27:55.2621136Z   token: ***
+2026-10-08T05:27:55.2621275Z   ssh-strict: true
+2026-10-08T05:27:55.2621408Z   ssh-user: git
+2026-10-08T05:27:55.2621543Z   persist-credentials: true
+2026-10-08T05:27:55.2621695Z   clean: true
+2026-10-08T05:27:55.2621847Z   sparse-checkout-cone-mode: true
+2026-10-08T05:27:55.2621999Z   fetch-depth: 1
+2026-10-08T05:27:55.2622126Z   fetch-tags: false
+2026-10-08T05:27:55.2622254Z   show-progress: true
+2026-10-08T05:27:55.2622384Z   lfs: false
+2026-10-08T05:27:55.2622500Z   submodules: false
+2026-10-08T05:27:55.2622635Z   set-safe-directory: true
+2026-10-08T05:27:55.2622784Z   allow-unsafe-pr-checkout: false
+2026-10-08T05:27:55.2623005Z env:
+2026-10-08T05:27:55.2623150Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-08T05:27:55.2623325Z   GOSUMDB: sum.golang.org
+2026-10-08T05:27:55.2623463Z ##[endgroup]
+2026-10-08T05:27:55.3269245Z Syncing repository: xiaobailong6/guoapp
+2026-10-08T05:27:55.3270779Z ##[group]Getting Git version info
+2026-10-08T05:27:55.3271136Z Working directory is '/home/runner/work/guoapp/guoapp'
+2026-10-08T05:27:55.3271873Z [command]/usr/bin/git version
+2026-10-08T05:27:55.3347753Z git version 2.55.0
+2026-10-08T05:27:55.3361625Z ##[endgroup]
+2026-10-08T05:27:55.3372773Z Temporarily overriding HOME='/home/runner/work/_temp/d66fc4df-943e-4715-9281-98717b009bed' before making global git config changes
+2026-10-08T05:27:55.3373461Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-08T05:27:55.3377254Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/guoapp/guoapp
+2026-10-08T05:27:55.3434152Z Deleting the contents of '/home/runner/work/guoapp/guoapp'
+2026-10-08T05:27:55.3435001Z ##[group]Initializing the repository
+2026-10-08T05:27:55.3435299Z [command]/usr/bin/git init /home/runner/work/guoapp/guoapp
+2026-10-08T05:27:55.3533647Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-08T05:27:55.3534115Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-08T05:27:55.3534584Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-08T05:27:55.3534941Z hint: call:
+2026-10-08T05:27:55.3535115Z hint:
+2026-10-08T05:27:55.3535406Z hint: 	git config --global init.defaultBranch <name>
+2026-10-08T05:27:55.3535693Z hint:
+2026-10-08T05:27:55.3535983Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-08T05:27:55.3536447Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-08T05:27:55.3536784Z hint:
+2026-10-08T05:27:55.3537101Z hint: 	git branch -m <name>
+2026-10-08T05:27:55.3537315Z hint:
+2026-10-08T05:27:55.3537626Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-08T05:27:55.3537991Z Initialized empty Git repository in /home/runner/work/guoapp/guoapp/.git/
+2026-10-08T05:27:55.3546232Z [command]/usr/bin/git remote add origin https://github.com/xiaobailong6/guoapp
+2026-10-08T05:27:55.3601118Z ##[endgroup]
+2026-10-08T05:27:55.3601392Z ##[group]Disabling automatic garbage collection
+2026-10-08T05:27:55.3601646Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-08T05:27:55.3634708Z ##[endgroup]
+2026-10-08T05:27:55.3635083Z ##[group]Setting up auth
+2026-10-08T05:27:55.3635372Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-08T05:27:55.3663752Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-08T05:27:55.3970049Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-08T05:27:55.4003632Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-08T05:27:55.4178662Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-08T05:27:55.4207360Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-08T05:27:55.4379386Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-08T05:27:55.4411452Z ##[endgroup]
+2026-10-08T05:27:55.4411722Z ##[group]Fetching the repository
+2026-10-08T05:27:55.4417578Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +1c46345e368c2441950976b20c16d491aceb6881:refs/remotes/origin/main
+2026-10-08T05:27:56.3703748Z From https://github.com/xiaobailong6/guoapp
+2026-10-08T05:27:56.3704760Z  * [new ref]         1c46345e368c2441950976b20c16d491aceb6881 -> origin/main
+2026-10-08T05:27:56.3715094Z ##[endgroup]
+2026-10-08T05:27:56.3715361Z ##[group]Determining the checkout info
+2026-10-08T05:27:56.3715645Z ##[endgroup]
+2026-10-08T05:27:56.3716756Z [command]/usr/bin/git sparse-checkout disable
+2026-10-08T05:27:56.3765137Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-08T05:27:56.3795073Z ##[group]Checking out the ref
+2026-10-08T05:27:56.3798301Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-10-08T05:27:56.4211316Z Switched to a new branch 'main'
+2026-10-08T05:27:56.4214125Z branch 'main' set up to track 'origin/main'.
+2026-10-08T05:27:56.4221159Z ##[endgroup]
+2026-10-08T05:27:56.4259878Z [command]/usr/bin/git log -1 --format=%H
+2026-10-08T05:27:56.4283521Z 1c46345e368c2441950976b20c16d491aceb6881

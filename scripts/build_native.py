@@ -42,11 +42,33 @@ def build(goos, architecture, compiler, output, extra=None):
                    cwd=root / 'native', env=build_env, check=True)
     record_native_build(output, variant, platform=goos, architecture=architecture)
 
+def resolve_ndk(sdk):
+    """选择与 Gradle 一致的 NDK 目录。
+
+    工作流会先把选定版本写入 ANDROID_NDK_HOME，因此优先采用该值；
+    未提供时再按版本排序选择：优先 28.2.13676358，否则取最高版本。
+    """
+    candidates = [os.environ.get('ANDROID_NDK_HOME'), os.environ.get('ANDROID_NDK_ROOT')]
+    versions = sdk / 'ndk'
+    if versions.is_dir():
+        installed = sorted((item.name for item in versions.iterdir() if item.is_dir()),
+                           key=lambda name: [int(part) if part.isdigit() else part
+                                             for part in name.replace('-', '.').split('.')])
+        preferred = '28.2.13676358'
+        if preferred in installed:
+            installed.remove(preferred)
+            installed.append(preferred)
+        candidates.extend(str(versions / name) for name in reversed(installed))
+    for candidate in candidates:
+        if candidate and (Path(candidate) / 'toolchains').is_dir():
+            return Path(candidate)
+    raise SystemExit('请设置 ANDROID_NDK_HOME 或在 SDK 的 ndk 目录中安装 NDK。')
+
 if options.platform == 'android':
     sdk = os.environ.get('ANDROID_HOME') or os.environ.get('ANDROID_SDK_ROOT')
     if not sdk:
         raise SystemExit('请设置 ANDROID_HOME 为 Android SDK 目录。')
-    ndk = Path(os.environ.get('ANDROID_NDK_HOME', Path(sdk) / 'ndk' / '28.2.13676358'))
+    ndk = resolve_ndk(Path(sdk))
     host = {'Darwin': 'darwin-x86_64', 'Linux': 'linux-x86_64', 'Windows': 'windows-x86_64'}[platform.system()]
     compilers = ndk / 'toolchains' / 'llvm' / 'prebuilt' / host / 'bin'
     mappings = {

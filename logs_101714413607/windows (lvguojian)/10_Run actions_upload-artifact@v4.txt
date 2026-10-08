@@ -1,0 +1,45 @@
+﻿2026-10-08T05:34:13.7949652Z ##[group]Run actions/upload-artifact@v4
+2026-10-08T05:34:13.7950142Z with:
+2026-10-08T05:34:13.7950359Z   name: lvguojian-windows
+2026-10-08T05:34:13.7950601Z   path: dist/windows/*
+2026-10-08T05:34:13.7950832Z   if-no-files-found: error
+2026-10-08T05:34:13.7951056Z   retention-days: 14
+2026-10-08T05:34:13.7951276Z   compression-level: 6
+2026-10-08T05:34:13.7951485Z   overwrite: false
+2026-10-08T05:34:13.7951703Z   include-hidden-files: false
+2026-10-08T05:34:13.7951932Z env:
+2026-10-08T05:34:13.7952176Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-08T05:34:13.7952492Z   GOSUMDB: sum.golang.org
+2026-10-08T05:34:13.7952819Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-08T05:34:13.7953488Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-08T05:34:13.7953954Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-08T05:34:13.7954369Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-08T05:34:13.7954804Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-08T05:34:13.7955229Z   FLUTTER_ROOT: C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64/flutter
+2026-10-08T05:34:13.7955660Z   PUB_CACHE: C:\Users\runneradmin\AppData\Local\Pub\Cache
+2026-10-08T05:34:13.7955985Z ##[endgroup]
+2026-10-08T05:34:13.9968135Z (node:9136) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-08T05:34:13.9968920Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-08T05:34:14.0029973Z With the provided path, there will be 2 files uploaded
+2026-10-08T05:34:14.0035661Z Artifact name is valid!
+2026-10-08T05:34:14.0037457Z Root directory input is valid!
+2026-10-08T05:34:14.2624907Z Beginning upload of artifact content to blob storage
+2026-10-08T05:34:14.5594710Z (node:9136) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-08T05:34:14.9416279Z Uploaded bytes 8388608
+2026-10-08T05:34:15.2681159Z Uploaded bytes 16777216
+2026-10-08T05:34:15.3054358Z Uploaded bytes 25165824
+2026-10-08T05:34:15.6266006Z Uploaded bytes 33554432
+2026-10-08T05:34:15.8372342Z Uploaded bytes 41943040
+2026-10-08T05:34:16.1619332Z Uploaded bytes 50331648
+2026-10-08T05:34:16.4659915Z Uploaded bytes 58720256
+2026-10-08T05:34:16.6590613Z Uploaded bytes 67108864
+2026-10-08T05:34:16.9284096Z Uploaded bytes 75497472
+2026-10-08T05:34:17.2398214Z Uploaded bytes 83886080
+2026-10-08T05:34:17.5053404Z Uploaded bytes 92274688
+2026-10-08T05:34:17.5907533Z Uploaded bytes 95115221
+2026-10-08T05:34:17.6215584Z Finished uploading artifact content to blob storage!
+2026-10-08T05:34:17.6219580Z SHA256 digest of uploaded artifact zip is 05eca08aee5bc09786f3b6d801b60a4fb120d5c2a01071203c71216db6e3cc0d
+2026-10-08T05:34:17.6222018Z Finalizing artifact upload
+2026-10-08T05:34:17.8206562Z Artifact lvguojian-windows.zip successfully finalized. Artifact ID 11529843552
+2026-10-08T05:34:17.8207564Z Artifact lvguojian-windows has been successfully uploaded! Final size is 95115221 bytes. Artifact ID is 11529843552
+2026-10-08T05:34:17.8219769Z Artifact download URL: https://github.com/xiaobailong6/guoapp/actions/runs/37732081352/artifacts/11529843552

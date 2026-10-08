@@ -1,8 +1,10 @@
 # 红果鉴 / 真果鉴
 
-Flutter 多端独立短剧应用，原名“短剧库 APP”。站源请求、解析、下载和播放均在设备上完成，不依赖旧项目或自建服务。当前源码版本：**0.2.130+2136（开发快照）**。
+Flutter 多端独立短剧应用，原名“短剧库 APP”。站源请求、解析、下载和播放均在设备上完成，不依赖旧项目或自建服务。当前源码版本：**0.2.131+2137（开发快照）**。
 
 0.2.130 补齐直播收藏的可见入口。直播频道区域顶部固定显示“直播收藏（数量）”，点击读取当前用户已经保存的收藏；进入收藏后提供“直播分类”返回按钮，原分类栏收藏入口保留。收藏为空时显示现有操作提示，收藏变更继续由 `LiveStore` 通知同步，存储格式与历史收藏不变。直播源分类读取失败时仍可点击顶部入口查看收藏，电视布局新增可遥控聚焦与点击播放的收藏频道列表，修复原电视布局只显示分类的问题。切到收藏递增读取代次，防止尚未完成的分类请求回写覆盖收藏；切换收藏本身不打断或自动替换正在播放的频道。绿色模式无可用直播源时仍保留原限制，不通过收藏绕过。使用官方 Dart 3.13.3 执行 CI 全目录格式检查：166 文件、0 changed、退出码 0；因本机缺少 Flutter 依赖仍有 `flutter_lints` 配置引用警告，未运行静态分析、测试、构建或设备 UI 验证，当前为待验收开发快照。
+
+0.2.131 根据 `logs_101714413607/2_android (zhenguojian, --all-sources).txt` 排查 Android 构建失败。日志第 495 行显示 `Warning: An error occurred while preparing SDK package NDK (Side by side) 28.2.13676358: Error on ZipFile unknown archive.`，即 `sdkmanager` 下载的 `android-ndk-r28c-linux` 压缩包损坏，随后「Install Android NDK」步骤以退出码 1 中断，构建未进入 Gradle 编译阶段；同一矩阵的 `lvguojian` 版次成功，因为该运行器已预装 NDK 28，未走下载分支。**修法**：工作流先探测 SDK 目录下已安装的 NDK，把版本清单写入 `ANDROID_NDK_VERSIONS`，下载失败不再让步骤失败；现有 NDK 中有 28.2.13676358 就用它，否则取最高可用版本写入 `ANDROID_NDK_HOME`，只在完全没有可用 NDK 时报错退出。`android/app/build.gradle.kts` 改为读取同一环境变量：匹配 `flutter.ndkVersion` 前两段前缀的版本优先，无匹配则取最高可用版本，无变量时回退 28。`scripts/build_native.py` 的 `resolve_ndk` 优先采用工作流写好的 `ANDROID_NDK_HOME`，再按版本排序回退（优先 28，否则最高版本），并跳过缺少 `toolchains` 的残缺安装，确保 Go 侧共享库与 Gradle 使用同一 NDK。本轮用临时目录中的检查工具复核：工作流 `yaml.safe_load` 通过（jobs 为 checks／android／windows／ios，Android 任务 11 步）、POSIX shell 结构检查通过、Gradle 与 Python 的 NDK 选择逻辑在 13 个场景下所选版本必为已安装版本、`py_compile` 通过、Dart 3.13.3 全目录格式检查 166 文件 0 changed、`python -m unittest discover -s scripts` 结果与本轮改动前的基线一致。本机没有 Flutter／Android 编译环境，未编译、未运行 Gradle、未触发 Actions，Android 构建与产物上传仍需远程工作流复验，本版本仍为未验收开发快照。
 
 0.2.129 实施两项小范围性能优化。首页搜索进度轮询增加页面级请求进行中标记，前一个请求未结束时跳过后续 tick，跨搜索切换也不叠加请求；标记在 `finally` 中释放，返回结果额外校验对应计时器仍有效，避免轮询取消后覆盖最终结果。保留 700 毫秒轮询间隔、generation 校验、错误处理和搜索请求参数。`CatalogBrowser.updateDramas` 对空更新直接返回，缓存列表只在发现匹配剧集时复制一次，没有匹配项的列表保持原对象与元素；继续使用原 `Drama.merge` 规则，未引入索引，仍需扫描列表查找匹配项。此前 iOS 默认关闭、Android ARM64 直接交付 APK 的配置保持不变。使用临时目录中的官方 Dart 3.13.3 执行与 CI 一致的全目录格式检查：166 文件、0 changed、退出码 0；本机缺少 Flutter 依赖导致 `flutter_lints` 配置引用警告，未执行静态分析、测试、构建或运行时性能测量，仍为待集中验证的开发快照。
 

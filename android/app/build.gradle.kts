@@ -22,10 +22,22 @@ if (releaseKey.exists()) {
     releaseKey.inputStream().use { releaseProperties.load(it) }
 }
 
+val availableNdkVersions = providers.environmentVariable("ANDROID_NDK_VERSIONS")
+    .orNull.orEmpty().split(" ").filter { it.isNotBlank() }
+val preferredNdkVersion = "28.2.13676358"
+val requestedNdkVersions = flutter.ndkVersion.split(".").take(2).joinToString(".")
+val resolvedNdkVersion = when {
+    availableNdkVersions.isEmpty() -> preferredNdkVersion
+    availableNdkVersions.contains(preferredNdkVersion) -> preferredNdkVersion
+    availableNdkVersions.any { it.startsWith("$requestedNdkVersions.") } ->
+        availableNdkVersions.first { it.startsWith("$requestedNdkVersions.") }
+    else -> availableNdkVersions.last()
+}
+
 android {
     namespace = "com.duanju.duanju_app"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = "28.2.13676358"
+    ndkVersion = resolvedNdkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

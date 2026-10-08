@@ -97,20 +97,24 @@ jobs:
           cache: true
       - name: Install Android NDK
         run: |
-          # GitHub 托管运行器预装 Android SDK，但新版镜像不再把 sdkmanager
-          # 加入 PATH，SDK 目录也不固定。先定位 SDK 目录并补装 cmdline-tools，
-          # 再安装项目所需 NDK 版本。
+          # GitHub 托管运行器预装 Android SDK 和若干 NDK 版本，但新版镜像不再把
+          # sdkmanager 加入 PATH，SDK 目录也不固定。先定位 SDK 目录并补装
+          # cmdline-tools，再准备项目所需 NDK 版本。
           for sdk in "$ANDROID_HOME" "$ANDROID_SDK_ROOT" "/usr/local/lib/android/sdk" "$HOME/Android/Sdk"; do
             if [ -n "$sdk" ] && [ -d "$sdk" ]; then
               echo "ANDROID_HOME=$sdk" >> "$GITHUB_ENV"
               echo "ANDROID_SDK_ROOT=$sdk" >> "$GITHUB_ENV"
-              echo "ANDROID_NDK_HOME=$sdk/ndk/28.2.13676358" >> "$GITHUB_ENV"
               echo "using Android SDK at $sdk"
               SDK_DIR="$sdk"
               break
             fi
           done
           : "${SDK_DIR:?无法定位 Android SDK 目录}"
+          # 记录版本目录下的所有 ndkVersion，供 build.gradle.kts 选择可用版本。
+          # 这样即使远端 NDK 下载失败，也能用运行器自带版本完成构建。
+          NDK_VERSIONS="$(find "$SDK_DIR/ndk" -maxdepth 1 -mindepth 1 -type d -printf '%f\n' 2>/dev/null | sort -V | tr '\n' ' ')"
+          echo "ANDROID_NDK_VERSIONS=$NDK_VERSIONS" >> "$GITHUB_ENV"
+          echo "运行器已有 NDK 版本：${NDK_VERSIONS:-无}"
           # 优先使用已安装的 sdkmanager（可能位于 latest 或版本化目录）。
           SDKMGR=$(find "$SDK_DIR/cmdline-tools" -maxdepth 3 -name sdkmanager -type f 2>/dev/null | head -n1)
           if [ -z "$SDKMGR" ]; then
@@ -132,10 +136,37 @@ jobs:
           # 关闭 pipefail，避免 `yes |` 因 SIGPIPE 被误判为失败。
           set +o pipefail
           yes | sdkmanager --licenses >/dev/null 2>&1 || true
-          yes | sdkmanager "ndk;28.2.13676358"
-          status=$?
           set -o pipefail
-          exit $status
+          # 目标 NDK 已存在时直接复用；缺失时才下载。
+          TARGET_NDK="$SDK_DIR/ndk/28.2.13676358"
+          if [ -d "$TARGET_NDK" ]; then
+            echo "NDK 28.2.13676358 已存在，跳过下载。"
+          else
+            # 远端下载偶发截断会得到损坏压缩包（sdkmanager 报 unknown archive），
+            # 因此开启重试；旧版 sdkmanager 不认 --retry_limit，失败后回退到基本调用。
+            set +o pipefail
+            (yes | sdkmanager --retry_limit=5 "ndk;28.2.13676358") \
+              || (echo "带重试参数安装 NDK 失败，改用基本调用重试一次。" \
+                  && yes | sdkmanager "ndk;28.2.13676358") \
+              || true
+            set -o pipefail
+          fi
+          # 汇总实际可用的 NDK，写入供 Gradle 使用。
+          NDK_VERSIONS="$(find "$SDK_DIR/ndk" -maxdepth 1 -mindepth 1 -type d -printf '%f\n' 2>/dev/null | sort -V | tr '\n' ' ')"
+          echo "ANDROID_NDK_VERSIONS=$NDK_VERSIONS" >> "$GITHUB_ENV"
+          # 远端 NDK 下载可能被截断（sdkmanager 报 unknown archive）。此时不要
+          # 让步骤失败，改用运行器预装的其它 NDK 版本继续构建，避免整个任务中断。
+          if [ -z "$NDK_VERSIONS" ]; then
+            echo "::error::Android SDK 中没有可用的 NDK，无法继续构建。"
+            exit 1
+          fi
+          PREFERRED="28.2.13676358"
+          case " $NDK_VERSIONS " in
+            *" $PREFERRED "*) ;;
+            *) PREFERRED="$(echo "$NDK_VERSIONS" | tr ' ' '\n' | grep -v '^$' | sort -V | tail -n1)" ;;
+          esac
+          echo "ANDROID_NDK_HOME=$SDK_DIR/ndk/$PREFERRED" >> "$GITHUB_ENV"
+          echo "构建将使用 NDK $PREFERRED（可用：$NDK_VERSIONS）"
       - name: Configure Android signing
         run: python scripts/configure_signing.py
         env:

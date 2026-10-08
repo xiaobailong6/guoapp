@@ -1,0 +1,20 @@
+﻿2026-10-08T05:35:10.3018877Z ##[group]Run python scripts/configure_signing.py --clean
+2026-10-08T05:35:10.3019467Z [36;1mpython scripts/configure_signing.py --clean[0m
+2026-10-08T05:35:10.3118683Z shell: /usr/bin/bash -e {0}
+2026-10-08T05:35:10.3119107Z env:
+2026-10-08T05:35:10.3119437Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-08T05:35:10.3119858Z   GOSUMDB: sum.golang.org
+2026-10-08T05:35:10.3120294Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-08T05:35:10.3121028Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-10-08T05:35:10.3121630Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-08T05:35:10.3122125Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-08T05:35:10.3122661Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-08T05:35:10.3123281Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-10-08T05:35:10.3123822Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-08T05:35:10.3124538Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-08T05:35:10.3125196Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
+2026-10-08T05:35:10.3125581Z   PUB_CACHE: /home/runner/.pub-cache
+2026-10-08T05:35:10.3125879Z   ANDROID_HOME: /usr/local/lib/android/sdk
+2026-10-08T05:35:10.3126205Z   ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+2026-10-08T05:35:10.3126577Z   ANDROID_NDK_HOME: /usr/local/lib/android/sdk/ndk/28.2.13676358
+2026-10-08T05:35:10.3126925Z ##[endgroup]

@@ -1,0 +1,36 @@
+﻿2026-10-08T05:33:48.1421275Z ##[group]Run choco install ffmpeg --no-progress -y
+2026-10-08T05:33:48.1421756Z [36;1mchoco install ffmpeg --no-progress -y[0m
+2026-10-08T05:33:48.1494440Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-08T05:33:48.1494807Z env:
+2026-10-08T05:33:48.1495041Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-08T05:33:48.1495343Z   GOSUMDB: sum.golang.org
+2026-10-08T05:33:48.1495659Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-08T05:33:48.1496142Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-08T05:33:48.1497015Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-08T05:33:48.1497447Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-08T05:33:48.1497879Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-08T05:33:48.1498367Z   FLUTTER_ROOT: C:\hostedtoolcache\windows\flutter\stable-3.47.4-x64/flutter
+2026-10-08T05:33:48.1498820Z   PUB_CACHE: C:\Users\runneradmin\AppData\Local\Pub\Cache
+2026-10-08T05:33:48.1499165Z ##[endgroup]
+2026-10-08T05:33:49.2447162Z Chocolatey v2.7.4
+2026-10-08T05:33:49.3989908Z Installing the following packages:
+2026-10-08T05:33:49.3995228Z ffmpeg
+2026-10-08T05:33:49.3998386Z By installing, you accept licenses for the packages.
+2026-10-08T05:33:50.2883611Z Downloading package from source 'https://community.chocolatey.org/api/v2/'
+2026-10-08T05:33:50.8588022Z 
+2026-10-08T05:33:50.8588649Z ffmpeg v9.0.2 [Approved]
+2026-10-08T05:33:50.8825523Z ffmpeg package files install completed. Performing other installation steps.
+2026-10-08T05:33:51.6105987Z Extracting 64-bit C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg-release-essentials.7z to C:\ProgramData\chocolatey\lib\ffmpeg\tools...
+2026-10-08T05:33:54.5234972Z C:\ProgramData\chocolatey\lib\ffmpeg\tools
+2026-10-08T05:33:54.5243484Z Removing extracted archive.
+2026-10-08T05:33:54.5848111Z Sleeping for 2 seconds to allow anti-viruses to finish scanning...
+2026-10-08T05:33:56.5917992Z Renaming ffmpeg directory to common name (Try 1 / 3)
+2026-10-08T05:33:56.6038672Z Successfully renamed directory.
+2026-10-08T05:34:00.3661938Z  ShimGen has successfully created a shim for ffmpeg.exe
+2026-10-08T05:34:03.0533063Z  ShimGen has successfully created a shim for ffplay.exe
+2026-10-08T05:34:08.3146321Z  ShimGen has successfully created a shim for ffprobe.exe
+2026-10-08T05:34:08.3423181Z  The install of ffmpeg was successful.
+2026-10-08T05:34:08.3425887Z   Deployed to 'C:\ProgramData\chocolatey\lib\ffmpeg\tools'
+2026-10-08T05:34:08.3505932Z 
+2026-10-08T05:34:08.3506378Z Chocolatey installed 1/1 packages. 
+2026-10-08T05:34:08.3507114Z  See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
