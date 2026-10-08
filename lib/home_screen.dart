@@ -12,6 +12,7 @@ import 'catalog_browser.dart';
 import 'catalog_prefetch.dart';
 import 'catalog_sort.dart';
 import 'catalog_sort_sheet.dart';
+import 'catalog_view_cache.dart';
 import 'feeds_screen.dart';
 import 'recommendation_service.dart';
 import 'recommendations_screen.dart';
@@ -57,6 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final _search = TextEditingController();
   final _scroll = ScrollController();
   final _prefetch = CatalogPrefetchScheduler();
+  final _viewCache = CatalogViewCache();
   Timer? _debounce;
   late SourceSite _source;
   bool _allSources = false;
@@ -911,25 +913,16 @@ class _HomeScreenState extends State<HomeScreen> {
       _group.sources.any((source) => source.id == 'huangdou');
   bool get _hideVip => _supportsVipFilter && widget.store.hideVip;
 
-  List<Drama> get _visible {
-    final query = _search.text.trim().toLowerCase();
-    return sortCatalog(
-      _items.where((drama) {
-        if (!widget.store.allowsSource(drama.source)) return false;
-        if (_category.startsWith('local:') &&
-            categoryName(drama.category) != _category.substring(6)) {
-          return false;
-        }
-        if (_hideVip && drama.source == 'huangdou' && drama.vip) {
-          return false;
-        }
-        return _onlineSearch ||
-            query.isEmpty ||
-            matchesDramaQuery(drama, query);
-      }),
-      widget.store.catalogView,
-    );
-  }
+  List<Drama> get _visible => _viewCache.select(
+    _items,
+    query: _search.text.trim().toLowerCase(),
+    category: _category,
+    onlineSearch: _onlineSearch,
+    hideVip: _hideVip,
+    allowedSources: widget.store.sources.map((source) => source.id).toSet(),
+    profileEpoch: widget.store.profileEpoch,
+    view: widget.store.catalogView,
+  );
 
   @override
   Widget build(BuildContext context) => AnimatedBuilder(

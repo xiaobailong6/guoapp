@@ -155,16 +155,15 @@ String _naturalTitle(String title) =>
       (match) => '第${_seasonNumber(match[1]!)}${match[2]}',
     );
 
-int naturalTitleCompare(String left, String right) {
-  final pattern = RegExp(r'\d+|\D+');
-  final a = pattern
-      .allMatches(_naturalTitle(left))
-      .map((match) => match[0]!)
-      .toList();
-  final b = pattern
-      .allMatches(_naturalTitle(right))
-      .map((match) => match[0]!)
-      .toList();
+List<String> _naturalTitleParts(String title) => RegExp(r'\d+|\D+')
+    .allMatches(_naturalTitle(title))
+    .map((match) => match[0]!)
+    .toList();
+
+int naturalTitleCompare(String left, String right) =>
+    _compareNaturalParts(_naturalTitleParts(left), _naturalTitleParts(right));
+
+int _compareNaturalParts(List<String> a, List<String> b) {
   for (var index = 0; index < a.length && index < b.length; index++) {
     final numberA = int.tryParse(a[index]);
     final numberB = int.tryParse(b[index]);
@@ -205,13 +204,17 @@ List<Drama> sortCatalog(Iterable<Drama> rows, CatalogView view) {
         _ => null,
       },
   };
+  final names = view.sort == CatalogSort.name
+      ? {for (final drama in items) drama: normalizedSearchText(drama.title)}
+      : <Drama, String>{};
+  final seasons = view.sort == CatalogSort.season
+      ? {for (final drama in items) drama: _naturalTitleParts(drama.title)}
+      : <Drama, List<String>>{};
   items.sort((a, b) {
     final comparison = switch (view.sort) {
       CatalogSort.source => 0,
-      CatalogSort.name => normalizedSearchText(
-        a.title,
-      ).compareTo(normalizedSearchText(b.title)),
-      CatalogSort.season => naturalTitleCompare(a.title, b.title),
+      CatalogSort.name => names[a]!.compareTo(names[b]!),
+      CatalogSort.season => _compareNaturalParts(seasons[a]!, seasons[b]!),
       _ => _descending(metrics[a.id], metrics[b.id]),
     };
     return comparison != 0

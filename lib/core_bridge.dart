@@ -22,6 +22,7 @@ import 'download_collections.dart';
 import 'resource_settings.dart';
 import 'network_exit.dart';
 import 'library_transfer.dart';
+import 'native_response_parser.dart';
 
 typedef _NativeRequest = Pointer<Utf8> Function(Pointer<Utf8>);
 typedef _DartRequest = Pointer<Utf8> Function(Pointer<Utf8>);
@@ -279,6 +280,16 @@ class NativeRepository extends AppRepository {
     );
   }
 
+  Future<CatalogPage> _catalogPage(Future<Map<String, dynamic>> request) async {
+    final epoch = access?.profileEpoch;
+    final data = await request;
+    final page = await parseNativeCatalog(data);
+    if (epoch != access?.profileEpoch) {
+      throw AppFailure('用户已切换，请重新操作');
+    }
+    return page;
+  }
+
   Future<Map<String, dynamic>> _read(
     String scope,
     Map<String, dynamic> input,
@@ -373,8 +384,8 @@ class NativeRepository extends AppRepository {
     bool force = false,
   }) async {
     _authorize('hongguo');
-    return CatalogPage.fromJson(
-      await _read('recommendations-$genre', {
+    return _catalogPage(
+      _read('recommendations-$genre', {
         'action': 'recommendations',
         'category': genre,
         'command': more ? 'more' : '',
@@ -661,7 +672,7 @@ class NativeRepository extends AppRepository {
             : 70,
       );
       final encoded = await _invokeNative(body, limit);
-      final response = jsonDecode(encoded) as Map<String, dynamic>;
+      final response = await decodeNativeResponse(encoded);
       if (response['ok'] != true) {
         throw AppFailure(
           NetworkExit.describe(response['error'] as String? ?? '读取失败，请重试'),
@@ -749,8 +760,8 @@ class NativeRepository extends AppRepository {
     String query = '',
     String category = '',
     bool force = false,
-  }) async => CatalogPage.fromJson(
-    await _read('catalog-$source', {
+  }) async => _catalogPage(
+    _read('catalog-$source', {
       'action': 'catalog',
       'source': source,
       'page': page,
@@ -761,8 +772,8 @@ class NativeRepository extends AppRepository {
   );
   @override
   Future<CatalogPage> searchProgress(String source, String query) async =>
-      CatalogPage.fromJson(
-        await _call({
+      _catalogPage(
+        _call({
           'action': 'searchProgress',
           'source': source,
           'query': query,
@@ -770,8 +781,8 @@ class NativeRepository extends AppRepository {
       );
   @override
   Future<CatalogPage> cached(String source, {String category = ''}) async =>
-      CatalogPage.fromJson(
-        await _call({
+      _catalogPage(
+        _call({
           'action': 'cached',
           'source': source,
           'category': category,

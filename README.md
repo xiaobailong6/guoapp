@@ -1,6 +1,8 @@
 # 红果鉴 / 真果鉴
 
-Flutter 多端独立短剧应用，原名“短剧库 APP”。站源请求、解析、下载和播放均在设备上完成，不依赖旧项目或自建服务。当前源码版本：**0.2.123+2129（开发快照）**。
+Flutter 多端独立短剧应用，原名“短剧库 APP”。站源请求、解析、下载和播放均在设备上完成，不依赖旧项目或自建服务。当前源码版本：**0.2.124+2130（开发快照）**。
+
+0.2.124 实施第一轮加载与 UI 计算优化。首页通过 `CatalogViewCache` 缓存当前列表的筛选排序结果，以列表身份、搜索词、分类、在线搜索模式、VIP 过滤、允许站源集合、用户 epoch 和排序／连载条件作为失效键；当前列表更换时清空按需生成的搜索文本缓存，避免无关页面刷新重复遍历全库。名称与自然季号排序在排序前预计算标准化标题或分词，保留原比较规则及同值时的原顺序。原生响应达到 262144 个字符串代码单元时，JSON 解码改为后台 `Isolate.run`；目录达到 500 条时，`CatalogPage`／`Drama` 模型转换也在后台执行，小响应与小目录保留直接处理。目录、缓存、搜索进度及推荐已接入，后台转换结束后再次核对用户 epoch；原有分页、权限与错误处理保留。未调整站源请求并发、播放器或剧库落盘机制。按项目约定未运行分析、测试、构建或设备性能验证；当前环境未找到 Dart／Flutter 格式工具，格式整理仅人工核对，自动格式检查待集中验证，本版本不作为已验收成品。
 
 0.2.123 修复 GitHub Actions `checks` 的 `dart analyze` 失败。`dart format` 已通过（0 changed），失败点移到 `dart analyze lib test integration_test test_driver`（exit 2），四项：`test/live_screen_test.dart` 的 `extraGroups`、`failGroups` 触发 `unused_element_parameter`，`lib/video_enhancement.dart`、`lib/video_output_size.dart` 的多余 `dart:ui` 导入触发 `unnecessary_import`。**根因**：这两条是 analyzer 诊断而非 lint 规则，写在 `analysis_options.yaml` 的 `linter.rules` 下无效（`analysis_options.yaml` 本身不在 `dart analyze lib test ...` 的扫描范围，`undefined_lint` 也不会上报），因此不能靠配置豁免。**修法按 `ANDROID_BUILD_FIXES.md` 第 101-106 行清理源码**：`_FakeRepository` 移除从未传值的 `extraGroups`、`failGroups` 参数、字段与对应分支，构造函数改为无参；两个 lib 文件删除多余 `dart:ui` 导入（所用 `Size`/`Rect` 由 `package:flutter/services.dart` 提供）。本机用与 CI 一致的 Dart 3.13.3 复跑 `--output=none --set-exit-if-changed` 仍为 0 变化；未在本机编译或验证，`dart analyze` 与后续 checks 仍需 GitHub Actions 复验。
 
