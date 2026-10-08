@@ -42,6 +42,7 @@ class _LivePlayerScreenState extends State<LivePlayerScreen> {
   AppOrientationController? _orientationController;
   bool _television = false;
   bool _landscape = true;
+  bool _rotated = false;
 
   LivePlaybackController get _playback => widget.playback;
 
@@ -68,12 +69,21 @@ class _LivePlayerScreenState extends State<LivePlayerScreen> {
     super.didChangeDependencies();
     _television = AppLayout.isTelevision(context);
     _orientationController = AppOrientationScope.maybeOf(context);
+    _followVideoRatio();
     unawaited(_applyOrientation());
   }
 
-  /// 直播流都是横屏，进页面即锁横屏并全屏；旋转按钮在横竖屏之间切换。
-  /// 这一步此前完全缺失：页面只切了系统栏，从没动过设备方向，
-  /// 所以横屏直播既没有旋转入口也无法按视频比例固定方向。
+  /// 全屏方向跟随画面比例：竖屏流全屏仍是竖屏，横屏流全屏是横屏。
+  /// 用户按过旋转按钮后以手动选择为准，不再自动跟随。
+  bool _followVideoRatio() {
+    if (_television || _rotated) return false;
+    final landscape = _playback.aspectRatio >= 1;
+    if (landscape == _landscape) return false;
+    _landscape = landscape;
+    return true;
+  }
+
+  /// 进页面即按画面比例锁方向并全屏；旋转按钮在横竖屏之间切换。
   Future<void> _applyOrientation() async {
     if (_television) return;
     try {
@@ -89,6 +99,7 @@ class _LivePlayerScreenState extends State<LivePlayerScreen> {
 
   Future<void> _toggleRotate() async {
     if (_television) return;
+    _rotated = true;
     setState(() => _landscape = !_landscape);
     await _applyOrientation();
     if (Platform.isAndroid) {
@@ -112,7 +123,16 @@ class _LivePlayerScreenState extends State<LivePlayerScreen> {
   }
 
   void _changed() {
-    if (mounted) setState(() {});
+    if (!mounted) return;
+    if (_followVideoRatio()) {
+      unawaited(_applyOrientation());
+      if (Platform.isAndroid) {
+        unawaited(
+          SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky),
+        );
+      }
+    }
+    setState(() {});
   }
 
   void _toggle() {
@@ -258,7 +278,7 @@ class _LivePlayerScreenState extends State<LivePlayerScreen> {
             interactions: _interactions,
             enabled: error == null,
             panelOpen: _panel,
-            fullscreen: _landscape,
+            fullscreen: true,
             showOnPlaybackReady: false,
             title: title,
             onTogglePlayback: _toggle,

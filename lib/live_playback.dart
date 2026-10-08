@@ -9,6 +9,7 @@ import 'live_models.dart';
 import 'live_repository.dart';
 import 'live_sources.dart';
 import 'screen_awake.dart';
+import 'video_output_size.dart';
 
 /// 直播播放状态：顶部内嵌播放器与全屏播放共用同一实例，换台不重建引擎。
 class LivePlaybackController extends ChangeNotifier {
@@ -27,6 +28,8 @@ class LivePlaybackController extends ChangeNotifier {
   final _subscriptions = <StreamSubscription<dynamic>>[];
   Timer? _reconnect;
   Timer? _stall;
+  bool _frames = false;
+  double _aspectRatio = 16 / 9;
 
   Player? _player;
   VideoController? _controller;
@@ -55,6 +58,7 @@ class LivePlaybackController extends ChangeNotifier {
   bool get ready => _player != null;
   int get route => _route;
   String? get error => _error;
+  double get aspectRatio => _aspectRatio;
 
   void _ensurePlayer() {
     if (_player != null || _disposed) return;
@@ -66,6 +70,9 @@ class LivePlaybackController extends ChangeNotifier {
       player.stream.buffering.listen((value) {
         if (_disposed || value == _buffering) return;
         _buffering = value;
+        if (!value && player.state.playing) {
+          _stall?.cancel();
+        }
         notifyListeners();
       }),
     );
@@ -78,12 +85,37 @@ class LivePlaybackController extends ChangeNotifier {
         notifyListeners();
       }),
     );
+    _subscriptions.add(
+      player.stream.videoParams.listen((parameters) {
+        final size = videoDisplaySize(parameters);
+        if (_disposed || size == null) return;
+        _frames = true;
+        _stall?.cancel();
+        final ratio = size.width / size.height;
+        if (ratio.isFinite &&
+            ratio > 0 &&
+            (ratio - _aspectRatio).abs() > 0.01) {
+          _aspectRatio = ratio;
+          notifyListeners();
+        }
+      }),
+    );
+  }
+
+  bool get _hasPlayback {
+    final player = _player;
+    if (player == null) return false;
+    if (_frames) return true;
+    return player.state.playing && !player.state.buffering;
   }
 
   void _armStallWatch() {
     _stall?.cancel();
     _stall = Timer(_stallTimeout, () {
       if (_disposed || _error != null) return;
+      // playing 事件与布防存在竞态：事件先到再布防时计时器无人取消，
+      // 必须在触发时复核真实播放状态，避免正常播放被误判断流。
+      if (_hasPlayback) return;
       _onError('当前线路长时间没有画面');
     });
   }
@@ -133,6 +165,7 @@ class LivePlaybackController extends ChangeNotifier {
       if (player == null) throw AppFailure('直播播放器无法启动');
       final plan = await _resolve(source, channel);
       if (_disposed || token != _generation) return;
+      _frames = false;
       await player.open(
         Media(
           plan.url,
