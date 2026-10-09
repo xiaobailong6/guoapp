@@ -108,6 +108,43 @@ class GlassMenuEntry<T> {
   final bool enabled;
 }
 
+double _glassMenuWidth<T>(
+  BuildContext context,
+  List<GlassMenuEntry<T>> entries,
+  double maxWidth,
+) {
+  final scaler = MediaQuery.textScalerOf(context);
+  final fallback = DefaultTextStyle.of(context).style;
+  final direction = Directionality.maybeOf(context) ?? TextDirection.ltr;
+  var textWidth = 0.0;
+  for (final entry in entries) {
+    final label = entry.label;
+    if (label is! Text) return maxWidth;
+    final data = label.data;
+    if (data == null || data.isEmpty) continue;
+    final painter = TextPainter(
+      text: TextSpan(
+        text: data,
+        style: (label.style ?? fallback).copyWith(
+          fontSize: 14,
+          fontWeight: entry.selected ? FontWeight.w700 : FontWeight.w500,
+        ),
+      ),
+      textScaler: scaler,
+      textDirection: direction,
+    )..layout();
+    final width = painter.width;
+    painter.dispose();
+    if (width > textWidth) textWidth = width;
+  }
+  final hasLeading = entries.any((entry) => entry.leading != null);
+  final hasTrailing = entries.any((entry) => entry.trailing != null);
+  final measured =
+      textWidth + (hasLeading ? 30 : 0) + (hasTrailing ? 28 : 0) + 36;
+  if (measured < 118) return 118;
+  return measured > maxWidth ? maxWidth : measured;
+}
+
 Future<T?> showGlassMenu<T>({
   required BuildContext context,
   required Rect anchor,
@@ -123,7 +160,7 @@ Future<T?> showGlassMenu<T>({
     entries: entries,
     alignRight: alignRight,
     autofocusSelected: autofocusSelected,
-    width: width,
+    width: _glassMenuWidth(context, entries, width),
     maxHeight: maxHeight,
     itemExtent: itemExtent,
   ),
@@ -151,10 +188,10 @@ class _GlassMenuRoute<T> extends PopupRoute<T> {
   static const _margin = 8.0;
 
   @override
-  Duration get transitionDuration => const Duration(milliseconds: 300);
+  Duration get transitionDuration => const Duration(milliseconds: 200);
 
   @override
-  Duration get reverseTransitionDuration => const Duration(milliseconds: 150);
+  Duration get reverseTransitionDuration => const Duration(milliseconds: 110);
 
   @override
   Color? get barrierColor => null;
@@ -196,15 +233,10 @@ class _GlassMenuRoute<T> extends PopupRoute<T> {
         if (top < _margin) top = _margin;
       }
     }
-    final fade = CurvedAnimation(
-      parent: animation,
-      curve: Curves.easeOutCubic,
-      reverseCurve: Curves.easeInCubic,
-    );
     final scale = Tween<double>(
-      begin: .92,
+      begin: .96,
       end: 1,
-    ).animate(CurvedAnimation(parent: animation, curve: Curves.easeOutBack));
+    ).animate(CurvedAnimation(parent: animation, curve: Curves.easeOutCubic));
     final alignment = openUp
         ? (alignRight ? Alignment.bottomRight : Alignment.bottomLeft)
         : (alignRight ? Alignment.topRight : Alignment.topLeft);
@@ -213,32 +245,29 @@ class _GlassMenuRoute<T> extends PopupRoute<T> {
         Positioned(
           left: left,
           top: top,
-          child: FadeTransition(
-            opacity: fade,
-            child: ScaleTransition(
-              scale: scale,
-              alignment: alignment,
-              child: Material(
-                type: MaterialType.transparency,
-                child: GlassPanel(
-                  borderRadius: const BorderRadius.all(Radius.circular(22)),
-                  sigma: 28,
-                  child: SizedBox(
-                    width: menuWidth,
-                    height: height,
-                    child: ListView(
-                      padding: const EdgeInsets.all(6),
-                      itemExtent: itemExtent,
-                      children: [
-                        for (final (index, entry) in entries.indexed)
-                          _GlassMenuItem<T>(
-                            entry: entry,
-                            animation: animation,
-                            index: index,
-                            autofocus: autofocusSelected,
-                          ),
-                      ],
-                    ),
+          child: ScaleTransition(
+            scale: scale,
+            alignment: alignment,
+            child: Material(
+              type: MaterialType.transparency,
+              child: GlassPanel(
+                borderRadius: const BorderRadius.all(Radius.circular(22)),
+                sigma: 28,
+                child: SizedBox(
+                  width: menuWidth,
+                  height: height,
+                  child: ListView(
+                    padding: const EdgeInsets.all(6),
+                    itemExtent: itemExtent,
+                    children: [
+                      for (final (index, entry) in entries.indexed)
+                        _GlassMenuItem<T>(
+                          entry: entry,
+                          animation: animation,
+                          index: index,
+                          autofocus: autofocusSelected,
+                        ),
+                    ],
                   ),
                 ),
               ),
@@ -399,7 +428,7 @@ class GlassBottomNavigation extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               AnimatedContainer(
-                                duration: const Duration(milliseconds: 240),
+                                duration: const Duration(milliseconds: 180),
                                 curve: Curves.easeOutCubic,
                                 padding: const EdgeInsets.symmetric(
                                   horizontal: 16,
@@ -414,7 +443,7 @@ class GlassBottomNavigation extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(13),
                                 ),
                                 child: AnimatedSwitcher(
-                                  duration: const Duration(milliseconds: 190),
+                                  duration: const Duration(milliseconds: 150),
                                   switchInCurve: Curves.easeOutBack,
                                   switchOutCurve: Curves.easeInCubic,
                                   transitionBuilder: (child, animation) =>
@@ -445,7 +474,7 @@ class GlassBottomNavigation extends StatelessWidget {
                               ),
                               const SizedBox(height: 3),
                               AnimatedDefaultTextStyle(
-                                duration: const Duration(milliseconds: 220),
+                                duration: const Duration(milliseconds: 160),
                                 style: TextStyle(
                                   fontSize: 11,
                                   height: 1.1,

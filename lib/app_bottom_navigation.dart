@@ -80,7 +80,7 @@ class AppBottomNavigation extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 6),
                                   AnimatedSwitcher(
-                                    duration: const Duration(milliseconds: 190),
+                                    duration: const Duration(milliseconds: 150),
                                     switchInCurve: Curves.easeOutBack,
                                     switchOutCurve: Curves.easeInCubic,
                                     transitionBuilder: (child, animation) =>
@@ -110,7 +110,7 @@ class AppBottomNavigation extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 4),
                                   AnimatedDefaultTextStyle(
-                                    duration: const Duration(milliseconds: 200),
+                                    duration: const Duration(milliseconds: 160),
                                     style: TextStyle(
                                       fontSize: 12,
                                       height: 1.2,
