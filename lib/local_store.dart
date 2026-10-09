@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'app_build.dart';
 import 'launcher_icon.dart';
 import 'local_profiles.dart';
+import 'watch_stats.dart';
 import 'local_snapshot.dart';
 import 'models.dart';
 import 'playback_preferences.dart';
@@ -299,6 +300,17 @@ class LocalStore extends ChangeNotifier {
     }
   }
 
+  WatchStats get watchStats {
+    if (locked) return const WatchStats();
+    try {
+      return WatchStats.fromJson(
+        jsonDecode(_string(_key('watchStats')) ?? '{}'),
+      );
+    } catch (_) {
+      return const WatchStats();
+    }
+  }
+
   PlaybackPreferences get playbackPreferences {
     if (locked) return const PlaybackPreferences();
     try {
@@ -551,10 +563,19 @@ class LocalStore extends ChangeNotifier {
     });
   }
 
-  Future<void> saveWatch(WatchEntry entry) {
+  Future<void> saveWatch(
+    WatchEntry entry, {
+    double watchSeconds = 0,
+    int completedEpisodes = 0,
+  }) {
     final epoch = _epoch;
     return _queue(() async {
       if (!allowsSource(entry.drama.source) || epoch != _epoch) return;
+      final stats = watchStats.addSample(
+        source: entry.drama.source,
+        seconds: watchSeconds,
+        episodes: completedEpisodes,
+      );
       final previous = _history[entry.drama.id]?.drama;
       final current = previous == null
           ? entry
@@ -581,6 +602,7 @@ class LocalStore extends ChangeNotifier {
       final kept = sorted.take(300).toList();
       await _commit(
         {
+          _key('watchStats'): jsonEncode(stats.toJson()),
           _key('history'): _historyContent(
             kept,
             overrides: {entry.drama.id: row},
@@ -634,7 +656,12 @@ class LocalStore extends ChangeNotifier {
     }
   }
 
-  Future<void> saveMediaWatch(String id, WatchEntry entry) {
+  Future<void> saveMediaWatch(
+    String id,
+    WatchEntry entry, {
+    double watchSeconds = 0,
+    int completedEpisodes = 0,
+  }) {
     final epoch = _epoch;
     return _queue(() async {
       if (!canDownload ||
@@ -648,7 +675,15 @@ class LocalStore extends ChangeNotifier {
       while (data.length > 300) {
         data.remove(data.keys.first);
       }
-      await _commit({_key('mediaHistory'): jsonEncode(data)});
+      final stats = watchStats.addSample(
+        source: entry.drama.source,
+        seconds: watchSeconds,
+        episodes: completedEpisodes,
+      );
+      await _commit({
+        _key('mediaHistory'): jsonEncode(data),
+        _key('watchStats'): jsonEncode(stats.toJson()),
+      });
     });
   }
 
@@ -954,6 +989,9 @@ class LocalStore extends ChangeNotifier {
             'mediaHistory': jsonDecode(
               _string(_key('mediaHistory', profile.id)) ?? '{}',
             ),
+            'watchStats': jsonDecode(
+              _string(_key('watchStats', profile.id)) ?? '{}',
+            ),
             'source': _string(_key('source', profile.id)) ?? '',
             'hideVip': _bool(_key('hideVip', profile.id)) ?? true,
             'playback': jsonDecode(
@@ -1011,6 +1049,7 @@ class LocalStore extends ChangeNotifier {
       for (final row in favorites) {
         Drama.fromJson(Map<String, dynamic>.from(row as Map));
       }
+      WatchStats.validateJson(library['watchStats']);
       final states = library['followStates'] as Map? ?? {};
       final seriesCandidates = library['seriesCandidates'] as List? ?? [];
       final favoriteIds = favorites.map((row) => (row as Map)['id']).toSet();
@@ -1090,6 +1129,9 @@ class LocalStore extends ChangeNotifier {
         ),
         _key('mediaHistory', profile.id): jsonEncode(
           library['mediaHistory'] ?? {},
+        ),
+        _key('watchStats', profile.id): jsonEncode(
+          WatchStats.fromJson(library['watchStats']).toJson(),
         ),
         _key('source', profile.id): library['source'] as String,
         _key('hideVip', profile.id): library['hideVip'] as bool,

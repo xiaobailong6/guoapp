@@ -69,6 +69,8 @@ class PlayerControls extends StatefulWidget {
     this.onPush,
     this.onPictureInPicture,
     this.onRotate,
+    this.onSleepTimer,
+    this.sleepTimerLabel = '',
     this.enhancement,
   });
 
@@ -90,6 +92,8 @@ class PlayerControls extends StatefulWidget {
   /// 垂直布局下也常驻的旋转入口。直播页整屏都是播放器，没有「退出全屏」
   /// 这个中间状态可用来暴露旋转按钮，必须单独给一个入口。
   final VoidCallback? onRotate;
+  final Future<void> Function()? onSleepTimer;
+  final String sleepTimerLabel;
   final double speed;
   final String qualityLabel;
   final VoidCallback onFocusSurface;
@@ -842,6 +846,15 @@ class _PlayerControlsState extends State<PlayerControls> {
           ),
   );
 
+  Widget _sleepTimerTool() => _toolIcon(
+    key: const ValueKey('player-sleep-timer'),
+    tooltip: widget.sleepTimerLabel.isEmpty
+        ? '睡眠定时'
+        : '睡眠定时 · ${widget.sleepTimerLabel}',
+    icon: Icons.bedtime_outlined,
+    onPressed: () => _panel(widget.onSleepTimer!),
+  );
+
   Widget _desktopControlRow({
     required bool fullscreen,
     required bool showEpisodes,
@@ -852,6 +865,7 @@ class _PlayerControlsState extends State<PlayerControls> {
     required double volume,
   }) {
     final tools = [
+      if (widget.onSleepTimer != null) _sleepTimerTool(),
       if (showSpeedQuality) ...[
         _toolText(
           key: const ValueKey('player-speed'),
@@ -914,6 +928,7 @@ class _PlayerControlsState extends State<PlayerControls> {
 
   Widget _mobileControlRow({required bool fullscreen}) {
     final tools = [
+      if (widget.onSleepTimer != null) _sleepTimerTool(),
       _toolText(
         key: const ValueKey('player-speed'),
         tooltip: '倍速',

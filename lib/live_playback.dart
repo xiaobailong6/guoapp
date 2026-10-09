@@ -10,10 +10,13 @@ import 'live_repository.dart';
 import 'live_sources.dart';
 import 'screen_awake.dart';
 import 'video_output_size.dart';
+import 'sleep_timer.dart';
 
 /// 直播播放状态：顶部内嵌播放器与全屏播放共用同一实例，换台不重建引擎。
 class LivePlaybackController extends ChangeNotifier {
-  LivePlaybackController({required this.repository});
+  LivePlaybackController({required this.repository}) {
+    sleepTimer.addListener(_sleepChanged);
+  }
 
   static const maxRetries = 3;
   static const _reconnectDelay = Duration(seconds: 2);
@@ -23,6 +26,29 @@ class LivePlaybackController extends ChangeNotifier {
   static const _stallTimeout = Duration(seconds: 15);
 
   final LiveRepository repository;
+
+  late final sleepTimer = SleepTimerController(
+    onExpire: () => unawaited(pauseForSleep()),
+  );
+  bool _sleepPaused = false;
+
+  void _sleepChanged() {
+    if (!_disposed) notifyListeners();
+  }
+
+  Future<void> pauseForSleep() async {
+    if (_disposed) return;
+    _sleepPaused = true;
+    _generation++;
+    _loading = false;
+    _reconnect?.cancel();
+    _stall?.cancel();
+    _screenAwake.disable();
+    try {
+      await _player?.pause();
+    } catch (_) {}
+    if (!_disposed) notifyListeners();
+  }
 
   final _screenAwake = ScreenAwake();
   final _subscriptions = <StreamSubscription<dynamic>>[];
@@ -149,6 +175,8 @@ class LivePlaybackController extends ChangeNotifier {
 
   Future<void> play(int index, {bool reconnect = false}) async {
     if (_disposed || _channels.isEmpty) return;
+    if (reconnect && _sleepPaused) return;
+    if (!reconnect) _sleepPaused = false;
     final channel = _channels[index.clamp(0, _channels.length - 1)];
     final source = _source;
     if (source == null) return;
@@ -172,6 +200,10 @@ class LivePlaybackController extends ChangeNotifier {
           httpHeaders: plan.headers.isEmpty ? null : plan.headers,
         ),
       );
+      if (_sleepPaused) {
+        await player.pause();
+        return;
+      }
       if (_disposed || token != _generation) return;
       _loading = false;
       _error = null;
@@ -215,6 +247,7 @@ class LivePlaybackController extends ChangeNotifier {
   Future<void> retry() => play(_index, reconnect: true);
 
   void _onError(String message) {
+    if (_sleepPaused) return;
     if (_disposed) return;
     _loading = false;
     _error = message.isEmpty ? '直播中断' : message;
@@ -223,6 +256,7 @@ class LivePlaybackController extends ChangeNotifier {
   }
 
   void _scheduleReconnect() {
+    if (_sleepPaused) return;
     final channel = this.channel;
     // 线路数多于固定重试次数时必须走完整批线路：列表型源的可用线路可能排在
     // 最后一条，只允许推进 3 次就永远够不到它，用户只能手动一路切过去。
@@ -245,6 +279,8 @@ class LivePlaybackController extends ChangeNotifier {
   @override
   void dispose() {
     _disposed = true;
+    sleepTimer.removeListener(_sleepChanged);
+    sleepTimer.dispose();
     _reconnect?.cancel();
     _stall?.cancel();
     for (final subscription in _subscriptions) {

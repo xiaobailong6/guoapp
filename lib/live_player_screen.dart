@@ -15,6 +15,7 @@ import 'player_controls.dart';
 import 'player_interactions.dart';
 import 'television_controls.dart';
 import 'widgets.dart';
+import 'sleep_timer.dart';
 
 /// 直播全屏：复用点播播放器的控件层，保证与点播一致的观感与操作。
 class LivePlayerScreen extends StatefulWidget {
@@ -151,6 +152,24 @@ class _LivePlayerScreenState extends State<LivePlayerScreen> {
     return direction > 0 ? '下一个频道' : '上一个频道';
   }
 
+  Future<void> _showSleepTimer() async {
+    if (_panel) return;
+    _interactions.cancel();
+    setState(() => _panel = true);
+    try {
+      await showSleepTimerSheet(
+        context,
+        controller: _playback.sleepTimer,
+        showFinishEpisode: false,
+        onSelect: (choice) {
+          if (mounted) _playback.sleepTimer.select(choice);
+        },
+      );
+    } finally {
+      if (mounted) setState(() => _panel = false);
+    }
+  }
+
   Future<void> _selectChannel() async {
     final channels = _playback.channels;
     if (channels.isEmpty) return;
@@ -271,6 +290,8 @@ class _LivePlayerScreenState extends State<LivePlayerScreen> {
             onNext: () => _playback.switchBy(1),
             onEpisodes: _selectChannel,
             onSettings: _selectRoute,
+            onSleepTimer: _showSleepTimer,
+            sleepTimerLabel: _playback.sleepTimer.label,
             onBack: _exit,
           )
         : PlayerControls(
@@ -296,6 +317,8 @@ class _LivePlayerScreenState extends State<LivePlayerScreen> {
             onEpisodes: _selectChannel,
             onSpeed: () async => _toast('直播不支持变速'),
             onQuality: _selectRoute,
+            onSleepTimer: _showSleepTimer,
+            sleepTimerLabel: _playback.sleepTimer.label,
             onPrevious: () => _playback.switchBy(-1),
             onNext: () => _playback.switchBy(1),
           );

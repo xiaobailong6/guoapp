@@ -14,6 +14,7 @@ import 'live_store.dart';
 import 'player_route.dart';
 import 'remote_widgets.dart';
 import 'widgets.dart';
+import 'sleep_timer.dart';
 
 class LiveScreen extends StatefulWidget {
   const LiveScreen({
@@ -502,6 +503,22 @@ class _LiveScreenState extends State<LiveScreen> {
               ),
             // 内嵌播放器此前只能靠点视频区域进全屏，没有可见入口；点播详情页
             // 的顶部播放器一直有显式全屏按钮，这里补上以保持一致。
+            IconButton(
+              key: const ValueKey('live-sleep-timer'),
+              visualDensity: VisualDensity.compact,
+              tooltip: _playback.sleepTimer.active
+                  ? '睡眠定时 · ${_playback.sleepTimer.label}'
+                  : '睡眠定时',
+              onPressed: () => showSleepTimerSheet(
+                context,
+                controller: _playback.sleepTimer,
+                showFinishEpisode: false,
+                onSelect: (choice) {
+                  if (mounted) _playback.sleepTimer.select(choice);
+                },
+              ),
+              icon: const Icon(Icons.bedtime_outlined, size: 20),
+            ),
             IconButton(
               visualDensity: VisualDensity.compact,
               tooltip: '全屏与旋转',

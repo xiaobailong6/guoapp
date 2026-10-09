@@ -14,6 +14,7 @@ import 'android_video_surface.dart';
 import 'catalog_sort.dart';
 import 'app_theme.dart';
 import 'core_bridge.dart';
+import 'cross_source_search.dart';
 import 'danmaku_controller.dart';
 import 'danmaku_overlay.dart';
 import 'download_picker.dart';
@@ -39,6 +40,8 @@ import 'lan_controller.dart';
 import 'lan_screen.dart';
 import 'video_enhancement.dart';
 import 'video_output_size.dart';
+import 'sleep_timer.dart';
+import 'watch_session.dart';
 
 class PlayerScreen extends StatefulWidget {
   const PlayerScreen({
@@ -92,6 +95,8 @@ class _PlayerScreenState extends State<PlayerScreen>
   final _videoPaneKey = GlobalKey();
   final _menuRevision = ValueNotifier<int>(0);
   final _screenAwake = ScreenAwake();
+  late final SleepTimerController _sleepTimer;
+  final _watchSession = WatchSession();
   final List<StreamSubscription<dynamic>> _subscriptions = [];
   final _recovery = PlaybackRecovery();
   Object _lanIdentity = Object();
@@ -237,6 +242,8 @@ class _PlayerScreenState extends State<PlayerScreen>
   @override
   void initState() {
     super.initState();
+    _sleepTimer = SleepTimerController(onExpire: _expireSleepTimer)
+      ..addListener(_sleepTimerChanged);
     WidgetsBinding.instance.addObserver(this);
     _index = widget.initialIndex;
     _profileEpoch = widget.handoff?.profileEpoch ?? widget.store.profileEpoch;
@@ -326,12 +333,17 @@ class _PlayerScreenState extends State<PlayerScreen>
           if (duration <= Duration.zero ||
               _player.state.position < duration - const Duration(seconds: 2)) {
             _queueRecovery();
+          } else if (_sleepTimer.consumeFinishEpisode()) {
+            _watchSession.completeEpisode();
+            _expireSleepTimer();
           } else if (_autoAdvance &&
               _foreground &&
               !_panelOpen &&
               _index + 1 < widget.detail.episodes.length) {
+            _watchSession.completeEpisode();
             _play(_index + 1, showControlsOnReady: false);
           } else {
+            _watchSession.completeEpisode();
             _playIntent = false;
             _interactions.cancel();
             unawaited(_player.pause());
@@ -466,6 +478,8 @@ class _PlayerScreenState extends State<PlayerScreen>
   void _accessChanged() {
     if (!_closed &&
         (widget.store.profileEpoch != _profileEpoch || widget.store.locked)) {
+      _sleepTimer.cancel();
+      _watchSession.setPlaying(false);
       _preloader.clear();
       _enhancement.suspend();
       _handoffOwned = false;
@@ -824,7 +838,61 @@ class _PlayerScreenState extends State<PlayerScreen>
 
   static const _coalesceInterval = Duration(milliseconds: 50);
 
+  void _sleepTimerChanged() {
+    if (mounted && !_closed) setState(() {});
+  }
+
+  Future<void> _showSleepTimer() async {
+    if (_closed || _panelOpen) return;
+    _interactions.cancel();
+    setState(() => _panelOpen = true);
+    try {
+      await showSleepTimerSheet(
+        context,
+        controller: _sleepTimer,
+        onSelect: (choice) {
+          if (!_closed && widget.store.profileEpoch == _profileEpoch) {
+            _sleepTimer.select(choice);
+          }
+        },
+      );
+    } finally {
+      if (mounted && !_closed) setState(() => _panelOpen = false);
+    }
+  }
+
+  void _expireSleepTimer() {
+    if (_closed) return;
+    _playIntent = false;
+    _watchSession.setPlaying(false);
+    _interactions.cancel();
+    _preloader.clear();
+    _screenAwake.disable();
+    unawaited(_player.pause().catchError((Object _) {}));
+    unawaited(_saveProgress(flush: true));
+    _syncDanmaku();
+    _notice('睡眠定时已结束，播放已暂停');
+  }
+
+  void _syncWatchSession() {
+    final state = _player.state;
+    _watchSession.setPlaying(
+      !_closed &&
+          _foreground &&
+          _playIntent &&
+          !_loading &&
+          _error == null &&
+          _openedIndex == _index &&
+          state.playing &&
+          !state.buffering &&
+          !state.completed &&
+          widget.store.profileEpoch == _profileEpoch &&
+          !widget.store.locked,
+    );
+  }
+
   void _syncPlayback() {
+    _syncWatchSession();
     _syncDanmaku();
     _syncPreload();
     _syncScreenAwake();
@@ -990,6 +1058,7 @@ class _PlayerScreenState extends State<PlayerScreen>
     if (_openedIndex < 0 || widget.store.profileEpoch != _profileEpoch) {
       return;
     }
+    _syncWatchSession();
     final position = _player.state.position.inMilliseconds / 1000;
     final duration = _player.state.duration.inMilliseconds / 1000;
     if (position < .1) {
@@ -1012,15 +1081,25 @@ class _PlayerScreenState extends State<PlayerScreen>
       duration: duration,
       updatedAt: DateTime.now(),
     );
+    final sample = _watchSession.take();
     try {
       await Future<void>.value();
       if (store.profileEpoch != _profileEpoch) return;
       if (widget.mediaId == null) {
-        await store.saveWatch(entry);
+        await store.saveWatch(
+          entry,
+          watchSeconds: sample.seconds,
+          completedEpisodes: sample.episodes,
+        );
         RecommendationService.current?.observe(entry);
         if (flush) LanController.current?.flush();
       } else {
-        await store.saveMediaWatch(widget.mediaId!, entry);
+        await store.saveMediaWatch(
+          widget.mediaId!,
+          entry,
+          watchSeconds: sample.seconds,
+          completedEpisodes: sample.episodes,
+        );
       }
       _savedProgressKey = progressKey;
       _savedProgressPosition = position;
@@ -1028,6 +1107,7 @@ class _PlayerScreenState extends State<PlayerScreen>
         setState(() => _saveWarning = null);
       }
     } catch (_) {
+      _watchSession.restore(sample);
       if (mounted && !_closed && _saveWarning == null) {
         setState(() => _saveWarning = '观看进度尚未保存，请检查存储空间后重试。');
       }
@@ -1054,6 +1134,7 @@ class _PlayerScreenState extends State<PlayerScreen>
         index >= widget.detail.episodes.length) {
       return;
     }
+    _watchSession.setPlaying(false);
     _interactions.cancel();
     if (widget.handoff != null &&
         handoffPlan == null &&
@@ -1112,6 +1193,7 @@ class _PlayerScreenState extends State<PlayerScreen>
         await _saveProgress(flush: true);
         await _enhancement.beforeMedia();
         if (_closed || ticket != _generation) return;
+        if (recoveryAction == null) _watchSession.beginEpisode();
         _openedIndex = -1;
         await _player.stop();
         final previous = _plan;
@@ -1192,6 +1274,7 @@ class _PlayerScreenState extends State<PlayerScreen>
         if (_closed || ticket != _generation) {
           return;
         }
+        if (!_playIntent || !_foreground) await _player.pause();
         _openedIndex = index;
         _enhancement.mediaReady();
         _attachLanPlayback();
@@ -1202,6 +1285,7 @@ class _PlayerScreenState extends State<PlayerScreen>
             _loading = false;
           });
           _danmaku.setPlan(plan);
+          _syncWatchSession();
           _syncDanmaku();
           _acknowledgeHandoff();
           _menuRevision.value++;
@@ -1581,6 +1665,9 @@ class _PlayerScreenState extends State<PlayerScreen>
 
   @override
   void dispose() {
+    _watchSession.setPlaying(false);
+    _sleepTimer.removeListener(_sleepTimerChanged);
+    _sleepTimer.dispose();
     _closed = true;
     _screenAwake.disable();
     _routeAnimation?.removeStatusListener(_onRouteAnimationStatus);
@@ -1805,6 +1892,8 @@ class _PlayerScreenState extends State<PlayerScreen>
                 : null,
             onEpisodes: () => _televisionEpisodes(context),
             onSettings: () => _televisionSettings(context),
+            onSleepTimer: _showSleepTimer,
+            sleepTimerLabel: _sleepTimer.label,
             onBack: _back,
           )
         : PlayerControls(
@@ -1831,6 +1920,8 @@ class _PlayerScreenState extends State<PlayerScreen>
             onEpisodes: () => _openPanel(PlayerMenuSection.episodes),
             onSpeed: () => _openPanel(PlayerMenuSection.speed),
             onQuality: () => _openPanel(PlayerMenuSection.quality),
+            onSleepTimer: _showSleepTimer,
+            sleepTimerLabel: _sleepTimer.label,
             onDanmaku: widget.detail.drama.source == 'hongguo'
                 ? _toggleDanmaku
                 : null,
@@ -1907,19 +1998,35 @@ class _PlayerScreenState extends State<PlayerScreen>
                     message: _error!,
                     onRetry: () => _retry(),
                     action: _localFailure ? '重试本地播放' : '重试播放',
-                    secondaryAction: _localFailure && widget.allowOnlineFallback
-                        ? TextButton.icon(
-                            onPressed: _switchOnline,
-                            icon: const Icon(Icons.cloud_outlined),
-                            label: const Text('改为在线播放'),
-                          )
-                        : !_localFailure &&
-                              !widget.localOnly &&
-                              widget.repository.supportsSourceManagement
-                        ? SourceDiagnosticsButton(
-                            repository: widget.repository,
-                            store: widget.store,
-                            drama: widget.detail.drama,
+                    secondaryAction: widget.mediaId == null
+                        ? Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              TextButton.icon(
+                                onPressed: () => showCrossSourceSearch(
+                                  context,
+                                  drama: widget.detail.drama,
+                                  repository: widget.repository,
+                                  store: widget.store,
+                                ),
+                                icon: const Icon(Icons.travel_explore_rounded),
+                                label: const Text('其他站源'),
+                              ),
+                              if (_localFailure && widget.allowOnlineFallback)
+                                TextButton.icon(
+                                  onPressed: _switchOnline,
+                                  icon: const Icon(Icons.cloud_outlined),
+                                  label: const Text('改为在线播放'),
+                                )
+                              else if (!_localFailure &&
+                                  !widget.localOnly &&
+                                  widget.repository.supportsSourceManagement)
+                                SourceDiagnosticsButton(
+                                  repository: widget.repository,
+                                  store: widget.store,
+                                  drama: widget.detail.drama,
+                                ),
+                            ],
                           )
                         : null,
                     icon: Icons.play_disabled_rounded,

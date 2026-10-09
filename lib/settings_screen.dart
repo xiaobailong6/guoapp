@@ -18,6 +18,8 @@ import 'widgets.dart';
 import 'resource_settings_screen.dart';
 import 'lan_screen.dart';
 import 'library_transfer_actions.dart';
+import 'watch_stats.dart';
+import 'follow_state.dart';
 
 String storageSize(int bytes) {
   if (bytes < 0) return '暂不可用';
@@ -53,6 +55,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final padding = MediaQuery.paddingOf(context).bottom;
     return viewPadding > padding ? viewPadding : padding;
   }
+
+  Future<void> _showWatchStats() => WatchStatsPanel.show(
+    context,
+    stats: widget.store.watchStats,
+    watchingCount: widget.store.favorites
+        .where(
+          (drama) =>
+              widget.store.following(drama.id)?.status == FollowStatus.watching,
+        )
+        .length,
+  );
 
   Future<void> _chooseTheme() async {
     if (AppLayout.isTelevision(context)) {
@@ -293,6 +306,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
   >
   _televisionEntries() => [
     (
+      id: 'watch-stats',
+      icon: Icons.bar_chart_rounded,
+      title: '观看统计',
+      subtitle: '实际观看时长、看完集数与最近 7 天',
+      onPressed: _showWatchStats,
+    ),
+    (
       id: 'lan',
       icon: Icons.devices_rounded,
       title: '设备互联',
@@ -499,6 +519,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ),
                         ),
                       ),
+                    ListTile(
+                      key: const ValueKey('watch-stats-setting'),
+                      leading: const Icon(Icons.bar_chart_rounded),
+                      title: const Text('观看统计'),
+                      subtitle: const Text('实际观看时长、看完集数与最近 7 天'),
+                      trailing: const Icon(Icons.chevron_right_rounded),
+                      onTap: _showWatchStats,
+                    ),
                     ListTile(
                       key: const ValueKey('theme-setting'),
                       leading: const Icon(Icons.palette_outlined),

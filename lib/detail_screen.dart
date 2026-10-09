@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 
 import 'app_layout.dart';
 import 'core_bridge.dart';
+import 'cross_source_search.dart';
 import 'download_picker.dart';
 import 'downloads_screen.dart';
 import 'local_store.dart';
@@ -347,6 +348,18 @@ class _DetailScreenState extends State<DetailScreen> {
               tooltip: '更新剧集信息',
               onPressed: allowed ? _load : null,
             ),
+            IconButton(
+              tooltip: '在其他站源中搜索',
+              onPressed: allowed
+                  ? () => showCrossSourceSearch(
+                      context,
+                      drama: widget.drama,
+                      repository: widget.repository,
+                      store: widget.store,
+                    )
+                  : null,
+              icon: const Icon(Icons.travel_explore_rounded),
+            ),
           ],
         ),
         body: SafeArea(
@@ -556,7 +569,22 @@ class _DetailScreenState extends State<DetailScreen> {
       title: _error != null ? '剧集信息暂时不可用' : '暂时没有可播放的集数',
       message: _error ?? '可以更新剧集信息后重试。',
       onRetry: _load,
-      secondaryAction: _sourceDiagnostics,
+      secondaryAction: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          TextButton.icon(
+            onPressed: () => showCrossSourceSearch(
+              context,
+              drama: widget.drama,
+              repository: widget.repository,
+              store: widget.store,
+            ),
+            icon: const Icon(Icons.travel_explore_rounded),
+            label: const Text('其他站源'),
+          ),
+          if (_sourceDiagnostics != null) _sourceDiagnostics!,
+        ],
+      ),
     );
   }
 

@@ -26,6 +26,8 @@ class TelevisionControls extends StatefulWidget {
     required this.onEpisodes,
     required this.onSettings,
     required this.onBack,
+    this.onSleepTimer,
+    this.sleepTimerLabel = '',
     this.enhancement,
   });
   final Player player;
@@ -39,6 +41,8 @@ class TelevisionControls extends StatefulWidget {
   final Future<void> Function() onEpisodes;
   final Future<void> Function() onSettings;
   final VoidCallback onBack;
+  final Future<void> Function()? onSleepTimer;
+  final String sleepTimerLabel;
   final VideoEnhancementController? enhancement;
 
   @override
@@ -461,6 +465,16 @@ class _TelevisionControlsState extends State<TelevisionControls> {
                                     },
                                   );
                                 },
+                              ),
+                            if (widget.onSleepTimer != null)
+                              RemoteButton(
+                                key: const ValueKey('tv-sleep-timer'),
+                                label: widget.sleepTimerLabel.isEmpty
+                                    ? '睡眠定时'
+                                    : '定时 · ${widget.sleepTimerLabel}',
+                                icon: Icons.bedtime_outlined,
+                                onPressed: () =>
+                                    _openPanel(widget.onSleepTimer!, _settings),
                               ),
                             RemoteButton(
                               key: const ValueKey('tv-settings'),
