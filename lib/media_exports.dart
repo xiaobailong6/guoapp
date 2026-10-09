@@ -167,3 +167,89 @@ extension MediaExportOperations on MediaLibrary {
     sources: {selected.drama.source},
   );
 }
+
+extension MediaFolderExportOperations on MediaLibrary {
+  Future<({int exported, int skipped})> exportJobsToDirectory(
+    List<DownloadJob> selected,
+    String destination,
+  ) => _task('准备导出到文件夹', (temporary) async {
+    final jobs = selected.where((job) => job.completed).toList()
+      ..sort((a, b) => a.episode.number.compareTo(b.episode.number));
+    if (jobs.isEmpty) throw AppFailure('没有已下载的分集');
+    final show = Directory(
+      path.join(destination, _safeName(jobs.first.drama.title)),
+    );
+    await show.create(recursive: true);
+    var exported = 0;
+    var skipped = 0;
+    for (var i = 0; i < jobs.length; i++) {
+      _check();
+      final job = jobs[i];
+      status = '导出第 ${job.episode.number} 集';
+      notifyListeners();
+      final plan = await repository.localPlayback(job.drama, job.episode);
+      _check();
+      if (plan == null || !plan.local) {
+        throw AppFailure('第 ${job.episode.number} 集尚未完整下载');
+      }
+      final sourceExtension = path.extension(plan.url).toLowerCase();
+      final playlist = sourceExtension == '.m3u8';
+      final extension = playlist
+          ? '.mkv'
+          : sourceExtension.isEmpty
+          ? '.mp4'
+          : sourceExtension;
+      final target = File(
+        path.join(
+          show.path,
+          '第 ${job.episode.number.toString().padLeft(2, '0')} 集$extension',
+        ),
+      );
+      if (await target.exists()) {
+        skipped++;
+        progress = (i + 1) / jobs.length;
+        notifyListeners();
+        continue;
+      }
+      if (playlist) {
+        final intermediate = path.join(temporary.path, 'export-$i.mkv');
+        final input = <String>[
+          if (plan.decryptionKey.isNotEmpty) ...[
+            '-decryption_key',
+            plan.decryptionKey,
+          ],
+          '-allowed_extensions',
+          'ALL',
+          '-extension_picky',
+          '0',
+        ];
+        await executor.run([
+          ...input,
+          '-i',
+          plan.url,
+          '-map',
+          '0:v:0',
+          '-map',
+          '0:a:0?',
+          '-c',
+          'copy',
+          '-map_metadata',
+          '-1',
+          '-avoid_negative_ts',
+          'make_zero',
+          intermediate,
+        ]);
+        _check();
+        await File(intermediate).copy(target.path);
+        await File(intermediate).delete();
+      } else {
+        await File(plan.url).copy(target.path);
+      }
+      exported++;
+      progress = (i + 1) / jobs.length;
+      notifyListeners();
+    }
+    status = '导出完成';
+    return (exported: exported, skipped: skipped);
+  }, sources: selected.map((job) => job.drama.source).toSet());
+}

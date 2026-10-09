@@ -2,6 +2,7 @@ import 'player_route.dart';
 import 'dart:async';
 import 'dart:math' as math;
 
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -11,6 +12,7 @@ import 'core_bridge.dart';
 import 'download_collections.dart';
 import 'local_store.dart';
 import 'local_media_screen.dart';
+import 'media_library.dart';
 import 'models.dart';
 import 'player_screen.dart';
 import 'remote_widgets.dart';
@@ -502,6 +504,8 @@ class _DownloadsScreenState extends State<DownloadsScreen> {
           onSelected: (value) {
             if (value == 'update') {
               _update(collection.drama);
+            } else if (value == 'export') {
+              unawaited(_exportCollection(collection));
             } else if (value == 'select') {
               _select(collection.jobs);
             } else {
@@ -514,6 +518,7 @@ class _DownloadsScreenState extends State<DownloadsScreen> {
               enabled: !_updater.busy,
               child: const Text('更新本剧 · 补充新增与缺失'),
             ),
+            const PopupMenuItem(value: 'export', child: Text('导出到文件夹…')),
             const PopupMenuItem(value: 'select', child: Text('选择本合集')),
             const PopupMenuItem(value: 'pause', child: Text('暂停本合集')),
             const PopupMenuItem(value: 'resume', child: Text('继续 / 重试本合集')),
@@ -525,6 +530,86 @@ class _DownloadsScreenState extends State<DownloadsScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> _exportCollection(DownloadCollection collection) async {
+    final library = MediaLibrary.current;
+    if (library == null) {
+      _message('本地媒体尚未就绪，请稍候再试');
+      return;
+    }
+    final jobs = collection.jobs.where((job) => job.completed).toList()
+      ..sort((a, b) => a.episode.number.compareTo(b.episode.number));
+    if (jobs.isEmpty) {
+      _message('本剧还没有已下载的分集');
+      return;
+    }
+    final directory = await FilePicker.platform.getDirectoryPath(
+      dialogTitle: '选择导出位置',
+    );
+    if (directory == null || !mounted) return;
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('导出到文件夹'),
+        content: Text(
+          '将把《${collection.drama.title}》已下载的 ${jobs.length} 集复制到：\n\n$directory\n\n原始下载不受影响；目标已有同名文件时跳过。',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('取消'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('开始导出'),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !mounted) return;
+    unawaited(
+      showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => AnimatedBuilder(
+          animation: library,
+          builder: (context, _) => AlertDialog(
+            title: const Text('正在导出'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                LinearProgressIndicator(
+                  value: library.progress > 0 ? library.progress : null,
+                ),
+                const SizedBox(height: 12),
+                Text(library.status),
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => unawaited(library.cancel()),
+                child: const Text('停止'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+    try {
+      final result = await library.exportJobsToDirectory(jobs, directory);
+      if (mounted) {
+        _message(
+          '已导出 ${result.exported} 集'
+          '${result.skipped > 0 ? '，跳过 ${result.skipped} 集' : ''}',
+        );
+      }
+    } catch (error) {
+      if (mounted) _message(error.toString());
+    } finally {
+      if (mounted) Navigator.of(context, rootNavigator: true).pop();
+    }
   }
 
   Widget _episode(DownloadJob job) => Padding(
