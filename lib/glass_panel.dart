@@ -140,8 +140,8 @@ double _glassMenuWidth<T>(
   final hasLeading = entries.any((entry) => entry.leading != null);
   final hasTrailing = entries.any((entry) => entry.trailing != null);
   final measured =
-      textWidth + (hasLeading ? 30 : 0) + (hasTrailing ? 28 : 0) + 36;
-  if (measured < 118) return 118;
+      textWidth * 1.12 + (hasLeading ? 30 : 0) + (hasTrailing ? 28 : 0) + 40;
+  if (measured < 122) return 122;
   return measured > maxWidth ? maxWidth : measured;
 }
 

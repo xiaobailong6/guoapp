@@ -1471,30 +1471,45 @@ class _HomeScreenState extends State<HomeScreen> {
                   destinations: destinations,
                 ),
         );
-        if (!television && !_selectionMode) {
-          if (!glass || _tab != _tabDiscover || _showRecommendations) {
-            return scaffold;
+        if (!television) {
+          Widget content = scaffold;
+          if (glass && _tab == _tabDiscover && !_showRecommendations) {
+            content = Stack(
+              children: [
+                Positioned.fill(child: scaffold),
+                if (!_selectionMode)
+                  Positioned(
+                    right: 20,
+                    bottom:
+                        GlassBottomNavigation.contentInset +
+                        MediaQuery.paddingOf(context).bottom,
+                    child: GlassBackToTopButton(
+                      visible: _backToTopVisible,
+                      onPressed: _scrollToTop,
+                    ),
+                  ),
+              ],
+            );
           }
-          return Stack(
-            children: [
-              Positioned.fill(child: scaffold),
-              Positioned(
-                right: 20,
-                bottom:
-                    GlassBottomNavigation.contentInset +
-                    MediaQuery.paddingOf(context).bottom,
-                child: GlassBackToTopButton(
-                  visible: _backToTopVisible,
-                  onPressed: _scrollToTop,
-                ),
-              ),
-            ],
+          return PopScope(
+            canPop: !_selectionMode,
+            onPopInvokedWithResult: (didPop, result) {
+              if (!didPop) _televisionBack();
+            },
+            child: CallbackShortcuts(
+              bindings: {
+                const SingleActivator(LogicalKeyboardKey.escape): () =>
+                    Navigator.of(context).maybePop(),
+                const SingleActivator(LogicalKeyboardKey.goBack): () =>
+                    Navigator.of(context).maybePop(),
+              },
+              child: content,
+            ),
           );
         }
         return PopScope(
           canPop:
-              !_selectionMode &&
-              (!television || _tab == _tabDiscover && _search.text.isEmpty),
+              !_selectionMode && _tab == _tabDiscover && _search.text.isEmpty,
           onPopInvokedWithResult: (didPop, result) {
             if (!didPop) _televisionBack();
           },
