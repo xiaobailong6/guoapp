@@ -1119,8 +1119,7 @@ class LocalStore extends ChangeNotifier {
           ? data['displayMode'] as String
           : 'auto',
       'themeMode': data['themeMode'] as String? ?? themeMode,
-      'interfaceStyle':
-          {'standard', 'glass'}.contains(data['interfaceStyle'])
+      'interfaceStyle': {'standard', 'glass'}.contains(data['interfaceStyle'])
           ? data['interfaceStyle'] as String
           : 'standard',
       'autoExport': data['autoExport'] == true,

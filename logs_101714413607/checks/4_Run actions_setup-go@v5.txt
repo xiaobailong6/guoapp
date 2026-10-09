@@ -1,87 +1,87 @@
-﻿2026-10-09T04:02:34.5897961Z ##[group]Run actions/setup-go@v5
-2026-10-09T04:02:34.5898281Z with:
-2026-10-09T04:02:34.5898498Z   go-version-file: native/go.mod
-2026-10-09T04:02:34.5900362Z   cache-dependency-path: native/go.sum
-2026-10-09T04:02:34.5900708Z   check-latest: false
-2026-10-09T04:02:34.5903286Z   token: ***
-2026-10-09T04:02:34.5903500Z   cache: true
-2026-10-09T04:02:34.5903691Z env:
-2026-10-09T04:02:34.5903922Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-09T04:02:34.5904263Z   GOSUMDB: sum.golang.org
-2026-10-09T04:02:34.5904518Z ##[endgroup]
-2026-10-09T04:02:34.7207373Z Setup go version spec 1.24.1
-2026-10-09T04:02:34.7218950Z Attempting to download 1.24.1...
-2026-10-09T04:02:34.7332872Z (node:2328) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
-2026-10-09T04:02:34.7333964Z (Use `node --trace-deprecation ...` to show where the warning was created)
-2026-10-09T04:02:35.2842072Z matching 1.24.1...
-2026-10-09T04:02:35.2907213Z Acquiring 1.24.1 from https://github.com/actions/go-versions/releases/download/1.24.1-13667719799/go-1.24.1-linux-x64.tar.gz
-2026-10-09T04:02:35.8269360Z Extracting Go...
-2026-10-09T04:02:35.8393976Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/e2f94575-7213-43a3-87c7-5b23a2d9303f -f /home/runner/work/_temp/5242f079-ea81-4cae-89fe-44864c544446
-2026-10-09T04:02:37.6502844Z Successfully extracted go to /home/runner/work/_temp/e2f94575-7213-43a3-87c7-5b23a2d9303f
-2026-10-09T04:02:37.6503731Z Adding to the cache ...
-2026-10-09T04:02:43.6659672Z Successfully cached go to /opt/hostedtoolcache/go/1.24.1/x64
-2026-10-09T04:02:43.6663086Z Added go to the path
-2026-10-09T04:02:43.6665648Z Successfully set up Go version 1.24.1
-2026-10-09T04:02:43.6880614Z [command]/opt/hostedtoolcache/go/1.24.1/x64/bin/go env GOMODCACHE
-2026-10-09T04:02:43.6927326Z [command]/opt/hostedtoolcache/go/1.24.1/x64/bin/go env GOCACHE
-2026-10-09T04:02:43.6963571Z /home/runner/go/pkg/mod
-2026-10-09T04:02:43.6979249Z /home/runner/.cache/go-build
-2026-10-09T04:02:43.8095767Z Cache hit for: setup-go-Linux-x64-ubuntu24-go-1.24.1-08fd0a1e03bd5f8f8408fc5c86ca527da129df47f98b180c77a3204f069032d3
-2026-10-09T04:02:43.8205038Z (node:2328) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
-2026-10-09T04:02:44.9339620Z Received 134217728 of 266581795 (50.3%), 126.7 MBs/sec
-2026-10-09T04:02:45.5037974Z Received 266581795 of 266581795 (100.0%), 160.9 MBs/sec
-2026-10-09T04:02:45.5039325Z Cache Size: ~254 MB (266581795 B)
-2026-10-09T04:02:45.5076898Z [command]/usr/bin/tar -xf /home/runner/work/_temp/7fe97b27-a324-4aa8-bbb7-56772187a46a/cache.tzst -P -C /home/runner/work/guoapp/guoapp --use-compress-program unzstd
-2026-10-09T04:02:46.4505850Z Cache restored successfully
-2026-10-09T04:02:46.4661776Z Cache restored from key: setup-go-Linux-x64-ubuntu24-go-1.24.1-08fd0a1e03bd5f8f8408fc5c86ca527da129df47f98b180c77a3204f069032d3
-2026-10-09T04:02:46.4683822Z go version go1.24.1 linux/amd64
-2026-10-09T04:02:46.4684042Z 
-2026-10-09T04:02:47.1513478Z ##[group]go env
-2026-10-09T04:02:47.1513818Z AR='ar'
-2026-10-09T04:02:47.1514269Z CC='gcc'
-2026-10-09T04:02:47.1515059Z CGO_CFLAGS='-O2 -g'
-2026-10-09T04:02:47.1519472Z CGO_CPPFLAGS=''
-2026-10-09T04:02:47.1519858Z CGO_CXXFLAGS='-O2 -g'
-2026-10-09T04:02:47.1520276Z CGO_ENABLED='1'
-2026-10-09T04:02:47.1520632Z CGO_FFLAGS='-O2 -g'
-2026-10-09T04:02:47.1521001Z CGO_LDFLAGS='-O2 -g'
-2026-10-09T04:02:47.1521376Z CXX='g++'
-2026-10-09T04:02:47.1521712Z GCCGO='gccgo'
-2026-10-09T04:02:47.1522059Z GO111MODULE=''
-2026-10-09T04:02:47.1522391Z GOAMD64='v1'
-2026-10-09T04:02:47.1522732Z GOARCH='amd64'
-2026-10-09T04:02:47.1523077Z GOAUTH='netrc'
-2026-10-09T04:02:47.1523393Z GOBIN=''
-2026-10-09T04:02:47.1523748Z GOCACHE='/home/runner/.cache/go-build'
-2026-10-09T04:02:47.1524228Z GOCACHEPROG=''
-2026-10-09T04:02:47.1524580Z GODEBUG=''
-2026-10-09T04:02:47.1525001Z GOENV='/home/runner/.config/go/env'
-2026-10-09T04:02:47.1525828Z GOEXE=''
-2026-10-09T04:02:47.1526182Z GOEXPERIMENT=''
-2026-10-09T04:02:47.1526568Z GOFIPS140='off'
-2026-10-09T04:02:47.1526935Z GOFLAGS=''
-2026-10-09T04:02:47.1528123Z GOGCCFLAGS='-fPIC -m64 -pthread -Wl,--no-gc-sections -fmessage-length=0 -ffile-prefix-map=/tmp/go-build1613229523=/tmp/go-build -gno-record-gcc-switches'
-2026-10-09T04:02:47.1529680Z GOHOSTARCH='amd64'
-2026-10-09T04:02:47.1530084Z GOHOSTOS='linux'
-2026-10-09T04:02:47.1530463Z GOINSECURE=''
-2026-10-09T04:02:47.1530826Z GOMOD='/dev/null'
-2026-10-09T04:02:47.1531224Z GOMODCACHE='/home/runner/go/pkg/mod'
-2026-10-09T04:02:47.1531703Z GONOPROXY=''
-2026-10-09T04:02:47.1532113Z GONOSUMDB=''
-2026-10-09T04:02:47.1532470Z GOOS='linux'
-2026-10-09T04:02:47.1532847Z GOPATH='/home/runner/go'
-2026-10-09T04:02:47.1533384Z GOPRIVATE=''
-2026-10-09T04:02:47.1538601Z GOPROXY='https://proxy.golang.org,direct'
-2026-10-09T04:02:47.1540674Z GOROOT='/opt/hostedtoolcache/go/1.24.1/x64'
-2026-10-09T04:02:47.1541818Z GOSUMDB='sum.golang.org'
-2026-10-09T04:02:47.1542693Z GOTELEMETRY='local'
-2026-10-09T04:02:47.1543515Z GOTELEMETRYDIR='/home/runner/.config/go/telemetry'
-2026-10-09T04:02:47.1544379Z GOTMPDIR=''
-2026-10-09T04:02:47.1544987Z GOTOOLCHAIN='auto'
-2026-10-09T04:02:47.1545847Z GOTOOLDIR='/opt/hostedtoolcache/go/1.24.1/x64/pkg/tool/linux_amd64'
-2026-10-09T04:02:47.1546778Z GOVCS=''
-2026-10-09T04:02:47.1547392Z GOVERSION='go1.24.1'
-2026-10-09T04:02:47.1548025Z GOWORK=''
-2026-10-09T04:02:47.1548643Z PKG_CONFIG='pkg-config'
-2026-10-09T04:02:47.1549433Z 
-2026-10-09T04:02:47.1550227Z ##[endgroup]
+﻿2026-10-09T08:21:51.0293207Z ##[group]Run actions/setup-go@v5
+2026-10-09T08:21:51.0293587Z with:
+2026-10-09T08:21:51.0293852Z   go-version-file: native/go.mod
+2026-10-09T08:21:51.0294209Z   cache-dependency-path: native/go.sum
+2026-10-09T08:21:51.0294565Z   check-latest: false
+2026-10-09T08:21:51.0297132Z   token: ***
+2026-10-09T08:21:51.0297412Z   cache: true
+2026-10-09T08:21:51.0297666Z env:
+2026-10-09T08:21:51.0297948Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-09T08:21:51.0298315Z   GOSUMDB: sum.golang.org
+2026-10-09T08:21:51.0298623Z ##[endgroup]
+2026-10-09T08:21:51.1600434Z Setup go version spec 1.24.1
+2026-10-09T08:21:51.1610745Z Attempting to download 1.24.1...
+2026-10-09T08:21:51.1724392Z (node:2319) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-09T08:21:51.1725621Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-09T08:21:51.7137191Z matching 1.24.1...
+2026-10-09T08:21:51.7230450Z Acquiring 1.24.1 from https://github.com/actions/go-versions/releases/download/1.24.1-13667719799/go-1.24.1-linux-x64.tar.gz
+2026-10-09T08:21:52.2035959Z Extracting Go...
+2026-10-09T08:21:52.2172960Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/ed9f9b8b-77e3-4970-862f-b5442626b6c0 -f /home/runner/work/_temp/00c8dd6f-c3b7-4e87-8c26-e510804bf249
+2026-10-09T08:21:54.0098395Z Successfully extracted go to /home/runner/work/_temp/ed9f9b8b-77e3-4970-862f-b5442626b6c0
+2026-10-09T08:21:54.0099037Z Adding to the cache ...
+2026-10-09T08:21:59.2783205Z Successfully cached go to /opt/hostedtoolcache/go/1.24.1/x64
+2026-10-09T08:21:59.2783970Z Added go to the path
+2026-10-09T08:21:59.2785552Z Successfully set up Go version 1.24.1
+2026-10-09T08:21:59.3001329Z [command]/opt/hostedtoolcache/go/1.24.1/x64/bin/go env GOMODCACHE
+2026-10-09T08:21:59.3043888Z [command]/opt/hostedtoolcache/go/1.24.1/x64/bin/go env GOCACHE
+2026-10-09T08:21:59.3085803Z /home/runner/go/pkg/mod
+2026-10-09T08:21:59.3100408Z /home/runner/.cache/go-build
+2026-10-09T08:21:59.4033739Z Cache hit for: setup-go-Linux-x64-ubuntu24-go-1.24.1-08fd0a1e03bd5f8f8408fc5c86ca527da129df47f98b180c77a3204f069032d3
+2026-10-09T08:21:59.4148956Z (node:2319) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-09T08:22:00.4465802Z Received 234881024 of 266581795 (88.1%), 223.6 MBs/sec
+2026-10-09T08:22:00.5681213Z Received 266581795 of 266581795 (100.0%), 226.2 MBs/sec
+2026-10-09T08:22:00.5682584Z Cache Size: ~254 MB (266581795 B)
+2026-10-09T08:22:00.5755981Z [command]/usr/bin/tar -xf /home/runner/work/_temp/d50a240c-68a0-4ccb-a852-d838068ac200/cache.tzst -P -C /home/runner/work/guoapp/guoapp --use-compress-program unzstd
+2026-10-09T08:22:01.6581901Z Cache restored successfully
+2026-10-09T08:22:01.6707737Z Cache restored from key: setup-go-Linux-x64-ubuntu24-go-1.24.1-08fd0a1e03bd5f8f8408fc5c86ca527da129df47f98b180c77a3204f069032d3
+2026-10-09T08:22:01.6733045Z go version go1.24.1 linux/amd64
+2026-10-09T08:22:01.6733301Z 
+2026-10-09T08:22:01.6733605Z ##[group]go env
+2026-10-09T08:22:01.6887768Z AR='ar'
+2026-10-09T08:22:01.6888300Z CC='gcc'
+2026-10-09T08:22:01.6888785Z CGO_CFLAGS='-O2 -g'
+2026-10-09T08:22:01.6889643Z CGO_CPPFLAGS=''
+2026-10-09T08:22:01.6890150Z CGO_CXXFLAGS='-O2 -g'
+2026-10-09T08:22:01.6890686Z CGO_ENABLED='1'
+2026-10-09T08:22:01.6891135Z CGO_FFLAGS='-O2 -g'
+2026-10-09T08:22:01.6892383Z CGO_LDFLAGS='-O2 -g'
+2026-10-09T08:22:01.6892848Z CXX='g++'
+2026-10-09T08:22:01.6893194Z GCCGO='gccgo'
+2026-10-09T08:22:01.6893420Z GO111MODULE=''
+2026-10-09T08:22:01.6893642Z GOAMD64='v1'
+2026-10-09T08:22:01.6894072Z GOARCH='amd64'
+2026-10-09T08:22:01.6894556Z GOAUTH='netrc'
+2026-10-09T08:22:01.6894995Z GOBIN=''
+2026-10-09T08:22:01.6895489Z GOCACHE='/home/runner/.cache/go-build'
+2026-10-09T08:22:01.6896005Z GOCACHEPROG=''
+2026-10-09T08:22:01.6896461Z GODEBUG=''
+2026-10-09T08:22:01.6897071Z GOENV='/home/runner/.config/go/env'
+2026-10-09T08:22:01.6897668Z GOEXE=''
+2026-10-09T08:22:01.6897878Z GOEXPERIMENT=''
+2026-10-09T08:22:01.6898093Z GOFIPS140='off'
+2026-10-09T08:22:01.6898294Z GOFLAGS=''
+2026-10-09T08:22:01.6898984Z GOGCCFLAGS='-fPIC -m64 -pthread -Wl,--no-gc-sections -fmessage-length=0 -ffile-prefix-map=/tmp/go-build2465155681=/tmp/go-build -gno-record-gcc-switches'
+2026-10-09T08:22:01.6899701Z GOHOSTARCH='amd64'
+2026-10-09T08:22:01.6899919Z GOHOSTOS='linux'
+2026-10-09T08:22:01.6900127Z GOINSECURE=''
+2026-10-09T08:22:01.6900331Z GOMOD='/dev/null'
+2026-10-09T08:22:01.6900573Z GOMODCACHE='/home/runner/go/pkg/mod'
+2026-10-09T08:22:01.6900861Z GONOPROXY=''
+2026-10-09T08:22:01.6901061Z GONOSUMDB=''
+2026-10-09T08:22:01.6901482Z GOOS='linux'
+2026-10-09T08:22:01.6902091Z GOPATH='/home/runner/go'
+2026-10-09T08:22:01.6902529Z GOPRIVATE=''
+2026-10-09T08:22:01.6903104Z GOPROXY='https://proxy.golang.org,direct'
+2026-10-09T08:22:01.6903680Z GOROOT='/opt/hostedtoolcache/go/1.24.1/x64'
+2026-10-09T08:22:01.6904225Z GOSUMDB='sum.golang.org'
+2026-10-09T08:22:01.6904729Z GOTELEMETRY='local'
+2026-10-09T08:22:01.6905286Z GOTELEMETRYDIR='/home/runner/.config/go/telemetry'
+2026-10-09T08:22:01.6905802Z GOTMPDIR=''
+2026-10-09T08:22:01.6906257Z GOTOOLCHAIN='auto'
+2026-10-09T08:22:01.6906907Z GOTOOLDIR='/opt/hostedtoolcache/go/1.24.1/x64/pkg/tool/linux_amd64'
+2026-10-09T08:22:01.6907514Z GOVCS=''
+2026-10-09T08:22:01.6907970Z GOVERSION='go1.24.1'
+2026-10-09T08:22:01.6908428Z GOWORK=''
+2026-10-09T08:22:01.6908888Z PKG_CONFIG='pkg-config'
+2026-10-09T08:22:01.6909205Z 
+2026-10-09T08:22:01.6909905Z ##[endgroup]

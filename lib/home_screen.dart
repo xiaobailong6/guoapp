@@ -1379,7 +1379,8 @@ class _HomeScreenState extends State<HomeScreen> {
               Positioned.fill(child: scaffold),
               Positioned(
                 right: 20,
-                bottom: GlassBottomNavigation.contentInset +
+                bottom:
+                    GlassBottomNavigation.contentInset +
                     MediaQuery.paddingOf(context).bottom,
                 child: GlassBackToTopButton(
                   visible: _backToTopVisible,
