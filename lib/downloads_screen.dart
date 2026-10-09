@@ -544,9 +544,7 @@ class _DownloadsScreenState extends State<DownloadsScreen> {
       _message('本剧还没有已下载的分集');
       return;
     }
-    final directory = await FilePicker.platform.getDirectoryPath(
-      dialogTitle: '选择导出位置',
-    );
+    final directory = await FilePicker.getDirectoryPath(dialogTitle: '选择导出位置');
     if (directory == null || !mounted) return;
     final confirmed = await showDialog<bool>(
       context: context,
