@@ -37,7 +37,7 @@ env:
 jobs:
   checks:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - run: python3 -m unittest discover -s scripts -p 'test_*.py'
@@ -53,7 +53,7 @@ jobs:
       - run: flutter pub get --enforce-lockfile
       - run: dart format --language-version 3.12 --output=none --set-exit-if-changed lib test integration_test test_driver
       - run: dart analyze lib test integration_test test_driver
-      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg
       - run: flutter test --dart-define=DISABLE_REMOTE_IMAGES=true
         continue-on-error: ${{ github.event.inputs.strict_tests != 'true' }}
       - run: flutter test --dart-define=DISABLE_REMOTE_IMAGES=true --dart-define=ALL_SOURCES=true

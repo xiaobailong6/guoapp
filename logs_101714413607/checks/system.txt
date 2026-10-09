@@ -1,8 +1,8 @@
-2026-10-09T10:57:47.1040000Z Evaluating checks.if
-2026-10-09T10:57:47.1040000Z Evaluating: success()
-2026-10-09T10:57:47.1040000Z Result: true
-2026-10-09T10:57:47.1080000Z Requested labels: ubuntu-latest
-2026-10-09T10:57:47.1080000Z Job defined at: xiaobailong6/guoapp/.github/workflows/build.yml@refs/heads/main
-2026-10-09T10:57:47.1080000Z Waiting for a runner to pick up this job...
-2026-10-09T10:57:47.1210000Z Job is about to start running on the hosted runner: GitHub Actions 1000003451
-2026-10-09T10:57:47.1200000Z Job is waiting for a hosted runner to come online.
+2026-10-09T13:14:22.6620000Z Evaluating checks.if
+2026-10-09T13:14:22.6620000Z Evaluating: success()
+2026-10-09T13:14:22.6620000Z Result: true
+2026-10-09T13:14:22.7400000Z Requested labels: ubuntu-latest
+2026-10-09T13:14:22.7400000Z Job defined at: xiaobailong6/guoapp/.github/workflows/build.yml@refs/heads/main
+2026-10-09T13:14:22.7400000Z Waiting for a runner to pick up this job...
+2026-10-09T13:14:22.8880000Z Job is waiting for a hosted runner to come online.
+2026-10-09T13:14:22.8890000Z Job is about to start running on the hosted runner: GitHub Actions 1000003464
