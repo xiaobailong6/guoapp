@@ -1,0 +1,16 @@
+﻿2026-10-09T10:58:33.1530503Z ##[group]Run dart analyze lib test integration_test test_driver
+2026-10-09T10:58:33.1531283Z [36;1mdart analyze lib test integration_test test_driver[0m
+2026-10-09T10:58:33.1595686Z shell: /usr/bin/bash -e {0}
+2026-10-09T10:58:33.1596120Z env:
+2026-10-09T10:58:33.1596613Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-09T10:58:33.1597034Z   GOSUMDB: sum.golang.org
+2026-10-09T10:58:33.1597588Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
+2026-10-09T10:58:33.1598172Z   PUB_CACHE: /home/runner/.pub-cache
+2026-10-09T10:58:33.1598590Z ##[endgroup]
+2026-10-09T10:58:33.3139480Z Analyzing lib, test, integration_test, test_driver...
+2026-10-09T10:58:52.4135019Z 
+2026-10-09T10:58:52.4136685Z   error - lib/home_screen.dart:404:13 - Undefined name 'showUpdate'. Try correcting the name to one that is defined, or defining the name. - undefined_identifier
+2026-10-09T10:58:52.4138809Z   error - lib/home_screen.dart:1154:60 - The getter 'gamepadButtonA' isn't defined for the type 'LogicalKeyboardKey'. Try importing the library that defines 'gamepadButtonA', correcting the name to the name of an existing getter, or defining a getter or field named 'gamepadButtonA'. - undefined_getter
+2026-10-09T10:58:52.4141182Z 
+2026-10-09T10:58:52.4141568Z 2 issues found.
+2026-10-09T10:58:52.4993746Z ##[error]Process completed with exit code 3.

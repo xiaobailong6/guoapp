@@ -395,6 +395,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> _openMoreMenu(double maxWidth) async {
     final anchor = _anchorRect(_moreMenuKey);
     if (anchor == null) return;
+    final showUpdate =
+        _tab == _tabDiscover && !_showRecommendations && maxWidth < 400;
     final action = await showGlassMenu<String>(
       context: context,
       anchor: anchor,
@@ -1151,7 +1153,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     event.logicalKey ==
                                         LogicalKeyboardKey.enter ||
                                     event.logicalKey ==
-                                        LogicalKeyboardKey.gamepadButtonA)) {
+                                        LogicalKeyboardKey.numpadEnter ||
+                                    event.logicalKey ==
+                                        LogicalKeyboardKey.gameButtonA)) {
                               _openSourceMenu();
                               return KeyEventResult.handled;
                             }

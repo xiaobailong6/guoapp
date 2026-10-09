@@ -1,13 +1,10 @@
-﻿2026-10-09T08:22:18.3313030Z ##[group]Run dart format --language-version 3.12 --output=none --set-exit-if-changed lib test integration_test test_driver
-2026-10-09T08:22:18.3314190Z [36;1mdart format --language-version 3.12 --output=none --set-exit-if-changed lib test integration_test test_driver[0m
-2026-10-09T08:22:18.3377600Z shell: /usr/bin/bash -e {0}
-2026-10-09T08:22:18.3377895Z env:
-2026-10-09T08:22:18.3378159Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-09T08:22:18.3378498Z   GOSUMDB: sum.golang.org
-2026-10-09T08:22:18.3378912Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
-2026-10-09T08:22:18.3379355Z   PUB_CACHE: /home/runner/.pub-cache
-2026-10-09T08:22:18.3379641Z ##[endgroup]
-2026-10-09T08:22:18.6624660Z Changed lib/home_screen.dart
-2026-10-09T08:22:18.8351333Z Changed lib/local_store.dart
-2026-10-09T08:22:19.3590384Z Formatted 171 files (2 changed) in 0.99 seconds.
-2026-10-09T08:22:19.3660588Z ##[error]Process completed with exit code 1.
+﻿2026-10-09T10:58:31.9772100Z ##[group]Run dart format --language-version 3.12 --output=none --set-exit-if-changed lib test integration_test test_driver
+2026-10-09T10:58:31.9773818Z [36;1mdart format --language-version 3.12 --output=none --set-exit-if-changed lib test integration_test test_driver[0m
+2026-10-09T10:58:31.9841919Z shell: /usr/bin/bash -e {0}
+2026-10-09T10:58:31.9842193Z env:
+2026-10-09T10:58:31.9842462Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-09T10:58:31.9842792Z   GOSUMDB: sum.golang.org
+2026-10-09T10:58:31.9843156Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
+2026-10-09T10:58:31.9843548Z   PUB_CACHE: /home/runner/.pub-cache
+2026-10-09T10:58:31.9843822Z ##[endgroup]
+2026-10-09T10:58:33.0756354Z Formatted 171 files (0 changed) in 1.06 seconds.
