@@ -33,6 +33,7 @@ class LocalSnapshot {
     'activeProfile',
     'displayMode',
     'themeMode',
+    'interfaceStyle',
     'autoExport',
     'exportPosters',
     'forceLogin',

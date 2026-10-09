@@ -272,6 +272,13 @@ class LocalStore extends ChangeNotifier {
     return {'light', 'dark', 'system'}.contains(value) ? value! : 'system';
   }
 
+  String get interfaceStyle {
+    final value = _configurationError == null
+        ? _string('interfaceStyle')
+        : null;
+    return {'standard', 'glass'}.contains(value) ? value! : 'standard';
+  }
+
   bool get autoExport => !locked && (_bool('autoExport') ?? false);
 
   /// 绿色开关：默认开启，成人点播与成人直播一律不展示。
@@ -471,6 +478,11 @@ class LocalStore extends ChangeNotifier {
   Future<void> setThemeMode(String value) =>
       {'light', 'dark', 'system'}.contains(value)
       ? _setting('themeMode', value)
+      : Future.value();
+
+  Future<void> setInterfaceStyle(String value) =>
+      {'standard', 'glass'}.contains(value)
+      ? _setting('interfaceStyle', value)
       : Future.value();
   Future<void> setPlaybackPreferences(PlaybackPreferences value) {
     PlaybackPreferences.fromJson(value.toJson());
@@ -969,6 +981,7 @@ class LocalStore extends ChangeNotifier {
       'profiles': _profiles.map((profile) => profile.toJson()).toList(),
       'displayMode': displayMode,
       'themeMode': themeMode,
+      'interfaceStyle': interfaceStyle,
       'autoExport': autoExport,
       'greenMode': greenMode,
       'fullMode': fullMode,
@@ -1028,6 +1041,10 @@ class LocalStore extends ChangeNotifier {
     if (data.containsKey('themeMode') &&
         !{'light', 'dark', 'system'}.contains(data['themeMode'])) {
       throw const FormatException('备份主题设置无效');
+    }
+    if (data.containsKey('interfaceStyle') &&
+        !{'standard', 'glass'}.contains(data['interfaceStyle'])) {
+      throw const FormatException('备份界面风格无效');
     }
     if (data.containsKey('forceLogin') && data['forceLogin'] is! bool) {
       throw const FormatException('备份登录设置无效');
@@ -1102,6 +1119,10 @@ class LocalStore extends ChangeNotifier {
           ? data['displayMode'] as String
           : 'auto',
       'themeMode': data['themeMode'] as String? ?? themeMode,
+      'interfaceStyle':
+          {'standard', 'glass'}.contains(data['interfaceStyle'])
+          ? data['interfaceStyle'] as String
+          : 'standard',
       'autoExport': data['autoExport'] == true,
       'greenMode': data['greenMode'] is bool ? data['greenMode'] as bool : true,
       'fullMode': data['fullMode'] == true,

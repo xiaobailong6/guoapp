@@ -122,6 +122,40 @@ class _SettingsScreenState extends State<SettingsScreen> {
     }
   }
 
+  Future<void> _chooseInterfaceStyle() async {
+    final selected = await showDialog<String>(
+      context: context,
+      builder: (context) => SimpleDialog(
+        title: const Text('界面风格'),
+        children: [
+          RadioGroup<String>(
+            groupValue: widget.store.interfaceStyle,
+            onChanged: (value) => Navigator.pop(context, value),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                for (final style in ['standard', 'glass'])
+                  RadioListTile<String>(
+                    value: style,
+                    title: Text(style == 'glass' ? '玻璃' : '标准'),
+                    subtitle: Text(
+                      style == 'glass' ? '悬浮玻璃底栏与回到顶部按钮' : '经典底部导航',
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+    if (selected != null && mounted) {
+      await saveUserChange(
+        context,
+        () => widget.store.setInterfaceStyle(selected),
+      );
+    }
+  }
+
   Future<void> _backup(bool restore) async {
     setState(() {
       _busy = true;
@@ -534,6 +568,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       subtitle: Text(AppTheme.label(widget.store.themeMode)),
                       trailing: const Icon(Icons.chevron_right_rounded),
                       onTap: _chooseTheme,
+                    ),
+                    ListTile(
+                      key: const ValueKey('interface-style-setting'),
+                      leading: const Icon(Icons.blur_on_outlined),
+                      title: const Text('界面风格'),
+                      subtitle: Text(
+                        widget.store.interfaceStyle == 'glass'
+                            ? '玻璃 · 悬浮玻璃底栏与回到顶部按钮'
+                            : '标准 · 经典底部导航',
+                      ),
+                      trailing: const Icon(Icons.chevron_right_rounded),
+                      onTap: _chooseInterfaceStyle,
                     ),
                     if (widget.store.fullMode)
                       ListTile(

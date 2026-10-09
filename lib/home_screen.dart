@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 
 import 'app_layout.dart';
 import 'app_bottom_navigation.dart';
+import 'glass_panel.dart';
 import 'core_bridge.dart';
 import 'catalog_filters.dart';
 import 'catalog_browser.dart';
@@ -86,6 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
   bool _selectionMode = false;
   bool _showRecommendations = false;
   bool _catalogLoadScheduled = false;
+  bool _backToTopVisible = false;
   final _filtersKey = GlobalKey<RemoteRowState>();
   final _gridKey = GlobalKey<RemoteGridState>();
   final _navKey = GlobalKey<RemoteListState>();
@@ -472,6 +474,16 @@ class _HomeScreenState extends State<HomeScreen> {
         viewport: _scroll.position.viewportDimension,
       );
     }
+    if (mounted &&
+        _scroll.hasClients &&
+        widget.store.interfaceStyle == 'glass' &&
+        _tab == _tabDiscover &&
+        !AppLayout.isTelevision(context)) {
+      final visible = _scroll.position.pixels > 320;
+      if (visible != _backToTopVisible) {
+        setState(() => _backToTopVisible = visible);
+      }
+    }
     if (!mounted ||
         _showRecommendations ||
         !_hasMore ||
@@ -506,6 +518,15 @@ class _HomeScreenState extends State<HomeScreen> {
       !_loading &&
       !_loadingMore &&
       _scroll.hasClients;
+
+  void _scrollToTop() {
+    if (!_scroll.hasClients) return;
+    _scroll.animateTo(
+      0,
+      duration: const Duration(milliseconds: 320),
+      curve: Curves.easeOutCubic,
+    );
+  }
 
   void _schedulePrefetch() {
     if (!mounted || !_scroll.hasClients) return;
@@ -945,6 +966,36 @@ class _HomeScreenState extends State<HomeScreen> {
           if (widget.store.canDownload)
             (_tabDownloads, Icons.download_rounded, '下载'),
         ];
+        final glass =
+            widget.store.interfaceStyle == 'glass' && !desktop && !television;
+        final destinations = [
+          NavigationDestination(
+            icon: Icon(Icons.home_outlined),
+            selectedIcon: Icon(Icons.home_rounded),
+            label: '主页',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.play_circle_outline_rounded),
+            selectedIcon: Icon(Icons.play_circle_rounded),
+            label: '在看',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.bookmark_border_rounded),
+            selectedIcon: Icon(Icons.bookmark_rounded),
+            label: '追剧',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.live_tv_outlined),
+            selectedIcon: Icon(Icons.live_tv_rounded),
+            label: '直播',
+          ),
+          if (widget.store.canDownload)
+            NavigationDestination(
+              icon: Icon(Icons.download_outlined),
+              selectedIcon: Icon(Icons.download_rounded),
+              label: '下载',
+            ),
+        ];
         final scaffold = Scaffold(
           appBar: AppBar(
             toolbarHeight: television ? 64 : null,
@@ -1162,6 +1213,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           body: SafeArea(
             top: false,
+            bottom: !glass || _selectionMode,
             child: Row(
               children: [
                 if (television) ...[
@@ -1290,44 +1342,53 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
+          extendBody: glass && !_selectionMode,
           bottomNavigationBar: desktop || television
               ? null
               : _selectionMode
               ? _selectionBar()
+              : glass
+              ? SafeArea(
+                  top: false,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(
+                      GlassBottomNavigation.sideMargin,
+                      0,
+                      GlassBottomNavigation.sideMargin,
+                      GlassBottomNavigation.bottomMargin,
+                    ),
+                    child: GlassBottomNavigation(
+                      selectedIndex: _tab,
+                      onDestinationSelected: _changeTab,
+                      destinations: destinations,
+                    ),
+                  ),
+                )
               : AppBottomNavigation(
                   selectedIndex: _tab,
                   onDestinationSelected: _changeTab,
-                  destinations: [
-                    NavigationDestination(
-                      icon: Icon(Icons.home_outlined),
-                      selectedIcon: Icon(Icons.home_rounded),
-                      label: '主页',
-                    ),
-                    NavigationDestination(
-                      icon: Icon(Icons.play_circle_outline_rounded),
-                      selectedIcon: Icon(Icons.play_circle_rounded),
-                      label: '在看',
-                    ),
-                    NavigationDestination(
-                      icon: Icon(Icons.bookmark_border_rounded),
-                      selectedIcon: Icon(Icons.bookmark_rounded),
-                      label: '追剧',
-                    ),
-                    NavigationDestination(
-                      icon: Icon(Icons.live_tv_outlined),
-                      selectedIcon: Icon(Icons.live_tv_rounded),
-                      label: '直播',
-                    ),
-                    if (widget.store.canDownload)
-                      NavigationDestination(
-                        icon: Icon(Icons.download_outlined),
-                        selectedIcon: Icon(Icons.download_rounded),
-                        label: '下载',
-                      ),
-                  ],
+                  destinations: destinations,
                 ),
         );
-        if (!television && !_selectionMode) return scaffold;
+        if (!television && !_selectionMode) {
+          if (!glass || _tab != _tabDiscover || _showRecommendations) {
+            return scaffold;
+          }
+          return Stack(
+            children: [
+              Positioned.fill(child: scaffold),
+              Positioned(
+                right: 20,
+                bottom: GlassBottomNavigation.contentInset +
+                    MediaQuery.paddingOf(context).bottom,
+                child: GlassBackToTopButton(
+                  visible: _backToTopVisible,
+                  onPressed: _scrollToTop,
+                ),
+              ),
+            ],
+          );
+        }
         return PopScope(
           canPop:
               !_selectionMode &&
