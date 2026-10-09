@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import 'app_layout.dart';
+import 'glass_panel.dart';
 import 'models.dart';
 import 'remote_widgets.dart';
 
@@ -112,12 +113,15 @@ class _CatalogFiltersState extends State<CatalogFilters> {
                           Padding(
                             key: _anchors.putIfAbsent(entry.id, GlobalKey.new),
                             padding: const EdgeInsets.only(right: 6),
-                            child: ChoiceChip(
-                              key: ValueKey('category-${entry.id}'),
-                              label: Text(entry.name),
-                              selected: _isSelected(entry.id),
-                              showCheckmark: false,
-                              onSelected: (_) => widget.onCategory(entry.id),
+                            child: PressScale(
+                              scale: .94,
+                              child: ChoiceChip(
+                                key: ValueKey('category-${entry.id}'),
+                                label: Text(entry.name),
+                                selected: _isSelected(entry.id),
+                                showCheckmark: false,
+                                onSelected: (_) => widget.onCategory(entry.id),
+                              ),
                             ),
                           ),
                       ],

@@ -139,7 +139,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     value: style,
                     title: Text(style == 'glass' ? '玻璃' : '标准'),
                     subtitle: Text(
-                      style == 'glass' ? '悬浮玻璃底栏与回到顶部按钮' : '经典底部导航',
+                      style == 'glass' ? '悬浮玻璃底栏、菜单与回到顶部按钮' : '经典底部导航',
                     ),
                   ),
               ],
@@ -575,7 +575,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       title: const Text('界面风格'),
                       subtitle: Text(
                         widget.store.interfaceStyle == 'glass'
-                            ? '玻璃 · 悬浮玻璃底栏与回到顶部按钮'
+                            ? '玻璃 · 悬浮玻璃底栏、菜单与回到顶部按钮'
                             : '标准 · 经典底部导航',
                       ),
                       trailing: const Icon(Icons.chevron_right_rounded),

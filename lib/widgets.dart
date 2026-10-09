@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 
 import 'core_bridge.dart';
 import 'app_layout.dart';
+import 'glass_panel.dart';
 import 'models.dart';
 import 'remote_widgets.dart';
 
@@ -515,12 +516,15 @@ class DramaTile extends StatelessWidget {
       button: true,
       selected: selected,
       label: '${drama.title}，${drama.episodes}集',
-      child: InkWell(
-        onTap: onTap,
-        onLongPress: onLongPress ?? onMore,
-        onSecondaryTap: onMore,
-        borderRadius: BorderRadius.circular(14),
-        child: content,
+      child: PressScale(
+        scale: .97,
+        child: InkWell(
+          onTap: onTap,
+          onLongPress: onLongPress ?? onMore,
+          onSecondaryTap: onMore,
+          borderRadius: BorderRadius.circular(14),
+          child: content,
+        ),
       ),
     );
   }

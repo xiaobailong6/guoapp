@@ -92,6 +92,8 @@ class _HomeScreenState extends State<HomeScreen> {
   final _gridKey = GlobalKey<RemoteGridState>();
   final _navKey = GlobalKey<RemoteListState>();
   final _appBarFocus = FocusNode(debugLabel: 'tv-appbar');
+  final _sourceMenuKey = GlobalKey(debugLabel: 'source-menu-anchor');
+  final _moreMenuKey = GlobalKey(debugLabel: 'more-menu-anchor');
   final _selectionFocus = FocusNode(debugLabel: 'tv-selection');
   late final LiveRepository _liveRepository = LiveRepository();
   late final LiveStore _liveStore = LiveStore(
@@ -349,6 +351,131 @@ class _HomeScreenState extends State<HomeScreen> {
     await _loadCategories();
     if (mounted && (!_onlineSearch || _submittedQuery.isEmpty)) {
       await _load(useCache: true);
+    }
+  }
+
+  Rect? _anchorRect(GlobalKey key) {
+    final anchorContext = key.currentContext;
+    final object = anchorContext?.findRenderObject();
+    if (anchorContext == null || object is! RenderBox) return null;
+    final overlay = Overlay.of(anchorContext).context.findRenderObject();
+    if (overlay is! RenderBox) return null;
+    return MatrixUtils.transformRect(
+      object.getTransformTo(overlay),
+      Offset.zero & object.size,
+    );
+  }
+
+  Future<void> _openSourceMenu() async {
+    if (_sourceGroups.length <= 1) return;
+    final anchor = _anchorRect(_sourceMenuKey);
+    if (anchor == null) return;
+    final group = await showGlassMenu<SourceGroup>(
+      context: context,
+      anchor: anchor,
+      autofocusSelected: AppLayout.isTelevision(context),
+      entries: [
+        for (final entry in _sourceGroups)
+          GlassMenuEntry(
+            value: entry,
+            label: Text(entry.name),
+            selected: entry.id == _group.id,
+            trailing: entry.id == _group.id
+                ? Icon(
+                    Icons.check_rounded,
+                    color: Theme.of(context).colorScheme.primary,
+                  )
+                : null,
+          ),
+      ],
+    );
+    if (group != null && mounted) _changeGroup(group);
+  }
+
+  Future<void> _openMoreMenu(double maxWidth) async {
+    final anchor = _anchorRect(_moreMenuKey);
+    if (anchor == null) return;
+    final action = await showGlassMenu<String>(
+      context: context,
+      anchor: anchor,
+      alignRight: true,
+      autofocusSelected: AppLayout.isTelevision(context),
+      entries: [
+        if (showUpdate)
+          GlassMenuEntry(
+            value: 'update',
+            label: const Text('更新剧库'),
+            leading: const Icon(Icons.cloud_sync_outlined),
+            enabled:
+                widget.store.sources.isNotEmpty &&
+                !_group.sources.any((source) => _updater.busy(source.id)),
+          ),
+        if (widget.repository.supportsSourceManagement)
+          const GlassMenuEntry(
+            value: 'sources',
+            label: Text('站源管理'),
+            leading: Icon(Icons.travel_explore_rounded),
+          ),
+        const GlassMenuEntry(
+          value: 'users',
+          label: Text('用户管理'),
+          leading: Icon(Icons.manage_accounts_outlined),
+        ),
+        const GlassMenuEntry(
+          value: 'settings',
+          label: Text('设置与备份'),
+          leading: Icon(Icons.settings_outlined),
+        ),
+        const GlassMenuEntry(
+          value: 'display',
+          label: Text('界面模式'),
+          leading: Icon(Icons.monitor_rounded),
+        ),
+        GlassMenuEntry(
+          value: 'about',
+          label: Text('关于${appEditionName(widget.store.fullMode)}'),
+          leading: const Icon(Icons.info_outline_rounded),
+        ),
+      ],
+    );
+    _handleMoreAction(action);
+  }
+
+  void _handleMoreAction(String? action) {
+    if (action == null || !mounted) return;
+    if (action == 'update') {
+      _refreshCatalog();
+    } else if (action == 'sources') {
+      _manageSources();
+    } else if (action == 'users') {
+      Navigator.push(
+        context,
+        MaterialPageRoute<void>(
+          builder: (_) => ProfilesScreen(store: widget.store),
+        ),
+      );
+    } else if (action == 'settings') {
+      Navigator.push(
+        context,
+        MaterialPageRoute<void>(
+          builder: (_) => SettingsScreen(
+            repository: widget.repository,
+            store: widget.store,
+            onLibraryChanged: (sources) {
+              for (final source in sources) {
+                _catalogUpdated(source);
+              }
+            },
+          ),
+        ),
+      );
+    } else if (action == 'display') {
+      _chooseDisplayMode();
+    } else if (action == 'about') {
+      showDialog<void>(
+        context: context,
+        builder: (_) => _AboutDialog(store: widget.store),
+      );
     }
   }
 
@@ -1007,41 +1134,59 @@ class _HomeScreenState extends State<HomeScreen> {
                     overflow: TextOverflow.ellipsis,
                   )
                 : _tab == _tabDiscover
-                ? PopupMenuButton<SourceGroup>(
+                ? KeyedSubtree(
                     key: const ValueKey('source-switch'),
-                    tooltip: '切换站源',
-                    enabled: _sourceGroups.length > 1,
-                    onSelected: _changeGroup,
-                    itemBuilder: (_) => [
-                      for (final group in _sourceGroups)
-                        PopupMenuItem(
-                          value: group,
-                          child: Row(
-                            children: [
-                              Expanded(child: Text(group.name)),
-                              if (group.id == _group.id)
-                                const Icon(Icons.check_rounded, size: 20),
-                            ],
-                          ),
-                        ),
-                    ],
-                    child: SizedBox(
-                      height: 48,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Flexible(
-                            child: Text(
-                              _group.name,
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w800,
+                    child: Semantics(
+                      button: true,
+                      enabled: _sourceGroups.length > 1,
+                      label: '切换站源',
+                      child: PressScale(
+                        scale: .97,
+                        child: Focus(
+                          skipTraversal: true,
+                          onKeyEvent: (node, event) {
+                            if (event is KeyDownEvent &&
+                                (event.logicalKey ==
+                                        LogicalKeyboardKey.select ||
+                                    event.logicalKey ==
+                                        LogicalKeyboardKey.enter ||
+                                    event.logicalKey ==
+                                        LogicalKeyboardKey.gamepadButtonA)) {
+                              _openSourceMenu();
+                              return KeyEventResult.handled;
+                            }
+                            return KeyEventResult.ignored;
+                          },
+                          child: InkWell(
+                            key: _sourceMenuKey,
+                            borderRadius: BorderRadius.circular(12),
+                            overlayColor: WidgetStateProperty.all(
+                              Colors.transparent,
+                            ),
+                            onTap: _sourceGroups.length > 1
+                                ? _openSourceMenu
+                                : null,
+                            child: SizedBox(
+                              height: 48,
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Flexible(
+                                    child: Text(
+                                      _group.name,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.w800,
+                                      ),
+                                    ),
+                                  ),
+                                  if (_sourceGroups.length > 1)
+                                    const Icon(Icons.expand_more_rounded),
+                                ],
                               ),
                             ),
                           ),
-                          if (_sourceGroups.length > 1)
-                            const Icon(Icons.expand_more_rounded),
-                        ],
+                        ),
                       ),
                     ),
                   )
@@ -1139,73 +1284,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         ? null
                         : _refreshCatalog,
                   ),
-                PopupMenuButton<String>(
+                IconButton(
+                  key: _moreMenuKey,
                   tooltip: '更多',
-                  onSelected: (value) {
-                    if (value == 'update') {
-                      _refreshCatalog();
-                    } else if (value == 'sources') {
-                      _manageSources();
-                    } else if (value == 'settings') {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute<void>(
-                          builder: (_) => SettingsScreen(
-                            repository: widget.repository,
-                            store: widget.store,
-                            onLibraryChanged: (sources) {
-                              for (final source in sources) {
-                                _catalogUpdated(source);
-                              }
-                            },
-                          ),
-                        ),
-                      );
-                    } else if (value == 'users') {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute<void>(
-                          builder: (_) => ProfilesScreen(store: widget.store),
-                        ),
-                      );
-                    } else if (value == 'display') {
-                      _chooseDisplayMode();
-                    } else if (value == 'about') {
-                      showDialog<void>(
-                        context: context,
-                        builder: (_) => _AboutDialog(store: widget.store),
-                      );
-                    }
-                  },
-                  itemBuilder: (_) => [
-                    if (_tab == _tabDiscover &&
-                        !_showRecommendations &&
-                        constraints.maxWidth < 400)
-                      PopupMenuItem(
-                        value: 'update',
-                        enabled:
-                            widget.store.sources.isNotEmpty &&
-                            !_group.sources.any(
-                              (source) => _updater.busy(source.id),
-                            ),
-                        child: const Text('更新剧库'),
-                      ),
-                    if (widget.repository.supportsSourceManagement)
-                      const PopupMenuItem(
-                        value: 'sources',
-                        child: Text('站源管理'),
-                      ),
-                    const PopupMenuItem(value: 'users', child: Text('用户管理')),
-                    const PopupMenuItem(
-                      value: 'settings',
-                      child: Text('设置与备份'),
-                    ),
-                    const PopupMenuItem(value: 'display', child: Text('界面模式')),
-                    PopupMenuItem(
-                      value: 'about',
-                      child: Text('关于${appEditionName(widget.store.fullMode)}'),
-                    ),
-                  ],
+                  onPressed: () => _openMoreMenu(constraints.maxWidth),
+                  icon: const Icon(Icons.more_vert_rounded),
                 ),
               ],
               const SizedBox(width: 8),
@@ -1287,57 +1370,71 @@ class _HomeScreenState extends State<HomeScreen> {
                   const VerticalDivider(width: 1, thickness: 1),
                 ],
                 Expanded(
-                  child: _tab == _tabDiscover
-                      ? widget.store.sources.isEmpty
-                            ? const StatusPanel(
-                                title: '暂无可用站源',
-                                message: '请联系管理员为当前用户开放站源。',
-                              )
-                            : _catalog(selectionInBody: desktop || television)
-                      : _tab == _tabFeed
-                      ? FeedsScreen(
-                          key: const ValueKey('feed-tab'),
-                          repository: widget.repository,
-                          store: widget.store,
-                          onExitLeft: television
-                              ? () => _navKey.currentState?.focusCurrent()
-                              : null,
-                        )
-                      : _tab == _tabLive
-                      ? LiveScreen(
-                          key: const ValueKey('live-tab'),
-                          repository: _liveRepository,
-                          store: _liveStore,
-                          greenMode: widget.store.greenMode,
-                          onExitLeft: television
-                              ? () => _navKey.currentState?.focusCurrent()
-                              : null,
-                        )
-                      : _tab == _tabDownloads
-                      ? DownloadsScreen(
-                          repository: widget.repository,
-                          store: widget.store,
-                          embedded: true,
-                        )
-                      : SavedLibrary(
-                          key: ValueKey('saved-tab-$_tab'),
-                          repository: widget.repository,
-                          store: widget.store,
-                          history: false,
-                          historyToggle: true,
-                          remoteAutofocus: television,
-                          onExitLeft: television
-                              ? () => _navKey.currentState?.focusCurrent()
-                              : null,
-                          onOpen: _openDrama,
-                          onContinue: (drama) =>
-                              _openDrama(drama, resume: true),
-                          onDownload:
-                              widget.repository.supportsDownloads &&
-                                  widget.store.canDownload
-                              ? (drama) => _openDrama(drama, download: true)
-                              : null,
-                        ),
+                  child: AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 240),
+                    switchInCurve: Curves.easeOutCubic,
+                    switchOutCurve: Curves.easeInCubic,
+                    transitionBuilder: (child, animation) =>
+                        FadeTransition(opacity: animation, child: child),
+                    child: KeyedSubtree(
+                      key: ValueKey(
+                        'home-tab-$_tab${_showRecommendations ? '-rec' : ''}',
+                      ),
+                      child: _tab == _tabDiscover
+                          ? widget.store.sources.isEmpty
+                                ? const StatusPanel(
+                                    title: '暂无可用站源',
+                                    message: '请联系管理员为当前用户开放站源。',
+                                  )
+                                : _catalog(
+                                    selectionInBody: desktop || television,
+                                  )
+                          : _tab == _tabFeed
+                          ? FeedsScreen(
+                              key: const ValueKey('feed-tab'),
+                              repository: widget.repository,
+                              store: widget.store,
+                              onExitLeft: television
+                                  ? () => _navKey.currentState?.focusCurrent()
+                                  : null,
+                            )
+                          : _tab == _tabLive
+                          ? LiveScreen(
+                              key: const ValueKey('live-tab'),
+                              repository: _liveRepository,
+                              store: _liveStore,
+                              greenMode: widget.store.greenMode,
+                              onExitLeft: television
+                                  ? () => _navKey.currentState?.focusCurrent()
+                                  : null,
+                            )
+                          : _tab == _tabDownloads
+                          ? DownloadsScreen(
+                              repository: widget.repository,
+                              store: widget.store,
+                              embedded: true,
+                            )
+                          : SavedLibrary(
+                              key: ValueKey('saved-tab-$_tab'),
+                              repository: widget.repository,
+                              store: widget.store,
+                              history: false,
+                              historyToggle: true,
+                              remoteAutofocus: television,
+                              onExitLeft: television
+                                  ? () => _navKey.currentState?.focusCurrent()
+                                  : null,
+                              onOpen: _openDrama,
+                              onContinue: (drama) =>
+                                  _openDrama(drama, resume: true),
+                              onDownload:
+                                  widget.repository.supportsDownloads &&
+                                      widget.store.canDownload
+                                  ? (drama) => _openDrama(drama, download: true)
+                                  : null,
+                            ),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -1780,49 +1877,68 @@ class _AboutDialogState extends State<_AboutDialog> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return AlertDialog(
-      icon: const Icon(
-        Icons.play_circle_filled_rounded,
-        size: 48,
-        color: Color(0xFFFF765F),
-      ),
-      title: Text(appEditionName(widget.store.fullMode)),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          if (allSourcesEnabled)
-            TextButton(
-              key: const ValueKey('about-version'),
-              autofocus: AppLayout.isTelevision(context),
-              style: TextButton.styleFrom(
-                minimumSize: const Size.fromHeight(44),
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      child: GlassPanel(
+        borderRadius: const BorderRadius.all(Radius.circular(28)),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(24, 26, 24, 14),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const Center(
+                child: Icon(
+                  Icons.play_circle_filled_rounded,
+                  size: 48,
+                  color: Color(0xFFFF765F),
+                ),
               ),
-              onPressed: _tapVersion,
-              child: Text(
-                AppLayout.versionOf(context),
-                style: theme.textTheme.titleSmall,
+              const SizedBox(height: 10),
+              Center(
+                child: Text(
+                  appEditionName(widget.store.fullMode),
+                  style: theme.textTheme.titleLarge,
+                ),
               ),
-            )
-          else
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              child: Text(
-                AppLayout.versionOf(context),
-                textAlign: TextAlign.center,
-                style: theme.textTheme.titleSmall,
+              const SizedBox(height: 8),
+              if (allSourcesEnabled)
+                TextButton(
+                  key: const ValueKey('about-version'),
+                  autofocus: AppLayout.isTelevision(context),
+                  style: TextButton.styleFrom(
+                    minimumSize: const Size.fromHeight(44),
+                  ),
+                  onPressed: _tapVersion,
+                  child: Text(
+                    AppLayout.versionOf(context),
+                    style: theme.textTheme.titleSmall,
+                  ),
+                )
+              else
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  child: Text(
+                    AppLayout.versionOf(context),
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.titleSmall,
+                  ),
+                ),
+              const SizedBox(height: 8),
+              const Text('独立运行，打开即可浏览和播放。观看记录与追剧收藏保存在当前设备。'),
+              const SizedBox(height: 12),
+              Align(
+                alignment: AlignmentDirectional.centerEnd,
+                child: TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('关闭'),
+                ),
               ),
-            ),
-          const SizedBox(height: 8),
-          const Text('独立运行，打开即可浏览和播放。观看记录与追剧收藏保存在当前设备。'),
-        ],
-      ),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.pop(context),
-          child: const Text('关闭'),
+            ],
+          ),
         ),
-      ],
+      ),
     );
   }
 }

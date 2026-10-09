@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class GlassPanel extends StatelessWidget {
   const GlassPanel({
@@ -51,6 +52,296 @@ class GlassPanel extends StatelessWidget {
   }
 }
 
+class PressScale extends StatefulWidget {
+  const PressScale({
+    super.key,
+    required this.child,
+    this.scale = .96,
+    this.duration = const Duration(milliseconds: 140),
+  });
+
+  final Widget child;
+  final double scale;
+  final Duration duration;
+
+  @override
+  State<PressScale> createState() => _PressScaleState();
+}
+
+class _PressScaleState extends State<PressScale> {
+  bool _pressed = false;
+
+  void _update(bool pressed) {
+    if (_pressed == pressed) return;
+    setState(() => _pressed = pressed);
+  }
+
+  @override
+  Widget build(BuildContext context) => Listener(
+    onPointerDown: (_) => _update(true),
+    onPointerUp: (_) => _update(false),
+    onPointerCancel: (_) => _update(false),
+    child: AnimatedScale(
+      scale: _pressed ? widget.scale : 1,
+      duration: widget.duration,
+      curve: Curves.easeOutCubic,
+      child: widget.child,
+    ),
+  );
+}
+
+class GlassMenuEntry<T> {
+  const GlassMenuEntry({
+    required this.value,
+    required this.label,
+    this.leading,
+    this.trailing,
+    this.selected = false,
+    this.enabled = true,
+  });
+
+  final T value;
+  final Widget label;
+  final Widget? leading;
+  final Widget? trailing;
+  final bool selected;
+  final bool enabled;
+}
+
+Future<T?> showGlassMenu<T>({
+  required BuildContext context,
+  required Rect anchor,
+  required List<GlassMenuEntry<T>> entries,
+  bool alignRight = false,
+  bool autofocusSelected = false,
+  double width = 232,
+  double maxHeight = 312,
+  double itemExtent = 46,
+}) => Navigator.of(context).push<T>(
+  _GlassMenuRoute<T>(
+    anchor: anchor,
+    entries: entries,
+    alignRight: alignRight,
+    autofocusSelected: autofocusSelected,
+    width: width,
+    maxHeight: maxHeight,
+    itemExtent: itemExtent,
+  ),
+);
+
+class _GlassMenuRoute<T> extends PopupRoute<T> {
+  _GlassMenuRoute({
+    required this.autofocusSelected,
+    required this.anchor,
+    required this.entries,
+    required this.alignRight,
+    required this.width,
+    required this.maxHeight,
+    required this.itemExtent,
+  });
+
+  final Rect anchor;
+  final List<GlassMenuEntry<T>> entries;
+  final bool alignRight;
+  final bool autofocusSelected;
+  final double width;
+  final double maxHeight;
+  final double itemExtent;
+
+  static const _margin = 8.0;
+
+  @override
+  Duration get transitionDuration => const Duration(milliseconds: 300);
+
+  @override
+  Duration get reverseTransitionDuration => const Duration(milliseconds: 150);
+
+  @override
+  Color? get barrierColor => null;
+
+  @override
+  bool get barrierDismissible => true;
+
+  @override
+  String? get barrierLabel => '关闭菜单';
+
+  double get _height {
+    final content = entries.length * itemExtent + 12;
+    return content < maxHeight ? content : maxHeight;
+  }
+
+  @override
+  Widget buildPage(
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+  ) {
+    final size = MediaQuery.sizeOf(context);
+    final height = _height;
+    final menuWidth = width > size.width - 16 ? size.width - 16 : width;
+    var left = alignRight ? anchor.right - menuWidth : anchor.left;
+    if (left < _margin) left = _margin;
+    if (left + menuWidth > size.width - _margin) {
+      left = size.width - menuWidth - _margin;
+    }
+    var openUp = false;
+    var top = anchor.bottom + _margin;
+    if (top + height > size.height - _margin) {
+      final above = anchor.top - _margin - height;
+      if (above >= _margin) {
+        top = above;
+        openUp = true;
+      } else {
+        top = size.height - _margin - height;
+        if (top < _margin) top = _margin;
+      }
+    }
+    final fade = CurvedAnimation(
+      parent: animation,
+      curve: Curves.easeOutCubic,
+      reverseCurve: Curves.easeInCubic,
+    );
+    final scale = Tween<double>(
+      begin: .92,
+      end: 1,
+    ).animate(CurvedAnimation(parent: animation, curve: Curves.easeOutBack));
+    final alignment = openUp
+        ? (alignRight ? Alignment.bottomRight : Alignment.bottomLeft)
+        : (alignRight ? Alignment.topRight : Alignment.topLeft);
+    return Stack(
+      children: [
+        Positioned(
+          left: left,
+          top: top,
+          child: FadeTransition(
+            opacity: fade,
+            child: ScaleTransition(
+              scale: scale,
+              alignment: alignment,
+              child: Material(
+                type: MaterialType.transparency,
+                child: GlassPanel(
+                  borderRadius: const BorderRadius.all(Radius.circular(22)),
+                  sigma: 28,
+                  child: SizedBox(
+                    width: menuWidth,
+                    height: height,
+                    child: ListView(
+                      padding: const EdgeInsets.all(6),
+                      itemExtent: itemExtent,
+                      children: [
+                        for (final (index, entry) in entries.indexed)
+                          _GlassMenuItem<T>(
+                            entry: entry,
+                            animation: animation,
+                            index: index,
+                            autofocus: autofocusSelected,
+                          ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _GlassMenuItem<T> extends StatelessWidget {
+  const _GlassMenuItem({
+    required this.entry,
+    required this.animation,
+    required this.index,
+    this.autofocus = false,
+  });
+
+  final GlassMenuEntry<T> entry;
+  final Animation<double> animation;
+  final int index;
+  final bool autofocus;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    final start = (index * .06).clamp(0.0, .48).toDouble();
+    final revealed = CurvedAnimation(
+      parent: animation,
+      curve: Interval(start, 1, curve: Curves.easeOutCubic),
+    );
+    final labelColor = entry.enabled
+        ? (entry.selected ? colors.primary : colors.onSurface)
+        : colors.onSurfaceVariant.withValues(alpha: .45);
+    return FadeTransition(
+      opacity: revealed,
+      child: SlideTransition(
+        position: Tween<Offset>(
+          begin: const Offset(0, .3),
+          end: Offset.zero,
+        ).animate(revealed),
+        child: InkWell(
+          autofocus: autofocus && entry.selected && entry.enabled,
+          onTap: entry.enabled
+              ? () {
+                  HapticFeedback.selectionClick();
+                  Navigator.of(context).pop<T>(entry.value);
+                }
+              : null,
+          borderRadius: BorderRadius.circular(14),
+          overlayColor: WidgetStateProperty.resolveWith<Color?>((states) {
+            if (states.contains(WidgetState.pressed) ||
+                states.contains(WidgetState.hovered)) {
+              return colors.primary.withValues(alpha: .12);
+            }
+            if (states.contains(WidgetState.focused)) {
+              return colors.primary.withValues(alpha: .18);
+            }
+            return Colors.transparent;
+          }),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 14),
+            child: Row(
+              children: [
+                if (entry.leading != null) ...[
+                  IconTheme.merge(
+                    data: IconThemeData(
+                      size: 20,
+                      color: entry.enabled
+                          ? colors.onSurfaceVariant
+                          : colors.onSurfaceVariant.withValues(alpha: .4),
+                    ),
+                    child: entry.leading!,
+                  ),
+                  const SizedBox(width: 10),
+                ],
+                Expanded(
+                  child: DefaultTextStyle.merge(
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: entry.selected
+                          ? FontWeight.w700
+                          : FontWeight.w500,
+                      color: labelColor,
+                    ),
+                    child: entry.label,
+                  ),
+                ),
+                if (entry.trailing != null)
+                  IconTheme.merge(
+                    data: const IconThemeData(size: 18),
+                    child: entry.trailing!,
+                  ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class GlassBottomNavigation extends StatelessWidget {
   const GlassBottomNavigation({
     super.key,
@@ -90,56 +381,89 @@ class GlassBottomNavigation extends StatelessWidget {
                   child: Tooltip(
                     message: destination.label,
                     excludeFromSemantics: true,
-                    child: InkWell(
-                      key: ValueKey('glass-nav-$index'),
-                      onTap: () => onDestinationSelected(index),
-                      child: Center(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16,
-                                vertical: 1,
+                    child: PressScale(
+                      scale: .9,
+                      child: InkWell(
+                        key: ValueKey('glass-nav-$index'),
+                        overlayColor: WidgetStateProperty.all(
+                          Colors.transparent,
+                        ),
+                        splashFactory: NoSplash.splashFactory,
+                        highlightColor: Colors.transparent,
+                        onTap: () {
+                          HapticFeedback.selectionClick();
+                          onDestinationSelected(index);
+                        },
+                        child: Center(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              AnimatedContainer(
+                                duration: const Duration(milliseconds: 240),
+                                curve: Curves.easeOutCubic,
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                  vertical: 1,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: index == selectedIndex
+                                      ? colors.primary.withValues(
+                                          alpha: dark ? .26 : .16,
+                                        )
+                                      : Colors.transparent,
+                                  borderRadius: BorderRadius.circular(13),
+                                ),
+                                child: AnimatedSwitcher(
+                                  duration: const Duration(milliseconds: 190),
+                                  switchInCurve: Curves.easeOutBack,
+                                  switchOutCurve: Curves.easeInCubic,
+                                  transitionBuilder: (child, animation) =>
+                                      FadeTransition(
+                                        opacity: animation,
+                                        child: ScaleTransition(
+                                          scale: animation,
+                                          child: child,
+                                        ),
+                                      ),
+                                  child: IconTheme(
+                                    key: ValueKey(
+                                      'glass-nav-icon-$index-'
+                                      '${index == selectedIndex}',
+                                    ),
+                                    data: IconThemeData(
+                                      size: 21,
+                                      color: index == selectedIndex
+                                          ? colors.primary
+                                          : idle,
+                                    ),
+                                    child: index == selectedIndex
+                                        ? destination.selectedIcon ??
+                                              destination.icon
+                                        : destination.icon,
+                                  ),
+                                ),
                               ),
-                              decoration: BoxDecoration(
-                                color: index == selectedIndex
-                                    ? colors.primary.withValues(
-                                        alpha: dark ? .26 : .16,
-                                      )
-                                    : Colors.transparent,
-                                borderRadius: BorderRadius.circular(13),
-                              ),
-                              child: IconTheme(
-                                data: IconThemeData(
-                                  size: 21,
+                              const SizedBox(height: 3),
+                              AnimatedDefaultTextStyle(
+                                duration: const Duration(milliseconds: 220),
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  height: 1.1,
+                                  fontWeight: index == selectedIndex
+                                      ? FontWeight.w700
+                                      : FontWeight.w500,
                                   color: index == selectedIndex
                                       ? colors.primary
                                       : idle,
                                 ),
-                                child: index == selectedIndex
-                                    ? destination.selectedIcon ??
-                                          destination.icon
-                                    : destination.icon,
+                                child: Text(
+                                  destination.label,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                               ),
-                            ),
-                            const SizedBox(height: 3),
-                            Text(
-                              destination.label,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontSize: 11,
-                                height: 1.1,
-                                fontWeight: index == selectedIndex
-                                    ? FontWeight.w700
-                                    : FontWeight.w500,
-                                color: index == selectedIndex
-                                    ? colors.primary
-                                    : idle,
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
