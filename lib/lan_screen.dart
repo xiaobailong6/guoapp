@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'app_notice.dart';
 import 'lan_controller.dart';
 import 'local_store.dart';
 import 'remote_widgets.dart';
@@ -79,9 +80,7 @@ Future<LanConnection?> chooseLanDevice(
 void openLanSync(BuildContext context) {
   final controller = LanController.current;
   if (controller == null) {
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(const SnackBar(content: Text('设备互联尚未就绪')));
+    AppNotice.show(context, '设备互联尚未就绪');
     return;
   }
   Navigator.push(

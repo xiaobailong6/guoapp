@@ -3,8 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'core_bridge.dart';
 import 'app_layout.dart';
+import 'app_notice.dart';
+import 'core_bridge.dart';
 import 'glass_panel.dart';
 import 'models.dart';
 import 'remote_widgets.dart';
@@ -17,9 +18,7 @@ Future<void> saveUserChange(
     await action();
   } catch (_) {
     if (context.mounted) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('未能保存，请检查存储空间和权限后重试。')));
+      AppNotice.show(context, '未能保存，请检查存储空间和权限后重试。');
     }
   }
 }

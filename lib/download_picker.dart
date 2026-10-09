@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'app_notice.dart';
 import 'models.dart';
 import 'download_preferences.dart';
 import 'episode_browser.dart';
@@ -50,17 +51,13 @@ class _DownloadPickerState extends State<DownloadPicker> {
       _selected.addAll(choices.take(500).map((episode) => episode.number));
     });
     if (choices.length > 500) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('已选前 500 集；可清空后按分组选择其他集数，或从发现页使用整剧批量下载')),
-      );
+      AppNotice.show(context, '已选前 500 集；可清空后按分组选择其他集数，或从发现页使用整剧批量下载');
     }
   }
 
   void _toggle(Episode episode) {
     if (!_selected.contains(episode.number) && _selected.length >= 500) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('一次最多加入 500 集，请分批下载')));
+      AppNotice.show(context, '一次最多加入 500 集，请分批下载');
       return;
     }
     setState(() {
@@ -86,9 +83,7 @@ class _DownloadPickerState extends State<DownloadPicker> {
       if (mounted) setState(() => _selected.clear());
     } catch (error) {
       if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text(error.toString())));
+        AppNotice.show(context, error.toString());
       }
     } finally {
       if (mounted) setState(() => _submitting = false);

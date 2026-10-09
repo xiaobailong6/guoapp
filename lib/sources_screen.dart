@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'app_notice.dart';
 import 'core_bridge.dart';
 import 'local_store.dart';
 import 'models.dart';
@@ -176,9 +177,30 @@ class _SourcesScreenState extends State<SourcesScreen> {
     if (status.storageError.isNotEmpty) text.writeln(status.storageError);
     await Clipboard.setData(ClipboardData(text: text.toString()));
     if (mounted) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('诊断信息已复制')));
+      AppNotice.show(context, '诊断信息已复制');
+    }
+  }
+
+  Future<void> _updateAll() async {
+    if (!widget.repository.supportsSourceManagement) return;
+    final targets = <SourceSite>[];
+    for (final source in widget.store.sources) {
+      final status = _statuses[source.id];
+      final busy = _pending.contains(source.id) || status?.running == true;
+      final seconds = status?.retrySeconds ?? 0;
+      if (!busy && seconds == 0) targets.add(source);
+    }
+    if (targets.isEmpty) {
+      if (mounted) {
+        AppNotice.show(context, '站源都在更新或冷却中，请稍候');
+      }
+      return;
+    }
+    for (final source in targets) {
+      unawaited(_run(source, 'update'));
+    }
+    if (mounted) {
+      AppNotice.show(context, '已开始更新 ${targets.length} 个站源');
     }
   }
 
@@ -198,7 +220,21 @@ class _SourcesScreenState extends State<SourcesScreen> {
           ? viewPaddingBottom
           : paddingBottom;
       return Scaffold(
-        appBar: AppBar(title: const Text('站源管理')),
+        appBar: AppBar(
+          title: const Text('站源管理'),
+          actions: [
+            if (widget.store.sources.isNotEmpty)
+              IconButton(
+                key: const ValueKey('update-all-sources'),
+                tooltip: '更新全部站源',
+                onPressed: widget.repository.supportsSourceManagement
+                    ? _updateAll
+                    : null,
+                icon: const Icon(Icons.sync_rounded),
+              ),
+            const SizedBox(width: 4),
+          ],
+        ),
         body: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 960),

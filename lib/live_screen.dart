@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:media_kit_video/media_kit_video.dart';
 
 import 'app_layout.dart';
+import 'app_notice.dart';
 import 'core_bridge.dart';
 import 'live_models.dart';
 import 'live_playback.dart';
@@ -253,9 +254,7 @@ class _LiveScreenState extends State<LiveScreen> {
         }
       });
       if (fallback && mounted) {
-        ScaffoldMessenger.maybeOf(context)?.showSnackBar(
-          SnackBar(content: Text('${platform.name} 暂时不可用，已保留原分类')),
-        );
+        AppNotice.show(context, '${platform.name} 暂时不可用，已保留原分类');
       }
     }
   }

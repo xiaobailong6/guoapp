@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'app_layout.dart';
+import 'app_notice.dart';
 import 'catalog_filters.dart';
 import 'core_bridge.dart';
 import 'drama_actions.dart';
@@ -303,9 +304,7 @@ class _FeedsScreenState extends State<FeedsScreen> {
   }
 
   void _toast(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message), duration: const Duration(seconds: 2)),
-    );
+    AppNotice.show(context, message);
   }
 
   @override

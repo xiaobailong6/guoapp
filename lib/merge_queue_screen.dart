@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import 'app_notice.dart';
 import 'core_bridge.dart';
 import 'local_store.dart';
 import 'media_library.dart';
@@ -142,9 +143,7 @@ class _MergeQueueScreenState extends State<MergeQueueScreen> {
         for (final id in selected) groups[id]!,
       ], cleanup: cleanup);
       if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('已加入 $count 部，已有合并任务自动跳过')));
+        AppNotice.show(context, '已加入 $count 部，已有合并任务自动跳过');
       }
     } catch (error) {
       if (mounted) setState(() => _error = error.toString());

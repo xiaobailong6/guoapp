@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import 'app_notice.dart';
 import 'core_bridge.dart';
 import 'follow_state.dart';
 import 'local_store.dart';
@@ -82,9 +83,7 @@ Future<void> openPlaybackDirectly(
       retryCover: true,
     );
     final message = error is AppFailure ? error.message : '暂时无法播放，请重试';
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(message)));
+    AppNotice.show(context, message);
   }
 }
 

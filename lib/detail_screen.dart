@@ -7,6 +7,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
 import 'app_layout.dart';
+import 'app_notice.dart';
 import 'core_bridge.dart';
 import 'cross_source_search.dart';
 import 'download_picker.dart';
@@ -210,29 +211,24 @@ class _DetailScreenState extends State<DetailScreen> {
         quality: selection.quality,
       );
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(added == 0 ? '所选集数已在下载列表中' : '已加入 $added 集，已有任务自动跳过'),
-          action: SnackBarAction(
-            label: '查看',
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (_) => DownloadsScreen(
-                    repository: widget.repository,
-                    store: widget.store,
-                  ),
-                ),
-              );
-            },
-          ),
-        ),
+      AppNotice.showAction(
+        context,
+        added == 0 ? '所选集数已在下载列表中' : '已加入 $added 集，已有任务自动跳过',
+        actionLabel: '查看',
+        onAction: () {
+          Navigator.of(context).push(
+            MaterialPageRoute<void>(
+              builder: (_) => DownloadsScreen(
+                repository: widget.repository,
+                store: widget.store,
+              ),
+            ),
+          );
+        },
       );
     } catch (error) {
       if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text(error.toString())));
+        AppNotice.show(context, error.toString());
       }
     }
   }

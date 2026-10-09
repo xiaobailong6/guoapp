@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 
 import 'app_layout.dart';
 import 'app_bottom_navigation.dart';
+import 'app_notice.dart';
 import 'glass_panel.dart';
 import 'core_bridge.dart';
 import 'catalog_filters.dart';
@@ -985,9 +986,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     if (!_selectedDramas.containsKey(drama.id) &&
         _selectedDramas.length >= BatchDownloads.maxDramas) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('一次最多选择 50 部短剧，请分批下载')));
+      AppNotice.show(context, '一次最多选择 50 部短剧，请分批下载');
       return;
     }
     setState(() {

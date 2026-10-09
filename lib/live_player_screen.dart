@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:media_kit_video/media_kit_video.dart';
 
 import 'app_layout.dart';
+import 'app_notice.dart';
 import 'app_orientation.dart';
 import 'app_theme.dart';
 import 'live_playback.dart';
@@ -261,9 +262,7 @@ class _LivePlayerScreenState extends State<LivePlayerScreen> {
 
   void _toast(String message) {
     if (!mounted) return;
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(message)));
+    AppNotice.show(context, message);
   }
 
   @override

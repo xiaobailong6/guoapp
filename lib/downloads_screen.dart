@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'app_layout.dart';
+import 'app_notice.dart';
 import 'core_bridge.dart';
 import 'download_collections.dart';
 import 'local_store.dart';
@@ -147,9 +148,7 @@ class _DownloadsScreenState extends State<DownloadsScreen> {
 
   void _message(String message) {
     if (mounted) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(message)));
+      AppNotice.show(context, message);
     }
   }
 

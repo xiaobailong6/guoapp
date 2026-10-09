@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'app_notice.dart';
 import 'core_bridge.dart';
 import 'detail_screen.dart';
 import 'local_store.dart';
@@ -242,9 +243,7 @@ Future<void> showCrossSourceSearch(
       .where((site) => site.id != drama.source && site.onlineSearch)
       .toList();
   if (sources.isEmpty) {
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(const SnackBar(content: Text('当前没有其他支持在线搜索的站源')));
+    AppNotice.show(context, '当前没有其他支持在线搜索的站源');
     return;
   }
   await showDialog<void>(

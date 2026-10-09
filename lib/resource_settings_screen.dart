@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'app_notice.dart';
 import 'core_bridge.dart';
 import 'download_preferences.dart';
 import 'local_store.dart';
@@ -153,9 +154,7 @@ class _ResourceSettingsScreenState extends State<ResourceSettingsScreen> {
       );
       if (!mounted || !_allowed) return;
       setState(() => _settings = settings);
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('设置已保存，将用于后续请求和下载任务')));
+      AppNotice.show(context, '设置已保存，将用于后续请求和下载任务');
     } catch (error) {
       if (mounted) setState(() => _error = error.toString());
     } finally {

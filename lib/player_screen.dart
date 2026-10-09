@@ -9,6 +9,7 @@ import 'package:media_kit_video/media_kit_video.dart';
 import 'package:window_manager/window_manager.dart';
 
 import 'app_layout.dart';
+import 'app_notice.dart';
 import 'app_orientation.dart';
 import 'android_video_surface.dart';
 import 'catalog_sort.dart';
@@ -771,9 +772,7 @@ class _PlayerScreenState extends State<PlayerScreen>
       );
     } catch (error) {
       if (mounted && !_closed) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text(error.toString())));
+        AppNotice.show(context, error.toString());
       }
     } finally {
       if (mounted && !_closed) setState(() => _panelOpen = false);
@@ -1395,9 +1394,7 @@ class _PlayerScreenState extends State<PlayerScreen>
 
   void _notice(String message) {
     if (!mounted || _closed) return;
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(message)));
+    AppNotice.show(context, message);
   }
 
   Future<void> _setPreferences(PlaybackPreferences preferences) async {
@@ -1472,23 +1469,20 @@ class _PlayerScreenState extends State<PlayerScreen>
       quality: selection.quality,
     );
     if (!mounted || _closed) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(added == 0 ? '所选集数已在下载列表中' : '已加入 $added 集，已有任务自动跳过'),
-        action: SnackBarAction(
-          label: '查看',
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (_) => DownloadsScreen(
-                  repository: widget.repository,
-                  store: widget.store,
-                ),
-              ),
-            );
-          },
-        ),
-      ),
+    AppNotice.showAction(
+      context,
+      added == 0 ? '所选集数已在下载列表中' : '已加入 $added 集，已有任务自动跳过',
+      actionLabel: '查看',
+      onAction: () {
+        Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => DownloadsScreen(
+              repository: widget.repository,
+              store: widget.store,
+            ),
+          ),
+        );
+      },
     );
   }
 
