@@ -46,7 +46,6 @@ class CrossSourceSearchSheet extends StatefulWidget {
 
 class _CrossSourceSearchSheetState extends State<CrossSourceSearchSheet> {
   final _searches = <_SourceSearch>[];
-  var _workers = 0;
 
   @override
   void initState() {
@@ -66,11 +65,7 @@ class _CrossSourceSearchSheetState extends State<CrossSourceSearchSheet> {
     final search = _searches[pending];
     search.started = true;
     search.running = true;
-    _workers++;
-    _run(search).whenComplete(() {
-      _workers--;
-      _pump();
-    });
+    _run(search).whenComplete(_pump);
   }
 
   Future<void> _run(_SourceSearch search) async {

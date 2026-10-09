@@ -582,7 +582,7 @@ class _DetailScreenState extends State<DetailScreen> {
             icon: const Icon(Icons.travel_explore_rounded),
             label: const Text('其他站源'),
           ),
-          if (_sourceDiagnostics != null) _sourceDiagnostics!,
+          ?_sourceDiagnostics,
         ],
       ),
     );

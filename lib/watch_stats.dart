@@ -187,9 +187,7 @@ class WatchStats {
       final days = <String, WatchDayStats>{};
       final rawDays = Map<String, dynamic>.from(decoded['days'] as Map? ?? {});
       for (final entry in rawDays.entries) {
-        if (entry.key is String) {
-          days[entry.key] = WatchDayStats.fromJson(entry.value);
-        }
+        days[entry.key] = WatchDayStats.fromJson(entry.value);
       }
       final sources = <String, double>{};
       final rawSources = Map<String, dynamic>.from(
@@ -197,7 +195,7 @@ class WatchStats {
       );
       for (final entry in rawSources.entries) {
         final value = (entry.value as num?)?.toDouble();
-        if (entry.key is String && value != null) {
+        if (value != null) {
           sources[entry.key] = value;
         }
       }
