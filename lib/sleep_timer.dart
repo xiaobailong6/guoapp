@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'app_layout.dart';
 import 'app_theme.dart';
+import 'glass_panel.dart';
 import 'remote_widgets.dart';
 
 enum SleepTimerChoice {
@@ -130,7 +131,6 @@ Future<void> showSleepTimerSheet(
   required SleepTimerController controller,
   required ValueChanged<SleepTimerChoice> onSelect,
   bool showFinishEpisode = true,
-  Color? backgroundColor,
 }) async {
   final options = [
     SleepTimerChoice.off,
@@ -160,29 +160,58 @@ Future<void> showSleepTimerSheet(
                     ),
                 ],
               )
-            : AlertDialog(
-                backgroundColor: backgroundColor,
-                title: Text(
-                  controller.active ? '睡眠定时 · ${controller.label}' : '睡眠定时',
-                ),
-                scrollable: true,
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    for (final option in options)
-                      ListTile(
-                        key: ValueKey('sleep-timer-${option.name}'),
-                        title: Text(option.label),
-                        onTap: () => Navigator.pop(dialogContext, option),
+            : Dialog(
+                child: GlassPanel(
+                  borderRadius: const BorderRadius.all(Radius.circular(22)),
+                  sigma: 28,
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 320),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(18, 16, 10, 8),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 4, bottom: 4),
+                            child: Text(
+                              controller.active
+                                  ? '睡眠定时 · ${controller.label}'
+                                  : '睡眠定时',
+                              style: const TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                          for (final option in options)
+                            InkWell(
+                              key: ValueKey('sleep-timer-${option.name}'),
+                              borderRadius: BorderRadius.circular(12),
+                              onTap: () => Navigator.pop(dialogContext, option),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 9,
+                                  horizontal: 10,
+                                ),
+                                child: Text(
+                                  option.label,
+                                  style: const TextStyle(fontSize: 14),
+                                ),
+                              ),
+                            ),
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: TextButton(
+                              onPressed: () => Navigator.pop(dialogContext),
+                              child: const Text('返回播放'),
+                            ),
+                          ),
+                        ],
                       ),
-                  ],
-                ),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(dialogContext),
-                    child: const Text('返回播放'),
+                    ),
                   ),
-                ],
+                ),
               ),
       ),
     ),

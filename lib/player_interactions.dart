@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:media_kit/media_kit.dart';
 
+import 'playback_preferences.dart';
 import 'widgets.dart';
 
 class PlayerInteractions extends ChangeNotifier {
@@ -13,6 +14,7 @@ class PlayerInteractions extends ChangeNotifier {
     required this.player,
     required this.available,
     required this.baseSpeed,
+    required this.holdSpeed,
     required this.onTogglePlayback,
     required this.onFullscreen,
     required this.onEpisode,
@@ -26,6 +28,7 @@ class PlayerInteractions extends ChangeNotifier {
   final Player player;
   final bool Function() available;
   final double Function() baseSpeed;
+  final double Function() holdSpeed;
   final VoidCallback onTogglePlayback;
   final VoidCallback onFullscreen;
   final String Function(int direction) onEpisode;
@@ -45,9 +48,7 @@ class PlayerInteractions extends ChangeNotifier {
   bool _held = false;
   bool _boosting = false;
   bool _seeking = false;
-  int _seekDirection = 0;
   int _holdSeekDirection = 0;
-  Timer? _seekTimer;
   bool _keyboardHold = false;
   bool _cancelUntilRelease = false;
   bool _disposed = false;
@@ -55,9 +56,9 @@ class PlayerInteractions extends ChangeNotifier {
   String _feedback = '';
   DateTime _ignoreTapUntil = DateTime(2000);
   int _seekTarget = 0;
-
-  static const _seekStepSeconds = 5;
-  static const _seekInterval = Duration(milliseconds: 250);
+  int _dragStart = 0;
+  double _dragWidth = 1;
+  double _dragSpan = 0;
 
   String get feedback => _feedback;
   bool get boosting => _boosting;
@@ -74,7 +75,10 @@ class PlayerInteractions extends ChangeNotifier {
     }
     if (!persistent && message.isNotEmpty) {
       _hintTimer = Timer(const Duration(milliseconds: 1200), () {
-        hint(_boosting ? '3 倍速 · 松开恢复' : '', persistent: true);
+        hint(
+          _boosting ? '${speedLabel(holdSpeed())} 倍速 · 松开恢复' : '',
+          persistent: true,
+        );
       });
     }
   }
@@ -95,6 +99,7 @@ class PlayerInteractions extends ChangeNotifier {
 
   void _beginHold({bool keyboard = false}) {
     if (!available() || _holdTimer != null || _boosting) return;
+    if (!keyboard && _holdSeekDirection == 0) return;
     _keyboardHold = keyboard;
     _holdTimer = Timer(const Duration(milliseconds: 350), () {
       _holdTimer = null;
@@ -104,62 +109,44 @@ class PlayerInteractions extends ChangeNotifier {
           player.state.completed) {
         return;
       }
-      if (!keyboard && _holdSeekDirection != 0) {
-        _beginSeek(_holdSeekDirection);
-        return;
-      }
       _boosting = true;
       _held = true;
-      unawaited(_setRate(3));
-      hint('3 倍速 · 松开恢复', persistent: true);
+      unawaited(_setRate(holdSpeed()));
+      hint('${speedLabel(holdSpeed())} 倍速 · 松开恢复', persistent: true);
     });
   }
 
-  void _beginSeek(int direction) {
-    if (!available() || player.state.duration <= Duration.zero) return;
+  void _beginDragSeek() {
     _seeking = true;
     _held = true;
     _ignoreTapUntil = DateTime.now().add(const Duration(seconds: 5));
-    _seekDirection = direction;
-    _seekTarget = player.state.position.inMilliseconds;
-    _stepSeek();
-    _seekTimer?.cancel();
-    _seekTimer = Timer.periodic(_seekInterval, (_) => _stepSeek());
+    _seekTarget = _dragStart = player.state.position.inMilliseconds;
+    _dragSpan = player.state.duration.inMilliseconds * .6;
+    _updateDragSeek();
   }
 
-  void _stepSeek() {
-    if (_disposed || !_seeking) return;
-    if (!available() ||
-        !player.state.playing ||
-        player.state.completed ||
-        player.state.duration <= Duration.zero) {
-      _endSeek(silent: true);
-      return;
-    }
+  void _updateDragSeek() {
+    final origin = _origin;
+    if (origin == null || _dragWidth <= 0) return;
+    final dx = (_lastPosition ?? origin).dx - origin.dx;
     final duration = player.state.duration.inMilliseconds;
-    _seekTarget = (_seekTarget + _seekDirection * _seekStepSeconds * 1000)
-        .clamp(0, duration);
-    unawaited((onSeek ?? player.seek)(Duration(milliseconds: _seekTarget)));
+    _seekTarget = (_dragStart + dx / _dragWidth * _dragSpan).round().clamp(
+      0,
+      duration,
+    );
     hint(
-      '${_seekDirection > 0 ? '快进至' : '后退至'} '
-      '${formatPosition(_seekTarget / 1000)}',
+      '${dx > 0 ? '快进至' : '后退至'} ${formatPosition(_seekTarget / 1000)}',
       persistent: true,
     );
   }
 
-  void _endSeek({bool silent = false}) {
+  void _finishDragSeek({bool silent = false}) {
     if (!_seeking) return;
-    _seekTimer?.cancel();
-    _seekTimer = null;
     _seeking = false;
-    final direction = _seekDirection;
-    _seekDirection = 0;
-    if (!silent) {
-      hint(
-        '${direction > 0 ? '快进' : '后退'}结束 · '
-        '${formatPosition(_seekTarget / 1000)}',
-      );
-    }
+    if (silent) return;
+    final target = _seekTarget;
+    unawaited((onSeek ?? player.seek)(Duration(milliseconds: target)));
+    hint('已定位 ${formatPosition(target / 1000)}');
   }
 
   void _endHold({bool tap = false, bool silent = false}) {
@@ -169,10 +156,10 @@ class PlayerInteractions extends ChangeNotifier {
     _holdTimer = null;
     _keyboardHold = false;
     _boosting = false;
-    _endSeek(silent: silent);
+    _finishDragSeek(silent: silent);
     if (boosted) {
       unawaited(_setRate(baseSpeed()));
-      if (!silent) hint('恢复 ${baseSpeed()} 倍速');
+      if (!silent) hint('恢复 ${speedLabel(baseSpeed())} 倍速');
     } else if (tap && wasKeyboard) {
       seek(5);
     }
@@ -208,6 +195,7 @@ class PlayerInteractions extends ChangeNotifier {
     _started = event.timeStamp;
     _swipeEnabled = swipeEnabled && event.kind == PointerDeviceKind.touch;
     _swipeThreshold = math.max(56, math.min(100, height * .1));
+    _dragWidth = width > 0 ? width : 1;
     _holdSeekDirection = _swipeEnabled && width > 0
         ? event.localPosition.dx < width * .38
               ? -1
@@ -222,11 +210,20 @@ class PlayerInteractions extends ChangeNotifier {
   void pointerMove(PointerMoveEvent event) {
     if (_pointer != event.pointer || _origin == null) return;
     _lastPosition = event.localPosition;
-    if (_seeking) return;
-    if ((event.localPosition - _origin!).distance > 12) {
+    if (_seeking) {
+      _updateDragSeek();
+      return;
+    }
+    final delta = event.localPosition - _origin!;
+    if (delta.distance > 12) {
       _moved = true;
       _holdSeekDirection = 0;
       _endHold();
+      if (_swipeEnabled &&
+          delta.dx.abs() > delta.dy.abs() * 1.5 &&
+          player.state.duration > Duration.zero) {
+        _beginDragSeek();
+      }
     }
   }
 
@@ -265,7 +262,7 @@ class PlayerInteractions extends ChangeNotifier {
 
   void seek(int seconds) {
     if (!available() || player.state.duration <= Duration.zero) return;
-    _endHold();
+    _endHold(silent: true);
     final target = (player.state.position.inMilliseconds + seconds * 1000)
         .clamp(0, player.state.duration.inMilliseconds);
     unawaited((onSeek ?? player.seek)(Duration(milliseconds: target)));
@@ -345,7 +342,6 @@ class PlayerInteractions extends ChangeNotifier {
     _disposed = true;
     _holdTimer?.cancel();
     _hintTimer?.cancel();
-    _seekTimer?.cancel();
     _seeking = false;
     if (_boosting) unawaited(_setRate(baseSpeed()));
     _boosting = false;

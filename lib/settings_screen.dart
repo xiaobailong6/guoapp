@@ -11,9 +11,11 @@ import 'app_theme.dart';
 import 'app_layout.dart';
 import 'background_downloads.dart';
 import 'local_store.dart';
+import 'playback_settings_screen.dart';
 import 'profiles_screen.dart';
 import 'remote_widgets.dart';
 import 'sources_screen.dart';
+import 'storage_access.dart';
 import 'widgets.dart';
 import 'resource_settings_screen.dart';
 import 'lan_screen.dart';
@@ -390,6 +392,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
     ),
     if (widget.store.canDownload)
       (
+        id: 'playback-preferences',
+        icon: Icons.play_circle_outline,
+        title: '播放设置',
+        subtitle: '长按倍速、默认倍速、连播、弹幕与清晰度',
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute<void>(
+            builder: (_) => PlaybackSettingsScreen(store: widget.store),
+          ),
+        ),
+      ),
+    if (widget.store.canDownload)
+      (
         id: 'download-preferences',
         icon: Icons.download_outlined,
         title: '下载偏好',
@@ -739,14 +754,34 @@ class StorageScreen extends StatefulWidget {
   State<StorageScreen> createState() => _StorageScreenState();
 }
 
-class _StorageScreenState extends State<StorageScreen> {
+class _StorageScreenState extends State<StorageScreen>
+    with WidgetsBindingObserver {
   Map<String, dynamic>? _info;
   String? _error;
   bool _busy = false;
+  bool _access = true;
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _refresh();
+    _loadAccess();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) _loadAccess();
+  }
+
+  Future<void> _loadAccess() async {
+    final access = await hasAllFilesAccess();
+    if (mounted && access != _access) setState(() => _access = access);
   }
 
   Future<void> _refresh() async {
@@ -831,6 +866,20 @@ class _StorageScreenState extends State<StorageScreen> {
     }
   }
 
+  Future<void> _pickExportDirectory() async {
+    if (_busy) return;
+    final directory = await FilePicker.getDirectoryPath(dialogTitle: '选择导出目录');
+    if (directory == null || !mounted) return;
+    try {
+      await widget.store.setExportDirectory(directory);
+    } catch (error) {
+      if (mounted) setState(() => _error = error.toString());
+      return;
+    }
+    if (mounted) setState(() {});
+    if (!await hasAllFilesAccess()) await ensureStorageAccess(context);
+  }
+
   @override
   Widget build(BuildContext context) => PopScope(
     canPop: !_busy,
@@ -876,6 +925,35 @@ class _StorageScreenState extends State<StorageScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   child: Text(_error!),
                 ),
+              const Divider(height: 40),
+              ListTile(
+                title: const Text('导出目录'),
+                subtitle: Text(
+                  widget.store.exportDirectory.isEmpty
+                      ? '未设置 · 导出时选择并记住'
+                      : widget.store.exportDirectory,
+                ),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: _busy ? null : _pickExportDirectory,
+              ),
+              if (Platform.isAndroid) ...[
+                const Divider(),
+                ListTile(
+                  title: const Text('所有文件访问权限'),
+                  subtitle: Text(
+                    _access ? '已授权 · 可导出到应用目录外的文件夹' : '未授权 · 导出到应用目录外需要授权',
+                  ),
+                  trailing: _access
+                      ? const Icon(Icons.verified_outlined)
+                      : const Text('去授权'),
+                  onTap: _access
+                      ? null
+                      : () async {
+                          await ensureStorageAccess(context);
+                          await _loadAccess();
+                        },
+                ),
+              ],
               if (widget.store.profile.admin)
                 FilledButton.icon(
                   onPressed: _busy ? null : _move,

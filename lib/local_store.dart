@@ -279,6 +279,15 @@ class LocalStore extends ChangeNotifier {
     return {'standard', 'glass'}.contains(value) ? value! : 'standard';
   }
 
+  String get exportDirectory {
+    final value = _configurationError == null
+        ? _string('exportDirectory')
+        : null;
+    return value ?? '';
+  }
+
+  bool get storagePromptShown => _bool('storagePromptShown') ?? false;
+
   bool get autoExport => !locked && (_bool('autoExport') ?? false);
 
   /// 绿色开关：默认开启，成人点播与成人直播一律不展示。
@@ -484,6 +493,12 @@ class LocalStore extends ChangeNotifier {
       {'standard', 'glass'}.contains(value)
       ? _setting('interfaceStyle', value)
       : Future.value();
+
+  Future<void> setExportDirectory(String value) =>
+      _setting('exportDirectory', value);
+  Future<void> setStoragePromptShown(bool value) =>
+      _setting('storagePromptShown', value);
+
   Future<void> setPlaybackPreferences(PlaybackPreferences value) {
     PlaybackPreferences.fromJson(value.toJson());
     return _setting(_key('playback'), jsonEncode(value.toJson()));

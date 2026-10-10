@@ -56,6 +56,7 @@ class _LivePlayerScreenState extends State<LivePlayerScreen> {
       player: _playback.player!,
       available: () => !_panel && _playback.error == null,
       baseSpeed: () => 1,
+      holdSpeed: () => 1,
       onTogglePlayback: _toggle,
       onFullscreen: _exit,
       onEpisode: _switchHint,

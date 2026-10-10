@@ -1,6 +1,11 @@
 import 'video_enhancement_preferences.dart';
 
 const playbackSpeeds = [.5, .75, 1.0, 1.25, 1.5, 2.0, 3.0];
+const holdSpeeds = [1.5, 2.0, 2.5, 3.0];
+
+String speedLabel(double value) => value == value.roundToDouble()
+    ? value.toInt().toString()
+    : value.toString();
 
 class PlaybackPreferences {
   const PlaybackPreferences({
@@ -9,6 +14,7 @@ class PlaybackPreferences {
     this.autoAdvance = true,
     this.danmaku = true,
     this.preload = true,
+    this.holdSpeed = 2,
     this.enhancement = const VideoEnhancementPreferences(),
   });
 
@@ -17,6 +23,7 @@ class PlaybackPreferences {
   final bool autoAdvance;
   final bool danmaku;
   final bool preload;
+  final double holdSpeed;
   final VideoEnhancementPreferences enhancement;
 
   PlaybackPreferences copyWith({
@@ -25,6 +32,7 @@ class PlaybackPreferences {
     bool? autoAdvance,
     bool? danmaku,
     bool? preload,
+    double? holdSpeed,
     VideoEnhancementPreferences? enhancement,
   }) => PlaybackPreferences(
     speed: speed ?? this.speed,
@@ -32,6 +40,7 @@ class PlaybackPreferences {
     autoAdvance: autoAdvance ?? this.autoAdvance,
     danmaku: danmaku ?? this.danmaku,
     preload: preload ?? this.preload,
+    holdSpeed: holdSpeed ?? this.holdSpeed,
     enhancement: enhancement ?? this.enhancement,
   );
 
@@ -41,6 +50,7 @@ class PlaybackPreferences {
     'autoAdvance': autoAdvance,
     'danmaku': danmaku,
     'preload': preload,
+    'holdSpeed': holdSpeed,
     'enhancement': enhancement.toJson(),
   };
 
@@ -50,7 +60,11 @@ class PlaybackPreferences {
     final autoAdvance = value['autoAdvance'] as bool? ?? true;
     final danmaku = value['danmaku'] as bool? ?? true;
     final preload = value['preload'] as bool? ?? true;
-    if (!playbackSpeeds.contains(speed) || quality < 0 || quality > 4320) {
+    final holdSpeed = (value['holdSpeed'] as num? ?? 2).toDouble();
+    if (!playbackSpeeds.contains(speed) ||
+        !holdSpeeds.contains(holdSpeed) ||
+        quality < 0 ||
+        quality > 4320) {
       throw const FormatException('播放偏好无效');
     }
     return PlaybackPreferences(
@@ -59,6 +73,7 @@ class PlaybackPreferences {
       autoAdvance: autoAdvance,
       danmaku: danmaku,
       preload: preload,
+      holdSpeed: holdSpeed,
       enhancement: VideoEnhancementPreferences.fromJson(value['enhancement']),
     );
   }

@@ -1,6 +1,5 @@
 import 'player_route.dart';
 import 'dart:async';
-import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:file_picker/file_picker.dart';
@@ -18,6 +17,7 @@ import 'models.dart';
 import 'player_screen.dart';
 import 'remote_widgets.dart';
 import 'settings_screen.dart';
+import 'storage_access.dart';
 import 'widgets.dart';
 
 class DownloadsScreen extends StatefulWidget {
@@ -545,65 +545,52 @@ class _DownloadsScreenState extends State<DownloadsScreen> {
       _message('本剧还没有已下载的分集');
       return;
     }
-    final directory = await FilePicker.getDirectoryPath(dialogTitle: '选择导出位置');
-    if (directory == null || !mounted) return;
-    if (Platform.isAndroid) {
-      const channel = MethodChannel('duanju/device');
-      var granted = true;
+    var directory = widget.store.exportDirectory;
+    if (directory.isEmpty) {
+      directory =
+          await FilePicker.getDirectoryPath(dialogTitle: '选择导出位置') ?? '';
+      if (directory.isEmpty || !mounted) return;
       try {
-        granted = await channel.invokeMethod<bool>('hasAllFilesAccess') ?? true;
+        await widget.store.setExportDirectory(directory);
       } catch (_) {}
-      if (!mounted) return;
-      if (!granted) {
-        final open = await showDialog<bool>(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: const Text('需要存储权限'),
-            content: const Text(
-              'Android 限制应用只能写入自己的私有目录。要把视频复制到所选文件夹，'
-              '请在系统设置中授予「所有文件访问」权限；授权后返回应用，'
-              '重新点击导出。',
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context, false),
-                child: const Text('取消'),
-              ),
-              FilledButton(
-                onPressed: () => Navigator.pop(context, true),
-                child: const Text('去授权'),
-              ),
-            ],
-          ),
-        );
-        if (open == true) {
-          try {
-            await channel.invokeMethod<void>('requestStorageAccess');
-          } catch (_) {}
-        }
-        return;
-      }
     }
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('导出到文件夹'),
-        content: Text(
-          '将把《${collection.drama.title}》已下载的 ${jobs.length} 集复制到：\n\n$directory\n\n原始下载不受影响；目标已有同名文件时跳过。',
+    while (true) {
+      if (!await ensureStorageAccess(context) || !mounted) return;
+      final confirmed = await showDialog<Object>(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('导出到文件夹'),
+          content: Text(
+            '将把《${collection.drama.title}》已下载的 ${jobs.length} 集复制到：\n\n$directory\n\n原始下载不受影响；目标已有同名文件时跳过。',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'change'),
+              child: const Text('更换位置'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, false),
+              child: const Text('取消'),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(context, true),
+              child: const Text('开始导出'),
+            ),
+          ],
         ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context, false),
-            child: const Text('取消'),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.pop(context, true),
-            child: const Text('开始导出'),
-          ),
-        ],
-      ),
-    );
-    if (confirmed != true || !mounted) return;
+      );
+      if (confirmed == 'change') {
+        directory =
+            await FilePicker.getDirectoryPath(dialogTitle: '选择导出位置') ?? '';
+        if (directory.isEmpty || !mounted) return;
+        try {
+          await widget.store.setExportDirectory(directory);
+        } catch (_) {}
+        continue;
+      }
+      if (confirmed != true || !mounted) return;
+      break;
+    }
     unawaited(
       showDialog<void>(
         context: context,
