@@ -45,12 +45,13 @@ const int recommendationMinEpisodes = 5;
 /// 单次进度回报最多累计的秒数，用于排除拖动进度条造成的时间跳变。
 const double recommendationMaxSampleSeconds = 20;
 
-typedef NostrRelayFactory = NostrRelayPool Function(
-  List<String> relays,
-  void Function(NostrEvent event) onEvent,
-  void Function() onStatus,
-  void Function(String message) onNotice,
-);
+typedef NostrRelayFactory =
+    NostrRelayPool Function(
+      List<String> relays,
+      void Function(NostrEvent event) onEvent,
+      void Function() onStatus,
+      void Function(String message) onNotice,
+    );
 
 NostrRelayPool _createRelayPool(
   List<String> relays,

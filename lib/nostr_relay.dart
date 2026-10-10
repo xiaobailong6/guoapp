@@ -117,8 +117,9 @@ class _RelayLink {
     state = RelayState.connecting;
     owner._notify();
     try {
-      final webSocket = await WebSocket.connect(url)
-          .timeout(NostrRelayPool.connectTimeout);
+      final webSocket = await WebSocket.connect(
+        url,
+      ).timeout(NostrRelayPool.connectTimeout);
       socket = webSocket;
       state = RelayState.connected;
       _retries = 0;

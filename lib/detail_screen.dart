@@ -460,8 +460,9 @@ class _DetailScreenState extends State<DetailScreen> {
                                     ),
                                     mainAxisExtent: math.max(
                                       54,
-                                      MediaQuery.textScalerOf(context)
-                                              .scale(20) +
+                                      MediaQuery.textScalerOf(
+                                            context,
+                                          ).scale(20) +
                                           30,
                                     ),
                                     crossAxisSpacing: 10,
@@ -610,8 +611,9 @@ class _DetailScreenState extends State<DetailScreen> {
                     '选集 · ${episodes.length} 集$current',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.titleSmall
-                        ?.copyWith(fontWeight: FontWeight.w700),
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
                 Text(expanded ? '收起' : '展开'),
@@ -698,8 +700,9 @@ class _DetailScreenState extends State<DetailScreen> {
                 children: [
                   Text(
                     drama.title,
-                    style: Theme.of(context).textTheme.titleLarge
-                        ?.copyWith(fontWeight: FontWeight.w700),
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                   const SizedBox(height: 10),
                   Text(

@@ -7,8 +7,9 @@ import 'package:flutter/services.dart';
 Future<bool> hasAllFilesAccess() async {
   if (!Platform.isAndroid) return true;
   try {
-    return await const MethodChannel('duanju/device')
-            .invokeMethod<bool>('hasAllFilesAccess') ??
+    return await const MethodChannel(
+          'duanju/device',
+        ).invokeMethod<bool>('hasAllFilesAccess') ??
         true;
   } catch (_) {
     return true;
@@ -19,8 +20,9 @@ Future<bool> hasAllFilesAccess() async {
 Future<void> requestStorageAccess() async {
   if (!Platform.isAndroid) return;
   try {
-    await const MethodChannel('duanju/device')
-        .invokeMethod<void>('requestStorageAccess');
+    await const MethodChannel(
+      'duanju/device',
+    ).invokeMethod<void>('requestStorageAccess');
   } catch (_) {}
 }
 

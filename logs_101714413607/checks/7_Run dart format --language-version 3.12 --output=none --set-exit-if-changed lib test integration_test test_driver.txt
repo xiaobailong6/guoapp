@@ -1,0 +1,50 @@
+﻿2026-10-10T04:40:30.1447191Z ##[group]Run dart format --language-version 3.12 --output=none --set-exit-if-changed lib test integration_test test_driver
+2026-10-10T04:40:30.1447692Z [36;1mdart format --language-version 3.12 --output=none --set-exit-if-changed lib test integration_test test_driver[0m
+2026-10-10T04:40:30.1499753Z shell: /usr/bin/bash -e {0}
+2026-10-10T04:40:30.1499910Z env:
+2026-10-10T04:40:30.1500067Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-10T04:40:30.1500242Z   GOSUMDB: sum.golang.org
+2026-10-10T04:40:30.1500441Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
+2026-10-10T04:40:30.1500656Z   PUB_CACHE: /home/runner/.pub-cache
+2026-10-10T04:40:30.1500812Z ##[endgroup]
+2026-10-10T04:40:30.2243876Z Changed lib/batch_download_screen.dart
+2026-10-10T04:40:30.2274132Z Changed lib/batch_downloads.dart
+2026-10-10T04:40:30.2316375Z Changed lib/catalog_browser.dart
+2026-10-10T04:40:30.2378224Z Changed lib/catalog_sort.dart
+2026-10-10T04:40:30.2814604Z Changed lib/detail_screen.dart
+2026-10-10T04:40:30.3720253Z Changed lib/home_screen.dart
+2026-10-10T04:40:30.3804212Z Changed lib/lan_controller.dart
+2026-10-10T04:40:30.4689507Z Changed lib/local_media_screen.dart
+2026-10-10T04:40:30.4891677Z Changed lib/local_store.dart
+2026-10-10T04:40:30.4943404Z Changed lib/main.dart
+2026-10-10T04:40:30.5220469Z Changed lib/merge_queue_screen.dart
+2026-10-10T04:40:30.5311175Z Changed lib/nostr_relay.dart
+2026-10-10T04:40:30.5615558Z Changed lib/player_menu.dart
+2026-10-10T04:40:30.5885014Z Changed lib/player_screen.dart
+2026-10-10T04:40:30.6081336Z Changed lib/recommendation_service.dart
+2026-10-10T04:40:30.6249576Z Changed lib/resource_settings.dart
+2026-10-10T04:40:30.6392872Z Changed lib/search_input.dart
+2026-10-10T04:40:30.6641255Z Changed lib/sources_screen.dart
+2026-10-10T04:40:30.6645979Z Changed lib/storage_access.dart
+2026-10-10T04:40:30.6810367Z Changed lib/video_enhancement.dart
+2026-10-10T04:40:30.7017746Z Changed lib/widgets.dart
+2026-10-10T04:40:30.7077311Z Changed test/catalog_categories_test.dart
+2026-10-10T04:40:30.7114695Z Changed test/cover_decoder_test.dart
+2026-10-10T04:40:30.7152020Z Changed test/danmaku_test.dart
+2026-10-10T04:40:30.7223497Z Changed test/downloads_test.dart
+2026-10-10T04:40:30.7272101Z Changed test/follow_state_test.dart
+2026-10-10T04:40:30.7381916Z Changed test/library_workflow_test.dart
+2026-10-10T04:40:30.7466519Z Changed test/local_persistence_test.dart
+2026-10-10T04:40:30.7497152Z Changed test/media_library_test.dart
+2026-10-10T04:40:30.7530320Z Changed test/nostr_crypto_test.dart
+2026-10-10T04:40:30.7539304Z Changed test/playback_loader_test.dart
+2026-10-10T04:40:30.7545452Z Changed test/playback_recovery_test.dart
+2026-10-10T04:40:30.7603076Z Changed test/profiles_test.dart
+2026-10-10T04:40:30.7720532Z Changed test/sources_test.dart
+2026-10-10T04:40:30.7794496Z Changed test/theme_test.dart
+2026-10-10T04:40:30.7934006Z Changed integration_test/playback_test.dart
+2026-10-10T04:40:30.7985035Z Changed test_driver/appearance.dart
+2026-10-10T04:40:30.7988363Z Changed test_driver/playback.dart
+2026-10-10T04:40:30.7991569Z Changed test_driver/playback_performance.dart
+2026-10-10T04:40:30.7991902Z Formatted 174 files (39 changed) in 0.63 seconds.
+2026-10-10T04:40:30.8058851Z ##[error]Process completed with exit code 1.

@@ -218,9 +218,9 @@ class _MergeQueueScreenState extends State<MergeQueueScreen> {
                                     children: [
                                       Text(
                                         job.drama.title,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium,
+                                        style: Theme.of(
+                                          context,
+                                        ).textTheme.titleMedium,
                                       ),
                                       const SizedBox(height: 6),
                                       Text(

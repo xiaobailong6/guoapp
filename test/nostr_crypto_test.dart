@@ -25,9 +25,11 @@ const referenceEvents = [
       ['t', 'zhenguo-app-recommend'],
       ['client', 'zhenguojian-app'],
     ],
-    'content': '{"v":1,"i":[["hongguo","hongguo:1","都市逆袭","https://p3-novel.byteimg.com/a.jpg","都市",1760000000]]}',
+    'content':
+        '{"v":1,"i":[["hongguo","hongguo:1","都市逆袭","https://p3-novel.byteimg.com/a.jpg","都市",1760000000]]}',
     'id': '87d2fe2075edc5e5f853c405553b97f2869dc7050ea22d7a5304e32a33b2082f',
-    'sig': 'd83e1c7fd5ac15c17db7d6a9095b703c25fe7c5f4c80244d7386619b9d01a499bc396bfc64175f3b9a1fddfe5866c4856fa47e710f1afc1633ff97332a5fd66f',
+    'sig':
+        'd83e1c7fd5ac15c17db7d6a9095b703c25fe7c5f4c80244d7386619b9d01a499bc396bfc64175f3b9a1fddfe5866c4856fa47e710f1afc1633ff97332a5fd66f',
   },
   {
     'kind': 30078,
@@ -38,7 +40,8 @@ const referenceEvents = [
     ],
     'content': '{"v":1,"i":[]}',
     'id': '49c150018b44573e53bc942ee6a9184989ff7bb4e3c8f048545b8dae082f3d41',
-    'sig': 'b94024868d647b7d6c05624baa5118688defb6205caba0171bef176beb0d60c11aae796c3f88407ececc333bbc89acaf7adf99b52c02a6cbe811fbd122255b37',
+    'sig':
+        'b94024868d647b7d6c05624baa5118688defb6205caba0171bef176beb0d60c11aae796c3f88407ececc333bbc89acaf7adf99b52c02a6cbe811fbd122255b37',
   },
   {
     'kind': 30078,
@@ -46,9 +49,11 @@ const referenceEvents = [
     'tags': [
       ['d', 'zhenguo:app:recommend:v1'],
     ],
-    'content': '{"v":1,"i":[["yaguo","yaguo:9","「测试」剧名 emoji😀","https://img.example.com/p.png","古装",1760000002]]}',
+    'content':
+        '{"v":1,"i":[["yaguo","yaguo:9","「测试」剧名 emoji😀","https://img.example.com/p.png","古装",1760000002]]}',
     'id': '616d26c7be8a2df585bd1e73a6949081a6383b3e795e3474cd3e628f9c4bf4ec',
-    'sig': '84a809b98e144b97c2832a6df5ed6e73910b3e223fdc33532c33ac1005333a19b0c86166ef6febbd51bc8ed6abdc8940fe0daffedf93a81f3aa4bb1fce4c2de4',
+    'sig':
+        '84a809b98e144b97c2832a6df5ed6e73910b3e223fdc33532c33ac1005333a19b0c86166ef6febbd51bc8ed6abdc8940fe0daffedf93a81f3aa4bb1fce4c2de4',
   },
 ];
 

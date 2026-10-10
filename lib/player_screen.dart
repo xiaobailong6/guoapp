@@ -2457,8 +2457,9 @@ class _PlayerScreenState extends State<PlayerScreen>
                   children: [
                     Text(
                       drama.title,
-                      style: Theme.of(context).textTheme.titleMedium
-                          ?.copyWith(fontWeight: FontWeight.w700),
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                     if (meta.isNotEmpty) ...[
                       const SizedBox(height: 6),
