@@ -191,6 +191,30 @@ func TestDuanjuMaccmsParsesCardsAndPlaylist(t *testing.T) {
 	}
 }
 
+func TestDuanjuMaccmsDetailCoverSkipsOtherDramaPosters(t *testing.T) {
+	detail, err := html.Parse(strings.NewReader(`<html><body>
+	<div class="module-card-item"><a class="module-item-pic" href="/detail/200.html"><img data-original="/pic/foreign.jpg"></a></div>
+	<div class="module-item-pic"><a href="/detail/100.html"><img data-original="/pic/own.jpg"></a></div>
+	</body></html>`))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got := maccmsDetailCover(detail, "https://www.example.cn", "100"); got != "https://www.example.cn/pic/own.jpg" {
+		t.Fatalf("detail cover picked a foreign poster: %q", got)
+	}
+
+	plain, err := html.Parse(strings.NewReader(`<html><body>
+	<a href="/detail/300.html"><img src="/pic/banner.jpg"></a>
+	<img data-src="/pic/own.jpg">
+	</body></html>`))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got := maccmsDetailCover(plain, "https://www.example.cn", "100"); got != "https://www.example.cn/pic/own.jpg" {
+		t.Fatalf("detail cover fallback picked a foreign poster: %q", got)
+	}
+}
+
 func TestDuanjuMaccmsPlayerParsingHandlesCommonShells(t *testing.T) {
 	playerShell := `<html><script>var player_aaaa={"flag":"1","url":"https:\/\/cdn.example.cn\/hls\/index.m3u8"}</script></html>`
 	if got := maccmsNormalizePlaybackURL(maccmsPlayerURL(playerShell)); got != "https://cdn.example.cn/hls/index.m3u8" {

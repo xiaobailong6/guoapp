@@ -437,7 +437,7 @@ func (d *Downloader) fetchMaccmsDetail(ctx context.Context, source, sourceID str
 			SourceID:    sourceID,
 			Title:       maccmsDetailTitleFor(document, source),
 			Intro:       maccmsDetailIntro(document),
-			Cover:       maccmsDetailCover(document, finalURL),
+			Cover:       maccmsDetailCover(document, finalURL, sourceID),
 			Category:    maccmsDetailCategory(document),
 			ChannelName: duanjuSourceName(source),
 		}
@@ -767,15 +767,35 @@ func maccmsDetailIntro(document *html.Node) string {
 	return ""
 }
 
-func maccmsDetailCover(document *html.Node, pageURL string) string {
+// 详情页同时包含相关推荐与猜你喜欢的卡片，直接取页面里第一个
+// module-item-pic 或 img 会把其他剧的海报当成封面；这里跳过挂在
+// 其他剧集详情链接下的图片节点，只接受属于本剧或未挂链接的图。
+func maccmsDetailCover(document *html.Node, pageURL, sourceID string) string {
+	belongsToOthers := func(node *html.Node) bool {
+		for anchor := node; anchor != nil; anchor = anchor.Parent {
+			if anchor.Type != html.ElementNode || anchor.Data != "a" {
+				continue
+			}
+			if id := maccmsSourceIDFromURL(providerHTMLAttr(anchor, "href")); id != "" && id != sourceID {
+				return true
+			}
+		}
+		return false
+	}
 	for _, name := range []string{"module-item-pic", "detail-pic", "video-info-pic", "pic"} {
 		for _, node := range providerHTMLNodes(document, func(node *html.Node) bool { return providerHTMLClass(node, name) }) {
+			if belongsToOthers(node) {
+				continue
+			}
 			if address := maccmsCardCover(node, pageURL); address != "" {
 				return address
 			}
 		}
 	}
 	for _, image := range providerHTMLNodes(document, func(node *html.Node) bool { return node.Data == "img" }) {
+		if belongsToOthers(image) {
+			continue
+		}
 		for _, attribute := range []string{"data-original", "data-src", "src"} {
 			if address := providerCoverAddress(providerHTMLAttr(image, attribute), pageURL); address != "" {
 				return address

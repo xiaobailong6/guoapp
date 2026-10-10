@@ -29,8 +29,11 @@ class LifeRepository extends AppRepository {
   Future<CatalogPage> cached(String source, {String category = ''}) async =>
       CatalogPage([]);
   @override
-  Future<String> cover(Drama drama, {bool force = false}) =>
-      native.cover(drama, force: force);
+  Future<String> cover(
+    Drama drama, {
+    bool force = false,
+    bool refresh = false,
+  }) => native.cover(drama, force: force, refresh: refresh);
   @override
   Future<CatalogPage> catalog(
     String source, {

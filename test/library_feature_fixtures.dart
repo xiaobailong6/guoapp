@@ -83,8 +83,11 @@ class LibraryFeatureRepository extends FixtureRepository {
   bool get supportsDownloads => true;
 
   @override
-  Future<String> cover(Drama drama, {bool force = false}) async =>
-      File('test/fixtures/cover.png').absolute.path;
+  Future<String> cover(
+    Drama drama, {
+    bool force = false,
+    bool refresh = false,
+  }) async => File('test/fixtures/cover.png').absolute.path;
 
   @override
   Future<SourceStatus> sourceStatus(String source) async =>

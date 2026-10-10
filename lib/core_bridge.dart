@@ -199,7 +199,7 @@ abstract class AppRepository {
   });
   Future<CatalogPage> searchProgress(String source, String query);
   Future<CatalogPage> cached(String source, {String category = ''});
-  Future<String> cover(Drama drama, {bool force = false});
+  Future<String> cover(Drama drama, {bool force = false, bool refresh = false});
   Future<Map<String, dynamic>> exportLibrary() async =>
       throw AppFailure('当前环境不支持剧库导出');
   Future<LibraryImportResult> importLibrary(
@@ -791,12 +791,17 @@ class NativeRepository extends AppRepository {
   }
 
   @override
-  Future<String> cover(Drama drama, {bool force = false}) async {
+  Future<String> cover(
+    Drama drama, {
+    bool force = false,
+    bool refresh = false,
+  }) async {
     final epoch = access?.profileEpoch;
     final result = await _call({
       'action': 'cover',
       'drama': drama.toJson(),
       'force': force,
+      'refresh': refresh,
     });
     final freshCover = result['cover'] as String? ?? '';
     if (freshCover.isNotEmpty && freshCover != drama.cover) {

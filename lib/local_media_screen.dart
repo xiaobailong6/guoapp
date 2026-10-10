@@ -1,4 +1,5 @@
 import 'player_route.dart';
+
 import 'dart:async';
 import 'dart:io';
 
@@ -310,9 +311,9 @@ class _LocalMediaScreenState extends State<LocalMediaScreen> {
                               children: [
                                 Text(
                                   item.drama.title,
-                                  style: Theme.of(
-                                    context,
-                                  ).textTheme.titleMedium,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium,
                                 ),
                                 const SizedBox(height: 6),
                                 Text(
@@ -325,9 +326,9 @@ class _LocalMediaScreenState extends State<LocalMediaScreen> {
                                 if (item.merged)
                                   Text(
                                     '视频转码 ${item.videoTranscodes} 集 · 音轨处理 ${item.audioTranscodes} 集',
-                                    style: Theme.of(
-                                      context,
-                                    ).textTheme.bodySmall,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall,
                                   ),
                                 if (item.merged)
                                   TextButton.icon(
@@ -427,8 +428,11 @@ class _LocalFileRepository extends AppRepository {
     bool force = false,
   }) => parent.categories(source, force: force);
   @override
-  Future<String> cover(Drama drama, {bool force = false}) =>
-      parent.cover(drama, force: force);
+  Future<String> cover(
+    Drama drama, {
+    bool force = false,
+    bool refresh = false,
+  }) => parent.cover(drama, force: force, refresh: refresh);
   @override
   Future<DramaDetail> detail(Drama drama) => parent.detail(drama);
   @override

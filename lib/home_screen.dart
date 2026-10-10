@@ -1012,10 +1012,21 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void _dramaActions(Drama drama) => showDramaActions(
+  Future<void> _refreshCover(Drama drama) async {
+    try {
+      await widget.repository.cover(drama, force: true, refresh: true);
+    } on AppFailure catch (error) {
+      if (mounted) AppNotice.show(context, error.message);
+    } catch (error) {
+      if (mounted) AppNotice.show(context, '$error');
+    }
+  }
+
+  void _dramaActions(Drama drama, {Rect? anchor}) => showDramaActions(
     context,
     drama: drama,
     store: widget.store,
+    anchor: anchor,
     onContinue: () => _openDrama(drama, resume: true),
     onDownload: widget.repository.supportsDownloads && widget.store.canDownload
         ? () => _openDrama(drama, download: true)
@@ -1023,6 +1034,7 @@ class _HomeScreenState extends State<HomeScreen> {
     onSelect: widget.repository.supportsDownloads && widget.store.canDownload
         ? () => _selectDrama(drama)
         : null,
+    onRefreshCover: () => unawaited(_refreshCover(drama)),
   );
 
   Widget _catalogTile(
@@ -1044,7 +1056,7 @@ class _HomeScreenState extends State<HomeScreen> {
       onMore: () => _dramaActions(drama),
       actions: DramaActionButton(
         drama: drama,
-        onPressed: () => _dramaActions(drama),
+        onPressed: (anchor) => _dramaActions(drama, anchor: anchor),
       ),
       selected: _selectionMode ? _selectedDramas.containsKey(drama.id) : null,
       badge: following == null
@@ -1747,9 +1759,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                         : Text(
                                             '已经看到这里的全部剧集',
                                             style: TextStyle(
-                                              color: Theme.of(
-                                                context,
-                                              ).colorScheme.onSurfaceVariant,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .onSurfaceVariant,
                                               fontSize: 12,
                                             ),
                                           ),

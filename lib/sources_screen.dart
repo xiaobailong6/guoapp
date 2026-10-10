@@ -437,9 +437,9 @@ class _SourcesScreenState extends State<SourcesScreen> {
                                     Text(health.label),
                                     Text(
                                       sourceTimestamp(health.checkedAt),
-                                      style: Theme.of(
-                                        context,
-                                      ).textTheme.bodySmall,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall,
                                     ),
                                   ],
                                 ),

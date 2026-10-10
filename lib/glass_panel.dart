@@ -108,6 +108,17 @@ class GlassMenuEntry<T> {
   final bool enabled;
 }
 
+Rect? glassMenuAnchor(BuildContext context) {
+  final object = context.findRenderObject();
+  if (object is! RenderBox) return null;
+  final overlay = Overlay.of(context).context.findRenderObject();
+  if (overlay is! RenderBox) return null;
+  return MatrixUtils.transformRect(
+    object.getTransformTo(overlay),
+    Offset.zero & object.size,
+  );
+}
+
 double _glassMenuWidth<T>(
   BuildContext context,
   List<GlassMenuEntry<T>> entries,

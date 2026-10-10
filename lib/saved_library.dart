@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'app_layout.dart';
+import 'app_notice.dart';
 import 'catalog_sort.dart';
 import 'core_bridge.dart';
 import 'drama_actions.dart';
@@ -102,15 +105,27 @@ class _SavedLibraryState extends State<SavedLibrary> {
     }
   }
 
-  void _actions(Drama drama) => showDramaActions(
+  Future<void> _refreshCover(Drama drama) async {
+    try {
+      await widget.repository.cover(drama, force: true, refresh: true);
+    } on AppFailure catch (error) {
+      if (mounted) AppNotice.show(context, error.message);
+    } catch (error) {
+      if (mounted) AppNotice.show(context, '$error');
+    }
+  }
+
+  void _actions(Drama drama, {Rect? anchor}) => showDramaActions(
     context,
     drama: drama,
     store: widget.store,
+    anchor: anchor,
     history: widget.history,
     onContinue: () => widget.onContinue(drama),
     onDownload: widget.onDownload == null
         ? null
         : () => widget.onDownload!(drama),
+    onRefreshCover: () => unawaited(_refreshCover(drama)),
   );
 
   Widget _tile(Drama drama, {FocusNode? focusNode, VoidCallback? onFocus}) {
@@ -129,7 +144,7 @@ class _SavedLibraryState extends State<SavedLibrary> {
       onMore: () => _actions(drama),
       actions: DramaActionButton(
         drama: drama,
-        onPressed: () => _actions(drama),
+        onPressed: (anchor) => _actions(drama, anchor: anchor),
       ),
       badge: badge,
       subtitle: watched == null

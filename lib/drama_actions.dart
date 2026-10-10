@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'app_layout.dart';
 import 'follow_state.dart';
+import 'glass_panel.dart';
 import 'local_store.dart';
 import 'models.dart';
 import 'widgets.dart';
@@ -9,9 +11,11 @@ Future<void> showDramaActions(
   BuildContext context, {
   required Drama drama,
   required LocalStore store,
+  Rect? anchor,
   VoidCallback? onContinue,
   VoidCallback? onDownload,
   VoidCallback? onSelect,
+  VoidCallback? onRefreshCover,
   bool history = false,
 }) async {
   final epoch = store.profileEpoch;
@@ -36,37 +40,58 @@ Future<void> showDramaActions(
       ('download', '下载选集', Icons.download_outlined),
     if (onSelect != null && store.canDownload)
       ('select', '多选下载', Icons.checklist_rounded),
+    if (onRefreshCover != null) ('refreshCover', '重新获取海报', Icons.image_rounded),
     if (history && store.watched(drama.id) != null)
       ('removeHistory', '删除这条观看记录', Icons.history_toggle_off),
   ];
-  final choice = await showDialog<String>(
-    context: context,
-    builder: (context) => SimpleDialog(
-      title: Text(drama.title, maxLines: 2, overflow: TextOverflow.ellipsis),
-      children: [
-        for (final entry in choices.indexed)
-          SimpleDialogOption(
-            onPressed: () => Navigator.pop(context, entry.$2.$1),
-            child: Row(
-              children: [
-                Icon(entry.$2.$3, size: 22),
-                const SizedBox(width: 14),
-                Expanded(child: Text(entry.$2.$2)),
-                if (entry.$2.$1 == 'status:${following?.status.name}')
-                  const Icon(Icons.check_rounded, size: 20),
-              ],
+  final marked = 'status:${following?.status.name}';
+  final String? choice;
+  if (anchor != null) {
+    choice = await showGlassMenu<String>(
+      context: context,
+      anchor: anchor,
+      alignRight: true,
+      autofocusSelected: AppLayout.isTelevision(context),
+      entries: [
+        for (final (value, label, icon) in choices)
+          GlassMenuEntry(
+            value: value,
+            label: Text(label),
+            leading: Icon(icon),
+            selected: value == marked,
+          ),
+      ],
+    );
+  } else {
+    choice = await showDialog<String>(
+      context: context,
+      builder: (context) => SimpleDialog(
+        title: Text(drama.title, maxLines: 2, overflow: TextOverflow.ellipsis),
+        children: [
+          for (final entry in choices.indexed)
+            SimpleDialogOption(
+              onPressed: () => Navigator.pop(context, entry.$2.$1),
+              child: Row(
+                children: [
+                  Icon(entry.$2.$3, size: 22),
+                  const SizedBox(width: 14),
+                  Expanded(child: Text(entry.$2.$2)),
+                  if (entry.$2.$1 == marked)
+                    const Icon(Icons.check_rounded, size: 20),
+                ],
+              ),
+            ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(24, 10, 24, 8),
+            child: Text(
+              '手动标记已看会保留真实播放进度。',
+              style: Theme.of(context).textTheme.bodySmall,
             ),
           ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(24, 10, 24, 8),
-          child: Text(
-            '手动标记已看会保留真实播放进度。',
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
-        ),
-      ],
-    ),
-  );
+        ],
+      ),
+    );
+  }
   if (choice == null ||
       !context.mounted ||
       epoch != store.profileEpoch ||
@@ -91,6 +116,8 @@ Future<void> showDramaActions(
       if (store.canDownload) onDownload?.call();
     case 'select':
       if (store.canDownload) onSelect?.call();
+    case 'refreshCover':
+      onRefreshCover?.call();
     case 'removeHistory':
       await saveUserChange(context, () => store.removeHistory(drama.id));
   }
@@ -103,13 +130,15 @@ class DramaActionButton extends StatelessWidget {
     required this.onPressed,
   });
   final Drama drama;
-  final VoidCallback onPressed;
+  final void Function(Rect? anchor)? onPressed;
 
   @override
   Widget build(BuildContext context) => IconButton(
     key: ValueKey('drama-actions-${drama.id}'),
     tooltip: '${drama.title} · 更多操作',
-    onPressed: onPressed,
+    onPressed: onPressed == null
+        ? null
+        : () => onPressed!(glassMenuAnchor(context)),
     icon: const Icon(
       Icons.more_horiz_rounded,
       size: 20,

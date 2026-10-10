@@ -117,6 +117,7 @@ type nativeInput struct {
 	Session          string                  `json:"session"`
 	Sequence         int64                   `json:"sequence"`
 	Force            bool                    `json:"force"`
+	Refresh          bool                    `json:"refresh"`
 }
 
 type nativeCatalogResult struct {
@@ -509,7 +510,7 @@ func nativeDispatch(input nativeInput) (any, error) {
 	case "cancelSourceJob":
 		return engine.cancelSourceTask(input.Source), nil
 	case "cover":
-		return engine.loadCover(ctx, input.Drama, input.Force)
+		return engine.loadCover(ctx, input.Drama, input.Force, input.Refresh)
 	case "prepareCover":
 		return engine.prepareCover(ctx, input.Drama)
 	case "detail":

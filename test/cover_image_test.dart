@@ -12,7 +12,11 @@ class CoverFixtureRepository extends FixtureRepository {
   final attempts = <bool>[];
 
   @override
-  Future<String> cover(Drama drama, {bool force = false}) async {
+  Future<String> cover(
+    Drama drama, {
+    bool force = false,
+    bool refresh = false,
+  }) async {
     attempts.add(force);
     if (!force) {
       throw AppFailure('合成海报首次请求失败');

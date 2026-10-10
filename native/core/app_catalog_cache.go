@@ -146,7 +146,9 @@ func mergeNativeDrama(previous, fresh nativeDrama) nativeDrama {
 	if fresh.Description == "" {
 		fresh.Description = previous.Description
 	}
-	if fresh.Cover == "" {
+	// 海报一经写入就固定下来：详情页与目录刷新解析到的封面可能来自
+	// 页面上的其他剧集（相关推荐、猜你喜欢），只在原本没有海报时补齐。
+	if fresh.Cover == "" || previous.Cover != "" {
 		fresh.Cover = previous.Cover
 	}
 	if fresh.Category == "" || nativeGenericCategory(fresh.Category) && previous.Category != "" && !nativeGenericCategory(previous.Category) {

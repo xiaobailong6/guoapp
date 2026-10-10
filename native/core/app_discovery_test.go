@@ -139,3 +139,15 @@ func TestNativeCoverMetadataRejectsOtherDramaAndKeepsCurrentHost(t *testing.T) {
 		t.Fatal("cover referer ignored active source mirror", got)
 	}
 }
+
+func TestMergeNativeDramaPinsCachedCover(t *testing.T) {
+	cached := nativeDrama{ID: "wuguo:100", Source: sourceWuguo, Cover: "https://pic.example.cn/cached.jpg"}
+	fresh := nativeDrama{ID: "wuguo:100", Source: sourceWuguo, Cover: "https://pic.example.cn/recommendation.jpg"}
+	if merged := mergeNativeDrama(cached, fresh); merged.Cover != cached.Cover {
+		t.Fatalf("cached cover was replaced by fresh metadata: %q", merged.Cover)
+	}
+	empty := nativeDrama{ID: "wuguo:100", Source: sourceWuguo}
+	if merged := mergeNativeDrama(empty, fresh); merged.Cover != fresh.Cover {
+		t.Fatalf("missing cover was not filled from fresh metadata: %q", merged.Cover)
+	}
+}

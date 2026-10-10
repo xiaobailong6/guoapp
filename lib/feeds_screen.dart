@@ -466,7 +466,7 @@ class _FeedsScreenState extends State<FeedsScreen> {
       onMore: () => unawaited(_actions(item)),
       actions: DramaActionButton(
         drama: drama,
-        onPressed: () => unawaited(_actions(item)),
+        onPressed: (_) => unawaited(_actions(item)),
       ),
     );
   }
