@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 
 import 'app_notice.dart';
 import 'core_bridge.dart';
+import 'glass_panel.dart';
 import 'local_store.dart';
 import 'models.dart';
 import 'remote_widgets.dart';
@@ -96,42 +97,38 @@ class _SourcesScreenState extends State<SourcesScreen> {
     if (_polling) return;
     _polling = true;
     final epoch = widget.store.profileEpoch;
+    final sources = widget.store.sources.map((source) => source.id).toList();
+    final revisions = {
+      for (final source in sources) source: _revisions[source] ?? 0,
+    };
     var changed = false;
     try {
-      await Future.wait([
-        for (final source in widget.store.sources)
-          (() async {
-            final revision = _revisions[source.id] ?? 0;
-            try {
-              final status = await widget.repository.sourceStatus(source.id);
-              if (!mounted ||
-                  epoch != widget.store.profileEpoch ||
-                  revision != (_revisions[source.id] ?? 0)) {
-                return;
-              }
-              if (!status.sameAs(_statuses[source.id] ?? status) ||
-                  !_statuses.containsKey(source.id) ||
-                  _errors.containsKey(source.id)) {
-                _statuses[source.id] = status;
-                _errors.remove(source.id);
-                changed = true;
-              }
-            } catch (error) {
-              if (mounted &&
-                  epoch == widget.store.profileEpoch &&
-                  revision == (_revisions[source.id] ?? 0)) {
-                final message = error.toString();
-                if (_errors[source.id] != message) {
-                  _errors[source.id] = message;
-                  changed = true;
-                }
-              }
-            }
-          })(),
-      ]);
-      if (changed && mounted && epoch == widget.store.profileEpoch) {
-        setState(() {});
+      final statuses = await widget.repository.sourceStatuses(sources);
+      if (!mounted || epoch != widget.store.profileEpoch) return;
+      for (final source in sources) {
+        if (revisions[source] != (_revisions[source] ?? 0)) continue;
+        final status = statuses[source];
+        if (status == null) continue;
+        if (!_statuses.containsKey(source) ||
+            !status.sameAs(_statuses[source]!) ||
+            _errors.containsKey(source)) {
+          _statuses[source] = status;
+          _errors.remove(source);
+          changed = true;
+        }
       }
+      if (changed) setState(() {});
+    } catch (error) {
+      if (!mounted || epoch != widget.store.profileEpoch) return;
+      final message = error.toString();
+      for (final source in sources) {
+        if (revisions[source] == (_revisions[source] ?? 0) &&
+            _errors[source] != message) {
+          _errors[source] = message;
+          changed = true;
+        }
+      }
+      if (changed) setState(() {});
     } finally {
       _polling = false;
     }
@@ -226,6 +223,9 @@ class _SourcesScreenState extends State<SourcesScreen> {
           final bFirst = b.id == widget.initialSource ? 0 : 1;
           return aFirst.compareTo(bFirst);
         });
+      final orderedSources = [
+        for (final group in SourceGroup.fromSources(sources)) ...group.sources,
+      ];
       final viewPaddingBottom = MediaQuery.viewPaddingOf(context).bottom;
       final paddingBottom = MediaQuery.paddingOf(context).bottom;
       final bottomInset = viewPaddingBottom > paddingBottom
@@ -250,23 +250,31 @@ class _SourcesScreenState extends State<SourcesScreen> {
         body: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 960),
-            child: ListView(
+            child: ListView.builder(
+              key: const PageStorageKey('source-management-list'),
               padding: EdgeInsets.fromLTRB(16, 16, 16, 16 + bottomInset),
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 16),
-                  child: Text(
-                    '各站源可分别更新和检测。更新会查找新剧、继续加载一页历史内容，并分批补齐资料；离开此页后任务继续。',
-                  ),
-                ),
-                if (sources.isEmpty)
-                  const Padding(
+              itemCount: orderedSources.isEmpty ? 2 : orderedSources.length + 1,
+              itemBuilder: (context, index) {
+                if (index == 0) {
+                  return const Padding(
+                    padding: EdgeInsets.only(bottom: 16),
+                    child: Text(
+                      '各站源可分别更新和检测。更新会查找新剧、继续加载历史分页，并分批补齐资料；离开此页后任务继续。',
+                    ),
+                  );
+                }
+                if (orderedSources.isEmpty) {
+                  return const Padding(
                     padding: EdgeInsets.all(24),
                     child: Text('当前用户没有可用站源'),
-                  ),
-                for (final group in SourceGroup.fromSources(sources))
-                  for (final source in group.sources) _sourceCard(source),
-              ],
+                  );
+                }
+                final source = orderedSources[index - 1];
+                return FocusTraversalGroup(
+                  key: ValueKey('source-focus-${source.id}'),
+                  child: _sourceCard(source),
+                );
+              },
             ),
           ),
         ),
@@ -335,28 +343,65 @@ class _SourcesScreenState extends State<SourcesScreen> {
                     onPressed: pending ? null : () => _run(source, 'cancel'),
                     child: const Text('停止'),
                   ),
-                PopupMenuButton<String>(
-                  tooltip: '${source.name}更多操作',
-                  enabled: enabled,
-                  onSelected: (operation) => _run(source, operation),
-                  itemBuilder: (_) => [
-                    PopupMenuItem(
-                      value: 'more',
-                      enabled: status?.hasMore ?? true,
-                      child: const Text('继续加载一页'),
-                    ),
-                    const PopupMenuItem(value: 'metadata', child: Text('补齐资料')),
-                    if (source.id == 'huangdou')
-                      PopupMenuItem(
-                        value: 'vipMetadata',
-                        enabled: (status?.unknownVip ?? 0) > 0,
-                        child: Text('补齐 VIP 资料（${status?.unknownVip ?? 0} 部）'),
-                      ),
-                    const PopupMenuItem(
-                      value: 'checkCatalog',
-                      child: Text('仅检测目录'),
-                    ),
-                  ],
+                Builder(
+                  builder: (anchorContext) => IconButton(
+                    tooltip: '${source.name}更多操作',
+                    icon: const Icon(Icons.more_vert_rounded),
+                    onPressed: !enabled
+                        ? null
+                        : () async {
+                            final anchor = glassMenuAnchor(anchorContext);
+                            if (anchor == null) return;
+                            final epoch = widget.store.profileEpoch;
+                            final operation = await showGlassMenu<String>(
+                              context: context,
+                              anchor: anchor,
+                              alignRight: true,
+                              autofocusSelected: true,
+                              width: 320,
+                              entries: [
+                                GlassMenuEntry(
+                                  value: 'more',
+                                  enabled: status?.hasMore ?? true,
+                                  label: const Text('继续加载一页'),
+                                  leading: const Icon(
+                                    Icons.expand_more_rounded,
+                                  ),
+                                ),
+                                const GlassMenuEntry(
+                                  value: 'metadata',
+                                  label: Text('补齐资料'),
+                                  leading: Icon(Icons.description_outlined),
+                                ),
+                                if (source.id == 'huangdou')
+                                  GlassMenuEntry(
+                                    value: 'vipMetadata',
+                                    enabled: (status?.unknownVip ?? 0) > 0,
+                                    label: Text(
+                                      '补齐 VIP 资料（${status?.unknownVip ?? 0} 部）',
+                                    ),
+                                    leading: const Icon(
+                                      Icons.verified_outlined,
+                                    ),
+                                  ),
+                                const GlassMenuEntry(
+                                  value: 'checkCatalog',
+                                  label: Text('仅检测目录'),
+                                  leading: Icon(Icons.fact_check_outlined),
+                                ),
+                              ],
+                            );
+                            if (!mounted ||
+                                epoch != widget.store.profileEpoch ||
+                                operation == null ||
+                                _pending.contains(source.id) ||
+                                _statuses[source.id]?.running == true ||
+                                (_statuses[source.id]?.retrySeconds ?? 0) > 0) {
+                              return;
+                            }
+                            await _run(source, operation);
+                          },
+                  ),
                 ),
               ],
             ),

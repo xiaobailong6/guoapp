@@ -143,6 +143,7 @@ void main() {
       for (final request in [
         () => repository.catalog('huangdou'),
         () => repository.cached('huangdou'),
+        () => repository.sourceStatuses(['hongguo', 'huangdou']),
         () => repository.detail(denied),
         () => repository.cover(denied),
         () => repository.resolve(denied, Episode({'id': '1'}, 1)),

@@ -32,28 +32,20 @@ class PlaybackSettingsScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: Wrap(
-                    spacing: 8,
-                    children: [
+                  child: GlassChoiceField<double>(
+                    value: preferences.holdSpeed,
+                    label: '长按倍速',
+                    enabled: enabled,
+                    entries: [
                       for (final value in holdSpeeds)
-                        ChoiceChip(
-                          key: ValueKey('hold-speed-$value'),
-                          label: Text('${speedLabel(value)}x'),
-                          selected: preferences.holdSpeed == value,
-                          onSelected: !enabled
-                              ? null
-                              : (selected) {
-                                  if (selected) {
-                                    saveUserChange(
-                                      context,
-                                      () => store.setPlaybackPreferences(
-                                        preferences.copyWith(holdSpeed: value),
-                                      ),
-                                    );
-                                  }
-                                },
-                        ),
+                        (value, '${speedLabel(value)}x'),
                     ],
+                    onChanged: (value) => saveUserChange(
+                      context,
+                      () => store.setPlaybackPreferences(
+                        preferences.copyWith(holdSpeed: value),
+                      ),
+                    ),
                   ),
                 ),
                 const Divider(height: 32),
@@ -63,30 +55,19 @@ class PlaybackSettingsScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: Wrap(
-                    spacing: 8,
-                    children: [
-                      for (final value in swipeSeekChoices)
-                        ChoiceChip(
-                          key: ValueKey('swipe-seek-$value'),
-                          label: Text('$value 秒'),
-                          selected: preferences.swipeSeekSeconds == value,
-                          onSelected: !enabled
-                              ? null
-                              : (selected) {
-                                  if (selected) {
-                                    saveUserChange(
-                                      context,
-                                      () => store.setPlaybackPreferences(
-                                        preferences.copyWith(
-                                          swipeSeekSeconds: value,
-                                        ),
-                                      ),
-                                    );
-                                  }
-                                },
-                        ),
+                  child: GlassChoiceField<int>(
+                    value: preferences.swipeSeekSeconds,
+                    label: '拖满一屏的秒数',
+                    enabled: enabled,
+                    entries: [
+                      for (final value in swipeSeekChoices) (value, '$value 秒'),
                     ],
+                    onChanged: (value) => saveUserChange(
+                      context,
+                      () => store.setPlaybackPreferences(
+                        preferences.copyWith(swipeSeekSeconds: value),
+                      ),
+                    ),
                   ),
                 ),
                 const Divider(height: 32),
@@ -96,28 +77,20 @@ class PlaybackSettingsScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: Wrap(
-                    spacing: 8,
-                    children: [
+                  child: GlassChoiceField<double>(
+                    value: preferences.speed,
+                    label: '默认播放倍速',
+                    enabled: enabled,
+                    entries: [
                       for (final value in playbackSpeeds)
-                        ChoiceChip(
-                          key: ValueKey('play-speed-$value'),
-                          label: Text('${speedLabel(value)}x'),
-                          selected: preferences.speed == value,
-                          onSelected: !enabled
-                              ? null
-                              : (selected) {
-                                  if (selected) {
-                                    saveUserChange(
-                                      context,
-                                      () => store.setPlaybackPreferences(
-                                        preferences.copyWith(speed: value),
-                                      ),
-                                    );
-                                  }
-                                },
-                        ),
+                        (value, '${speedLabel(value)}x'),
                     ],
+                    onChanged: (value) => saveUserChange(
+                      context,
+                      () => store.setPlaybackPreferences(
+                        preferences.copyWith(speed: value),
+                      ),
+                    ),
                   ),
                 ),
                 const Divider(height: 32),

@@ -10,6 +10,7 @@ import 'core_bridge.dart';
 import 'app_theme.dart';
 import 'app_layout.dart';
 import 'local_store.dart';
+import 'glass_panel.dart';
 import 'playback_preferences.dart';
 import 'playback_settings_screen.dart';
 import 'profiles_screen.dart';
@@ -49,6 +50,8 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   final _listKey = GlobalKey<RemoteListState>();
   bool _busy = false;
+  final _themeAnchor = GlobalKey();
+  final _styleAnchor = GlobalKey();
   String? _message;
 
   /// 列表底部避让系统手势条 / 导航栏，避免最后一项被遮挡。
@@ -69,93 +72,60 @@ class _SettingsScreenState extends State<SettingsScreen> {
         .length,
   );
 
-  Future<void> _chooseTheme() async {
-    if (AppLayout.isTelevision(context)) {
-      final selected = await showDialog<String>(
-        context: context,
-        builder: (_) => TelevisionActionDialog(
-          title: '外观主题',
-          options: [
-            for (final mode in ['light', 'dark', 'system'])
-              TelevisionAction(
-                value: mode,
-                label: AppTheme.label(mode),
-                description: mode == 'system' ? '随设备的深色模式自动切换' : null,
-                icon: Icons.brightness_6_rounded,
-              ),
-          ],
-        ),
-      );
-      if (selected != null && mounted) {
-        await saveUserChange(
-          context,
-          () => widget.store.setThemeMode(selected),
-        );
-      }
-      return;
-    }
-    final selected = await showDialog<String>(
+  Future<String?> _chooseOption(
+    GlobalKey key,
+    String value,
+    List<(String, String, IconData)> options,
+  ) {
+    final anchorContext = key.currentContext;
+    final size = MediaQuery.sizeOf(context);
+    final anchor = anchorContext == null
+        ? Rect.fromLTWH(size.width / 2, size.height / 3, 0, 0)
+        : glassMenuAnchor(anchorContext);
+    if (anchor == null) return Future.value();
+    return showGlassMenu<String>(
       context: context,
-      builder: (context) => SimpleDialog(
-        title: const Text('外观主题'),
-        children: [
-          RadioGroup<String>(
-            groupValue: widget.store.themeMode,
-            onChanged: (value) => Navigator.pop(context, value),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                for (final mode in ['light', 'dark', 'system'])
-                  RadioListTile<String>(
-                    value: mode,
-                    title: Text(AppTheme.label(mode)),
-                    subtitle: mode == 'system'
-                        ? const Text('随设备的深色模式自动切换')
-                        : null,
-                  ),
-              ],
-            ),
+      anchor: anchor,
+      alignRight: true,
+      autofocusSelected: true,
+      width: 320,
+      entries: [
+        for (final (option, label, icon) in options)
+          GlassMenuEntry(
+            value: option,
+            label: Text(label),
+            leading: Icon(icon),
+            selected: option == value,
           ),
-        ],
-      ),
+      ],
     );
-    if (selected != null && mounted) {
-      await saveUserChange(context, () => widget.store.setThemeMode(selected));
-    }
+  }
+
+  Future<void> _chooseTheme() async {
+    final epoch = widget.store.profileEpoch;
+    final selected = await _chooseOption(_themeAnchor, widget.store.themeMode, [
+      ('light', '浅色', Icons.light_mode_outlined),
+      ('dark', '深色', Icons.dark_mode_outlined),
+      ('system', '跟随系统', Icons.brightness_auto_outlined),
+    ]);
+    if (selected == null || !mounted || epoch != widget.store.profileEpoch)
+      return;
+    await saveUserChange(context, () => widget.store.setThemeMode(selected));
   }
 
   Future<void> _chooseInterfaceStyle() async {
-    final selected = await showDialog<String>(
-      context: context,
-      builder: (context) => SimpleDialog(
-        title: const Text('界面风格'),
-        children: [
-          RadioGroup<String>(
-            groupValue: widget.store.interfaceStyle,
-            onChanged: (value) => Navigator.pop(context, value),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                for (final style in ['standard', 'glass'])
-                  RadioListTile<String>(
-                    value: style,
-                    title: Text(style == 'glass' ? '玻璃' : '标准'),
-                    subtitle: Text(
-                      style == 'glass' ? '悬浮玻璃底栏、菜单与回到顶部按钮' : '经典底部导航',
-                    ),
-                  ),
-              ],
-            ),
-          ),
-        ],
-      ),
+    final epoch = widget.store.profileEpoch;
+    final selected =
+        await _chooseOption(_styleAnchor, widget.store.interfaceStyle, [
+          ('standard', '标准 · 经典底部导航', Icons.view_agenda_outlined),
+          ('glass', '玻璃 · 悬浮底栏与菜单', Icons.blur_on_outlined),
+        ]);
+    if (selected == null || !mounted || epoch != widget.store.profileEpoch)
+      return;
+    await saveUserChange(
+      context,
+      () => widget.store.setInterfaceStyle(selected),
     );
-    if (selected != null && mounted) {
-      await saveUserChange(
-        context,
-        () => widget.store.setInterfaceStyle(selected),
-      );
-    }
   }
 
   Future<void> _backup(bool restore) async {
@@ -210,7 +180,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           accepted =
               await showDialog<bool>(
                 context: context,
-                builder: (context) => AlertDialog(
+                builder: (context) => _SettingsGlassConfirmation(
                   title: const Text('恢复备份？'),
                   content: Text(summary),
                   actions: [
@@ -290,7 +260,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         accepted =
             await showDialog<bool>(
               context: context,
-              builder: (context) => AlertDialog(
+              builder: (context) => _SettingsGlassConfirmation(
                 title: const Text('关闭绿色模式？'),
                 content: const Text(summary),
                 actions: [
@@ -547,7 +517,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       leading: const Icon(Icons.palette_outlined),
                       title: const Text('外观主题'),
                       subtitle: Text(AppTheme.label(widget.store.themeMode)),
-                      trailing: const Icon(Icons.chevron_right_rounded),
+                      trailing: Icon(
+                        Icons.chevron_right_rounded,
+                        key: _themeAnchor,
+                      ),
                       onTap: _chooseTheme,
                     ),
                     ListTile(
@@ -559,7 +532,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             ? '玻璃 · 悬浮玻璃底栏、菜单与回到顶部按钮'
                             : '标准 · 经典底部导航',
                       ),
-                      trailing: const Icon(Icons.chevron_right_rounded),
+                      trailing: Icon(
+                        Icons.chevron_right_rounded,
+                        key: _styleAnchor,
+                      ),
                       onTap: _chooseInterfaceStyle,
                     ),
                     if (widget.store.fullMode)
@@ -769,15 +745,24 @@ class _StorageScreenState extends State<StorageScreen>
       if (!mounted) return;
       parent = await showDialog<String>(
         context: context,
-        builder: (context) => SimpleDialog(
-          title: const Text('选择下载位置'),
-          children: [
-            for (final entry in directories.entries)
-              SimpleDialogOption(
-                onPressed: () => Navigator.pop(context, entry.key),
-                child: Text(entry.value),
-              ),
-          ],
+        builder: (context) => GlassDialog(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text('选择下载位置', style: Theme.of(context).textTheme.titleLarge),
+                const SizedBox(height: 12),
+                for (final entry in directories.entries)
+                  ListTile(
+                    title: Text(entry.value),
+                    leading: const Icon(Icons.folder_outlined),
+                    onTap: () => Navigator.pop(context, entry.key),
+                  ),
+              ],
+            ),
+          ),
         ),
       );
     } else {
@@ -786,7 +771,7 @@ class _StorageScreenState extends State<StorageScreen>
     if (parent == null || !mounted) return;
     final yes = await showDialog<bool>(
       context: context,
-      builder: (context) => AlertDialog(
+      builder: (context) => _SettingsGlassConfirmation(
         title: const Text('迁移已下载内容？'),
         content: Text(
           '将视频、合并成品及导出内容迁移到：\n$parent\n\n下载会先暂停，复制成功后清理旧目录。请保证目标有足够空间，并在完成后继续下载。',
@@ -919,6 +904,44 @@ class _StorageScreenState extends State<StorageScreen>
             ],
           ),
         ),
+      ),
+    ),
+  );
+}
+
+class _SettingsGlassConfirmation extends StatelessWidget {
+  const _SettingsGlassConfirmation({
+    required this.title,
+    required this.content,
+    required this.actions,
+  });
+
+  final Widget title;
+  final Widget content;
+  final List<Widget> actions;
+
+  @override
+  Widget build(BuildContext context) => GlassDialog(
+    child: SingleChildScrollView(
+      padding: const EdgeInsets.all(24),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          DefaultTextStyle.merge(
+            style: Theme.of(context).textTheme.titleLarge,
+            child: title,
+          ),
+          const SizedBox(height: 16),
+          content,
+          const SizedBox(height: 20),
+          Wrap(
+            alignment: WrapAlignment.end,
+            spacing: 8,
+            runSpacing: 8,
+            children: actions,
+          ),
+        ],
       ),
     ),
   );

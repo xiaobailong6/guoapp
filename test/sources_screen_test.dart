@@ -1,3 +1,4 @@
+import 'package:duanju_app/source_status.dart';
 import 'package:duanju_app/local_store.dart';
 import 'package:duanju_app/models.dart';
 import 'package:duanju_app/sources_screen.dart';
@@ -7,7 +8,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'fixtures.dart';
 
-Future<LocalStore> mount(WidgetTester tester) async {
+Future<LocalStore> mount(
+  WidgetTester tester, {
+  FixtureRepository? repository,
+}) async {
   SharedPreferences.setMockInitialValues({});
   final store = LocalStore(await SharedPreferences.getInstance());
   addTearDown(store.dispose);
@@ -16,7 +20,10 @@ Future<LocalStore> mount(WidgetTester tester) async {
   addTearDown(tester.view.reset);
   await tester.pumpWidget(
     MaterialApp(
-      home: SourcesScreen(repository: FixtureRepository(), store: store),
+      home: SourcesScreen(
+        repository: repository ?? FixtureRepository(),
+        store: store,
+      ),
     ),
   );
   for (var i = 0; i < 12; i++) {
@@ -26,6 +33,40 @@ Future<LocalStore> mount(WidgetTester tester) async {
 }
 
 void main() {
+  testWidgets('status refresh uses one batch and builds source cards lazily', (
+    tester,
+  ) async {
+    final repository = _BatchRepository();
+    final store = await mount(tester, repository: repository);
+    expect(repository.batches, 1);
+    expect(repository.singleCalls, 0);
+    expect(
+      repository.requested.toSet(),
+      store.sources.map((s) => s.id).toSet(),
+    );
+    final cards = find.byWidgetPredicate(
+      (widget) =>
+          widget is Card &&
+          widget.key is ValueKey<String> &&
+          (widget.key! as ValueKey<String>).value.startsWith('source-'),
+    );
+    expect(cards.evaluate().length, lessThan(store.sources.length));
+    final ordered = [
+      for (final group in SourceGroup.fromSources(store.sources))
+        ...group.sources,
+    ];
+    final last = find.byKey(ValueKey('source-${ordered.last.id}'));
+    expect(last, findsNothing);
+    await tester.scrollUntilVisible(
+      last,
+      350,
+      scrollable: find.byType(Scrollable).first,
+      maxScrolls: 100,
+    );
+    expect(last, findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('every 黄果 entrance forms its own card like other sources', (
     tester,
   ) async {
@@ -74,4 +115,26 @@ void main() {
     }
     expect(tester.takeException(), isNull);
   });
+}
+
+class _BatchRepository extends FixtureRepository {
+  int batches = 0;
+  int singleCalls = 0;
+  List<String> requested = [];
+
+  @override
+  Future<Map<String, SourceStatus>> sourceStatuses(List<String> sources) async {
+    batches++;
+    requested = List.of(sources);
+    return {
+      for (final source in sources)
+        source: SourceStatus.fromJson({'source': source, 'count': 7}),
+    };
+  }
+
+  @override
+  Future<SourceStatus> sourceStatus(String source) async {
+    singleCalls++;
+    return SourceStatus.fromJson({'source': source});
+  }
 }

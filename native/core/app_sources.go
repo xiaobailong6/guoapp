@@ -131,6 +131,31 @@ func (engine *nativeEngine) sourceStatus(source string) nativeSourceStatus {
 	return engine.sourceStatusLocked(source)
 }
 
+func (engine *nativeEngine) sourceStatuses(sources []string) ([]nativeSourceStatus, error) {
+	if len(sources) > 128 {
+		return nil, errors.New("站源状态请求数量过多")
+	}
+	keys := make([]string, 0, len(sources))
+	seen := make(map[string]bool, len(sources))
+	for _, source := range sources {
+		source = canonicalProviderSource(source)
+		if !nativeSourceAvailable(source) {
+			return nil, errNativeBuildSource
+		}
+		if !seen[source] {
+			seen[source] = true
+			keys = append(keys, source)
+		}
+	}
+	engine.mu.Lock()
+	defer engine.mu.Unlock()
+	items := make([]nativeSourceStatus, 0, len(keys))
+	for _, source := range keys {
+		items = append(items, engine.sourceStatusLocked(source))
+	}
+	return items, nil
+}
+
 func (engine *nativeEngine) sourceStatusLocked(source string) nativeSourceStatus {
 	record := engine.sourceRecords[source]
 	state, found := engine.catalogStates[source]

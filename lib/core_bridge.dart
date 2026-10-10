@@ -137,6 +137,13 @@ abstract class AppRepository {
   bool get supportsSourceManagement => false;
   Future<SourceStatus> sourceStatus(String source) async =>
       SourceStatus.fromJson({'source': source});
+  Future<Map<String, SourceStatus>> sourceStatuses(List<String> sources) async {
+    final statuses = await Future.wait([
+      for (final source in sources.toSet()) sourceStatus(source),
+    ]);
+    return {for (final status in statuses) status.source: status};
+  }
+
   Future<SourceStatus> startSourceJob(
     String source,
     String operation, {
@@ -453,6 +460,26 @@ class NativeRepository extends AppRepository {
       );
 
   @override
+  Future<Map<String, SourceStatus>> sourceStatuses(List<String> sources) async {
+    final requested = sources.toSet();
+    final result = await _call({
+      'action': 'sourceStatuses',
+      'sources': requested.toList(),
+    });
+    final statuses = <String, SourceStatus>{};
+    for (final entry in (result['items'] as List)) {
+      final status = SourceStatus.fromJson(
+        Map<String, dynamic>.from(entry as Map),
+      );
+      if (requested.contains(status.source)) statuses[status.source] = status;
+    }
+    if (statuses.length != requested.length) {
+      throw AppFailure('站源状态返回不完整，请重试');
+    }
+    return statuses;
+  }
+
+  @override
   Future<SourceStatus> startSourceJob(
     String source,
     String operation, {
@@ -627,6 +654,11 @@ class NativeRepository extends AppRepository {
         'cancelSourceJob',
       }.contains(action)) {
         _authorize(input['source'] as String);
+      }
+      if (action == 'sourceStatuses') {
+        for (final source in input['sources'] as List<String>) {
+          _authorize(source);
+        }
       }
       if ({
         'cover',
