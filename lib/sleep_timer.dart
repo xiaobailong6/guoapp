@@ -143,6 +143,21 @@ Future<void> showSleepTimerSheet(
   ];
   final choice = await showDialog<Object>(
     context: context,
+    barrierColor: Colors.black26,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      final curved = CurvedAnimation(
+        parent: animation,
+        curve: Curves.easeOutCubic,
+        reverseCurve: Curves.easeInCubic,
+      );
+      return FadeTransition(
+        opacity: curved,
+        child: ScaleTransition(
+          scale: Tween<double>(begin: .96, end: 1).animate(curved),
+          child: child,
+        ),
+      );
+    },
     builder: (dialogContext) => Theme(
       data: AppTheme.dark,
       child: AnimatedBuilder(

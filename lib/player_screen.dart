@@ -21,6 +21,7 @@ import 'danmaku_overlay.dart';
 import 'download_picker.dart';
 import 'downloads_screen.dart';
 import 'follow_state.dart';
+import 'glass_panel.dart';
 import 'local_store.dart';
 import 'models.dart';
 import 'playback_launch_screen.dart';
@@ -84,6 +85,8 @@ class _PlayerScreenState extends State<PlayerScreen>
   VideoController? _video;
   bool _surfaceOutput = false;
   bool _surfaceFailed = false;
+  final _videoSurfaceRelease = Completer<void>();
+  bool _videoSurfaceReleaseSignaled = false;
   late final VideoEnhancementController _enhancement;
   late final PlaybackLoader _loader;
   late final PlaybackPreloader _preloader;
@@ -200,12 +203,6 @@ class _PlayerScreenState extends State<PlayerScreen>
   }
 
   void _onRouteAnimationStatus(AnimationStatus status) {
-    if (status == AnimationStatus.reverse) {
-      if (_videoSurfaceMounted && mounted && !_closed) {
-        setState(() => _videoSurfaceMounted = false);
-      }
-      return;
-    }
     if (status != AnimationStatus.completed ||
         _videoSurfaceMounted ||
         _closed) {
@@ -230,7 +227,14 @@ class _PlayerScreenState extends State<PlayerScreen>
     return VideoSurfaceHost(
       player: _player,
       onUnavailable: _fallbackToTextureOutput,
+      onReleased: _signalVideoSurfaceReleased,
     );
+  }
+
+  void _signalVideoSurfaceReleased() {
+    if (_videoSurfaceReleaseSignaled) return;
+    _videoSurfaceReleaseSignaled = true;
+    _videoSurfaceRelease.complete();
   }
 
   void _fallbackToTextureOutput() {
@@ -1746,6 +1750,14 @@ class _PlayerScreenState extends State<PlayerScreen>
     unawaited(_loader.close().catchError((Object _) {}));
     unawaited(
       _operations.catchError((Object _) {}).then((_) async {
+        if (_surfaceOutput &&
+            !_surfaceFailed &&
+            _videoSurfaceMounted &&
+            !_videoSurfaceReleaseSignaled) {
+          await _videoSurfaceRelease.future
+              .timeout(const Duration(milliseconds: 600))
+              .catchError((Object _) {});
+        }
         await _interactions.pendingRates.catchError((Object _) {});
         await enhancementClosed.catchError((Object _) {});
         await _player.dispose();
@@ -2564,63 +2576,83 @@ class _PlayerScreenState extends State<PlayerScreen>
 
   Widget _mobileFollowControl(Drama drama) {
     final state = widget.store.following(drama.id);
-    return PopupMenuButton<String>(
-      key: const ValueKey('player-follow-status'),
-      tooltip: '追剧与观看状态',
-      onSelected: (value) async {
-        if (_profileEpoch != widget.store.profileEpoch) return;
-        if (value == 'remove') {
-          await saveUserChange(
-            context,
-            () => widget.store.toggleFavorite(drama),
-          );
-        } else {
-          final status = FollowStatus.values.firstWhere(
-            (status) => status.name == value,
-          );
-          await saveUserChange(
-            context,
-            () => widget.store.setFollowStatus(drama, status),
-          );
-        }
-        if (mounted && !_closed) setState(() {});
-      },
-      itemBuilder: (_) => [
-        for (final status in FollowStatus.values)
-          CheckedPopupMenuItem(
-            value: status.name,
-            checked: state?.status == status,
-            child: Text(status.label),
-          ),
-        if (state != null)
-          const PopupMenuItem(value: 'remove', child: Text('取消追剧')),
-      ],
-      child: Container(
-        constraints: const BoxConstraints(minHeight: 36),
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
-        decoration: BoxDecoration(
-          color: state == null
-              ? Theme.of(context).colorScheme.surfaceContainerHighest
-              : Theme.of(context).colorScheme.secondaryContainer,
+    return Tooltip(
+      message: '追剧与观看状态',
+      child: Builder(
+        builder: (menuContext) => InkWell(
+          key: const ValueKey('player-follow-status'),
           borderRadius: BorderRadius.circular(10),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              state == null
-                  ? Icons.bookmark_add_outlined
-                  : Icons.bookmark_rounded,
-              size: 18,
+          onTap: () => unawaited(_openFollowMenu(menuContext, drama, state)),
+          child: Container(
+            constraints: const BoxConstraints(minHeight: 36),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+            decoration: BoxDecoration(
+              color: state == null
+                  ? Theme.of(context).colorScheme.surfaceContainerHighest
+                  : Theme.of(context).colorScheme.secondaryContainer,
+              borderRadius: BorderRadius.circular(10),
             ),
-            const SizedBox(width: 6),
-            Text(state?.label ?? '加入追剧'),
-            const SizedBox(width: 2),
-            const Icon(Icons.expand_more_rounded, size: 16),
-          ],
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  state == null
+                      ? Icons.bookmark_add_outlined
+                      : Icons.bookmark_rounded,
+                  size: 18,
+                ),
+                const SizedBox(width: 6),
+                Text(state?.label ?? '加入追剧'),
+                const SizedBox(width: 2),
+                const Icon(Icons.expand_more_rounded, size: 16),
+              ],
+            ),
+          ),
         ),
       ),
     );
+  }
+
+  Future<void> _openFollowMenu(
+    BuildContext menuContext,
+    Drama drama,
+    FollowState? state,
+  ) async {
+    final anchor = glassMenuAnchor(menuContext);
+    if (anchor == null) return;
+    final value = await showGlassMenu<String>(
+      context: menuContext,
+      anchor: anchor,
+      autofocusSelected: true,
+      entries: [
+        for (final status in FollowStatus.values)
+          GlassMenuEntry(
+            value: status.name,
+            label: Text(status.label),
+            selected: state?.status == status,
+          ),
+        if (state != null)
+          const GlassMenuEntry(
+            value: 'remove',
+            label: Text('取消追剧'),
+            leading: Icon(Icons.bookmark_remove_outlined),
+          ),
+      ],
+    );
+    if (value == null || !mounted || _closed) return;
+    if (_profileEpoch != widget.store.profileEpoch) return;
+    if (value == 'remove') {
+      await saveUserChange(context, () => widget.store.toggleFavorite(drama));
+    } else {
+      final status = FollowStatus.values.firstWhere(
+        (status) => status.name == value,
+      );
+      await saveUserChange(
+        context,
+        () => widget.store.setFollowStatus(drama, status),
+      );
+    }
+    if (mounted && !_closed) setState(() {});
   }
 
   Widget _mobileDownload() {

@@ -19,17 +19,18 @@ class PlayerStatusMessage extends StatelessWidget {
     child: Center(
       child: Semantics(
         liveRegion: true,
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            color: Colors.black54,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-            child: Text(
-              message,
-              textAlign: TextAlign.center,
-              style: const TextStyle(color: Colors.white70, fontSize: 14),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          child: Text(
+            message,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.white70,
+              fontSize: 14,
+              shadows: [
+                Shadow(color: Colors.black87, blurRadius: 6),
+                Shadow(color: Colors.black54, blurRadius: 12),
+              ],
             ),
           ),
         ),
@@ -212,7 +213,7 @@ class _PlayerControlsState extends State<PlayerControls> {
     if (!mounted) return;
     final feedback = widget.interactions.feedback;
     if (feedback.isNotEmpty) {
-      if (!_hadFeedback) _show();
+      if (!_hadFeedback && !widget.interactions.seeking) _show();
     } else if (!(_hideTimer?.isActive ?? false)) {
       _scheduleHide();
     }
@@ -281,7 +282,7 @@ class _PlayerControlsState extends State<PlayerControls> {
   static const _progressInterval = Duration(milliseconds: 240);
 
   void _tickProgress() {
-    if (!mounted || !_chromeVisible) return;
+    if (!mounted || (!_chromeVisible && !_miniProgressVisible)) return;
     final now = DateTime.now();
     final paintedAt = _progressPaintedAt;
     if (paintedAt == null || now.difference(paintedAt) >= _progressInterval) {
@@ -294,11 +295,14 @@ class _PlayerControlsState extends State<PlayerControls> {
     if (_progressTimer?.isActive ?? false) return;
     _progressTimer = Timer(_progressInterval - now.difference(paintedAt), () {
       _progressTimer = null;
-      if (!mounted || !_chromeVisible) return;
+      if (!mounted || (!_chromeVisible && !_miniProgressVisible)) return;
       _progressPaintedAt = DateTime.now();
       setState(() {});
     });
   }
+
+  bool get _miniProgressVisible =>
+      !_chromeVisible && widget.player.state.duration > Duration.zero;
 
   bool get _chromeVisible {
     final state = widget.player.state;
@@ -414,8 +418,27 @@ class _PlayerControlsState extends State<PlayerControls> {
                 ),
               ),
             ),
+            _miniProgress(position, duration),
             _gestureFeedback(),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _miniProgress(double position, double duration) {
+    if (!_miniProgressVisible) return const SizedBox.shrink();
+    return Positioned(
+      left: 0,
+      right: 0,
+      bottom: 0,
+      child: IgnorePointer(
+        child: SizedBox(
+          height: 2.5,
+          child: LinearProgressIndicator(
+            value: duration > 0 ? (position / duration).clamp(0.0, 1.0) : 0,
+            minHeight: 2.5,
+          ),
         ),
       ),
     );
@@ -1126,31 +1149,33 @@ class _PlayerControlsState extends State<PlayerControls> {
               ),
               child: feedback.isEmpty
                   ? const SizedBox.shrink()
-                  : ClipRRect(
+                  : Container(
                       key: ValueKey('gesture-feedback-$feedback'),
-                      borderRadius: BorderRadius.circular(16),
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 20),
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 18,
-                            vertical: 9,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.black.withValues(alpha: .55),
-                            borderRadius: BorderRadius.circular(16),
-                            border: Border.all(
-                              color: Colors.white.withValues(alpha: .18),
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(16),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 18,
+                              vertical: 9,
                             ),
-                          ),
-                          child: Text(
-                            feedback,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
+                            decoration: BoxDecoration(
+                              color: Colors.black.withValues(alpha: .55),
+                              borderRadius: BorderRadius.circular(16),
+                              border: Border.all(
+                                color: Colors.white.withValues(alpha: .18),
+                              ),
+                            ),
+                            child: Text(
+                              feedback,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
                         ),

@@ -4,6 +4,7 @@ import 'app_notice.dart';
 import 'models.dart';
 import 'download_preferences.dart';
 import 'episode_browser.dart';
+import 'glass_panel.dart';
 import 'remote_widgets.dart';
 
 class DownloadSelection {
@@ -163,24 +164,19 @@ class _DownloadPickerState extends State<DownloadPicker> {
                       child: const Text('仅非 VIP'),
                     ),
                     const SizedBox(width: 4),
-                    const Text('画质'),
-                    DropdownButton<int>(
+                    GlassChoiceField<int>(
                       key: const ValueKey('download-quality'),
                       value: _quality,
-                      onChanged: _submitting
-                          ? null
-                          : (value) => setState(() => _quality = value ?? 0),
-                      items: [
-                        const DropdownMenuItem(
-                          value: 0,
-                          child: Text('自动 · 高清'),
-                        ),
-                        for (final quality in [1080, 720, 480])
-                          DropdownMenuItem(
-                            value: quality,
-                            child: Text('${quality}P'),
-                          ),
+                      label: '画质',
+                      compact: true,
+                      enabled: !_submitting,
+                      entries: const [
+                        (0, '自动 · 高清'),
+                        (1080, '1080P'),
+                        (720, '720P'),
+                        (480, '480P'),
                       ],
+                      onChanged: (value) => setState(() => _quality = value),
                     ),
                   ],
                 ),

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -52,7 +53,8 @@ class GlassPanel extends StatelessWidget {
   }
 }
 
-/// 统一的玻璃对话框外观。
+/// 统一的玻璃对话框外观。整块为不透明底色加高光描边，播放视频等
+/// 明暗不断变化的背景上不产生任何闪烁或灰色边缘。
 class GlassDialog extends StatelessWidget {
   const GlassDialog({super.key, required this.child, this.maxWidth = 340});
 
@@ -61,20 +63,128 @@ class GlassDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dark = Theme.of(context).brightness == Brightness.dark;
     return Dialog(
       elevation: 0,
+      backgroundColor: dark ? const Color(0xFF16171B) : const Color(0xFFF8F6F5),
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(26)),
+        borderRadius: BorderRadius.all(Radius.circular(24)),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(24),
-        child: GlassPanel(
-          borderRadius: const BorderRadius.all(Radius.circular(22)),
-          sigma: 28,
-          child: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: maxWidth),
-            child: child,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(24)),
+          border: Border.all(
+            color: Colors.white.withValues(alpha: dark ? .14 : .9),
           ),
+        ),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: maxWidth),
+          child: child,
+        ),
+      ),
+    );
+  }
+}
+
+/// 统一的玻璃选项选择控件。
+class GlassChoiceField<T> extends StatelessWidget {
+  const GlassChoiceField({
+    super.key,
+    required this.value,
+    required this.entries,
+    required this.onChanged,
+    this.label,
+    this.enabled = true,
+    this.compact = false,
+  });
+
+  final T value;
+  final String? label;
+  final List<(T, String)> entries;
+  final ValueChanged<T> onChanged;
+  final bool enabled;
+  final bool compact;
+
+  String get _current =>
+      entries
+          .where((entry) => entry.$1 == value)
+          .map((entry) => entry.$2)
+          .firstOrNull ??
+      '';
+
+  Future<void> _open(BuildContext context) async {
+    final anchor = glassMenuAnchor(context);
+    if (anchor == null) return;
+    final selected = await showGlassMenu<T>(
+      context: context,
+      anchor: anchor,
+      autofocusSelected: true,
+      entries: [
+        for (final (entryValue, entryLabel) in entries)
+          GlassMenuEntry(
+            value: entryValue,
+            label: Text(entryLabel),
+            selected: entryValue == value,
+          ),
+      ],
+    );
+    if (selected != null && selected != value) onChanged(selected);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    final textColor = enabled
+        ? colors.onSurface
+        : colors.onSurface.withValues(alpha: .38);
+    final onTap = enabled
+        ? () {
+            unawaited(_open(context));
+          }
+        : null;
+    if (compact) {
+      return InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(10),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (label != null) ...[
+                Text(label!, style: TextStyle(color: textColor, fontSize: 13)),
+                const SizedBox(width: 6),
+              ],
+              Text(
+                _current,
+                style: TextStyle(
+                  color: enabled ? colors.primary : textColor,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Icon(Icons.expand_more_rounded, size: 18, color: textColor),
+            ],
+          ),
+        ),
+      );
+    }
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(16),
+      child: InputDecorator(
+        decoration: InputDecoration(
+          labelText: label,
+          suffixIcon: Icon(
+            Icons.expand_more_rounded,
+            color: enabled
+                ? colors.onSurfaceVariant
+                : colors.onSurface.withValues(alpha: .38),
+          ),
+        ),
+        child: Text(
+          _current,
+          style: TextStyle(color: textColor, fontWeight: FontWeight.w600),
         ),
       ),
     );

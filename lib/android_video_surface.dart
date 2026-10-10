@@ -13,10 +13,16 @@ const _viewType = 'duanju/video_surface';
 bool get androidSurfaceViewSupported => !kIsWeb && Platform.isAndroid;
 
 class VideoSurfaceHost extends StatefulWidget {
-  const VideoSurfaceHost({super.key, required this.player, this.onUnavailable});
+  const VideoSurfaceHost({
+    super.key,
+    required this.player,
+    this.onUnavailable,
+    this.onReleased,
+  });
 
   final Player player;
   final VoidCallback? onUnavailable;
+  final VoidCallback? onReleased;
 
   @override
   State<VideoSurfaceHost> createState() => _VideoSurfaceHostState();
@@ -103,6 +109,7 @@ class _VideoSurfaceHostState extends State<VideoSurfaceHost> {
     if (controller != null) {
       unawaited(controller.dispose());
     }
+    widget.onReleased?.call();
   }
 
   Future<void> _fail(Object error) async {

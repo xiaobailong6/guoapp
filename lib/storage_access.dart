@@ -34,6 +34,21 @@ Future<bool> ensureStorageAccess(BuildContext context) async {
   if (await hasAllFilesAccess()) return true;
   final open = await showDialog<bool>(
     context: context,
+    barrierColor: Colors.black26,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      final curved = CurvedAnimation(
+        parent: animation,
+        curve: Curves.easeOutCubic,
+        reverseCurve: Curves.easeInCubic,
+      );
+      return FadeTransition(
+        opacity: curved,
+        child: ScaleTransition(
+          scale: Tween<double>(begin: .96, end: 1).animate(curved),
+          child: child,
+        ),
+      );
+    },
     builder: (dialogContext) => GlassDialog(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(18, 16, 18, 10),

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 Route<void> playerRoute(Widget child) => PageRouteBuilder<void>(
   opaque: true,
-  barrierColor: Colors.black,
-  transitionDuration: const Duration(milliseconds: 280),
+  transitionDuration: const Duration(milliseconds: 260),
   reverseTransitionDuration: const Duration(milliseconds: 220),
   pageBuilder: (context, animation, secondaryAnimation) => child,
   transitionsBuilder: (context, animation, secondaryAnimation, child) {
@@ -12,12 +11,12 @@ Route<void> playerRoute(Widget child) => PageRouteBuilder<void>(
       curve: Curves.easeOutCubic,
       reverseCurve: Curves.easeInCubic,
     );
-    return FadeTransition(
-      opacity: curved,
-      child: ScaleTransition(
-        scale: Tween<double>(begin: .985, end: 1).animate(curved),
-        child: child,
-      ),
+    return SlideTransition(
+      position: Tween<Offset>(
+        begin: const Offset(0, 1),
+        end: Offset.zero,
+      ).animate(curved),
+      child: child,
     );
   },
 );

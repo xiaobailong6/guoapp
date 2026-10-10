@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'app_layout.dart';
+import 'glass_panel.dart';
 import 'local_store.dart';
 import 'playback_preferences.dart';
 import 'widgets.dart';
@@ -10,8 +11,6 @@ import 'widgets.dart';
 class PlaybackSettingsScreen extends StatelessWidget {
   const PlaybackSettingsScreen({super.key, required this.store});
   final LocalStore store;
-
-  static const _qualityChoices = [0, 1080, 720, 480];
 
   @override
   Widget build(BuildContext context) => AnimatedBuilder(
@@ -188,28 +187,22 @@ class PlaybackSettingsScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: DropdownButtonFormField<int>(
-                    initialValue: preferences.quality,
-                    decoration: const InputDecoration(labelText: '清晰度偏好'),
-                    items: [
-                      for (final value in _qualityChoices)
-                        DropdownMenuItem(
-                          value: value,
-                          child: Text(value == 0 ? '自动 · 优先高清' : '${value}P'),
-                        ),
+                  child: GlassChoiceField<int>(
+                    value: preferences.quality,
+                    label: '清晰度偏好',
+                    enabled: enabled,
+                    entries: const [
+                      (0, '自动 · 优先高清'),
+                      (1080, '1080P'),
+                      (720, '720P'),
+                      (480, '480P'),
                     ],
-                    onChanged: !enabled
-                        ? null
-                        : (value) {
-                            if (value != null) {
-                              saveUserChange(
-                                context,
-                                () => store.setPlaybackPreferences(
-                                  preferences.copyWith(quality: value),
-                                ),
-                              );
-                            }
-                          },
+                    onChanged: (value) => saveUserChange(
+                      context,
+                      () => store.setPlaybackPreferences(
+                        preferences.copyWith(quality: value),
+                      ),
+                    ),
                   ),
                 ),
                 const Padding(

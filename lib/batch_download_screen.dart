@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'batch_downloads.dart';
 import 'core_bridge.dart';
 import 'downloads_screen.dart';
+import 'glass_panel.dart';
 import 'local_store.dart';
 import 'models.dart';
 import 'remote_widgets.dart';
@@ -96,27 +97,18 @@ class _BatchDownloadScreenState extends State<BatchDownloadScreen> {
                             const SizedBox(height: 8),
                             const Text('先读取分集，再加入下载。默认选择非 VIP 集，已有任务自动跳过。'),
                             const SizedBox(height: 12),
-                            DropdownButtonFormField<int>(
+                            GlassChoiceField<int>(
                               key: const ValueKey('batch-download-quality'),
-                              initialValue: _batch.quality,
-                              isExpanded: true,
-                              decoration: const InputDecoration(
-                                labelText: '下载画质',
-                              ),
-                              onChanged: _batch.busy || _batch.settingsLocked
-                                  ? null
-                                  : (value) => _batch.setQuality(value ?? 0),
-                              items: [
-                                const DropdownMenuItem(
-                                  value: 0,
-                                  child: Text('自动 · 优先高清'),
-                                ),
-                                for (final quality in [1080, 720, 480])
-                                  DropdownMenuItem(
-                                    value: quality,
-                                    child: Text('${quality}P'),
-                                  ),
+                              value: _batch.quality,
+                              label: '下载画质',
+                              enabled: !_batch.busy && !_batch.settingsLocked,
+                              entries: const [
+                                (0, '自动 · 优先高清'),
+                                (1080, '1080P'),
+                                (720, '720P'),
+                                (480, '480P'),
                               ],
+                              onChanged: (value) => _batch.setQuality(value),
                             ),
                             CheckboxListTile(
                               contentPadding: EdgeInsets.zero,
