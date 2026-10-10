@@ -202,7 +202,11 @@ func (engine *nativeEngine) startSourceTask(source, operation string, drama nati
 		engine.mu.Unlock()
 		return nativeSourceStatus{}, fmt.Errorf("站源暂时暂停请求，请在 %d 秒后重试", max(1, int(time.Until(previous.RetryAt).Seconds()+.999)))
 	}
-	ctx, cancel := context.WithTimeout(context.Background(), 12*time.Minute)
+	duration := 12 * time.Minute
+	if operation == "update" || operation == "more" {
+		duration = 45 * time.Minute
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), duration)
 	task := &nativeSourceTask{cancel: cancel}
 	engine.sourceTasks[source] = task
 	previous.Operation, previous.Running, previous.Stage = operation, true, "准备中"
@@ -236,6 +240,7 @@ func (engine *nativeEngine) runSourceTask(ctx context.Context, source, operation
 		if recover() != nil {
 			err = errors.New("站源任务处理失败，已保留缓存")
 		}
+		taskErr := ctx.Err()
 		task.cancel()
 		engine.mu.Lock()
 		defer engine.mu.Unlock()
@@ -257,7 +262,11 @@ func (engine *nativeEngine) runSourceTask(ctx context.Context, source, operation
 				record.Stage, record.Error = "已停止", "已保留更新内容，可稍后继续"
 			}
 			if errors.Is(err, context.DeadlineExceeded) {
-				record.Error = "本次站源任务超时，已保留更新内容，可继续更新"
+				if errors.Is(taskErr, context.DeadlineExceeded) {
+					record.Error = "本次站源任务达到时长上限，已保留更新内容，可继续更新"
+				} else {
+					record.Error = "站源单次请求超时，可能响应较慢或正在等待请求名额；已保留更新内容，可稍后继续"
+				}
 			}
 			var backoff *requestBackoff
 			if errors.As(err, &backoff) {

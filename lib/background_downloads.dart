@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:ffmpeg_kit_flutter_new_min_gpl/ffmpeg_kit.dart';
 import 'package:flutter_foreground_task/flutter_foreground_task.dart';
+import 'package:flutter/services.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -17,8 +18,12 @@ void downloadServiceEntry() {
 }
 
 class BackgroundDownloads {
+  static bool _prepared = false;
+  static bool _notificationRequested = false;
+  static Future<void>? _starting;
+
   static Future<void> prepare() async {
-    if (!Platform.isAndroid) return;
+    if (!Platform.isAndroid || _prepared) return;
     FlutterForegroundTask.init(
       androidNotificationOptions: AndroidNotificationOptions(
         channelId: 'zhenguojian_downloads',
@@ -40,13 +45,40 @@ class BackgroundDownloads {
         stopWithTask: false,
       ),
     );
+    _prepared = true;
   }
 
   static Future<void> ensureStarted() async {
     if (!Platform.isAndroid) return;
+    final pending = _starting;
+    if (pending != null) return pending;
+    final starting = _start();
+    _starting = starting;
+    try {
+      await starting;
+    } finally {
+      if (identical(_starting, starting)) _starting = null;
+    }
+  }
+
+  static Future<void> _start() async {
     await prepare();
     if (await FlutterForegroundTask.isRunningService) return;
-    await FlutterForegroundTask.requestNotificationPermission();
+    final permission =
+        await FlutterForegroundTask.checkNotificationPermission();
+    if (permission == NotificationPermission.denied &&
+        !_notificationRequested) {
+      _notificationRequested = true;
+      try {
+        await FlutterForegroundTask.requestNotificationPermission();
+      } on PlatformException catch (error) {
+        final message = (error.message ?? '').toLowerCase();
+        if (!message.contains('permission request') ||
+            !message.contains('cancelled') && !message.contains('closed')) {
+          throw AppFailure('通知权限请求未完成，请返回应用后重试。');
+        }
+      }
+    }
     final result = await FlutterForegroundTask.startService(
       serviceId: 2406,
       serviceTypes: [ForegroundServiceTypes.dataSync],
@@ -68,6 +100,7 @@ class DownloadTaskHandler extends TaskHandler {
   MediaLibrary? library;
   bool _polling = false;
   int _idle = 0;
+  String? _notificationText;
 
   @override
   Future<void> onStart(DateTime timestamp, TaskStarter starter) async {
@@ -83,6 +116,16 @@ class DownloadTaskHandler extends TaskHandler {
   @override
   void onRepeatEvent(DateTime timestamp) {
     unawaited(_update());
+  }
+
+  Future<void> _notify(String text) async {
+    if (_notificationText == text) return;
+    final result = await FlutterForegroundTask.updateService(
+      notificationTitle: appName,
+      notificationText: text,
+    );
+    if (result is ServiceRequestFailure) return;
+    _notificationText = text;
   }
 
   Future<void> _update() async {
@@ -103,19 +146,15 @@ class DownloadTaskHandler extends TaskHandler {
         _idle = 0;
       }
       final bytes = active.fold<int>(0, (total, job) => total + job.bytes);
-      await FlutterForegroundTask.updateService(
-        notificationTitle: appName,
-        notificationText: work > 0
+      await _notify(
+        work > 0
             ? '正在更新站源或处理本地媒体'
             : active.isEmpty
             ? '下载已完成或暂停'
             : '${active.length} 集下载中 · ${(bytes / 1048576).toStringAsFixed(1)} MB',
       );
     } catch (_) {
-      await FlutterForegroundTask.updateService(
-        notificationTitle: appName,
-        notificationText: '正在等待下载任务',
-      );
+      await _notify('正在等待下载任务');
     } finally {
       _polling = false;
     }

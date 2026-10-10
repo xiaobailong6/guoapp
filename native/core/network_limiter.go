@@ -80,6 +80,7 @@ type requestLimiter struct {
 	concurrency        int
 	active             int
 	foregroundWaiting  int
+	foregroundActive   int
 	lastForeground     time.Time
 	interval           time.Duration
 	mu                 sync.Mutex
@@ -149,11 +150,14 @@ func (limiter *requestLimiter) acquire(ctx context.Context, request *http.Reques
 				delay = idleDelay
 			}
 		}
-		lowPriorityReady := !background || limiter.foregroundWaiting == 0 && limiter.active == 0
+		lowPriorityReady := !background || limiter.foregroundWaiting == 0 && limiter.foregroundActive == 0
 		if lowPriorityReady && !gate.busy && limiter.active < limiter.concurrency && delay <= 0 {
 			gate.busy = true
 			gate.lastStart = time.Now()
 			limiter.active++
+			if !background {
+				limiter.foregroundActive++
+			}
 			limiter.mu.Unlock()
 			break
 		}
@@ -181,6 +185,7 @@ func (limiter *requestLimiter) acquire(ctx context.Context, request *http.Reques
 			limiter.active--
 			gate.busy = false
 			if !background {
+				limiter.foregroundActive--
 				limiter.lastForeground = time.Now()
 			}
 			limiter.notifyLocked()

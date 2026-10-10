@@ -594,7 +594,7 @@ func (client *yeguoAPIClient) call(ctx context.Context, route string, parameters
 		request.Header.Set("Referer", site+"/")
 		timeout := 30 * time.Second
 		if background, _ := ctx.Value(backgroundCatalogKey{}).(bool); background {
-			timeout = 8 * time.Second
+			timeout = 20 * time.Second
 		}
 		response, err := client.do(ctx, request, timeout)
 		if err != nil {
@@ -605,8 +605,11 @@ func (client *yeguoAPIClient) call(ctx context.Context, route string, parameters
 		if response.StatusCode < 200 || response.StatusCode >= 300 || catalogResponseBlockReason(response, body) != "" {
 			return nil, client.downloader.catalogResponseError(request, response, body)
 		}
-		if readErr != nil || len(body) > 8<<20 {
-			return nil, errors.New("野果接口数据过大或读取失败")
+		if readErr != nil {
+			return nil, fmt.Errorf("野果接口读取失败：%w", readErr)
+		}
+		if len(body) > 8<<20 {
+			return nil, errors.New("野果接口数据过大")
 		}
 		payload, err := decodeYeguoResponse(body, access)
 		if errors.Is(err, errYeguoDecode) && attempt == 0 {

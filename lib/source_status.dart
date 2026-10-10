@@ -39,6 +39,40 @@ class SourceHealth {
     'failed' => '检测未通过',
     _ => '尚未检测',
   };
+
+  bool sameAs(SourceHealth other) {
+    if (checkedAt != other.checkedAt ||
+        state != other.state ||
+        sample != other.sample ||
+        steps.length != other.steps.length) {
+      return false;
+    }
+    for (var i = 0; i < steps.length; i++) {
+      final a = steps[i];
+      final b = other.steps[i];
+      if ((
+            a.name,
+            a.state,
+            a.message,
+            a.host,
+            a.httpStatus,
+            a.elapsedMs,
+            a.cfRay,
+          ) !=
+          (
+            b.name,
+            b.state,
+            b.message,
+            b.host,
+            b.httpStatus,
+            b.elapsedMs,
+            b.cfRay,
+          )) {
+        return false;
+      }
+    }
+    return true;
+  }
 }
 
 class SourceStatus {
@@ -71,6 +105,37 @@ class SourceStatus {
   final bool hasMore, running;
   final DateTime? updatedAt, startedAt, finishedAt, retryAt;
   final SourceHealth? health;
+
+  bool sameAs(SourceStatus other) =>
+      (source, operation, stage, error, storageError) ==
+          (
+            other.source,
+            other.operation,
+            other.stage,
+            other.error,
+            other.storageError,
+          ) &&
+      (count, page, completed, total, added, unknownVip) ==
+          (
+            other.count,
+            other.page,
+            other.completed,
+            other.total,
+            other.added,
+            other.unknownVip,
+          ) &&
+      (hasMore, running, updatedAt, startedAt, finishedAt, retryAt) ==
+          (
+            other.hasMore,
+            other.running,
+            other.updatedAt,
+            other.startedAt,
+            other.finishedAt,
+            other.retryAt,
+          ) &&
+      (health == null
+          ? other.health == null
+          : other.health != null && health!.sameAs(other.health!));
 
   int get retrySeconds {
     if (retryAt == null) return 0;

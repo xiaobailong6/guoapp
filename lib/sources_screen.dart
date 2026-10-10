@@ -65,6 +65,7 @@ class _SourcesScreenState extends State<SourcesScreen> {
   final _expandedHealth = <String>{};
   Timer? _timer;
   bool _polling = false;
+  bool _cooling = false;
   int _ticks = 0;
 
   @override
@@ -74,9 +75,9 @@ class _SourcesScreenState extends State<SourcesScreen> {
     unawaited(_refresh());
     _timer = Timer.periodic(const Duration(seconds: 1), (_) {
       _ticks++;
-      if (_statuses.values.any((status) => status.retryAt != null)) {
-        setState(() {});
-      }
+      final cooling = _statuses.values.any((status) => status.retrySeconds > 0);
+      if (cooling || _cooling) setState(() {});
+      _cooling = cooling;
       if (_ticks % 2 == 0 &&
           (_statuses.values.any((status) => status.running) ||
               _ticks % 10 == 0)) {
@@ -95,6 +96,7 @@ class _SourcesScreenState extends State<SourcesScreen> {
     if (_polling) return;
     _polling = true;
     final epoch = widget.store.profileEpoch;
+    var changed = false;
     try {
       await Future.wait([
         for (final source in widget.store.sources)
@@ -107,19 +109,29 @@ class _SourcesScreenState extends State<SourcesScreen> {
                   revision != (_revisions[source.id] ?? 0)) {
                 return;
               }
-              setState(() {
+              if (!status.sameAs(_statuses[source.id] ?? status) ||
+                  !_statuses.containsKey(source.id) ||
+                  _errors.containsKey(source.id)) {
                 _statuses[source.id] = status;
                 _errors.remove(source.id);
-              });
+                changed = true;
+              }
             } catch (error) {
               if (mounted &&
                   epoch == widget.store.profileEpoch &&
                   revision == (_revisions[source.id] ?? 0)) {
-                setState(() => _errors[source.id] = error.toString());
+                final message = error.toString();
+                if (_errors[source.id] != message) {
+                  _errors[source.id] = message;
+                  changed = true;
+                }
               }
             }
           })(),
       ]);
+      if (changed && mounted && epoch == widget.store.profileEpoch) {
+        setState(() {});
+      }
     } finally {
       _polling = false;
     }
@@ -238,26 +250,23 @@ class _SourcesScreenState extends State<SourcesScreen> {
         body: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 960),
-            child: RefreshIndicator(
-              onRefresh: _refresh,
-              child: ListView(
-                padding: EdgeInsets.fromLTRB(16, 16, 16, 16 + bottomInset),
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 16),
-                    child: Text(
-                      '各站源可分别更新和检测。更新会查找新剧、继续加载一页历史内容，并分批补齐资料；离开此页后任务继续。',
-                    ),
+            child: ListView(
+              padding: EdgeInsets.fromLTRB(16, 16, 16, 16 + bottomInset),
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 16),
+                  child: Text(
+                    '各站源可分别更新和检测。更新会查找新剧、继续加载一页历史内容，并分批补齐资料；离开此页后任务继续。',
                   ),
-                  if (sources.isEmpty)
-                    const Padding(
-                      padding: EdgeInsets.all(24),
-                      child: Text('当前用户没有可用站源'),
-                    ),
-                  for (final group in SourceGroup.fromSources(sources))
-                    for (final source in group.sources) _sourceCard(source),
-                ],
-              ),
+                ),
+                if (sources.isEmpty)
+                  const Padding(
+                    padding: EdgeInsets.all(24),
+                    child: Text('当前用户没有可用站源'),
+                  ),
+                for (final group in SourceGroup.fromSources(sources))
+                  for (final source in group.sources) _sourceCard(source),
+              ],
             ),
           ),
         ),
