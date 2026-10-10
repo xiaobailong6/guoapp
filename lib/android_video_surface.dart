@@ -107,7 +107,7 @@ class _VideoSurfaceHostState extends State<VideoSurfaceHost> {
     final controller = _viewController;
     _viewController = null;
     if (controller != null) {
-      unawaited(controller.dispose());
+      await controller.dispose();
     }
     widget.onReleased?.call();
   }

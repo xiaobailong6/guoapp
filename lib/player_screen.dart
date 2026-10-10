@@ -87,6 +87,8 @@ class _PlayerScreenState extends State<PlayerScreen>
   bool _surfaceFailed = false;
   final _videoSurfaceRelease = Completer<void>();
   bool _videoSurfaceReleaseSignaled = false;
+  bool _leavingPlayback = false;
+  bool _readyToPop = false;
   late final VideoEnhancementController _enhancement;
   late final PlaybackLoader _loader;
   late final PlaybackPreloader _preloader;
@@ -213,6 +215,9 @@ class _PlayerScreenState extends State<PlayerScreen>
   }
 
   Widget _videoSurfaceHost(bool settled) {
+    if (_leavingPlayback) {
+      return const SizedBox.expand();
+    }
     if (!settled && !_videoSurfaceMounted) {
       return const SizedBox.expand();
     }
@@ -1788,6 +1793,25 @@ class _PlayerScreenState extends State<PlayerScreen>
     }
   }
 
+  Future<void> _leavePlayback() async {
+    if (_leavingPlayback || _closed) return;
+    final navigator = Navigator.of(context);
+    final route = ModalRoute.of(context);
+    final releaseSurface =
+        _surfaceOutput && !_surfaceFailed && _videoSurfaceMounted;
+    setState(() => _leavingPlayback = true);
+    if (releaseSurface && !_videoSurfaceReleaseSignaled) {
+      await _videoSurfaceRelease.future
+          .timeout(const Duration(milliseconds: 600))
+          .catchError((Object _) {});
+    }
+    if (!mounted || _closed || route?.isCurrent != true) return;
+    setState(() => _readyToPop = true);
+    await WidgetsBinding.instance.endOfFrame;
+    if (!mounted || _closed || route?.isCurrent != true) return;
+    navigator.pop();
+  }
+
   @override
   void dispose() {
     _watchSession.setPlaying(false);
@@ -1891,10 +1915,13 @@ class _PlayerScreenState extends State<PlayerScreen>
     final fullscreen = _showFullscreen;
     final pictureInPicture = _pictureInPictureVisible;
     return PopScope(
-      canPop: _television || !fullscreen,
+      canPop: _readyToPop,
       onPopInvokedWithResult: (didPop, result) {
-        if (!didPop && fullscreen && !_television) {
+        if (didPop || _leavingPlayback) return;
+        if (fullscreen && !_television) {
           _rotate();
+        } else {
+          unawaited(_leavePlayback());
         }
       },
       child: CallbackShortcuts(
@@ -2003,6 +2030,9 @@ class _PlayerScreenState extends State<PlayerScreen>
   }
 
   Widget _videoPane(BuildContext context) {
+    if (_leavingPlayback) {
+      return const ColoredBox(color: Colors.black);
+    }
     final videoTheme = _television
         ? televisionTheme(AppTheme.dark)
         : AppTheme.dark;

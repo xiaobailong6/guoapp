@@ -21,6 +21,7 @@ import 'recommendations_screen.dart';
 import 'rankings_screen.dart';
 import 'detail_screen.dart';
 import 'playback_launch_screen.dart';
+import 'player_route.dart';
 import 'downloads_screen.dart';
 import 'local_store.dart';
 import 'lan_screen.dart';
@@ -962,8 +963,8 @@ class _HomeScreenState extends State<HomeScreen> {
       return;
     }
     Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) => PlaybackLaunchScreen(
+      playerRoute(
+        PlaybackLaunchScreen(
           drama: drama,
           repository: widget.repository,
           store: widget.store,

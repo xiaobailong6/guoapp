@@ -28,10 +28,7 @@ class PlayerStatusMessage extends StatelessWidget {
             style: const TextStyle(
               color: Colors.white70,
               fontSize: 14,
-              shadows: [
-                Shadow(color: Colors.black87, blurRadius: 6),
-                Shadow(color: Colors.black54, blurRadius: 12),
-              ],
+
             ),
           ),
         ),
@@ -369,7 +366,8 @@ class _PlayerControlsState extends State<PlayerControls> {
                   child: Stack(
                     fit: StackFit.expand,
                     children: [
-                      const IgnorePointer(
+                      if (widget.enabled && !state.buffering)
+                        const IgnorePointer(
                         child: DecoratedBox(
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
