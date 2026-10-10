@@ -32,10 +32,14 @@ Future<void> requestStorageAccess() async {
 /// 返回引导结束时是否已授权（授权需用户在系统页操作，返回应用后需重新检测）。
 Future<bool> ensureStorageAccess(BuildContext context) async {
   if (await hasAllFilesAccess()) return true;
-  final open = await showDialog<bool>(
+  if (!context.mounted) return false;
+  final open = await showGeneralDialog<bool>(
     context: context,
+    barrierDismissible: true,
+    barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
     barrierColor: Colors.black26,
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+    transitionDuration: const Duration(milliseconds: 180),
+    transitionBuilder: (context, animation, secondaryAnimation, child) {
       final curved = CurvedAnimation(
         parent: animation,
         curve: Curves.easeOutCubic,
@@ -49,7 +53,7 @@ Future<bool> ensureStorageAccess(BuildContext context) async {
         ),
       );
     },
-    builder: (dialogContext) => GlassDialog(
+    pageBuilder: (dialogContext, animation, secondaryAnimation) => GlassDialog(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(18, 16, 18, 10),
         child: Column(

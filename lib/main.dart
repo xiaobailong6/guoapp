@@ -206,6 +206,7 @@ class _AppBootstrapState extends State<AppBootstrap>
       context = navigator.currentState?.overlay?.context;
       if (context == null) return;
     }
+    if (!context.mounted) return;
     await ensureStorageAccess(context);
   }
 

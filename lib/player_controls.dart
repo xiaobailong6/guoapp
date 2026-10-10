@@ -775,7 +775,7 @@ class _PlayerControlsState extends State<PlayerControls> {
                     if (onAnchorPressed != null) {
                       onAnchorPressed(glassMenuAnchor(anchorContext));
                     } else {
-                      onPressed();
+                      onPressed?.call();
                     }
                   }
                 : null,

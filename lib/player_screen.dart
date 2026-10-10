@@ -577,7 +577,10 @@ class _PlayerScreenState extends State<PlayerScreen>
         'height': height,
       });
     } on PlatformException {
-    } on MissingPluginException {}
+      _pictureInPictureSyncKey = null;
+    } on MissingPluginException {
+      _pictureInPictureSyncKey = null;
+    }
   }
 
   void _setPictureInPictureStatus({

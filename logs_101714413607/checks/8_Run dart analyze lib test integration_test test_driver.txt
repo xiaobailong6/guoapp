@@ -1,0 +1,25 @@
+﻿2026-10-10T10:10:39.6942880Z ##[group]Run dart analyze lib test integration_test test_driver
+2026-10-10T10:10:39.6943412Z [36;1mdart analyze lib test integration_test test_driver[0m
+2026-10-10T10:10:39.7005607Z shell: /usr/bin/bash -e {0}
+2026-10-10T10:10:39.7005889Z env:
+2026-10-10T10:10:39.7006148Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-10T10:10:39.7006520Z   GOSUMDB: sum.golang.org
+2026-10-10T10:10:39.7006915Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.4-x64/flutter
+2026-10-10T10:10:39.7007322Z   PUB_CACHE: /home/runner/.pub-cache
+2026-10-10T10:10:39.7007594Z ##[endgroup]
+2026-10-10T10:10:39.7267577Z Analyzing lib, test, integration_test, test_driver...
+2026-10-10T10:10:57.8765038Z 
+2026-10-10T10:10:57.8766737Z   error - lib/player_controls.dart:778:23 - The function can't be unconditionally invoked because it can be 'null'. Try adding a null check ('!'). - unchecked_use_of_nullable_value
+2026-10-10T10:10:57.8769904Z   error - lib/sleep_timer.dart:147:5 - The named parameter 'transitionsBuilder' isn't defined. Try correcting the name to an existing named parameter's name, or defining a named parameter with the name 'transitionsBuilder'. - undefined_named_parameter
+2026-10-10T10:10:57.8773939Z   error - lib/storage_access.dart:38:5 - The named parameter 'transitionsBuilder' isn't defined. Try correcting the name to an existing named parameter's name, or defining a named parameter with the name 'transitionsBuilder'. - undefined_named_parameter
+2026-10-10T10:10:57.8777753Z    info - lib/downloads_screen.dart:8:8 - The import of 'package:flutter/rendering.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart'. Try removing the import directive. - unnecessary_import
+2026-10-10T10:10:57.8781227Z    info - lib/downloads_screen.dart:651:38 - Don't use 'BuildContext's across async gaps. Try rewriting the code to not use the 'BuildContext', or guard the use with a 'mounted' check. - use_build_context_synchronously
+2026-10-10T10:10:57.8784370Z    info - lib/downloads_screen.dart:689:18 - Don't use 'BuildContext's across async gaps. Try rewriting the code to not use the 'BuildContext', or guard the use with a 'mounted' check. - use_build_context_synchronously
+2026-10-10T10:10:57.8787925Z    info - lib/main.dart:209:31 - Don't use 'BuildContext's across async gaps, guarded by an unrelated 'mounted' check. Guard a 'State.context' use with a 'mounted' check on the State, and other BuildContext use with a 'mounted' check on the BuildContext. - use_build_context_synchronously
+2026-10-10T10:10:57.8791402Z    info - lib/player_screen.dart:579:28 - Empty catch block. Try adding statements to the block, adding a comment to the block, or removing the 'catch' clause. - empty_catches
+2026-10-10T10:10:57.8793820Z    info - lib/player_screen.dart:580:33 - Empty catch block. Try adding statements to the block, adding a comment to the block, or removing the 'catch' clause. - empty_catches
+2026-10-10T10:10:57.8796486Z    info - lib/settings_screen.dart:899:63 - Don't use 'BuildContext's across async gaps. Try rewriting the code to not use the 'BuildContext', or guard the use with a 'mounted' check. - use_build_context_synchronously
+2026-10-10T10:10:57.8799376Z    info - lib/storage_access.dart:36:14 - Don't use 'BuildContext's across async gaps. Try rewriting the code to not use the 'BuildContext', or guard the use with a 'mounted' check. - use_build_context_synchronously
+2026-10-10T10:10:57.8801199Z 
+2026-10-10T10:10:57.8801373Z 11 issues found.
+2026-10-10T10:10:57.9689174Z ##[error]Process completed with exit code 3.
