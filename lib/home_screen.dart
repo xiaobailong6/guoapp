@@ -25,6 +25,7 @@ import 'player_route.dart';
 import 'downloads_screen.dart';
 import 'local_store.dart';
 import 'lan_screen.dart';
+import 'lazy_tab_view.dart';
 import 'models.dart';
 import 'remote_widgets.dart';
 import 'widgets.dart';
@@ -968,6 +969,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _changeTab(int tab) {
+    if (tab == _tab) return;
     if (tab == _tabDiscover) {
       _prefetch.resume();
       WidgetsBinding.instance.addPostFrameCallback((_) => _schedulePrefetch());
@@ -1401,17 +1403,20 @@ class _HomeScreenState extends State<HomeScreen> {
                   const VerticalDivider(width: 1, thickness: 1),
                 ],
                 Expanded(
-                  child: AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 150),
-                    switchInCurve: Curves.easeOutCubic,
-                    switchOutCurve: Curves.easeInCubic,
-                    transitionBuilder: (child, animation) =>
-                        FadeTransition(opacity: animation, child: child),
-                    child: KeyedSubtree(
+                  child: LazyTabView(
+                    key: ValueKey((
+                      widget.store.profileEpoch,
+                      widget.store.canDownload,
+                      desktop,
+                      television,
+                    )),
+                    index: _tab,
+                    transientTabs: const {_tabLive},
+                    builder: (tab) => KeyedSubtree(
                       key: ValueKey(
-                        'home-tab-$_tab${_showRecommendations ? '-rec' : ''}',
+                        'home-tab-$tab${tab == _tabDiscover && _showRecommendations ? '-rec' : ''}',
                       ),
-                      child: _tab == _tabDiscover
+                      child: tab == _tabDiscover
                           ? widget.store.sources.isEmpty
                                 ? const StatusPanel(
                                     title: '暂无可用站源',
@@ -1420,7 +1425,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 : _catalog(
                                     selectionInBody: desktop || television,
                                   )
-                          : _tab == _tabFeed
+                          : tab == _tabFeed
                           ? FeedsScreen(
                               key: const ValueKey('feed-tab'),
                               repository: widget.repository,
@@ -1429,7 +1434,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ? () => _navKey.currentState?.focusCurrent()
                                   : null,
                             )
-                          : _tab == _tabLive
+                          : tab == _tabLive
                           ? LiveScreen(
                               key: const ValueKey('live-tab'),
                               repository: _liveRepository,
@@ -1439,14 +1444,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ? () => _navKey.currentState?.focusCurrent()
                                   : null,
                             )
-                          : _tab == _tabDownloads
+                          : tab == _tabDownloads
                           ? DownloadsScreen(
                               repository: widget.repository,
                               store: widget.store,
                               embedded: true,
                             )
                           : SavedLibrary(
-                              key: ValueKey('saved-tab-$_tab'),
+                              key: ValueKey('saved-tab-$tab'),
                               repository: widget.repository,
                               store: widget.store,
                               history: false,

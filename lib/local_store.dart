@@ -760,6 +760,16 @@ class LocalStore extends ChangeNotifier {
     final updates = dramas.toList();
     return _queue(() async {
       if (locked || epoch != _epoch) return;
+      if (updates.isEmpty) return;
+      if (!cacheSeriesCandidates &&
+          updates.every(
+            (drama) =>
+                drama.source != SourceSite.hongguo.id &&
+                !_favorites.containsKey(drama.id) &&
+                !_history.containsKey(drama.id),
+          )) {
+        return;
+      }
       final changes = <String, Object>{};
       final favorites = Map.of(_favorites);
       final history = Map.of(_history);

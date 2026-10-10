@@ -75,24 +75,39 @@ class LibraryUpdater extends ChangeNotifier {
   Future<void> refresh() async {
     if (_polling || !_valid || !repository.supportsSourceManagement) return;
     _polling = true;
+    var changed = false;
+    final sources = store.sources.map((source) => source.id).toList();
+    final revisions = {
+      for (final source in sources) source: _revisions[source] ?? 0,
+    };
     try {
-      for (final source in store.sources) {
-        if (!_valid) return;
-        final revision = _revisions[source.id] ?? 0;
-        try {
-          final status = await repository.sourceStatus(source.id);
-          if (_valid && revision == (_revisions[source.id] ?? 0)) {
-            _accept(status);
-          }
-        } catch (error) {
-          if (_valid && revision == (_revisions[source.id] ?? 0)) {
-            _errors[source.id] = error.toString();
-          }
+      final statuses = await repository.sourceStatuses(sources);
+      if (!_valid) return;
+      for (final source in sources) {
+        if (revisions[source] != (_revisions[source] ?? 0)) continue;
+        final status = statuses[source];
+        if (status == null) continue;
+        final previous = _statuses[source];
+        changed =
+            changed ||
+            previous == null ||
+            !previous.sameAs(status) ||
+            _errors.containsKey(source);
+        _accept(status);
+      }
+    } catch (error) {
+      if (!_valid) return;
+      final message = error.toString();
+      for (final source in sources) {
+        if (revisions[source] == (_revisions[source] ?? 0) &&
+            _errors[source] != message) {
+          _errors[source] = message;
+          changed = true;
         }
       }
     } finally {
       _polling = false;
-      _notify();
+      if (changed) _notify();
     }
   }
 

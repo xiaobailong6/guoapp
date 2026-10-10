@@ -48,6 +48,7 @@ class _CollectionMenu {
 class _DownloadsScreenState extends State<DownloadsScreen> {
   Timer? _timer;
   int _idlePolls = 0;
+  bool _visible = true;
   final _search = TextEditingController();
   final _selected = <String>{};
   final _expanded = <String>{};
@@ -87,8 +88,17 @@ class _DownloadsScreenState extends State<DownloadsScreen> {
     _timer = Timer.periodic(const Duration(seconds: 2), (_) => _poll());
   }
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final visible = TickerMode.of(context);
+    if (visible == _visible) return;
+    _visible = visible;
+    if (visible) unawaited(_refresh());
+  }
+
   void _changed() {
-    if (mounted) setState(() {});
+    if (mounted && _visible) setState(() {});
   }
 
   @override
@@ -104,6 +114,7 @@ class _DownloadsScreenState extends State<DownloadsScreen> {
   }
 
   void _poll() {
+    if (!_visible) return;
     if (_jobs.any((job) => job.active || job.state == 'removing')) {
       _idlePolls = 0;
     } else {
@@ -134,22 +145,27 @@ class _DownloadsScreenState extends State<DownloadsScreen> {
   }
 
   Future<void> _refresh() async {
-    if (_refreshing || !_allowed) return;
+    if (_refreshing || !_allowed || !_visible) return;
     _refreshing = true;
     try {
       final jobs = await widget.repository.downloads();
       if (mounted && _allowed && (_error != null || !_sameJobs(jobs))) {
-        setState(() {
-          _jobs = jobs;
-          _selected.retainAll(jobs.map((job) => job.id));
-          _error = null;
-        });
+        _jobs = jobs;
+        _selected.retainAll(jobs.map((job) => job.id));
+        _error = null;
+        if (_visible) setState(() {});
       }
     } catch (error) {
-      if (mounted && _allowed) setState(() => _error = error.toString());
+      if (mounted && _allowed) {
+        _error = error.toString();
+        if (_visible) setState(() {});
+      }
     } finally {
       _refreshing = false;
-      if (mounted && _loading) setState(() => _loading = false);
+      if (mounted && _loading) {
+        _loading = false;
+        if (_visible) setState(() {});
+      }
     }
   }
 
