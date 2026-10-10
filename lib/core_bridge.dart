@@ -820,6 +820,9 @@ class NativeRepository extends AppRepository {
         await access!.refreshDrama(updated);
       }
     }
+    if (refresh) {
+      catalogUpdates.publish(catalogUpdates.current(drama), retryCover: true);
+    }
     final file = result['path'] as String? ?? '';
     if (file.isEmpty) throw AppFailure('海报暂不可用');
     if (result['heic'] != true) return file;

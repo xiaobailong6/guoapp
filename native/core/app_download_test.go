@@ -163,8 +163,53 @@ func TestNativeDownloadRangeResumeAndAddressIsolation(t *testing.T) {
 	}
 	mu.Lock()
 	defer mu.Unlock()
-	if len(ranges) != 3 || ranges[2] != "" {
-		t.Fatal("a different address reused old bytes")
+	if len(ranges) != 2 {
+		t.Fatal("a different address re-downloaded a completed file")
+	}
+	got, _ = os.ReadFile(target)
+	if !bytes.Equal(got, data) {
+		t.Fatal("completed media changed across addresses")
+	}
+}
+
+func TestNativeDownloadRangeResumeAcrossAddressRotation(t *testing.T) {
+	data := bytes.Repeat([]byte("0123456789abcdef"), 40960)
+	var mu sync.Mutex
+	var ranges, validators []string
+	upstream := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		mu.Lock()
+		ranges = append(ranges, r.Header.Get("Range"))
+		validators = append(validators, r.Header.Get("If-Range"))
+		mu.Unlock()
+		w.Header().Set("ETag", "\"stable\"")
+		http.ServeContent(w, r, "media.mp4", time.Time{}, bytes.NewReader(data))
+	}))
+	t.Cleanup(upstream.Close)
+	manager := downloadTestManager(t)
+	target := filepath.Join(manager.root, "rotation.mp4")
+	ctx, cancel := context.WithCancel(context.Background())
+	if _, err := manager.downloadFile(ctx, upstream.URL+"/media.mp4?token=1", "", target, false, func(n, total int64) {
+		if n >= 4096 {
+			cancel()
+		}
+	}); err == nil {
+		t.Fatal("interrupted download marked complete")
+	}
+	part, err := os.Stat(target + ".part")
+	if err != nil || part.Size() <= 0 || part.Size() >= int64(len(data)) {
+		t.Fatalf("no resumable partial: %v", err)
+	}
+	if _, err := manager.downloadFile(context.Background(), upstream.URL+"/media.mp4?token=2", "", target, false, func(int64, int64) {}); err != nil {
+		t.Fatal(err)
+	}
+	mu.Lock()
+	defer mu.Unlock()
+	if len(ranges) != 2 || ranges[1] != fmt.Sprintf("bytes=%d-", part.Size()) || validators[1] != "\"stable\"" {
+		t.Fatalf("rotated address must resume: %v %v", ranges, validators)
+	}
+	got, _ := os.ReadFile(target)
+	if !bytes.Equal(got, data) {
+		t.Fatal("rotation resume corrupted media")
 	}
 }
 

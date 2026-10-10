@@ -108,6 +108,7 @@ class _SavedLibraryState extends State<SavedLibrary> {
   Future<void> _refreshCover(Drama drama) async {
     try {
       await widget.repository.cover(drama, force: true, refresh: true);
+      if (mounted) AppNotice.show(context, '海报已重新获取');
     } on AppFailure catch (error) {
       if (mounted) AppNotice.show(context, error.message);
     } catch (error) {

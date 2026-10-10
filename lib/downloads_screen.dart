@@ -450,25 +450,57 @@ class _DownloadsScreenState extends State<DownloadsScreen> {
         icon: const Icon(Icons.video_library_outlined),
       ),
     ],
-    PopupMenuButton<String>(
-      key: const ValueKey('download-queue-actions'),
-      tooltip: '队列操作',
-      enabled: !_busy,
-      onSelected: (value) {
-        if (value == 'refresh') {
-          _refresh();
-        } else {
-          _batch(value, _jobs);
-        }
-      },
-      itemBuilder: (_) => const [
-        PopupMenuItem(value: 'pause', child: Text('全部暂停')),
-        PopupMenuItem(value: 'resume', child: Text('全部继续')),
-        PopupMenuItem(value: 'archive', child: Text('清理已完成任务，保留视频')),
-        PopupMenuItem(value: 'refresh', child: Text('刷新记录')),
-      ],
+    Builder(
+      builder: (menuContext) => IconButton(
+        key: const ValueKey('download-queue-actions'),
+        tooltip: '队列操作',
+        onPressed: !_busy
+            ? () {
+                final anchor = glassMenuAnchor(menuContext);
+                if (anchor != null) unawaited(_openQueueMenu(anchor));
+              }
+            : null,
+        icon: const Icon(Icons.more_vert_rounded),
+      ),
     ),
   ];
+
+  Future<void> _openQueueMenu(Rect anchor) async {
+    final value = await showGlassMenu<String>(
+      context: context,
+      anchor: anchor,
+      alignRight: true,
+      width: 320,
+      entries: const [
+        GlassMenuEntry(
+          value: 'pause',
+          label: Text('全部暂停'),
+          leading: Icon(Icons.pause_circle_outline),
+        ),
+        GlassMenuEntry(
+          value: 'resume',
+          label: Text('全部继续'),
+          leading: Icon(Icons.play_circle_outline),
+        ),
+        GlassMenuEntry(
+          value: 'archive',
+          label: Text('清理已完成任务，保留视频'),
+          leading: Icon(Icons.cleaning_services_outlined),
+        ),
+        GlassMenuEntry(
+          value: 'refresh',
+          label: Text('刷新记录'),
+          leading: Icon(Icons.refresh_rounded),
+        ),
+      ],
+    );
+    if (!mounted || value == null) return;
+    if (value == 'refresh') {
+      unawaited(_refresh());
+    } else {
+      unawaited(_batch(value, _jobs));
+    }
+  }
 
   Widget _collection(DownloadCollection collection) {
     final count = collection.jobs
@@ -700,6 +732,7 @@ class _DownloadsScreenState extends State<DownloadsScreen> {
     padding: const EdgeInsets.only(left: 12),
     child: Card(
       key: ValueKey('download-task-${job.id}'),
+      clipBehavior: Clip.antiAlias,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -732,47 +765,78 @@ class _DownloadsScreenState extends State<DownloadsScreen> {
                 : null,
             trailing: _selecting
                 ? null
-                : PopupMenuButton<String>(
-                    enabled: !_busy,
-                    tooltip: '分集操作',
-                    onSelected: (value) {
-                      if (value == 'play') {
-                        _play(job);
-                      } else {
-                        _batch(value, [job]);
-                      }
-                    },
-                    itemBuilder: (_) => [
-                      if (job.completed)
-                        const PopupMenuItem(value: 'play', child: Text('本地播放')),
-                      if (job.active)
-                        const PopupMenuItem(value: 'pause', child: Text('暂停')),
-                      if (job.resumable)
-                        const PopupMenuItem(
-                          value: 'resume',
-                          child: Text('继续 / 重试'),
-                        ),
-                      if (job.completed)
-                        PopupMenuItem(
-                          value: job.archived ? 'restore' : 'archive',
-                          child: Text(job.archived ? '恢复任务' : '清理任务，保留视频'),
-                        ),
-                      PopupMenuItem(
-                        value: 'remove',
-                        child: Text(job.completed ? '删除视频' : '取消下载'),
-                      ),
-                    ],
+                : Builder(
+                    builder: (menuContext) => IconButton(
+                      tooltip: '分集操作',
+                      onPressed: !_busy
+                          ? () {
+                              final anchor = glassMenuAnchor(menuContext);
+                              if (anchor != null) {
+                                unawaited(_openEpisodeMenu(job, anchor));
+                              }
+                            }
+                          : null,
+                      icon: const Icon(Icons.more_vert_rounded),
+                    ),
                   ),
           ),
           if (!job.completed)
-            LinearProgressIndicator(
-              value: job.progress > 0 || !job.active ? job.progress : null,
-              minHeight: 2,
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 6),
+              child: LinearProgressIndicator(
+                value: job.progress > 0 || !job.active ? job.progress : null,
+                minHeight: 2,
+              ),
             ),
         ],
       ),
     ),
   );
+
+  Future<void> _openEpisodeMenu(DownloadJob job, Rect anchor) async {
+    final value = await showGlassMenu<String>(
+      context: context,
+      anchor: anchor,
+      alignRight: true,
+      entries: [
+        if (job.completed)
+          const GlassMenuEntry(
+            value: 'play',
+            label: Text('本地播放'),
+            leading: Icon(Icons.play_circle_outline),
+          ),
+        if (job.active)
+          const GlassMenuEntry(
+            value: 'pause',
+            label: Text('暂停'),
+            leading: Icon(Icons.pause_circle_outline),
+          ),
+        if (job.resumable)
+          const GlassMenuEntry(
+            value: 'resume',
+            label: Text('继续 / 重试'),
+            leading: Icon(Icons.play_circle_outline),
+          ),
+        if (job.completed)
+          GlassMenuEntry(
+            value: job.archived ? 'restore' : 'archive',
+            label: Text(job.archived ? '恢复任务' : '清理任务，保留视频'),
+            leading: const Icon(Icons.archive_outlined),
+          ),
+        GlassMenuEntry(
+          value: 'remove',
+          label: Text(job.completed ? '删除视频' : '取消下载'),
+          leading: const Icon(Icons.delete_outline),
+        ),
+      ],
+    );
+    if (!mounted || value == null) return;
+    if (value == 'play') {
+      unawaited(_play(job));
+    } else {
+      unawaited(_batch(value, [job]));
+    }
+  }
 
   Widget _batchBar() => Material(
     color: Theme.of(context).colorScheme.surfaceContainerHighest,

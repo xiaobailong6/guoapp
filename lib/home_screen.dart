@@ -89,6 +89,8 @@ class _HomeScreenState extends State<HomeScreen> {
   bool _showRecommendations = false;
   bool _catalogLoadScheduled = false;
   bool _backToTopVisible = false;
+  bool _bottomBarHidden = false;
+  double _lastCatalogPixels = 0;
   final _filtersKey = GlobalKey<RemoteRowState>();
   final _gridKey = GlobalKey<RemoteGridState>();
   final _navKey = GlobalKey<RemoteListState>();
@@ -609,9 +611,21 @@ class _HomeScreenState extends State<HomeScreen> {
         widget.store.interfaceStyle == 'glass' &&
         _tab == _tabDiscover &&
         !AppLayout.isTelevision(context)) {
-      final visible = _scroll.position.pixels > 320;
-      if (visible != _backToTopVisible) {
-        setState(() => _backToTopVisible = visible);
+      final pixels = _scroll.position.pixels;
+      final delta = pixels - _lastCatalogPixels;
+      if (delta != 0) _lastCatalogPixels = pixels;
+      var hidden = _bottomBarHidden;
+      if (delta > 6 && pixels > 120) {
+        hidden = true;
+      } else if (delta < -6 || pixels <= 120) {
+        hidden = false;
+      }
+      final visible = pixels > 320;
+      if (hidden != _bottomBarHidden || visible != _backToTopVisible) {
+        setState(() {
+          _bottomBarHidden = hidden;
+          _backToTopVisible = visible;
+        });
       }
     }
     if (!mounted ||
@@ -969,6 +983,7 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       _tab = tab;
       _selectionMode = false;
+      _bottomBarHidden = false;
       _selectedDramas.clear();
     });
   }
@@ -1015,6 +1030,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> _refreshCover(Drama drama) async {
     try {
       await widget.repository.cover(drama, force: true, refresh: true);
+      if (mounted) AppNotice.show(context, '海报已重新获取');
     } on AppFailure catch (error) {
       if (mounted) AppNotice.show(context, error.message);
     } catch (error) {
@@ -1108,6 +1124,12 @@ class _HomeScreenState extends State<HomeScreen> {
         ];
         final glass =
             widget.store.interfaceStyle == 'glass' && !desktop && !television;
+        final bottomBarHidden =
+            glass &&
+            _tab == _tabDiscover &&
+            !_showRecommendations &&
+            !_selectionMode &&
+            _bottomBarHidden;
         final destinations = [
           NavigationDestination(
             icon: Icon(Icons.home_outlined),
@@ -1460,19 +1482,31 @@ class _HomeScreenState extends State<HomeScreen> {
               : _selectionMode
               ? _selectionBar(glass: glass)
               : glass
-              ? SafeArea(
-                  top: false,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(
-                      GlassBottomNavigation.sideMargin,
-                      0,
-                      GlassBottomNavigation.sideMargin,
-                      GlassBottomNavigation.bottomMargin,
-                    ),
-                    child: GlassBottomNavigation(
-                      selectedIndex: _tab,
-                      onDestinationSelected: _changeTab,
-                      destinations: destinations,
+              ? AnimatedSlide(
+                  offset: bottomBarHidden ? const Offset(0, 1.4) : Offset.zero,
+                  duration: const Duration(milliseconds: 240),
+                  curve: Curves.easeOutCubic,
+                  child: AnimatedOpacity(
+                    opacity: bottomBarHidden ? 0 : 1,
+                    duration: const Duration(milliseconds: 200),
+                    child: IgnorePointer(
+                      ignoring: bottomBarHidden,
+                      child: SafeArea(
+                        top: false,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(
+                            GlassBottomNavigation.sideMargin,
+                            0,
+                            GlassBottomNavigation.sideMargin,
+                            GlassBottomNavigation.bottomMargin,
+                          ),
+                          child: GlassBottomNavigation(
+                            selectedIndex: _tab,
+                            onDestinationSelected: _changeTab,
+                            destinations: destinations,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 )
@@ -1489,11 +1523,15 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Positioned.fill(child: scaffold),
                 if (!_selectionMode)
-                  Positioned(
+                  AnimatedPositioned(
                     right: 20,
                     bottom:
-                        GlassBottomNavigation.contentInset +
+                        (bottomBarHidden
+                            ? GlassBottomNavigation.bottomMargin
+                            : GlassBottomNavigation.contentInset) +
                         MediaQuery.paddingOf(context).bottom,
+                    duration: const Duration(milliseconds: 240),
+                    curve: Curves.easeOutCubic,
                     child: GlassBackToTopButton(
                       visible: _backToTopVisible,
                       onPressed: _scrollToTop,

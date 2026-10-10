@@ -95,7 +95,11 @@ func nativeHLSSelect(lines []string, quality int) ([]string, int, bool) {
 }
 
 func nativeDownloadAssetName(address, extension string) string {
-	digest := sha256.Sum256([]byte(address))
+	stable := address
+	if parsed, err := url.Parse(address); err == nil && parsed.Host != "" && parsed.Path != "" {
+		stable = strings.ToLower(parsed.Host) + parsed.Path
+	}
+	digest := sha256.Sum256([]byte(stable))
 	return hex.EncodeToString(digest[:16]) + extension
 }
 

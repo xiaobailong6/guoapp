@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:media_kit/media_kit.dart';
@@ -120,6 +121,7 @@ class _PlayerControlsState extends State<PlayerControls> {
   bool _visible = true;
   bool _suppressAutoPlaybackStart = false;
   bool _lastPlaying = false;
+  bool _hadFeedback = false;
   bool _panelActive = false;
   double? _seekValue;
   Timer? _progressTimer;
@@ -208,11 +210,13 @@ class _PlayerControlsState extends State<PlayerControls> {
 
   void _interactionChanged() {
     if (!mounted) return;
-    if (widget.interactions.feedback.isNotEmpty) {
-      _show();
+    final feedback = widget.interactions.feedback;
+    if (feedback.isNotEmpty) {
+      if (!_hadFeedback) _show();
     } else if (!(_hideTimer?.isActive ?? false)) {
       _scheduleHide();
     }
+    _hadFeedback = feedback.isNotEmpty;
   }
 
   bool get _canAutoHide =>
@@ -222,8 +226,6 @@ class _PlayerControlsState extends State<PlayerControls> {
       !_panelActive &&
       widget.player.state.playing &&
       !widget.player.state.buffering &&
-      !widget.interactions.boosting &&
-      !widget.interactions.seeking &&
       _seekValue == null;
 
   void _scheduleHide() {
@@ -1108,18 +1110,53 @@ class _PlayerControlsState extends State<PlayerControls> {
     animation: widget.interactions,
     builder: (context, _) {
       final feedback = widget.interactions.feedback;
-      if (feedback.isEmpty) return const SizedBox.shrink();
       return IgnorePointer(
         child: Align(
-          alignment: const Alignment(0, -.5),
-          child: Container(
-            margin: const EdgeInsets.all(16),
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-            decoration: BoxDecoration(
-              color: Colors.black87,
-              borderRadius: BorderRadius.circular(10),
+          alignment: Alignment.topCenter,
+          child: SafeArea(
+            bottom: false,
+            minimum: const EdgeInsets.only(top: 60),
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 160),
+              switchInCurve: Curves.easeOutCubic,
+              switchOutCurve: Curves.easeInCubic,
+              transitionBuilder: (child, animation) => FadeTransition(
+                opacity: animation,
+                child: ScaleTransition(scale: animation, child: child),
+              ),
+              child: feedback.isEmpty
+                  ? const SizedBox.shrink()
+                  : ClipRRect(
+                      key: ValueKey('gesture-feedback-$feedback'),
+                      borderRadius: BorderRadius.circular(16),
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 20),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 18,
+                            vertical: 9,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.black.withValues(alpha: .55),
+                            borderRadius: BorderRadius.circular(16),
+                            border: Border.all(
+                              color: Colors.white.withValues(alpha: .18),
+                            ),
+                          ),
+                          child: Text(
+                            feedback,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
             ),
-            child: Text(feedback, textAlign: TextAlign.center),
           ),
         ),
       );

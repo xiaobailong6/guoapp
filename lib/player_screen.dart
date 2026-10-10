@@ -138,6 +138,9 @@ class _PlayerScreenState extends State<PlayerScreen>
   bool _pictureInPictureActive = false;
   bool _pictureInPictureRequested = false;
   bool _pictureInPictureHandlerInstalled = false;
+  String? _pictureInPictureSyncKey;
+  bool? _pictureInPicturePreference;
+  DateTime? _lastBackAt;
   AppLifecycleState _lifecycleState = AppLifecycleState.resumed;
   String _loadingMessage = '正在准备播放';
   String? _error;
@@ -197,6 +200,12 @@ class _PlayerScreenState extends State<PlayerScreen>
   }
 
   void _onRouteAnimationStatus(AnimationStatus status) {
+    if (status == AnimationStatus.reverse) {
+      if (_videoSurfaceMounted && mounted && !_closed) {
+        setState(() => _videoSurfaceMounted = false);
+      }
+      return;
+    }
     if (status != AnimationStatus.completed ||
         _videoSurfaceMounted ||
         _closed) {
@@ -387,6 +396,7 @@ class _PlayerScreenState extends State<PlayerScreen>
             _aspectRatio = size.width / size.height;
           });
           _scheduleSystemUi();
+          unawaited(_syncPictureInPictureParams());
         }
       }),
     );
@@ -496,6 +506,12 @@ class _PlayerScreenState extends State<PlayerScreen>
             !widget.store.allowsSource('hongguo'))) {
       _danmaku.setPlan(null);
     }
+    final autoPictureInPicture =
+        widget.store.playbackPreferences.autoPictureInPicture;
+    if (autoPictureInPicture != _pictureInPicturePreference) {
+      _pictureInPicturePreference = autoPictureInPicture;
+      unawaited(_syncPictureInPictureParams());
+    }
   }
 
   void _configurePictureInPicture() {
@@ -533,6 +549,33 @@ class _PlayerScreenState extends State<PlayerScreen>
     }
   }
 
+  Future<void> _syncPictureInPictureParams() async {
+    if (defaultTargetPlatform != TargetPlatform.android || _television) {
+      return;
+    }
+    final enabled =
+        _pictureInPictureSupported &&
+        widget.store.playbackPreferences.autoPictureInPicture &&
+        !_closed;
+    final rawRatio = _aspectRatio.isFinite && _aspectRatio > 0
+        ? _aspectRatio
+        : 16 / 9;
+    final ratio = rawRatio.clamp(1 / 2.39, 2.39).toDouble();
+    final width = ratio >= 1 ? (1000 * ratio).round() : 1000;
+    final height = ratio >= 1 ? 1000 : (1000 / ratio).round();
+    final key = '$enabled:$width:$height';
+    if (key == _pictureInPictureSyncKey) return;
+    _pictureInPictureSyncKey = key;
+    try {
+      await AppDevice.channel.invokeMethod<void>('configurePictureInPicture', {
+        'enabled': enabled,
+        'width': width,
+        'height': height,
+      });
+    } on PlatformException {
+    } on MissingPluginException {}
+  }
+
   void _setPictureInPictureStatus({
     bool? supported,
     bool? active,
@@ -554,6 +597,7 @@ class _PlayerScreenState extends State<PlayerScreen>
     } else {
       assign();
     }
+    unawaited(_syncPictureInPictureParams());
     if (_pictureInPictureVisible || _lifecycleOnScreen) {
       _pictureInPictureExitTimer?.cancel();
       _applyLifecycleVisibility(pauseWhenHidden: false);
@@ -1649,6 +1693,12 @@ class _PlayerScreenState extends State<PlayerScreen>
   }
 
   void _back() {
+    final now = DateTime.now();
+    if (_lastBackAt != null &&
+        now.difference(_lastBackAt!) < const Duration(milliseconds: 350)) {
+      return;
+    }
+    _lastBackAt = now;
     if (_showFullscreen && !_television) {
       _rotate();
     } else {
@@ -1681,6 +1731,7 @@ class _PlayerScreenState extends State<PlayerScreen>
     _recommendationProgressTimer = null;
     _recommendationGeneration++;
     _pictureInPictureExitTimer?.cancel();
+    unawaited(_syncPictureInPictureParams());
     if (_pictureInPictureHandlerInstalled) {
       AppDevice.channel.setMethodCallHandler(null);
     }

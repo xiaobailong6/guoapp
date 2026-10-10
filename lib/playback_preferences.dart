@@ -17,6 +17,7 @@ class PlaybackPreferences {
     this.preload = true,
     this.holdSpeed = 2,
     this.swipeSeekSeconds = 60,
+    this.autoPictureInPicture = true,
     this.enhancement = const VideoEnhancementPreferences(),
   });
 
@@ -27,6 +28,7 @@ class PlaybackPreferences {
   final bool preload;
   final double holdSpeed;
   final int swipeSeekSeconds;
+  final bool autoPictureInPicture;
   final VideoEnhancementPreferences enhancement;
 
   PlaybackPreferences copyWith({
@@ -37,6 +39,7 @@ class PlaybackPreferences {
     bool? preload,
     double? holdSpeed,
     int? swipeSeekSeconds,
+    bool? autoPictureInPicture,
     VideoEnhancementPreferences? enhancement,
   }) => PlaybackPreferences(
     speed: speed ?? this.speed,
@@ -46,6 +49,7 @@ class PlaybackPreferences {
     preload: preload ?? this.preload,
     holdSpeed: holdSpeed ?? this.holdSpeed,
     swipeSeekSeconds: swipeSeekSeconds ?? this.swipeSeekSeconds,
+    autoPictureInPicture: autoPictureInPicture ?? this.autoPictureInPicture,
     enhancement: enhancement ?? this.enhancement,
   );
 
@@ -57,6 +61,7 @@ class PlaybackPreferences {
     'preload': preload,
     'holdSpeed': holdSpeed,
     'swipeSeekSeconds': swipeSeekSeconds,
+    'autoPictureInPicture': autoPictureInPicture,
     'enhancement': enhancement.toJson(),
   };
 
@@ -68,6 +73,7 @@ class PlaybackPreferences {
     final preload = value['preload'] as bool? ?? true;
     final holdSpeed = (value['holdSpeed'] as num? ?? 2).toDouble();
     final swipeSeekSeconds = value['swipeSeekSeconds'] as int? ?? 60;
+    final autoPictureInPicture = value['autoPictureInPicture'] as bool? ?? true;
     if (!playbackSpeeds.contains(speed) ||
         !holdSpeeds.contains(holdSpeed) ||
         !swipeSeekChoices.contains(swipeSeekSeconds) ||
@@ -83,6 +89,7 @@ class PlaybackPreferences {
       preload: preload,
       holdSpeed: holdSpeed,
       swipeSeekSeconds: swipeSeekSeconds,
+      autoPictureInPicture: autoPictureInPicture,
       enhancement: VideoEnhancementPreferences.fromJson(value['enhancement']),
     );
   }

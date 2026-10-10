@@ -56,10 +56,10 @@ func (manager *nativeDownloads) transferMedia(ctx context.Context, job nativeDow
 		bundle.assets = []nativeDownloadAsset{{address: media.URL, name: entry}}
 	}
 	directory := manager.jobDirectory(job)
-	identity := entry + "\x00" + media.URL + "\x00" + hex.EncodeToString(media.CENCKey) + "\x00" + strconv.Itoa(bundle.quality)
+	identity := entry + "\x00" + hex.EncodeToString(media.CENCKey) + "\x00" + strconv.Itoa(bundle.quality)
 	if hls {
 		for _, asset := range bundle.assets {
-			identity += "\x00" + asset.address + "\x00" + string(asset.data)
+			identity += "\x00" + asset.name + "\x00" + string(asset.data)
 		}
 		encoded, _ := json.Marshal(bundle.playlists)
 		identity += "\x00" + string(encoded)
@@ -147,7 +147,7 @@ func (manager *nativeDownloads) downloadFile(ctx context.Context, address, refer
 	if data, err := os.ReadFile(target + ".json"); err == nil {
 		_ = json.Unmarshal(data, &metadata)
 	}
-	if metadata.URL != address {
+	if metadata.URL != address && (metadata.Validator == "" || key) {
 		metadata = nativeDownloadFileState{}
 	}
 	if metadata.Complete {

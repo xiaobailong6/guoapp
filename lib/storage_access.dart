@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'glass_panel.dart';
+
 /// 查询是否有写入共享存储的能力；非 Android 恒为已授权。
 Future<bool> hasAllFilesAccess() async {
   if (!Platform.isAndroid) return true;
@@ -32,24 +34,55 @@ Future<bool> ensureStorageAccess(BuildContext context) async {
   if (await hasAllFilesAccess()) return true;
   final open = await showDialog<bool>(
     context: context,
-    builder: (dialogContext) => AlertDialog(
-      title: const Text('需要存储权限'),
-      content: const Text(
-        'Android 限制应用只能写入自己的私有目录。要把视频复制到所选文件夹，'
-        '请在系统设置中授予「所有文件访问」权限；授权后返回应用重新操作。',
+    builder: (dialogContext) => GlassDialog(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(18, 16, 18, 10),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 4, bottom: 8),
+              child: Text(
+                '需要存储权限',
+                style: const TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 4, right: 4, bottom: 6),
+              child: Text(
+                'Android 限制应用只能写入自己的私有目录。要下载完整剧集并把视频导出、复制到所选文件夹，'
+                '请在系统设置中授予「所有文件访问」权限；授权后返回应用即可继续。',
+                style: TextStyle(fontSize: 14, height: 1.5),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextButton(
+                      key: const ValueKey('storage-access-cancel'),
+                      onPressed: () => Navigator.pop(dialogContext, false),
+                      child: const Text('取消'),
+                    ),
+                    FilledButton(
+                      key: const ValueKey('storage-access-open'),
+                      onPressed: () => Navigator.pop(dialogContext, true),
+                      child: const Text('去授权'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
-      actions: [
-        TextButton(
-          key: const ValueKey('storage-access-cancel'),
-          onPressed: () => Navigator.pop(dialogContext, false),
-          child: const Text('取消'),
-        ),
-        FilledButton(
-          key: const ValueKey('storage-access-open'),
-          onPressed: () => Navigator.pop(dialogContext, true),
-          child: const Text('去授权'),
-        ),
-      ],
     ),
   );
   if (open == true) await requestStorageAccess();

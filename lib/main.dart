@@ -198,7 +198,15 @@ class _AppBootstrapState extends State<AppBootstrap>
     try {
       await store.setStoragePromptShown(true);
     } catch (_) {}
-    if (!granted) await ensureStorageAccess(context);
+    if (granted) return;
+    var context = navigator.currentState?.overlay?.context;
+    if (context == null) {
+      await WidgetsBinding.instance.endOfFrame;
+      if (!mounted) return;
+      context = navigator.currentState?.overlay?.context;
+      if (context == null) return;
+    }
+    await ensureStorageAccess(context);
   }
 
   @override

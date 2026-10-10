@@ -52,6 +52,35 @@ class GlassPanel extends StatelessWidget {
   }
 }
 
+/// 统一的玻璃对话框外观。
+class GlassDialog extends StatelessWidget {
+  const GlassDialog({super.key, required this.child, this.maxWidth = 340});
+
+  final Widget child;
+  final double maxWidth;
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      elevation: 0,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(26)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: GlassPanel(
+          borderRadius: const BorderRadius.all(Radius.circular(22)),
+          sigma: 28,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: maxWidth),
+            child: child,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class PressScale extends StatefulWidget {
   const PressScale({
     super.key,
@@ -163,7 +192,7 @@ Future<T?> showGlassMenu<T>({
   bool alignRight = false,
   bool autofocusSelected = false,
   double width = 232,
-  double maxHeight = 312,
+  double maxHeight = 430,
   double itemExtent = 46,
 }) => Navigator.of(context).push<T>(
   _GlassMenuRoute<T>(
@@ -225,7 +254,8 @@ class _GlassMenuRoute<T> extends PopupRoute<T> {
     Animation<double> secondaryAnimation,
   ) {
     final size = MediaQuery.sizeOf(context);
-    final height = _height;
+    final available = size.height - _margin * 2;
+    final height = _height > available ? available : _height;
     final menuWidth = width > size.width - 16 ? size.width - 16 : width;
     var left = alignRight ? anchor.right - menuWidth : anchor.left;
     if (left < _margin) left = _margin;

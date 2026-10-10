@@ -203,6 +203,7 @@ class _CachedCoverImageState extends State<CachedCoverImage> {
   bool _retryOnFailure = false;
   bool _retryQueued = false;
   String? _failedPath;
+  String? _loadedPath;
 
   @override
   void initState() {
@@ -226,7 +227,7 @@ class _CachedCoverImageState extends State<CachedCoverImage> {
         oldWidget.drama.cover != widget.drama.cover ||
         oldWidget.drama.source != widget.drama.source) {
       _coverFailed = _retryOnFailure = false;
-      _failedPath = null;
+      _failedPath = _loadedPath = null;
       _coverRevision = widget.repository.catalogUpdates.coverRevision(
         widget.drama.id,
       );
@@ -241,7 +242,7 @@ class _CachedCoverImageState extends State<CachedCoverImage> {
     if (revision == _coverRevision) return;
     _coverRevision = revision;
     _retryOnFailure = true;
-    if (_coverFailed) _queueRetry();
+    _queueRetry();
   }
 
   void _queueRetry() {
@@ -251,7 +252,7 @@ class _CachedCoverImageState extends State<CachedCoverImage> {
       _retryQueued = false;
       if (!mounted || !_retryOnFailure) return;
       _retryOnFailure = false;
-      _retry(_failedPath);
+      _retry(_failedPath ?? _loadedPath);
     });
     WidgetsBinding.instance.ensureVisualUpdate();
   }
@@ -271,12 +272,13 @@ class _CachedCoverImageState extends State<CachedCoverImage> {
       ).evict();
     }
     if (mounted) {
+      final failed = _coverFailed;
       setState(() {
         _coverFailed = _retryOnFailure = false;
         _failedPath = null;
         _file = widget.repository.cover(
           widget.repository.catalogUpdates.current(widget.drama),
-          force: true,
+          force: failed,
         );
       });
     }
@@ -308,6 +310,7 @@ class _CachedCoverImageState extends State<CachedCoverImage> {
       if (snapshot.hasError || !snapshot.hasData) {
         return _failed(null);
       }
+      _loadedPath = snapshot.data;
       return Image.file(
         File(snapshot.data!),
         fit: BoxFit.cover,

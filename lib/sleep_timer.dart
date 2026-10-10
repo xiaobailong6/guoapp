@@ -161,56 +161,50 @@ Future<void> showSleepTimerSheet(
                     ),
                 ],
               )
-            : Dialog(
-                child: GlassPanel(
-                  borderRadius: const BorderRadius.all(Radius.circular(22)),
-                  sigma: 28,
-                  child: ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 320),
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(18, 16, 10, 8),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 4, bottom: 4),
-                            child: Text(
-                              controller.active
-                                  ? '睡眠定时 · ${controller.label}'
-                                  : '睡眠定时',
-                              style: const TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
+            : GlassDialog(
+                maxWidth: 320,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(18, 16, 10, 8),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 4, bottom: 4),
+                        child: Text(
+                          controller.active
+                              ? '睡眠定时 · ${controller.label}'
+                              : '睡眠定时',
+                          style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
                           ),
-                          for (final option in options)
-                            InkWell(
-                              key: ValueKey('sleep-timer-${option.name}'),
-                              borderRadius: BorderRadius.circular(12),
-                              onTap: () => Navigator.pop(dialogContext, option),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 9,
-                                  horizontal: 10,
-                                ),
-                                child: Text(
-                                  option.label,
-                                  style: const TextStyle(fontSize: 14),
-                                ),
-                              ),
-                            ),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: TextButton(
-                              onPressed: () => Navigator.pop(dialogContext),
-                              child: const Text('返回播放'),
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
+                      for (final option in options)
+                        InkWell(
+                          key: ValueKey('sleep-timer-${option.name}'),
+                          borderRadius: BorderRadius.circular(12),
+                          onTap: () => Navigator.pop(dialogContext, option),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 9,
+                              horizontal: 10,
+                            ),
+                            child: Text(
+                              option.label,
+                              style: const TextStyle(fontSize: 14),
+                            ),
+                          ),
+                        ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: TextButton(
+                          onPressed: () => Navigator.pop(dialogContext),
+                          child: const Text('返回播放'),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),

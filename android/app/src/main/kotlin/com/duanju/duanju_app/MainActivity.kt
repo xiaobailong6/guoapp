@@ -33,6 +33,9 @@ class MainActivity : FlutterActivity() {
     private var thermalHeadroom: Double? = null
     private var deviceChannel: MethodChannel? = null
     private var televisionMode = false
+    private var pictureInPictureAutoEnter = false
+    private var pictureInPictureAspectWidth = 1600
+    private var pictureInPictureAspectHeight = 900
 
     @Suppress("DEPRECATION")
     private fun isTelevisionDevice(): Boolean {
@@ -248,6 +251,12 @@ class MainActivity : FlutterActivity() {
                             ))
                         }
                         "pictureInPictureStatus" -> result.success(pictureInPictureStatus())
+                        "configurePictureInPicture" -> {
+                            val enabled = call.argument<Boolean>("enabled") ?: false
+                            val width = call.argument<Int>("width") ?: 1600
+                            val height = call.argument<Int>("height") ?: 900
+                            result.success(configurePictureInPicture(enabled, width, height))
+                        }
                         "enterPictureInPicture" -> {
                             val width = call.argument<Int>("width") ?: 16
                             val height = call.argument<Int>("height") ?: 9
@@ -278,6 +287,44 @@ class MainActivity : FlutterActivity() {
         )
     }
 
+    private fun configurePictureInPicture(
+        enabled: Boolean,
+        width: Int,
+        height: Int
+    ): Map<String, Any> {
+        val supported = pictureInPictureSupported()
+        pictureInPictureAutoEnter = enabled && supported
+        val safeWidth = width.coerceIn(1, 10000)
+        val safeHeight = height.coerceIn(1, 10000)
+        pictureInPictureAspectWidth = safeWidth
+        pictureInPictureAspectHeight = safeHeight
+        if (supported) {
+            runCatching {
+                val builder = PictureInPictureParams.Builder()
+                builder.setAspectRatio(Rational(safeWidth, safeHeight))
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    builder.setAutoEnterEnabled(pictureInPictureAutoEnter)
+                }
+                setPictureInPictureParams(builder.build())
+            }
+        }
+        return pictureInPictureStatus() + ("autoEnter" to pictureInPictureAutoEnter)
+    }
+
+    override fun onUserLeaveHint() {
+        super.onUserLeaveHint()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) return
+        if (!pictureInPictureAutoEnter || isInPictureInPictureMode) return
+        if (!pictureInPictureSupported()) return
+        runCatching {
+            val builder = PictureInPictureParams.Builder()
+            builder.setAspectRatio(
+                Rational(pictureInPictureAspectWidth, pictureInPictureAspectHeight)
+            )
+            enterPictureInPictureMode(builder.build())
+        }
+    }
+
     private fun enterPlayerPictureInPicture(
         width: Int,
         height: Int,
@@ -297,7 +344,7 @@ class MainActivity : FlutterActivity() {
                 builder.setSourceRectHint(Rect(left, top, right, bottom))
             }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                builder.setAutoEnterEnabled(true)
+                builder.setAutoEnterEnabled(pictureInPictureAutoEnter)
             }
             val entered = enterPictureInPictureMode(builder.build())
             pictureInPictureStatus() + ("requested" to entered)

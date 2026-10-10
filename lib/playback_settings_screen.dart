@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
+import 'app_layout.dart';
 import 'local_store.dart';
 import 'playback_preferences.dart';
 import 'widgets.dart';
@@ -158,6 +161,26 @@ class PlaybackSettingsScreen extends StatelessWidget {
                           ),
                         ),
                 ),
+                if (Platform.isAndroid && !AppLayout.isTelevision(context)) ...[
+                  const Divider(height: 32),
+                  SwitchListTile(
+                    key: const ValueKey('auto-picture-in-picture'),
+                    value: preferences.autoPictureInPicture,
+                    title: const Text('回到桌面自动开启小窗'),
+                    subtitle: const Text(
+                      '仅在播放页面回到桌面时进入小窗播放；关闭后只能用播放栏的小窗按钮进入，'
+                      '小窗画面只包含视频本体并跟随视频横竖屏比例。',
+                    ),
+                    onChanged: !enabled
+                        ? null
+                        : (value) => saveUserChange(
+                            context,
+                            () => store.setPlaybackPreferences(
+                              preferences.copyWith(autoPictureInPicture: value),
+                            ),
+                          ),
+                  ),
+                ],
                 const Divider(height: 32),
                 ListTile(
                   title: const Text('优先清晰度'),
