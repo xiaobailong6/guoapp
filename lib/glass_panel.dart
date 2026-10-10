@@ -4,6 +4,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'app_theme.dart';
+
 class GlassPanel extends StatelessWidget {
   const GlassPanel({
     super.key,
@@ -301,6 +303,7 @@ Future<T?> showGlassMenu<T>({
   required List<GlassMenuEntry<T>> entries,
   bool alignRight = false,
   bool autofocusSelected = false,
+  bool dark = false,
   double width = 232,
   double maxHeight = 430,
   double itemExtent = 46,
@@ -310,6 +313,7 @@ Future<T?> showGlassMenu<T>({
     entries: entries,
     alignRight: alignRight,
     autofocusSelected: autofocusSelected,
+    dark: dark,
     width: _glassMenuWidth(context, entries, width),
     maxHeight: maxHeight,
     itemExtent: itemExtent,
@@ -322,6 +326,7 @@ class _GlassMenuRoute<T> extends PopupRoute<T> {
     required this.anchor,
     required this.entries,
     required this.alignRight,
+    required this.dark,
     required this.width,
     required this.maxHeight,
     required this.itemExtent,
@@ -331,6 +336,7 @@ class _GlassMenuRoute<T> extends PopupRoute<T> {
   final List<GlassMenuEntry<T>> entries;
   final bool alignRight;
   final bool autofocusSelected;
+  final bool dark;
   final double width;
   final double maxHeight;
   final double itemExtent;
@@ -399,26 +405,29 @@ class _GlassMenuRoute<T> extends PopupRoute<T> {
           child: ScaleTransition(
             scale: scale,
             alignment: alignment,
-            child: Material(
-              type: MaterialType.transparency,
-              child: GlassPanel(
-                borderRadius: const BorderRadius.all(Radius.circular(22)),
-                sigma: 28,
-                child: SizedBox(
-                  width: menuWidth,
-                  height: height,
-                  child: ListView(
-                    padding: const EdgeInsets.all(6),
-                    itemExtent: itemExtent,
-                    children: [
-                      for (final (index, entry) in entries.indexed)
-                        _GlassMenuItem<T>(
-                          entry: entry,
-                          animation: animation,
-                          index: index,
-                          autofocus: autofocusSelected,
-                        ),
-                    ],
+            child: Theme(
+              data: dark ? AppTheme.dark : Theme.of(context),
+              child: Material(
+                type: MaterialType.transparency,
+                child: GlassPanel(
+                  borderRadius: const BorderRadius.all(Radius.circular(22)),
+                  sigma: 28,
+                  child: SizedBox(
+                    width: menuWidth,
+                    height: height,
+                    child: ListView(
+                      padding: const EdgeInsets.all(6),
+                      itemExtent: itemExtent,
+                      children: [
+                        for (final (index, entry) in entries.indexed)
+                          _GlassMenuItem<T>(
+                            entry: entry,
+                            animation: animation,
+                            index: index,
+                            autofocus: autofocusSelected,
+                          ),
+                      ],
+                    ),
                   ),
                 ),
               ),

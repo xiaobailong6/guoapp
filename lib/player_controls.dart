@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:media_kit/media_kit.dart';
 
+import 'glass_panel.dart';
 import 'lan_controller.dart';
 import 'player_interactions.dart';
 import 'widgets.dart';
@@ -88,8 +89,8 @@ class PlayerControls extends StatefulWidget {
   final String title;
   final VoidCallback onTogglePlayback;
   final Future<void> Function() onEpisodes;
-  final Future<void> Function() onSpeed;
-  final Future<void> Function() onQuality;
+  final Future<void> Function(Rect? anchor) onSpeed;
+  final Future<void> Function(Rect? anchor) onQuality;
 
   /// 垂直布局下也常驻的旋转入口。直播页整屏都是播放器，没有「退出全屏」
   /// 这个中间状态可用来暴露旋转按钮，必须单独给一个入口。
@@ -705,12 +706,14 @@ class _PlayerControlsState extends State<PlayerControls> {
     required Key key,
     required String tooltip,
     required IconData icon,
-    required VoidCallback? onPressed,
+    VoidCallback? onPressed,
+    void Function(Rect? anchor)? onAnchorPressed,
     bool selected = false,
   }) => _toolButton(
     key: key,
     tooltip: tooltip,
     onPressed: onPressed,
+    onAnchorPressed: onAnchorPressed,
     selected: selected,
     child: Icon(icon, size: 22),
   );
@@ -719,12 +722,14 @@ class _PlayerControlsState extends State<PlayerControls> {
     required Key key,
     required String tooltip,
     required String label,
-    required VoidCallback? onPressed,
+    VoidCallback? onPressed,
+    void Function(Rect? anchor)? onAnchorPressed,
     double width = 52,
   }) => _toolButton(
     key: key,
     tooltip: tooltip,
     onPressed: onPressed,
+    onAnchorPressed: onAnchorPressed,
     visualWidth: width,
     child: Text(
       label,
@@ -738,12 +743,13 @@ class _PlayerControlsState extends State<PlayerControls> {
     required Key key,
     required String tooltip,
     required Widget child,
-    required VoidCallback? onPressed,
+    VoidCallback? onPressed,
+    void Function(Rect? anchor)? onAnchorPressed,
     bool selected = false,
     double visualWidth = 36,
   }) {
     final scheme = Theme.of(context).colorScheme;
-    final enabled = onPressed != null;
+    final enabled = onPressed != null || onAnchorPressed != null;
     final foreground = selected
         ? scheme.primary
         : Colors.white.withValues(alpha: enabled ? .92 : .36);
@@ -760,34 +766,44 @@ class _PlayerControlsState extends State<PlayerControls> {
         button: true,
         enabled: enabled,
         label: tooltip,
-        child: GestureDetector(
-          key: key,
-          behavior: HitTestBehavior.opaque,
-          onTap: onPressed,
-          child: SizedBox(
-            width: targetWidth,
-            height: 48,
-            child: Center(
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 120),
-                width: visualWidth,
-                height: 36,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: background,
-                  borderRadius: BorderRadius.circular(18),
-                  border: Border.all(color: border),
-                ),
-                child: IconTheme.merge(
-                  data: IconThemeData(color: foreground, size: 22),
-                  child: DefaultTextStyle.merge(
-                    style: TextStyle(
-                      color: foreground,
-                      fontSize: 13.5,
-                      height: 1,
-                      fontWeight: FontWeight.w700,
+        child: Builder(
+          builder: (anchorContext) => GestureDetector(
+            key: key,
+            behavior: HitTestBehavior.opaque,
+            onTap: enabled
+                ? () {
+                    if (onAnchorPressed != null) {
+                      onAnchorPressed(glassMenuAnchor(anchorContext));
+                    } else {
+                      onPressed();
+                    }
+                  }
+                : null,
+            child: SizedBox(
+              width: targetWidth,
+              height: 48,
+              child: Center(
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 120),
+                  width: visualWidth,
+                  height: 36,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: background,
+                    borderRadius: BorderRadius.circular(18),
+                    border: Border.all(color: border),
+                  ),
+                  child: IconTheme.merge(
+                    data: IconThemeData(color: foreground, size: 22),
+                    child: DefaultTextStyle.merge(
+                      style: TextStyle(
+                        color: foreground,
+                        fontSize: 13.5,
+                        height: 1,
+                        fontWeight: FontWeight.w700,
+                      ),
+                      child: child,
                     ),
-                    child: child,
                   ),
                 ),
               ),
@@ -896,14 +912,18 @@ class _PlayerControlsState extends State<PlayerControls> {
           key: const ValueKey('player-speed'),
           tooltip: '倍速',
           label: '${widget.speed}x',
-          onPressed: widget.enabled ? () => _panel(widget.onSpeed) : null,
+          onAnchorPressed: widget.enabled
+              ? (anchor) => unawaited(_panel(() => widget.onSpeed(anchor)))
+              : null,
           width: 50,
         ),
         _toolText(
           key: const ValueKey('player-quality'),
           tooltip: '清晰度',
           label: widget.qualityLabel,
-          onPressed: widget.enabled ? () => _panel(widget.onQuality) : null,
+          onAnchorPressed: widget.enabled
+              ? (anchor) => unawaited(_panel(() => widget.onQuality(anchor)))
+              : null,
           width: 52,
         ),
       ],
@@ -958,14 +978,18 @@ class _PlayerControlsState extends State<PlayerControls> {
         key: const ValueKey('player-speed'),
         tooltip: '倍速',
         label: '${widget.speed}x',
-        onPressed: widget.enabled ? () => _panel(widget.onSpeed) : null,
+        onAnchorPressed: widget.enabled
+            ? (anchor) => unawaited(_panel(() => widget.onSpeed(anchor)))
+            : null,
         width: 50,
       ),
       _toolText(
         key: const ValueKey('player-quality'),
         tooltip: '清晰度',
         label: widget.qualityLabel,
-        onPressed: widget.enabled ? () => _panel(widget.onQuality) : null,
+        onAnchorPressed: widget.enabled
+            ? (anchor) => unawaited(_panel(() => widget.onQuality(anchor)))
+            : null,
         width: 52,
       ),
       if (widget.onPush != null)

@@ -1533,6 +1533,81 @@ class _PlayerScreenState extends State<PlayerScreen>
     );
   }
 
+  Future<void> _openSpeedMenu(Rect? anchor) async {
+    if (_closed || anchor == null) return;
+    _interactions.cancel();
+    final preferences = _preferences;
+    final value = await showGlassMenu<double>(
+      context: context,
+      anchor: anchor,
+      autofocusSelected: true,
+      dark: true,
+      entries: [
+        for (final speed in playbackSpeeds)
+          GlassMenuEntry(
+            value: speed,
+            label: Text('${speedLabel(speed)}x'),
+            selected: speed == preferences.speed,
+          ),
+      ],
+    );
+    if (value == null || !mounted || _closed) return;
+    if (value == preferences.speed ||
+        widget.store.profileEpoch != _profileEpoch) {
+      return;
+    }
+    try {
+      await _setPreferences(preferences.copyWith(speed: value));
+    } catch (_) {
+      if (mounted && !_closed) _notice('播放偏好未能保存，请重试');
+    }
+  }
+
+  Future<void> _openQualityMenu(Rect? anchor) async {
+    if (_closed || anchor == null) return;
+    _interactions.cancel();
+    final preferences = _preferences;
+    final qualities = {
+      0,
+      ...?_plan?.qualities.where((quality) => quality > 0),
+      if (preferences.quality > 0) preferences.quality,
+    }.toList()..sort();
+    final value = await showGlassMenu<int>(
+      context: context,
+      anchor: anchor,
+      autofocusSelected: true,
+      dark: true,
+      entries: [
+        for (final quality in qualities)
+          GlassMenuEntry(
+            value: quality,
+            label: Text(quality == 0 ? '自动（优先高清）' : '${quality}P'),
+            selected: quality == preferences.quality,
+          ),
+        if (_enhancementForUi != null)
+          const GlassMenuEntry(
+            value: -1,
+            label: Text('画质增强'),
+            leading: Icon(Icons.auto_awesome_outlined),
+          ),
+      ],
+    );
+    if (value == null || !mounted || _closed) return;
+    if (value == -1) {
+      await _openPanel(PlayerMenuSection.quality);
+      return;
+    }
+    if (value == preferences.quality ||
+        widget.store.profileEpoch != _profileEpoch) {
+      return;
+    }
+    try {
+      await _setPreferences(preferences.copyWith(quality: value));
+    } catch (_) {
+      if (mounted && !_closed) _notice('播放偏好未能保存，请重试');
+    }
+  }
+
   Future<void> _openPanel(PlayerMenuSection section) async {
     if (_panelOpen || _closed) return;
     _interactions.cancel();
@@ -1974,8 +2049,8 @@ class _PlayerScreenState extends State<PlayerScreen>
             danmakuEnabled: _danmakuEnabled,
             danmakuStatus: _danmaku.status,
             onEpisodes: () => _openPanel(PlayerMenuSection.episodes),
-            onSpeed: () => _openPanel(PlayerMenuSection.speed),
-            onQuality: () => _openPanel(PlayerMenuSection.quality),
+            onSpeed: _openSpeedMenu,
+            onQuality: _openQualityMenu,
             onSleepTimer: _showSleepTimer,
             sleepTimerLabel: _sleepTimer.label,
             onDanmaku: widget.detail.drama.source == 'hongguo'

@@ -1758,6 +1758,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         return RefreshIndicator(
                           onRefresh: _refreshCatalog,
                           child: CustomScrollView(
+                            key: const PageStorageKey('home-discover-catalog'),
                             controller: _scroll,
                             scrollCacheExtent: ScrollCacheExtent.viewport(1),
                             physics: const AlwaysScrollableScrollPhysics(),
