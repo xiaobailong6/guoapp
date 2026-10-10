@@ -25,11 +25,7 @@ class PlayerStatusMessage extends StatelessWidget {
           child: Text(
             message,
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              color: Colors.white70,
-              fontSize: 14,
-
-            ),
+            style: const TextStyle(color: Colors.white70, fontSize: 14),
           ),
         ),
       ),
@@ -368,21 +364,21 @@ class _PlayerControlsState extends State<PlayerControls> {
                     children: [
                       if (widget.enabled && !state.buffering)
                         const IgnorePointer(
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [
-                                Color(0xAA000000),
-                                Colors.transparent,
-                                Color(0xE6000000),
-                              ],
-                              stops: [0, .45, 1],
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  Color(0xAA000000),
+                                  Colors.transparent,
+                                  Color(0xE6000000),
+                                ],
+                                stops: [0, .45, 1],
+                              ),
                             ),
                           ),
                         ),
-                      ),
                       Padding(
                         padding: EdgeInsets.fromLTRB(
                           8,

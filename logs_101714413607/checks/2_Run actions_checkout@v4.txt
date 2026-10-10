@@ -1,143 +1,142 @@
-﻿2026-10-10T10:10:01.0829987Z ##[group]Run actions/checkout@v4
-2026-10-10T10:10:01.0831535Z with:
-2026-10-10T10:10:01.0832252Z   repository: xiaobailong6/guoapp
-2026-10-10T10:10:01.0839949Z   token: ***
-2026-10-10T10:10:01.0840611Z   ssh-strict: true
-2026-10-10T10:10:01.0841503Z   ssh-user: git
-2026-10-10T10:10:01.0842203Z   persist-credentials: true
-2026-10-10T10:10:01.0842977Z   clean: true
-2026-10-10T10:10:01.0843672Z   sparse-checkout-cone-mode: true
-2026-10-10T10:10:01.0844517Z   fetch-depth: 1
-2026-10-10T10:10:01.0845183Z   fetch-tags: false
-2026-10-10T10:10:01.0845880Z   show-progress: true
-2026-10-10T10:10:01.0846589Z   lfs: false
-2026-10-10T10:10:01.0847221Z   submodules: false
-2026-10-10T10:10:01.0847948Z   set-safe-directory: true
-2026-10-10T10:10:01.0848790Z   allow-unsafe-pr-checkout: false
-2026-10-10T10:10:01.0849904Z env:
-2026-10-10T10:10:01.0850835Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-10T10:10:01.0851868Z   GOSUMDB: sum.golang.org
-2026-10-10T10:10:01.0852610Z ##[endgroup]
-2026-10-10T10:10:01.2000064Z Syncing repository: xiaobailong6/guoapp
-2026-10-10T10:10:01.2003204Z ##[group]Getting Git version info
-2026-10-10T10:10:01.2004407Z Working directory is '/home/runner/work/guoapp/guoapp'
-2026-10-10T10:10:01.2006372Z [command]/usr/bin/git version
-2026-10-10T10:10:01.2008669Z git version 2.55.0
-2026-10-10T10:10:01.2043989Z ##[endgroup]
-2026-10-10T10:10:01.2077288Z Temporarily overriding HOME='/home/runner/work/_temp/c413c7fe-c1c1-4549-b530-27f20e6ec94d' before making global git config changes
-2026-10-10T10:10:01.2082691Z Adding repository directory to the temporary git global config as a safe directory
-2026-10-10T10:10:01.2086372Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/guoapp/guoapp
-2026-10-10T10:10:01.2149212Z Deleting the contents of '/home/runner/work/guoapp/guoapp'
-2026-10-10T10:10:01.2154243Z ##[group]Initializing the repository
-2026-10-10T10:10:01.2158513Z [command]/usr/bin/git init /home/runner/work/guoapp/guoapp
-2026-10-10T10:10:01.2292210Z hint: Using 'master' as the name for the initial branch. This default branch name
-2026-10-10T10:10:01.2295605Z hint: will change to "main" in Git 3.0. To configure the initial branch name
-2026-10-10T10:10:01.2298283Z hint: to use in all of your new repositories, which will suppress this warning,
-2026-10-10T10:10:01.2300513Z hint: call:
-2026-10-10T10:10:01.2301651Z hint:
-2026-10-10T10:10:01.2302941Z hint: 	git config --global init.defaultBranch <name>
-2026-10-10T10:10:01.2304589Z hint:
-2026-10-10T10:10:01.2306109Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
-2026-10-10T10:10:01.2308755Z hint: 'development'. The just-created branch can be renamed via this command:
-2026-10-10T10:10:01.2311029Z hint:
-2026-10-10T10:10:01.2312018Z hint: 	git branch -m <name>
-2026-10-10T10:10:01.2313254Z hint:
-2026-10-10T10:10:01.2315212Z hint: Disable this message with "git config set advice.defaultBranchName false"
-2026-10-10T10:10:01.2318154Z Initialized empty Git repository in /home/runner/work/guoapp/guoapp/.git/
-2026-10-10T10:10:01.2322997Z [command]/usr/bin/git remote add origin https://github.com/xiaobailong6/guoapp
-2026-10-10T10:10:01.2368607Z ##[endgroup]
-2026-10-10T10:10:01.2370955Z ##[group]Disabling automatic garbage collection
-2026-10-10T10:10:01.2372907Z [command]/usr/bin/git config --local gc.auto 0
-2026-10-10T10:10:01.2424186Z ##[endgroup]
-2026-10-10T10:10:01.2425456Z ##[group]Setting up auth
-2026-10-10T10:10:01.2426677Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
-2026-10-10T10:10:01.2462705Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
-2026-10-10T10:10:01.2918954Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
-2026-10-10T10:10:01.2959626Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
-2026-10-10T10:10:01.3198024Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
-2026-10-10T10:10:01.3238847Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
-2026-10-10T10:10:01.3479599Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
-2026-10-10T10:10:01.3524986Z ##[endgroup]
-2026-10-10T10:10:01.3527279Z ##[group]Fetching the repository
-2026-10-10T10:10:01.3539385Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +fd66bef1187843b4bcb5d78a3aaa60616191435c:refs/remotes/origin/main
-2026-10-10T10:10:06.6609119Z From https://github.com/xiaobailong6/guoapp
-2026-10-10T10:10:06.6610288Z  * [new ref]         fd66bef1187843b4bcb5d78a3aaa60616191435c -> origin/main
-2026-10-10T10:10:06.6617262Z ##[endgroup]
-2026-10-10T10:10:06.6618221Z ##[group]Determining the checkout info
-2026-10-10T10:10:06.6619223Z ##[endgroup]
-2026-10-10T10:10:06.6626231Z [command]/usr/bin/git sparse-checkout disable
-2026-10-10T10:10:06.6690368Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
-2026-10-10T10:10:06.6726297Z ##[group]Checking out the ref
-2026-10-10T10:10:06.6730943Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
-2026-10-10T10:10:08.5253153Z Updating files:  36% (540/1486)
-2026-10-10T10:10:08.5595404Z Updating files:  37% (550/1486)
-2026-10-10T10:10:08.6939989Z Updating files:  38% (565/1486)
-2026-10-10T10:10:08.7285211Z Updating files:  38% (578/1486)
-2026-10-10T10:10:08.7995760Z Updating files:  39% (580/1486)
-2026-10-10T10:10:08.8009064Z Updating files:  40% (595/1486)
-2026-10-10T10:10:08.8026873Z Updating files:  41% (610/1486)
-2026-10-10T10:10:08.8039954Z Updating files:  42% (625/1486)
-2026-10-10T10:10:08.8050467Z Updating files:  43% (639/1486)
-2026-10-10T10:10:08.8063369Z Updating files:  44% (654/1486)
-2026-10-10T10:10:08.8079023Z Updating files:  45% (669/1486)
-2026-10-10T10:10:08.8089672Z Updating files:  46% (684/1486)
-2026-10-10T10:10:08.8106049Z Updating files:  47% (699/1486)
-2026-10-10T10:10:08.8118293Z Updating files:  48% (714/1486)
-2026-10-10T10:10:08.8126946Z Updating files:  49% (729/1486)
-2026-10-10T10:10:08.8138083Z Updating files:  50% (743/1486)
-2026-10-10T10:10:08.8538560Z Updating files:  51% (758/1486)
-2026-10-10T10:10:08.8548171Z Updating files:  52% (773/1486)
-2026-10-10T10:10:08.8557028Z Updating files:  53% (788/1486)
-2026-10-10T10:10:08.8570071Z Updating files:  54% (803/1486)
-2026-10-10T10:10:08.8581592Z Updating files:  55% (818/1486)
-2026-10-10T10:10:08.8590356Z Updating files:  56% (833/1486)
-2026-10-10T10:10:08.8598597Z Updating files:  57% (848/1486)
-2026-10-10T10:10:08.8607472Z Updating files:  58% (862/1486)
-2026-10-10T10:10:08.8624970Z Updating files:  59% (877/1486)
-2026-10-10T10:10:08.8635999Z Updating files:  60% (892/1486)
-2026-10-10T10:10:08.8649223Z Updating files:  61% (907/1486)
-2026-10-10T10:10:08.8664190Z Updating files:  62% (922/1486)
-2026-10-10T10:10:08.8677264Z Updating files:  63% (937/1486)
-2026-10-10T10:10:08.8699057Z Updating files:  64% (952/1486)
-2026-10-10T10:10:08.8717016Z Updating files:  65% (966/1486)
-2026-10-10T10:10:08.8757702Z Updating files:  66% (981/1486)
-2026-10-10T10:10:08.8770278Z Updating files:  67% (996/1486)
-2026-10-10T10:10:08.8783891Z Updating files:  68% (1011/1486)
-2026-10-10T10:10:08.8799622Z Updating files:  69% (1026/1486)
-2026-10-10T10:10:08.8814912Z Updating files:  70% (1041/1486)
-2026-10-10T10:10:08.8859972Z Updating files:  71% (1056/1486)
-2026-10-10T10:10:08.8870342Z Updating files:  72% (1070/1486)
-2026-10-10T10:10:08.8884815Z Updating files:  73% (1085/1486)
-2026-10-10T10:10:08.8893950Z Updating files:  74% (1100/1486)
-2026-10-10T10:10:08.8904741Z Updating files:  75% (1115/1486)
-2026-10-10T10:10:08.8919686Z Updating files:  76% (1130/1486)
-2026-10-10T10:10:08.8933498Z Updating files:  77% (1145/1486)
-2026-10-10T10:10:08.8945152Z Updating files:  78% (1160/1486)
-2026-10-10T10:10:08.8957907Z Updating files:  79% (1174/1486)
-2026-10-10T10:10:08.8971730Z Updating files:  80% (1189/1486)
-2026-10-10T10:10:08.8983415Z Updating files:  81% (1204/1486)
-2026-10-10T10:10:08.8997974Z Updating files:  82% (1219/1486)
-2026-10-10T10:10:08.9008444Z Updating files:  83% (1234/1486)
-2026-10-10T10:10:08.9018879Z Updating files:  84% (1249/1486)
-2026-10-10T10:10:08.9028916Z Updating files:  85% (1264/1486)
-2026-10-10T10:10:08.9039874Z Updating files:  86% (1278/1486)
-2026-10-10T10:10:08.9048238Z Updating files:  87% (1293/1486)
-2026-10-10T10:10:08.9058714Z Updating files:  88% (1308/1486)
-2026-10-10T10:10:08.9074252Z Updating files:  89% (1323/1486)
-2026-10-10T10:10:08.9085798Z Updating files:  90% (1338/1486)
-2026-10-10T10:10:08.9099487Z Updating files:  91% (1353/1486)
-2026-10-10T10:10:08.9110635Z Updating files:  92% (1368/1486)
-2026-10-10T10:10:08.9121308Z Updating files:  93% (1382/1486)
-2026-10-10T10:10:08.9129336Z Updating files:  94% (1397/1486)
-2026-10-10T10:10:08.9140102Z Updating files:  95% (1412/1486)
-2026-10-10T10:10:08.9149453Z Updating files:  96% (1427/1486)
-2026-10-10T10:10:08.9160351Z Updating files:  97% (1442/1486)
-2026-10-10T10:10:08.9170099Z Updating files:  98% (1457/1486)
-2026-10-10T10:10:08.9178896Z Updating files:  99% (1472/1486)
-2026-10-10T10:10:08.9179378Z Updating files: 100% (1486/1486)
-2026-10-10T10:10:08.9179836Z Updating files: 100% (1486/1486), done.
-2026-10-10T10:10:08.9207308Z Switched to a new branch 'main'
-2026-10-10T10:10:08.9210893Z branch 'main' set up to track 'origin/main'.
-2026-10-10T10:10:08.9262143Z ##[endgroup]
-2026-10-10T10:10:08.9314312Z [command]/usr/bin/git log -1 --format=%H
-2026-10-10T10:10:08.9343998Z fd66bef1187843b4bcb5d78a3aaa60616191435c
+﻿2026-10-10T10:56:16.7244956Z ##[group]Run actions/checkout@v4
+2026-10-10T10:56:16.7246065Z with:
+2026-10-10T10:56:16.7246641Z   repository: xiaobailong6/guoapp
+2026-10-10T10:56:16.7249249Z   token: ***
+2026-10-10T10:56:16.7249806Z   ssh-strict: true
+2026-10-10T10:56:16.7250358Z   ssh-user: git
+2026-10-10T10:56:16.7250920Z   persist-credentials: true
+2026-10-10T10:56:16.7251493Z   clean: true
+2026-10-10T10:56:16.7252056Z   sparse-checkout-cone-mode: true
+2026-10-10T10:56:16.7252658Z   fetch-depth: 1
+2026-10-10T10:56:16.7253201Z   fetch-tags: false
+2026-10-10T10:56:16.7253914Z   show-progress: true
+2026-10-10T10:56:16.7254504Z   lfs: false
+2026-10-10T10:56:16.7255038Z   submodules: false
+2026-10-10T10:56:16.7255692Z   set-safe-directory: true
+2026-10-10T10:56:16.7256307Z   allow-unsafe-pr-checkout: false
+2026-10-10T10:56:16.7257142Z env:
+2026-10-10T10:56:16.7257709Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-10T10:56:16.7258328Z   GOSUMDB: sum.golang.org
+2026-10-10T10:56:16.7258877Z ##[endgroup]
+2026-10-10T10:56:16.8097975Z Syncing repository: xiaobailong6/guoapp
+2026-10-10T10:56:16.8100598Z ##[group]Getting Git version info
+2026-10-10T10:56:16.8101658Z Working directory is '/home/runner/work/guoapp/guoapp'
+2026-10-10T10:56:16.8179804Z [command]/usr/bin/git version
+2026-10-10T10:56:16.8522840Z git version 2.55.0
+2026-10-10T10:56:16.8550102Z ##[endgroup]
+2026-10-10T10:56:16.8558954Z Temporarily overriding HOME='/home/runner/work/_temp/77feaf6c-59ed-408a-a5d3-a1c8178c42b7' before making global git config changes
+2026-10-10T10:56:16.8560810Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-10T10:56:16.8562404Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/guoapp/guoapp
+2026-10-10T10:56:16.8615830Z Deleting the contents of '/home/runner/work/guoapp/guoapp'
+2026-10-10T10:56:16.8622406Z ##[group]Initializing the repository
+2026-10-10T10:56:16.8626710Z [command]/usr/bin/git init /home/runner/work/guoapp/guoapp
+2026-10-10T10:56:16.8737177Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-10T10:56:16.8739112Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-10T10:56:16.8740807Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-10T10:56:16.8742285Z hint: call:
+2026-10-10T10:56:16.8743242Z hint:
+2026-10-10T10:56:16.8744559Z hint: 	git config --global init.defaultBranch <name>
+2026-10-10T10:56:16.8745676Z hint:
+2026-10-10T10:56:16.8746612Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-10T10:56:16.8747782Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-10T10:56:16.8748853Z hint:
+2026-10-10T10:56:16.8749669Z hint: 	git branch -m <name>
+2026-10-10T10:56:16.8750381Z hint:
+2026-10-10T10:56:16.8751083Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-10T10:56:16.8752003Z Initialized empty Git repository in /home/runner/work/guoapp/guoapp/.git/
+2026-10-10T10:56:16.8756276Z [command]/usr/bin/git remote add origin https://github.com/xiaobailong6/guoapp
+2026-10-10T10:56:16.8810433Z ##[endgroup]
+2026-10-10T10:56:16.8811470Z ##[group]Disabling automatic garbage collection
+2026-10-10T10:56:16.8814494Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-10T10:56:16.8848958Z ##[endgroup]
+2026-10-10T10:56:16.8849911Z ##[group]Setting up auth
+2026-10-10T10:56:16.8854460Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-10T10:56:16.8886564Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-10T10:56:16.9197547Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-10T10:56:16.9229711Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-10T10:56:16.9428643Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-10T10:56:16.9462248Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-10T10:56:16.9665263Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-10T10:56:16.9704941Z ##[endgroup]
+2026-10-10T10:56:16.9706234Z ##[group]Fetching the repository
+2026-10-10T10:56:16.9713386Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +9780e64210b1c71bb69cbcd5f7bc8b58f7b2e020:refs/remotes/origin/main
+2026-10-10T10:56:23.7720755Z From https://github.com/xiaobailong6/guoapp
+2026-10-10T10:56:23.7721511Z  * [new ref]         9780e64210b1c71bb69cbcd5f7bc8b58f7b2e020 -> origin/main
+2026-10-10T10:56:23.7723697Z ##[endgroup]
+2026-10-10T10:56:23.7724342Z ##[group]Determining the checkout info
+2026-10-10T10:56:23.7726535Z ##[endgroup]
+2026-10-10T10:56:23.7732916Z [command]/usr/bin/git sparse-checkout disable
+2026-10-10T10:56:23.7783213Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-10T10:56:23.7815004Z ##[group]Checking out the ref
+2026-10-10T10:56:23.7819197Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-10-10T10:56:25.3948320Z Updating files:  36% (543/1487)
+2026-10-10T10:56:25.3966381Z Updating files:  37% (551/1487)
+2026-10-10T10:56:25.5403039Z Updating files:  38% (566/1487)
+2026-10-10T10:56:25.6021116Z Updating files:  39% (580/1487)
+2026-10-10T10:56:25.6031879Z Updating files:  40% (595/1487)
+2026-10-10T10:56:25.6045700Z Updating files:  41% (610/1487)
+2026-10-10T10:56:25.6057829Z Updating files:  42% (625/1487)
+2026-10-10T10:56:25.6065119Z Updating files:  43% (640/1487)
+2026-10-10T10:56:25.6074527Z Updating files:  44% (655/1487)
+2026-10-10T10:56:25.6087081Z Updating files:  45% (670/1487)
+2026-10-10T10:56:25.6095885Z Updating files:  46% (685/1487)
+2026-10-10T10:56:25.6108384Z Updating files:  47% (699/1487)
+2026-10-10T10:56:25.6117541Z Updating files:  48% (714/1487)
+2026-10-10T10:56:25.6124912Z Updating files:  49% (729/1487)
+2026-10-10T10:56:25.6146362Z Updating files:  50% (744/1487)
+2026-10-10T10:56:25.6473485Z Updating files:  51% (759/1487)
+2026-10-10T10:56:25.6479439Z Updating files:  52% (774/1487)
+2026-10-10T10:56:25.6486122Z Updating files:  53% (789/1487)
+2026-10-10T10:56:25.6496341Z Updating files:  54% (803/1487)
+2026-10-10T10:56:25.6504852Z Updating files:  55% (818/1487)
+2026-10-10T10:56:25.6511549Z Updating files:  56% (833/1487)
+2026-10-10T10:56:25.6518018Z Updating files:  57% (848/1487)
+2026-10-10T10:56:25.6523987Z Updating files:  58% (863/1487)
+2026-10-10T10:56:25.6538666Z Updating files:  59% (878/1487)
+2026-10-10T10:56:25.6546646Z Updating files:  60% (893/1487)
+2026-10-10T10:56:25.6556301Z Updating files:  61% (908/1487)
+2026-10-10T10:56:25.6568517Z Updating files:  62% (922/1487)
+2026-10-10T10:56:25.6579665Z Updating files:  63% (937/1487)
+2026-10-10T10:56:25.6602605Z Updating files:  64% (952/1487)
+2026-10-10T10:56:25.6611111Z Updating files:  65% (967/1487)
+2026-10-10T10:56:25.6645738Z Updating files:  66% (982/1487)
+2026-10-10T10:56:25.6653883Z Updating files:  67% (997/1487)
+2026-10-10T10:56:25.6663903Z Updating files:  68% (1012/1487)
+2026-10-10T10:56:25.6674892Z Updating files:  69% (1027/1487)
+2026-10-10T10:56:25.6685838Z Updating files:  70% (1041/1487)
+2026-10-10T10:56:25.6723129Z Updating files:  71% (1056/1487)
+2026-10-10T10:56:25.6729660Z Updating files:  72% (1071/1487)
+2026-10-10T10:56:25.6740148Z Updating files:  73% (1086/1487)
+2026-10-10T10:56:25.6745763Z Updating files:  74% (1101/1487)
+2026-10-10T10:56:25.6753510Z Updating files:  75% (1116/1487)
+2026-10-10T10:56:25.6764630Z Updating files:  76% (1131/1487)
+2026-10-10T10:56:25.6774591Z Updating files:  77% (1145/1487)
+2026-10-10T10:56:25.6783839Z Updating files:  78% (1160/1487)
+2026-10-10T10:56:25.6794173Z Updating files:  79% (1175/1487)
+2026-10-10T10:56:25.6804029Z Updating files:  80% (1190/1487)
+2026-10-10T10:56:25.6813354Z Updating files:  81% (1205/1487)
+2026-10-10T10:56:25.6822653Z Updating files:  82% (1220/1487)
+2026-10-10T10:56:25.6829116Z Updating files:  83% (1235/1487)
+2026-10-10T10:56:25.6835730Z Updating files:  84% (1250/1487)
+2026-10-10T10:56:25.6843475Z Updating files:  85% (1264/1487)
+2026-10-10T10:56:25.6851398Z Updating files:  86% (1279/1487)
+2026-10-10T10:56:25.6856799Z Updating files:  87% (1294/1487)
+2026-10-10T10:56:25.6863940Z Updating files:  88% (1309/1487)
+2026-10-10T10:56:25.6876193Z Updating files:  89% (1324/1487)
+2026-10-10T10:56:25.6884419Z Updating files:  90% (1339/1487)
+2026-10-10T10:56:25.6894695Z Updating files:  91% (1354/1487)
+2026-10-10T10:56:25.6902556Z Updating files:  92% (1369/1487)
+2026-10-10T10:56:25.6909639Z Updating files:  93% (1383/1487)
+2026-10-10T10:56:25.6914652Z Updating files:  94% (1398/1487)
+2026-10-10T10:56:25.6922251Z Updating files:  95% (1413/1487)
+2026-10-10T10:56:25.6928375Z Updating files:  96% (1428/1487)
+2026-10-10T10:56:25.6935871Z Updating files:  97% (1443/1487)
+2026-10-10T10:56:25.6942646Z Updating files:  98% (1458/1487)
+2026-10-10T10:56:25.6948903Z Updating files:  99% (1473/1487)
+2026-10-10T10:56:25.6949234Z Updating files: 100% (1487/1487)
+2026-10-10T10:56:25.6949554Z Updating files: 100% (1487/1487), done.
+2026-10-10T10:56:25.7064701Z Switched to a new branch 'main'
+2026-10-10T10:56:25.7072495Z branch 'main' set up to track 'origin/main'.
+2026-10-10T10:56:25.7115316Z ##[endgroup]
+2026-10-10T10:56:25.7158270Z [command]/usr/bin/git log -1 --format=%H
+2026-10-10T10:56:25.7182042Z 9780e64210b1c71bb69cbcd5f7bc8b58f7b2e020

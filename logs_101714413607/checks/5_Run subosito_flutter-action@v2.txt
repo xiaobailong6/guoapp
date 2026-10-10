@@ -1,102 +1,106 @@
-﻿2026-10-10T10:10:21.2030065Z ##[group]Run subosito/flutter-action@v2
-2026-10-10T10:10:21.2030400Z with:
-2026-10-10T10:10:21.2030612Z   flutter-version: 3.47.4
-2026-10-10T10:10:21.2031217Z   channel: stable
-2026-10-10T10:10:21.2031448Z   cache: true
-2026-10-10T10:10:21.2031653Z   architecture: X64
-2026-10-10T10:10:21.2031877Z   pub-cache-path: default
-2026-10-10T10:10:21.2032108Z   dry-run: false
-2026-10-10T10:10:21.2032374Z   git-source: https://github.com/flutter/flutter.git
-2026-10-10T10:10:21.2032683Z env:
-2026-10-10T10:10:21.2032912Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-10T10:10:21.2033205Z   GOSUMDB: sum.golang.org
-2026-10-10T10:10:21.2033430Z ##[endgroup]
-2026-10-10T10:10:21.2093297Z ##[start-action display=Make yq tool available on Windows runners;id=__subosito_flutter-action.__run]
-2026-10-10T10:10:21.2104380Z ##[end-action id=__subosito_flutter-action.__run;outcome=skipped;conclusion=skipped;duration_ms=0]
-2026-10-10T10:10:21.2106493Z ##[start-action display=Make setup script executable;id=__subosito_flutter-action.__run_2]
-2026-10-10T10:10:21.2131950Z ##[group]Run chmod +x "$GITHUB_ACTION_PATH/setup.sh"
-2026-10-10T10:10:21.2132347Z [36;1mchmod +x "$GITHUB_ACTION_PATH/setup.sh"[0m
-2026-10-10T10:10:21.2197884Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
-2026-10-10T10:10:21.2198236Z env:
-2026-10-10T10:10:21.2198483Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-10T10:10:21.2198791Z   GOSUMDB: sum.golang.org
-2026-10-10T10:10:21.2199026Z ##[endgroup]
-2026-10-10T10:10:21.2314970Z ##[end-action id=__subosito_flutter-action.__run_2;outcome=success;conclusion=success;duration_ms=20]
-2026-10-10T10:10:21.2317165Z ##[start-action display=Set action inputs;id=__subosito_flutter-action.flutter-action]
-2026-10-10T10:10:21.2354639Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh -p \
-2026-10-10T10:10:21.2355018Z [36;1m$GITHUB_ACTION_PATH/setup.sh -p \[0m
-2026-10-10T10:10:21.2355319Z [36;1m  -n '3.47.4' \[0m
-2026-10-10T10:10:21.2355549Z [36;1m  -f '' \[0m
-2026-10-10T10:10:21.2355754Z [36;1m  -a 'X64' \[0m
-2026-10-10T10:10:21.2355974Z [36;1m  -k '' \[0m
-2026-10-10T10:10:21.2356178Z [36;1m  -c '' \[0m
-2026-10-10T10:10:21.2356374Z [36;1m  -l '' \[0m
-2026-10-10T10:10:21.2356579Z [36;1m  -d 'default' \[0m
-2026-10-10T10:10:21.2356894Z [36;1m  -g 'https://github.com/flutter/flutter.git' \[0m
-2026-10-10T10:10:21.2357241Z [36;1m  stable[0m
-2026-10-10T10:10:21.2417258Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
-2026-10-10T10:10:21.2417617Z env:
-2026-10-10T10:10:21.2417861Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-10T10:10:21.2418163Z   GOSUMDB: sum.golang.org
-2026-10-10T10:10:21.2418398Z ##[endgroup]
-2026-10-10T10:10:21.5798829Z ##[end-action id=__subosito_flutter-action.flutter-action;outcome=success;conclusion=success;duration_ms=348]
-2026-10-10T10:10:21.5804313Z ##[start-action display=Cache Flutter;id=__subosito_flutter-action.cache-flutter]
-2026-10-10T10:10:21.5844854Z ##[group]Run actions/cache@v5
-2026-10-10T10:10:21.5845123Z with:
-2026-10-10T10:10:21.5845385Z   path: /opt/hostedtoolcache/flutter/stable-3.47.4-x64
-2026-10-10T10:10:21.5845888Z   key: flutter-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
-2026-10-10T10:10:21.5846330Z   enableCrossOsArchive: false
-2026-10-10T10:10:21.5846600Z   fail-on-cache-miss: false
-2026-10-10T10:10:21.5846834Z   lookup-only: false
-2026-10-10T10:10:21.5847055Z   save-always: false
-2026-10-10T10:10:21.5847253Z env:
-2026-10-10T10:10:21.5847477Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-10T10:10:21.5847779Z   GOSUMDB: sum.golang.org
-2026-10-10T10:10:21.5848010Z ##[endgroup]
-2026-10-10T10:10:21.7906914Z Cache hit for: flutter-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
-2026-10-10T10:10:22.8815870Z Received 239075328 of 1720618134 (13.9%), 226.9 MBs/sec
-2026-10-10T10:10:23.8869421Z Received 490733568 of 1720618134 (28.5%), 232.8 MBs/sec
-2026-10-10T10:10:24.8890035Z Received 767557632 of 1720618134 (44.6%), 243.0 MBs/sec
-2026-10-10T10:10:25.9002913Z Received 1035993088 of 1720618134 (60.2%), 245.6 MBs/sec
-2026-10-10T10:10:26.9007162Z Received 1279262720 of 1720618134 (74.3%), 242.8 MBs/sec
-2026-10-10T10:10:27.9102295Z Received 1530920960 of 1720618134 (89.0%), 242.2 MBs/sec
-2026-10-10T10:10:28.6373153Z Received 1720618134 of 1720618134 (100.0%), 242.7 MBs/sec
-2026-10-10T10:10:28.6375787Z Cache Size: ~1641 MB (1720618134 B)
-2026-10-10T10:10:28.6488752Z [command]/usr/bin/tar -xf /home/runner/work/_temp/7b8a3fa8-4eff-4fbc-8dff-9d7d2c4469cb/cache.tzst -P -C /home/runner/work/guoapp/guoapp --use-compress-program unzstd
-2026-10-10T10:10:33.8466160Z Cache restored successfully
-2026-10-10T10:10:34.2092176Z Cache restored from key: flutter-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
-2026-10-10T10:10:34.2225216Z ##[end-action id=__subosito_flutter-action.cache-flutter;outcome=success;conclusion=success;duration_ms=12642]
-2026-10-10T10:10:34.2228001Z ##[start-action display=Cache pub dependencies;id=__subosito_flutter-action.cache-pub]
-2026-10-10T10:10:34.6098101Z ##[group]Run actions/cache@v5
-2026-10-10T10:10:34.6098560Z with:
-2026-10-10T10:10:34.6098916Z   path: /home/runner/.pub-cache
-2026-10-10T10:10:34.6100157Z   key: flutter-pub-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b-4f2d9e15f937ee8713c1f3993dbd5ead79b6170906737c543425d7b407a7609e
-2026-10-10T10:10:34.6101678Z   enableCrossOsArchive: false
-2026-10-10T10:10:34.6102109Z   fail-on-cache-miss: false
-2026-10-10T10:10:34.6102509Z   lookup-only: false
-2026-10-10T10:10:34.6102865Z   save-always: false
-2026-10-10T10:10:34.6103202Z env:
-2026-10-10T10:10:34.6103576Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-10T10:10:34.6104071Z   GOSUMDB: sum.golang.org
-2026-10-10T10:10:34.6104677Z ##[endgroup]
-2026-10-10T10:10:34.8055210Z Cache hit for: flutter-pub-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b-4f2d9e15f937ee8713c1f3993dbd5ead79b6170906737c543425d7b407a7609e
-2026-10-10T10:10:35.2794852Z Received 58833931 of 58833931 (100.0%), 138.5 MBs/sec
-2026-10-10T10:10:35.2795847Z Cache Size: ~56 MB (58833931 B)
-2026-10-10T10:10:35.2827654Z [command]/usr/bin/tar -xf /home/runner/work/_temp/db604cb2-0650-4929-a9bb-2be65cbdaefe/cache.tzst -P -C /home/runner/work/guoapp/guoapp --use-compress-program unzstd
-2026-10-10T10:10:36.3843062Z Cache restored successfully
-2026-10-10T10:10:36.3949316Z Cache restored from key: flutter-pub-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b-4f2d9e15f937ee8713c1f3993dbd5ead79b6170906737c543425d7b407a7609e
-2026-10-10T10:10:36.4042745Z ##[end-action id=__subosito_flutter-action.cache-pub;outcome=success;conclusion=success;duration_ms=2181]
-2026-10-10T10:10:36.4045272Z ##[start-action display=Run setup script;id=__subosito_flutter-action.__run_3]
-2026-10-10T10:10:36.4082206Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh \
-2026-10-10T10:10:36.4082575Z [36;1m$GITHUB_ACTION_PATH/setup.sh \[0m
-2026-10-10T10:10:36.4082884Z [36;1m  -n '3.47.4' \[0m
-2026-10-10T10:10:36.4083343Z [36;1m  -a 'x64' \[0m
-2026-10-10T10:10:36.4084076Z [36;1m  -c '/opt/hostedtoolcache/flutter/stable-3.47.4-x64' \[0m
-2026-10-10T10:10:36.4084994Z [36;1m  -d '/home/runner/.pub-cache' \[0m
-2026-10-10T10:10:36.4085308Z [36;1m  stable[0m
-2026-10-10T10:10:36.4147698Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
-2026-10-10T10:10:36.4148065Z env:
-2026-10-10T10:10:36.4148317Z   GOPROXY: https://proxy.golang.org,direct
-2026-10-10T10:10:36.4148642Z   GOSUMDB: sum.golang.org
-2026-10-10T10:10:36.4148884Z ##[endgroup]
-2026-10-10T10:10:36.7176198Z ##[end-action id=__subosito_flutter-action.__run_3;outcome=success;conclusion=success;duration_ms=313]
+﻿2026-10-10T10:56:38.2844896Z ##[group]Run subosito/flutter-action@v2
+2026-10-10T10:56:38.2845152Z with:
+2026-10-10T10:56:38.2845324Z   flutter-version: 3.47.4
+2026-10-10T10:56:38.2845659Z   channel: stable
+2026-10-10T10:56:38.2864842Z   cache: true
+2026-10-10T10:56:38.2865114Z   architecture: X64
+2026-10-10T10:56:38.2865362Z   pub-cache-path: default
+2026-10-10T10:56:38.2865760Z   dry-run: false
+2026-10-10T10:56:38.2866057Z   git-source: https://github.com/flutter/flutter.git
+2026-10-10T10:56:38.2866403Z env:
+2026-10-10T10:56:38.2866675Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-10T10:56:38.2867015Z   GOSUMDB: sum.golang.org
+2026-10-10T10:56:38.2867276Z ##[endgroup]
+2026-10-10T10:56:38.2918242Z ##[start-action display=Make yq tool available on Windows runners;id=__subosito_flutter-action.__run]
+2026-10-10T10:56:38.2927717Z ##[end-action id=__subosito_flutter-action.__run;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-10-10T10:56:38.2929542Z ##[start-action display=Make setup script executable;id=__subosito_flutter-action.__run_2]
+2026-10-10T10:56:38.3232564Z ##[group]Run chmod +x "$GITHUB_ACTION_PATH/setup.sh"
+2026-10-10T10:56:38.3232919Z [36;1mchmod +x "$GITHUB_ACTION_PATH/setup.sh"[0m
+2026-10-10T10:56:38.3292959Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-10T10:56:38.3293267Z env:
+2026-10-10T10:56:38.3293505Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-10T10:56:38.3293751Z   GOSUMDB: sum.golang.org
+2026-10-10T10:56:38.3293942Z ##[endgroup]
+2026-10-10T10:56:38.3396719Z ##[end-action id=__subosito_flutter-action.__run_2;outcome=success;conclusion=success;duration_ms=46]
+2026-10-10T10:56:38.3399056Z ##[start-action display=Set action inputs;id=__subosito_flutter-action.flutter-action]
+2026-10-10T10:56:38.3432010Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh -p \
+2026-10-10T10:56:38.3432365Z [36;1m$GITHUB_ACTION_PATH/setup.sh -p \[0m
+2026-10-10T10:56:38.3432625Z [36;1m  -n '3.47.4' \[0m
+2026-10-10T10:56:38.3432817Z [36;1m  -f '' \[0m
+2026-10-10T10:56:38.3432992Z [36;1m  -a 'X64' \[0m
+2026-10-10T10:56:38.3433178Z [36;1m  -k '' \[0m
+2026-10-10T10:56:38.3433338Z [36;1m  -c '' \[0m
+2026-10-10T10:56:38.3433499Z [36;1m  -l '' \[0m
+2026-10-10T10:56:38.3433665Z [36;1m  -d 'default' \[0m
+2026-10-10T10:56:38.3433912Z [36;1m  -g 'https://github.com/flutter/flutter.git' \[0m
+2026-10-10T10:56:38.3434172Z [36;1m  stable[0m
+2026-10-10T10:56:38.3490071Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-10T10:56:38.3490359Z env:
+2026-10-10T10:56:38.3490574Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-10T10:56:38.3490825Z   GOSUMDB: sum.golang.org
+2026-10-10T10:56:38.3491022Z ##[endgroup]
+2026-10-10T10:56:38.4958031Z ##[end-action id=__subosito_flutter-action.flutter-action;outcome=success;conclusion=success;duration_ms=155]
+2026-10-10T10:56:38.4962167Z ##[start-action display=Cache Flutter;id=__subosito_flutter-action.cache-flutter]
+2026-10-10T10:56:38.4998673Z ##[group]Run actions/cache@v5
+2026-10-10T10:56:38.4998895Z with:
+2026-10-10T10:56:38.4999116Z   path: /opt/hostedtoolcache/flutter/stable-3.47.4-x64
+2026-10-10T10:56:38.4999505Z   key: flutter-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
+2026-10-10T10:56:38.4999838Z   enableCrossOsArchive: false
+2026-10-10T10:56:38.5000045Z   fail-on-cache-miss: false
+2026-10-10T10:56:38.5000237Z   lookup-only: false
+2026-10-10T10:56:38.5000419Z   save-always: false
+2026-10-10T10:56:38.5000584Z env:
+2026-10-10T10:56:38.5000777Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-10T10:56:38.5001013Z   GOSUMDB: sum.golang.org
+2026-10-10T10:56:38.5001210Z ##[endgroup]
+2026-10-10T10:56:38.8019527Z Cache hit for: flutter-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
+2026-10-10T10:56:40.0334433Z Received 37748736 of 1720618134 (2.2%), 36.0 MBs/sec
+2026-10-10T10:56:41.0337597Z Received 201326592 of 1720618134 (11.7%), 96.0 MBs/sec
+2026-10-10T10:56:42.0345840Z Received 402653184 of 1720618134 (23.4%), 127.9 MBs/sec
+2026-10-10T10:56:43.0351649Z Received 616562688 of 1720618134 (35.8%), 146.9 MBs/sec
+2026-10-10T10:56:44.0400447Z Received 801112064 of 1720618134 (46.6%), 152.7 MBs/sec
+2026-10-10T10:56:45.0361243Z Received 981467136 of 1720618134 (57.0%), 155.9 MBs/sec
+2026-10-10T10:56:46.0372030Z Received 1174405120 of 1720618134 (68.3%), 159.9 MBs/sec
+2026-10-10T10:56:47.0426744Z Received 1354760192 of 1720618134 (78.7%), 161.4 MBs/sec
+2026-10-10T10:56:48.0379600Z Received 1568669696 of 1720618134 (91.2%), 166.1 MBs/sec
+2026-10-10T10:56:48.8197268Z Received 1720618134 of 1720618134 (100.0%), 167.7 MBs/sec
+2026-10-10T10:56:48.8198982Z Cache Size: ~1641 MB (1720618134 B)
+2026-10-10T10:56:48.8303839Z [command]/usr/bin/tar -xf /home/runner/work/_temp/413ac31d-ce23-485f-86d0-9bf1c7ba1ace/cache.tzst -P -C /home/runner/work/guoapp/guoapp --use-compress-program unzstd
+2026-10-10T10:56:58.9634292Z Cache restored successfully
+2026-10-10T10:56:59.0345093Z Cache restored from key: flutter-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b
+2026-10-10T10:56:59.0451662Z ##[end-action id=__subosito_flutter-action.cache-flutter;outcome=success;conclusion=success;duration_ms=20548]
+2026-10-10T10:56:59.0454348Z ##[start-action display=Cache pub dependencies;id=__subosito_flutter-action.cache-pub]
+2026-10-10T10:56:59.3488234Z ##[group]Run actions/cache@v5
+2026-10-10T10:56:59.3488476Z with:
+2026-10-10T10:56:59.3488661Z   path: /home/runner/.pub-cache
+2026-10-10T10:56:59.3489228Z   key: flutter-pub-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b-4f2d9e15f937ee8713c1f3993dbd5ead79b6170906737c543425d7b407a7609e
+2026-10-10T10:56:59.3489797Z   enableCrossOsArchive: false
+2026-10-10T10:56:59.3490012Z   fail-on-cache-miss: false
+2026-10-10T10:56:59.3490463Z   lookup-only: false
+2026-10-10T10:56:59.3490644Z   save-always: false
+2026-10-10T10:56:59.3490816Z env:
+2026-10-10T10:56:59.3491042Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-10T10:56:59.3491294Z   GOSUMDB: sum.golang.org
+2026-10-10T10:56:59.3491485Z ##[endgroup]
+2026-10-10T10:56:59.7133798Z Cache hit for: flutter-pub-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b-4f2d9e15f937ee8713c1f3993dbd5ead79b6170906737c543425d7b407a7609e
+2026-10-10T10:57:00.9347954Z Received 33554432 of 58833931 (57.0%), 32.0 MBs/sec
+2026-10-10T10:57:01.1033726Z Received 58833931 of 58833931 (100.0%), 48.0 MBs/sec
+2026-10-10T10:57:01.1035752Z Cache Size: ~56 MB (58833931 B)
+2026-10-10T10:57:01.1130317Z [command]/usr/bin/tar -xf /home/runner/work/_temp/5cffa325-a49a-436a-a2be-3cf6230fd69a/cache.tzst -P -C /home/runner/work/guoapp/guoapp --use-compress-program unzstd
+2026-10-10T10:57:01.9346405Z Cache restored successfully
+2026-10-10T10:57:01.9438315Z Cache restored from key: flutter-pub-linux-stable-3.47.4-x64-9584c6713b324636289d067944a46fd6b49df14b-4f2d9e15f937ee8713c1f3993dbd5ead79b6170906737c543425d7b407a7609e
+2026-10-10T10:57:01.9504644Z ##[end-action id=__subosito_flutter-action.cache-pub;outcome=success;conclusion=success;duration_ms=2904]
+2026-10-10T10:57:01.9507122Z ##[start-action display=Run setup script;id=__subosito_flutter-action.__run_3]
+2026-10-10T10:57:01.9538592Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh \
+2026-10-10T10:57:01.9538932Z [36;1m$GITHUB_ACTION_PATH/setup.sh \[0m
+2026-10-10T10:57:01.9539186Z [36;1m  -n '3.47.4' \[0m
+2026-10-10T10:57:01.9539389Z [36;1m  -a 'x64' \[0m
+2026-10-10T10:57:01.9539655Z [36;1m  -c '/opt/hostedtoolcache/flutter/stable-3.47.4-x64' \[0m
+2026-10-10T10:57:01.9539962Z [36;1m  -d '/home/runner/.pub-cache' \[0m
+2026-10-10T10:57:01.9540195Z [36;1m  stable[0m
+2026-10-10T10:57:01.9596289Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-10T10:57:01.9596605Z env:
+2026-10-10T10:57:01.9596838Z   GOPROXY: https://proxy.golang.org,direct
+2026-10-10T10:57:01.9597122Z   GOSUMDB: sum.golang.org
+2026-10-10T10:57:01.9597329Z ##[endgroup]
+2026-10-10T10:57:02.0956731Z ##[end-action id=__subosito_flutter-action.__run_3;outcome=success;conclusion=success;duration_ms=144]
