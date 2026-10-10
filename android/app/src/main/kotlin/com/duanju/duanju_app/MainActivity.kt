@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.os.BatteryManager
 import android.os.PowerManager
 import android.os.SystemClock
+import android.os.Environment
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
@@ -21,6 +22,7 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.Uri
+import android.provider.Settings
 import android.util.Rational
 import android.view.InputDevice
 import io.flutter.embedding.engine.FlutterEngine
@@ -97,6 +99,32 @@ class MainActivity : FlutterActivity() {
         if (!enabled) return manager.bindProcessToNetwork(null)
         val target = physicalNetwork(manager) ?: return false
         return manager.bindProcessToNetwork(target)
+    }
+
+    private fun hasAllFilesAccess(): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            Environment.isExternalStorageManager()
+        } else {
+            checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
+                PackageManager.PERMISSION_GRANTED
+        }
+    }
+
+    private fun requestStorageAccess() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            val intent = runCatching {
+                Intent(
+                    Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION,
+                    Uri.parse("package:$packageName")
+                )
+            }.getOrElse { Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION) }
+            runCatching { startActivity(intent) }
+        } else {
+            requestPermissions(
+                arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                4712
+            )
+        }
     }
 
     private fun setLauncherEdition(full: Boolean): Boolean {
@@ -192,6 +220,11 @@ class MainActivity : FlutterActivity() {
                         }
                         "playbackPower" -> result.success(runCatching { playbackPower() }.getOrNull())
                         "vpnActive" -> result.success(runCatching { vpnActive() }.getOrDefault(false))
+                        "hasAllFilesAccess" -> result.success(hasAllFilesAccess())
+                        "requestStorageAccess" -> {
+                            requestStorageAccess()
+                            result.success(true)
+                        }
                         "setLauncherEdition" -> {
                             val full = call.argument<Boolean>("full") ?: false
                             result.success(runCatching { setLauncherEdition(full) }.getOrDefault(false))

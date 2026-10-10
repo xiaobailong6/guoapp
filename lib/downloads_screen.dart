@@ -1,5 +1,6 @@
 import 'player_route.dart';
 import 'dart:async';
+import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:file_picker/file_picker.dart';
@@ -546,6 +547,43 @@ class _DownloadsScreenState extends State<DownloadsScreen> {
     }
     final directory = await FilePicker.getDirectoryPath(dialogTitle: '选择导出位置');
     if (directory == null || !mounted) return;
+    if (Platform.isAndroid) {
+      const channel = MethodChannel('duanju/device');
+      var granted = true;
+      try {
+        granted = await channel.invokeMethod<bool>('hasAllFilesAccess') ?? true;
+      } catch (_) {}
+      if (!mounted) return;
+      if (!granted) {
+        final open = await showDialog<bool>(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('需要存储权限'),
+            content: const Text(
+              'Android 限制应用只能写入自己的私有目录。要把视频复制到所选文件夹，'
+              '请在系统设置中授予「所有文件访问」权限；授权后返回应用，'
+              '重新点击导出。',
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context, false),
+                child: const Text('取消'),
+              ),
+              FilledButton(
+                onPressed: () => Navigator.pop(context, true),
+                child: const Text('去授权'),
+              ),
+            ],
+          ),
+        );
+        if (open == true) {
+          try {
+            await channel.invokeMethod<void>('requestStorageAccess');
+          } catch (_) {}
+        }
+        return;
+      }
+    }
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
