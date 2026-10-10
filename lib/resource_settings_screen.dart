@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'app_notice.dart';
+import 'background_downloads.dart';
 import 'core_bridge.dart';
 import 'download_preferences.dart';
 import 'glass_panel.dart';
@@ -9,13 +10,40 @@ import 'resource_settings.dart';
 import 'remote_widgets.dart';
 import 'widgets.dart';
 
-class DownloadPreferencesScreen extends StatelessWidget {
+class DownloadPreferencesScreen extends StatefulWidget {
   const DownloadPreferencesScreen({super.key, required this.store});
   final LocalStore store;
+
+  @override
+  State<DownloadPreferencesScreen> createState() =>
+      _DownloadPreferencesScreenState();
+}
+
+class _DownloadPreferencesScreenState extends State<DownloadPreferencesScreen> {
+  bool _savingExport = false;
+
+  Future<void> _setAutoExport(bool value) async {
+    if (_savingExport || !widget.store.canDownload) return;
+    final epoch = widget.store.profileEpoch;
+    setState(() => _savingExport = true);
+    try {
+      await saveUserChange(context, () async {
+        if (value) await BackgroundDownloads.ensureStarted();
+        if (!mounted || widget.store.profileEpoch != epoch) {
+          throw StateError('当前用户已变更，请重试');
+        }
+        await widget.store.setAutoExport(value);
+      });
+    } finally {
+      if (mounted) setState(() => _savingExport = false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) => AnimatedBuilder(
-    animation: store,
+    animation: widget.store,
     builder: (context, _) {
+      final store = widget.store;
       final preferences = store.downloadPreferences;
       return Scaffold(
         appBar: AppBar(title: const Text('下载偏好')),
@@ -60,8 +88,36 @@ class DownloadPreferencesScreen extends StatelessWidget {
                 ),
                 const Padding(
                   padding: EdgeInsets.all(16),
-                  child: Text('偏好保存在当前用户中，应用于下载选集、批量下载和更新本剧。'),
+                  child: Text('画质与 VIP 偏好保存在当前用户中，应用于下载选集、批量下载和更新本剧。'),
                 ),
+                if (store.profile.admin) ...[
+                  const Divider(),
+                  SwitchListTile(
+                    value: store.autoExport,
+                    title: const Text('下载完成后自动导出 Emby'),
+                    subtitle: const Text(
+                      '在下载目录的 exports 中生成视频和海报 URL 元数据，可将该目录加入 Emby 媒体库。',
+                    ),
+                    onChanged: _savingExport || !store.canDownload
+                        ? null
+                        : _setAutoExport,
+                  ),
+                  SwitchListTile(
+                    value: store.exportPosters,
+                    title: const Text('同时导出海报文件'),
+                    subtitle: const Text('默认只写海报 URL。源站海报需要解密或外部读取失败时可开启。'),
+                    onChanged: _savingExport || !store.canDownload
+                        ? null
+                        : (value) => saveUserChange(
+                            context,
+                            () => store.setExportPosters(value),
+                          ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Text('导出设置由管理员统一管理，应用于设备上的下载任务。'),
+                  ),
+                ],
               ],
             ),
           ),
@@ -156,18 +212,15 @@ class _ResourceSettingsScreenState extends State<ResourceSettingsScreen> {
   }
 
   Widget _count(String title, int value, ValueChanged<int> change) =>
-      DropdownButtonFormField<int>(
-        initialValue: value,
-        decoration: InputDecoration(labelText: title),
-        items: [
-          for (var i = 1; i <= 6; i++)
-            DropdownMenuItem(value: i, child: Text('$i')),
-        ],
-        onChanged: _busy
-            ? null
-            : (value) {
-                if (value != null) setState(() => change(value));
-              },
+      GlassChoiceField<int>(
+        value: value,
+        label: title,
+        enabled: !_busy && _allowed,
+        entries: [for (var i = 1; i <= 6; i++) (i, '$i')],
+        onChanged: (value) {
+          if (!mounted || _busy || !_allowed) return;
+          setState(() => change(value));
+        },
       );
 
   @override
@@ -199,17 +252,19 @@ class _ResourceSettingsScreenState extends State<ResourceSettingsScreen> {
                       padding: const EdgeInsets.only(bottom: 16),
                       child: Text(_settings!.warning),
                     ),
-                  DropdownButtonFormField<String>(
-                    initialValue: _mode,
-                    decoration: const InputDecoration(labelText: '连接方式'),
-                    items: const [
-                      DropdownMenuItem(value: 'auto', child: Text('自动')),
-                      DropdownMenuItem(value: 'direct', child: Text('直连')),
-                      DropdownMenuItem(value: 'manual', child: Text('手动代理')),
+                  GlassChoiceField<String>(
+                    value: _mode,
+                    label: '连接方式',
+                    enabled: !_busy && _allowed,
+                    entries: const [
+                      ('auto', '自动'),
+                      ('direct', '直连'),
+                      ('manual', '手动代理'),
                     ],
-                    onChanged: _busy
-                        ? null
-                        : (value) => setState(() => _mode = value ?? 'auto'),
+                    onChanged: (value) {
+                      if (!mounted || _busy || !_allowed) return;
+                      setState(() => _mode = value);
+                    },
                   ),
                   if (_mode == 'auto')
                     Padding(

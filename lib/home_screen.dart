@@ -30,7 +30,6 @@ import 'remote_widgets.dart';
 import 'widgets.dart';
 import 'vip_icon.dart';
 import 'settings_screen.dart';
-import 'profiles_screen.dart';
 import 'search_input.dart';
 import 'search_cache.dart';
 import 'sources_screen.dart';
@@ -423,11 +422,6 @@ class _HomeScreenState extends State<HomeScreen> {
             leading: Icon(Icons.travel_explore_rounded),
           ),
         const GlassMenuEntry(
-          value: 'users',
-          label: Text('用户管理'),
-          leading: Icon(Icons.manage_accounts_outlined),
-        ),
-        const GlassMenuEntry(
           value: 'settings',
           label: Text('设置与备份'),
           leading: Icon(Icons.settings_outlined),
@@ -453,13 +447,6 @@ class _HomeScreenState extends State<HomeScreen> {
       _refreshCatalog();
     } else if (action == 'sources') {
       _manageSources();
-    } else if (action == 'users') {
-      Navigator.push(
-        context,
-        MaterialPageRoute<void>(
-          builder: (_) => ProfilesScreen(store: widget.store),
-        ),
-      );
     } else if (action == 'settings') {
       Navigator.push(
         context,

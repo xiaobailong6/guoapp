@@ -555,6 +555,7 @@ class GlassBottomNavigation extends StatelessWidget {
     final idle = dark
         ? Colors.white.withValues(alpha: .78)
         : Colors.black.withValues(alpha: .62);
+    final selectedTint = Color.lerp(colors.primary, colors.onSurface, .72)!;
     return GlassPanel(
       borderRadius: const BorderRadius.all(Radius.circular(32)),
       child: SizedBox(
@@ -583,26 +584,33 @@ class GlassBottomNavigation extends StatelessWidget {
                           HapticFeedback.selectionClick();
                           onDestinationSelected(index);
                         },
-                        child: Center(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              AnimatedContainer(
-                                duration: const Duration(milliseconds: 180),
-                                curve: Curves.easeOutCubic,
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 16,
-                                  vertical: 1,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: index == selectedIndex
-                                      ? colors.primary.withValues(
-                                          alpha: dark ? .26 : .16,
-                                        )
-                                      : Colors.transparent,
-                                  borderRadius: BorderRadius.circular(13),
-                                ),
-                                child: AnimatedSwitcher(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 4),
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 180),
+                            curve: Curves.easeOutCubic,
+                            height: 52,
+                            width: double.infinity,
+                            padding: const EdgeInsets.symmetric(horizontal: 4),
+                            decoration: BoxDecoration(
+                              color: index == selectedIndex
+                                  ? selectedTint.withValues(
+                                      alpha: dark ? .16 : .07,
+                                    )
+                                  : Colors.transparent,
+                              borderRadius: BorderRadius.circular(24),
+                              border: Border.all(
+                                color: index == selectedIndex
+                                    ? Colors.white.withValues(
+                                        alpha: dark ? .20 : .75,
+                                      )
+                                    : Colors.transparent,
+                              ),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                AnimatedSwitcher(
                                   duration: const Duration(milliseconds: 150),
                                   switchInCurve: Curves.easeOutBack,
                                   switchOutCurve: Curves.easeInCubic,
@@ -631,27 +639,27 @@ class GlassBottomNavigation extends StatelessWidget {
                                         : destination.icon,
                                   ),
                                 ),
-                              ),
-                              const SizedBox(height: 3),
-                              AnimatedDefaultTextStyle(
-                                duration: const Duration(milliseconds: 160),
-                                style: TextStyle(
-                                  fontSize: 11,
-                                  height: 1.1,
-                                  fontWeight: index == selectedIndex
-                                      ? FontWeight.w700
-                                      : FontWeight.w500,
-                                  color: index == selectedIndex
-                                      ? colors.primary
-                                      : idle,
+                                const SizedBox(height: 3),
+                                AnimatedDefaultTextStyle(
+                                  duration: const Duration(milliseconds: 160),
+                                  style: TextStyle(
+                                    fontSize: 11,
+                                    height: 1.1,
+                                    fontWeight: index == selectedIndex
+                                        ? FontWeight.w700
+                                        : FontWeight.w500,
+                                    color: index == selectedIndex
+                                        ? colors.primary
+                                        : idle,
+                                  ),
+                                  child: Text(
+                                    destination.label,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                 ),
-                                child: Text(
-                                  destination.label,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
