@@ -2,6 +2,7 @@ import 'video_enhancement_preferences.dart';
 
 const playbackSpeeds = [.5, .75, 1.0, 1.25, 1.5, 2.0, 3.0];
 const holdSpeeds = [1.5, 2.0, 2.5, 3.0];
+const swipeSeekChoices = [15, 30, 60, 120];
 
 String speedLabel(double value) => value == value.roundToDouble()
     ? value.toInt().toString()
@@ -15,6 +16,7 @@ class PlaybackPreferences {
     this.danmaku = true,
     this.preload = true,
     this.holdSpeed = 2,
+    this.swipeSeekSeconds = 60,
     this.enhancement = const VideoEnhancementPreferences(),
   });
 
@@ -24,6 +26,7 @@ class PlaybackPreferences {
   final bool danmaku;
   final bool preload;
   final double holdSpeed;
+  final int swipeSeekSeconds;
   final VideoEnhancementPreferences enhancement;
 
   PlaybackPreferences copyWith({
@@ -33,6 +36,7 @@ class PlaybackPreferences {
     bool? danmaku,
     bool? preload,
     double? holdSpeed,
+    int? swipeSeekSeconds,
     VideoEnhancementPreferences? enhancement,
   }) => PlaybackPreferences(
     speed: speed ?? this.speed,
@@ -41,6 +45,7 @@ class PlaybackPreferences {
     danmaku: danmaku ?? this.danmaku,
     preload: preload ?? this.preload,
     holdSpeed: holdSpeed ?? this.holdSpeed,
+    swipeSeekSeconds: swipeSeekSeconds ?? this.swipeSeekSeconds,
     enhancement: enhancement ?? this.enhancement,
   );
 
@@ -51,6 +56,7 @@ class PlaybackPreferences {
     'danmaku': danmaku,
     'preload': preload,
     'holdSpeed': holdSpeed,
+    'swipeSeekSeconds': swipeSeekSeconds,
     'enhancement': enhancement.toJson(),
   };
 
@@ -61,8 +67,10 @@ class PlaybackPreferences {
     final danmaku = value['danmaku'] as bool? ?? true;
     final preload = value['preload'] as bool? ?? true;
     final holdSpeed = (value['holdSpeed'] as num? ?? 2).toDouble();
+    final swipeSeekSeconds = value['swipeSeekSeconds'] as int? ?? 60;
     if (!playbackSpeeds.contains(speed) ||
         !holdSpeeds.contains(holdSpeed) ||
+        !swipeSeekChoices.contains(swipeSeekSeconds) ||
         quality < 0 ||
         quality > 4320) {
       throw const FormatException('播放偏好无效');
@@ -74,6 +82,7 @@ class PlaybackPreferences {
       danmaku: danmaku,
       preload: preload,
       holdSpeed: holdSpeed,
+      swipeSeekSeconds: swipeSeekSeconds,
       enhancement: VideoEnhancementPreferences.fromJson(value['enhancement']),
     );
   }

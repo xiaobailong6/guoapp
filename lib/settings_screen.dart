@@ -11,6 +11,7 @@ import 'app_theme.dart';
 import 'app_layout.dart';
 import 'background_downloads.dart';
 import 'local_store.dart';
+import 'playback_preferences.dart';
 import 'playback_settings_screen.dart';
 import 'profiles_screen.dart';
 import 'remote_widgets.dart';
@@ -620,6 +621,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                       ),
                     ),
+                    if (widget.store.canDownload)
+                      ListTile(
+                        key: const ValueKey('playback-settings-entry'),
+                        leading: const Icon(Icons.play_circle_outline),
+                        title: const Text('播放设置'),
+                        subtitle: Text(
+                          '长按倍速 ${speedLabel(widget.store.playbackPreferences.holdSpeed)}x · '
+                          '滑动快进 ${widget.store.playbackPreferences.swipeSeekSeconds} 秒',
+                        ),
+                        trailing: const Icon(Icons.chevron_right_rounded),
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute<void>(
+                            builder: (_) =>
+                                PlaybackSettingsScreen(store: widget.store),
+                          ),
+                        ),
+                      ),
                     if (widget.store.canDownload)
                       ListTile(
                         leading: const Icon(Icons.download_outlined),

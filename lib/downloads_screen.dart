@@ -4,12 +4,14 @@ import 'dart:math' as math;
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
 import 'app_layout.dart';
 import 'app_notice.dart';
 import 'core_bridge.dart';
 import 'download_collections.dart';
+import 'glass_panel.dart';
 import 'local_store.dart';
 import 'local_media_screen.dart';
 import 'media_library.dart';
@@ -48,6 +50,7 @@ class _DownloadsScreenState extends State<DownloadsScreen> {
   final _search = TextEditingController();
   final _selected = <String>{};
   final _expanded = <String>{};
+  final _collectionMenuKeys = <String, GlobalKey>{};
   final _listKey = GlobalKey<RemoteListState>();
   final _toolbarKey = GlobalKey<RemoteRowState>();
   final _batchKey = GlobalKey<RemoteRowState>();
@@ -499,38 +502,95 @@ class _DownloadsScreenState extends State<DownloadsScreen> {
             _expanded.add(collection.drama.id);
           }
         }),
-        trailing: PopupMenuButton<String>(
+        trailing: IconButton(
+          key: _collectionMenuKeys.putIfAbsent(
+            collection.drama.id,
+            GlobalKey.new,
+          ),
           tooltip: '${collection.drama.title} · 合集操作',
-          enabled: !_busy,
-          onSelected: (value) {
-            if (value == 'update') {
-              _update(collection.drama);
-            } else if (value == 'export') {
-              unawaited(_exportCollection(collection));
-            } else if (value == 'select') {
-              _select(collection.jobs);
-            } else {
-              _batch(value, collection.jobs);
-            }
-          },
-          itemBuilder: (_) => [
-            PopupMenuItem(
-              value: 'update',
-              enabled: !_updater.busy,
-              child: const Text('更新本剧 · 补充新增与缺失'),
-            ),
-            const PopupMenuItem(value: 'export', child: Text('导出到文件夹…')),
-            const PopupMenuItem(value: 'select', child: Text('选择本合集')),
-            const PopupMenuItem(value: 'pause', child: Text('暂停本合集')),
-            const PopupMenuItem(value: 'resume', child: Text('继续 / 重试本合集')),
-            const PopupMenuItem(value: 'archive', child: Text('清理已完成任务，保留视频')),
-            if (_filter == 'archived')
-              const PopupMenuItem(value: 'restore', child: Text('恢复到任务列表')),
-            const PopupMenuItem(value: 'remove', child: Text('取消任务并删除视频')),
-          ],
+          onPressed: !_busy ? () => _openCollectionMenu(collection) : null,
+          icon: const Icon(Icons.more_vert_rounded),
         ),
       ),
     );
+  }
+
+  Future<void> _openCollectionMenu(DownloadCollection collection) async {
+    final anchorContext =
+        _collectionMenuKeys[collection.drama.id]?.currentContext;
+    final object = anchorContext?.findRenderObject();
+    if (anchorContext == null ||
+        object is! RenderBox ||
+        Overlay.of(anchorContext).context.findRenderObject() is! RenderBox) {
+      return;
+    }
+    final overlay =
+        Overlay.of(anchorContext).context.findRenderObject() as RenderBox;
+    final anchor = MatrixUtils.transformRect(
+      object.getTransformTo(overlay),
+      Offset.zero & object.size,
+    );
+    final action = await showGlassMenu<String>(
+      context: context,
+      anchor: anchor,
+      alignRight: true,
+      width: 320,
+      maxHeight: 460,
+      entries: [
+        GlassMenuEntry(
+          value: 'update',
+          label: const Text('更新本剧 · 补充新增与缺失'),
+          leading: const Icon(Icons.update_rounded),
+          enabled: !_updater.busy,
+        ),
+        const GlassMenuEntry(
+          value: 'export',
+          label: Text('导出到文件夹…'),
+          leading: Icon(Icons.folder_copy_outlined),
+        ),
+        const GlassMenuEntry(
+          value: 'select',
+          label: Text('选择本合集'),
+          leading: Icon(Icons.checklist_rounded),
+        ),
+        const GlassMenuEntry(
+          value: 'pause',
+          label: Text('暂停本合集'),
+          leading: Icon(Icons.pause_circle_outline),
+        ),
+        const GlassMenuEntry(
+          value: 'resume',
+          label: Text('继续 / 重试本合集'),
+          leading: Icon(Icons.play_circle_outline),
+        ),
+        const GlassMenuEntry(
+          value: 'archive',
+          label: Text('清理已完成任务，保留视频'),
+          leading: Icon(Icons.cleaning_services_outlined),
+        ),
+        if (_filter == 'archived')
+          const GlassMenuEntry(
+            value: 'restore',
+            label: Text('恢复到任务列表'),
+            leading: Icon(Icons.restore),
+          ),
+        const GlassMenuEntry(
+          value: 'remove',
+          label: Text('取消任务并删除视频'),
+          leading: Icon(Icons.delete_outline),
+        ),
+      ],
+    );
+    if (!mounted || action == null) return;
+    if (action == 'update') {
+      _update(collection.drama);
+    } else if (action == 'export') {
+      unawaited(_exportCollection(collection));
+    } else if (action == 'select') {
+      _select(collection.jobs);
+    } else {
+      _batch(action, collection.jobs);
+    }
   }
 
   Future<void> _exportCollection(DownloadCollection collection) async {
@@ -1303,7 +1363,18 @@ class _DownloadsScreenState extends State<DownloadsScreen> {
                       },
                 )
               : ListView.builder(
-                  padding: const EdgeInsets.fromLTRB(12, 4, 12, 20),
+                  padding: EdgeInsets.fromLTRB(
+                    12,
+                    4,
+                    12,
+                    widget.embedded &&
+                            widget.store.interfaceStyle == 'glass' &&
+                            !AppLayout.isTelevision(context)
+                        ? GlassBottomNavigation.contentInset +
+                              MediaQuery.paddingOf(context).bottom +
+                              20
+                        : 20,
+                  ),
                   itemCount: rows.length,
                   itemBuilder: (_, index) => switch (rows[index]) {
                     DownloadCollection collection => _collection(collection),

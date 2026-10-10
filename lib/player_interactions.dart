@@ -15,6 +15,7 @@ class PlayerInteractions extends ChangeNotifier {
     required this.available,
     required this.baseSpeed,
     required this.holdSpeed,
+    required this.swipeSeek,
     required this.onTogglePlayback,
     required this.onFullscreen,
     required this.onEpisode,
@@ -29,6 +30,7 @@ class PlayerInteractions extends ChangeNotifier {
   final bool Function() available;
   final double Function() baseSpeed;
   final double Function() holdSpeed;
+  final int Function() swipeSeek;
   final VoidCallback onTogglePlayback;
   final VoidCallback onFullscreen;
   final String Function(int direction) onEpisode;
@@ -121,7 +123,7 @@ class PlayerInteractions extends ChangeNotifier {
     _held = true;
     _ignoreTapUntil = DateTime.now().add(const Duration(seconds: 5));
     _seekTarget = _dragStart = player.state.position.inMilliseconds;
-    _dragSpan = player.state.duration.inMilliseconds * .6;
+    _dragSpan = swipeSeek() * 1000.0;
     _updateDragSeek();
   }
 

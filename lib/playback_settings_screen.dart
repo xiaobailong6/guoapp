@@ -56,6 +56,39 @@ class PlaybackSettingsScreen extends StatelessWidget {
                 ),
                 const Divider(height: 32),
                 ListTile(
+                  title: const Text('左右滑动快进/快退'),
+                  subtitle: const Text('按住画面左右拖动的定位速度：拖满一屏的秒数。'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: Wrap(
+                    spacing: 8,
+                    children: [
+                      for (final value in swipeSeekChoices)
+                        ChoiceChip(
+                          key: ValueKey('swipe-seek-$value'),
+                          label: Text('$value 秒'),
+                          selected: preferences.swipeSeekSeconds == value,
+                          onSelected: !enabled
+                              ? null
+                              : (selected) {
+                                  if (selected) {
+                                    saveUserChange(
+                                      context,
+                                      () => store.setPlaybackPreferences(
+                                        preferences.copyWith(
+                                          swipeSeekSeconds: value,
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                },
+                        ),
+                    ],
+                  ),
+                ),
+                const Divider(height: 32),
+                ListTile(
                   title: const Text('默认播放倍速'),
                   subtitle: const Text('打开视频时的初始倍速，播放中仍可在倍速面板调整。'),
                 ),
