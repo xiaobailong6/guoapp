@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:duanju_app/source_status.dart';
 import 'package:duanju_app/local_store.dart';
 import 'package:duanju_app/models.dart';
@@ -33,6 +34,22 @@ Future<LocalStore> mount(
 }
 
 void main() {
+  testWidgets('source count stays pending until a real count arrives', (
+    tester,
+  ) async {
+    final repository = _PendingBatchRepository();
+    final store = await mount(tester, repository: repository);
+    expect(find.text('0 部'), findsNothing);
+    expect(find.text('读取中'), findsWidgets);
+    repository.pending.complete({
+      for (final source in store.sources)
+        source.id: SourceStatus.fromJson({'source': source.id, 'count': 0}),
+    });
+    await tester.pump();
+    expect(find.text('0 部'), findsWidgets);
+    expect(find.text('读取中'), findsNothing);
+  });
+
   testWidgets('status refresh uses one batch and builds source cards lazily', (
     tester,
   ) async {
@@ -137,4 +154,12 @@ class _BatchRepository extends FixtureRepository {
     singleCalls++;
     return SourceStatus.fromJson({'source': source});
   }
+}
+
+class _PendingBatchRepository extends FixtureRepository {
+  final pending = Completer<Map<String, SourceStatus>>();
+
+  @override
+  Future<Map<String, SourceStatus>> sourceStatuses(List<String> sources) =>
+      pending.future;
 }

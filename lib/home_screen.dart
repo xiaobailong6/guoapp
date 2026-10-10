@@ -678,13 +678,19 @@ class _HomeScreenState extends State<HomeScreen> {
     if (!mounted || drama == null || !widget.store.allowsSource(drama.source)) {
       return;
     }
-    _browser.updateDrama(drama);
-    setState(() {
-      _items = [
-        for (final item in _items)
-          item.id == drama.id ? item.merge(drama) : item,
-      ];
-    });
+    final index = _items.indexWhere((item) => item.id == drama.id);
+    if (index >= 0) {
+      final previous = _items[index];
+      final updated = previous.merge(drama);
+      if (!previous.sameAs(updated)) {
+        _browser.updateDrama(updated);
+        setState(() {
+          _items = List<Drama>.of(_items)..[index] = updated;
+        });
+      }
+    } else {
+      _browser.updateDrama(drama);
+    }
     unawaited(saveUserChange(context, () => widget.store.refreshDrama(drama)));
   }
 

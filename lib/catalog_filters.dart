@@ -103,29 +103,30 @@ class _CatalogFiltersState extends State<CatalogFilters> {
                       );
                     },
                   )
-                : SingleChildScrollView(
+                : ListView.builder(
                     key: const ValueKey('catalog-categories'),
                     scrollDirection: Axis.horizontal,
                     padding: const EdgeInsets.symmetric(horizontal: 12),
-                    child: Row(
-                      children: [
-                        for (final entry in widget.categories)
-                          Padding(
-                            key: _anchors.putIfAbsent(entry.id, GlobalKey.new),
-                            padding: const EdgeInsets.only(right: 6),
-                            child: PressScale(
-                              scale: .94,
-                              child: ChoiceChip(
-                                key: ValueKey('category-${entry.id}'),
-                                label: Text(entry.name),
-                                selected: _isSelected(entry.id),
-                                showCheckmark: false,
-                                onSelected: (_) => widget.onCategory(entry.id),
-                              ),
+                    itemCount: widget.categories.length,
+                    itemBuilder: (context, index) {
+                      final entry = widget.categories[index];
+                      return Padding(
+                        key: _anchors.putIfAbsent(entry.id, GlobalKey.new),
+                        padding: const EdgeInsets.only(right: 6),
+                        child: Center(
+                          child: PressScale(
+                            scale: .94,
+                            child: ChoiceChip(
+                              key: ValueKey('category-${entry.id}'),
+                              label: Text(entry.name),
+                              selected: _isSelected(entry.id),
+                              showCheckmark: false,
+                              onSelected: (_) => widget.onCategory(entry.id),
                             ),
                           ),
-                      ],
-                    ),
+                        ),
+                      );
+                    },
                   ),
           ),
           if (widget.error != null)

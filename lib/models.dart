@@ -228,6 +228,46 @@ class Drama {
     'releaseStatus': releaseStatus,
   };
 
+  bool sameAs(Drama other) {
+    if ((
+              id,
+              source,
+              sourceId,
+              title,
+              description,
+              cover,
+              episodes,
+              category,
+              vipStatus,
+              heat,
+              views,
+              onlineDate,
+              releaseStatus,
+            ) !=
+            (
+              other.id,
+              other.source,
+              other.sourceId,
+              other.title,
+              other.description,
+              other.cover,
+              other.episodes,
+              other.category,
+              other.vipStatus,
+              other.heat,
+              other.views,
+              other.onlineDate,
+              other.releaseStatus,
+            ) ||
+        tags.length != other.tags.length) {
+      return false;
+    }
+    for (var i = 0; i < tags.length; i++) {
+      if (tags[i] != other.tags[i]) return false;
+    }
+    return true;
+  }
+
   Drama merge(Drama fresh) {
     if (id != fresh.id) return fresh;
     const genericCategories = {

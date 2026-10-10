@@ -41,6 +41,7 @@ class CatalogBrowser {
   final _menus = <String, List<CatalogCategory>>{};
   final _library = <String, Map<String, Drama>>{};
   final _sessions = <String, _CatalogSession>{};
+  final _choiceCache = <String, List<_CatalogChoice>>{};
   int _generation = 0;
 
   Future<void> cancel() {
@@ -52,6 +53,7 @@ class CatalogBrowser {
   }
 
   void _remember(String source, Iterable<Drama> items) {
+    _choiceCache.clear();
     final library = _library.putIfAbsent(source, () => {});
     for (final drama in items) {
       if (drama.source == source) {
@@ -70,7 +72,10 @@ class CatalogBrowser {
     for (final drama in updates.values) {
       final library = _library[drama.source];
       if (library?.containsKey(drama.id) == true) {
-        library![drama.id] = library[drama.id]!.merge(drama);
+        final previous = library![drama.id]!;
+        final updated = previous.merge(drama);
+        if (previous.category != updated.category) _choiceCache.clear();
+        if (!previous.sameAs(updated)) library[drama.id] = updated;
       }
     }
     for (final session in _sessions.values) {
@@ -80,8 +85,10 @@ class CatalogBrowser {
           final item = entry.items[index];
           final fresh = updates[item.id];
           if (fresh == null) continue;
+          final updated = item.merge(fresh);
+          if (item.sameAs(updated)) continue;
           updatedItems ??= List<Drama>.of(entry.items);
-          updatedItems[index] = item.merge(fresh);
+          updatedItems[index] = updated;
         }
         if (updatedItems != null) entry.items = updatedItems;
       }
@@ -117,6 +124,7 @@ class CatalogBrowser {
           source.id,
           force: force,
         );
+        _choiceCache.clear();
       } catch (_) {
         failures.add(source.groupName);
       }
@@ -124,7 +132,12 @@ class CatalogBrowser {
     return failures.isEmpty ? null : '部分分类暂未加载，点击重试';
   }
 
-  List<_CatalogChoice> _choices(SourceGroup group) {
+  List<_CatalogChoice> _choices(SourceGroup group) => _choiceCache.putIfAbsent(
+    group.sources.map((source) => source.id).join('|'),
+    () => _buildChoices(group),
+  );
+
+  List<_CatalogChoice> _buildChoices(SourceGroup group) {
     final choices = <String, _CatalogChoice>{};
     for (final source in group.sources) {
       for (final category in _menus[source.id] ?? const <CatalogCategory>[]) {
@@ -234,12 +247,12 @@ class CatalogBrowser {
       final listener = onPartial;
       if (listener == null || cacheOnly || more) return;
       if (generation != session.generation) return;
-      final page = snapshot();
-      if (page.items.length == emitted) return;
       final now = DateTime.now();
-      if (now.difference(lastEmit) < const Duration(milliseconds: 120)) {
+      if (now.difference(lastEmit) < const Duration(milliseconds: 250)) {
         return;
       }
+      final page = snapshot();
+      if (page.items.length == emitted) return;
       lastEmit = now;
       emitted = page.items.length;
       listener(page);
